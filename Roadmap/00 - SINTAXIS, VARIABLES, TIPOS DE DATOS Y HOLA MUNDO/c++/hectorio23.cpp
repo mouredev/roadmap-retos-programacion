@@ -1,4 +1,4 @@
-// Bibliotecas requeridad
+// Bibliotecas requeridas
 #include <iostream>
 #include <string>
 
@@ -14,10 +14,10 @@ varias lineas
 
 /* 
 En c++ existen un monton de datos primitivos, cada uno se usa para cumplir con una necesidad,
-sin embrago, los mas usados y conocidos son:
+sin embargo, los mas usados y conocidos son:
 - int
 - float
-- decimal
+- double
 - char
 - string
 - bool 
