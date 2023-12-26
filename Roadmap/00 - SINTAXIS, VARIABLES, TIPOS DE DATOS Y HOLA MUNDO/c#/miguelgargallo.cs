@@ -1,20 +1,20 @@
-// URL of the official C# website: https://learn.microsoft.com/en-us/dotnet/csharp/
+// URL del sitio web oficial de C#: https://learn.microsoft.com/en-us/dotnet/csharp/
 
-// Single-line comment in C#
+// Comentario de una sola línea en C#
 
 /*
-  Multi-line comment in C#
+  Comentario de varias líneas en C#
 */
 
-// Variable and constant declaration
-string languageName = "C#";
-const string GREETING = "¡Hola, ";
+// Declaración de variable y constante
+string nombreIdioma = "C#";
+const string SALUDO = "¡Hola, ";
 
-// Primitive data types in C#
-int number = 42;
-double fractionalNumber = 3.14;
-bool isProgrammingFun = true;
-char singleCharacter = 'A';
+// Tipos de datos primitivos en C#
+int numero = 42;
+double numeroFraccionario = 3.14;
+bool esDivertidoProgramar = true;
+char caracterIndividual = 'A';
 
-// Printing the message
-Console.WriteLine(GREETING + languageName + "!");
+// Imprimir el mensaje
+Console.WriteLine(SALUDO + nombreIdioma + "!");
