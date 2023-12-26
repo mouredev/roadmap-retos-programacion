@@ -27,15 +27,17 @@ public class nwpablodeveloper {
     // Constante
     static final String _lenguaje  = "Java" ; 
     
-    // Variables con tipo de datos primitivos enteros
+    // Variables con tipos de datos primitivos enteros
     static public byte tipoByte = 127;              // Max permitido
     static public short tipoShort = 32767; 
     static public int tipoInteger = 2147483647;
+
+    // Variables con tipos de datos primitivos flotantes
     static public long tipoLong = 9223372036854775807L; // Max permitido poner L al final
     static public float tipoFloat = 3.4028235E38F; // Max permitido. Poner F para representar numeros flotantes
     static public double tipoDouble = 1.7976931348623157E308; // Max permitido
 
-    // Tipo char
+    // Variables con tipos de datos primitivos character
     static public char tipoCharSimbolo = 'P';
     static public char tipoCharUnicode = '\u0050'; // https://en.wikipedia.org/wiki/List_of_Unicode_characters
     static public char tipoCharDecimal = 80;
