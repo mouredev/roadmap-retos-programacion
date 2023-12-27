@@ -1,18 +1,4 @@
-# #00 SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
-#### Dificultad: Fácil | Publicación: 26/12/23 | Corrección: 02/01/24
-
-
 '''
-/*
- * ¿Preparad@ para aprender o repasar el lenguaje de programación que tú quieras?
- * - Recuerda que todas las instrucciones de participación están en el
- *   repositorio de GitHub.
- *
- * Lo primero... ¿Ya has elegido un lenguaje?
- * - No todos son iguales, pero sus fundamentos suelen ser comunes.
- * - Este primer reto te servirá para familiarizarte con la forma de participar
- *   enviando tus propias soluciones.
- *
  * EJERCICIO:
  * - Crea un comentario en el código y coloca la URL del sitio web oficial del
  *   lenguaje de programación que has seleccionado.
@@ -25,11 +11,31 @@
  *
  * ¿Fácil? No te preocupes, recuerda que esta es una ruta de estudio y
  * debemos comenzar por el principio.
- */
-```
-#### Tienes toda la información extendida sobre el roadmap de retos de programación en **[retosdeprogramacion.com/roadmap](https://retosdeprogramacion.com/roadmap)**.
-
-Sigue las **[instrucciones](../../README.md)**, consulta las correcciones y aporta la tuya propia utilizando el lenguaje de programación que quieras.
-
-> Recuerda que cada semana se publica un nuevo ejercicio y se corrige el de la semana anterior en directo desde **[Twitch](https://twitch.tv/mouredev)**. Tienes el horario en la sección "eventos" del servidor de **[Discord](https://discord.gg/mouredev)**.%  
 '''
+
+# COMENTARIOS
+ 
+# https://www.python.org
+'''
+Comentario de varias lineas
+'''
+
+
+# VARIABLES Y CONSTANTES
+mi_variable = 14
+MI_CONSTANTE = 1980
+
+
+# TIPOS
+var_string = 'texto'
+var_string = "texto2"
+var_string = "Esto es un string"
+var_int = int(1)
+var_float = float(1.5)
+boolean = True
+PI = 3.14
+
+
+# PRINT
+mi_lenguaje = "Python"
+print(f"¡Hola, {mi_lenguaje}!")
