@@ -17,7 +17,7 @@
 
 /* - Crea una variable (y una constante si el lenguaje lo soporta).*/
 int i;
-const int j = 2;
+const int J = 2;
 
 /* - Crea variables representando todos los tipos de datos primitivos
  *   del lenguaje (cadenas de texto, enteros, booleanos...).*/
