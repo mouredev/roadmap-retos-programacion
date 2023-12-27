@@ -56,7 +56,7 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 
 1. Hacer un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del repositorio de retos semanales desde GitHub.
 2. CLONAR ese repositorio a tu máquina local `git clone [TU-REPOSITORIO]`
-3. Crear una RAMA para la solución `git checkout [EL-NOMBRE-DE-TU-RAMA]`
+3. Crear una RAMA para la solución `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`
 4. Añadir el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`
 5. Hacer COMMIT con mensaje de la solución `git commit -m "Reto #[NÚMERO-RETO] [LENGUAJE-UTILIZADO]"`
 6. Hacer PUSH `git push [EL-NOMBRE-DE-TU-RAMA]`
