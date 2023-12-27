@@ -11,7 +11,7 @@ lineas o de parrafos
 let miVariable = "soy una variable";
 const miConstante = "soy una constante";
 
-//Crea variables representando todos los tipos de datos primitivos
+//Crea variables representando todos los tipos de datos primitivos//
 
 let numero = 12;
 let string = "soy una cadena de texto";
