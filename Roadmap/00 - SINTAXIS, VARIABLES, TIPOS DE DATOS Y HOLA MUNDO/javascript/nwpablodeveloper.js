@@ -29,4 +29,8 @@ let tipoObjeto = {
     edad: 35,
     trabaja: true
 }
+ 
+const saludoBienvenida = "¡Hola";
+const lenguaje = "javascript";
 
+console.log(`${ saludoBienvenida } desde ${ lenguaje }`)
