@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 // https://www.php.net/
 
 // Este es un comentario de una sola linea
