@@ -22,10 +22,10 @@
 public class nwpablodeveloper {
     
     // Variable
-    static public String unaVariable;
+    static public String unaVariable = "! Hola ";
     
     // Constante
-    static final String _lenguaje  = "Java" ; 
+    static final String _lenguaje  = "desde Java ¡" ; 
     
     // Variables con tipos de datos primitivos enteros
     static public byte tipoByte = 127;              // Max permitido
@@ -42,9 +42,10 @@ public class nwpablodeveloper {
     static public char tipoCharUnicode = '\u0050'; // https://en.wikipedia.org/wiki/List_of_Unicode_characters
     static public char tipoCharDecimal = 80;
     
+
     public static void main(String[] args) {
         
-        System.out.println("¡Hola, " + _lenguaje +  " !");
+        System.out.println( unaVariable + _lenguaje );
         
     }
 
