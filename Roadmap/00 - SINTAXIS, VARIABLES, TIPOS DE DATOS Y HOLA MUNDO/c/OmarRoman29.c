@@ -7,7 +7,6 @@
 // Para las constantes máximas de cada dato
 #include <limits.h>
 // Libreria estandar para leer y escribir
-#include <locale.h>
 #include <stdio.h>
 
 // Un tipo de constante
@@ -63,9 +62,12 @@ int main() {
    * numeros. Para esto usamos la palabra reservada signed y 
    * unsigned, por defecto todos los tipos son signed
    *
-   * int var == signed var*/
+   * int var == signed int  var*/
   unsigned short uShortInteger = USHRT_MAX;
   printf("ushort: %hu\n", uShortInteger);
+
+  unsigned long uLongInteger = ULONG_MAX;
+  printf("ushort: %lu\n", uLongInteger);
 
   // VARIABLES DE COMA FLOTANTE
   // Tiene 32 bits, pero el valor que contienen se calcula de forma más compleja
