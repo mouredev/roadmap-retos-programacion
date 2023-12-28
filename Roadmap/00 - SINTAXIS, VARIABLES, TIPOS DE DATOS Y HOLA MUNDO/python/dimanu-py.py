@@ -49,3 +49,6 @@ dog = {
     "age": 2,
     "breed": "French Poodle"
 }
+
+# Greeting
+print(f"Hello, {programming_language}!")
