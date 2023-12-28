@@ -20,7 +20,8 @@
 
 /* esto es un
  comentario de
- varias lineas*/
+ varias lineas
+ */
 
 let lenguaje: String = "Swift"
 var variable: String = "Esto será una variable de tipo string"
