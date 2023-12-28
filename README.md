@@ -58,7 +58,7 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 2. CLONA ese repositorio a tu máquina local `git clone [TU-REPOSITORIO]`.
 3. Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
 4. Añade el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`.
-5. Haz COMMIT con el mensaje de la solución `git co.mmit -m "#[NÚMERO-RETO] - [LENGUAJE-UTILIZADO]"`.
+5. Haz COMMIT con el mensaje de la solución `git commit -m "#[NÚMERO-RETO] - [LENGUAJE-UTILIZADO]"`.
 6. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]`
 7. En el repositorio principal debes ir a la rama y hacer [PULL REQUEST](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 8. CONTRIBUTE.
