@@ -28,3 +28,4 @@ let simbol = Symbol.for('key')
 // Imprime en consola
 console.log('Hola JavaScript!');
 
+
