@@ -8,8 +8,14 @@
 #include <cassert>
 #include <type_traits>
 #include <bitset>
-
-
+/************************************************************************************************************
+*******************************REFERENCIAS DEL LENGUAJE C++**************************************************
+*************************************************************************************************************
+*sitio oficial de referencia https://learn.microsoft.com/es-es/cpp/cpp/cpp-language-reference?view=msvc-170 *
+*Referencias recomendadas personalmente:                                                                    *
+*  https://en.cppreference.com/w/                                                                           *
+*  https://www.learncpp.com/                                                                                *
+************************************************************************************************************/
 int returnTen();// fordware declaration de funcion que retorna el numero 10
 
 //TODO LO DECLARADO ACA ES GLOBAL
