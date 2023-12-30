@@ -39,3 +39,7 @@ let tipoBigInt = 1234567890123456789012345678901234567890n;
 let tipoNulo = null; //Aunque algunos ejemplso lo clasifican como primitivo, en la documentación de Mozilla (https://developer.mozilla.org/es/docs/Glossary/Primitive) se indica que es un "caso especial".
 
 /*******************************************************/
+
+/************ 5 - HOLA, JAVASCRIPT ************/
+console.log("¡Hola, JavaScript!");
+/**********************************************/
