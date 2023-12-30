@@ -76,5 +76,5 @@ int    main(int argc, char **argv)
     /* ==== 5 ==== */
     printf("¡%s, %c!\n", hellostring, lang); // Imprime por pantalla "¡Hola, C!" seguido de un salto de línea.
     // NOTA: Para utilizar esta función necesitas incluir la librería
-	// stdio.h
+    // stdio.h
 }
