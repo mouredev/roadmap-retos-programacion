@@ -17,3 +17,25 @@ LINEAS
 */
 
 /**************************************************/
+
+/************ 3 - CREANDO VARIABLES ************/
+var variableVar = "Una variable usando VAR"; //Desde hace años, ya no se recomienda usar VAR
+let variableLet = "Una variable usando LET";
+const CONSTANTE = "Una constante";
+/***********************************************/
+
+/************ 4 - TIPOS DE DATOS PRIMITIVOS ************/
+
+let tipoCadena = "Hola, soy una cadena de texto";
+//Los de tipo number pueden ser enteros o decimales
+let tipoNumber = 42;
+tipoNumber = 42.5;
+let tipoBooleano = true;
+let tipoIndefinido = undefined;
+let tipoSimbolo = Symbol();
+let tipoBigInt = 1234567890123456789012345678901234567890n;
+
+
+let tipoNulo = null; //Aunque algunos ejemplso lo clasifican como primitivo, en la documentación de Mozilla (https://developer.mozilla.org/es/docs/Glossary/Primitive) se indica que es un "caso especial".
+
+/*******************************************************/
