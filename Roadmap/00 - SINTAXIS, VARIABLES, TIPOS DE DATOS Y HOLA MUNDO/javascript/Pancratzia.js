@@ -32,11 +32,11 @@ let tipoNumber = 42;
 tipoNumber = 42.5;
 let tipoBooleano = true;
 let tipoIndefinido = undefined;
-let tipoSimbolo = Symbol();
+let tipoSimbolo = Symbol("mySymbol");
 let tipoBigInt = 1234567890123456789012345678901234567890n;
 
 
-let tipoNulo = null; //Aunque algunos ejemplso lo clasifican como primitivo, en la documentación de Mozilla (https://developer.mozilla.org/es/docs/Glossary/Primitive) se indica que es un "caso especial".
+let tipoNulo = null; //Aunque algunos ejemplos lo clasifican como primitivo, en la documentación de Mozilla (https://developer.mozilla.org/es/docs/Glossary/Primitive) se indica que es un "caso especial".
 
 /*******************************************************/
 
