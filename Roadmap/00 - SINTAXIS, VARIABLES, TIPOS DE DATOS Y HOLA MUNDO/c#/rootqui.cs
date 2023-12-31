@@ -52,7 +52,7 @@ int maxInt = 2147483647;
 
 uint maxUInt = 4294967295;
 
-long minLong = 9223372036854775807;
+long minLong = -9223372036854775808;
 
 ulong maxULong =  18446744073709551615;
 
