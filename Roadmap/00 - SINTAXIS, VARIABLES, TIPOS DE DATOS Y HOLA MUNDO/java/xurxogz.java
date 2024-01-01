@@ -21,5 +21,6 @@ public class xurxogz {
         boolean myBool = false;
 
         System.out.println("¡Hola, Java!");
+
     }
 }
