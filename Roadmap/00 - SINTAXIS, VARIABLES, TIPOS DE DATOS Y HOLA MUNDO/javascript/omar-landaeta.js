@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> main-olandaetadev
 // 1 - Este es un comentario con la URL de documentación Oficial de Javascript
 // https://developer.mozilla.org/es/docs/Web/JavaScript
 
