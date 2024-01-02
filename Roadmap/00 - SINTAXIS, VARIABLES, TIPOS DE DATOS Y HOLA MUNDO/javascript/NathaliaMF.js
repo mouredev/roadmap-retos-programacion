@@ -24,5 +24,4 @@ let elapsedDays = 1234567890123456789012345n;
 let valueNull= null;
 let valueUndefined = undefined;
 
-
 console.log('Hola Mundo, el lenguaje que aprendere sera JavaScript');
