@@ -17,15 +17,15 @@
 
 
 nombre = "santy" #Variable
-VELOCIDAD_DE_LA_LUZ = 299792458 #CONSTANTE  
+VELOCIDAD_DE_LA_LUZ = 299792458 #CONSTANTE
 
-#Tipo de datos primitivos 
+#Tipo de datos primitivos
 
 String : str = "Cadena de Texto"
 Numero_Entero : int = 14
-Numero_flotante : Float = 13.9
+Numero_flotante : float = 13.9
 Boleano_True : bool = True
 Boleano_False : bool = False
 
-#Hola 
-print("Hola , mi nombre es " , nombre , " y esto es python")
+#Hola
+print("Hola , mi nombre es " , nombre , " y esto es python God")
