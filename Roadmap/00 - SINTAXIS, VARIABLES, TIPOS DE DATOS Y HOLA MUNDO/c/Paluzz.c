@@ -87,7 +87,7 @@ int main()
     // forma 1: memoria estatica
     char str[10] = "hola mundo";
 
-    // forma 2: punteros // memoria dinamica
+    // forma 2: punteros y/o memoria dinamica
     char *pString;
     pString = (char *)malloc(sizeof(char) * 5); // complejo no?
     // le ingresamos un texto al string
