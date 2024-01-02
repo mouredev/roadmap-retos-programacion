@@ -68,6 +68,8 @@ int main()
     int num = 5;
     unsigned int bit = 1;
 
+    long grande = 46648987;
+
     // punto flotante:
     float radio = 1.5;
     double promedio;
@@ -97,6 +99,7 @@ int main()
 
     printf("Hola, lenguaje C\n");
     printf("imprimimos entero: %d\n", num);
+    printf("imprimimos long: %ld\n", grande);
     printf("imprimimos vector enteros: ");
     for (int i = 0; i < 5; i++)
     {
