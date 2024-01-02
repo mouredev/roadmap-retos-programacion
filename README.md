@@ -21,14 +21,15 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Martes 2 de Enero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/C83vqurv?event=1189147970021642271)** por país y crea un **[recordatorio](https://discord.gg/C83vqurv?event=1189147970021642271)**
+> #### Lunes 8 de Enero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/mouredev?event=1191684000465567774)** por país y crea un **[recordatorio](https://discord.gg/mouredev?event=1191684000465567774)**
 
 ## Roadmap
 
 | # | Ejercicio | Corrección | Vídeo | Comunidad |
 |---|-----------|------------|-------|-----------|
-|00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[🗓️ 02/01/24](https://discord.gg/C83vqurv?event=1189147970021642271)||[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
+|00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[📝](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/python/mouredev.py)||[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
+|01|[OPERADORES Y ESTRUCTURAS DE CONTROL](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/ejercicio.md)|[🗓️ 08/01/24](https://discord.gg/mouredev?event=1191684000465567774)||[👥](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/)
 
 
 ## Instrucciones
