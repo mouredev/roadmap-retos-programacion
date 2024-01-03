@@ -1,7 +1,10 @@
 // https://www.typescriptlang.org
 
+// Esto es un comentario en una sola linea
 /*
-https://www.typescriptlang.org
+Esto es un
+comentario en
+varias lineas
 */
 
 let myString= "Mi cadena"
