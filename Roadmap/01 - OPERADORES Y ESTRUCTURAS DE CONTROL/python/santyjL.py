@@ -83,13 +83,13 @@ variable_vacia //= 6
 variable_vacia %= 4
 
 print("""
-    += 3
-    -= 4
-    *= 2
-    /= 2
-    **= 3
-    //= 6
-    %= 4
+    VARIABLE += 3
+    VARIABLE -= 4
+    VARIABLE *= 2
+    VARIABLE /= 2
+    VARIABLE **= 3
+    VARIABLE //= 6
+    VARIABLE %= 4
      """)
 
 #identidad
