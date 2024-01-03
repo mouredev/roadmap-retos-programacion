@@ -110,6 +110,18 @@ while num > 0:
     num -= 1
 print("...............................")
 
+#Excepciones
+print("Excepciones")
+num1 = 5
+num2 = 0
+
+try:
+    num3 = num1 / num2
+except Exception:
+    print("Ha habido una excepción")
+
+print("...............................")
+
 #EXTRA
 print("DIFICULTAD EXTRA")
 for i in range(10,56):
