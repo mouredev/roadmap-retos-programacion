@@ -12,7 +12,7 @@ division = 20 % 5
 modulo = 20 % 2
 # Exponente
 exponente = 4 ** 2
-# Division Baja
+# Division Baja o Division Entera
 division_baja = 5 // 2
 
 # Operadores de comparacion: >, <, ==, >=, <=, !=
@@ -73,8 +73,26 @@ numero4 = 30
 numero4 %= 5
 print(numero4) # 0 # 30 es divisible por 5
 
-# 
+# **/ (Operador de potencia y asignacion)
+numero5 = 2
+numero5 **= 3
+print(numero5) # 8
 
+# //= (Operador de division entera y asignacion)
+numero6 = 400
+numero6 //= 3
+print(numero6) # 133 (el operador de division entera, divide los dos operandos y devuelve el cociente entero descartando cualquier parte decimal)
+
+# &= (Operador de bit a bit y asignacion) 
+""" Este Operador de asignacion, compara cada bit en la posicion correspondiente de los numeros que se convertiran a numeros binarios """
+x = 5 # en binario: 0b101
+y = 3 # en binario: 0b011
+x &= y # se comparan 0b101 y 0b011, la respuesta seria 0b001. --> 1
+"""Se compara cada cifra de cada operando en sus posiciones correspondientes, si en el primer numero binario su ultima 
+cifra es 1 y en el segundo numero binario su ultima cifra es 1, la respuesta de la ultima cifra del resultado seria 1 ya que son iguales.
+Asi se compara cada cifra restante de los operandos para hallar el numero binario resultante.
+Recuerden los numeros binarios estan compuestos solo por 0 y 1. """
+print(x) # 1
 
 if 5 > 3 and 10 < 100:
     print("5 es mayor que 3 y 10 es menor que 100!")
