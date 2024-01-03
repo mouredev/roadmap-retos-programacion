@@ -85,28 +85,54 @@ print(numero6) # 133 (el operador de division entera, divide los dos operandos y
 
 # &= (Operador de AND bit a bit y asignacion) 
 """ Este Operador de asignacion (&=), primero convierte cada operando a numeros binarios luego compara con AND cada bit
-en la posicion correspondiente de cada numero operando. Si el resultado de True AND False es False, el resultado de 1 AND 0 es 0 y si
-el resultado de True AND True es True entonces el resultado de 1 AND 1 es 1. (Asi se van a ir comparando cada cifra de los numeros binarios)"""
+en la posicion correspondiente de cada numero binario. Si el resultado de True AND False es False, el resultado de 1 AND 0 es 0 y si
+el resultado de True AND True es True entonces el resultado de 1 AND 1 es 1. (Asi se van a ir comparando cada bit de los numeros binarios)"""
 x = 5 # en binario: 0b101
 y = 3 # en binario: 0b011
 x &= y # se comparan con AND 0b101 y 0b011, la respuesta seria 0b001. --> 1
-"""Se compara cada cifra de cada operando en sus posiciones correspondientes, si en el primer numero binario su ultima 
-cifra es 1 y en el segundo numero binario su ultima cifra es 1, la respuesta de la ultima cifra del resultado seria 1 ya que se esta usando AND.
-Asi se compara cada cifra restante de los operandos para hallar el numero binario resultante.
-Recuerden los numeros binarios estan compuestos solo por 0 y 1. """
+"""Se compara cada bit de cada operando en sus posiciones correspondientes, si en el primer numero binario su ultimo
+bit es 1 y en el segundo numero binario su ultimo bit es 1, la respuesta de la ultimo bit del resultado seria 1 ya que se esta usando AND.
+Asi se compara cada bit restante de los operandos para hallar el numero binario resultante.
+Recuerden los bits de los numeros binarios estan compuestos solo por 0 y 1. """
 print(x) # 1
 
 # |= (Operador de OR bit a bit y asignacion)
 """Este Operador de asignacion (|=), primero convierte cada operando a numeros binarios luego compara con OR cada bit
-en la posicion correspondiente de cada numero operando. Si el resultado de True OR False es True, el resultado de 1 OR 0 es 1 y si
-el resultado de True OR True es True entonces el resultado de 1 OR 1 es 1. (Asi se van a ir comparando cada cifra de los numeros binarios)"""
-
+en la posicion correspondiente de cada numero binario. Si el resultado de True OR False es True, el resultado de 1 OR 0 es 1 y si
+el resultado de True OR True es True entonces el resultado de 1 OR 1 es 1. (Asi se van a ir comparando cada bit de los numeros binarios)"""
 z = 8 # en binario: 0b1000
 g = 3 # en binario: 0b0011
 z |= g # se comparan con OR 0b1000 y 0b0011, la respuesta es 0b1011. --> 11
-"""Se compara cada cifra de cada operando en sus posiciones correspondientes, si en primer numero binario su ultima cifra es 0
-y el en segundo numero binario su ultima cifra es 1, la respuesta de la ultima cifra del resultado es 1 ya que se esta usando OR"""
+"""Se compara cada bit de cada operando en sus posiciones correspondientes, si en primer numero binario su ultimo bit es 0
+y el en segundo numero binario su ultimo bit es 1, la respuesta del ultimo bit del resultado es 1 ya que se esta usando OR"""
 print(z)
+
+# ^= (Operador de XOR bit a bit y asignacion)
+"""Este Operador de asignacion (^=), primero convierte cada operando a numeros binarios luego compara con XOR cada bit
+en la posicion correspondiente de cada numero binario. La operacion XOR bit a bit devuelve 1 en el bit resultante si los bits correspondientes
+son diferentes y 0 si son iguales"""
+m = 5 # en binario: 0b101
+n = 3 # en binario: 0b011
+m ^= n # se comparan con XOR 0b101 y 0b011, la respuesta es 0b110. --> 6
+print(m)
+
+# >>= (Operador de desplazamiento a la derecha con asignacion)
+"""Este Operador de asignacion (>>=), primero convierte el operando principal (el mas a la izquierda) a binario y 
+luego desplaza sus bits n(el otro operando) veces hacia la derecha, habran bits que se desplazaran fuera y se perderan. Los espacios
+en donde estaban los bits desplazados seran reemplazandos por 0"""
+binario1 = 8 # en binario: 0b1000
+desplazar_n = 2
+binario1 >>= desplazar_n # Se desplazan los bits de la izquierda hacia la derecha y las posiciones donde estaban los bits se reemplazan por 0 --> 0b0010
+print(binario1) # 2
+
+# <<= (Operador de desplazamiento a la izquierda con asignacion)
+"""Este operador de asignacion (<<=), primero convierte el operando principal (el mas a la izquierda) a binario y
+luego desplaza sus bits n(el otro operando) veces hacia la izquierda, habran bits que se desplazaran fuera y se perderan. Los espacios
+en donde estaban los bits desplazados seran reemplazados por 0"""
+binario2 = 2 # en binario: 0b0010
+desplazar_m = 2
+binario2 <<= desplazar_m # Se desplazan los bits de la derecha hacia la izquierda y las posiciones donde estaban los bits se reemplazan por 0 --> 0b1000
+print(binario2) # 0b1000 --> 8
 
 if 5 > 3 and 10 < 100:
     print("5 es mayor que 3 y 10 es menor que 100!")
