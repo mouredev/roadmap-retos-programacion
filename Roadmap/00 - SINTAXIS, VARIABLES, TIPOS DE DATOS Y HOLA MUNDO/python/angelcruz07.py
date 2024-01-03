@@ -17,6 +17,4 @@ my_float = 1.56
 
 my_language = 'Python'
 
-print("This is my chosen language " + my_language)
-user_name = "JohnDoe"
-total_count = 100
+print("This is my chosen language" + my_language)
