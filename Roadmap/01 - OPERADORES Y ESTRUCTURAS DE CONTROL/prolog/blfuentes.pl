@@ -35,8 +35,10 @@ mayor_igual_que(X, Y) :- X >= Y.
 menor_igual_que(X, Y) :- X =< Y.
 % igual que =:=
 igual_que(X, Y) :- X =:= Y.
-% diferente =\=
+% diferente =\= (aritmético)
 diferente_que(X, Y) :- X =\= Y.
+% diferente \= (términos)
+diferente_que_t(X, Y) :- X \= Y.
 % OPERADORES ARITMéTICOS
 % añadir +
 anadir(X, Y, R) :- R is X + Y.
@@ -71,4 +73,46 @@ es_par(X) :-
         write("no es par"), nl
     ).
 
- main :- write("¡Hola, prolog!").
+% BUCLES
+% hay que simularlo con recursión
+contar_desde_hasta(LOW, HIGH) :-
+    LOW > HIGH.
+contar_desde_hasta(LOW, HIGH) :-
+    LOW =< HIGH,
+    writeln(LOW),  
+    NextLow is LOW + 1,
+    contar_desde_hasta(NextLow, HIGH).
+
+% EXCEPCIONES
+% no existen, hay que simularlas con cláusulas de failure
+numero_positivo(X) :-
+    X > 0, !.  % success si se cumple
+numero_positivo(X) :-
+    atom_concat('Exception. No es positivo: ', X, ERROR),
+    writeln(ERROR), nl,
+    fail.     % Fallo!
+
+% ejercicio
+numero_valido(X) :-
+    X mod 2 =:= 0, X =\= 16, X mod 3 =\= 0.
+
+mostrar_pares_no16_nomultiplo3(DESDE, HASTA) :-
+    DESDE > HASTA.
+mostrar_pares_no16_nomultiplo3(DESDE, HASTA) :-
+    DESDE =< HASTA,
+    (numero_valido(DESDE) ->
+        writeln(DESDE),
+        NextDESDE is DESDE + 1,
+        mostrar_pares_no16_nomultiplo3(NextDESDE, HASTA)
+    ;
+    NextDESDE is DESDE + 1,
+    mostrar_pares_no16_nomultiplo3(NextDESDE, HASTA)).
+
+% otra forma de hacerlo simplificado
+mostrar_pares_no16_nomultiplo3_simplificado(DESDE, HASTA, NUM) :-
+    between(DESDE, HASTA, NUM),
+    NUM mod 2 =:= 0, NUM \= 16, NUM mod 3 =\= 0.
+% ejecutar con 
+% forall(mostrar_pares_no16_nomultiplo3_simplificado(10, 55, Number), writeln(Number)).
+
+ main :- write("¡OPERADORES Y ESTRUCTURAS DE CONTROL!").
