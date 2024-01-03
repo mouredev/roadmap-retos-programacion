@@ -14,7 +14,7 @@ while (b < 5):
     b += 1
     print("B es igual a ", b)
 
-# Excepciones
+# Excepciones 
 try:
     print("a / 0 = ", a / 0)
 except ZeroDivisionError:
