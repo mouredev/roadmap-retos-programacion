@@ -108,7 +108,6 @@ for color in tupla:
     print(color)
 
 
-
 # EXCEPCION
 while True:
     # control de la excepcion
