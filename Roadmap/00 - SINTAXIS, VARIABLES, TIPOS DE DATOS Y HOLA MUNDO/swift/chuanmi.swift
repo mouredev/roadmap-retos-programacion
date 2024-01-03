@@ -1,10 +1,4 @@
-#https://www.python.org/
-#00 SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
-
-"Ejercicio : "
-
-#documentar en varias lineas
-"""
+/*EJERCICIO:
  * - Crea un comentario en el código y coloca la URL del sitio web oficial del
  *   lenguaje de programación que has seleccionado.
  * - Representa las diferentes sintaxis que existen de crear comentarios
@@ -13,19 +7,28 @@
  * - Crea variables representando todos los tipos de datos primitivos
  *   del lenguaje (cadenas de texto, enteros, booleanos...).
  * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
-"""
+ *
+ * ¿Fácil? No te preocupes, recuerda que esta es una ruta de estudio y
+ * debemos comenzar por el principio.
+ */
 
+ import UIKit
 
-nombre = "santy" #Variable
-VELOCIDAD_DE_LA_LUZ = 299792458 #CONSTANTE
+ // Voy a utilizar https://www.swift.org
 
-#Tipo de datos primitivos
+// esto es un comentario de 1 linea.
 
-String : str = "Cadena de Texto"
-Numero_Entero : int = 14
-Numero_flotante : float = 13.9
-Boleano_True : bool = True
-Boleano_False : bool = False
+/* esto es un
+ comentario de
+ varias lineas
+ */
 
-#Hola
-print("Hola , mi nombre es " , nombre , " y esto es python God")
+let lenguaje: String = "Swift"
+var variable: String = "Esto será una variable de tipo string"
+
+var boolean: Bool = true
+var integer: Int = 10
+var floating: Float = 14.09
+var double: Double = 3.1416
+
+print("¡Hola, \(lenguaje)!")
