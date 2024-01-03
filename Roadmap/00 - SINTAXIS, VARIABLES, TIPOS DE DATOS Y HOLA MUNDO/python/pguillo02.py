@@ -13,6 +13,10 @@ booleana = True
 Flotantes = 12.34
 Nulas = None
 
+#Constantes
+
+CONST = 23
+
 #Se pueden mostrar elementos por pantalla mediante print()
 
 print("Hola Python")
