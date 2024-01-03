@@ -101,6 +101,17 @@ while numero <= 10:
     print(numero)
     numero += 1
 
+# EXCEPCIONES
+while True:
+    # control de la excepcion
+    try:
+        number = int(input('Inserta un numero: '))
+        break # si introduce un valor valido termina la ejecucion
+    
+    # si no introduce un valor valido, devuelve el error controlado
+    except ValueError:
+        print('Error! No ha insertado un valor valido. Intentelo de nuevo')
+
 
 # For ( permite iterar sobre una variable compleja - Listas o Tuplas)
 tupla = ('verde', 'rojo', 'amarillo', 'azul', 'naranja')
