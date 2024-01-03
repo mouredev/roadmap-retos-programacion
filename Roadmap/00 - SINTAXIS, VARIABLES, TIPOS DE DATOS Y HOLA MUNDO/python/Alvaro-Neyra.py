@@ -8,6 +8,7 @@ tengo que seguir para demostrarles que aunque esto tambien sirve para declarar s
 de varias lineas, tip final: esto se llama docstring"""
 
 # Creando una variable normal
+mi_variable = "Hola soy una variable"
 numero = 50
 numero_por_dos = 50 * 2
 # Creando una variable constante (Python no soporta el hecho de crear variables CONSTANTE pero se sigue una convencion para indicar que es una variable constante y no debe
