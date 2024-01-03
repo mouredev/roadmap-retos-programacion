@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class GerardoGalviz {
+public class Peeanoot {
 
     public static void main(String[] args) {
         // Operadores Aritméticos
