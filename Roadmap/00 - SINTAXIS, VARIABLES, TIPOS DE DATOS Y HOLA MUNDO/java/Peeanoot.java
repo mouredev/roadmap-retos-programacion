@@ -1,4 +1,4 @@
-public class GerardoGalviz {
+public class Peeanoot {
     public static void main(String[] args) {
 // https://www.java.com/es/
 
