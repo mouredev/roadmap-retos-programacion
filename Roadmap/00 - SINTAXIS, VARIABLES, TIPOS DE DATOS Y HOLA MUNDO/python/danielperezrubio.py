@@ -7,10 +7,10 @@ Un comentario en
 varias líneas
 """
 
-"""
+'''
 Otro comentario en
 varias líneas
-"""
+'''
 
 variable = 1
 CONSTANTE = 3.14
