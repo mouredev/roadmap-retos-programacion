@@ -134,26 +134,27 @@ console.log('El operador de NOT lógico (!) compara el valor de dos operandos. E
 
 let index = 1;
 
-while(index <= 10) {
+while(index <= 10) { //Ciclo while. Puede no ser ejecutado.
     console.log(index);
     index++;
 }
 
-do{
+do{ //Ciclo do while. Se ejecuta al menos una vez.
     index--;
     console.log(index);
 }while(index > 1);
 
 const edad = 19;
-if(edad <18){
+
+if(edad <18){ // If. Revisa las condiciones
     console.log("No eres mayor de edad");
-}else{
+}else{ // Else. Si no se cumple la condición del if, se ejecuta
     console.log("Eres mayor de edad");
 }
 
 const opcion = 2;
 
-switch(opcion){
+switch(opcion){ // Switch. Revisa las opciones y ejecuta la correspondiente al caso
     case 1:
         console.log("Opcion 1");
         break;
@@ -168,8 +169,14 @@ switch(opcion){
         break;
 }
 
-for(let i = 1; i <= 10; i++){
+for(let i = 1; i <= 10; i++){ // For. Se ejecuta hasta que no se cumpla la condición
     console.log(i);
+}
+const constante = 10;
+try{ // Try. Intenta ejecutar el bloque de código
+    constante = 20;
+}catch(error){ // Catch. Se ejecuta si hay un error sin interrupir la ejecución del programa
+    console.log(error);
 }
 
 
