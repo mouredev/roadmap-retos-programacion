@@ -101,7 +101,15 @@ while numero <= 10:
     print(numero)
     numero += 1
 
-# EXCEPCIONES
+
+# For ( permite iterar sobre una variable compleja - Listas o Tuplas)
+tupla = ('verde', 'rojo', 'amarillo', 'azul', 'naranja')
+for color in tupla:
+    print(color)
+
+
+
+# EXCEPCION
 while True:
     # control de la excepcion
     try:
@@ -111,12 +119,6 @@ while True:
     # si no introduce un valor valido, devuelve el error controlado
     except ValueError:
         print('Error! No ha insertado un valor valido. Intentelo de nuevo')
-
-
-# For ( permite iterar sobre una variable compleja - Listas o Tuplas)
-tupla = ('verde', 'rojo', 'amarillo', 'azul', 'naranja')
-for color in tupla:
-    print(color)
 
 
 #---  Reto Extra  ---#
