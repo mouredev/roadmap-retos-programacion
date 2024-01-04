@@ -111,7 +111,8 @@ Exixten infinidad de operaciones posibles con
 cada uno de los tipos de datos, en los que se pueden ir profundizando,
 a medida que se abanza o se necesita.
 """
-
+#hola mundo.
+print("¡Hola, Python!")
 
 
 
