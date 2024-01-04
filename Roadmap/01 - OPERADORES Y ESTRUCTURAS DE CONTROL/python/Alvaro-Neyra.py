@@ -224,6 +224,57 @@ else:
 # Bucles for, while
 lista_iterable = ["Hola", "mi", "nombre", "es", "Alvaro", "Neyra"]
 
+#for
+
 for palabra in lista_iterable:
     print(palabra)
+
+# for, range
     
+for i in range(10):
+    print(f"{i + 1}")
+
+# while and exceptions: Se ejecuta ilimitadamente hasta que la condicion sea falsa
+
+while True:
+    print("Dividir dos numeros....")
+    dividir_numero1 = int(input("Primer operando: "))
+    dividir_numero2 = int(input("Segundo operando: "))
+    try:
+       resultado_de_la_division = dividir_numero1 / dividir_numero2
+    except ValueError as e:
+        print("Tiene que ser un numero!!")
+        print(f"Error: {e}")
+    except Exception as Error:
+        print(f"Error cometido: {Error}")
+    else:
+        break
+
+print(resultado_de_la_division)
+
+# for, zip()
+numeros = [8, 100, 200]
+se_llaman = ["Ocho", "Cien", "Doscientos"]
+
+for e, i in zip(numeros, se_llaman):
+    print(f"{e} se llama: {i}")
+
+# for, enumerate():
+lista_de_elementos = ["Palabra", True, 300]
+
+for indice, elemento in enumerate(lista_de_elementos):
+    print(f"Este es el elemento: {elemento} del indice: {indice}")
+
+# Crea un programa que imprima por consola todos los números comprendidos entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+def dificultad_extra():
+    for i in range(10, 56):
+        if i == 16:
+            continue
+        if i % 3 == 0:
+            continue
+        if i % 2 != 0:
+            continue
+
+        print(i)
+
+dificultad_extra()
