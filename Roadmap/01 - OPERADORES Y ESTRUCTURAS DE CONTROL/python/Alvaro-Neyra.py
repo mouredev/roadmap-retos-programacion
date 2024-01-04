@@ -249,6 +249,8 @@ while True:
         print(f"Error cometido: {Error}")
     else:
         break
+    finally:
+        print("Finally siempre se ejecuta siempre!")
 
 print(resultado_de_la_division)
 
