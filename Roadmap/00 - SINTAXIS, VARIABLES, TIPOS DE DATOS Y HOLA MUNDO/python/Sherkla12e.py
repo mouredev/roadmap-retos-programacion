@@ -19,7 +19,7 @@
 # Variable y constante
 
 variable = 'Me llamo davis'
-# Mayormente alas constantes se le coloca su respectiva mayuscula
+# Mayormente alas constantes see le coloca su respectiva mayuscula
 PI = 3
 
 # ej4
