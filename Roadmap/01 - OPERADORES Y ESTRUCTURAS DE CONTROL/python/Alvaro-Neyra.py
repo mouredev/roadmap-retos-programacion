@@ -2,18 +2,25 @@
 
 # Suma
 suma = 4 + 5
+print(suma)
 # Resta
 resta = 9 - 3
+print(resta)
 # Multiplicacion
 multiplicacion = 5 * 6
+print(multiplicacion)
 # Division
 division = 20 % 5
+print(division)
 # Modulo
 modulo = 20 % 2
+print(modulo)
 # Exponente
 exponente = 4 ** 2
+print(exponente)
 # Division Baja o Division Entera
 division_baja = 5 // 2
+print(division_baja)
 
 # Operadores de comparacion: >, <, ==, >=, <=, !=
 
@@ -88,6 +95,7 @@ print(resultado_binario5) # 0b1100000000 --> 768
 
 # = (Operador de asignacion)
 variable_numerica = 40 - 20
+print(variable_numerica)
 
 # += (Operador de suma y asignacion)
 numero= 20
@@ -198,17 +206,24 @@ print(30 in lista_de_numeros) # False
 cadena_de_texto = "Hola, Mundo!"
 print("H" in cadena_de_texto) # True
 
-if 5 > 3 and 10 < 100:
-    print("5 es mayor que 3 y 10 es menor que 100!")
+# Estructuras de control:
+# Condicional if, elif y else
+
+ganancia = int(input("Cuanto dinero ganas al mes aproximadamente?: "))
+gasto = int(input("Cuanto gastas aproximadamente cada mes?: "))
+
+if ganancia/3 >= gasto :
+    print("Estas ahorrando correctamente!!")
+elif ganancia/2 >= gasto:
+    print("Estas ahorrando!!")
+elif ganancia > gasto and gasto <= ganancia * 0.8:
+    print("Estas ahorrando pero puedes ahorrar mucho mas!!")
 else:
-    print("5 no es menor que 3 y 10 no es menor que 100!")
+    print("No estas ahorrando correctamente!")
 
-if 10 + 12 == 22 or 30 + 1 == 31:
-    print("La funcion print se ejecuta, ya que una de las dos condiciones es verdadera (10 + 12 == 22 --> True)")
+# Bucles for, while
+lista_iterable = ["Hola", "mi", "nombre", "es", "Alvaro", "Neyra"]
 
-lista = [20, 30, 40, 50]
-
-if not 10 in lista:
-    print("10 esta en la lista!")
-else:
-    print("10 no esta en la lista!")
+for palabra in lista_iterable:
+    print(palabra)
+    
