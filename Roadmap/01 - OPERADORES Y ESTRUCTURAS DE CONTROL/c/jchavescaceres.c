@@ -35,7 +35,12 @@ printf ("Devolver valor e incrementar luego a++: %d, a: %d\n", a++, a);
 printf ("Decrementar primero y devolver nuevo valor --a: %d, a: %d\n", --a, a);
 printf ("Devolver valor y decrementar luego a--: %d, a: %d\n", a--, a);
 
-printf ("Asignación:\n");
+printf ("\nComparación:\n");
+printf ("a=%d, b=%d\n", a, b);
+printf ("a>b %s\n", a>b ? "true" : "false");
+printf ("a>=b %s\n", a>=b ? "true" : "false");
+
+printf ("\nAsignación:\n");
 printf ("a=%d, b=%d \n", a, b);
 b=a;
 printf ("b=a b: %d \n", b);
