@@ -42,6 +42,48 @@ print(30 - 20 == 10 or 30 - 20 == 100) # Imprime True, si una de las condiciones
 # not
 print(not 20 - 10 == 10) # Imprime False, ya que la condicion es True y el operador NOT invierte al valor contrario
 
+
+# Operadores Bit a Bit: &, |, ^, ~, >>, <<
+
+# & (AND bit a bit)
+numero_binario1 = 8 # --> 0b1000
+numero_binario2 = 4 # --> 0b0100
+"""Este operador primero convierte sus operandos a numeros binarios para luego comparar cada bit con AND. Si 1 AND 1 es 1, 1 AND 0 es 0."""
+resultado_binario = numero_binario1 & numero_binario2
+print(resultado_binario) #0b0000 --> 0
+
+# | (OR bit a bit)
+numero_binario3 = 5 # --> 0b0101
+numero_binario4 = 10 # --> 0b1010
+"""Este operador primero convirte sus operandos a numeros binarios para luego comparar cada bit con OR. Si 1 OR 0 es 1, 0 OR 0 es 0, entonces
+1 OR 1 es 1"""
+resultado_binario2 = numero_binario3 | numero_binario4
+print(resultado_binario2) # 0b1111 --> 15
+
+# ^ (XOR bit a bit)
+numero_binario5 = 7 # --> 0b0111
+numero_binario6 = 2 # --> 0b0010
+"""Este operador primero convirte sus operandos a numeros binarios para luego comparar cada bit con XOR. En XOR si los numeros que se estan
+comparando son iguales es 0 y sin son diferentes es 1"""
+resultado_binario3 = numero_binario5 ^ numero_binario6
+print(resultado_binario3) # 0b0101 --> 5
+
+# >> (desplazamiento a la derecha bit a bit)
+numero_binario7 = 6 # --> 0b0110
+desplazar_x = 1
+"""Este operador primero convierte el primer operando a binario luego desplaza cada bit del extremo izquierdo x(el otro operando) veces
+hacia la derecha"""
+resultado_binario4 = numero_binario7 >> desplazar_x
+print(resultado_binario4) # 0b0011 --> 3
+
+# << (desplazamiento a la izquierda bit a bit)
+numero_binario8 = 3 # --> 0b00000011
+desplazar_y = 8
+"""Este operador primero convierte el primer operando a binario luego desplaza cada bit del extremo derecho x(el otro operando) veces
+hacia la izquierda"""
+resultado_binario5 = numero_binario8 << desplazar_y
+print(resultado_binario5) # 0b1100000000 --> 768
+
 # Operadores de asignacion: =, +=, -=, *=, /=, %=, **=, //=, &=, |=, ^=, >>=, <<=
 
 # = (Operador de asignacion)
@@ -133,6 +175,28 @@ binario2 = 2 # en binario: 0b0010
 desplazar_m = 2
 binario2 <<= desplazar_m # Se desplazan los bits de la derecha hacia la izquierda y las posiciones donde estaban los bits se reemplazan por 0 --> 0b1000
 print(binario2) # 0b1000 --> 8
+
+# Operadores de identidad: is , is not
+
+# is devuelve True si los operandos se refieren al mismo objecto. De lo contrario devuelve False
+# is not devuelve True si los operandos no se refieren al mismo objecto. De lo contrario devuelve False
+
+a = 2
+b = 10
+c = 2
+print(a is b) # --> False
+print(a is not c) # --> False
+print(a is c) # --True
+
+# Operadores de pertenencia: in, not in
+
+# in devuelve True si el valor especificado se encuentra en la secuencia (objeto). De lo contrario devuelve False
+# not in devuelve True si el valor especificado no se encuentra en la secuencia (objeto). De lo contrario devuelve False
+
+lista_de_numeros = [20, 50, 100, 70, 400]
+print(30 in lista_de_numeros) # False
+cadena_de_texto = "Hola, Mundo!"
+print("H" in cadena_de_texto) # True
 
 if 5 > 3 and 10 < 100:
     print("5 es mayor que 3 y 10 es menor que 100!")
