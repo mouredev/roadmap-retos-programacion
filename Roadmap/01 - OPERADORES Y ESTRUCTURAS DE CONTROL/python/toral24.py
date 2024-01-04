@@ -84,5 +84,28 @@ except:
         
     else:
         print("has introducido una letra mínuscula")
-        
+
 #Operaciones a nivle de bit
+
+x = 5
+y = 20
+
+#or 
+print(x|y)
+#or exclusivo
+print(x^y)
+#and
+print(x&y)
+#deplazo de bits
+print(x>>2) #dos bits a la derecha
+print(y<<5) #cinco bits a la izquierda
+#not
+print(~x)
+
+#Ejercicio extra
+
+for i in range(10,56):
+    if i%2 == 0:
+        if i%3 != 0:
+            if i != 16:
+                print(i, end=" ")
