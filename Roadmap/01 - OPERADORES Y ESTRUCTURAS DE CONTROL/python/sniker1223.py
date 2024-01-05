@@ -32,7 +32,7 @@ print('^= Bitwise XOR assigment: ',var)
 var >>=0
 print('>>= right shift assigment: ',var)
 var <<=1
-print('<<= right shift assigment: ',var)
+print('<<= left shift assigment: ',var)
 
 # Comparison Operators
 print('\nComparison Operators')
@@ -58,7 +58,6 @@ print('is not', 1 is not 1)
 fuits = ["apple", "banana"]
 print("banana" in fuits)
 print("pineapple" not in fuits)
-
 
 # CONTROL STRUCTURES
 print('\nCONTROL STRUCTURES')
