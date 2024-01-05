@@ -1,9 +1,3 @@
-# #01 OPERADORES Y ESTRUCTURAS DE CONTROL
-> #### Dificultad: Fácil | Publicación: 02/01/24 | Corrección: 08/01/24
-
-## Ejercicio
-
-```
 /*
  * EJERCICIO:
  * - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
@@ -21,9 +15,32 @@
  *
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
  */
-```
-#### Tienes toda la información extendida sobre el roadmap de retos de programación en **[retosdeprogramacion.com/roadmap](https://retosdeprogramacion.com/roadmap)**.
 
-Sigue las **[instrucciones](../../README.md)**, consulta las correcciones y aporta la tuya propia utilizando el lenguaje de programación que quieras.
-
-> Recuerda que cada semana se publica un nuevo ejercicio y se corrige el de la semana anterior en directo desde **[Twitch](https://twitch.tv/mouredev)**. Tienes el horario en la sección "eventos" del servidor de **[Discord](https://discord.gg/mouredev)**.
+//Declaracion de variables
+let a = 1;
+const b = 5;
+var c = 10;
+let num=55;
+//Esctructuras de control
+while(a<b){
+  //Mientras que A sea menor que B, imprime A
+  console.log(a);
+  a++;
+}
+for(var i=0;i<=b;i++){
+  //Imprime del 0 al 5
+  console.log(i);
+}
+if(b%2==0){
+  //Si B es Par, imprime que es par
+  console.log("B es par");
+}else {
+  //Si B es impar, imprime que es impar
+  console.log("B es impar");
+}
+//Dificultad extra
+for(var i=10;i<=num;i++){
+  if(i%2==0 && i!=16 && i%3!=0){
+    console.log(i);
+  }
+}
