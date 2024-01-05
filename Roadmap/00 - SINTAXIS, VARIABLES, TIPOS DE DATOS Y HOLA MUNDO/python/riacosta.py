@@ -12,7 +12,7 @@
  *
 '''
 
-# web_page => https://www.python.org
+# web_page_python: https://www.python.org
 
 # Comentario one line
 
