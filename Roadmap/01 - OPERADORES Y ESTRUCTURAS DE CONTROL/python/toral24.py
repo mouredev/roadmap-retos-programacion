@@ -109,3 +109,4 @@ for i in range(10,56):
         if i%3 != 0:
             if i != 16:
                 print(i, end=" ")
+                
