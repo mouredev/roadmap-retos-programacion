@@ -39,7 +39,7 @@ public class sniker1223 {
     System.out.println("== Equal to: " + i + "  == " + x + " = " + (i == x));
     System.out.println("!= Equal to: " + i + "  != " + x + " = " + (i != x));
     System.out.println(">= Greater than: " + i + "  >= " + x + " = " + (i >= x));
-    System.out.println(">= Less than: " + i + "  <= " + x + " = " + (i <= x));
+    System.out.println("<= Less than: " + i + "  <= " + x + " = " + (i <= x));
 
     // Logical Operators
     System.out.println("\nLogical Operators");
