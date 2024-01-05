@@ -18,7 +18,7 @@ print("Help me!!!") #This is a comment at the end of a line.
 x = 20
 
 #Constant
-pi = 3.14
+PI = 3.14
 
 #Types of data
 decimal = 10
@@ -43,3 +43,15 @@ set_leters = {"c","a","r"}
 #Print in the terminal
 print("Hello, Python!")
 
+print(type(decimal))
+print(type(binary))
+print(type(octal))
+print(type(hexadecimal))
+print(type(float))
+print(type(complexLiteral))
+
+print(type(literalNone))
+print(type(dictionary_animals))
+print(type(set_leters))
+
+print(type(PI))
