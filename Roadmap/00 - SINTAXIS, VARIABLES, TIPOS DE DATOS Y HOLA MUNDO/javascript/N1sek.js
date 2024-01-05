@@ -29,5 +29,6 @@ let indefinido
 
 let simbolo = Symbol("Hello")
 
-console.log(simbolo) 
-//console.log("Hola, JavaScript!")
+console.log(simbolo)
+
+console.log("Hola, JavaScript!")
