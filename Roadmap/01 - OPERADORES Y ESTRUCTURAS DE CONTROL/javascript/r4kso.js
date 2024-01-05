@@ -73,96 +73,197 @@ console.log("Ahora x vale NULL. Si hacemos la opereación de anulación lógica 
 // Operadores de comparación
 x = 1;     
 let y = x == 1;  // Igual
-if (y) {
-    console.log("Ahora x vale 1. Si hacemos una comparación de igualdad con 1 obtenemos el valor: " + y);
-}
+console.log("Ahora x vale 1. Si hacemos una comparación de igualdad con 1 obtenemos el valor: " + y);
 let k = x == 4;
-if (!k) {
-    console.log("Mientras que si lo comparamos con 4 obtenemos: " + k);
-}
+console.log("Mientras que si lo comparamos con 4 obtenemos: " + k);
 
 x = 4
 y = x != 3;     // Distinto de
-if (y) {
-    console.log("Ahora x vale 4. Si hacemos una comparación de desigualdad con 3 obtenemos que: " + y);
-}
+console.log("Ahora x vale 4. Si hacemos una comparación de desigualdad con 3 obtenemos que: " + y);
 k = x != 4;
-if(!k) {
-    console.log("Mientras que si lo comparamos con 4 obtenemos que: " + k)
-}
+console.log("Mientras que si lo comparamos con 4 obtenemos que: " + k)
 
 x = 1;
 y = x === 1;    // Estrictamente igual
-if (y) {
-    console.log("Ahora x vale 1. Si hacemos una comparación de estricta igualdad con 1 entero obtenemos que: " + y);
-}
+console.log("Ahora x vale 1. Si hacemos una comparación de estricta igualdad con 1 entero obtenemos que: " + y);
 k = x === "1";
-if (!k) {
-    console.log("Mientras que si lo comparamos con 1 en string obtenemos que: " + k);
-}
+console.log("Mientras que si lo comparamos con 1 en string obtenemos que: " + k);
 
-x =
-x !== 4;    // Desigualdad estricta
-x > 0;      // Mayor que
-x >= 1;     // Mayor o igual que
-x < 2;      // Menor que
-x <= 1;     // Menor o igual que
-            // Nota: Todos retornan TRUE
+x = 3;
+y = x !== 4;    // Desigualdad estricta
+console.log("Ahora x vale 3. Si hacemos una comparación de desigualdad con 4 obtenemos que: " + y);
+k = x !== 3;
+console.log("Mientras que si lo comparamos con 3 obtenemos: " + k);
 
-            /*
+
+x = 1;
+y = x > 0;      // Mayor que
+console.log("Ahora x vale 1. Si hacemos una comparación de mayor que 0 obtenemos: " + y);
+k = x > 1;
+console.log("Mientras que si lo comparamos con 1 obtenemos: " + k);
+
+
+x = 0;
+y = x >= 0;     // Mayor o igual que
+console.log("Ahora x vale 0. Si hacemos una comparación de mayor o igual que 0 obtenemos: " + y);
+k = x >= -1;
+console.log("Mientras que si lo comparamos con -1")
+
+x = 1;
+y = x < 2;      // Menor que
+console.log("Ahora x vale 1. Si hacemos una comparación de menor que 2 obtenemos: " + y);
+k = x < 1;
+console.log("Mientras que si lo comparamos con 1: " + k);
+
+x = 1;
+y = x <= 1;     // Menor o igual que
+console.log("Ahora x vale 1. Si hacemos una comparación de menor que 2 obtenemos: " + y);
+k = x <= 2;
+console.log("Mientras que si lo comparamos con 2: " + k);
+
+
 // Operadores aritméticos
-12 % 5;     // Residuo
+x = 12 % 5;     // Residuo
+console.log("El residuo de 12 entre 5 es: " + x);
+
 ++x;        // Incremento
+console.log("Tras ejecutar el incremento de x obtenemos: " + x);
+
 --x;        // Decremento
--x;         // Negación unaria
-+y;         // Positivo unario
-2 ** 4;     // Exponenciación
+console.log("Tras ejecutar el decremento de x obtenemos: " + x);
+
+x = -x;         // Negación unaria
+console.log("Tras ejecutar la negación unaria de x obtenemos: " + x);
+
+x = +x;         // Positivo unario
+console.log("Tras ejecutar el positivo unario de x obtenemos: " + x);
+
+x = 2;
+x = x ** 4;     // Exponenciación
+console.log("Ahora x vale 2. Si lo elevamos a 4 obtenemos: " + x);
 
 // Operadores bit a bit
-a & b;      // AND a nivel de bits 
-a | b;      // OR a nivel de bits
-a ^ b;      // XOR a nivel de bits
-~ a;        // NOT a nivel de bits
-a << b;     // Desplazamiento a la izquierda
-a >> b;     // Desplazamiento a la derecha
-a >>> b;    // Desplazamiento a la derecha de relleno cero
+x = 5 & 3
+console.log("El operador AND a nivel de bits entre 5 y 3 retorna un valor de: " + x);      // AND a nivel de bits 
+
+x = 5 | 3;      // OR a nivel de bits
+console.log("El operador OR a nivel de bits entre 5 y 3 retorna un valor de: " + x);
+
+5 ^ 3;      // XOR a nivel de bits
+console.log("El operador XOR a nivel de bits entre 5 y 3 retorna un valor de " + x);
+
+x = ~5;        // NOT a nivel de bits
+console.log("El operador NOT a nivel de bits de 5 retorna un valor de: " + x);
+
+x = 5 << 1;     // Desplazamiento a la izquierda
+console.log("Con el desplazamiento de bits a la izquierda entre 5 y 1 obtenemos un valor: " + x);
+
+x = 10 >> 1;     // Desplazamiento a la derecha
+console.log("Con el desplazamiento de bits a la derecha entre 10 y 1 obtenemos un valor: " + x);
+
+x = -10 >>> 1;    // Desplazamiento a la derecha de relleno cero
+console.log("Con el desplazamiento de bits a la derecha de relleno 0 entre -10 y 1 obtenemos un valor: " + x);
+
 
 // Operadores lógicos
-a && b;     // AND lógico
-a || b;     // OR lógico
-!a;         // NOT lógico
+let a = true;
+let b = true;
+if(a && b) {    // AND lógico
+    console.log("Este mensaje se muestra dado que hemos hecho una comparación de AND lógico entre 'a' y 'b' siendo ambos true");
+}
+
+b = false;
+if(a || b) {     // OR lógico
+    console.log("Este mensaje se muestra a pesar de 'b' ser false y 'a' true, dado que se ha hecho una operación de OR lógico");
+}
+
+if(!b) {        // NOT lógico
+    console.log("Este mensaje se muestra dado que hemos hecho una operación de NOT lógico con 'b' siendo este false")
+}         
 
 // Operadores de cadena
-let myString = "mi";
-console.log(myString + "cadena");
+let myString = "Esto son";
+console.log(myString + " dos cadenas de texto");
 
 // Operador condicional (ternario) (condition ? val1: val2)
 let age = 19
 let statusFromAge = age >= 18 ? "adult" : "minor";
-console.log(statusFromAge);
+console.log("Mediante un operador ternario, si la edad vale 19 su categoría es: " + statusFromAge);
+
 
 // Operador coma
+x = 2;
 let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 let bidimensionalArray = [x, x, x, x, x]
-for (let i = 0, j = 9; i <= j; 1++, j--) {
-    console.log("a[" + i + "][" + j + "] = " + a[i][j]);
+for (let i = 0, j = 9; i <= j; i++, j--) {                          // Coma
+    console.log("array[" + i + "][" + j + "] = " + array[i][j]);
 }
 
 // Operadores unarios (operadores con un solo operando)
 let myObject = {h : 4}          // Delete
 delete myObject.h;
 
-console.log(typeof myObject);    // Typeof
+console.log("La variable 'myObject' es de tipo: " + (typeof myObject));    // Typeof
 
-void expression;
+// void expression; -> Operador tipo void (retorna vacío)
 
 // Operadores relacionales
-let colors = ["red", "blue", "green"]   // In
-console.log("green" in colors);
-console.log("banana" in colors);
+let person = {
+    name: "r4kso",
+    age: 22
+}
+console.log("¿Existe la propiedad 'age' en la variable 'person'?: " + ("age" in person)); // In
 
-console.log(colors instanceof Array);   // Instance Of
+let colors = ["red", "blue", "green"]
+console.log("¿Es la variable colors una instancia de array?: " + (colors instanceof Array));   // Instance Of
 
+// ESTRUCTURAS DE CONTROL:
+// If -> Ya la hemos usado anteriormente
+// Switch
+let day = "Monday";
+switch (day) {
+  case "Monday":
+    console.log("It's Monday!");
+    break;
+
+  case "Tuesday":
+    console.log("It's Tuesday!");
+    break;
+
+  case "Wednesday":
+    console.log("It's Wednesday!");
+    break;
+
+  case "Thursday":
+    console.log("It's Thursday!");
+    break;
+
+  case "Friday":
+    console.log("It's Friday!");
+    break;
+
+  default:
+    console.log("It's the weekend!");
+    break;
+}
+
+// For -> Ya lo hemos usado anteriormento
+// While
+let contador = 1;
+while (contador <= 5) {
+  console.log("Iteración número " + contador);
+  contador++;
+}
+
+// Do while
+contador = 1;
+do {
+  console.log("Iteración número " + contador);
+  contador++;
+} while (contador <= 5);
+
+
+// EJERCICIO EXTRA
 /* Programa que imprima por consola todos los números comprendidos entre 10 y 55 (incluidos),
  pares, y que no son ni el 16 ni múltiplos de 3.*/
 
@@ -171,12 +272,3 @@ for(let i = 10; i <= 55; i++) {
         console.log(i)
     }
 }
-
-
-
-
-
-
-
-
-
