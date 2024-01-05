@@ -62,6 +62,25 @@ x << 2  #Zero fill left shift   Shift left by pushing zeros in from the right an
 x >> 2  #Signed right shift	    Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off	
 """
 
+# If statement
+if x > y:
+    z = 20
+elif x < 0: 
+    z = 0
+else:
+    z = 10
+print(z)
+
+# For Statements
+for i in range(1,10):
+    print(i)
+
+# While loop
+while x > y:
+	print(y)
+	y += 1
+
+
 #examples
 print(x > 2 and y < 20)
 print(x > 3 or y < 0)
@@ -80,9 +99,14 @@ print(x // y )
  * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
 """
 print("Extra -------------------------------------------------------------")
-for i in range(10,55):
-    if i % 2 == 0:
-        if i % 3 != 0:
-            if i != 16:
-                print(i)
 
+def numConditions(startNUM: str, endNUM: str) -> str:
+
+    for i in range(startNUM,endNUM):
+        if i % 2 == 0:
+            if i % 3 != 0:
+                if i != 16:
+                    print(i)
+    return print("Done")
+                
+numConditions(10,55)
