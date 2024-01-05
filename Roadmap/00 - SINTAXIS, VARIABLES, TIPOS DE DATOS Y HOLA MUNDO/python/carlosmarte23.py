@@ -18,4 +18,4 @@ lista = [1,2,3,4,5]; # Esta es una variable de tipo lista.
 tupla = (1,2,3,4,5); # Esta es una variable de tipo tupla.
 diccionario = {'nombre':'Camilo', 'apellido':'Zuluaga', 'edad':26}; # Esta es una variable de tipo
 
-print("Hola, Python!");
+print("Hola, Python!"); # Imprimir a la consola
