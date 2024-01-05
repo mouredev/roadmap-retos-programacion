@@ -161,4 +161,47 @@ console.log(menorQue) // true
 let menorOIgualQue = 20 <= 10;
 console.log(menorOIgualQue); // false
 
-// Operadores bit a bit
+// Operadores bit a bit:
+
+// AND a nivel de bits (&):
+resultadoAND = 10 & 15; // Convierte los operandos a binarios y compara cada bit con AND (1010 AND 1111 => 1010 -> 10)
+console.log(resultadoAND); // 10
+
+// OR a nivel de bits (|):
+resultadoOR = 20 | 100; // Convierte los operandos a binarios y compara cada bit con OR (0010100 OR 1100100 => 1110100 -> 116)
+console.log(resultadoOR); // 116
+
+// XOR a nivel de bits (^):
+resultadoXOR = 30 ^ 10; // Convierte los operandos a binarios y compara cada bit con XOR (11110 XOR 01010 => 10100 -> 20)
+console.log(resultadoXOR); // 20
+
+// NOT a nivel de bits (~):
+resultadoNOT = ~20; // Convierte el operando a binario y invierte sus bits
+console.log(resultadoNOT); // -21
+
+// Desplazamiento a la izquierda (<<):
+resultadoDesplazamientoALaIzquierda = 8 << 2; /* Convierte el primer operando a binario y desplaza cada bit n (segundo operando) 
+                                                veces a la izquierda y donde estaban estos bits se reemplazan por 0 -->
+                                                00001000 << 2 --> 00100000 --> 32*/
+console.log(resultadoDesplazamientoALaIzquierda); // 32
+
+// Desplazamiento a la derecha de propagancion de signo (>>)
+resultadoDesplazamientoALaDerecha = 7 >> 3; /* Convierte el primer operando a binario y desplaza cada bit n (segundo operando) 
+                                                veces a la derecha y donde estaban estos bits se reemplazan por 0 -->
+                                                00000111 >> 3 --> 00000000 --> 0*/
+console.log(resultadoDesplazamientoALaDerecha);
+
+// Desplazamiento a la derecha de relleno cero (>>>)
+resultadoDesplazamientoALaDerechaDeRellenoCero = 5 >>> 7; // 00000101 >>> 7 --> 00000000
+console.log(resultadoDesplazamientoALaDerechaDeRellenoCero);
+
+// OPERADORES LOGICOS 
+
+// (&&):
+
+resultadoLogicoAND = "Hola" && true;
+console.log(resultadoLogicoAND); // true
+
+// (||):
+
+resultadoOR =
