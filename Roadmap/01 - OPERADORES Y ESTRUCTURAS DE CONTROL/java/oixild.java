@@ -63,10 +63,10 @@ public class oixild {
 
         while (start < end && start >= 10) {
             if (start == 16 || start % 3 == 0)
-                start += 2;
+                ++start;
             if (start <= end)
-                System.out.println("Extra = " + start);
-            start += 2;
+                System.out.println(start);
+            ++start;
         }
     }
 }
