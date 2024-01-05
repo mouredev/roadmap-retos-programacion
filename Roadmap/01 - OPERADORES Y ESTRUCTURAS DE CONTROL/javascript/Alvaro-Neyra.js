@@ -197,11 +197,114 @@ console.log(resultadoDesplazamientoALaDerechaDeRellenoCero);
 
 // OPERADORES LOGICOS 
 
-// (&&):
+// (&&): AND
 
 resultadoLogicoAND = "Hola" && true;
 console.log(resultadoLogicoAND); // true
 
-// (||):
+// (||): OR
 
-resultadoOR =
+resultadoOR = false || true;
+console.log(resultadoOR); // true
+
+// (!): NOT
+resultadoNOT = !"Hola, mundo!";
+console.log(resultadoNOT) // false // Una string con caracteres se de valor booleano true y si usamos el operador NOT lo convierte a false
+
+// OPERADORES DE PERTENENCIA O RELACIONALES:
+
+// in : este operador devuelve true si la propiedad especificada esta en el objeto especificado.
+arboles = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
+estaRedWoodEnArboles = 2 in arboles; // En este caso se tiene que especificar el indice, no el valor del elemento.
+console.log(estaRedWoodEnArboles); // true
+
+
+// ESTRUCTURAS DE CONTROL
+
+// Condicionales
+// if, else if, else
+edad = 16
+if (edad >= 18) {
+    console.log("Eres mayor de edad!");
+} else if (edad < 18 && edad > 15) {
+    console.log("Te falta poco para ser mayor de edad!");
+} else {
+    console.log("Eres menor de edad!!")
+}
+//switch
+
+let nota = 4;
+console.log("He realizado un examen. Mi resultado es: ");
+
+switch(nota) {
+    case 10:
+        calificacion = "He aprobado con un sobresaliente!!";
+        break;
+    case 9:
+    case 8:
+        calificacion = "Un notable, que bien!!";
+        break;
+    case 7:
+    case 6:
+        calificacion = "Un bien, nada mal!";
+        break;
+    case 4:
+    case 3:
+    case 2:
+    case 1:
+    case 0:
+        calificacion = "Insuficiente!!"
+        break;
+    default:
+        calificacion = "Nota invalida!"
+        break;
+}
+
+console.log(`He obtenido un ${calificacion}`);
+
+
+// Bucles
+// while (se ejecuta siempre que la condicion se a true)
+let i = 0
+while (i <= 10) {
+    console.log("Valor de i: " + i);
+    i++;
+}
+
+// do while (se ejecuta al menos una vez)
+let numero = 1;
+do {
+    console.log("Numero es: " + numero);
+    numero++;
+} while (numero === 10); // Solo se ejecutara una vez, ya que la condicion no se cumple
+
+let array = [3, 5, 20, 100];
+
+// for loop
+for (let i = 0; i < array.length; i++) {
+    array[i] *= 2;
+}
+
+console.log(array)
+
+// Excepciones
+
+try {
+    try {
+        throw new Error('my error');
+    } catch(err) {
+        console.error('inner try', err.message);
+        throw err;
+    } finally {
+        console.log('inner finally')
+    }
+} catch (err) {
+    console.error('outer try', err.message)
+}
+
+// EJERCICIO OPCIONAL
+for (let i = 10; i <= 55; i++) {
+    if (i % 2 === 0 && i !== 16 && i % 3 != 0) {
+        console.log(i)
+    }
+}
