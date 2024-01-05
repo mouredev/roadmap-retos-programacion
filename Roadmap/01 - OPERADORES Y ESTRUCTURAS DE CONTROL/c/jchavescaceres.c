@@ -39,6 +39,8 @@ printf ("\nComparación:\n");
 printf ("a=%d, b=%d\n", a, b);
 printf ("a>b %s\n", a>b ? "true" : "false");
 printf ("a>=b %s\n", a>=b ? "true" : "false");
+printf ("a<b %s\n", a<b ? "true" : "false");
+printf ("a<=b %s\n", a<=b ? "true" : "false");
 
 printf ("\nAsignación:\n");
 printf ("a=%d, b=%d \n", a, b);
@@ -54,4 +56,9 @@ a/=2;
 printf ("Dividir y asignar nuevo valor a/=2 : %d\n", a);
 a%=2;
 printf ("Módulo y asignar nuevo valor a%%=2 : %d\n", a);
+printf ("Operador ternario (7 > 5 ? 3 : 2) : %d\n", (7 > 5 ? 3 : 2));
+printf ("Operador ternario (7 < 5 ? 3 : 2) : %d\n", (7 < 5 ? 3 : 2));
+
+
+
 }
