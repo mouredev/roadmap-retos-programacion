@@ -1,0 +1,143 @@
+fn main() -> Result<(), &'static str> {
+    // Ejercicio Opcional
+    println!("------Ejercicio Opcional------");
+    print!("-");
+    for i in 10..56 {
+        if i % 2 == 0 && i != 16 && i % 3 != 0 {
+            print!("{}-", i);
+        }
+    }
+    // Ejercicio Principal
+    println!("\n------Ejercicio Principal------");
+    // Inicialización de variables    
+    let a = 10;
+    let b = 5;
+
+    // Operadores aritméticos
+    let c = a + b;
+    println!("{} + {} = {}", a, b, c);        
+
+    let d = a - b;
+    println!("{} - {} = {}", a, b, d);
+
+    let e = a * b;
+    println!("{} * {} = {}", a, b, e);
+
+    let f = a / b;
+    println!("{} / {} = {}", a, b, f);
+
+    let g = a % b;
+    println!("{} % {} = {}", a, b, g);
+
+    // Operadores de asignación
+    let mut h = 2; // variable mutable
+    h += 1;
+    println!("h = {}", h);
+
+    h -= 1;
+    println!("h = {}", h);
+
+    h *= 2;
+    println!("h = {}", h);
+
+    h /= 2;
+    println!("h = {}", h);
+
+    h %= 2;
+    println!("h = {}", h);
+
+    // Operadores de comparación
+    let i = 10;
+    let j = 5;
+
+    println!("{} == {} = {}", i, j, i == j);
+    println!("{} != {} = {}", i, j, i != j);
+    println!("{} < {} = {}", i, j, i < j);
+    println!("{} > {} = {}", i, j, i > j);
+    println!("{} <= {} = {}", i, j, i <= j);
+    println!("{} >= {} = {}", i, j, i >= j);
+
+    // Operadores lógicos
+    let k = true;
+    let l = false;
+
+    println!("{} && {} = {}", k, l, k && l);
+    println!("{} || {} = {}", k, l, k || l);
+    println!("!{} = {}", k, !k);
+
+    // Operadores bit a bit
+    let m = 0b1010;
+    let n = 0b0101;
+
+    println!("{} & {} = {}", m, n, m & n);
+    println!("{} | {} = {}", m, n, m | n);
+    println!("{} ^ {} = {}", m, n, m ^ n);
+    println!("{} << 1 = {}", m, m << 1);
+    println!("{} >> 1 = {}", m, m >> 1);
+
+    // Estructuras de control
+    // if, else if, else
+    let o = 10;
+    let p = 5;
+
+    if o > p {
+        println!("{} > {}", o, p);
+    } else if o < p {
+        println!("{} < {}", o, p);
+    } else {
+        println!("{} = {}", o, p);
+    }
+
+    // match (switch)
+    let q = 10;
+    
+    match q {
+        1 => println!("q = 1"),
+        2 => println!("q = 2"),
+        3 => println!("q = 3"),
+        4 => println!("q = 4"),
+        5 => println!("q = 5"),
+        6 => println!("q = 6"),
+        7 => println!("q = 7"),
+        8 => println!("q = 8"),
+        9 => println!("q = 9"),
+        10 => println!("q = 10"),
+        _ => println!("q = ?"),
+    }
+
+    // while
+    let mut r = 0;
+
+    while r < 10 {
+        println!("r = {}", r);
+        r += 1;
+    }
+
+    // for
+    for s in 0..10 {
+        println!("s = {}", s);
+    }
+
+    // loop (bucle infinito)
+    let mut t = 0;
+
+    loop {
+        println!("t = {}", t);
+        t += 1;
+
+        if t == 10 {
+            break;
+        }
+    }
+
+    // Gestión de errores (Result)
+    //let u = 10; variable no usada
+    let v = 0;
+
+    if v == 0 {
+        return Err("División por cero");
+    }
+    else {
+        return Ok(());
+    }
+}
