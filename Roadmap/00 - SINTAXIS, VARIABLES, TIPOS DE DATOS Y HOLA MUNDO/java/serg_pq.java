@@ -3,7 +3,7 @@ public class serg_pq {
     public static void main(String[] args) {
         // Web oficial: www.java.com
 
-        // Comentario de una sola linea.
+        // Comentario de una sola linea
 
         /*
         Comentario de
@@ -12,7 +12,7 @@ public class serg_pq {
 
 
         String username = "Sergio"; // Declaración de una Variable
-        final String country = "Colombia"; // Declaración de una constante
+        final String country = "Colombia"; // Declaración de una Constante
 
 
         // Tipos de datos primitivos
