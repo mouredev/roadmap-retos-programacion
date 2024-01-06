@@ -1,4 +1,3 @@
-{ Programa en FreePascal que pone ejemplos de los disitnitos operadores del lenguaje }
 program miguelex;
 
 uses sysutils;
@@ -54,7 +53,7 @@ begin
     writeln('not bool2 => ', not bool2);
     
   { Ejemplo de try catch }
-  {try
+  try
     writeln('Ejemplo de try catch');
     writeln('Mostramos el valor de a => ', a);
     writeln('Mostramos el valor de b => ', b);
@@ -62,7 +61,7 @@ begin
   except
     on E: EDivByZero do
       writeln('Error: ', E.Message);
-  end;}
+  end;
   
   { Ejemplo de if }
   writeln('Ejemplo de if');
