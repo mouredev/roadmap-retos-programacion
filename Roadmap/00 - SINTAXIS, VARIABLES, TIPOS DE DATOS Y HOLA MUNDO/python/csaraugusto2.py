@@ -1,4 +1,4 @@
-# Pagina web del leguaje Pyton --> https://www.python.org/
+# Pagina web del lenguaje Pyton --> https://www.python.org/
 
 # Esto es un comentario de una sola linea
 
