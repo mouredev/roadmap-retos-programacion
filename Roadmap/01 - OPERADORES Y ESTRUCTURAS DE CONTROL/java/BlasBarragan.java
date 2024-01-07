@@ -127,7 +127,7 @@ public class BlasBarragan {
             switch (valorA) { // Indicamos la variable que nos dará el valor de la opción a tratar
                 case 1: // Si valorA vale 1
                     System.out.println("valorA vale 1");
-                    break; // Termina y sale de la sentencia
+                    break; // Sale del switch
                 case 2: // Si valorA vale 2
                     System.out.println("valorA vale 2");
                     break;
@@ -141,7 +141,11 @@ public class BlasBarragan {
                     System.out.println("Error, opción no disponible");
                     break;
             }
-        // ESTRUCTURAS DE 
+
+        // ESTRUCTURAS DE REPETICIÓN
+            // Instrucción while
+            while (valorA != 13)
+                
 
 
     }
