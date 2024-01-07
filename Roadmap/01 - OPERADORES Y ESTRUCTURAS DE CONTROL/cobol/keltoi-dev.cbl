@@ -150,14 +150,13 @@
        Dificultad-extra.
            DISPLAY " "
            DISPLAY "----- DIFICULTAD EXTRA -----".
-           PERFORM Calculo VARYING I FROM 10 BY 1 UNTIL I = 55.
+           PERFORM Calculo VARYING I FROM 10 BY 2 UNTIL I > 55.
 
            STOP RUN.
 
        Calculo.
-           DIVIDE I BY 2 GIVING B REMAINDER A.
            DIVIDE I BY 3 GIVING B REMAINDER C.
-           IF A = 0 AND C NOT = 0 AND I NOT = 16
+           IF C NOT = 0 AND I NOT = 16
                DISPLAY I.
 
 
