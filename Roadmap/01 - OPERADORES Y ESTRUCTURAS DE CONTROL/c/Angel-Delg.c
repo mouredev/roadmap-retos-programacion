@@ -16,7 +16,7 @@ int main(){
    printf("Resta: %i\n", Int32 - Int16);
    printf("Division: %i\n", Int64 / Int32);
    printf("Multiplicacion: %ld\n", Int16 * Int32);
-   printf("Modulo: %");
+   printf("Modulo: %i", Int32 % Int16);
 
    // Tambien tenemos los deplazamiento unitarios
    printf("Desplazamiento derecha: %i", 3 >> 2);
