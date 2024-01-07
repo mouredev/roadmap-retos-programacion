@@ -1,0 +1,74 @@
+#-------------------------------------------            
+#Operadores aritmeticos
+
+operadores_aritmeticos = {'Suma':'+', 
+                          'Resta': '-',
+                          'Divison Int':'/',
+                          'Division Float': '//',
+                          'Multiplicacion': '*',
+                          'Exponente': '**',
+                          'Modulo':'%'}
+
+operadores_comparativos = {'Igualdad':'==',
+                           'Desigual': '!=',
+                           'Menor': '<',
+                           'Mayor': '>',
+                           'Menor o igual a': '<=',
+                           'Mayor o igual a': '>='}
+
+operadores_asignacion = {'Asignacion simple':'=',
+                         'Suma':'+=', 
+                          'Resta': '-=',
+                          'Divison Int':'/=',
+                          'Division Float': '//=',
+                          'Multiplicacion': '*=',
+                          'Exponente': '**=',
+                          'Modulo':'%='}
+
+operadores_logicos = {'and', 'or', 'not'}
+
+operadores_pertenencia = ('in','not in')
+
+operadores_identidad=('is','is not')
+
+operador_concatenacion = '+'
+
+operador_repeticion = '*'
+
+operador_slicing = '[:]'
+
+#---------------------------------------------------------------
+#Estructuras de control.
+
+condicionales = ('if','elif','else')
+
+bucles = ('while','for')
+
+palabras = ('continue','break')
+
+excepciones = ('except')
+
+#-----------------------------------------------------------------
+
+print(operadores_asignacion)
+print(operador_concatenacion)
+print(operadores_aritmeticos)
+print(operadores_comparativos)
+print(operadores_pertenencia)
+print(operador_slicing)
+print(operadores_identidad)
+print(operadores_logicos)
+print(operador_repeticion)
+
+print(condicionales)
+print(palabras)
+print(bucles)
+print(excepciones)
+#---------------------------------------------------------------------------
+#Ejercicio opcional
+
+for i in range(10,55):
+    if i % 3 !=0 and i != 16: 
+        # Aqui le digo que no me e multiplos de 3 usando el '% 3 !='
+        # Y luego con el operador logico 'and' le digo que tampoco me de el numero 16
+        print(i)
