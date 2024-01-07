@@ -1,0 +1,79 @@
+package retodeprogramacion;
+
+public class RetoDeProgramacion {
+
+    public static void main(String[] args) {
+        // Aritméticos
+        int a = 5, b = 2;
+        int suma = a + b;
+        int resta = a - b;
+        int multiplicacion = a * b;
+        int division = a / b;
+        int modulo = a % b;
+
+        // Lógicos
+        boolean x = true, y = false;
+        boolean and = x && y;
+        boolean or = x || y;
+        boolean not = !x;
+
+        // De comparación
+        int num1 = 10, num2 = 20;
+        boolean igual = num1 == num2;
+        boolean diferente = num1 != num2;
+        boolean mayorQue = num1 > num2;
+        boolean menorQue = num1 < num2;
+        boolean mayorIgual = num1 >= num2;
+        boolean menorIgual = num1 <= num2;
+
+        // De asignación
+        int numero = 10;
+        numero += 5; // Equivalente a c = c + 5;
+        numero -= 3; // Equivalente a c = c - 3;
+        numero *= 2; // Equivalente a c = c * 2;
+        numero /= 4; // Equivalente a c = c / 4;
+
+        // De identidad y pertenencia:
+        String str1 = "Hola";
+        String str2 = "Hola";
+        boolean referencia = (str1 == str2); // Compara referencias de objetos
+        boolean contenido = str1.equals(str2); // Compara contenido de objetos
+        boolean pertenencia = str1.contains("la");
+
+        // De bits:
+        int num3 = 5, num4 = 3;
+        int andBits = num3 & num4;
+        int orBits = num3 | num4;
+        int xorBits = num3 ^ num4;
+        int shiftLeft = num3 << 1;
+        int shiftRight = num3 >> 1;
+
+        // Estructuras de control:
+        // Condicionales:
+        int edad = 20;
+        if (edad >= 18) {
+            System.out.println("Es mayor de edad");
+        } else {
+            System.out.println("Es menor de edad");
+        }
+
+        // Iterativas:
+        /**
+         * Crea un programa que imprima por consola todos los números
+         * comprendidos entre 10 y 55 (incluidos), pares, y que no son ni el 16
+         * ni múltiplos de 3.
+         */
+        for (int i = 10; i <= 55; i++) {
+            if (i % 2 == 0 && i != 16 && i % 3 != 0) {
+                System.out.println(i);
+            }
+        }
+
+        // Excepciones:
+        try {
+            int resultado = 10 / 0; // Intento de división por cero
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
