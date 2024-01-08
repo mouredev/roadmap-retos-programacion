@@ -111,8 +111,19 @@ a //= b
 print(f"¿a //= {b}?: {a}")
 
 ### Operadores de identidad
+<<<<<<< HEAD
 a = 2
 b = 3
+=======
+<<<<<<< HEAD
+a = 2
+b = 3
+=======
+# Compara si una dirección de memoria es la misma
+a = 2
+b = 2
+>>>>>>> 5ac86f4 (Agregado mi solución para el ejercicio #01 en Python)
+>>>>>>> 2a1eb4f (Agregado mi solución para el ejercicio #01 en Python)
 
 # is
 print(f"¿{a} is {b}?: {a is b}")
@@ -132,8 +143,18 @@ print(f"¿{a} in {c}?: {a in c}")
 print(f"¿{a} not in {c}?: {a not in c}")
 
 ### Operadores de bits
+<<<<<<< HEAD
 a = 2
 b = 3
+=======
+<<<<<<< HEAD
+a = 2
+b = 3
+=======
+a = 10
+b = 11
+>>>>>>> 5ac86f4 (Agregado mi solución para el ejercicio #01 en Python)
+>>>>>>> 2a1eb4f (Agregado mi solución para el ejercicio #01 en Python)
 
 # AND
 print(f"¿{a} & {b}?: {a & b}")
@@ -147,10 +168,26 @@ print(f"¿{a} ^ {b}?: {a ^ b}")
 # NOT
 print(f"¿~{a}?: {~a}")
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2a1eb4f (Agregado mi solución para el ejercicio #01 en Python)
 # Desplazamiento a la izquierda
 print(f"¿{a} << {b}?: {a << b}")
 
 # Desplazamiento a la derecha
+<<<<<<< HEAD
+=======
+=======
+
+b = 2
+
+# Desplazamiento a la izquierda dos bits
+print(f"¿{a} << {b}?: {a << b}")
+
+# Desplazamiento a la derecha dos bits 
+>>>>>>> 5ac86f4 (Agregado mi solución para el ejercicio #01 en Python)
+>>>>>>> 2a1eb4f (Agregado mi solución para el ejercicio #01 en Python)
 print(f"¿{a} >> {b}?: {a >> b}")
 
 ### Estructuras de control condicionales
@@ -226,6 +263,83 @@ for i in range(10, 56, 2):
     if i != 16 and i % 3 != 0:
         print(i)
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+# Solución 3
+for i in range(10, 56, 2):
+    if i == 16 or i % 3 == 0:
+        continue
+    print(i)
+
+# Solución 4
+for i in range(10, 56, 2):
+    if i == 16 or i % 3 == 0:
+        break
+    print(i)
+
+# Solución 5
+i = 10
+while i < 56:
+    if i % 2 == 0 and i != 16 and i % 3 != 0:
+        print(i)
+    i += 1
+
+# Solución 6
+i = 10
+while i < 56:
+    if i == 16 or i % 3 == 0:
+        i += 1
+        continue
+    print(i)
+    i += 1
+
+# Solución 7
+i = 10
+while i < 56:
+    if i == 16 or i % 3 == 0:
+        break
+    print(i)
+    i += 1
+
+# Solución 8
+i = 10
+while i < 56:
+    if i % 2 == 0 and i != 16 and i % 3 != 0:
+        print(i)
+    i += 2
+
+# Solución 9
+i = 10
+while i < 56:
+    if i == 16 or i % 3 == 0:
+        i += 2
+        continue
+    print(i)
+    i += 2
+
+# Solución 10
+i = 10
+while i < 56:
+    if i == 16 or i % 3 == 0:
+        break
+    print(i)
+    i += 2
+
+# Solución 11
+i = 10
+while i < 56:
+    if i % 2 != 0 or i == 16 or i % 3 == 0:
+        i += 1
+        continue
+    print(i)
+    i += 1
+
+    
+
+>>>>>>> 5ac86f4 (Agregado mi solución para el ejercicio #01 en Python)
+>>>>>>> 2a1eb4f (Agregado mi solución para el ejercicio #01 en Python)
 # try-except-else-finally
 # Funciona 
 b = 0
