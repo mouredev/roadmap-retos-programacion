@@ -33,8 +33,7 @@ const estaNublado = false; // Valor false
 const variable = null;
 
 //Undefined: Representa la ausencia de valor inicial.
-const variable2;
-console.log(variable2); //Saldrá undefined
+const variableUndefined = undefined
 
 //Symbol: Representa un símbolo.
 var simbolo = Symbol('mi-Símbolo');
