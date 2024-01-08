@@ -96,7 +96,8 @@ public class nwpablodeveloper {
         b = -a;
         System.out.println("b = -a ");
         System.out.println("b = "+ b + "\n"); 
-
+        System.out.println("a = "+ a + "\n"); 
+        
         // Suma pre-incremento
         // 1ro hace el incremento al suendo operando y luego lo asigna a la variable
         System.out.println("Suma unaria Ej: \na = 35");
@@ -104,6 +105,7 @@ public class nwpablodeveloper {
         b = ++a;
         System.out.println("b = ++a ");
         System.out.println("b = "+ b + "\n"); 
+        System.out.println("a = "+ a + "\n"); 
 
         // Resta pre-decremento
         // 1ro hace el decremento al sugundo operando y leugo lo asigna a la variable
@@ -139,11 +141,12 @@ public class nwpablodeveloper {
         */
         titulo("Operadores relacionales ( ==, !=, <, >, <=, >= ) ");
         a = 38;             
-        b = 17;             
+        b = 17;    
         texto = "Pablo";    
-        texto2 = "Javier";  
-        System.out.println("a es igual a b ?            " + ( a == b ));
-        System.out.println("Pablo es igual a  Javier?   " + ( texto == texto2 ) );
+        texto2 = "Javier";        
+        System.out.println("Invertir condicion          " + ( !true )); 
+        System.out.println("38 es igual a 17 ?          " + ( a == b ));
+        System.out.println("Pablo es igual a Javier?    " + ( texto == texto2 ) );
         System.out.println("38 es distinto a 17?        " + ( a != b ) );
         System.out.println("38 es menor a 17?           " + ( a < b ) );
         System.out.println("38 es mayor a 17?           " + ( a > b ) );
@@ -171,7 +174,7 @@ public class nwpablodeveloper {
 
         // && ( AND )Las 2 o mas evaluaciones tiene que ser verdadera Ej. 1
         ressultado = (a == 38 ) && ( texto == "Pablo" );
-        System.out.println("38 es igual a 38 ? y Pablo es igual a Javier ? "+  ressultado);
+        System.out.println("38 es igual a 38 ? y Pablo es igual a Pablo ? "+  ressultado);
 
         // && ( AND ) Las 2 o mas evaluaciones tiene que ser verdadera Ej. 2
         ressultado = (a == 38 ) && ( texto == texto2 );
@@ -332,6 +335,21 @@ public class nwpablodeveloper {
             System.out.println("Ej. 4 - contador ciclo For: " + contador);    
         }
 
+        /*
+            SENTENCIA DE CONTROL TRYCATCH
+            Se utiliza para atrapar errores 
+        */
+        titulo("Sentencia de control TRYCATCH");
+        try {
+            System.out.println("Si todo va bien entro por aquí");
+        } catch (Exception error) {
+            System.out.println("Si hay errores entro por aquí");
+            System.out.println("Ver error: " + error);
+            // Por ejemplo conectar a un DB con una contraseña incorrecta
+        } finally {
+            // El finally es opcional
+            System.out.println("Me voy a ejecutar siempre que use el FINALLY");
+        }
 
 
         /*
