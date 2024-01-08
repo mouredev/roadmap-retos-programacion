@@ -43,6 +43,10 @@ def function1():
 
 function1()
 
+# Funciones lambda
+x = lambda a, b: a * b  # Función lambda que multiplica dos números
+print(x(5, 6))
+
 # Funciones creadas por el lenjuage
 print("-Funciones creadas por el lenjuage-\n")
 # Ejemplo de sum(), max(), min()
