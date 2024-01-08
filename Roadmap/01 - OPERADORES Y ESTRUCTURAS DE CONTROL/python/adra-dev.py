@@ -282,9 +282,8 @@ y ese mismo tipo es el que se muestra en el mensaje de error.
 """
 
 try:
-    archivo = open("resultado.txt","w")
-    print("Archivo resultado.txt abierto.")
-    resultado =  15 * (3/0)
+    
+    print(resultado =  15 * (3/0))   
 except IOError:
     # Instrucciones si ocurre la excepcion IOError
     print("Error de entrada/salida.")
@@ -294,11 +293,8 @@ except ZeroDivisionError:
 else:
     # Instrucciones si no ocurre ninguna excepcion
     print("El resultado de la division es", resultado)
-    archivo.write(resultado)
 finally:
     # Instrucciones si ocurren o no ocurren excepciones
-    if not(archivo.closed):
-        archivo.close()
         print("Archivo resultado.txt cerrado.")
 
 
