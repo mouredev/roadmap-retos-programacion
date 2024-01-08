@@ -71,6 +71,60 @@ public class xurxogz {
         boolean esFalso = !esVerdadero;
         System.out.println(esFalso);
 
+        // CONDICIONAL - IF
+        if (num1 < num2) {
+            System.out.println( num1 + " es mayor que " + num2);
+        }
+        else if (num1 > num2) {
+            System.out.println(num1 + " es menor que " + num2);
+        }
+        else {
+            System.out.println(num1 + " es igual que " + num2);
+        }
+
+        // CONDICIONAL - SWITCH
+        String diasDeLaSemana = "Martes";
+        switch (diasDeLaSemana) {
+            case "Lunes":
+                System.out.println("Hoy es Lunes");
+                break;
+            case "Martes":
+                System.out.println("Hoy es Martes");
+                break;
+            case "Miercoles":
+                System.out.println("Hoy es Miércoles");
+                break;
+            case "Jueves":
+                System.out.println("Hoy es Jueves");
+                break;
+            case "Viernes":
+                System.out.println("Hoy es Viernes");
+                break;
+            default:
+                System.out.println("Hoy es fin de semana");
+                break;
+        }
+
+        // BUCLE -  DOWHILE
+        int contador1 = 10;
+        do {
+            System.out.println(contador1);
+            contador1 --;
+        } while (contador1 >= 0);
+
+        // BUCLE WHILE
+        int contador2 = 1;
+        while (contador2 >= 10) {
+            System.out.println(contador2);
+            contador2++;
+        }
+
+        // BUCLE FOR
+        int contador3;
+        for (contador3 = 0; contador3 <= 10; contador3++) {
+            System.out.println(contador3);
+        }
+
         // DIFICULTAD EXTRA (OPCIONAL)
         int var;
         for (var = 10; var <= 55; var++ ) {
