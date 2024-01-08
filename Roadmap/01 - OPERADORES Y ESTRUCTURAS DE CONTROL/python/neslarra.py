@@ -272,6 +272,31 @@ control = ("Puede pasar" if edad >= limite else "No puede pasar")
 print(control) => {control}
 """, end="\n\n")
 
+musico = "Mozart"
+
+print(f"""El control condicional 'match' (coincidir), case (ocurrencia):
+musico = {musico}
+match musico:
+    case "Bach":
+        estilo = "Barroco"
+    case "Beethoven":
+        estilo = "Romanticismo"
+    case "Mozart":
+        estilo = "Clásico"
+     case _:                          # '_' indica default o else
+        estilo = "Desconocido"
+""")
+match musico:
+    case "Bach":
+        estilo = "Barroco"
+    case "Beethoven":
+        estilo = "Romanticismo"
+    case "Mozart":
+        estilo = "Clásico"
+    case _:
+        estilo = "Desconocido"
+print(f"{musico} corresponde al {estilo}", end="\n\n")
+
 # control de flujo en bucle o iterativo --------------------------------------------------------------------------------
 
 print("""El control 'while' se ejecuta mientras una condición dada sea verdadera:
