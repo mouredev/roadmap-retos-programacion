@@ -1,5 +1,3 @@
-// Ejemplos de funciones
-
 // función simple sin parámetros
 
 function printString(): void {
