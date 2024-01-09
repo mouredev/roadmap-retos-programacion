@@ -80,6 +80,29 @@ all([12,2,3,4,5,6,7])
 all("home")
 # all(0) ; FALSE
 
+# Variables Globales y locales
+
+counter = 10
+
+def restartCounter():
+	global counter
+	counter = 0
+
+
+print(f'counter before is {counter}')
+restartCounter()
+print(f'counter after is {counter}')
+
+
+value = 10
+
+def func10():
+	value = 20
+	print(f'Inside value: {value}')
+
+
+func10()
+print(f'Outside value: {value}')
 
 """
 DIFICULTAD EXTRA (opcional):
