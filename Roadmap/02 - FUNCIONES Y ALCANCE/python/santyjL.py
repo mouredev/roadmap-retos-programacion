@@ -81,6 +81,19 @@ print(len([1 , 2 , 34 , 6 , 76 , 3 , 4]), "len en lista") #tambien sirve para co
 print(sorted([1 , 4, 2 , 5, 5.5 , -2]) , "sorted menor a mayot") #ordena la lista de fomara ordenada  de menor a mayor
 print(sorted([1 , 4, 2 , 5, 5.5 , -2] , reverse=True) , "sorted de mayor a menor") # ordena la lista de mayor a menor
 
+#funciones lambdas
+lista = [1,2,3,4,5,6,7,8,9]
+
+#son recomendadas paras funciones con solo un objetivo
+num_X2 = lambda x : x * 2
+print(num_X2(20 ,30 , 50) , " funcion lambda")
+
+
+#filter filtra los datos verdaderos y crea nueva lista esta se conoce como funcion de orden duperior
+es_par = lambda x : x %2 == 0
+lista_pares = filter(es_par, lista)
+
+
 #funcione recursiva
 def cuenta_regresiva(iteraciones : int):
 
@@ -152,6 +165,8 @@ separador("sin parametro ni retorno")
 presentacion()
 separador("con retorno y tipado")
 print(mayor_que(1 , 3))
+separador("fucnion de otrden superior")
+print(lista_pares)
 separador("cuenta_regresiva")
 cuenta_regresiva(20)
 separador("*args")
