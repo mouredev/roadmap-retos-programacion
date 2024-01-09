@@ -104,6 +104,7 @@ DIFICULTAD EXTRA (opcional):
         console.log(operatorLogic1);
         operatorLogic1 &&= false;
         console.log(operatorLogic1);
+
         //
         /* 
         Asignación AND lógico	x &&= y	x && (x = y)
