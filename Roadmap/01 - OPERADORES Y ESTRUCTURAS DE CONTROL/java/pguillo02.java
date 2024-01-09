@@ -92,9 +92,8 @@ class pguill02{
                     if (j != 16){
                         System.out.println(j);
                     }
-            }else{
-                System.out.println("El número " + j + " es impar");
             }
         }
     }
+}
 }
