@@ -2,7 +2,7 @@
 
 // función simple sin parámetros
 
-function printString() {
+function printString(): void {
   console.log("Hola");
 }
 
@@ -10,7 +10,7 @@ printString();
 
 // función simple con parámetros
 
-function printStringPara(name: string) {
+function printStringPara(name: string): void {
   console.log(`Hola ${name}`);
 }
 
