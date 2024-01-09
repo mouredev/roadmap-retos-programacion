@@ -20,3 +20,19 @@
  * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
  * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
+
+function intro(){
+    console.log('¡Hola, Javascript!\n¿Sabías que puedes encontrar diferentes tipos de funciones en el lenguaje de programación?\nEsta por ejemplo no recibe parametros ni hace ni retorna ningún valor'); 
+}
+
+function paramsFunction(param1, param2, ...params){
+    console.log("Esta otra función recibe por parametros los números "+param1+" y "+param2 +" y "+params);
+}
+
+function returnFunction(programmingLang){
+    mensaje = "Y esta función retorna un parametro l cual es el lenguaje de programación que estamos utilizando. En este caso es: "+programmingLang;
+    return mensaje;
+}
+
+intro();
+paramsFunction(1,2,3,4,5,6,7,8,9,10)
