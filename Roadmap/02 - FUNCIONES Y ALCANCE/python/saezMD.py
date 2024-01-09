@@ -80,6 +80,7 @@ all([12,2,3,4,5,6,7])
 all("home")
 # all(0) ; FALSE
 
+
 """
 DIFICULTAD EXTRA (opcional):
 Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
