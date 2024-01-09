@@ -143,10 +143,26 @@ public class BlasBarragan {
             }
 
         // ESTRUCTURAS DE REPETICIÓN
-            // Instrucción while
-            while (valorA != 13)
-                
-
+            // Bucle while
+            while (valorA <= 13){ // ojo los bucles infinitos
+                System.out.println("valorA no vale 13 y lo voy a repetir hasta que lo sea");
+                valorA ++;
+            }
+            // Bucle do-while
+            do {
+                System.out.println("Le sumo 1 a valorA si es menor que 25");
+                valorA ++;
+                System.out.println(valorA);
+            }while (valorA < 25);
+            // Bucle For
+            for (int i = 0; i <= valorA; i++){
+                System.out.println("i vale " + i + " y se incrementa en 1 hasta igualar a valorA que vale " + valorA);
+            }
+            // Bucle Foreach
+            String [] semana = {"lunes","martes","miercoles","jueves","viernes","sabado","domingo"};
+            for (String dia : semana){
+                System.out.println(dia);
+            }
 
     }
 }
