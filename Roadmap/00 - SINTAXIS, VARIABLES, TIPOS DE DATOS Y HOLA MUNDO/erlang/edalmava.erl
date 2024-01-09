@@ -3,20 +3,18 @@
 % Comentario hasta el final de la línea
 
 -module(edalmava).
--export([imprimir/0]).
--export([imprimir/1]).
--export([tiposDatos/0]).
+-export([imprimir/0, imprimir/1, tiposDatos/0]).
 
 imprimir() ->
     % Variables en Erlang
     % Comienzan por una letra Mayúscula y su valor no puede cambiar    
-    Mensaje = 'Hola, Erlang',
+    Mensaje = "Hola, Erlang",
     io:format(Mensaje).
 imprimir(Mensaje) ->    
     io:format(Mensaje).
 
 % Tipos de dato en Erlang
-% Un tipo de cualquier tipo se denomina término
+% Un dato de cualquier tipo se denomina término
 tiposDatos() ->      
     % Números
     Enteros = 5,    
@@ -31,8 +29,11 @@ tiposDatos() ->
     Lista = [1, 2, 3, 4, 5], % Listas -> [] Son tipos de datos compuestos con un número variable de términos
     Cadena = "Una cadena es una forma corta de lista", % En Erlang no existe el tipo cadena.  
     Mapa = #{clave => valor}, % Mapas -> #{clave => valor} Son tipos compuestos con un número variable de asociaciones de clave => valor
-    % TODO: Tipo Record 
-    % TODO: Consultar como mostrar los diferentes tipos
+    % TODO: Tipo Record     
+    io:format("~w~n", [Enteros]), % Mostrar número entero
+    io:format("~w~n", [Flotantes]), % Mostrar número Flotante
+    io:format("Verdadero: ~w Falso: ~w ~n", [true, false]), % Mostrar átomos true y false
+    io:format("~w~n", [Tupla]), % Mostrar Tupla
     io:format(maps:get(clave, Mapa)). 
 
 % erl
