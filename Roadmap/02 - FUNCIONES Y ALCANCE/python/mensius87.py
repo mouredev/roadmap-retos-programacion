@@ -54,24 +54,23 @@ def dificultad_extra(tex_1, tex_2):
 
         if num %3 == 0 and num %5 == 0:
             print(tex_1+tex_2)
-            contador += 1
 
         elif num %3 == 0:
             print(tex_1)
-            contador += 1
 
         elif num %5 == 0:
             print(tex_2)
-            contador += 1
 
         else:
+            contador += 1
             print(num)
 
-    resultado = 100-contador
+    resultado = contador
 
     print(f"Se ha impreso el número {resultado} veces en lugar de los textos\n")
 
     return resultado
+
 
 
 dificultad_extra("Hola","Mundo")
@@ -79,6 +78,5 @@ dificultad_extra("Hola","Mundo")
 km_actual()
 
 contador_letras("hola")
-
 
 suma(1, 3)
