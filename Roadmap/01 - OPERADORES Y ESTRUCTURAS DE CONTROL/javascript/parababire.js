@@ -122,7 +122,8 @@ console.log(d >>> 1);//Un o más 0 bits es empujado a la izquierda y el bit más
 //Estructuras de control
 
 /*Condicionales*/
-let año = prompt("Ingresa año de nacimiento?", "");
+
+let año = prompt("Ingresa año de nacimiento?", "Ejm: 1980");
 
 if (año >= 1965 && año <= 1981) {
   console.log("Perteneces a la generación X");
@@ -134,10 +135,94 @@ if (año >= 1965 && año <= 1981) {
   console.log("No perteneces a la generación X");
 }
 
+//Concatenar if else
 
-
-if (num1 < num2) {
-  console.log("Menor");
+if (año >= 1946 && año <= 1964) {
+  console.log("Perteneces a la generación Boomers");
+} else if (año >= 1965 && año <= 1981) {
+  console.log("Perteneces a la generación X");
+} else if (año >= 1980 && año <= 1994) {
+  console.log("Perteneces a la generación Millennials");
+} else if (año >= 1995 && año <= 2009) {
+  console.log("Perteneces a la generación Z");
+} else if (año >= 2010) {
+  console.log("Perteneces a la generación Alfa");
 } else {
-  console.log("Mayor");
+  console.log("Fecha invalida");
+}
+
+//Switch
+
+const mascota = prompt("Ingresa un tipo de animal", "perro");
+
+switch (mascota) {
+  case "lagarto":
+    console.log("Tengo un lagarto");
+    break;
+  case "perro":
+    console.log("Tengo un perro");
+    break;
+  case "gato":
+    console.log("Tengo un gato");
+    break;
+  case "serpiente":
+    console.log("Tengo una serpiente");
+    break;
+  case "loro":
+    console.log("Tengo un loro");
+    break;
+  default:
+    console.log("No tengo mascota");
+    break;
+}
+
+//Iteraciones
+
+/*While*/
+while (a > 0) {
+  console.log(a);
+  a--;
+}
+
+/*Do While*/
+let password;
+
+do {
+    password = prompt("Password");
+} while (password != "1234");
+
+console.log("Bienvenido");
+
+/*For*/
+let arr = [1, 2, 3, 4, 5, 6];
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+//Excepciones
+
+async function sumarNumeros(a, b) {
+  if (typeof a != "number" || typeof b != "number") {
+      throw new Error("Ambos argumentos deben ser números");
+  }
+  return a + b;
+}
+async function manejarErrors() {
+  try {
+      let resultado = await sumarNumeros("1", 2);
+      console.log(resultado);
+  } catch (error) {
+      console.error(error.message);
+  }
+}
+manejarErrors();
+
+/*Crea un programa que imprima por consola todos los números comprendidos
+entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3*/
+
+for (let i = 10; i <= 55; i++) {
+  if (i % 2 === 0) {
+    console.log(i);
+  }
 }
