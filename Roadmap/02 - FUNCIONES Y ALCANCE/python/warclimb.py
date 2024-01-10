@@ -58,24 +58,35 @@ def fuerza_gravitacional(masa1, masa2, distancia):
 
 if __name__ == "__main__":
     # Función sin parámetros que devuelve el número PI
-    print(pi())
+    print("__Ejemplo función sin parámetros que devuelve el número PI__")
+    print(f"Número PI: {pi()}")
 
     # Función con parámetros y sin retorno que cifra un texto
+    print("__Ejemplo función con parámetros y sin retorno que modifica una variable global__")
     cifrado = cifrar("Hola Mundo", 5878)
-    print(cifrado)
+    print(f"Texto cifrado: {cifrado}")
 
     # Función sin parámetros y sin retorno que descifra un texto
     descifrado = descifrar(cifrado, 5878)
-    print(descifrado)
+    print(f"Texto descifrado: {descifrado}")
+    print("-"*48)
 
     # Función con parámetros que calcula la gravitacional entre dos cuerpos
     ## Vamos a calcularla entre la Luna y la Starship con la info de masa y distancia
+    print("__Ejemplo función con parámetros___")
     masa_luna = 7.342 * 10**22
     masa_starship = 5000000
     distancia_luna_starship = 384402 # aqui iria alguna info de posicion dinamica, pero bueno... es un ejemplo
-
+    print("-"*48)
+    
     # Calculamos y mostramos resultado
-    print(fuerza_gravitacional(masa_luna, masa_starship, distancia_luna_starship))
+    print(f"Fuerza gravitacional entre la Luna y la Starship en órbita: {fuerza_gravitacional(masa_luna, masa_starship, distancia_luna_starship)}")
+
+    # Funciones lambda, esto es un tipo de función simple y sin nombre que se puede usar en cualquier parte del código
+    # vamos a usarla para calcular la energía cinematica de un cuerpo
+    print("__Ejemplo función Lambda__")
+    energia_cinetica = lambda masa, velocidad: (masa * velocidad ** 2) / 2
+    print(f"Energía cinética del cuerpo es de: {energia_cinetica(10, 5)} j")  
 
 
 
