@@ -16,6 +16,7 @@
 def pi():
     return 3.141592653589
 
+
 # Ejemplo de función con parámetros y sin retorno
 def cifrar(texto, clave):
     diccionario = "abcdefghijklmnopqrstuvwxyz"
@@ -28,9 +29,8 @@ def cifrar(texto, clave):
     # Convierte la lista en texto y lo devuelve
     return "".join(texto)
 
-cifrado = cifrar("Hola Mundo", 5878)
-print(cifrado)
 
+# Bueno, ya que estamos hago también la de descifrar, que es otra función sin parámetros y sin retorno
 def descifrar(texto, clave):
     diccionario = "abcdefghijklmnopqrstuvwxyz"
     # Convierte el texto a lista y sustituye cada letra por otra situada en el diccionario en la posición de las veces que indique la clave
@@ -42,9 +42,7 @@ def descifrar(texto, clave):
     # Convierte la lista en texto y lo devuelve
     return "".join(texto)
 
-descifrado = descifrar(cifrado, 5878)
-print(descifrado)
-
+# Ejemplo de función con parámetros y un retorno
 def fuerza_gravitacional(masa1, masa2, distancia):
     # constante de gravitación universal
     G = 6.674 * (10 ** -11)
@@ -52,19 +50,31 @@ def fuerza_gravitacional(masa1, masa2, distancia):
     F = G * (masa1 * masa2) / (distancia ** 2)
     return F
 
+# crear funciones dentro de una función
 
 
-# vamos con el codigo principal:
+
+# Vamos con el codigo principal:
 
 if __name__ == "__main__":
+    # Función sin parámetros que devuelve el número PI
     print(pi())
 
-    # calcular fuerza gravitacional entre la Luna y la Starship
-    # definimos variables con la masa en KG y la distancia en KM
+    # Función con parámetros y sin retorno que cifra un texto
+    cifrado = cifrar("Hola Mundo", 5878)
+    print(cifrado)
+
+    # Función sin parámetros y sin retorno que descifra un texto
+    descifrado = descifrar(cifrado, 5878)
+    print(descifrado)
+
+    # Función con parámetros que calcula la gravitacional entre dos cuerpos
+    ## Vamos a calcularla entre la Luna y la Starship con la info de masa y distancia
     masa_luna = 7.342 * 10**22
     masa_starship = 5000000
     distancia_luna_starship = 384402 # aqui iria alguna info de posicion dinamica, pero bueno... es un ejemplo
 
+    # Calculamos y mostramos resultado
     print(fuerza_gravitacional(masa_luna, masa_starship, distancia_luna_starship))
 
 
