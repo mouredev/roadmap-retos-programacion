@@ -82,6 +82,22 @@ var_global()
 print(f"El valor de las variables globales despues de una funcion: {var_1} {var_2}")
 
 
+# Una funcion dentro de otra funcion
+def funcion_1(dato_1, dato_2):
+    def funcion_2(dato):
+        print(f"Esta es {dato}")
+        return f"Salio de {dato}"
+
+    print(f"Esta es {dato_1}")
+    print(funcion_2("la funcion 2"))
+    print(f"Esta de nuevo en {dato_1}")
+    return f"Salio de {dato_1}"
+
+
+print("\nFuncion dentro de otra funcion")
+print(funcion_1("la funcion 1", "la funcion 2"))
+
+
 # Funcion recursiva
 def factor(factores, factoreo):
     numero = factores[-1]
