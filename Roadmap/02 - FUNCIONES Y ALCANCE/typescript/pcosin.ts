@@ -71,7 +71,6 @@ const fizzBuzz = (firstWord: string, secondWord: string) => {
       console.log(i);
     }
   }
-
   return totalNum;
 };
 
