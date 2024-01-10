@@ -46,6 +46,6 @@ print(type(peso))
 print(type(tengo_frio))
 print(type(tengo_calor))
 
-# Imprimir por terminal (Hola, [el nombre del lenguaje])
+# Imprimir por terminal (Hola, [el nombre del lenguaje]).
 
 print("Hola, Python....")
