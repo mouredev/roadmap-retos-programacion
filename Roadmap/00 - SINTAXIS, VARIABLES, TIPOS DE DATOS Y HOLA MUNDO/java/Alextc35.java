@@ -27,7 +27,7 @@
  // Página web oficial de Java https://www.java.com
 
  public class Alextc35 {
-    public static void main (String args[]){
+    public static void main (String[] args){
         // 2.
         // Esto es un comentario de una línea.
 
