@@ -1,3 +1,4 @@
+
 /*
 EJERCICIO:
 - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
@@ -212,7 +213,7 @@ DIFICULTAD EXTRA (opcional):
         name1="albertooo"
         name2="alberto   "
         console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`) 
-    /*
+    /* OPERADORES ARITMETICOS:
     Un operador aritmético toma valores numéricos (ya sean literales o variables) como sus operandos y devuelve un solo valor numérico. 
     Los operadores aritméticos estándar son suma (+), resta (-), multiplicación (*) y división (/). 
     Estos operadores funcionan como lo hacen en la mayoría de los otros lenguajes de programación cuando se usan con números de punto flotante (en particular, ten en cuenta que la división entre cero produce Infinity).
@@ -242,6 +243,10 @@ DIFICULTAD EXTRA (opcional):
         console.log(typeof(value))//value es una cadena de caracteres
         console.log(+value)//lo combierte en un NaN (not asigned number)
         console.log(typeof(+value))//value se convierte en un 2 number
-        
+        //EXPONECIACION, EXPONENTE: --> **
+        console.log(`5 elevado a 6 es = ${5**6}`);
+        console.log(`2 elevado a 8 es = ${2**8}`);
+    /* OPERADORES BIT A BIT:
+    
 
-        
+    */    
