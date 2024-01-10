@@ -51,8 +51,18 @@ def fuerza_gravitacional(masa1, masa2, distancia):
     return F
 
 # crear funciones dentro de una función
+def procesar_datos(datos):
+    def limpiar_datos(datos):
+        datos = datos.replace(",", ".")
+        return datos
+    def convertir_datos(datos):
+        datos = datos.split()
+        return datos
+    return convertir_datos(limpiar_datos(datos))
 
+print(procesar_datos("40, 55, 87, 65, 8, 6, 00, 78, 9, 68"))
 
+        
 
 # Vamos con el codigo principal:
 
@@ -78,7 +88,7 @@ if __name__ == "__main__":
     masa_starship = 5000000
     distancia_luna_starship = 384402 # aqui iria alguna info de posicion dinamica, pero bueno... es un ejemplo
     print("-"*48)
-    
+
     # Calculamos y mostramos resultado
     print(f"Fuerza gravitacional entre la Luna y la Starship en órbita: {fuerza_gravitacional(masa_luna, masa_starship, distancia_luna_starship)}")
 
