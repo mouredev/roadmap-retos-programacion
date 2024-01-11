@@ -15,5 +15,6 @@ float_var:float = 3.5
 boolean_var:bool= True
 tuple_var:tuple = (3,2,4,5)
 list_var:list = ['a','b','x','z']
+dict_var:dict = {"key1": "data1"}
 
 print (f"¡Hola {string_var}!")
