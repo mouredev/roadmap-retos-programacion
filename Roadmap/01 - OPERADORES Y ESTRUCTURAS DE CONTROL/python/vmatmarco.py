@@ -1,4 +1,6 @@
-# EJERCICIO 1 -> Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje de programación.
+'''
+EJERCICIO 1 -> Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje de programación.
+'''
 
 # Operadores aritméticos (Un operador aritmético toma dos operandos como entrada y devuelve el resultado)
 
@@ -83,3 +85,47 @@ print(f"XOR 12 ^ 3 = {12 ^ 3}")
 print(f"NOT ~12 = {~12}")
 print(f"Desplazamiento a la derecha 12 >> 3 = {12 >> 3}")
 print(f"Desplazamiento a la izquierda 12 << 3 = {12 << 3}")
+
+'''
+EJERCICIO 2 -> Crea ejemplos utilizando todas las estructuras de control de tu lenguaje de programación.
+'''
+
+# Condicionales
+# IF
+if 12 > 3:
+    print("12 es mayor que 3")
+
+# IF-ELSE
+if 12 < 3:
+    print("12 es menor que 3")
+else:
+    print("12 no es menor que 3")
+
+# IF-ELIF-ELSE
+if 12 < 3:
+    print("12 es menor que 3")  
+elif 12 == 3:
+    print("12 es igual a 3")
+else:
+    print("12 no es menor que 3 ni igual a 3")
+
+# Iterativas
+
+# WHILE
+i = 1
+while i < 6:
+    print(i)
+    i += 1
+
+# FOR
+for i in range(1, 6):
+    print(i)
+
+
+'''
+ DIFFICULTAD EXTRA
+'''
+
+for i in range(1, 56):
+    if i % 2 == 0 and i != 16 and i % 3 != 0:
+        print(i)
