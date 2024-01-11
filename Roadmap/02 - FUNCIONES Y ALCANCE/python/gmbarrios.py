@@ -115,14 +115,14 @@ def dif_extra(texto1, texto2):
     veces = 0
 
     for num in range(1, 101):
-        if num % 3 == 0:
-            print(f"Posición {num}: {texto1}")
+        if num % 3 == 0 and num % 5 == 0:
+            print(f"A {num} le corresponde: '{texto1 + " " + texto2}'")
+        elif num % 3 == 0:
+            print(f"A {num} le corresponde: '{texto1}'")
         elif num % 5 == 0:
-            print(f"Posición {num}: {texto2}")
-        elif num % 3 == 0 and num % 5 == 0:
-            print(f"Cadenas de texto concatenadas en {num}: {texto1 + texto2}")
+            print(f"A {num} le corresponde: '{texto2}'")
         else:
-            print(f"Al numero {num} no le corresponde texto.")
+            print(f"A {num} no le corresponde texto.")
             veces += 1
     return print(f"Veces que se ha impreso el numero en lugar del texto: {veces}")
 
