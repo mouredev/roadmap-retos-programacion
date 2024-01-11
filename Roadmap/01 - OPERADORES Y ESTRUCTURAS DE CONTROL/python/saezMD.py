@@ -10,7 +10,7 @@ z2= x * y
 z3= x / y
 z4= x % y
 z5= x ** y
-z6= x // y #Floor division
+z6= x // y #Floor division (Entera, sin decimales)
 
 #Python Assignment Operators
 """
@@ -109,4 +109,4 @@ def numConditions(startNUM: str, endNUM: str) -> str:
                     print(i)
     return print("Done")
                 
-numConditions(10,55)
+numConditions(10,56)
