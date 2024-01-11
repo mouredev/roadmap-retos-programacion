@@ -246,6 +246,25 @@ DIFICULTAD EXTRA (opcional):
         console.log(`5 elevado a 6 es = ${5**6}`);
         console.log(`2 elevado a 8 es = ${2**8}`);
     /* OPERADORES BIT A BIT:
-    
+        Un operador bit a bit trata a sus operandos como un conjunto de 32 bits (ceros y unos), en lugar de números decimales, hexadecimales u octales. 
+        Por ejemplo, el número decimal nueve tiene una representación binaria de 1001. 
+        Los operadores bit a bit realizan sus operaciones en tales representaciones binarias, pero devuelven valores numéricos estándar de JavaScript.
+    */
+        //AND bit a bit: --> &
+        operatorbit1 = 3;
+        console.log(`${operatorbit1} AND 5 bit a bit es igual a ${operatorbit1&5}, ${(operatorbit1&5).toString(2).padStart(32,"0")}`);
+        console.log(`${operatorbit1} = ${operatorbit1.toString(2).padStart(32,"0")}, y 5 = ${(5).toString(2).padStart(32,"0")},
+con and solo quedan a 1 los que coniciden en abmos por eso queda 1 = ${(operatorbit1&5).toString(2).padStart(32,"0")}`);
+        //XOR bit a bit: --> ^= or exclusiva.
+        operatorbit1 = 5;
+        console.log(`${operatorbit1} AND 5 bit a bit es igual a ${operatorbit1^5}, ${(operatorbit1^5).toString(2).padStart(32,"0")}`);
+        console.log(`${operatorbit1} = ${operatorbit1.toString(2).padStart(32,"0")}, y 5 = ${(5).toString(2).padStart(32,"0")},
+con xor solo quedan a 1 los que son 1 en uno u otro operador, pero nocoiciden en abmos por eso queda 0 = ${(operatorbit1&5).toString(2).padStart(32,"0")}`);
+        //Asignación OR bit a bit: --> |= 
+        operatorbit3 = 5896; //     00000000000000000001011100001000
+            operatorbit3 |= 4589; //        00000000000000000001000111101101
+            console.log(operatorbit3); //   00000000000000000001011111101101, 6125 en decimal, compara bit a bit y si uno o los dos coinciden en 1 asigna 1 en el resultado.
+            operatorbit3 |= 6126; //        00000000000000000001011111101110
+            console.log(operatorbit3); //   00000000000000000001011111101111, 6127 en decimal, compara bit a bit y si uno o los dos coinciden en 1 asigna 1 en el resultado.
 
-    */    
+  
