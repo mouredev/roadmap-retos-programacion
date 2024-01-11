@@ -21,16 +21,16 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 8 de Enero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/mouredev?event=1191684000465567774)** por país y crea un **[recordatorio](https://discord.gg/mouredev?event=1191684000465567774)**
+> #### Lunes 15 de Enero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/mouredev?event=1193838918689374298)** por país y crea un **[recordatorio](https://discord.gg/mouredev?event=1193838918689374298)**
 
 ## Roadmap
 
 | # | Ejercicio | Corrección | Vídeo | Comunidad |
 |---|-----------|------------|-------|-----------|
-|00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[📝](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/python/mouredev.py)||[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
-|01|[OPERADORES Y ESTRUCTURAS DE CONTROL](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/ejercicio.md)|[🗓️ 08/01/24](https://discord.gg/mouredev?event=1191684000465567774)||[👥](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/)
-
+|00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[📝](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/python/mouredev.py)|[▶️](https://youtu.be/gEIBJ7rmLa0)|[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
+|01|[OPERADORES Y ESTRUCTURAS DE CONTROL](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/ejercicio.md)|[📝](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/python/mouredev.py)|[▶️](https://youtu.be/DLSGCh9jdes)|[👥](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/)
+|02|[FUNCIONES Y ALCANCE](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/ejercicio.md)|[🗓️ 15/01/24](https://discord.gg/mouredev?event=1193838918689374298)||[👥](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/)
 
 ## Instrucciones
 
@@ -57,10 +57,10 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 
 1. Realiza un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del repositorio de retos semanales desde GitHub.
 2. CLONA ese repositorio a tu máquina local `git clone [TU-REPOSITORIO]`.
-3. Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
+3. (Opcional) Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
 4. Añade el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`.
 5. Haz COMMIT con el mensaje de la solución `git commit -m "#[NÚMERO-RETO] - [LENGUAJE-UTILIZADO]"`.
-6. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]`
+6. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]` (puede ser la "main" o la que creaste en el paso 3)
 7. En el repositorio principal debes ir a la rama y hacer [PULL REQUEST](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 8. CONTRIBUTE.
 9. CREATE PULL REQUEST (cubre la plantilla que te aparecerá).
@@ -92,7 +92,7 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 ![GitHub Followers](https://img.shields.io/github/followers/mouredev?style=social)
 ![GitHub Stars](https://img.shields.io/github/stars/mouredev?style=social)
 
-Soy ingeniero de software desde 2010. Desde 2018 años combino mi trabajo desarrollando Apps con la creación de contenido formativo sobre programación y tecnología en diferentes redes sociales como **[@mouredev](https://moure.dev)**.
+Soy ingeniero de software desde 2010. Desde 2018 combino mi trabajo desarrollando Apps con la creación de contenido formativo sobre programación y tecnología en diferentes redes sociales como **[@mouredev](https://moure.dev)**.
 
 ### En mi perfil de GitHub tienes más información
 
