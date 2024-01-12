@@ -44,7 +44,7 @@ operator2 = 2; //-->inicializar para que no devuelva NaN.
 console.log(operator2 +" INICIALIZADA");
 console.log(`${operator2} += ${asingValue} = ${operator2 += asingValue}`); //--> al valor inicializado suma el valor de asignaicon y reasigna valor sumado.
 console.log(`Al valor inicializado suma el valor de asignaicon,
-y reasigna valor sumado a la variable.`)
+y reasigna valor sumado a la variable.`);
 console.log('========================');
 
 //Asignacion resta: --> -=
@@ -58,8 +58,9 @@ operator3 = 2; //-->inicializar para que no devuelva NaN.
 console.log(operator3 +" INICIALIZADA");
 console.log(`${operator3} -= ${asingValue} = ${operator3 -= asingValue}`); //--> al valor inicializado resta el valor de asignaicon y reasigna valor restado.
 console.log(`Al valor inicializado se resta el valor de asignaicon,
-y reasigna valor restado.`)
+y reasigna valor restado.`);
 console.log('========================');
+
 //Asignacion de multiplicación: --> *=
 console.log('========================');
 console.log('ASIGNACION MULTIPLICACIÓN *');
@@ -70,7 +71,7 @@ la variable deve tener valor,
 para poder operar con ella.
 ${operator4} *= ${asingValue} = ${operator4 *= asingValue}`);//--> el valor inicializado se multiplica por el valor de asignaicon y reasigna valor multiplicado.
 console.log(`El valor inicializado se multiplica por el valor de asignaicon,
-y reasigna valor multiplicado.`)
+y reasigna valor multiplicado.`);
 console.log('========================');
 
 //Asignacion de división: --> /=
@@ -82,7 +83,7 @@ console.log(`La variable deve tener valor,
 para poder operar con ella.
 ${operator5} /= ${asingValue} = ${operator5 /= asingValue}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor dividido.
 console.log(`El valor inicializado se divde por el valor de asignaicon, 
-y reasigna valor dividido.`)
+y reasigna valor dividido.`);
 console.log('========================');
 
 //Asignacion de residuo o resto: --> %=
@@ -94,7 +95,7 @@ console.log(`La variable deve tener valor,
 para poder operar con ella.
 ${operator6} %= ${asingValue} = ${operator6 %= asingValue}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor del resto de la division.
 console.log(`El valor inicializado se divde por el valor de asignaicon, 
-y reasigna valor del resto de la division.`)
+y reasigna valor del resto de la division.`);
 console.log('========================');
 
 //Asignacion de exponenciación: --> **=
@@ -105,7 +106,7 @@ console.log(`La variable deve tener valor,
 para poder operar con ella.
 ${operator6} **= ${asingValue} = ${operator6 **= asingValue}`);//--> el valor del operador6 se eleva al exponente de asignacion y reasigna valor del exponente.
 console.log(`El valor actual de operator6 se eleva al valor de asignaicon, 
-y reasigna valor de la potencia.`)
+y reasigna valor de la potencia.`);
 console.log('========================');
 
 //Asignación de desplazamiento de bits a la izquierda: --> <<=
@@ -118,7 +119,7 @@ ${operator4 <<= asingValue} (${operator4.toString(2).padStart(32,"0")})`);// al 
 console.log(`El valor de la variable en formato binario de 32bits,
 es desplazado a la izquierda tastas posiciones segun valor de asignaicon, 
 y reasigna valor resultante de binario de 32bits a decimal,
-las posiciones que se desplazan toman valor 0.`)
+las posiciones que se desplazan toman valor 0.`);
 console.log('========================');
 
 //Asignación de desplazamiento de bits a la derecha: --> >>= combierte en binarios de 32 bits
@@ -139,7 +140,8 @@ console.log('========================');
 console.log(`El valor de la variable en formato binario de 32bits,
 es desplazado a la derecha tastas posiciones segun valor de asignaicon, 
 y reasigna valor resultante de binario de 32bits a decimal, manteniendo el signo,
-las posiciones que se desplazan toman valor 0.`)
+las posiciones que se desplazan toman valor 0 si es decimal pisitivo, 
+y 1 si el decimal negativo.`)
  console.log('========================');
 
  //Asignación de desplazamiento a la derecha sin signo: --> >>>=
@@ -160,7 +162,12 @@ console.log('========================');
 console.log(`El valor de la variable en formato binario de 32bits,
 es desplazado a la derecha tastas posiciones segun valor de asignaicon, 
 y reasigna valor resultante de binario de 32bits a decimal, sin mantener el signo,
-las posiciones que se desplazan toman valor 0.`)
+las posiciones que se desplazan toman valor 0.`);
+console.log('========================');
+console.log('========================');
+console.log(`En ambos desplacamientos a la dercha, 
+los bit que quedna mas ala derecha de posision 0,
+pierden el valor.`);
 console.log('========================');
 
 //Asignación AND bit a bit: --> &=
@@ -187,7 +194,8 @@ console.log(`AND,
 solo si los dos bit de los operadores es 1
 el bit del resultado sera 1,
 si uno o ambos bit son 0 sera 0.`);
-console.log('========================')
+console.log('========================');
+
 //Asignación XOR bit a bit: --> ^= or exclusiva.
 console.log('========================');
 console.log('ASIGNACION XOR BIT A BIT ^=');
@@ -198,8 +206,8 @@ console.log(` ${operatorbit2} (${(operatorbit2).toString(2).padStart(32,"0")}) X
 ${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
 ${operatorbit2^=asingValue} (${(operatorbit2).toString(2).padStart(32,"0")})`);
 console.log(operatorbit2); // ahora es 49
-console.log('========================')
-console.log('========================')
+console.log('========================');
+console.log('========================');
 operatorbit2 = 4;
 asingValue=10;
 console.log(operatorbit2); // ahora es 4
@@ -207,15 +215,15 @@ console.log(` ${operatorbit2} (${(operatorbit2).toString(2).padStart(32,"0")}) X
 ${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
 ${operatorbit2^=asingValue} (${(operatorbit2).toString(2).padStart(32,"0")})`);
 console.log(operatorbit2); // ahora es 4
-console.log('========================')
+console.log('========================');
 console.log(`XOR es or exlusiva, 
 solo si uno de los dos bit de los operadores es 1,
 el bit del resultado sera 1,
 si ambos bit son 1 sera 0,
-al igual que si ambos son 0.`)
-console.log('========================')
+al igual que si ambos son 0.`);
+console.log('========================');
 //Asignación OR bit a bit: --> |= 
-console.log('========================')
+console.log('========================');
 console.log('ASIGNACION OR BIT A BIT |=');
 let operatorbit3 = 5896;
 asingValue = 4589; 
@@ -224,21 +232,22 @@ console.log(`${operatorbit3} (${(operatorbit3).toString(2).padStart(32,"0")}) OR
 ${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
 ${operatorbit3|=asingValue} (${(operatorbit3).toString(2).padStart(32,"0")})`);
 console.log(operatorbit3); // ahora es 6125
-console.log('========================')
+console.log('========================');
 asingValue = 6126;
 console.log(operatorbit3); // ahora es 6125
 console.log(`${operatorbit3} (${(operatorbit3).toString(2).padStart(32,"0")}) OR, 
 ${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
 ${operatorbit3|=asingValue} (${(operatorbit3).toString(2).padStart(32,"0")})`);
 console.log(operatorbit3); // ahora es 6127
-console.log('========================')
+console.log('========================');
 console.log(`OR, 
 solo si uno o ambos bit de los operadores es 1,
 el bit del resultado sera 1,
 si ambos bit son 0 sera 0.`);
-console.log('========================')
+console.log('========================');
+
 //Asignación AND lógico: --> &&=
-console.log('========================')
+console.log('========================');
 console.log('ASIGNACION AND LOGICO &&=');
 let operatorLogic1 = true;
 let operatorLogic2 = true;
@@ -249,9 +258,15 @@ operatorLogic2 = false;
 console.log(`${operatorLogic1} AND ${operatorLogic2}`);
 operatorLogic1 &&= operatorLogic2; // si alguno de los opreadores, o ambos son false asigna false 
 console.log(`= ${operatorLogic1}`);
-console.log('========================')
+console.log('========================');
+console.log(`AND logico, 
+solo si los dos operadores es 1
+el resultado sera 1 y se reasignara al operador de la izquierda,
+si uno o ambos son 0 sera 0 y se reasignara al operador de la izquierda.`);
+console.log('========================');
+
 //Asignación OR lógico: --> ||=
-console.log('========================')
+console.log('========================');
 console.log('ASIGNACION OR LOGICO ||=');
 let operatorLogic3 = true;
 let operatorLogic4 = false;
@@ -262,17 +277,29 @@ operatorLogic3 = false;
 console.log(`${operatorLogic3} OR ${operatorLogic4}`);
 operatorLogic3 ||= operatorLogic4; // si abmos opreadores son false, asigna false 
 console.log(`= ${operatorLogic3}`);
-console.log('========================')
+console.log('========================');
+console.log(`OR logico, 
+solo si uno o ambos operadores es 1,
+resultado sera 1 y se reasignara al operador de la izquierda,
+si ambos son 0 sera 0 y se reasignara al operador de la izquierda.`);
+console.log('========================');
+
 //Asignación anulacion lógica: --> ??=
-console.log('========================')
+console.log('========================');
 let operatorLogic5;
 let operatorLogic6 = false;
-operatorLogic5 ??= operatorLogic6; // si el poperador a la izquierda no esta definido, se arigna el valor de operador de la derecha.
+
+operatorLogic5 ??= operatorLogic6; // si el operador a la izquierda no esta definido, se arigna el valor de operador de la derecha.
 console.log(operatorLogic5); 
 operatorLogic5 = true;
 operatorLogic5 ??= operatorLogic6; // si el operador de la izquierda esta definido, se queda con el valor que tenia.
-console.log(operatorLogic5); 
-
+console.log(operatorLogic5);
+console.log('========================');
+console.log(`ANULACION logica, 
+si el operador de la izquierda esta inicializado,
+no se reasigna el valor del derecho,
+pero si esta inicializado, se queda con su valor.`);
+console.log('========================');
 /*
 -Operadores de COMPARACION:
 Un operador de comparación compara sus operandos y devuelve un valor lógico en función de si la comparación es verdadera (true) o falsa (false). 
