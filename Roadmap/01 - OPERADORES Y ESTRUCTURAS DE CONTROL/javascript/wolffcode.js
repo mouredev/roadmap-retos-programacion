@@ -127,7 +127,7 @@ for(let i = 0; i <= 5; i++){
 for(let i = 10;i<=55;i++){
 	if(i %3 ==0 ||i == 16){
 		continue
-	}else{
+	}else if(i % 2 == 0){
 		console.log(i)
 	}
 }
