@@ -28,105 +28,119 @@ También hay operadores de asignación compuestos que son una abreviatura de las
 console.log('========================');
 console.log('ASIGNACION BASICA =');
 let operator1; //-->no inicializado, undefined o indefinido.
+let asingValue = 5;
 console.log(operator1+" sin asignarle nada a la variable");
-console.log(`asignamo valor a "variable = 5": ${operator1=5}`); 
+console.log(`asignamo valor a "variable = ${operator1=asingValue}": ${operator1=asingValue}`); 
 console.log('========================');
 
 //Asignacion suma: --> +=
 console.log('========================');
 console.log('ASIGNACION SUMA +');
 let operator2; //-->no inicializado, undefined o indefinido.
+asingValue = 10;
 console.log(operator2 +" SIN INICIALIZAR"); 
-console.log(`${operator2} += 10 = ${operator2 += 10}`); //--> no se puede operar con valores undefined. 
+console.log(`${operator2} += ${asingValue} = ${operator2 += asingValue}`); //--> no se puede operar con valores undefined. 
 operator2 = 2; //-->inicializar para que no devuelva NaN.
 console.log(operator2 +" INICIALIZADA");
-console.log(`${operator2} += 10 = ${operator2 += 10}`); //--> al valor inicializado suma el valor de asignaicon y reasigna valor sumado.
+console.log(`${operator2} += ${asingValue} = ${operator2 += asingValue}`); //--> al valor inicializado suma el valor de asignaicon y reasigna valor sumado.
+console.log(`Al valor inicializado suma el valor de asignaicon,
+y reasigna valor sumado a la variable.`)
 console.log('========================');
 
 //Asignacion resta: --> -=
 console.log('========================');
 console.log('ASIGNACION RESTA -');
 let operator3; //-->no inicializado, undefined o indefinido.
+asingValue = 10;
 console.log(operator3 +" SIN INICIALIZAR");
-console.log(`${operator3} -= 10 = ${operator3 -= 10}`); //--> no se puede operar con valores undefined. 
+console.log(`${operator3} -= ${asingValue} = ${operator3 -= asingValue}`); //--> no se puede operar con valores undefined. 
 operator3 = 2; //-->inicializar para que no devuelva NaN.
 console.log(operator3 +" INICIALIZADA");
-console.log(`${operator3} -= 10 = ${operator3 -= 10}`); //--> al valor inicializado resta el valor de asignaicon y reasigna valor restado.
+console.log(`${operator3} -= ${asingValue} = ${operator3 -= asingValue}`); //--> al valor inicializado resta el valor de asignaicon y reasigna valor restado.
 console.log('========================');
 //Asignacion de multiplicación: --> *=
 console.log('========================');
-console.log('ASIGNACION MULTIPLICACIÓN');
+console.log('ASIGNACION MULTIPLICACIÓN *');
 let operator4 = 5; //Declaracion e Inicialización.
+asingValue = 10;
 console.log(`Al igual que con suma y resta,
 la variable deve tener valor, 
 para poder operar con ella.
-${operator4} *= 10 = ${operator4 *= 10}`);//--> el valor inicializado se multiplica por el valor de asignaicon y reasigna valor multiplicado.
+${operator4} *= ${asingValue} = ${operator4 *= asingValue}`);//--> el valor inicializado se multiplica por el valor de asignaicon y reasigna valor multiplicado.
 console.log('========================');
 
 //Asignacion de división: --> /=
 console.log('========================');
-console.log('ASIGNACION DIVISIÓN');
+console.log('ASIGNACION DIVISIÓN /');
 let operator5 = 5; //Declaracion e Inicialización.
+asingValue = 10;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
-${operator5} /= 10 = ${operator5 /= 10}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor dividido.
+${operator5} /= ${asingValue} = ${operator5 /= asingValue}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor dividido.
 console.log('========================');
 
 //Asignacion de residuo o resto: --> %=
 console.log('========================');
-console.log('ASIGNACION RESTO');
+console.log('ASIGNACION RESTO %');
 let operator6 = 10; //Declaracion e Inicialización.
+asingValue = 7;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
-${operator6} %= 7 = ${operator6 %= 7}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor del resto de la division.
+${operator6} %= ${asingValue} = ${operator6 %= asingValue}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor del resto de la division.
 console.log('========================');
 
 //Asignacion de exponenciación: --> **=
 console.log('========================');
-console.log('ASIGNACION POTENCIA');
+console.log('ASIGNACION POTENCIA **');
+asingValue = 5;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
-${operator6} **= 5 = ${operator6 **= 5}`);//--> el valor del operador6 se eleva al exponente de asignacion y reasigna valor del exponente.
+${operator6} **= ${asingValue} = ${operator6 **= asingValue}`);//--> el valor del operador6 se eleva al exponente de asignacion y reasigna valor del exponente.
 console.log('========================');
 
 //Asignación de desplazamiento de bits a la izquierda: --> <<=
 console.log('========================');
-console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA IZQUIERDA');
+console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA IZQUIERDA <<=');
+asingValue = 3;
 console.log(` ${operator4} (${operator4.toString(2).padStart(32,"0")}) 
-<<= 3
-${operator4 <<= 3} (${operator4.toString(2).padStart(32,"0")})`);// al valor binario (ejm: 50 = 00000000000000000000000000110010) del operador agrega n (valor de asignacion) ceros a la izquierda, y reasigna valor binario resultante en decimal.
+<<= ${asingValue}
+${operator4 <<= asingValue} (${operator4.toString(2).padStart(32,"0")})`);// al valor binario (ejm: 50 = 00000000000000000000000000110010) del operador agrega n (valor de asignacion) ceros a la izquierda, y reasigna valor binario resultante en decimal.
 console.log('========================');
 
 //Asignación de desplazamiento de bits a la derecha: --> >>= combierte en binarios de 32 bits
 console.log('========================');
-console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA CON SIGNO');
+console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA CON SIGNO >>=');
 operator4 = -243;
+asingValue = 2;
 console.log(`${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
->>= 2
- ${operator4 >>= 2} (${(operator4>>>0).toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, manteniendo el signo, y asigna el resultado a la variable.
+>>= ${asingValue}
+ ${operator4 >>= asingValue} (${(operator4>>>0).toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, manteniendo el signo, y asigna el resultado a la variable.
 console.log('========================');
 
  //Asignación de desplazamiento a la derecha sin signo: --> >>>=
 console.log('========================');
-console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA SIN SIGNO');
+console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA SIN SIGNO >>>=');
 operator4 = -243;
+asingValue = 2;
 console.log(`      ${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
->>>= 2
-${operator4 >>>= 2} (${operator4.toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, sin mantener el signo, y asigna el resultado a la variable.
+>>>= ${asingValue}
+${operator4 >>>= asingValue} (${operator4.toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, sin mantener el signo, y asigna el resultado a la variable.
 console.log('========================');
 
-return //AQUI ME QUEDE
 //Asignación AND bit a bit: --> &=
-let operatorbit1 = 3; //       
 console.log('========================');
+console.log('ASIGNACION AND BIT A BIT &=');
+let operatorbit1 = 3;
+asingValue = 4;
 console.log(operatorbit1); // ahora es 3
 console.log(`${operatorbit1} (${(operatorbit1).toString(2).padStart(32,"0")}) AND, 
-4 (${(4).toString(2).padStart(32,"0")}) bit a bit es igual a, 
-${operatorbit1&=4} (${(operatorbit1).toString(2).padStart(32,"0")})`);
+${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
+${operatorbit1&=asingValue} (${(operatorbit1).toString(2).padStart(32,"0")})`);
 console.log(operatorbit1); // ahora es 0
 console.log('========================');
 console.log('========================');
 operatorbit1 = 6;
+asingValue = 4;
 console.log(operatorbit1); // ahora es 6
 console.log(`${operatorbit1} (${(operatorbit1).toString(2).padStart(32,"0")}) AND, 
 4 (${(4).toString(2).padStart(32,"0")}) bit a bit es igual a, 
@@ -137,22 +151,25 @@ console.log(`AND,
 solo si los dos bit de los operadores es 1
 el bit del resultado sera 1,
 si uno o ambos bit son 0 sera 0.`);
-
+console.log('========================')
 //Asignación XOR bit a bit: --> ^= or exclusiva.
-let operatorbit2 = 6; 
 console.log('========================');
+console.log('ASIGNACION XOR BIT A BIT ^=');
+let operatorbit2 = 6;
+asingValue=55;
 console.log(operatorbit2); // ahora es 6
 console.log(` ${operatorbit2} (${(operatorbit2).toString(2).padStart(32,"0")}) XOR, 
-55 (${(55).toString(2).padStart(32,"0")}) bit a bit es igual a, 
-${operatorbit2^=55} (${(operatorbit2).toString(2).padStart(32,"0")})`);
+${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
+${operatorbit2^=asingValue} (${(operatorbit2).toString(2).padStart(32,"0")})`);
 console.log(operatorbit2); // ahora es 49
 console.log('========================')
-operatorbit2 = 4
 console.log('========================')
+operatorbit2 = 4;
+asingValue=10;
 console.log(operatorbit2); // ahora es 4
 console.log(` ${operatorbit2} (${(operatorbit2).toString(2).padStart(32,"0")}) XOR, 
-10 (${(10).toString(2).padStart(32,"0")}) bit a bit es igual a, 
-${operatorbit2^=10} (${(operatorbit2).toString(2).padStart(32,"0")})`);
+${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
+${operatorbit2^=asingValue} (${(operatorbit2).toString(2).padStart(32,"0")})`);
 console.log(operatorbit2); // ahora es 4
 console.log('========================')
 console.log(`XOR es or exlusiva, 
@@ -160,42 +177,58 @@ solo si uno de los dos bit de los operadores es 1,
 el bit del resultado sera 1,
 si ambos bit son 1 sera 0,
 al igual que si ambos son 0.`)
-//Asignación OR bit a bit: --> |= 
-let operatorbit3 = 5896;
 console.log('========================')
+//Asignación OR bit a bit: --> |= 
+console.log('========================')
+console.log('ASIGNACION OR BIT A BIT |=');
+let operatorbit3 = 5896;
+asingValue = 4589; 
 console.log(operatorbit3); // ahora es 5896
 console.log(`${operatorbit3} (${(operatorbit3).toString(2).padStart(32,"0")}) OR, 
-4589 (${(4589).toString(2).padStart(32,"0")}) bit a bit es igual a, 
-${operatorbit3|=4589} (${(operatorbit3).toString(2).padStart(32,"0")})`);
+${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
+${operatorbit3|=asingValue} (${(operatorbit3).toString(2).padStart(32,"0")})`);
 console.log(operatorbit3); // ahora es 6125
 console.log('========================')
+asingValue = 6126;
 console.log(operatorbit3); // ahora es 6125
 console.log(`${operatorbit3} (${(operatorbit3).toString(2).padStart(32,"0")}) OR, 
-6126 (${(6126).toString(2).padStart(32,"0")}) bit a bit es igual a, 
-${operatorbit3|=6126} (${(operatorbit3).toString(2).padStart(32,"0")})`);
+${asingValue} (${(asingValue).toString(2).padStart(32,"0")}) bit a bit es igual a, 
+${operatorbit3|=asingValue} (${(operatorbit3).toString(2).padStart(32,"0")})`);
 console.log(operatorbit3); // ahora es 6127
+console.log('========================')
 console.log(`OR, 
 solo si uno o ambos bit de los operadores es 1,
 el bit del resultado sera 1,
 si ambos bit son 0 sera 0.`);
-
+console.log('========================')
 //Asignación AND lógico: --> &&=
+console.log('========================')
+console.log('ASIGNACION AND LOGICO &&=');
 let operatorLogic1 = true;
 let operatorLogic2 = true;
+console.log(`${operatorLogic1} AND ${operatorLogic2}`);
 operatorLogic1 &&= operatorLogic2; //si ambos operadorres son true asigna al operador 1 true
-console.log(operatorLogic1); 
+console.log(`= ${operatorLogic1}`); 
 operatorLogic2 = false;
-operatorLogic1 &&= operatorLogic2;
-console.log(operatorLogic1); // si alguno de los opreadores, o ambos son false asigna false 
+console.log(`${operatorLogic1} AND ${operatorLogic2}`);
+operatorLogic1 &&= operatorLogic2; // si alguno de los opreadores, o ambos son false asigna false 
+console.log(`= ${operatorLogic1}`);
+console.log('========================')
 //Asignación OR lógico: --> ||=
+console.log('========================')
+console.log('ASIGNACION OR LOGICO ||=');
 let operatorLogic3 = true;
 let operatorLogic4 = false;
+console.log(`${operatorLogic3} OR ${operatorLogic4}`);
 operatorLogic3 ||= operatorLogic4; //si uno o los dos operadorres son true asigna al operador 3 true
-console.log(operatorLogic3); 
+console.log(`= ${operatorLogic3}`); 
 operatorLogic3 = false;
+console.log(`${operatorLogic3} OR ${operatorLogic4}`);
 operatorLogic3 ||= operatorLogic4; // si abmos opreadores son false, asigna false 
-console.log(operatorLogic3); 
+console.log(`= ${operatorLogic3}`);
+console.log('========================')
 //Asignación anulacion lógica: --> ??=
+console.log('========================')
 let operatorLogic5;
 let operatorLogic6 = false;
 operatorLogic5 ??= operatorLogic6; // si el poperador a la izquierda no esta definido, se arigna el valor de operador de la derecha.
