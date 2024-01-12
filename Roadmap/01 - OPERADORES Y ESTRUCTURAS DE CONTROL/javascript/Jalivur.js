@@ -26,7 +26,7 @@ También hay operadores de asignación compuestos que son una abreviatura de las
 
 //Asignacion Basica: --> =
 console.log('========================');
-console.log('ASIGNACION BASICA =');
+console.log('ASIGNACION BASICA variable 1 = variable 2');
 let operator1; //-->no inicializado, undefined o indefinido.
 let asingValue = 5;
 console.log(operator1+" sin asignarle nada a la variable");
@@ -35,7 +35,7 @@ console.log('========================');
 
 //Asignacion suma: --> +=
 console.log('========================');
-console.log('ASIGNACION SUMA +');
+console.log('ASIGNACION SUMA variable1 += variable2');
 let operator2; //-->no inicializado, undefined o indefinido.
 asingValue = 10;
 console.log(operator2 +" SIN INICIALIZAR"); 
@@ -49,7 +49,7 @@ console.log('========================');
 
 //Asignacion resta: --> -=
 console.log('========================');
-console.log('ASIGNACION RESTA -');
+console.log('ASIGNACION RESTA variable 1 -= variable 2');
 let operator3; //-->no inicializado, undefined o indefinido.
 asingValue = 10;
 console.log(operator3 +" SIN INICIALIZAR");
@@ -63,7 +63,7 @@ console.log('========================');
 
 //Asignacion de multiplicación: --> *=
 console.log('========================');
-console.log('ASIGNACION MULTIPLICACIÓN *');
+console.log('ASIGNACION MULTIPLICACIÓN variable 1 *= variable 2');
 let operator4 = 5; //Declaracion e Inicialización.
 asingValue = 10;
 console.log(`Al igual que con suma y resta,
@@ -76,7 +76,7 @@ console.log('========================');
 
 //Asignacion de división: --> /=
 console.log('========================');
-console.log('ASIGNACION DIVISIÓN /');
+console.log('ASIGNACION DIVISIÓN variable 1 /= variable 2');
 let operator5 = 5; //Declaracion e Inicialización.
 asingValue = 10;
 console.log(`La variable deve tener valor, 
@@ -88,7 +88,7 @@ console.log('========================');
 
 //Asignacion de residuo o resto: --> %=
 console.log('========================');
-console.log('ASIGNACION RESTO %');
+console.log('ASIGNACION RESTO variable 1 %= variable 2');
 let operator6 = 10; //Declaracion e Inicialización.
 asingValue = 7;
 console.log(`La variable deve tener valor, 
@@ -100,7 +100,7 @@ console.log('========================');
 
 //Asignacion de exponenciación: --> **=
 console.log('========================');
-console.log('ASIGNACION POTENCIA **');
+console.log('ASIGNACION POTENCIA variable 1 **= variable 2');
 asingValue = 5;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
@@ -111,7 +111,7 @@ console.log('========================');
 
 //Asignación de desplazamiento de bits a la izquierda: --> <<=
 console.log('========================');
-console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA IZQUIERDA <<=');
+console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA IZQUIERDA variable 1 <<= variable 2');
 asingValue = 3;
 console.log(` ${operator4} (${operator4.toString(2).padStart(32,"0")}) 
 <<= ${asingValue}
@@ -124,7 +124,7 @@ console.log('========================');
 
 //Asignación de desplazamiento de bits a la derecha: --> >>= combierte en binarios de 32 bits
 console.log('========================');
-console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA CON SIGNO >>=');
+console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA CON SIGNO variable 1 >>= variable 2');
 operator4 = -243;
 asingValue = 2;
 console.log(`${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
@@ -146,7 +146,7 @@ y 1 si el decimal negativo.`)
 
  //Asignación de desplazamiento a la derecha sin signo: --> >>>=
 console.log('========================');
-console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA SIN SIGNO >>>=');
+console.log('ASIGNACION DESPLAZAMEINTO BIT A BIT A LA DERECHA SIN SIGNO variable 1 >>>= variable 2');
 operator4 = -243;
 asingValue = 2;
 console.log(`      ${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
@@ -172,7 +172,7 @@ console.log('========================');
 
 //Asignación AND bit a bit: --> &=
 console.log('========================');
-console.log('ASIGNACION AND BIT A BIT &=');
+console.log('ASIGNACION AND BIT A BIT variable 1 &= variable 2');
 let operatorbit1 = 3;
 asingValue = 4;
 console.log(operatorbit1); // ahora es 3
@@ -198,7 +198,7 @@ console.log('========================');
 
 //Asignación XOR bit a bit: --> ^= or exclusiva.
 console.log('========================');
-console.log('ASIGNACION XOR BIT A BIT ^=');
+console.log('ASIGNACION XOR BIT A BIT variable 1 ^= variable 2');
 let operatorbit2 = 6;
 asingValue=55;
 console.log(operatorbit2); // ahora es 6
@@ -222,9 +222,10 @@ el bit del resultado sera 1,
 si ambos bit son 1 sera 0,
 al igual que si ambos son 0.`);
 console.log('========================');
+
 //Asignación OR bit a bit: --> |= 
 console.log('========================');
-console.log('ASIGNACION OR BIT A BIT |=');
+console.log('ASIGNACION OR BIT A BIT variable 1 |= variable 2');
 let operatorbit3 = 5896;
 asingValue = 4589; 
 console.log(operatorbit3); // ahora es 5896
@@ -248,7 +249,7 @@ console.log('========================');
 
 //Asignación AND lógico: --> &&=
 console.log('========================');
-console.log('ASIGNACION AND LOGICO &&=');
+console.log('ASIGNACION AND LOGICO variable 1 &&= variable 2');
 let operatorLogic1 = true;
 let operatorLogic2 = true;
 console.log(`${operatorLogic1} AND ${operatorLogic2}`);
@@ -267,7 +268,7 @@ console.log('========================');
 
 //Asignación OR lógico: --> ||=
 console.log('========================');
-console.log('ASIGNACION OR LOGICO ||=');
+console.log('ASIGNACION OR LOGICO variable 1 ||= variable 2');
 let operatorLogic3 = true;
 let operatorLogic4 = false;
 console.log(`${operatorLogic3} OR ${operatorLogic4}`);
@@ -286,7 +287,7 @@ console.log('========================');
 
 //Asignación anulacion lógica: --> ??=
 console.log('========================');
-console.log('ASIGNACION ANULACION LOGICA ??=');
+console.log('ASIGNACION ANULACION LOGICA variable 1 ??= variable 2');
 let operatorLogic5;
 let operatorLogic6 = false;
 console.log(`${operatorLogic5} ANULACION ${operatorLogic6}`);
@@ -302,6 +303,7 @@ si el operador de la izquierda no esta inicializado,
 se reasigna el valor del derecho,
 pero si esta inicializado, se queda con su valor.`);
 console.log('========================');
+
 /*
 -Operadores de COMPARACION:
 Un operador de comparación compara sus operandos y devuelve un valor lógico en función de si la comparación es verdadera (true) o falsa (false). 
@@ -315,110 +317,181 @@ Estos operadores no intentan convertir los operandos a tipos compatibles antes d
 
 //IGUAL: --> ==
 console.log('========================');
-console.log('COMPARACION IGUALDAD ==');
-console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (operator3 == operator2));
+console.log('COMPARACION IGUALDAD resultado = (variable 1 == variable 2)');
+let upshot;
+upshot = (operator3 == operator2);
+console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (upshot));
 operator3 = 5; 
 operator2 = 5;
-console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (operator3 == operator2));
+upshot = (operator3 == operator2);
+console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (upshot));
 operator3 = "alberto"; 
 operator2 = "alberto";
-console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (operator3 == operator2));
+upshot = (operator3 == operator2);
+console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (upshot));
 operator3 = "alberto";
 operator2 = "Alberto";
-console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (operator3 == operator2));
+upshot = (operator3 == operator2);
+console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (upshot));
 operator3 = 1.0; 
 operator2 = 1;
-console.log(`es ${operator3} igual a ${operator2}: ${operator3 == operator2}`);
+upshot = (operator3 == operator2);
+console.log(`es ${operator3} igual a ${operator2}: ${upshot}`);
 operator3 = 50; 
 operator2 = 50n;
-console.log(`es ${operator3} int igual a ${operator2} bigint: ${operator3 == operator2}`);
-console.log(`es ${operatorLogic1} igual a ${operatorLogic2}: ${operatorLogic1 == operatorLogic2}`);
-console.log(`es ${operatorLogic1} igual a ${operatorLogic3}: ${operatorLogic1 == operatorLogic3}`);
+upshot = (operator3 == operator2);
+console.log(`es ${operator3} int igual a ${operator2} bigint: ${upshot}`);
+upshot = (operatorLogic1 == operatorLogic2);
+console.log(`es ${operatorLogic1} igual a ${operatorLogic2}: ${upshot}`);
+operatorLogic1 = true;
+upshot = (operatorLogic1 == operatorLogic3);
+console.log(`es ${operatorLogic1} igual a ${operatorLogic3}: ${upshot}`);
 operator1 = undefined;
 operator2 = null;
-console.log(`es ${operator1} igual a ${operator2}: ${operator1 == operator2}`);
-console.log(`es ${operator1} igual a ${0}: ${operator1 == 0}`);
-console.log(`es ${operator2} igual a ${0}: ${operator1 == 0}`);
-console.log(`es ${1} igual a ${operatorLogic2}: ${1 == operatorLogic2}`);
-console.log(`es ${0} igual a ${operatorLogic1}: ${0 == operatorLogic1}`);
-console.log(`es ${operator1} igual a ${operatorLogic1}: ${operator1 == operatorLogic1}`);
-console.log(`es ${operator2} igual a ${operatorLogic1}: ${operator2 == operatorLogic1}`);
+upshot = (operator1 == operator2);
+console.log(`es ${operator1} igual a ${operator2}: ${upshot}`);
+upshot = (operator1 == 0);
+console.log(`es ${operator1} igual a ${0}: ${upshot}`);
+upshot = (operator2 == 0);
+console.log(`es ${operator2} igual a ${0}: ${upshot}`);
+upshot = (operatorLogic1 == 1);
+console.log(`es ${1} igual a ${operatorLogic1}: ${upshot}`);
+upshot = (operatorLogic2 == 0);
+console.log(`es ${0} igual a ${operatorLogic2}: ${upshot}`);
+upshot = (operatorLogic2 == operator1);
+console.log(`es ${operator1} igual a ${operatorLogic2}: ${upshot}`);
+upshot = (operatorLogic2 == operator2);
+console.log(`es ${operator2} igual a ${operatorLogic2}: ${upshot}`);
 console.log('========================');
 
 //NO IGUAL: --> !=
 console.log('========================');
-console.log('COMPARACION DESIGUALDAD !=');
-console.log(`${operator1} no es igual a ${operator2}: ${operator1 != operator2}`);
-console.log(`${operatorLogic1} no es igual a ${operatorLogic2}: ${operatorLogic1 != operatorLogic2}`);
+console.log('COMPARACION DESIGUALDAD resultado = (variable 1 != variable 2)');
+upshot = (operator1 != operator2);
+console.log(`${operator1} no es igual a ${operator2}: ${upshot}`);
+upshot = (operatorLogic1 != operatorLogic2);
+console.log(`${operatorLogic1} no es igual a ${operatorLogic2}: ${upshot}`);
 operator3 = "alberto";
 operator2 = "Alberto";
-console.log((operator3)+" no es igual a "+(operator2)+": "+ (operator3 != operator2));
+upshot = (operator3 != operator2);
+console.log((operator3)+" no es igual a "+(operator2)+": "+ (upshot));
 console.log('========================');
 
 //EXTRICTAMENTE IGUAL: --> ===
 console.log('========================');
-console.log('COMPARACION IGUALDAD EXTRICTA ===');
+console.log('COMPARACION IGUALDAD EXTRICTA resultado = (variable 1 === variable 2)');
 operator1 = undefined;
 operator2 = null;
-console.log(`es ${operator1} extrictamente igual a ${operator2}: ${operator1 === operator2}`);
-console.log(`es ${operator1} extrictamente igual a ${0}: ${operator1 === 0}`);
-console.log(`es ${operator2} extrictamente igual a ${0}: ${operator1 === 0}`);
-console.log(`es ${1} extrictamente igual a ${operatorLogic2}: ${1 === operatorLogic2}`);
-console.log(`es ${0} extrictamente igual a ${operatorLogic1}: ${0 === operatorLogic1}`);
+upshot = (operator1 === 0);
+console.log(`es ${operator1} extrictamente igual a ${operator2}: ${upshot}`);
+upshot = (operator1 === operator2);
+console.log(`es ${operator1} extrictamente igual a ${0}: ${upshot}`);
+upshot = (operator2 === 0);
+console.log(`es ${operator2} extrictamente igual a ${0}: ${upshot}`);
+upshot = (operatorLogic1 === 1);
+console.log(`es ${1} extrictamente igual a ${operatorLogic1}: ${upshot}`);
+upshot = (operatorLogic2 === 0);
+console.log(`es ${0} extrictamente igual a ${operatorLogic2}: ${upshot}`);
 console.log('========================');
 
 //DESIGUALDAD EXTRICTA: --> !==
 console.log('========================');
-console.log('COMPARACION DESIGUALDAD EXTRICTA !==');
-console.log(`${operator1} no es igual a ${operator2} extricatemente: ${operator1 !== operator2}`);
-console.log(`${operatorLogic1} no es igual a ${operatorLogic2} extrictamente: ${operatorLogic1 !== operatorLogic2}`);
-operator3 = "alberto ";
+console.log('COMPARACION DESIGUALDAD EXTRICTA resultado = (variable 1 !== variable 2)');
+upshot = (operator1 !== operator2);
+console.log(`${operator1} no es igual a ${operator2} extricatemente: ${upshot}`);
+upshot = (operatorLogic1 !== operatorLogic2);
+console.log(`${operatorLogic1} no es igual a ${operatorLogic2} extrictamente: ${upshot}`);
+operator3 = "alberto";
 operator2 = "Alberto";
-console.log((operator3)+" no es igual a "+(operator2)+" extrictamente: "+ (operator3 !== operator2));
+upshot = (operator3 !== operator2);
+console.log((operator3)+" no es igual a "+(operator2)+" extrictamente: "+ (upshot));
 console.log('========================');
 
 //MAYOR QUE: --> >
 console.log('========================');
-console.log('COMPARACION MAYOR QUE >');
-console.log(`es 1 mayor que 5: ${1>5}`);
-console.log(`es 5 mayor que 1: ${5>1}`);
-console.log(`es "alberto " mayor que "Alberto": ${operator3.length>operator2.length}`);
+console.log('COMPARACION MAYOR QUE resultado = (variable 1 > variable 2)');
+operator1 = 1;
+operator2 = 5;
+upshot = (operator1 > operator2);
+console.log(`es ${operator1} mayor que ${operator2}: ${upshot}`);
+upshot = (operator2 > operator1);
+console.log(`es ${operator2} mayor que ${operator1}: ${upshot}`);
+operator3 = "alberto";
+operator2 = "Alberto";
+upshot = (operator3.length > operator2.length);
+console.log(`es "${operator3}" mayor que "${operator2}": ${upshot}
+en longiturd no.`);
+upshot = (operator3 > operator2);
+console.log(`es "${operator3}" mayor que "${operator2}": ${upshot}
+como cadenas si porque el valor ASCII de las minusculas en mayor que el de las mayusculas.`);
 console.log('========================');
 
 //MAYOR O IGUAL: --> >=
 console.log('========================');
-console.log('COMPARACION MAYOR O IGUAL QUE >=');
-console.log(`es 5 mayor o igual que 5: ${5>=5}`);
-console.log(`es 5 mayor o igual que 3: ${5>=3}`);
-console.log(`es 5 mayor o igual que 6: ${5>=6}`);
+console.log('COMPARACION MAYOR O IGUAL QUE resultado = (variable 1 >= variable 2)');
+let value = 5;
+let otherValue = 5;
+upshot = (value >= otherValue);
+console.log(`es ${value} mayor o igual que ${otherValue}: ${upshot}`);
+value = 5;
+otherValue = 3;
+upshot = (value >= otherValue);
+console.log(`es ${value} mayor o igual que ${otherValue}: ${upshot}`);
+value = 5;
+otherValue = 6;
+upshot = (value >= otherValue);
+console.log(`es ${value} mayor o igual que ${otherValue}: ${upshot}`);
 let name1 = "alberto";
 let name2 = "Alberto";
-console.log(`es ${name1}(${name1.length}) mayor o igual que ${name2}(${name2.length}): ${name1.length>=name2.length}`);
+upshot = (name1.length>=name2.length);
+console.log(`es ${name1} (${name1.length}) mayor o igual que ${name2} (${name2.length}): ${upshot}`);
 name1="albertooo";
-name2="alberto   ";
-console.log(`es ${name1}(${name1.length}) mayor o igual que ${name2}(${name2.length}): ${name1.length>=name2.length}`);
+name2="Alberto   ";
+upshot = (name1.length>=name2.length);
+console.log(`es ${name1} (${name1.length}) mayor o igual que ${name2}(${name2.length}): ${upshot} por logitud`);
+upshot = (name1>=name2);
+console.log(`es ${name1} (${name1.length}) mayor o igual que ${name2}(${name2.length}): ${upshot} por cadena`);
 console.log('========================');
 
 //MENOR QUE: --> <
 console.log('========================');
-console.log('COMPARACION MENOR QUE <');
-console.log(`es 1 menor que 5: ${1<5}`);
-console.log(`es 5 menor que 1: ${5<1}`);
-console.log(`es "alberto " menor que "Alberto": ${operator3.length<operator2.length}`);
+console.log('COMPARACION MENOR QUE resultado = (variable 1 < variable 2)');
+value = 1;
+otherValue = 5;
+upshot = (value < otherValue)
+console.log(`es ${value} menor que ${otherValue}: ${upshot}`);
+value = 5;
+otherValue = 1;
+upshot = (value < otherValue)
+console.log(`es ${value} menor que ${otherValue}: ${upshot}`);
+value = 5;
+otherValue = 5;
+upshot = (value < otherValue)
+console.log(`es ${value} menor que ${otherValue}: ${upshot}`);
 console.log('========================');
 
 //MENOR O IGUAL: --> <=
 console.log('========================');
-console.log('COMPARACION MENOR O IGUAL QUE <=');
-console.log(`es 5 menor o igual que 5: ${5<=5}`);
-console.log(`es 5 menor o igual que 3: ${5<=3}`);
-console.log(`es 5 menor o igual que 6: ${5<=6}`);
+console.log('COMPARACION MENOR O IGUAL QUE resultado = (variable 1 <= variable 2)');
+value = 5;
+otherValue = 5;
+upshot = (value <= otherValue)
+console.log(`es ${value} menor o igual que ${otherValue}: ${upshot}`);
+value = 5;
+otherValue = 3;
+upshot = (value <= otherValue)
+console.log(`es ${value} menor o igual que ${otherValue}: ${upshot}`);
+value = 5;
+otherValue = 6;
+upshot = (value <= otherValue)
+console.log(`es ${value} menor o igual que ${otherValue}: ${upshot}`);
 name1 = "alberto";
 name2 = "Alberto";
 console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`);
 name1="albertooo";
 name2="alberto   ";
-console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`);
+upshot = (name1.length<=name2.length)
+console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${upshot}`);
 console.log('========================');
 
 /* OPERADORES ARITMETICOS:
@@ -432,7 +505,6 @@ console.log('========================');
 console.log('OPERADOR ARITMETICO RESIDUO O RESTO %');
 let num1 = 5;
 let num2 = 3;
-let upshot;
 console.log(`El resto de ${num1} entre ${num2} es = ${upshot=(num1%num2)}`);//2
 num1 = 550;
 num2 = 10;
@@ -451,35 +523,66 @@ console.log('========================');
 //INCREMENTO: --> ++
 console.log('========================');
 console.log('OPERADOR ARITMETICO INCREMENTO ++');
-let value = 1;
-console.log(`++${value} = ${upshot=(++value)}`); //inclementa 1 al valor de value
+value = 100;
+console.log(`Incremento de ++(${value}) = ${upshot=(++value)}`); //inclementa 1 al valor de value
+console.log('========================');
+console.log(`Incrementa en 1 el valor actual de la variable.
+Un operador aritmetico solo no asigna,
+por lo que si queremos trabajar con el valor de la operacion
+se deve almacenar en una variable ejem: upshot = ${upshot}.`)
 console.log('========================');
 
 //DECREMENTO: --> --
-console.log(--value); //decrementa 1 al valor de value
+console.log('========================');
+console.log('OPERADOR ARITMETICO DECREMENTO --');
+console.log(`Incremento de --(${value}) = ${upshot=(--value)}`); //decrementa 1 al valor de value
+console.log('========================');
+console.log(`Decrementa en 1 el valor actual de la variable.
+Un operador aritmetico solo no asigna,
+por lo que si queremos trabajar con el valor de la operacion
+se deve almacenar en una variable ejem: upshot = ${upshot}.`)
+console.log('========================');
 
 //NEGACION UNARIA: --> - 
-console.log(-value); //devuelve la negacion del value
+console.log('========================');
+console.log('OPERADOR ARITMETICO NEGACION UNARIA -');
+value = -59;
+console.log(`Negacion unaria de -(${value}) = ${upshot=(-value)}`); //inclementa 1 al valor de value
+console.log('========================');
+console.log(`Decrementa en 1 el valor actual de la variable.
+Un operador aritmetico solo no asigna,
+por lo que si queremos trabajar con el valor de la operacion
+se deve almacenar en una variable ejem: upshot = ${upshot}.`)
+console.log('========================');
+
 
 //POSITIVO UNARIO: --> +
+console.log('========================');
+console.log('OPERADOR ARITMETICO POSITIVO UNARIO +');
 value = false;
-console.log(typeof(value))
-console.log(+value); //combierte en numero si todavia no lo es
-console.log(typeof(+value))
-value="2"
-console.log(value)
-console.log(typeof(value))//value es de tipo estrin pero contiene un 2
-console.log(+value)
-console.log(typeof(+value))//value se convierte en un 2 number
-value="alberto"
-console.log(value)
-console.log(typeof(value))//value es una cadena de caracteres
-console.log(+value)//lo combierte en un NaN (not asigned number)
-console.log(typeof(+value))//value se convierte en un 2 number
+console.log(`Inicialmente la variable es ${value}, de tipo ${typeof(value)},
+pero con el operador, resultado = (+variable), este pasa a ser ${upshot=(+value)}, que es de tipo ${typeof(upshot)}.`);
+value="2";
+console.log(`Ahora la variable es ${value}, de tipo ${typeof(value)},
+pero con el operador, resultado = (+variable), este pasa a ser ${upshot=(+value)}, que es de tipo ${typeof(upshot)}.`);
+value="alberto";
+console.log(`Ahora la variable es ${value}, de tipo ${typeof(value)},
+pero con el operador, resultado = (+variable), este pasa a ser ${upshot=(+value)}, que es de tipo ${typeof(upshot)}.`);
+console.log('========================');
+
 
 //EXPONECIACION, EXPONENTE: --> **
-console.log(`5 elevado a 6 es = ${5**6}`);
-console.log(`2 elevado a 8 es = ${2**8}`);
+console.log('========================');
+console.log('OPERADOR ARITMETICO EXPONENCIACION resultado = (variable 1 ** variable 2)');
+value = 5;
+otherValue = 6;
+upshot = (value ** otherValue);
+console.log(`${value} elevado a ${otherValue} es = ${upshot}`);
+value = 2;
+otherValue = 8;
+upshot = (value ** otherValue);
+console.log(`${value} elevado a ${otherValue} es = ${upshot}`);
+console.log('========================')
 
 /* OPERADORES BIT A BIT:
 Un operador bit a bit trata a sus operandos como un conjunto de 32 bits (ceros y unos), en lugar de números decimales, hexadecimales u octales. 
@@ -489,34 +592,127 @@ Los operadores bit a bit realizan sus operaciones en tales representaciones bina
 
 //AND bit a bit: --> & sin asignacion.
 console.log('========================')
+console.log(`OPERADOR BIT A BIT AND resultado = (variable 1 & variable 2)`)
 operatorbit1 = -3;
-andValue = -5
-console.log(`${operatorbit1} AND ${andValue} bit a bit es igual a ${operatorbit1&andValue}, ${((operatorbit1&andValue)>>>0).toString(2).padStart(32,"0")}`);
-console.log(`${operatorbit1} = ${(operatorbit1>>>0).toString(2).padStart(32,"0")},
- ${andValue} = ${((andValue)>>>0).toString(2).padStart(32,"0")},
-con and solo quedan a 1 los que coniciden en abmos por eso queda, 
- ${operatorbit1&andValue} = ${((operatorbit1&andValue)>>>0).toString(2).padStart(32,"0")}`);
+let andValue = -5
+upshot = (operatorbit1 & andValue);
+console.log(`${operatorbit1} AND ${andValue} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1} 
+= 
+${(operatorbit1>>>0).toString(2).padStart(32,"0")},
+${andValue} 
+= 
+${((andValue)>>>0).toString(2).padStart(32,"0")},
+con and solo quedan a 1 los que coniciden en abmos por eso queda: 
+${upshot} 
+= 
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
 console.log('========================')
 
 //XOR bit a bit: --> ^ or exclusiva.
 console.log('========================')
-operatorbit1 = -5;
-xorValue=6;
-console.log(`${operatorbit1} XOR ${xorValue} bit a bit es igual a ${operatorbit1^xorValue}`);
-console.log(`${operatorbit1} = 
+console.log(`OPERADOR BIT A BIT AND resultado = (variable 1 & variable 2)`)
+operatorbit1 = -559;
+let xorValue=632;
+upshot = (operatorbit1 ^ xorValue);
+console.log(`${operatorbit1} XOR ${xorValue} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1} 
+= 
 ${(operatorbit1>>>0).toString(2).padStart(32,"0")}, 
-${xorValue} = 
+${xorValue} 
+= 
 ${(xorValue>>>0).toString(2).padStart(32,"0")},
-con xor solo quedan a 1 los que son 1 en uno u otro operador, pero no si coiciden en abmos por eso queda 
-${operatorbit1^xorValue} =
-${((operatorbit1^xorValue)>>>0).toString(2).padStart(32,"0")}`);
+con xor solo quedan a 1 los que son 1 en uno u otro operador, pero no si coiciden en abmos por eso queda: 
+${upshot} 
+=
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
 console.log('========================')
 
-//Asignación OR bit a bit: --> |= 
-operatorbit3 = 5896; //     00000000000000000001011100001000
-operatorbit3 |= 4589; //        00000000000000000001000111101101
-console.log(operatorbit3); //   00000000000000000001011111101101, 6125 en decimal, compara bit a bit y si uno o los dos coinciden en 1 asigna 1 en el resultado.
-operatorbit3 |= 6126; //        00000000000000000001011111101110
-console.log(operatorbit3); //   00000000000000000001011111101111, 6127 en decimal, compara bit a bit y si uno o los dos coinciden en 1 asigna 1 en el resultado.
+//OR bit a bit: --> | 
+console.log('========================')
+console.log(`OPERADOR BIT A BIT OR resultado = (variable 1 | variable 2)`)
+operatorbit1 = -559;
+let orValue=632;
+upshot = (operatorbit1 | orValue);
+console.log(`${operatorbit1} XOR ${orValue} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1} 
+= 
+${(operatorbit1>>>0).toString(2).padStart(32,"0")}, 
+${orValue} 
+= 
+${(orValue>>>0).toString(2).padStart(32,"0")},
+con or quedan a 1 los que son 1 en uno u otro operador y si coiciden en abmos por eso queda: 
+${upshot} 
+=
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
+console.log('========================')
 
+//NOT bit a bit: --> ~
+console.log('========================')
+console.log(`OPERADOR BIT A BIT NOT resultado = (~variable)`)
+operatorbit1 = 598;
+upshot = (~operatorbit1);
+console.log(`not ${operatorbit1} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1} 
+= 
+${(operatorbit1>>>0).toString(2).padStart(32,"0")}, 
+con not se invierten los valores de los bits: 
+${upshot} 
+=
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
+console.log('========================')
+
+//IZQUIERDA bit a bit: --> <<
+console.log('========================')
+console.log(`OPERADOR BIT A BIT IZQUIERDA resultado = (variable 1 << variable 2)`)
+operatorbit1 = -559;
+let moveValue =3;
+upshot = (operatorbit1 << moveValue);
+console.log(`${operatorbit1} << ${moveValue} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1}
+= 
+${(operatorbit1>>>0).toString(2).padStart(32,"0")}, 
+con desplazamiento a la izquierda, desplazamos tantos bits a la izquierda como valor entre 0 y 31
+que asignemos la variable de movimiento. los bit desplazados son remplazados por 0: 
+${upshot} 
+=
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
+console.log('========================')
+
+//DERECHA bit a bit CON SIGNO: --> >> 
+console.log('========================')
+console.log(`OPERADOR BIT A BIT DERECHA MANTENIENDO SIGNO resultado = (variable 1 >> variable 2)`)
+operatorbit1 = -559;
+moveValue =5;
+upshot = (operatorbit1 >> moveValue);
+console.log(`${operatorbit1} >> ${moveValue} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1} 
+= 
+${(operatorbit1>>>0).toString(2).padStart(32,"0")}, 
+con desplazamiento a la derecha manteniendo el signo, desplazamos tantos bits a la derecha como valor entre 0 y 31
+que asignemos la variable de movimiento. los bit desplazados son remplazados por 0 si la variable tienen un valor positivo,
+y si la variable tiene un valor negativo se reemplazan con 1, para mantener el signo, lo valores mas a la derecha de posicion 0 se pierden.:  
+${upshot} 
+=
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
+console.log('========================')
+
+//DERECHA bit a bit SIN SIGNO: --> >>>
+console.log('========================')
+console.log(`OPERADOR BIT A BIT DERECHA SIN MANTENER SIGNO resultado = (variable 1 >>> variable 2)`)
+operatorbit1 = -559;
+moveValue =0;
+upshot = (operatorbit1 >>> moveValue);
+console.log(`${operatorbit1} >>> ${moveValue} bit a bit es igual a ${upshot}`);
+console.log(`${operatorbit1} 
+= 
+${(operatorbit1>>>0).toString(2).padStart(32,"0")}, 
+con desplazamiento a la derecha sin mantener el signo, desplazamos tantos bits a la derecha como valor entre 0 y 31
+que asignemos la variable de movimiento. los bit desplazados son remplazados por 0 , por lo que el signo se pierde.:  
+${upshot} 
+=
+${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
+console.log('========================')
+
+//ESTRUCTURAS DE CONTROL:
 
