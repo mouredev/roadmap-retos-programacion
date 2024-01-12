@@ -57,6 +57,8 @@ console.log(`${operator3} -= ${asingValue} = ${operator3 -= asingValue}`); //-->
 operator3 = 2; //-->inicializar para que no devuelva NaN.
 console.log(operator3 +" INICIALIZADA");
 console.log(`${operator3} -= ${asingValue} = ${operator3 -= asingValue}`); //--> al valor inicializado resta el valor de asignaicon y reasigna valor restado.
+console.log(`Al valor inicializado se resta el valor de asignaicon,
+y reasigna valor restado.`)
 console.log('========================');
 //Asignacion de multiplicación: --> *=
 console.log('========================');
@@ -67,6 +69,8 @@ console.log(`Al igual que con suma y resta,
 la variable deve tener valor, 
 para poder operar con ella.
 ${operator4} *= ${asingValue} = ${operator4 *= asingValue}`);//--> el valor inicializado se multiplica por el valor de asignaicon y reasigna valor multiplicado.
+console.log(`El valor inicializado se multiplica por el valor de asignaicon,
+y reasigna valor multiplicado.`)
 console.log('========================');
 
 //Asignacion de división: --> /=
@@ -77,6 +81,8 @@ asingValue = 10;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
 ${operator5} /= ${asingValue} = ${operator5 /= asingValue}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor dividido.
+console.log(`El valor inicializado se divde por el valor de asignaicon, 
+y reasigna valor dividido.`)
 console.log('========================');
 
 //Asignacion de residuo o resto: --> %=
@@ -87,6 +93,8 @@ asingValue = 7;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
 ${operator6} %= ${asingValue} = ${operator6 %= asingValue}`);//--> el valor inicializado se divde por el valor de asignaicon y reasigna valor del resto de la division.
+console.log(`El valor inicializado se divde por el valor de asignaicon, 
+y reasigna valor del resto de la division.`)
 console.log('========================');
 
 //Asignacion de exponenciación: --> **=
@@ -96,6 +104,8 @@ asingValue = 5;
 console.log(`La variable deve tener valor, 
 para poder operar con ella.
 ${operator6} **= ${asingValue} = ${operator6 **= asingValue}`);//--> el valor del operador6 se eleva al exponente de asignacion y reasigna valor del exponente.
+console.log(`El valor actual de operator6 se eleva al valor de asignaicon, 
+y reasigna valor de la potencia.`)
 console.log('========================');
 
 //Asignación de desplazamiento de bits a la izquierda: --> <<=
@@ -105,6 +115,10 @@ asingValue = 3;
 console.log(` ${operator4} (${operator4.toString(2).padStart(32,"0")}) 
 <<= ${asingValue}
 ${operator4 <<= asingValue} (${operator4.toString(2).padStart(32,"0")})`);// al valor binario (ejm: 50 = 00000000000000000000000000110010) del operador agrega n (valor de asignacion) ceros a la izquierda, y reasigna valor binario resultante en decimal.
+console.log(`El valor de la variable en formato binario de 32bits,
+es desplazado a la izquierda tastas posiciones segun valor de asignaicon, 
+y reasigna valor resultante de binario de 32bits a decimal,
+las posiciones que se desplazan toman valor 0.`)
 console.log('========================');
 
 //Asignación de desplazamiento de bits a la derecha: --> >>= combierte en binarios de 32 bits
@@ -116,6 +130,17 @@ console.log(`${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")})
 >>= ${asingValue}
  ${operator4 >>= asingValue} (${(operator4>>>0).toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, manteniendo el signo, y asigna el resultado a la variable.
 console.log('========================');
+operator4 = 243;
+asingValue = 2;
+console.log(`${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
+>>= ${asingValue}
+ ${operator4 >>= asingValue} (${(operator4>>>0).toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, manteniendo el signo, y asigna el resultado a la variable.
+console.log('========================');
+console.log(`El valor de la variable en formato binario de 32bits,
+es desplazado a la derecha tastas posiciones segun valor de asignaicon, 
+y reasigna valor resultante de binario de 32bits a decimal, manteniendo el signo,
+las posiciones que se desplazan toman valor 0.`)
+ console.log('========================');
 
  //Asignación de desplazamiento a la derecha sin signo: --> >>>=
 console.log('========================');
@@ -125,6 +150,17 @@ asingValue = 2;
 console.log(`      ${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
 >>>= ${asingValue}
 ${operator4 >>>= asingValue} (${operator4.toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, sin mantener el signo, y asigna el resultado a la variable.
+console.log('========================');
+operator4 = 243;
+asingValue = 2;
+console.log(`${operator4} (${(operator4>>>0).toString(2).padStart(32,"0")}) 
+>>= ${asingValue}
+ ${operator4 >>= asingValue} (${(operator4>>>0).toString(2).padStart(32,"0")})`);// Desplaza hacia la derecha los bits de una variable el número de bits especificados en el valor de la expresión, manteniendo el signo, y asigna el resultado a la variable.
+console.log('========================');
+console.log(`El valor de la variable en formato binario de 32bits,
+es desplazado a la derecha tastas posiciones segun valor de asignaicon, 
+y reasigna valor resultante de binario de 32bits a decimal, sin mantener el signo,
+las posiciones que se desplazan toman valor 0.`)
 console.log('========================');
 
 //Asignación AND bit a bit: --> &=
