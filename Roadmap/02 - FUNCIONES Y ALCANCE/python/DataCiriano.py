@@ -23,7 +23,6 @@
  */
 """
 
-"""
 # Función sin parámetros y sin retorno
 def saludo_01():
     print("¡¡Hola, buenos días!!")
@@ -84,7 +83,6 @@ def saludar():
     
 saludar()
 
-"""
 
 #EXTRA
 
