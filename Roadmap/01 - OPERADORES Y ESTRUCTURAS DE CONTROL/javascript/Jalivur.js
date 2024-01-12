@@ -253,11 +253,11 @@ let operatorLogic1 = true;
 let operatorLogic2 = true;
 console.log(`${operatorLogic1} AND ${operatorLogic2}`);
 operatorLogic1 &&= operatorLogic2; //si ambos operadorres son true asigna al operador 1 true
-console.log(`= ${operatorLogic1}`); 
+console.log(`operador izda = ${operatorLogic1}`); 
 operatorLogic2 = false;
 console.log(`${operatorLogic1} AND ${operatorLogic2}`);
 operatorLogic1 &&= operatorLogic2; // si alguno de los opreadores, o ambos son false asigna false 
-console.log(`= ${operatorLogic1}`);
+console.log(`operador izda = ${operatorLogic1}`);
 console.log('========================');
 console.log(`AND logico, 
 solo si los dos operadores es 1
@@ -272,11 +272,11 @@ let operatorLogic3 = true;
 let operatorLogic4 = false;
 console.log(`${operatorLogic3} OR ${operatorLogic4}`);
 operatorLogic3 ||= operatorLogic4; //si uno o los dos operadorres son true asigna al operador 3 true
-console.log(`= ${operatorLogic3}`); 
+console.log(`operador izda = ${operatorLogic3}`); 
 operatorLogic3 = false;
 console.log(`${operatorLogic3} OR ${operatorLogic4}`);
 operatorLogic3 ||= operatorLogic4; // si abmos opreadores son false, asigna false 
-console.log(`= ${operatorLogic3}`);
+console.log(`operador izda = ${operatorLogic3}`);
 console.log('========================');
 console.log(`OR logico, 
 solo si uno o ambos operadores es 1,
@@ -286,18 +286,20 @@ console.log('========================');
 
 //Asignación anulacion lógica: --> ??=
 console.log('========================');
+console.log('ASIGNACION ANULACION LOGICA ??=');
 let operatorLogic5;
 let operatorLogic6 = false;
-
+console.log(`${operatorLogic5} ANULACION ${operatorLogic6}`);
 operatorLogic5 ??= operatorLogic6; // si el operador a la izquierda no esta definido, se arigna el valor de operador de la derecha.
-console.log(operatorLogic5); 
+console.log(`operador izda = ${operatorLogic5}`);
 operatorLogic5 = true;
+console.log(`${operatorLogic5} ANULACION ${operatorLogic6}`);
 operatorLogic5 ??= operatorLogic6; // si el operador de la izquierda esta definido, se queda con el valor que tenia.
-console.log(operatorLogic5);
+console.log(`operador izda = ${operatorLogic5}`);
 console.log('========================');
 console.log(`ANULACION logica, 
-si el operador de la izquierda esta inicializado,
-no se reasigna el valor del derecho,
+si el operador de la izquierda no esta inicializado,
+se reasigna el valor del derecho,
 pero si esta inicializado, se queda con su valor.`);
 console.log('========================');
 /*
@@ -310,7 +312,10 @@ Este comportamiento generalmente resulta en comparar los operandos numéricament
 Las únicas excepciones a la conversión de tipos dentro de las comparaciones involucran a los operadores === y !==, que realizan comparaciones estrictas de igualdad y desigualdad. 
 Estos operadores no intentan convertir los operandos a tipos compatibles antes de verificar la igualdad.
 */
+
 //IGUAL: --> ==
+console.log('========================');
+console.log('COMPARACION IGUALDAD ==');
 console.log("es "+(operator3)+" igual a "+(operator2)+": "+ (operator3 == operator2));
 operator3 = 5; 
 operator2 = 5;
@@ -338,13 +343,21 @@ console.log(`es ${1} igual a ${operatorLogic2}: ${1 == operatorLogic2}`);
 console.log(`es ${0} igual a ${operatorLogic1}: ${0 == operatorLogic1}`);
 console.log(`es ${operator1} igual a ${operatorLogic1}: ${operator1 == operatorLogic1}`);
 console.log(`es ${operator2} igual a ${operatorLogic1}: ${operator2 == operatorLogic1}`);
+console.log('========================');
+
 //NO IGUAL: --> !=
+console.log('========================');
+console.log('COMPARACION DESIGUALDAD !=');
 console.log(`${operator1} no es igual a ${operator2}: ${operator1 != operator2}`);
 console.log(`${operatorLogic1} no es igual a ${operatorLogic2}: ${operatorLogic1 != operatorLogic2}`);
 operator3 = "alberto";
 operator2 = "Alberto";
 console.log((operator3)+" no es igual a "+(operator2)+": "+ (operator3 != operator2));
+console.log('========================');
+
 //EXTRICTAMENTE IGUAL: --> ===
+console.log('========================');
+console.log('COMPARACION IGUALDAD EXTRICTA ===');
 operator1 = undefined;
 operator2 = null;
 console.log(`es ${operator1} extrictamente igual a ${operator2}: ${operator1 === operator2}`);
@@ -352,55 +365,102 @@ console.log(`es ${operator1} extrictamente igual a ${0}: ${operator1 === 0}`);
 console.log(`es ${operator2} extrictamente igual a ${0}: ${operator1 === 0}`);
 console.log(`es ${1} extrictamente igual a ${operatorLogic2}: ${1 === operatorLogic2}`);
 console.log(`es ${0} extrictamente igual a ${operatorLogic1}: ${0 === operatorLogic1}`);
+console.log('========================');
+
 //DESIGUALDAD EXTRICTA: --> !==
+console.log('========================');
+console.log('COMPARACION DESIGUALDAD EXTRICTA !==');
 console.log(`${operator1} no es igual a ${operator2} extricatemente: ${operator1 !== operator2}`);
 console.log(`${operatorLogic1} no es igual a ${operatorLogic2} extrictamente: ${operatorLogic1 !== operatorLogic2}`);
 operator3 = "alberto ";
 operator2 = "Alberto";
 console.log((operator3)+" no es igual a "+(operator2)+" extrictamente: "+ (operator3 !== operator2));
+console.log('========================');
+
 //MAYOR QUE: --> >
+console.log('========================');
+console.log('COMPARACION MAYOR QUE >');
 console.log(`es 1 mayor que 5: ${1>5}`);
 console.log(`es 5 mayor que 1: ${5>1}`);
 console.log(`es "alberto " mayor que "Alberto": ${operator3.length>operator2.length}`);
+console.log('========================');
+
 //MAYOR O IGUAL: --> >=
-console.log(`es 5 mayor o igual que 5: ${5>=5}`)
-console.log(`es 5 mayor o igual que 3: ${5>=3}`)
-console.log(`es 5 mayor o igual que 6: ${5>=6}`)
+console.log('========================');
+console.log('COMPARACION MAYOR O IGUAL QUE >=');
+console.log(`es 5 mayor o igual que 5: ${5>=5}`);
+console.log(`es 5 mayor o igual que 3: ${5>=3}`);
+console.log(`es 5 mayor o igual que 6: ${5>=6}`);
 let name1 = "alberto";
 let name2 = "Alberto";
-console.log(`es ${name1}(${name1.length}) mayor o igual que ${name2}(${name2.length}): ${name1.length>=name2.length}`)
-name1="albertooo"
-name2="alberto   "
-console.log(`es ${name1}(${name1.length}) mayor o igual que ${name2}(${name2.length}): ${name1.length>=name2.length}`)
+console.log(`es ${name1}(${name1.length}) mayor o igual que ${name2}(${name2.length}): ${name1.length>=name2.length}`);
+name1="albertooo";
+name2="alberto   ";
+console.log(`es ${name1}(${name1.length}) mayor o igual que ${name2}(${name2.length}): ${name1.length>=name2.length}`);
+console.log('========================');
+
 //MENOR QUE: --> <
+console.log('========================');
+console.log('COMPARACION MENOR QUE <');
 console.log(`es 1 menor que 5: ${1<5}`);
 console.log(`es 5 menor que 1: ${5<1}`);
 console.log(`es "alberto " menor que "Alberto": ${operator3.length<operator2.length}`);
+console.log('========================');
+
 //MENOR O IGUAL: --> <=
-console.log(`es 5 menor o igual que 5: ${5<=5}`)
-console.log(`es 5 menor o igual que 3: ${5<=3}`)
-console.log(`es 5 menor o igual que 6: ${5<=6}`)
+console.log('========================');
+console.log('COMPARACION MENOR O IGUAL QUE <=');
+console.log(`es 5 menor o igual que 5: ${5<=5}`);
+console.log(`es 5 menor o igual que 3: ${5<=3}`);
+console.log(`es 5 menor o igual que 6: ${5<=6}`);
 name1 = "alberto";
 name2 = "Alberto";
-console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`)
-name1="albertooo"
-name2="alberto   "
-console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`) 
+console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`);
+name1="albertooo";
+name2="alberto   ";
+console.log(`es ${name1}(${name1.length}) menor o igual que ${name2}(${name2.length}): ${name1.length<=name2.length}`);
+console.log('========================');
+
 /* OPERADORES ARITMETICOS:
 Un operador aritmético toma valores numéricos (ya sean literales o variables) como sus operandos y devuelve un solo valor numérico. 
 Los operadores aritméticos estándar son suma (+), resta (-), multiplicación (*) y división (/). 
 Estos operadores funcionan como lo hacen en la mayoría de los otros lenguajes de programación cuando se usan con números de punto flotante (en particular, ten en cuenta que la división entre cero produce Infinity).
 */
+
 //RESIDUO O RESTO: --> % actua como en el de asignacion, pero no asigna valor al operador de la izquierda.
-console.log(`El resto de 5 entre 3 es = ${5%3}`)//2
-console.log(`El resto de 550 entre 10 es = ${550%10}`)//0, 550 es multiplo de 10.
+console.log('========================');
+console.log('OPERADOR ARITMETICO RESIDUO O RESTO %');
+let num1 = 5;
+let num2 = 3;
+let upshot;
+console.log(`El resto de ${num1} entre ${num2} es = ${upshot=(num1%num2)}`);//2
+num1 = 550;
+num2 = 10;
+console.log(`El resto de ${num1} entre ${num2} es = ${upshot=(num1%num2)}`);//0, 550 es multiplo de 10.
+upshot = num1%num2
+console.log('========================');
+console.log(`Un operador aritmetico solo no asigna,
+por lo que si queremos trabajar con el valor de la operacion
+se deve almacenar en una variable 
+{
+let upshot; 
+upshot=num1%num2;
+}.`)
+console.log('========================');
+
 //INCREMENTO: --> ++
+console.log('========================');
+console.log('OPERADOR ARITMETICO INCREMENTO ++');
 let value = 1;
-console.log(++value); //inclementa 1 al valor de value
+console.log(`++${value} = ${upshot=(++value)}`); //inclementa 1 al valor de value
+console.log('========================');
+
 //DECREMENTO: --> --
 console.log(--value); //decrementa 1 al valor de value
+
 //NEGACION UNARIA: --> - 
 console.log(-value); //devuelve la negacion del value
+
 //POSITIVO UNARIO: --> +
 value = false;
 console.log(typeof(value))
@@ -416,14 +476,17 @@ console.log(value)
 console.log(typeof(value))//value es una cadena de caracteres
 console.log(+value)//lo combierte en un NaN (not asigned number)
 console.log(typeof(+value))//value se convierte en un 2 number
+
 //EXPONECIACION, EXPONENTE: --> **
 console.log(`5 elevado a 6 es = ${5**6}`);
 console.log(`2 elevado a 8 es = ${2**8}`);
+
 /* OPERADORES BIT A BIT:
 Un operador bit a bit trata a sus operandos como un conjunto de 32 bits (ceros y unos), en lugar de números decimales, hexadecimales u octales. 
 Por ejemplo, el número decimal nueve tiene una representación binaria de 1001. 
 Los operadores bit a bit realizan sus operaciones en tales representaciones binarias, pero devuelven valores numéricos estándar de JavaScript.
 */
+
 //AND bit a bit: --> & sin asignacion.
 console.log('========================')
 operatorbit1 = -3;
@@ -434,6 +497,7 @@ console.log(`${operatorbit1} = ${(operatorbit1>>>0).toString(2).padStart(32,"0")
 con and solo quedan a 1 los que coniciden en abmos por eso queda, 
  ${operatorbit1&andValue} = ${((operatorbit1&andValue)>>>0).toString(2).padStart(32,"0")}`);
 console.log('========================')
+
 //XOR bit a bit: --> ^ or exclusiva.
 console.log('========================')
 operatorbit1 = -5;
@@ -447,6 +511,7 @@ con xor solo quedan a 1 los que son 1 en uno u otro operador, pero no si coicide
 ${operatorbit1^xorValue} =
 ${((operatorbit1^xorValue)>>>0).toString(2).padStart(32,"0")}`);
 console.log('========================')
+
 //Asignación OR bit a bit: --> |= 
 operatorbit3 = 5896; //     00000000000000000001011100001000
 operatorbit3 |= 4589; //        00000000000000000001000111101101
