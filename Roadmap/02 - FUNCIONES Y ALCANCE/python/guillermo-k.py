@@ -80,15 +80,20 @@ except:
 
 
 def extra(text1,text2):
+    count = 0
     for i in range(1,101):
         cadena = ""
         if i%3 != 0 and i%5 != 0:
             cadena = i
+            count += 1
         else:
             if i%3 == 0:
                 cadena += text1
             if i%5 == 0:
                 cadena += text2
         print(cadena)
+    return count
 
-extra("Es divisible por 3.","Es divisible por 5")
+cantidad_numeros = extra("Es divisible por 3.","Es divisible por 5")
+
+print(f"Se ha escrito {cantidad_numeros} veces un número en lugar de los textos")
