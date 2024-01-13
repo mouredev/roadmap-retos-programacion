@@ -75,6 +75,29 @@ def imprimehola()-> None:
 
 imprimehola()
 
+# Función fizz-buzz, por ejemplo, con diccionarios
+
+def fizbuzz(fizz="fizz",buzz="buzz",nf=3,nb=5,max=100) -> int:
+    '''
+    introduce las cadenas fizz y buzz en las posiciones de una lista de 
+    enteros hasta max, donde sean multiplos nf o nb respectivamente
+    donde sean multiplos de ambos, concatena fizz+buzz
+    devuelve la cantidad de no-cambios
+    '''
+    max+=1
+    d0=dict(zip(range(1,max),[str(i) for i in range(1, max)]))
+    d1=dict(zip(range(nf,max,nf),[fizz]*int((max/nf))))
+    d2=dict(zip(range(nb,max,nb),[buzz]*int((max/nb))))
+    d1.update(d2)
+    d2=dict(zip(range(nf*nb,max,nf*nb),[fizz+buzz]*int((max/(nf*nb)))))
+    d1.update(d2)
+    d0.update(d1)
+    for ele in d0:
+        print(d0[ele])
+    return max-len(d1)-1 # quiza resultase mas interesante devolver el diccionario d0
+
+print(fizbuzz())
+
 
 
 
