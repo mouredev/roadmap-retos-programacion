@@ -31,31 +31,28 @@ def km_actual():
     print(f"Llevas {km}km.\n")
 
 
-# Función con un parámetro
+# Función con un parámetro sin retorno
 def contador_letras(palabra):
     print(f"La palabra {palabra} tiene {len(palabra)} letras.\n")
 
 
-# Función con dos parámetros
+# Función con dos parámetros sin retorno
 
 def suma(num1, num2):
-    print(f"{num1} + {num2} = {num1+num2}")
+    print(f"{num1} + {num2} = {num1+num2}\n")
 
 
-# Esta es la función externa
+# Esta es la función externa con retorno
 def externa():
 
     def interna():
-        # Esta es la función anidada
+        # Esta es la función interna con retorno
         return "Hola desde la función anidada!"
 
     # Llamada a la función interna dentro de la función externa
     resultado = interna()
     return resultado
 
-
-# Llamada a la función externa
-print(externa())
 
 # Dificultad extra
 def dificultad_extra(tex_1, tex_2):
@@ -79,7 +76,7 @@ def dificultad_extra(tex_1, tex_2):
 
     resultado = contador
 
-    print(f"Se ha impreso el número {resultado} veces en lugar de los textos\n")
+    print(f"\nSe ha impreso el número {resultado} veces en lugar de los textos\n")
 
     return resultado
 
