@@ -2,10 +2,6 @@
 # Sitio web oficial del lenguaje en comentario
 # https://www.python.org
 
-"""
-Representa las diferentes sintaxis que existen de crear comentarios
-en el lenguaje (en una línea, varias...).
-"""
 # Diferentes formas de crear comentarios en pyton
 
 # Esto es un comentario en una sola línea
