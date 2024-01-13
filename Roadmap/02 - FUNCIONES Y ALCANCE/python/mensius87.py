@@ -25,6 +25,7 @@
 
 km = 5
 
+
 # Función sin parámetros ni retorno
 def km_actual():
     print(f"Llevas {km}km.\n")
@@ -41,24 +42,35 @@ def suma(num1, num2):
     print(f"{num1} + {num2} = {num1+num2}")
 
 
+# Esta es la función externa
+def externa():
 
-....
+    def interna():
+        # Esta es la función anidada
+        return "Hola desde la función anidada!"
 
-# Dificutad extra
+    # Llamada a la función interna dentro de la función externa
+    resultado = interna()
+    return resultado
 
+
+# Llamada a la función externa
+print(externa())
+
+# Dificultad extra
 def dificultad_extra(tex_1, tex_2):
 
     contador = 0
 
-    for num in range (1,101):
+    for num in range(1, 101):
 
-        if num %3 == 0 and num %5 == 0:
+        if num % 3 == 0 and num %5 == 0:
             print(tex_1+tex_2)
 
-        elif num %3 == 0:
+        elif num % 3 == 0:
             print(tex_1)
 
-        elif num %5 == 0:
+        elif num % 5 == 0:
             print(tex_2)
 
         else:
@@ -73,10 +85,12 @@ def dificultad_extra(tex_1, tex_2):
 
 
 
-dificultad_extra("Hola","Mundo")
+dificultad_extra("Hola", "Mundo")
 
 km_actual()
 
 contador_letras("hola")
 
 suma(1, 3)
+
+print(externa())
