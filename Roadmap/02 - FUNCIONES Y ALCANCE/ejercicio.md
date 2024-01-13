@@ -21,6 +21,7 @@
  *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
  *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
  *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+ *   - En cualquier otro caso, muestra el número.
  *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
  *
  * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
