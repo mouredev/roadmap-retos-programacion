@@ -57,3 +57,42 @@ function solicitudDeNombre() {
 function saludo() {
   alert("Hola" + " " + solicitudDeNombre());
 }
+
+//Función creada en el lenguaje
+
+/*prompt() es una función propia de javascript al igual que alert(), etc..*/
+let nombre = prompt("Dinos tu nombre", "Luis");
+
+//Ámbito de variables
+
+/*Variable global edad está disponible de ser usada en otro lugar del código
+actual*/
+let edad = prompt("Ingresa tu edad", "30");
+
+/*Variable local edad solo está disponible dentro de una función */
+function edadUsuario() {
+  let edad = prompt("Ingresa tu edad", "30");
+  alert("La edad ingresada es: " + edad + "años.");
+}
+
+//Dificultad extra
+/* Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
+ * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
+ *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
+ *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
+ *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+ *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
+ *
+ * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
+ * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
+ */
+
+function stringToNumber(txt1, txt2) {
+  for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0) {
+      console.log(txt1);
+    } else if (i % 5 === 0) {
+      console.log(txt2);
+    };
+  }
+}
