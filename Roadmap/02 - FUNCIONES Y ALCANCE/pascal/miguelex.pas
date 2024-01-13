@@ -89,10 +89,10 @@ begin
   WriteLn();
   ProcLocalVsGlobal;
   WriteLn();
-  {WriteLn('Paso por referencia: ', pasoPorReferencia(5));
+  WriteLn('Paso por referencia: ', pasoPorReferencia(5));
   WriteLn();
   WriteLn('Paso por valor: ', pasoPorValor(5));
-  WriteLn();}
+  WriteLn();
 
   { Ejemplo de uso de una funcion del sistema }
   WriteLn('El valor de la funcion random es: ', Random(10));
