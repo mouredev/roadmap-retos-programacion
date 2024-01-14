@@ -122,11 +122,12 @@ def numeros_condicionales(cadena1, cadena2):
             print(cadena2)
         else:
             print(numero)
-        contador += 1
+            contador += 1
 
     return contador
 
 # Ejemplo de uso
-resultado = imprimir_numeros_con_condiciones("C#", "Python")
-print(f"Se imprimieron {resultado} números en total.")
+resultado = numeros_condicionales("C#", "Python")
+print(f"Python fue {resultado} veces + popular que C#.")
+# 😁😁
 
