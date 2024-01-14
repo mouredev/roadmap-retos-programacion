@@ -8,37 +8,36 @@ public class nwpablodeveloper {
         clearConsole();
         
         // Función que genera un titulo para la consola
-        title("Esta función maqueta un titulo para la consola");
+        title("1. Esta función maqueta un titulo para la consola");
         lineSalt(); // Función para hacer un salto de linea en la consola
 
         //Función que recibe varios parametros
-        title("Funcion que recibe varios parametros");
+        title("2. Funcion que recibe varios parametros");
         withParams("Pablo", 35, 100.20);
+        lineSalt();
 
         
         // Función que recibe parametros y retorna un valor.
-        title("Funcion que imprime los parametros enviados");
-        String resp = withParams("Pablo", 35, 100.20);
+        title("3. Funcion que imprime los parametros enviados");
+        String resp = withParamsAndReturn( "Pablo", 6, 7, 7);
         System.out.println(resp);
-
-        title("Funcione que retona null");
-        String res = returnNull("Pablo");
-        System.out.println(res);
-
-        title("Funcione que retona null");
-        System.out.println(res);
-
-        title("Funcion que retorna una suma");
-        int numbers[] = { 4 , 3, 3};
-        int sum = calculateSum( numbers);
-        System.out.println(sum);
-
-        title("Funcion dentro de funcion");
-
+        lineSalt();
 
     }
 
+    static String withParamsAndReturn(String name, int... numbers){
 
+        int sum = 0;
+        for(int i = 0; i < numbers.length; i++){
+            sum += numbers[i]; 
+        }
+
+        int otraSuma = 0;
+        for(int num : numbers ){
+            otraSuma += num;
+        }
+        return "Nombre: " + name + " \nNumeros: "+  sum + "\nOtra suma: " + otraSuma;
+    }
 
 
     static int calculateSum(int... numbers){
@@ -51,13 +50,9 @@ public class nwpablodeveloper {
         return sum;
     }
 
-    static String returnNull(String variable){
-        return null;
-    }
 
-    static String withParams(String name, int age, double salary) {
-        // Función Estandar de Java para pasar de tipo Double a String
-        return "Soy " + name + " tengo " + age + " y cobro: " + salary + " el segundo";
+    static void withParams(String name, int age, double salary) {
+        System.out.println( "Soy " + name + " tengo " + age + " y cobro: " + salary + " el segundo");
     }
 
 
