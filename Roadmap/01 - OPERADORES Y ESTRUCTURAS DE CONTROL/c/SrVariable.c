@@ -188,8 +188,8 @@ int    main(void)
     /* === DIFICULTAD EXTRA === */
     printf("\n\tDificultad extra\n");
     for (int i = 10; i < 56; i++) // Para i igual a 10, menor que 56, aumenta i en uno.
-        if (i != 16 && i % 3 != 0) // Si i no es igual a 16 y el resto de i / 3 (i % 3) no es igual a 0
-            printf("%d ", i); // Imprime i
+        if (i % 2 == 0 && i != 16 && i % 3 != 0) // Si el resto de i / 2 (i % 2) es igual a 0 (es par), no es igual a 16 y el resto de i / 3 (i % 3) no es igual a 0.
+            printf("%d ", i); // Imprime i.
     printf("\n");
     /* NOTA:
      * En la sección 2, if (anidación == 1), no es necesario poner llaves,
