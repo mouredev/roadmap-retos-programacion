@@ -716,3 +716,49 @@ console.log('========================')
 
 //ESTRUCTURAS DE CONTROL:
 
+//CONDICIONALES:
+
+//if else:
+console.log('========================')
+console.log(`Estructura de control condicional: if...else`);
+const prompt = require('prompt-sync')();
+operator1 = parseInt((prompt('Primer Valor a comparar:\n')),10);
+operator2 = parseInt((prompt('Segundo Valor a comparar:\n')),10);
+if (operator1 == operator2){
+    console.log(`${operator1} es  igual a ${operator2}`);
+}
+else if (operator1 > operator2){
+    console.log(`${operator1} mayor que ${operator2}`);
+}
+else {
+    console.log(`${operator1} menor que ${operator2}`);
+}
+console.log('========================')
+
+//switch
+let fruittype =prompt("QUE FURTA DESEA (Oranges, Apples, Bananas, Cherries, Mangoes, Papayas):\n") ;
+switch (fruittype) {
+  case "Oranges":
+    console.log("Las naranjas cuestan $0.59 la libra.");
+    break;
+  case "Apples":
+    console.log("Las manzanas cuestan $0.32 la libra.");
+    break;
+  case "Bananas":
+    console.log("Los plátanos cuestan $0.48 la libra.");
+    break;
+  case "Cherries":
+    console.log("Las cerezas cuestan $3.00 la libra.");
+    break;
+  case "Mangoes":
+    console.log("Los mangos cuestan $0.56 la libra.");
+    break;
+  case "Papayas":
+    console.log("Los mangos y las papayas cuestan $2.79 la libra.");
+    break;
+  default:
+    console.log(`Lo sentimos, no tenemos ${fruittype}.`);
+}
+console.log("¿Hay algo más que quieras?");
+
+
