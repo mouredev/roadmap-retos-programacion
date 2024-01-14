@@ -87,12 +87,19 @@ function edadUsuario() {
  * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
 
-function stringToNumber(txt1, txt2) {
+function stringsAndNumbers(txt1, txt2) {
+  let count = 0;
   for (let i = 1; i <= 100; i++) {
-    if (i % 3 === 0) {
-      console.log(txt1);
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log(txt1 + " " + txt2);
     } else if (i % 5 === 0) {
       console.log(txt2);
+    } else if (i % 3 === 0) {
+      console.log(txt1);
+    } else {
+      console.log(i);
+      count++;
     };
   }
+  return count;
 }
