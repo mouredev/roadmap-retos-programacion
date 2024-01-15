@@ -718,10 +718,9 @@ console.log('========================')
 //expresión ? "si es true" : "si es false";
 console.log('========================')
 console.log(`OPERADOR TERNIARIO expresión ? "si es true" : "si es false"`)
-const prompt = require('prompt-sync')();
 let edad;
 let acceso;
-console.log(`${edad=(parseInt((prompt("¿Edad?")),10))} ${acceso = edad >= 18 ? "Permitir acceso" : "Denegar acceso"}`);
+console.log(`${edad=32} ${acceso = edad >= 18 ? "Permitir acceso" : "Denegar acceso"}`);
 console.log('========================')
 
 //ESTRUCTURAS DE CONTROL:
@@ -731,8 +730,8 @@ console.log('========================')
 //if else:
 console.log('========================')
 console.log(`Estructura de control condicional: if...else`);
-operator1 = parseInt((prompt('Primer Valor a comparar:\n')),10);
-operator2 = parseInt((prompt('Segundo Valor a comparar:\n')),10);
+operator1 = 56;
+operator2 = 54;
 if (operator1 == operator2){
     console.log(`${operator1} es  igual a ${operator2}`);
 }
@@ -747,9 +746,9 @@ console.log('========================')
 //switch
 console.log('========================')
 console.log(`Estructura de control switch:`);
-let operacion =prompt("Que opeacion desea realizar(+,-,*,/,**,%):\n");
-operator1 = parseFloat((prompt('Primer Valor:\n')),10);
-operator2 = parseFloat((prompt('Segundo Valor2:\n')),10);
+let operacion ="**";
+operator1 = 2;
+operator2 = 256;
 switch (operacion) {
     case "+":
         upshot = operator1 + operator2
@@ -779,10 +778,6 @@ switch (operacion) {
         console.log(`Lo sentimos, la operacion ${operacion} no es valida.`);
 }
 console.log('========================')
-
-//MANEJO DE EXCEPCIONES:
-//THROW
-
 
 //BUCLES E ITERACIONES:
 
@@ -823,13 +818,15 @@ console.log('========================')
 
 //FOR OF
 console.log('========================')
+console.log(`Bucle for of:`);
 let arrayForOf = [10, 20, 30, 40, 50];
 for (let valor of arrayForOf) {
     console.log(`Valor elemento arrayForOf: ${valor}`);
 }
 console.log('========================')
-//✔️FOR IN
+//FOR IN
 console.log('========================')
+console.log(`Bucle for in:`);
 let objetoForIn = { a: 1, b: 2, c: 3, d: 4, e: 5};
 
 for (let propiedad in objetoForIn) {
@@ -837,8 +834,9 @@ for (let propiedad in objetoForIn) {
 }
 console.log('========================')
 
-//✔️FOR EACH
+//FOR EACH
 console.log('========================')
+console.log(`Bucle for each:`);
 let arrayForEach = [1, 2, 3, 4, 5, 6];
 
 arrayForEach.forEach(function (elemento) {
