@@ -5,8 +5,7 @@
 // https://www.java.com/es/
 
 public class nwpablodeveloper {
-    ;
-    
+        
     // Variable
     private static String unaVariable = "! Hola ";
     
