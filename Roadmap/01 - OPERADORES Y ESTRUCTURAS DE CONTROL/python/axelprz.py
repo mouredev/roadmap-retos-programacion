@@ -171,7 +171,6 @@ except Exception as e:
 finally:
     print("Este bloque siempre se ejecuta.")
 
-
 #Programa pedido
 for i in range(10,55):
     if i % 2 == 0 and i != 16 and i % 3 != 0:
