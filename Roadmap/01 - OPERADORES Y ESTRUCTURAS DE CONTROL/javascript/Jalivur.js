@@ -714,6 +714,16 @@ ${upshot}
 ${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
 console.log('========================')
 
+//OPERADOR TERNARIO
+//expresión ? "si es true" : "si es false";
+console.log('========================')
+console.log(`OPERADOR TERNIARIO expresión ? "si es true" : "si es false"`)
+const prompt = require('prompt-sync')();
+let edad;
+let acceso;
+console.log(`${edad=(parseInt((prompt("¿Edad?")),10))} ${acceso = edad >= 18 ? "Permitir acceso" : "Denegar acceso"}`);
+console.log('========================')
+
 //ESTRUCTURAS DE CONTROL:
 
 //CONDICIONALES:
@@ -721,7 +731,6 @@ console.log('========================')
 //if else:
 console.log('========================')
 console.log(`Estructura de control condicional: if...else`);
-const prompt = require('prompt-sync')();
 operator1 = parseInt((prompt('Primer Valor a comparar:\n')),10);
 operator2 = parseInt((prompt('Segundo Valor a comparar:\n')),10);
 if (operator1 == operator2){
@@ -736,29 +745,40 @@ else {
 console.log('========================')
 
 //switch
-let fruittype =prompt("QUE FURTA DESEA (Oranges, Apples, Bananas, Cherries, Mangoes, Papayas):\n") ;
-switch (fruittype) {
-  case "Oranges":
-    console.log("Las naranjas cuestan $0.59 la libra.");
+console.log('========================')
+console.log(`Estructura de control switch:`);
+let operacion =prompt("Que opeacion desea realizar(+,-,*,/,**,%):\n");
+operator1 = parseInt((prompt('Primer Valor:\n')),10);
+operator2 = parseInt((prompt('Segundo Valor2:\n')),10);
+switch (operacion) {
+  case "+":
+    upshot = operator1 + operator2
+    console.log(`${operator1} + ${operator2} = ${upshot}`);
     break;
-  case "Apples":
-    console.log("Las manzanas cuestan $0.32 la libra.");
+  case "-":
+    upshot = operator1 - operator2
+    console.log(`${operator1} - ${operator2} = ${upshot}`);
     break;
-  case "Bananas":
-    console.log("Los plátanos cuestan $0.48 la libra.");
+  case "*":
+    upshot = operator1 * operator2
+    console.log(`${operator1} * ${operator2} = ${upshot}`);
     break;
-  case "Cherries":
-    console.log("Las cerezas cuestan $3.00 la libra.");
+  case "/":
+    upshot = operator1 / operator2
+    console.log(`${operator1} / ${operator2} = ${upshot}`);
     break;
-  case "Mangoes":
-    console.log("Los mangos cuestan $0.56 la libra.");
+  case "**":
+    upshot = operator1 ** operator2
+    console.log(`${operator1} ** ${operator2} = ${upshot}`);
     break;
-  case "Papayas":
-    console.log("Los mangos y las papayas cuestan $2.79 la libra.");
+  case "%":
+    upshot = operator1 % operator2
+    console.log(`${operator1} % ${operator2} = ${upshot}`);
     break;
   default:
-    console.log(`Lo sentimos, no tenemos ${fruittype}.`);
+    console.log(`Lo sentimos, la operacion ${operacion} no es valida.`);
 }
-console.log("¿Hay algo más que quieras?");
+console.log('========================')
+
 
 
