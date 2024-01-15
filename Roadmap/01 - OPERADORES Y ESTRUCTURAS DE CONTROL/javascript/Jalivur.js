@@ -844,5 +844,68 @@ arrayForEach.forEach(function (elemento) {
 });
 console.log('========================')
 
+//EXCEPCIONES
+//Try catch:
+console.log('========================')
+console.log(`Try catch`);
+value = "5";
 
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log('Esto se imprime Si El número es distinto de 5')
+} catch (error) {
+    console.log(`Se ha producido un error poque ${error.message}`)
+}
+console.log('========================')
+value = 5;
+
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log('Esto se imprime si El número es distinto de 5')
+} catch (error) {
+    console.log(`Se ha producido un error poeque ${error.message}`)
+}
+console.log('========================')
+
+//Try catch con bloque finally:
+console.log('========================')
+console.log('try-catch-finally')
+value = "5";
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log("El número es distinto de 5")
+} catch (error) {
+    console.log("Se ha producido un error porque "+error.message)
+} finally {
+    console.log("Bloque finally. Esto siempre se ejecuta haya o no excepción")
+}
+console.log('========================')
+value = 5;
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log("El número es distinto de 5")
+} catch (error) {
+    console.log("Se ha producido un error porque "+error.message)
+} finally {
+    console.log("Bloque finally. Esto siempre se ejecuta haya o no excepción")
+}
+console.log('========================')
+
+
+//DIFICULTAD EXTRA:
+/*
+Crea un programa que imprima por consola todos los números comprendidos
+entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+*/
+for (let i = 0; i<=55; ++i ){
+  
+}
 
