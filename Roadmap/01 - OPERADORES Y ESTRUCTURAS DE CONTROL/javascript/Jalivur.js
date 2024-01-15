@@ -748,8 +748,8 @@ console.log('========================')
 console.log('========================')
 console.log(`Estructura de control switch:`);
 let operacion =prompt("Que opeacion desea realizar(+,-,*,/,**,%):\n");
-operator1 = parseInt((prompt('Primer Valor:\n')),10);
-operator2 = parseInt((prompt('Segundo Valor2:\n')),10);
+operator1 = parseFloat((prompt('Primer Valor:\n')),10);
+operator2 = parseFloat((prompt('Segundo Valor2:\n')),10);
 switch (operacion) {
   case "+":
     upshot = operator1 + operator2
@@ -778,6 +778,59 @@ switch (operacion) {
   default:
     console.log(`Lo sentimos, la operacion ${operacion} no es valida.`);
 }
+console.log('========================')
+
+//✔️ESTRUCTURAS DE CONTROL
+//✔️WHILE
+console.log('========================')
+let contadorWhile = 0;
+while (contadorWhile < 20) {
+    console.log(`Iteración: ${contadorWhile}`);
+    contadorWhile++;
+}
+console.log('========================')
+
+//✔️DO WHILE
+console.log('========================')
+let contadorDoWhile = 0;
+
+do {
+    console.log(`Iteración: ${contadorDoWhile}`);
+    contadorDoWhile++;
+} while (contadorDoWhile < 20);
+console.log('========================')
+
+//✔️FOR
+console.log('========================')
+for (let i = 0; i <= 100; i++) {
+    console.log(`Iteración: ${i}`);
+}
+console.log('========================')
+
+//✔️FOR OF
+console.log('========================')
+let arrayForOf = [10, 20, 30, 40, 50];
+
+for (let valor of arrayForOf) {
+    console.log(`Valor elemento arrayForOf: ${valor}`);
+}
+console.log('========================')
+//✔️FOR IN
+console.log('========================')
+let objetoForIn = { a: 1, b: 2, c: 3, d: 4, e: 5};
+
+for (let propiedad in objetoForIn) {
+    console.log(`Propiedad ${propiedad} = ${objetoForIn[propiedad]}`);
+}
+console.log('========================')
+
+//✔️FOR EACH
+console.log('========================')
+let arrayForEach = [1, 2, 3, 4, 5, 6];
+
+arrayForEach.forEach(function (elemento) {
+    console.log(`Elemento: ${elemento}`);
+});
 console.log('========================')
 
 
