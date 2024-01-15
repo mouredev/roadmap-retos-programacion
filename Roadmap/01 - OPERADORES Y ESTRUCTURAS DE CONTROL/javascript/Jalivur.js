@@ -751,66 +751,79 @@ let operacion =prompt("Que opeacion desea realizar(+,-,*,/,**,%):\n");
 operator1 = parseFloat((prompt('Primer Valor:\n')),10);
 operator2 = parseFloat((prompt('Segundo Valor2:\n')),10);
 switch (operacion) {
-  case "+":
-    upshot = operator1 + operator2
-    console.log(`${operator1} + ${operator2} = ${upshot}`);
-    break;
-  case "-":
-    upshot = operator1 - operator2
-    console.log(`${operator1} - ${operator2} = ${upshot}`);
-    break;
-  case "*":
-    upshot = operator1 * operator2
-    console.log(`${operator1} * ${operator2} = ${upshot}`);
-    break;
-  case "/":
-    upshot = operator1 / operator2
-    console.log(`${operator1} / ${operator2} = ${upshot}`);
-    break;
-  case "**":
-    upshot = operator1 ** operator2
-    console.log(`${operator1} ** ${operator2} = ${upshot}`);
-    break;
-  case "%":
-    upshot = operator1 % operator2
-    console.log(`${operator1} % ${operator2} = ${upshot}`);
-    break;
-  default:
-    console.log(`Lo sentimos, la operacion ${operacion} no es valida.`);
+    case "+":
+        upshot = operator1 + operator2
+        console.log(`${operator1} + ${operator2} = ${upshot}`);
+        break;
+    case "-":
+        upshot = operator1 - operator2
+        console.log(`${operator1} - ${operator2} = ${upshot}`);
+        break;
+    case "*":
+        upshot = operator1 * operator2
+        console.log(`${operator1} * ${operator2} = ${upshot}`);
+        break;
+    case "/":
+        upshot = operator1 / operator2
+        console.log(`${operator1} / ${operator2} = ${upshot}`);
+        break;
+    case "**":
+        upshot = operator1 ** operator2
+        console.log(`${operator1} ** ${operator2} = ${upshot}`);
+        break;
+    case "%":
+        upshot = operator1 % operator2
+        console.log(`${operator1} % ${operator2} = ${upshot}`);
+        break;
+    default:
+        console.log(`Lo sentimos, la operacion ${operacion} no es valida.`);
 }
 console.log('========================')
 
-//✔️ESTRUCTURAS DE CONTROL
-//✔️WHILE
+//MANEJO DE EXCEPCIONES:
+//THROW
+
+
+//BUCLES E ITERACIONES:
+
+//WHILE:
 console.log('========================')
-let contadorWhile = 0;
-while (contadorWhile < 20) {
-    console.log(`Iteración: ${contadorWhile}`);
-    contadorWhile++;
+console.log(`Bucle while:`);
+let whileCounter = 20;
+while (whileCounter < 20) {
+    console.log(`Iteración: ${whileCounter}`);
+    whileCounter++;
 }
+console.log(`Se ejecuta mientras la condicion se cumple,
+en este caso mientras contador < 20, como contador hemos establecido en 20,
+no ejecuta nada, porque primero comprueba estado contador.`);
 console.log('========================')
 
-//✔️DO WHILE
-console.log('========================')
-let contadorDoWhile = 0;
 
+//DO WHILE
+console.log('========================')
+console.log(`Bucle do while:`);
+let contadorDoWhile = 20;
 do {
     console.log(`Iteración: ${contadorDoWhile}`);
     contadorDoWhile++;
 } while (contadorDoWhile < 20);
+console.log(`Se ejecuta hasta que la ocndicion deja de cumplirse,
+en este caso hasta que contador < 20, como contador hemos establecido en 20,
+ejecuta una vez y compreba estado.`);
 console.log('========================')
 
-//✔️FOR
+//FOR
 console.log('========================')
+console.log(`Bucle for:`);
 for (let i = 0; i <= 100; i++) {
-    console.log(`Iteración: ${i}`);
+    console.log(`Vuelta: ${i}`);
 }
 console.log('========================')
 
-//✔️FOR OF
+//FOR OF
 console.log('========================')
 let arrayForOf = [10, 20, 30, 40, 50];
-
 for (let valor of arrayForOf) {
     console.log(`Valor elemento arrayForOf: ${valor}`);
 }
