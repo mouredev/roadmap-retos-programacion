@@ -815,6 +815,10 @@ for (let i = 0; i <= 100; i++) {
     console.log(`Vuelta: ${i}`);
 }
 console.log('========================')
+for (let i = 0; i <= 100; ++i) {
+    console.log(`Vuelta: ${i}`);
+}
+console.log('========================')
 
 //FOR OF
 console.log('========================')
@@ -905,7 +909,17 @@ console.log('========================')
 Crea un programa que imprima por consola todos los números comprendidos
 entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
 */
-for (let i = 0; i<=55; ++i ){
-  
+console.log('========================')
+console.log(`Crea un programa que imprima por consola todos los números comprendidos
+entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+for (let i = 10; i<=58; i++ ){
+  if (i%2===0 && i !== 16 && i%3!==0){
+    console.log(i)
+  }
+}`)
+for (let i = 10; i<=55; i++ ){
+  if (i%2===0 && i !== 16 && i%3!==0){
+    console.log(i)
+  }
 }
-
+console.log('========================')
