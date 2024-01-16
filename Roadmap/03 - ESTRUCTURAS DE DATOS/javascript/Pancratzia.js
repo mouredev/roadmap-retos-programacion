@@ -62,3 +62,10 @@ let objectStructure = {
   dni: 12345678,
   fechaNacimiento: "01/01/2000",
 };
+
+objectStructure["Ciudad"] = "Madrid"; //Inserción
+delete objectStructure["Ciudad"]; //Borrado
+objectStructure["edad"] = 26; //Actualización
+let edad = objectStructure["edad"]; //Busqueda
+
+/***ESTRUCTURAS DE DATOS EN JS - PT2***/
