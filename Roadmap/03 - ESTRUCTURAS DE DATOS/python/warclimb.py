@@ -72,35 +72,51 @@ herramientas_set.add("serrucho")
  * - También se debe proponer una operación de finalización del programa.
 """
 
+# Vamos a volvernos locos
+# Esto no tiene mucho sentido porque no voy a reutilizar estas funciones, pero bueno.
 
 def agregar_contacto(contactos):
     nombre = input("Introduce el nombre del contacto: ")
     telefono = input("Introduce el teléfono del contacto: ")
     contactos[nombre] = telefono
+    print("-"*20)
+    print(f"Contacto {nombre} añadido")
+    print("-"*20)
 
 def buscar_contacto(contactos):
     nombre = input("Introduce el nombre del contacto: ")
     if nombre in contactos:
+        print("-"*20)
         print(nombre, ":", contactos[nombre])
+        print("-"*20)
     else:
+        print("-"*20)
         print("No existe el contacto")
+        print("-"*20)
 
 def actualizar_contacto(contactos):
     nombre = input("Introduce el nombre del contacto: ")
     if nombre in contactos:
         telefono = input("Introduce el teléfono del contacto: ")
         contactos[nombre] = telefono
+        print("-"*20)
+        print("Contacto actualizado")
+        print("-"*20)
     else:
+        print("-"*20)
         print("No existe el contacto")
+        print("-"*20)
 
 def borrar_contacto(contactos):
     nombre = input("Introduce el nombre del contacto: ")
     if nombre in contactos:
         del contactos[nombre]
     else:
+        print("-"*20)
         print("No existe el contacto")
+        print("-"*20)
 
-def agenda():
+if __name__ == "__main__":
     contactos = {}
     while True:
         print("¿Qué quieres hacer?")
@@ -121,8 +137,7 @@ def agenda():
         elif opcion == 5:
             break
         else:
+            print("-"*20)
             print("Opción incorrecta")
+            print("-"*20)
     print("Fin")
-
-if __name__ == "__main__":
-    agenda()
