@@ -18,12 +18,32 @@
  * - También se debe proponer una operación de finalización del programa.
  """
 
-# Los tipos de estrucutras de datos en Python son: Tablas, tuplas, listas, diccionarios y conjuntos
+# Los tipos de estrucutras de datos en Python son: listas, tuplas, diccionarios y conjuntos
 
-# Tablas
+# Listas
 ## conjunto de datos ordenados por índices
 herramientas = ["martillo", "destornillador", "sierra", "taladro"]
 
+# insercion
+herramientas.append("alicates")
+# borrado
+herramientas.remove("sierra")
+# actualizacion
+herramientas[2] = "serrucho"
+# ordenacion
+herramientas.sort()
+
 # Tuplas
 ## Igual que las tablas pero inmutables, se usan para datos que no van a cambiar
+power_rangers = ("Jason", "Zack", "Billy", "Trini", "Kimberly")
+
+# Diccionarios
+## conjunto de datos ordenados por claves. en este caso la clave es la herramienta y el valor representa la resistencia.
+herramientas_dict = {"martillo": 40, "destornillador": 6, "sierra": 20, "taladro": 80}
+
+# Conjuntos / sets
+## conjunto de datos no ordenados, no se pueden repetir
+herramientas_set = {"martillo", "destornillador", "sierra", "taladro"}
+
+
 
