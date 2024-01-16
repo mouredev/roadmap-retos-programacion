@@ -24,10 +24,41 @@ arrayStructure.splice(7, 1); //Borrado
 arrayStructure.pop(); //Borrado - Elimina el útlimo elemento del array
 arrayStructure.shift(); //Borrado - Elimina el primer elemento del array
 arrayStructure[6] = 8; //Actualización
-let index =arrayStructure.findIndex(element => element === 6); //Busqueda
-arrayStructure = arrayStructure.sort(
-  (a, b) => b - a
-); //Ordenación
+let index = arrayStructure.findIndex((element) => element === 6); //Busqueda
+arrayStructure = arrayStructure.sort((a, b) => b - a); //Ordenación
 
+//Sets
 
+let setStructure = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]); //Representan un conjunto de elementos
+setStructure.add(10); //Inserción
+setStructure.delete(1); //Borrado
+setStructure.has(3); //Busqueda - En este caso particular retorna un boolean de valor true
+setStructure.clear(); //Borrado - Elimina todos los elementos
 
+//Los sets no tienen update o sort
+
+//Maps - Es una colección de pares clave-valor
+
+let mapStructure = new Map([
+  ["uno", 1],
+  ["dos", 2],
+  ["tres", 3],
+  ["cuatro", 4],
+  ["cinco", 8],
+]);
+
+mapStructure.set("seis", 6); //Inserción
+mapStructure.delete("seis"); //Borrado
+mapStructure.get("cinco"); //Busqueda
+mapStructure.set("cinco", 5); //Actualización
+mapStructure.clear(); //Borrado - Elimina todos los elementos
+
+//Objects 
+
+let objectStructure = {
+  nombre: "Carmen",
+  apellido: "Pérez",
+  edad: 25,
+  dni: 12345678,
+  fechaNacimiento: "01/01/2000",
+};
