@@ -78,10 +78,15 @@ herramientas_set.add("serrucho")
 def agregar_contacto(contactos):
     nombre = input("Introduce el nombre del contacto: ")
     telefono = input("Introduce el teléfono del contacto: ")
-    contactos[nombre] = telefono
-    print("-"*20)
-    print(f"Contacto {nombre} añadido")
-    print("-"*20)
+    if telefono.isnumeric() and len(telefono) == 11:
+        contactos[nombre] = telefono
+        print("-"*20)
+        print(f"Contacto {nombre} añadido")
+        print("-"*20)
+    else:
+        print("-"*20)
+        print("Teléfono incorrecto")
+        print("-"*20)
 
 def buscar_contacto(contactos):
     nombre = input("Introduce el nombre del contacto: ")
@@ -140,4 +145,6 @@ if __name__ == "__main__":
             print("-"*20)
             print("Opción incorrecta")
             print("-"*20)
+    print("-"*20)
     print("Fin")
+    print("-"*20)
