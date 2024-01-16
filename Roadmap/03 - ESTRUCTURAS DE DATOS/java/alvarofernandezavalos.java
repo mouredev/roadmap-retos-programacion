@@ -46,15 +46,15 @@ public class alvarofernandezavalos {
       int num = menu();
       switch (num) {
         case BUSCAR:
-          System.out.println("Buscar:");
+          System.out.println("Buscar");
           mostrar(search());
           break;
         case INSERTAR:
-          System.out.println("Insertar:");
+          System.out.println("Insertar");
           insert();
           break;
         case ACTUALIZAR:
-          System.out.println("Actualizar:");
+          System.out.println("Actualizar");
           update();
           break;
         case ELIMNAR:
@@ -72,7 +72,7 @@ public class alvarofernandezavalos {
 
   private static void mostrar(Contacto search) {
     if (search != null) System.out.println("Nombre: "+search.getNombre() +" Telefono: "+search.getTelefono());
-    else System.out.println("No esta el contacto en la agenda!");
+    else System.out.println("Contacto no encontrado en la agenda!");
   }
 
   private static int menu() {
