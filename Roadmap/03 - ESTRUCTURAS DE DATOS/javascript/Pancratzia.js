@@ -14,5 +14,20 @@
  * - También se debe proponer una operación de finalización del programa.
  */
 
-
 /***ESTRUCTURAS DE DATOS EN JS - PT1***/
+
+//Arrays
+
+let arrayStructure = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arrayStructure.push(10); //Inserción
+arrayStructure.splice(7, 1); //Borrado
+arrayStructure.pop(); //Borrado - Elimina el útlimo elemento del array
+arrayStructure.shift(); //Borrado - Elimina el primer elemento del array
+arrayStructure[6] = 8; //Actualización
+let index =arrayStructure.findIndex(element => element === 6); //Busqueda
+arrayStructure = arrayStructure.sort(
+  (a, b) => b - a
+); //Ordenación
+
+
+
