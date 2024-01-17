@@ -10,7 +10,6 @@ public class frannmv {
         ELIMINAR(4),
         MOSTRAR(5),
         EXIT(6);
-
         private final int valor;
 
         Operaciones(int valor) {
@@ -18,29 +17,27 @@ public class frannmv {
         }
     }
     public static Scanner keyboard = new Scanner (System.in);
-    public static HashMap<String, Integer> agenda = new HashMap<>();
-    public static Operaciones op;
-    public static int numTelefono;
+    public static HashMap<String, Long> agenda = new HashMap<>();
+    public static long numTelefono;
     public static String nombre;
     public static void main(String[] args) {
 
-        int flag = 0, proxOperacion;
-
         while(true){
 
-            menu();
+            mostrarMenu();
 
-            proxOperacion = keyboard.nextInt();
-            keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
-            op = obtenerOperacion(proxOperacion);
+            switch ( operacionElegida() ){
 
-            switch (op){
                 case BUSCAR:
-                    buscar();
+                    System.out.println("Ingrese el nombre del contacto a buscar:");
+                    nombre = keyboard.nextLine();
+                    buscar(nombre);
                     break;
 
                 case ELIMINAR:
-                    eliminar();
+                    System.out.println("Ingrese el nombre del contacto a eliminar: ");
+                    nombre = keyboard.nextLine();
+                    eliminar(nombre);
                     break;
 
                 case INSERTAR:
@@ -56,17 +53,18 @@ public class frannmv {
                     break;
 
                 case EXIT:
+                    System.out.println("Hasta luego, vuelva prontos!");
                     System.exit(0);
                     break;
-                default:
+
+                case null:
                     System.out.println("Ingrese un numero valido!");
             }
-
         }
     }
-    private static void menu(){
+    private static void mostrarMenu(){
         for(Operaciones operacion : Operaciones.values()){
-            System.out.println(operacion.valor + ". " + operacion.name());
+            System.out.println(operacion.valor + ". " + operacion);
         }
     }
     private static Operaciones obtenerOperacion(int valor){
@@ -78,46 +76,69 @@ public class frannmv {
         return null;
     }
 
-    private static void buscar(){
+    private static Operaciones operacionElegida(){
 
-        System.out.println("Ingrese el nombre del contacto a buscar:");
-        nombre = keyboard.nextLine();
-
-        System.out.println("El numero de " + nombre + " es: " + agenda.get(nombre));
+        int valor = keyboard.nextInt();
+        keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
+        return obtenerOperacion(valor);
+    }
+    private static boolean existeContacto(String nombre){
+        return agenda.containsKey(nombre);
     }
 
-    private static void eliminar(){
+    private static void buscar(String nombre){
 
-        System.out.println("Ingrese el nombre del contacto a eliminar: ");
-        nombre = keyboard.nextLine();
-        agenda.remove(nombre);
-        System.out.println("Contacto Eliminado!");
-
+        if(existeContacto(nombre)){
+            System.out.println("El numero de " + nombre + " es: " + agenda.get(nombre));
+        }else{
+            System.out.println("El usuario no se encuentra en el sistema! ");
+        }
     }
 
+    private static void eliminar(String nombre){
+
+        if(existeContacto(nombre)){
+            agenda.remove(nombre);
+            System.out.println("Contacto Eliminado!");
+        }else{
+            System.out.println("Ingrese un nombre de usuario valido!");
+        }
+    }
+
+    private static boolean cumpleCondiciones(long telefono){
+        String telStr = Long.toString(telefono);
+        return telStr.length() <= 11;
+    }
     private static void insertar(){
         System.out.println("Agregue el nombre del contacto: ");
         nombre = keyboard.nextLine();
 
         System.out.println("Agregue el telefono del contacto: ");
-        numTelefono = keyboard.nextInt();
+
+        numTelefono = keyboard.nextLong();
         keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
 
-        agenda.put(nombre, numTelefono);
+        if(cumpleCondiciones(numTelefono)){
+            agenda.put(nombre, numTelefono);
+        }else{
+            System.out.println("El numero de telefono tiene que tener al menos un digito y menos que 11 digitos");
+        }
 
     }
     private static void actualizar(){
-        System.out.println("El numero de que persona desea actualizar?:");
+        System.out.println("Que persona desea actualizar?");
         nombre = keyboard.nextLine();
+        if(existeContacto(nombre)){
+            System.out.println("Ingrese el nuevo numero: ");
+            numTelefono = keyboard.nextLong();
+            keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
 
-        System.out.println("Ingrese el nuevo numero: ");
-        numTelefono= keyboard.nextInt();
-        keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
-
-        agenda.replace(nombre,numTelefono);
-        System.out.println("Contacto actualizado!");
+            agenda.replace(nombre,numTelefono);
+            System.out.println("Contacto actualizado!");
+        }else{
+            System.out.println("El usuario no se encuentra en el sistema!");
+        }
     }
-
     private static void mostrar(){
         System.out.println(agenda);
     }
