@@ -31,22 +31,21 @@ def agenda():
 
     while input_operacion != "salir":
 
+        completed = False
         print("AGENDA:")
         print(agenda)
         print("")
-        input_operacion = input("Seleccione la operación que quiere realizar: \n Buscar \n Insertar \n Actualizar \n Eliminar \n Salir\n")
-        input_operacion_low = input_operacion.lower()
-        completed = False
+        input_operacion = input("Seleccione la operación que quiere realizar: \n Buscar \n Insertar \n Actualizar \n Eliminar \n Salir\n").lower()
 
-        if input_operacion_low == "buscar":
+        if input_operacion == "buscar":
 
             input_nombre = input("Indique el nombre del contacto: ")
-            try:
+            if input_nombre in agenda:
                 print(agenda[input_nombre])
-            except:
+            else:
                 print("No existe ningún contacto con ese nombre.")
         
-        elif input_operacion_low == "insertar":
+        elif input_operacion == "insertar":
 
             input_nombre = input("Introduce el nombre del contacto: ")
 
@@ -62,7 +61,7 @@ def agenda():
                 else:
                     print("Número de teléfono no válido.")
 
-        elif input_operacion_low == "actualizar":
+        elif input_operacion == "actualizar":
 
             print(agenda.keys())
             input_nombre = input("Que contacto quieres actualizar? ")
@@ -84,7 +83,7 @@ def agenda():
             else: 
                 print("Este contacto no existe")
 
-        elif input_operacion_low == "eliminar":
+        elif input_operacion == "eliminar":
             
             print(agenda.keys())
             input_nombre = input("Que contacto quieres eliminar? ")
