@@ -94,7 +94,6 @@ public class frannmv {
             System.out.println("El usuario no se encuentra en el sistema! ");
         }
     }
-
     private static void eliminar(String nombre){
 
         if(existeContacto(nombre)){
