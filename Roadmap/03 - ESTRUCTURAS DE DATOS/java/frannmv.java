@@ -7,7 +7,9 @@ public class frannmv {
         BUSCAR(1),
         INSERTAR(2),
         ACTUALIZAR(3),
-        ELIMINAR(4);
+        ELIMINAR(4),
+        MOSTRAR(5),
+        EXIT(6);
 
         private final int valor;
 
@@ -15,74 +17,52 @@ public class frannmv {
             this.valor = valor;
         }
     }
+    public static Scanner keyboard = new Scanner (System.in);
+    public static HashMap<String, Integer> agenda = new HashMap<>();
+    public static Operaciones op;
+    public static int numTelefono;
+    public static String nombre;
     public static void main(String[] args) {
 
-        int numTelefono,flag = 0, proxOperacion;
-        String nombre;
-        Scanner keyboard = new Scanner (System.in);
-        HashMap<String, Integer> agenda = new HashMap<>();
+        int flag = 0, proxOperacion;
 
-        while(flag != -1){
+        while(true){
 
             menu();
 
             proxOperacion = keyboard.nextInt();
             keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
-            Operaciones op = obtenerOperacion(proxOperacion);
+            op = obtenerOperacion(proxOperacion);
 
             switch (op){
                 case BUSCAR:
-                    System.out.println("Ingrese el nombre del contacto a buscar:");
-                    nombre = keyboard.nextLine();
-
-                    System.out.println("El numero de " + nombre + " es: " + agenda.get(nombre));
+                    buscar();
                     break;
 
                 case ELIMINAR:
-                    System.out.println("Ingrese el nombre del contacto a eliminar: ");
-                    nombre = keyboard.nextLine();
-                    agenda.remove(nombre);
-                    System.out.println("Contacto Eliminado!");
+                    eliminar();
                     break;
 
                 case INSERTAR:
-                    System.out.println("Agregue el nombre del contacto: ");
-                    nombre = keyboard.nextLine();
-
-                    System.out.println("Agregue el telefono del contacto: ");
-                    numTelefono = keyboard.nextInt();
-                    keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
-
-                    agenda.put(nombre, numTelefono);
+                    insertar();
                     break;
 
                 case ACTUALIZAR:
-                    System.out.println("El numero de que persona desea actualizar?:");
-                    nombre = keyboard.nextLine();
-
-                    System.out.println("Ingrese el nuevo numero: ");
-                    numTelefono= keyboard.nextInt();
-                    keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
-
-                    agenda.replace(nombre,numTelefono);
-                    System.out.println("Contacto actualizado!");
+                    actualizar();
                     break;
 
+                case MOSTRAR:
+                    mostrar();
+                    break;
+
+                case EXIT:
+                    System.exit(0);
+                    break;
                 default:
                     System.out.println("Ingrese un numero valido!");
             }
 
-            System.out.println(agenda);
-
-            System.out.println("Ingrese:\n" +
-                                "1 - Para Continuar\n" +
-                                "-1 - Para Finalizar el programa");
-            flag = keyboard.nextInt();
-            keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
-
         }
-
-        System.out.println(agenda);
     }
     private static void menu(){
         for(Operaciones operacion : Operaciones.values()){
@@ -96,5 +76,49 @@ public class frannmv {
             }
         }
         return null;
+    }
+
+    private static void buscar(){
+
+        System.out.println("Ingrese el nombre del contacto a buscar:");
+        nombre = keyboard.nextLine();
+
+        System.out.println("El numero de " + nombre + " es: " + agenda.get(nombre));
+    }
+
+    private static void eliminar(){
+
+        System.out.println("Ingrese el nombre del contacto a eliminar: ");
+        nombre = keyboard.nextLine();
+        agenda.remove(nombre);
+        System.out.println("Contacto Eliminado!");
+
+    }
+
+    private static void insertar(){
+        System.out.println("Agregue el nombre del contacto: ");
+        nombre = keyboard.nextLine();
+
+        System.out.println("Agregue el telefono del contacto: ");
+        numTelefono = keyboard.nextInt();
+        keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
+
+        agenda.put(nombre, numTelefono);
+
+    }
+    private static void actualizar(){
+        System.out.println("El numero de que persona desea actualizar?:");
+        nombre = keyboard.nextLine();
+
+        System.out.println("Ingrese el nuevo numero: ");
+        numTelefono= keyboard.nextInt();
+        keyboard.nextLine(); // Consumir el caracter \n que deja keyboard.nextInt() en el bufer
+
+        agenda.replace(nombre,numTelefono);
+        System.out.println("Contacto actualizado!");
+    }
+
+    private static void mostrar(){
+        System.out.println(agenda);
     }
 }
