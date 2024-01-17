@@ -15,6 +15,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
 Example of structure
@@ -26,12 +27,45 @@ typedef struct {
 
 
 /*
-Example of union, only one field can be used
+Another example of structure is union, only one field can be used 
 */
 typedef union {
 	unsigned int firstField;
 	long secondField;
 } t_union;
+
+#define SIZE_OF_TELEPHONE_NUMBER 11
+
+
+typedef struct t_struct_phone_directory {
+	const char* name;
+	char telephone[SIZE_OF_TELEPHONE_NUMBER];
+	struct t_struct_phone_directory* next;
+} t_phone_directory;
+
+/*
+Define a generic list, it will emulate a template although (as far as I know templates don't exist in C)
+It's a little bit ugly anyway
+User MUSTN'T malloc or free memory related with the list, user is responsable of record memory
+*/
+typedef struct t_generic_list {
+	void* record;
+	struct t_generic_list* next;
+} t_generic_list;
+
+/*
+*Pointer to function which should return 0 if inLeft >= inRight 
+*/
+typedef int (*isLeftRecordGreaterOrEqualThanRight)(void *inLeft, void *inRight);
+
+/*
+Insert a new record, user must alway store return t_generic_list*, eg 
+	list = insertPhoneDirectoryRecord (list, new_record);
+First time inList will be NULL and a new t_generic_list will be created.
+User is only responsible of memory allocated to inNewRecord, do not malloc or free inList
+*/
+t_generic_list* insertPhoneDirectoryRecord (t_generic_list* inList, void* inNewRecord, isLeftRecordGreaterOrEqualThanRight);
+
 
 void main() {
 
@@ -52,4 +86,5 @@ void main() {
 	printf ("Struct: First field %d, second field %ld\n", myStruct.firstField, myStruct.secondField);
 
 	printf ("Union: First field %u, second field %ld, remains only second field\n", myUnion.firstField, myUnion.secondField);
+
 };
