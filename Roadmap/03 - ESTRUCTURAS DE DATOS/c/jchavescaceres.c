@@ -36,35 +36,78 @@ typedef union {
 
 #define SIZE_OF_TELEPHONE_NUMBER 11
 
-
-typedef struct t_struct_phone_directory {
+/*
+Define a phone directory record
+*/
+typedef struct {
 	const char* name;
-	char telephone[SIZE_OF_TELEPHONE_NUMBER];
+	char telephone [SIZE_OF_TELEPHONE_NUMBER];
+} t_phone_directory_record;
+
+/*
+Define a phone directory list
+User MUSTN'T malloc or free memory related with the list (next)
+*/
+typedef struct t_struct_phone_directory {
+	t_phone_directory_record phoneDirectoryRecord;
 	struct t_struct_phone_directory* next;
 } t_phone_directory;
 
 /*
-Define a generic list, it will emulate a template although (as far as I know templates don't exist in C)
-It's a little bit ugly anyway
-User MUSTN'T malloc or free memory related with the list, user is responsable of record memory
-*/
-typedef struct t_generic_list {
-	void* record;
-	struct t_generic_list* next;
-} t_generic_list;
-
-/*
-*Pointer to function which should return 0 if inLeft >= inRight 
-*/
-typedef int (*isLeftRecordGreaterOrEqualThanRight)(void *inLeft, void *inRight);
-
-/*
-Insert a new record, user must alway store return t_generic_list*, eg 
+Insert a new record, user must alway store return t_phone_directory*, eg:
 	list = insertPhoneDirectoryRecord (list, new_record);
-First time inList will be NULL and a new t_generic_list will be created.
-User is only responsible of memory allocated to inNewRecord, do not malloc or free inList
+First time inList will be NULL and a new t_phone_directory will be created.
+Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
-t_generic_list* insertPhoneDirectoryRecord (t_generic_list* inList, void* inNewRecord, isLeftRecordGreaterOrEqualThanRight);
+t_phone_directory* insertPhoneDirectoryRecord (
+	t_phone_directory* inPhoneDirectory, 
+	t_phone_directory_record inPhoneDirectoryRecord);
+
+typedef void (t_callback_record)(t_phone_directory_record inRecord);
+
+/*
+Iterate the list, invoke callbackRecord for each record 
+Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
+*/
+void iteratePhoneDirectory(
+	t_phone_directory* inPhoneDirectory,
+	t_callback_record callbackRecord);
+
+/*
+Update record (if found), user must alway store return t_phone_directory*, eg:
+	list = updatePhoneDirectoryRecord (list, inOldRecord, inNewRecord, freeResourcesOldRecord);
+callbackOldRecord is a function that will be invoked before updating the record, 
+user for example can use it to free resources from that record, 
+Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
+*/
+t_phone_directory* updatePhoneDirectoryRecord (
+	t_phone_directory* inPhoneDirectory,
+	t_phone_directory_record OldPhoneDirectoryRecord,
+	t_phone_directory_record NewPhoneDirectoryRecord,
+	t_callback_record callbackOldRecord);
+
+/*
+Delete record (if found), user must alway store return t_phone_directory*, eg:
+	list = deletePhoneDirectoryRecord (list, inRecord, freeResourcesRecord);
+callbackRecord is a function that will be invoked before removing the record, 
+can use it to for example to free resources from that record, 
+Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
+*/
+t_phone_directory* deletePhoneDirectoryRecord (
+	t_phone_directory* inPhoneDirectory,
+	t_phone_directory_record inPhoneDirectoryRecord,
+	t_callback_record callbackRecord);
+
+/*
+Delete all records, user must alway store return t_phone_directory*, eg:
+	list = deletePhoneDirectoryRecord (list, inRecord, freeResourcesRecord);
+callbackRecord is a function that will be invoked before removing the record, 
+can use it to for example to free resources from that record, 
+Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
+*/
+t_phone_directory* deleteAllPhoneDirectory (
+	t_phone_directory* inPhoneDirectory,
+	t_callback_record callbackRecord);
 
 
 void main() {
