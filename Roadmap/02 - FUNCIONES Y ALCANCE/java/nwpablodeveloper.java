@@ -61,7 +61,6 @@ public class nwpablodeveloper {
         String textIn = consola.nextLine();
         System.out.println("El usuario ingreso: " + textIn);
 
-
         // EXTRA
         System.out.println(extraFunction("multipo de 3", "multiplo de 5"));
 
@@ -127,7 +126,6 @@ public class nwpablodeveloper {
                 System.out.println(i);
                 count++;
             }
-
         }
         return count;
     }
