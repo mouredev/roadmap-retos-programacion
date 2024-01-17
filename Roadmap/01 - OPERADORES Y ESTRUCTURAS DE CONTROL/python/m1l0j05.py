@@ -188,15 +188,60 @@ and_bit = l & m  # 010 -> 2
 or_bit = l | m   # 110 -> 6
 xor_bit = l ^ m  # 100 -> 4
 not_bit = ~l     # -011 -> -7
-desp_izq = l << m # 11000 -> 24
-desp_der = l >> m # 001 -> 1
+desp_left = l << m # 11000 -> 24
+desp_rigth = l >> m # 001 -> 1
 
 print(and_bit)
 print(or_bit)
 print(xor_bit)
 print(not_bit)
-print(desp_izq)
-print(desp_der)
+print(desp_left)
+print(desp_rigth)
+
+# Estructuras de Control Condicionales
+# Ejemplo de if, elif, else
+number = 10
+if number > 15:
+    print("The number is greater than 15")
+elif number == 10:
+    print("The number is 10")
+else:
+    print("The number is less than 15 and not 10")
+
+# Estructuras de Control de Bucles
+# Ejemplo de for
+names = ["Ana", "Juan", "Carlos"]
+for name in names:
+    print(f"Hello, {name}")
+
+# Ejemplo de while
+counter = 5
+while counter > 0:
+    print(f"Counter: {counter}")
+    counter -= 1
+
+# Ejemplo de break
+for i in range(1, 10):
+    if i == 5:
+        break
+    print(i)
+
+# Ejemplo de continue
+for i in range(1, 10):
+    if i % 2 == 0:
+        continue
+    print(i)
+
+# Estructuras de Control para Manejar Excepciones
+# Ejemplo de try, except, else, finally
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Division by zero")
+else:
+    print("Division performed correctly")
+finally:
+    print("This block is always executed")
 
 # Ejercicio Extra:
 
@@ -217,3 +262,6 @@ excluded_number = 16
 result = number_checker(start_range, end_range, excluded_number)
 
 print(result)
+
+
+
