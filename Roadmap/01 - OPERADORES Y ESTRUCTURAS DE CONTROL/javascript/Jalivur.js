@@ -714,5 +714,212 @@ ${upshot}
 ${((upshot)>>>0).toString(2).padStart(32,"0")}.`);
 console.log('========================')
 
+//OPERADOR TERNARIO
+//expresión ? "si es true" : "si es false";
+console.log('========================')
+console.log(`OPERADOR TERNIARIO expresión ? "si es true" : "si es false"`)
+let edad;
+let acceso;
+console.log(`${edad=32} ${acceso = edad >= 18 ? "Permitir acceso" : "Denegar acceso"}`);
+console.log('========================')
+
 //ESTRUCTURAS DE CONTROL:
 
+//CONDICIONALES:
+
+//if else:
+console.log('========================')
+console.log(`Estructura de control condicional: if...else`);
+operator1 = 56;
+operator2 = 54;
+if (operator1 == operator2){
+    console.log(`${operator1} es  igual a ${operator2}`);
+}
+else if (operator1 > operator2){
+    console.log(`${operator1} mayor que ${operator2}`);
+}
+else {
+    console.log(`${operator1} menor que ${operator2}`);
+}
+console.log('========================')
+
+//switch
+console.log('========================')
+console.log(`Estructura de control switch:`);
+let operacion ="**";
+operator1 = 2;
+operator2 = 256;
+switch (operacion) {
+    case "+":
+        upshot = operator1 + operator2
+        console.log(`${operator1} + ${operator2} = ${upshot}`);
+        break;
+    case "-":
+        upshot = operator1 - operator2
+        console.log(`${operator1} - ${operator2} = ${upshot}`);
+        break;
+    case "*":
+        upshot = operator1 * operator2
+        console.log(`${operator1} * ${operator2} = ${upshot}`);
+        break;
+    case "/":
+        upshot = operator1 / operator2
+        console.log(`${operator1} / ${operator2} = ${upshot}`);
+        break;
+    case "**":
+        upshot = operator1 ** operator2
+        console.log(`${operator1} ** ${operator2} = ${upshot}`);
+        break;
+    case "%":
+        upshot = operator1 % operator2
+        console.log(`${operator1} % ${operator2} = ${upshot}`);
+        break;
+    default:
+        console.log(`Lo sentimos, la operacion ${operacion} no es valida.`);
+}
+console.log('========================')
+
+//BUCLES E ITERACIONES:
+
+//WHILE:
+console.log('========================')
+console.log(`Bucle while:`);
+let whileCounter = 20;
+while (whileCounter < 20) {
+    console.log(`Iteración: ${whileCounter}`);
+    whileCounter++;
+}
+console.log(`Se ejecuta mientras la condicion se cumple,
+en este caso mientras contador < 20, como contador hemos establecido en 20,
+no ejecuta nada, porque primero comprueba estado contador.`);
+console.log('========================')
+
+
+//DO WHILE
+console.log('========================')
+console.log(`Bucle do while:`);
+let contadorDoWhile = 20;
+do {
+    console.log(`Iteración: ${contadorDoWhile}`);
+    contadorDoWhile++;
+} while (contadorDoWhile < 20);
+console.log(`Se ejecuta hasta que la ocndicion deja de cumplirse,
+en este caso hasta que contador < 20, como contador hemos establecido en 20,
+ejecuta una vez y compreba estado.`);
+console.log('========================')
+
+//FOR
+console.log('========================')
+console.log(`Bucle for:`);
+for (let i = 0; i <= 100; i++) {
+    console.log(`Vuelta: ${i}`);
+}
+console.log('========================')
+for (let i = 0; i <= 100; ++i) {
+    console.log(`Vuelta: ${i}`);
+}
+console.log('========================')
+
+//FOR OF
+console.log('========================')
+console.log(`Bucle for of:`);
+let arrayForOf = [10, 20, 30, 40, 50];
+for (let valor of arrayForOf) {
+    console.log(`Valor elemento arrayForOf: ${valor}`);
+}
+console.log('========================')
+//FOR IN
+console.log('========================')
+console.log(`Bucle for in:`);
+let objetoForIn = { a: 1, b: 2, c: 3, d: 4, e: 5};
+
+for (let propiedad in objetoForIn) {
+    console.log(`Propiedad ${propiedad} = ${objetoForIn[propiedad]}`);
+}
+console.log('========================')
+
+//FOR EACH
+console.log('========================')
+console.log(`Bucle for each:`);
+let arrayForEach = [1, 2, 3, 4, 5, 6];
+
+arrayForEach.forEach(function (elemento) {
+    console.log(`Elemento: ${elemento}`);
+});
+console.log('========================')
+
+//EXCEPCIONES
+//Try catch:
+console.log('========================')
+console.log(`Try catch`);
+value = "5";
+
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log('Esto se imprime Si El número es distinto de 5')
+} catch (error) {
+    console.log(`Se ha producido un error poque ${error.message}`)
+}
+console.log('========================')
+value = 5;
+
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log('Esto se imprime si El número es distinto de 5')
+} catch (error) {
+    console.log(`Se ha producido un error poeque ${error.message}`)
+}
+console.log('========================')
+
+//Try catch con bloque finally:
+console.log('========================')
+console.log('try-catch-finally')
+value = "5";
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log("El número es distinto de 5")
+} catch (error) {
+    console.log("Se ha producido un error porque "+error.message)
+} finally {
+    console.log("Bloque finally. Esto siempre se ejecuta haya o no excepción")
+}
+console.log('========================')
+value = 5;
+try {
+    if (value === 5) {
+        throw new Error("El número es igual a 5")
+    }
+    console.log("El número es distinto de 5")
+} catch (error) {
+    console.log("Se ha producido un error porque "+error.message)
+} finally {
+    console.log("Bloque finally. Esto siempre se ejecuta haya o no excepción")
+}
+console.log('========================')
+
+
+//DIFICULTAD EXTRA:
+/*
+Crea un programa que imprima por consola todos los números comprendidos
+entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+*/
+console.log('========================')
+console.log(`Crea un programa que imprima por consola todos los números comprendidos
+entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+for (let i = 10; i<=58; i++ ){
+  if (i%2===0 && i !== 16 && i%3!==0){
+    console.log(i)
+  }
+}`)
+for (let i = 10; i<=55; i++ ){
+  if (i%2===0 && i !== 16 && i%3!==0){
+    console.log(i)
+  }
+}
+console.log('========================')
