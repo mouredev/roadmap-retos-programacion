@@ -33,13 +33,15 @@ def agenda():
 
         completed = False
         print("AGENDA:")
+        print("----------------------------------------")
         print(agenda)
-        print("")
+        print("----------------------------------------")
         input_operacion = input("Seleccione la operación que quiere realizar: \n Buscar \n Insertar \n Actualizar \n Eliminar \n Salir\n").lower()
 
         if input_operacion == "buscar":
 
             input_nombre = input("Indique el nombre del contacto: ")
+
             if input_nombre in agenda:
                 print(agenda[input_nombre])
             else:
@@ -49,17 +51,21 @@ def agenda():
 
             input_nombre = input("Introduce el nombre del contacto: ")
 
-            while not completed:
-                input_numero = input("Introduce el número del contacto: ")
-                numero_telefono = tuple(input_numero)
+            if input_nombre in agenda:
+                print("El contacto" + input_nombre + " ya existe.")
 
-                if len(numero_telefono) == 9: # and all(isinstance(elemento, int) for elemento in numero_telefono):
-                    completed = True
-                    agenda [input_nombre] = input_numero
-                    print("Se ha añadido el contacto " + input_nombre + " con el número: " + input_numero + " a la agenda.")
-                
-                else:
-                    print("Número de teléfono no válido.")
+            else:
+                while not completed:
+                    input_numero = input("Introduce el número del contacto: ")
+                    numero_telefono = tuple(input_numero)
+
+                    if len(numero_telefono) == 9 and input_numero.isnumeric():
+                        completed = True
+                        agenda [input_nombre] = input_numero
+                        print("Se ha añadido el contacto " + input_nombre + " con el número: " + input_numero + " a la agenda.")
+                    
+                    else:
+                        print("Número de teléfono no válido.")
 
         elif input_operacion == "actualizar":
 
@@ -73,7 +79,7 @@ def agenda():
                     input_numero = input("Introduce el nuevo número del contacto: ")
                     numero_telefono = tuple(input_numero)
 
-                    if len(numero_telefono) == 9: # and all(isinstance(elemento, int) for elemento in numero_telefono):
+                    if len(numero_telefono) == 9 and input_numero.isnumeric():
                         completed = True
                         agenda [input_nombre] = input_numero
                         print("El contacto " + input_nombre + " se ha actualizado correctamente.")
@@ -95,6 +101,6 @@ def agenda():
                 print("Este contacto no existe")
 
         else:
-            print("Introduce una instrucción válida.")
+            print("Instrucción no válida. Introduce una instrucción válida.")
 
 agenda()
