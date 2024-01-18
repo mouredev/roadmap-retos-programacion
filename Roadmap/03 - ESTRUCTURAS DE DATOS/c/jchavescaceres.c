@@ -109,6 +109,14 @@ t_phone_directory* deleteAllPhoneDirectory (
 	t_phone_directory* inPhoneDirectory,
 	t_callback_record callbackRecord);
 
+/*
+Order all record, user must alway store return t_phone_directory*, eg:
+	list = orderPhoneDirectory (list);
+can use it to for example to free resources from that record, 
+Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
+*/
+void orderPhoneDirectory (t_phone_directory** inPhoneDirectory);
+
 
 void main() {
 
