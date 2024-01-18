@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*
 Example of structure
@@ -45,6 +46,13 @@ typedef struct {
 } t_phone_directory_record;
 
 /*
+Return 0 i inLeft >= inRecord
+*/
+char isLeftGreaterOrEqualThanRight (
+	t_phone_directory_record inLeft,
+	t_phone_directory_record inRight);
+
+/*
 Define a phone directory list
 User MUSTN'T malloc or free memory related with the list (next)
 */
@@ -54,13 +62,11 @@ typedef struct t_struct_phone_directory {
 } t_phone_directory;
 
 /*
-Insert a new record, user must alway store return t_phone_directory*, eg:
-	list = insertPhoneDirectoryRecord (list, new_record);
-First time inList will be NULL and a new t_phone_directory will be created.
+Insert a new record, inOutPhoneDirectory will be updated with pointer to first element
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
-t_phone_directory* insertPhoneDirectoryRecord (
-	t_phone_directory* inPhoneDirectory, 
+void insertPhoneDirectoryRecord (
+	t_phone_directory** inOutPhoneDirectory, 
 	t_phone_directory_record inPhoneDirectoryRecord);
 
 typedef void (t_callback_record)(t_phone_directory_record inRecord);
@@ -74,45 +80,40 @@ void iteratePhoneDirectory(
 	t_callback_record callbackRecord);
 
 /*
-Update record (if found), user must alway store return t_phone_directory*, eg:
-	list = updatePhoneDirectoryRecord (list, inOldRecord, inNewRecord, freeResourcesOldRecord);
+Update record (if found), inOutPhoneDirectory will be updated with pointer to first element
 callbackOldRecord is a function that will be invoked before updating the record, 
 user for example can use it to free resources from that record, 
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
-t_phone_directory* updatePhoneDirectoryRecord (
-	t_phone_directory* inPhoneDirectory,
+void updatePhoneDirectoryRecord (
+	t_phone_directory** inOutPhoneDirectory,
 	t_phone_directory_record OldPhoneDirectoryRecord,
 	t_phone_directory_record NewPhoneDirectoryRecord,
 	t_callback_record callbackOldRecord);
 
 /*
-Delete record (if found), user must alway store return t_phone_directory*, eg:
-	list = deletePhoneDirectoryRecord (list, inRecord, freeResourcesRecord);
+Delete record (if found), inOutPhoneDirectory will be updated with pointer to first element
 callbackRecord is a function that will be invoked before removing the record, 
 can use it to for example to free resources from that record, 
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
-t_phone_directory* deletePhoneDirectoryRecord (
-	t_phone_directory* inPhoneDirectory,
+void deletePhoneDirectoryRecord (
+	t_phone_directory** inOutPhoneDirectory,
 	t_phone_directory_record inPhoneDirectoryRecord,
 	t_callback_record callbackRecord);
 
 /*
-Delete all records, user must alway store return t_phone_directory*, eg:
-	list = deletePhoneDirectoryRecord (list, inRecord, freeResourcesRecord);
+Delete all records, inOutPhoneDirectory will be set to NULL
 callbackRecord is a function that will be invoked before removing the record, 
 can use it to for example to free resources from that record, 
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
-t_phone_directory* deleteAllPhoneDirectory (
-	t_phone_directory* inPhoneDirectory,
+void deleteAllPhoneDirectory (
+	t_phone_directory** inOutPhoneDirectory,
 	t_callback_record callbackRecord);
 
 /*
-Order all record, user must alway store return t_phone_directory*, eg:
-	list = orderPhoneDirectory (list);
-can use it to for example to free resources from that record, 
+Order all record, inOutPhoneDirectory will be updated with pointer to first element
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
 void orderPhoneDirectory (t_phone_directory** inPhoneDirectory);
@@ -138,4 +139,23 @@ void main() {
 
 	printf ("Union: First field %u, second field %ld, remains only second field\n", myUnion.firstField, myUnion.secondField);
 
+};
+
+char isLeftGreaterOrEqualThanRight (
+	t_phone_directory_record inLeft,
+	t_phone_directory_record inRight) {
+	
+	return strcmp (inLeft.name, inRight.name) >= 0 ? 0 : 1;
+};
+
+void insertPhoneDirectoryRecord (
+	t_phone_directory** inOutPhoneDirectory, 
+	t_phone_directory_record inPhoneDirectoryRecord) {
+	
+	t_phone_directory* first = malloc (sizeof (t_phone_directory));
+
+	first-> phoneDirectoryRecord = inPhoneDirectoryRecord;
+	first-> next = NULL;
+
+	*inOutPhoneDirectory = first;
 };
