@@ -37,9 +37,13 @@ def contador_letras(palabra):
 
 
 # Función con dos parámetros sin retorno
-
 def suma(num1, num2):
     print(f"{num1} + {num2} = {num1+num2}\n")
+
+
+# Función con dos parámetros con retorno
+def suma_retorno(num1, num2):
+    return num1 + num2
 
 
 # Esta es la función externa con retorno
@@ -90,4 +94,10 @@ contador_letras("hola")
 
 suma(1, 3)
 
+var_suma_retorno = suma_retorno(1, 4)
+
+print(var_suma_retorno)
+print()
+
 print(externa())
+
