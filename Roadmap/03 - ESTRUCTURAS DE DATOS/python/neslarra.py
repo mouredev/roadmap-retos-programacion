@@ -113,7 +113,7 @@ def guardar_contactos() -> bool:
     global contactos
     try:
         with open("contactos.json", "w") as cntos:
-            json.dump(contactos, cntos)
+            json.dump(contactos, cntos, indent=4, sort_keys=True)
         print("Contactos guardados !!!")
         return True
     except Exception as e:
@@ -141,25 +141,27 @@ def validar_telefono(telefono: str) -> bool:
 def alta_contacto() -> bool:
     global contactos
     global contactos_modificados
-    nombre = ""
-    telefono = ""
 
-    while True:
-        if not nombre:
-            nombre = input("Nombre del nuevo contacto (-- para cancelar): ").title()
-            if nombre == "--":
-                break
-        if not validar_contacto(nombre):
-            nombre = ""
-            continue
-        telefono = input("Teléfono (-- para cancelar): ")
-        if telefono == "--":
-            break
-        if not validar_telefono(telefono):
-            continue
+    def nuevo_nombre() -> str:
+        while True:
+            nombre = input("Nombre del nuevo contacto ('--' para cancelar): ").title()
+            if nombre != "--" and not validar_contacto(nombre):
+                continue
+            return nombre
+
+    def nuevo_numero() -> str:
+        while True:
+            telefono = input("Teléfono ('--' para cancelar): ")
+            if telefono != "--" and not validar_telefono(telefono):
+                continue
+            return telefono
+
+    nombre = nuevo_nombre()
+    telefono = nuevo_numero()
+
+    if "--" not in (nombre, telefono):
         contactos[nombre] = telefono
         contactos_modificados = True
-        break
 
     return True
 
@@ -167,57 +169,75 @@ def alta_contacto() -> bool:
 def baja_contacto() -> bool:
     global contactos
     global contactos_modificados
-    buscar_contacto()
-    while True:
-        nombre = input("Ingresar contacto a eliminar (-- para cancelar): ").title()
-        if nombre == "--":
-            break
-        if nombre in contactos.keys():
-            del contactos[nombre.title()]
-            contactos_modificados = True
-            break
+
+    nombre = buscar_contacto()
+    if nombre != "--":
+        del contactos[nombre]
+        contactos_modificados = True
+
     return True
 
 
-def buscar_contacto() -> bool:
+def buscar_contacto() -> str:
+    nombre = ""
     while True:
         nombre = input("Ingresar patrón de búsqueda (-- para cancelar): ").lower()
         if nombre == "--":
             break
         nombres = [n for n in contactos.keys() if n.lower().__contains__(nombre)]
+
         if nombres.__len__() == 0:
             print("No hubo coincidencia.")
             continue
-        for n in nombres:
-            print(f"Nombre: {n}  /  Teléfono: {contactos[n]}")
+
+        nombres.append("Volver")
+
+        for p, n in enumerate(nombres):
+            print(f"{p} - Nombre: {n}  /  Teléfono: {contactos[n] if n != 'Volver' else '--'}")
+
+        opcion = "-1"
+        while int(opcion) not in range(0, nombres.__len__()):
+            opcion = input(f"Seleccione un nombre de contacto (0 - {nombres.__len__() - 1}): ")
+        nombre = nombres[int(opcion)]
+
         break
 
-    return True
+    return nombre if nombre != "Volver" else "--"
 
 
 def modifica_contacto() -> bool:
     global contactos
     global contactos_modificados
 
-    while True:
-        buscar_contacto()
-        nombre = input("Ingresar  contacto a modificar (-- para cancelar): ").title()
-        if nombre == "--":
-            break
+    def nuevo_nombre() -> str:
+        while True:
+            nombre = input("Nombre del nuevo contacto (Enter si no cambia): ").title()
+            if nombre and not validar_contacto(nombre):
+                continue
+            return nombre
+
+    def nuevo_numero() -> str:
+        while True:
+            telefono = input("Teléfono (Enter si no cambia): ")
+            if telefono and not validar_telefono(telefono):
+                continue
+            return telefono
+
+    nombre = buscar_contacto()
+    if nombre != "--":
         telefono = contactos[nombre]
-        nombre_nuevo = input("Ingresar nuevo nombre (Enter si NO cambia): ").title()
-        if nombre_nuevo and not validar_contacto(nombre_nuevo):
-            continue
-        telefono_nuevo = input("Ingresar nuevo telefono (Enter si NO cambia): ")
-        if telefono_nuevo and not validar_telefono(telefono_nuevo):
-            continue
-        if nombre_nuevo or telefono_nuevo:
-            if nombre_nuevo:
-                del contactos[nombre]
-                nombre = nombre_nuevo
-            contactos[nombre] = telefono_nuevo if telefono_nuevo else telefono
-            contactos_modificados = True
-        break
+
+        while True:
+            nombre_nuevo = nuevo_nombre()
+            telefono_nuevo = nuevo_numero()
+
+            if nombre_nuevo or telefono_nuevo:
+                if nombre_nuevo:
+                    del contactos[nombre]
+                    nombre = nombre_nuevo
+                contactos[nombre] = telefono_nuevo if telefono_nuevo else telefono
+                contactos_modificados = True
+            break
 
     return True
 
