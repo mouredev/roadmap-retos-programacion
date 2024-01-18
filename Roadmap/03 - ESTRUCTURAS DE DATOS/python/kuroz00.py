@@ -318,16 +318,7 @@ def agendaTelefonica():
     
 agendaTelefonica()
 
-#**Dificultad exrea**#   AGENDA.
 
-def agrendaTelefonica():
-    print('seleccione una accion:', '\n',
-          '1.- buscar contacto', '\n',
-          '2.- ver lista de contactos', '\n',
-          '3.- agregar contacto', '\n',
-          '4.- editar contacto', '\n',
-          '5.- eliminar contacto'
-          )
 
 
 
