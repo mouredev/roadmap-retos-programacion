@@ -44,6 +44,8 @@ let entero = 42;
 let booleano = true;
 let flotante = 5.87;
 
-// Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
-println!("{}", cadena);
 
+fn main() {
+    // Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
+    println!("{}", cadena);
+}
