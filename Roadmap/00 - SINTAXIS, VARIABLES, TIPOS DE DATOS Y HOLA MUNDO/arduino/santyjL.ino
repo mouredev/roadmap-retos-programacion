@@ -1,5 +1,14 @@
 //https://www.arduino.cc/
 
+/*
+no hay que olvidar que arduino se usa con las placas arduino haci que es recomendable
+una vista de como se ejecutaria algunas cosas en el hardware
+
+este canal de youtube te podria a ayudar a prender si de verdad te interesa aprender el lenguaje al 100%
+https://www.youtube.com/@EdgarPonsYoutube
+*/
+
+
 // 00 SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO / documentacion de una linea
 
 /*
