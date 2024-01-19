@@ -52,13 +52,12 @@ while True:
     elif commando == "search":
 
         busqueda: str = input("buscar > ")
-
+        founded: bool = False
         for i in contactos:
-            if busqueda in [i[0], i[1]]:
-
+            if busqueda in [i[0], str(i[1])]:
                 print(f"Nombre : {i[0]}, Teléfono: {i[1]}")
-
-            else: print("No hay resultados")
+                founded = True
+        if not founded: print("No hay resultados")
 
     elif commando == "add":
 
@@ -75,19 +74,21 @@ while True:
     elif commando == "change":
 
         busqueda: str = input("buscar > ")
-
+        founded: bool = False
+        position: int = 0
         for i in contactos:
-            if busqueda in [i[0], i[1]]:
+            if busqueda in [i[0], str(i[1])]:
+                founded = True
+                position = contactos.index(i)
+        if not founded: print("No hay resultados")
+        nombre: str = input("name\n> ")
+        tel: str = input("tel\n> ")
 
-                nombre: str = input("name\n> ")
-                tel: str = input("tel\n> ")
-
-                if tel.isdigit() and len(tel) == 11:
-                    tel: int = int(tel)
-                    contactos.append([nombre, tel])
-                    print(f"Usuario {nombre} actualizando")
-
-            else: print("No hay resultados")
+        if tel.isdigit() and len(tel) == 11:
+            tel: int = int(tel)
+            contactos[position] = [nombre, tel]
+            print(f"Usuario {nombre} actualizando")
+        
 
     elif commando == "exit":
         print("Adiós!")
