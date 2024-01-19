@@ -60,7 +60,7 @@ wm2.get(o2); // undefined, ya que ese valor recibió
 wm2.get(o3); // undefined, ya que no existe key para o3 en wm2
 
 wm1.has(o2); // true
-wm2.has(o2); // true (unque el valor mismo sea 'undefined')
+wm2.has(o2); // true (aunque el valor mismo sea 'undefined')
 wm2.has(o3); // false
 
 wm3.set(o1, 37);
