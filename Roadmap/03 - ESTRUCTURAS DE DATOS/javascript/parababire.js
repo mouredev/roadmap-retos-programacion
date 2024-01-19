@@ -24,7 +24,9 @@ delete joy.vive;//Eliminar propiedad
 
 /*Date*/
 
-//Esta estructura de datos posee muchos métodos que permiten su manipulación. Esto permite la representación de los datos en diferentes formatos, acceder a datos por separado (año, día, mes...).
+/*Esta estructura de datos posee muchos métodos que permiten su manipulación. 
+Esto permite la representación de los datos en diferentes formatos, acceder a 
+datos por separado (año, día, mes...).*/
 
 let diaActual = new Date().toString();
 
@@ -37,6 +39,38 @@ map1.set("a", 44);//Modificar dato
 map1.delete("b");//Borrar dato
 //El objeto Map() no posee un método que reordene sus pares.
 
+/*WeakMap, colección de datos por par donde las keys pueden ser objetos o
+symbols no registrados*/
+
+const wm1 = new WeakMap();//Crear objeto WeakMap
+const wm2 = new WeakMap();
+const wm3 = new WeakMap();
+const o1 = {};//Crear keys
+const o2 = function () {};
+const o3 = window;
+
+wm1.set(o1, 37);//Añadir values a las keys
+wm1.set(o2, "azerty");
+wm2.set(o1, o2); //Cualquier valor, incluidos objetos y funciones
+wm2.set(o2, undefined);
+wm2.set(wm1, wm2); //Otro WeakMap puede ser key
+
+wm1.get(o2); // "azerty"
+wm2.get(o2); // undefined, ya que ese valor recibió
+wm2.get(o3); // undefined, ya que no existe key para o3 en wm2
+
+wm1.has(o2); // true
+wm2.has(o2); // true (unque el valor mismo sea 'undefined')
+wm2.has(o3); // false
+
+wm3.set(o1, 37);
+wm3.get(o1); // 37
+
+wm1.has(o1); // true
+wm1.delete(o1);
+wm1.has(o1); // false
+//No se pueden reordenar o mutar los pares en WeakMaps
+
 /*Set, colección de datos únicos, primitivos u objetos*/
 
 const mySet1 = new Set();
@@ -47,9 +81,48 @@ mySet1.add(5); // Set(2) { 1, 5 }, los datos son únicos. No se repíten.
 mySet1.add("some text");
 const o = { a: 1, b: 2 };
 mySet1.add(o);
-//Los datos en el objeto creado no pueden ser actualizados o reordenarse su posición.
+/*Los datos en el objeto creado no pueden ser actualizados o reordenarse 
+su posición.*/
 mySet1.add({ a: 1, b: 2 }); // o hace referencia a un objeto diferente.
 mySet1.delete(5);//Borrar dato
 
-/*Weakset, colección de datos tipo objeto y Symbol*/
+/*WeakSet, esta colección solo permite datos de tipo objeto y Symbol*/
 
+const ws = new WeakSet();
+const foo = {};
+const bar = {};
+
+ws.add(foo);//Añadir dato
+ws.add(bar);
+
+ws.has(foo); //true
+ws.has(bar); //true
+
+ws.delete(foo); //Eliminar dato
+ws.has(foo); //false
+ws.has(bar); //true
+/*Esta estructura solo permite guardar objetos y eliminarlos cuando se les deja 
+de hacer referencia en el código*/
+
+/*JSON*/
+
+/*JSON es un objeto utilizado para tranferir data entre diferentes ambientes 
+incluso lenguajes, sus métodos son estático lo que permite únicamente su parseo*/
+
+/*
+{
+  "browsers": {
+    "firefox": {
+      "name": "Firefox",
+      "pref_url": "about:config",
+      "releases": {
+        "1": {
+          "release_date": "2004-11-09",
+          "status": "retired",
+          "engine": "Gecko",
+          "engine_version": "1.7"
+        }
+      }
+    }
+  }
+}*/
