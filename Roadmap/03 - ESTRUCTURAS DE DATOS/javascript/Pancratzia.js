@@ -53,7 +53,7 @@ mapStructure.get("cinco"); //Busqueda
 mapStructure.set("cinco", 5); //Actualización
 mapStructure.clear(); //Borrado - Elimina todos los elementos
 
-//Objects 
+//Objects
 
 let objectStructure = {
   nombre: "Carmen",
@@ -69,3 +69,140 @@ objectStructure["edad"] = 26; //Actualización
 let edad = objectStructure["edad"]; //Busqueda
 
 /***ESTRUCTURAS DE DATOS EN JS - PT2***/
+/**ACTIVIDAD EXTRA**/
+
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let contactos = [];
+
+function mostrarMenu() {
+  console.log("\nAgenda de Contactos\n");
+  console.log("1. Mostrar Contactos");
+  console.log("2. Buscar Contacto");
+  console.log("3. Agregar Contacto");
+  console.log("4. Actualizar Contacto");
+  console.log("5. Eliminar Contacto");
+  console.log("6. Salir\n");
+}
+
+function mostrarContactos() {
+  console.log("\nLista de Contactos:");
+  contactos.forEach((contacto) =>
+    console.log(`${contacto.nombre}: ${contacto.telefono}`)
+  );
+  volverAlMenu();
+}
+
+function buscarContacto(nombre) {
+  const contactoEncontrado = contactos.find(
+    (contacto) => contacto.nombre === nombre
+  );
+  if (contactoEncontrado) {
+    console.log(
+      `\n${contactoEncontrado.nombre}: ${contactoEncontrado.telefono}`
+    );
+  } else {
+    console.log(`\nContacto "${nombre}" no encontrado.`);
+  }
+  volverAlMenu();
+}
+
+function agregarContacto(nombre, telefono) {
+  contactos.push({ nombre, telefono });
+  console.log(`\nContacto ${nombre} agregado.`);
+  volverAlMenu();
+}
+
+function actualizarContacto(nombre, nuevoTelefono) {
+  const contactoIndex = contactos.findIndex(
+    (contacto) => contacto.nombre === nombre
+  );
+  if (contactoIndex !== -1) {
+    contactos[contactoIndex].telefono = nuevoTelefono;
+    console.log(`\nContacto ${nombre} actualizado.`);
+  } else {
+    console.log(`\nContacto "${nombre}" no encontrado.`);
+  }
+  volverAlMenu();
+}
+
+function eliminarContacto(nombre) {
+  contactos = contactos.filter((contacto) => contacto.nombre !== nombre);
+  console.log(`\nContacto ${nombre} eliminado.`);
+  volverAlMenu();
+}
+
+function validarTelefono(telefono) {
+  return /^\d{1,11}$/.test(telefono);
+}
+
+function volverAlMenu() {
+  setTimeout(() => {
+    mostrarMenu();
+    rl.question("Seleccione una opción (1-6): ", (opcion) => {
+      ejecutarOperacion(opcion);
+    });
+  }, 1000);
+}
+
+function ejecutarOperacion(opcion) {
+  switch (opcion) {
+    case "1":
+      mostrarContactos();
+      break;
+    case "2":
+      rl.question("Nombre del contacto a buscar: ", (nombre) =>
+        buscarContacto(nombre)
+      );
+      break;
+    case "3":
+      rl.question("Nombre del contacto: ", (nombre) => {
+        rl.question("Número de teléfono: ", (telefono) => {
+          if (validarTelefono(telefono)) {
+            agregarContacto(nombre, telefono);
+          } else {
+            console.log("Número de teléfono no válido.");
+            volverAlMenu();
+          }
+        });
+      });
+      break;
+    case "4":
+      rl.question("Nombre del contacto a actualizar: ", (nombre) => {
+        rl.question("Nuevo número de teléfono: ", (nuevoTelefono) => {
+          if (validarTelefono(nuevoTelefono)) {
+            actualizarContacto(nombre, nuevoTelefono);
+          } else {
+            console.log("Número de teléfono no válido.");
+          }
+        });
+      });
+      break;
+    case "5":
+      rl.question("Nombre del contacto a eliminar: ", (nombre) =>
+        eliminarContacto(nombre)
+      );
+      break;
+    case "6":
+      console.log("Saliendo del programa.");
+      rl.close();
+      break;
+    default:
+      console.log("Opción no válida.");
+      volverAlMenu();
+  }
+}
+
+function iniciarPrograma() {
+  mostrarMenu();
+  rl.question("Seleccione una opción (1-6): ", (opcion) => {
+    ejecutarOperacion(opcion);
+  });
+}
+
+iniciarPrograma();
