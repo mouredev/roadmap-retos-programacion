@@ -46,9 +46,23 @@ typedef struct {
 } t_phone_directory_record;
 
 /*
-Return 0 i inLeft >= inRecord
+Return 1 if inLeft == inRecord
 */
-char isLeftGreaterOrEqualThanRight (
+int isLeftEqualToRight (
+	t_phone_directory_record inLeft,
+	t_phone_directory_record inRight);
+
+/*
+Return 1 if inLeft > inRecord
+*/
+int isLeftGreaterThanRight (
+	t_phone_directory_record inLeft,
+	t_phone_directory_record inRight);
+
+/*
+Return 1 if inLeft >= inRecord
+*/
+int isLeftGreaterOrEqualThanRight (
 	t_phone_directory_record inLeft,
 	t_phone_directory_record inRight);
 
@@ -139,23 +153,228 @@ void main() {
 
 	printf ("Union: First field %u, second field %ld, remains only second field\n", myUnion.firstField, myUnion.secondField);
 
+
+	/*Tests*/
+	t_phone_directory_record a, b, c, d;
+	t_phone_directory *phone_directory = NULL;
+
+	a.name = "aaaa";
+	memcpy (&a.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
+
+	b.name = "bbbb";
+	memcpy (&b.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
+
+	c.name = "cccc";
+	memcpy (&c.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
+
+	d.name = "dddd";
+	memcpy (&d.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
+
+	printf ("isLeftGreaterThanRight %d, isLeftEqualToRight: %d\n", isLeftGreaterThanRight (a, b), isLeftEqualToRight (a,b));
+	printf ("isLeftGreaterOrEqualThanRight %d\n", isLeftGreaterOrEqualThanRight (a,b));
+
+	void printRecord (t_phone_directory_record inRecord) {
+
+		printf ("name : %s, telephone : %.*s\n", inRecord.name, SIZE_OF_TELEPHONE_NUMBER, inRecord.telephone);
+	};
+
+	insertPhoneDirectoryRecord ( &phone_directory, d);
+	insertPhoneDirectoryRecord ( &phone_directory, c);
+	insertPhoneDirectoryRecord ( &phone_directory, b);
+	insertPhoneDirectoryRecord ( &phone_directory, a);
+
+	iteratePhoneDirectory (phone_directory, printRecord);
+
+	printf ("Borrar uno :\n");
+	deletePhoneDirectoryRecord (&phone_directory, a, NULL);
+	printf ("Nueva :\n");
+	iteratePhoneDirectory (phone_directory, printRecord);
+
+	printf ("Borrar todos :\n");
+	deleteAllPhoneDirectory (&phone_directory, NULL);
+	iteratePhoneDirectory (phone_directory, printRecord);
+
 };
 
-char isLeftGreaterOrEqualThanRight (
+int isLeftEqualToRight (
 	t_phone_directory_record inLeft,
 	t_phone_directory_record inRight) {
 	
-	return strcmp (inLeft.name, inRight.name) >= 0 ? 0 : 1;
+	int res = 0;
+
+	if (strcasecmp (inLeft.name, inRight.name) == 0) {
+
+		res = (strncmp (inLeft.telephone, inRight.telephone, SIZE_OF_TELEPHONE_NUMBER) == 0 ? 1 : 0);
+	}
+
+	return res;
+};
+
+int isLeftGreaterThanRight (
+	t_phone_directory_record inLeft,
+	t_phone_directory_record inRight) {
+	
+	const int compareName = strcasecmp (inLeft.name, inRight.name);
+	int res = 0;
+
+
+	if (compareName < 0) {
+		res = 1;
+	}
+	else if (compareName == 0) {
+		res = strncmp (inLeft.telephone, inRight.telephone, SIZE_OF_TELEPHONE_NUMBER) < 0 ? 1 : 0;
+	}
+
+	return res;
+};
+
+int isLeftGreaterOrEqualThanRight (
+	t_phone_directory_record inLeft,
+	t_phone_directory_record inRight) {
+
+	return isLeftGreaterThanRight (inLeft, inRight) || isLeftEqualToRight (inLeft, inRight);
 };
 
 void insertPhoneDirectoryRecord (
 	t_phone_directory** inOutPhoneDirectory, 
 	t_phone_directory_record inPhoneDirectoryRecord) {
 	
-	t_phone_directory* first = malloc (sizeof (t_phone_directory));
+	t_phone_directory *first = *inOutPhoneDirectory;
+	t_phone_directory *current, *new = NULL;
 
-	first-> phoneDirectoryRecord = inPhoneDirectoryRecord;
-	first-> next = NULL;
+	current = first;
+
+	new = malloc (sizeof (t_phone_directory));
+	new-> phoneDirectoryRecord = inPhoneDirectoryRecord;
+	new-> next = NULL;
+
+
+	if (first == NULL) {
+		/* First element in the list*/
+		first = new;
+	}
+	else if (isLeftGreaterOrEqualThanRight (
+			new->phoneDirectoryRecord,
+			first->phoneDirectoryRecord)) {
+		/*new item is the first in an existing list, we add it */
+		new->next = first;
+		first = new;
+	}
+	else {
+		/*
+		Iterate to find the proper position in the list
+		first -> A -> B -> NEW -> NULL
+		*/
+		current = first;
+
+		while (current  != NULL) {
+
+			if (current-> next == NULL) {
+				/* Last one, add new at the end */
+				current-> next = new;
+				break;
+			}
+			else {
+				if (isLeftGreaterOrEqualThanRight (
+					current->phoneDirectoryRecord,
+					new->phoneDirectoryRecord) &&
+				    isLeftGreaterOrEqualThanRight (
+					new->phoneDirectoryRecord,
+					current->next->phoneDirectoryRecord)) {
+						/*
+						Found position, add it and exit loop
+						*/
+						new->next = current->next;
+						current->next = new;
+						break;
+					}
+			};
+			current = current->next;
+		};
+	};
 
 	*inOutPhoneDirectory = first;
+};
+
+void iteratePhoneDirectory(
+	t_phone_directory* inPhoneDirectory,
+	t_callback_record callbackRecord) {
+
+	t_phone_directory *current = inPhoneDirectory;
+
+	if (callbackRecord != NULL) {
+		while (current != NULL) {
+
+			callbackRecord (current->phoneDirectoryRecord);
+			current = current->next;
+
+		};
+	};
+};
+
+
+void deletePhoneDirectoryRecord (
+	t_phone_directory** inOutPhoneDirectory,
+	t_phone_directory_record inPhoneDirectoryRecord,
+	t_callback_record callbackRecord) {
+
+	t_phone_directory *first = *inOutPhoneDirectory;
+	t_phone_directory *current = NULL;
+	t_phone_directory *previous = NULL;
+
+	if (first != NULL && isLeftEqualToRight (first->phoneDirectoryRecord, inPhoneDirectoryRecord)) {
+		/* First one is to be removed */
+		
+		if (callbackRecord != NULL) {
+			callbackRecord (first->phoneDirectoryRecord);
+		};
+
+		current = first;
+		first = first->next;
+		free (current);
+	}
+	else {
+		current = first->next;
+		previous = first;
+
+		while (current != NULL) {
+			/* first -> A -> OLD -> C -> NULL*/
+			if (isLeftEqualToRight (current->phoneDirectoryRecord, inPhoneDirectoryRecord)) {
+	
+				/* Found */
+				if (callbackRecord != NULL) {
+					callbackRecord (current->phoneDirectoryRecord);
+				};
+
+				previous->next = current->next;
+				free (current);
+				break;
+			}
+			previous = current;
+			current = current->next;
+		};
+	};
+
+	*inOutPhoneDirectory = first;
+};
+
+void deleteAllPhoneDirectory (
+	t_phone_directory** inOutPhoneDirectory,
+	t_callback_record callbackRecord) {
+
+	t_phone_directory *current, *previous = NULL;
+
+	current = *inOutPhoneDirectory;
+
+	while (current != NULL) {
+
+		if (callbackRecord != NULL) {
+			callbackRecord (current->phoneDirectoryRecord);
+		};
+		previous = current;
+		current = current->next;
+		free (previous);
+	};
+
+	*inOutPhoneDirectory = current;
 };
