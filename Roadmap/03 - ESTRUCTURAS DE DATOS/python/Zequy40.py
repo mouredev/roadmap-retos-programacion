@@ -62,3 +62,54 @@ mi_diccionario["nombre"] = "Carlos"
  *   (o el número de dígitos que quieras)
  * - También se debe proponer una operación de finalización del programa.
 
+list_peoples = []
+
+
+def is_duplicate(name, lastname):
+  newName = name.strip().capitalize()
+  newLastname = lastname.strip().capitalize()
+  for people in list_peoples:
+    if people["name"] == newName and people["lastname"] == newLastname:
+      return True
+  return False
+
+
+def add_people(name, lastname):
+  newName = name.strip().capitalize()
+  newLastname = lastname.strip().capitalize()
+  phone = phone.strip().capitalize()
+
+  for person in list_peoples:
+    if person['name'] == name and person['lastname'] == lastname and person['phone'] == phone:
+      print(f'El nombre {name} y el apellido {lastname} ya existen')
+      return
+
+  list_peoples.append({'name': newName, 'lastname': newLastname, 'phone': phone})
+  print(f'El nombre {newName} y el apellido {newLastname} se han registrado.')
+
+
+while True:
+  name = input('Ingrese el nombre: ').strip()
+  lastname = input('Ingrese el apellido: ').strip()
+  phone = input('Ingrese el numero de telefono: ').strip()
+  if is_duplicate(name, lastname, phone):
+    print('El nombre, apellido y telefono ya existen, ingrese otro.')
+  else:
+    add_people(name, lastname, phone)
+
+  next_input = input('Desea ingresar otro nombre y apellido? (s/n): ')
+  if next_input.lower() == 'n':
+    break
+  elif next_input.lower() == 's':
+     wish == input('¿Que desea hacer ahora? Ver (v), actualizar(a), o borrar(b):')
+     if wish.lower() == 'v':
+        show()
+     elif wish.lower() == 'a':
+        
+        
+     
+
+def show(name, lastName, phone):
+ print("Lista de personas:")
+ for person in list_peoples:
+   print(f"Nombre: {person['name']}, Apellido: {person['lastname']}")
