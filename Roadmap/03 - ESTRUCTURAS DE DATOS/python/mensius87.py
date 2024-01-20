@@ -21,8 +21,120 @@ Ejercicio
  */
 """
 
-
-# listas
+# listas: colección ordenada y mutable de elementos
+print("::::::::::::::::::::::::::::::::::::: LISTAS :::::::::::::::::::::::::::::::::::::")
 lista_colores = ["rojo", "verde", "azul", "amarillo", "marrón", "naranja", "blanco", "negro"]
 
-print(type(lista_colores))
+print(f"Lista inicial:\n{lista_colores}\n")
+
+
+# Inserción en listas
+lista_colores.append("violeta")
+
+print(f"Añadido color violeta:\n {lista_colores}\n")
+
+
+# Actualización del nuevo color (cambio de violeta por fucsia).
+lista_colores[-1] = "fucsia"
+
+print(f"Cambiado color violeta por fucsia:\n {lista_colores}\n")
+
+
+# Borrado del color
+lista_colores.remove("fucsia")
+
+print(f"Eliminado color fucsia:\n {lista_colores}\n")
+
+
+# Ordenado alfabético
+lista_colores.sort()
+
+print(f"Lista ordenada:\n {lista_colores}\n\n")
+
+
+
+# Tuplas: colección ordenada e inmutable (no se puede modificar una vez creada ni añadir ni eliminar nada)
+print("::::::::::::::::::::::::::::::::::::: TUPLAS :::::::::::::::::::::::::::::::::::::")
+tupla_paises = ("España", "Portugal", "USA", "Alemania", "Suecia")
+
+print(f"Tupla inicial:\n{tupla_paises}\n")
+
+
+# Ordenar tupla (indirectamente)
+tupla_ordenada = tuple(sorted(tupla_paises))
+
+print(f"Tupla ordenada:\n{tupla_ordenada}\n\n")
+
+
+
+# Conjuntos: colección desordenada y mutable de elementos únicos (no se pueden modificar ni ordenar)
+print("::::::::::::::::::::::::::::::::::::: CONJUNTOS :::::::::::::::::::::::::::::::::::::")
+conjunto_numeros = {1, 2, 3, 4, 5}
+print(f"Conjunto inicial:\n{conjunto_numeros}\n")
+
+conjunto_numeros.add(10)
+print(f"Conjunto con añadido:\n{conjunto_numeros}\n")
+
+conjunto_numeros.remove(2)
+print(f"Conjunto eliminando el nº2:\n{conjunto_numeros}\n\n")
+
+
+
+# Diccionarios: colección desordenada (ordenada a partir de Python 3.7) y mutable de pares clave-valor.
+print("::::::::::::::::::::::::::::::::::::: DICCIONARIOS :::::::::::::::::::::::::::::::::::::")
+diccionario_spa_eng = {"manzana": "apple", "hola": "Hello", "silla": "chair"}
+print(f"Diccionario original:\n {diccionario_spa_eng}\n")
+
+# Añadir un elemento
+diccionario_spa_eng["mundo"] = "word"
+print(f"Diccionario con añadido:\n{diccionario_spa_eng}\n")
+
+# Modificar un elemento
+diccionario_spa_eng["mundo"] = "world"
+print(f"Diccionario con corrección:\n{diccionario_spa_eng}\n")
+
+# Eliminar un elemento
+del diccionario_spa_eng["silla"]
+print(f"Diccionario con elemento eleminado:\n{diccionario_spa_eng}\n")
+
+# Ordenar diccinario
+diccionario_ordenado = dict(sorted(diccionario_spa_eng.items()))
+print(f"Diccionario ordenado:\n{diccionario_ordenado}\n\n")
+
+
+
+print("::::::::::::::::::::::::::::::::::::: EXTRA :::::::::::::::::::::::::::::::::::::")
+
+agenda = {}
+
+
+def anadir_contacto():
+    nombre = input("Introduce el nombre: ")
+    numero = int(input("Introduce el número de 9 cifras: "))
+
+    agenda[nombre] = numero
+
+
+# Creación del menú
+print("""
+
+    ### Agenda Telefónica ###
+    
+    ¿Qué deseas hacer?:
+    
+          [1] - Buscar
+          [2] - Añadir
+          [3] - Modificar
+          [4] - Eliminar
+          [5] - Salir
+""")
+
+opcion_elegida = int(input())
+
+match opcion_elegida:
+    case 2:
+        anadir_contacto()
+
+
+
+
