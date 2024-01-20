@@ -65,51 +65,92 @@ mi_diccionario["nombre"] = "Carlos"
 list_peoples = []
 
 
-def is_duplicate(name, lastname):
-  newName = name.strip().capitalize()
-  newLastname = lastname.strip().capitalize()
-  for people in list_peoples:
-    if people["name"] == newName and people["lastname"] == newLastname:
-      return True
-  return False
+def is_duplicate(name, lastname, phone):
+    newName = name.strip().capitalize()
+    newLastname = lastname.strip().capitalize()
+    newPhone = phone.strip()
+
+    for people in list_peoples:
+        if (
+            people["name"] == newName
+            and people["lastname"] == newLastname
+            and people["phone"] == newPhone
+        ):
+            return True
+    return False
 
 
-def add_people(name, lastname):
-  newName = name.strip().capitalize()
-  newLastname = lastname.strip().capitalize()
-  phone = phone.strip().capitalize()
+def add_people():
+    name = input('Ingrese el nombre: ').strip()
+    lastname = input('Ingrese el apellido: ').strip()
+    phone = input('Ingrese el numero de telefono: ').strip()
 
-  for person in list_peoples:
-    if person['name'] == name and person['lastname'] == lastname and person['phone'] == phone:
-      print(f'El nombre {name} y el apellido {lastname} ya existen')
-      return
+    if not phone.isdigit() or len(phone) > 11:
+        print('Número de teléfono no válido. Debe ser numérico y tener hasta 11 dígitos.')
+        return
 
-  list_peoples.append({'name': newName, 'lastname': newLastname, 'phone': phone})
-  print(f'El nombre {newName} y el apellido {newLastname} se han registrado.')
+    if is_duplicate(name, lastname, phone):
+        print('El nombre, apellido y telefono ya existen, ingrese otro.')
+    else:
+        newName = name.strip().capitalize()
+        newLastname = lastname.strip().capitalize()
+        newPhone = phone.strip()
+
+        list_peoples.append({'name': newName, 'lastname': newLastname, 'phone': newPhone})
+        print(f'El nombre {newName} y el apellido {newLastname} se han registrado.')
+
+
+def show():
+    print("Lista de personas:")
+    for person in list_peoples:
+        print(f"Nombre: {person['name']}, Apellido: {person['lastname']}, Telefono:{person['phone']}")
 
 
 while True:
-  name = input('Ingrese el nombre: ').strip()
-  lastname = input('Ingrese el apellido: ').strip()
-  phone = input('Ingrese el numero de telefono: ').strip()
-  if is_duplicate(name, lastname, phone):
-    print('El nombre, apellido y telefono ya existen, ingrese otro.')
-  else:
-    add_people(name, lastname, phone)
+    add_people()
 
-  next_input = input('Desea ingresar otro nombre y apellido? (s/n): ')
-  if next_input.lower() == 'n':
-    break
-  elif next_input.lower() == 's':
-     wish == input('¿Que desea hacer ahora? Ver (v), actualizar(a), o borrar(b):')
-     if wish.lower() == 'v':
-        show()
-     elif wish.lower() == 'a':
-        
-        
-     
+    next_input = input('Desea ingresar otro nombre y apellido? (s/n): ')
+    if next_input.lower() == 'n':
+        break
+    elif next_input.lower() == 's':
+        wish = input('¿Que desea hacer ahora? Ingresar otro nombre (i), Ver (v), actualizar(a), o borrar(b): ')
 
-def show(name, lastName, phone):
- print("Lista de personas:")
- for person in list_peoples:
-   print(f"Nombre: {person['name']}, Apellido: {person['lastname']}")
+        if wish.lower() == 'v':
+            show()
+        elif wish.lower() == 'i':
+            add_people()
+        elif wish.lower() == 'a':
+            show()
+            input_to_update = input("¿Cuál quieres actualizar?")
+
+            for person in list_peoples:
+               if person['name'] == input_to_update:
+                  print("Seleccione el campo que desea actualizar:")
+                  print("1. Nombre")
+                  print("2. Apellido")
+                  print("3. Teléfono")
+            
+                  choice = input("Ingrese el número del campo a actualizar: ")
+                     if choice == "1":
+                        new_data = input("Ingrese el nuevo nombre: ")
+                        person['name'] = new_data
+                     elif choice == "2":
+                        new_data = input("Ingrese el nuevo apellido: ")
+                        person['lastname'] = new_data
+                     elif choice == "3":
+                        new_data = input("Ingrese el nuevo número de teléfono: ")
+                        person['phone'] = new_data
+                     else:
+                         print("Opción no válida. No se realizó ninguna actualización.")
+
+
+        elif wish.lower() == 'b':
+            show()
+            input_to_delete = input("¿Cuál quieres borrar?")
+            list_peoples = [person for person in list_peoples if person['name'] != input_to_delete]
+        else:
+            print("La opción elegida no es correcta.")
+    else:
+        print("La opción elegida no es correcta.")
+
+
