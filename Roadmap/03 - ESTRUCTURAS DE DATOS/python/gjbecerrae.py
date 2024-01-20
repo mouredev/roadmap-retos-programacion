@@ -1,6 +1,6 @@
 ### Estructuras de datos ###
 
-#listas ---
+#listas ----
 print('\n\nListas --------------------------------------\n ')
 miLista = ['item1', 'item2', 'item3', 'item4', 'item5', 'item0']
 miLista.append('item6')
