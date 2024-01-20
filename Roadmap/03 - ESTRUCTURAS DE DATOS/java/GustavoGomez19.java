@@ -239,33 +239,79 @@ class GustavoGomez192 {
         Scanner name = new Scanner(System.in);
         Scanner number = new Scanner(System.in);
         Scanner option = new Scanner(System.in);
-        List<String> nombreContacto = new ArrayList<>();
-        List<Integer> numContaco = new ArrayList<>();
+        Scanner buscar = new Scanner(System.in);
+        Scanner actualizar = new Scanner(System.in);
+        Scanner actualizarNum = new Scanner(System.in);
+
+        Map<String, Long> agenda = new HashMap<>();
+        // List<Long> numContacto = new ArrayList<>();
         System.out.println("Seleccione una opción: " + "\n" +
+                "-----+-----+-----+-----+" + "\n" +
                 "1. Agregar contacto" + "\n" +
                 "2. Buscar contacto" + "\n" +
                 "3. Actualizar contacto" + "\n" +
                 "4. Borrar contacto" + "\n" +
-                "5. Salir");
+                "5. Salir" + "\n" +
+                "-----+-----+-----+-----+");
 
         int opcion = option.nextInt();
 
-        switch (opcion) {
-            case 1:
-                System.out.println("Ingrese el nombre del contacto: ");
+        while (opcion != 5) {
+            if (opcion == 1) {
+                System.out.print("Ingrese el nombre del contacto: ");
                 String nombre = name.nextLine();
-                nombreContacto.add(nombre);
-
-                break;
-            case 2:
-                // String buscarContacto = nombreContacto.contains(nombre);
-                for (String contacto : nombreContacto) {
-                    if (nombreContacto.contains(contacto)) {
-                        System.out.println("El nombre del contacto es: " + contacto);
-                    }
+                System.out.print("Ingrese el número del contacto: ");
+                Long numero = number.nextLong();
+                agenda.put(nombre, numero);
+                System.out.println("Agenda" + agenda);
+                System.out.println("-----*-----*-----*-----*-----");
+            } else if (opcion == 2) {
+                System.out.print("Ingrese el nombre del contacto a buscar: ");
+                String buscarNombre = buscar.nextLine();
+                Long numberFind = agenda.get(buscarNombre);
+                if (numberFind != null) {
+                    System.out.println("Resultado de la búsqueda: ");
+                    System.out.println("Nombre: " + buscarNombre + "\n" + "Número: " + numberFind);
+                } else {
+                    System.out.println("Resultado de la búsqueda: ");
+                    System.out.println("El nombre ingresado no está en la agenda de contactos.");
                 }
-            default:
-                break;
+                System.out.println();
+            } else if (opcion == 3) {
+                System.out.print("Ingrese el nombre del contacto a actualizar: ");
+                String actualizarContacto = actualizar.nextLine();
+                System.out.print("Ingrese el nuevo núnero: ");
+                Long nuevoNumero = actualizarNum.nextLong();
+                agenda.put(actualizarContacto, nuevoNumero);
+                System.out.println("Contacto actualizado." + actualizarContacto);
+                System.out.println("Agenda" + agenda);
+                System.out.println("-----*-----*-----*-----*-----");
+            } else if (opcion == 4) {
+                System.out.print("Ingrese el nombre del contacto a elimina: ");
+                String eliminarContaco = actualizar.nextLine();
+                agenda.remove(eliminarContaco);
+                System.out.println("Contacto elimina: " + eliminarContaco);
+                System.out.println("Agenda" + agenda);
+                System.out.println("-----*-----*-----*-----*-----");
+            } else if (opcion > 5) {
+                System.out.println("Opción no valida. Intente de nuevo");
+                System.out.println("-----*-----*-----*-----*-----");
+            }
+            System.out.println("Seleccione una opción: " + "\n" +
+                    "-----+-----+-----+-----+" + "\n" +
+                    "1. Agregar contacto" + "\n" +
+                    "2. Buscar contacto" + "\n" +
+                    "3. Actualizar contacto" + "\n" +
+                    "4. Borrar contacto" + "\n" +
+                    "5. Salir" + "\n" +
+                    "-----+-----+-----+-----+");
+
+            opcion = option.nextInt();
+
         }
+        System.out.println("-----*-----*-----*-----*-----");
+        System.out.println("Contactos de la agenda" + "\n" +
+                agenda);
+
     }
 }
