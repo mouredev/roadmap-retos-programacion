@@ -103,37 +103,125 @@ print(f"Diccionario ordenado:\n{diccionario_ordenado}\n\n")
 
 
 
+
 print("::::::::::::::::::::::::::::::::::::: EXTRA :::::::::::::::::::::::::::::::::::::")
 
 agenda = {}
 
 
+def buscar_contacto():
+    contacto_a_buscar = input("Introduce el nombre del contacto a buscar: ")
+
+    if contacto_a_buscar in agenda.keys():
+        print(f"{contacto_a_buscar}: {agenda[contacto_a_buscar]}\n")
+
+    else:
+        print("El contacto no existe, inténtalo de nuevo.")
+        pass
+
+
 def anadir_contacto():
-    nombre = input("Introduce el nombre: ")
+    nombre = input("Introduce el nombre del contacto: ")
     numero = int(input("Introduce el número de 9 cifras: "))
 
-    agenda[nombre] = numero
+    while len(str(numero)) != 9 or numero in agenda.values():
+
+        if len(str(numero)) != 9:
+            numero = int(input("Error. Tiene que tener 9 cifras: "))
+
+        elif numero in agenda.values():
+            numero = int(input(f"Error. El número {numero} ya existe en la agenda: "))
+
+    else:
+        print(f"{nombre} se ha agregado a la agenda correctamente.\n")
+
+        agenda[nombre] = numero
 
 
-# Creación del menú
-print("""
+def modificar_contacto():
+    contacto_a_modificar = input("Introduce el nombre del contacto a modificar: ")
 
-    ### Agenda Telefónica ###
-    
-    ¿Qué deseas hacer?:
-    
-          [1] - Buscar
-          [2] - Añadir
-          [3] - Modificar
-          [4] - Eliminar
-          [5] - Salir
-""")
+    if contacto_a_modificar not in agenda.keys():
+        print("El nombre no existe en la agenda, inténtalo de nuevo.")
+        modificar_contacto()
 
-opcion_elegida = int(input())
+    else:
+        del agenda[contacto_a_modificar]
 
-match opcion_elegida:
-    case 2:
-        anadir_contacto()
+        nombre = input("Introduce el nuevo nombre del contacto: ")
+        numero = int(input("Introduce el nuevo número de 9 cifras: "))
+
+        while len(str(numero)) != 9 or numero in agenda.values():
+
+            if len(str(numero)) != 9:
+                numero = int(input("Error. Tiene que tener 9 cifras: "))
+
+            elif numero in agenda.values():
+                numero = int(input(f"Error. El número {numero} ya existe en la agenda: "))
+
+        agenda[nombre] = numero
+        print(f"{contacto_a_modificar} se ha modificado correctamente.\n")
+
+
+def eliminar_contacto():
+    contacto_a_eliminar = input("Introduce el nombre del contacto a eliminar: ")
+
+    if contacto_a_eliminar in agenda.keys():
+
+        del agenda[contacto_a_eliminar]
+
+        print(f"El contacto {contacto_a_eliminar} se ha eliminado correctamente.\n")
+
+    else:
+        print("El contacto no existe, inténtalo de nuevo.")
+        pass
+
+
+def ver_contactos():
+
+    agenda_ordenada = dict(sorted(agenda.items()))
+
+    for contacto, numero in agenda_ordenada.items():
+        print(f"{contacto}: {numero}")
+
+
+opcion_elegida = 0
+
+while opcion_elegida != 6:
+
+    # Creación del menú y bucle
+    print("""
+
+        ### Agenda Telefónica ###
+
+        ¿Qué deseas hacer?:
+
+              [1] - Buscar
+              [2] - Añadir
+              [3] - Modificar
+              [4] - Eliminar
+              [5] - Ver todos los contactos
+              [6] - Salir
+    """)
+
+    opcion_elegida = int(input())
+
+    match opcion_elegida:
+        case 1:
+            buscar_contacto()
+        case 2:
+            anadir_contacto()
+        case 3:
+            modificar_contacto()
+        case 4:
+            eliminar_contacto()
+        case 5:
+            ver_contactos()
+        case 6:
+            opcion_elegida = 6
+
+
+print("\nGracias por utilizar la agenda. Hasta pronto!!!")
 
 
 
