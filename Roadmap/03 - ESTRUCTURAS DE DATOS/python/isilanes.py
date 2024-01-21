@@ -164,6 +164,8 @@ def extra():
             print(json.dumps(contacts, indent=4))
         elif option == "1":
             contacts = insert_into_contacts(contacts)
+        elif option == "2":
+            search_contacts(contacts)
         else:
             print("Opción desconocida. Ignorando.")
 
@@ -193,29 +195,64 @@ def insert_into_contacts(contacts: dict) -> dict:
             print("De acuerdo, abortamos inserción...")
             return contacts
 
-    tlf = input(f"Introduce el número de teléfono de '{name}': ")
-    while True:
-        try:
-            tlf = int(tlf)
-        except ValueError:
-            tlf = input("Introdujiste un valor no numérico. Por favor, introduce un teléfono válido: ")
-            continue
-
-        if tlf >= 10**MAX_TLF_DIGITS:
-            tlf = input(f"Introdujiste un teléfono con más de {MAX_TLF_DIGITS} dígitos. Por favor, introduce un teléfono válido: ")
-            continue
-
-        break
+    phone = input(f"Introduce el número de teléfono de '{name}': ")
+    while not is_valid_phone(phone):
+        phone = input(f"Introdujiste un teléfono. Por favor, introduce un teléfono númerico y de hasta {MAX_TLF_DIGITS} dígitos: ")
 
     new_id = get_new_id(contacts)
-    print(f"Introduciendo contacto '{name}' con teléfono '{tlf}' con ID = {new_id}")
+    print(f"Introduciendo contacto '{name}' con teléfono '{phone}' con ID = {new_id}")
 
     contacts[new_id] = {
         "name": name,
-        "phone": tlf,
+        "phone": phone,
     }
 
     return contacts
+
+
+def is_valid_phone(phone: str) -> bool:
+    """
+    Given a potential phone number 'phone', return True if it is a valid phone number.
+    Otherwise, return False.
+
+    Args:
+        phone (str):
+            Phone number to check.
+
+    Returns:
+        True if phone valid, False otherwise.
+    """
+    try:
+        phone = int(phone)
+    except ValueError:
+        return False
+
+    if phone >= 10**MAX_TLF_DIGITS:
+        return False
+
+    return True
+
+
+def search_contacts(contacts: dict) -> None:
+    """
+    Given current contacts, ask the user for parameters to search by, and print out
+    the results of the search.
+
+    Args:
+        contacts (dict):
+            The contact directory to search.
+
+    Returns:
+        Nothing.
+    """
+    name = input("Introduce el nombre del contacto a buscar (deja vacío para ignorar): ")
+    phone = input("Introduce el teléfono del contacto a buscar (deja vacío para ignorar): ")
+
+    name = name or None
+    phone = phone if is_valid_phone(phone) else None
+
+    for contact_id in find_contacts(contacts, name=name, phone=phone):
+        print(contacts[contact_id])
 
 
 def get_new_id(contacts: dict) -> int:
@@ -246,6 +283,9 @@ def find_contacts(contacts: dict, name: str | None = None, phone: int | None = N
     Returns:
         List of IDs of contacts matching the filtering criteria.
     """
+    if not contacts:
+        return []
+
     filtered_ids = []
     for contact_id, contact in contacts.items():
         if name is not None and contact["name"] != name:
