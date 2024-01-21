@@ -133,6 +133,46 @@ Do not malloc or free memory related with t_phone_directory* or "next field", us
 */
 void sortPhoneDirectory (t_phone_directory** inPhoneDirectory);
 
+/*
+Menu options
+*/
+typedef enum {E_SEARCH=1, E_SEARCH_ALL=2, E_INSERT=3, E_UPDATE=4, E_DELETE=5, E_EXIT=6, E_WRONG_ACTION} t_action;
+
+/*
+Display wrong action 
+*/
+void displayWrongAction();
+
+/*
+Display main menu
+*/
+t_action displayMainMenu();
+
+/*
+Display search menu
+*/
+void displaySearchMenu(t_phone_directory **phoneDirectory);
+
+/*
+Display search all menu
+*/
+void displaySearchAllMenu(t_phone_directory **phoneDirectory);
+
+/*
+Display insert menu
+*/
+void displayInsertMenu(t_phone_directory **phoneDirectory);
+
+/*
+Display update menu
+*/
+void displayUpadteMenu(t_phone_directory **phoneDirectory);
+
+/*
+Display delete menu
+*/
+void displayDeleteMenu(t_phone_directory **phoneDirectory);
+
 
 void main() {
 
@@ -141,6 +181,8 @@ void main() {
 
 	/* Create a union  */
 	t_union myUnion;
+
+	t_phone_directory *phone_directory = NULL;
 
 	/* Initialize struct */
 	myStruct.firstField = 1;
@@ -154,69 +196,71 @@ void main() {
 
 	printf ("Union: First field %u, second field %ld, remains only second field\n", myUnion.firstField, myUnion.secondField);
 
+	do {
+	} while (displayMainMenu (&phone_directory) != E_EXIT);
+
 
 	/*Tests*/
-	t_phone_directory_record a, b, c, d;
-	t_phone_directory *phone_directory = NULL;
-
-	a.name = "aaaa";
-	memcpy (&a.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
-
-	b.name = "bbbb";
-	memcpy (&b.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
-
-	c.name = "cccc";
-	memcpy (&c.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
-
-	d.name = "dddd";
-	memcpy (&d.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
-
-	printf ("isLeftGreaterThanRight %d, isLeftEqualToRight: %d\n", isLeftGreaterThanRight (a, b), isLeftEqualToRight (a,b));
-	printf ("isLeftGreaterOrEqualThanRight %d\n", isLeftGreaterOrEqualThanRight (a,b));
-
-	void printRecord (t_phone_directory_record inRecord) {
-
-		printf ("name : %s, telephone : %.*s\n", inRecord.name, SIZE_OF_TELEPHONE_NUMBER, inRecord.telephone);
-	};
-
-	insertPhoneDirectoryRecord ( &phone_directory, d);
-	insertPhoneDirectoryRecord ( &phone_directory, c);
-	insertPhoneDirectoryRecord ( &phone_directory, b);
-	insertPhoneDirectoryRecord ( &phone_directory, a);
-
-	iteratePhoneDirectory (phone_directory, printRecord);
-
-	printf ("Update :\n");
-	t_phone_directory_record new = c;
-	new.telephone [0]= '9';
-	updatePhoneDirectoryRecord (&phone_directory, c, new, NULL);
-	iteratePhoneDirectory (phone_directory, printRecord);
-
-	printf ("Ordenar todos :\n");
-	/* unsort manually 
-	bbbb -> aaaa -> cccc
-	*/
-	t_phone_directory *aaaa = phone_directory;
-	t_phone_directory *bbbb = aaaa->next;
-	t_phone_directory *cccc = bbbb->next;
-	phone_directory = bbbb;
-	bbbb->next = aaaa;
-	aaaa->next = cccc;
-	printf ("Antes de ordenar todos :\n");
-	iteratePhoneDirectory (phone_directory, printRecord);
-
-	sortPhoneDirectory (&phone_directory);
-	printf ("Despues de ordenar todos :\n");
-	iteratePhoneDirectory (phone_directory, printRecord);
-
-	printf ("Borrar uno :\n");
-	deletePhoneDirectoryRecord (&phone_directory, a, NULL);
-	printf ("Nueva :\n");
-	iteratePhoneDirectory (phone_directory, printRecord);
-
-	printf ("Borrar todos :\n");
-	deleteAllPhoneDirectory (&phone_directory, NULL);
-	iteratePhoneDirectory (phone_directory, printRecord);
+//	t_phone_directory_record a, b, c, d;
+//
+//	a.name = "aaaa";
+//	memcpy (&a.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
+//
+//	b.name = "bbbb";
+//	memcpy (&b.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
+//
+//	c.name = "cccc";
+//	memcpy (&c.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
+//
+//	d.name = "dddd";
+//	memcpy (&d.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
+//
+//	printf ("isLeftGreaterThanRight %d, isLeftEqualToRight: %d\n", isLeftGreaterThanRight (a, b), isLeftEqualToRight (a,b));
+//	printf ("isLeftGreaterOrEqualThanRight %d\n", isLeftGreaterOrEqualThanRight (a,b));
+//
+//	void printRecord (t_phone_directory_record inRecord) {
+//
+//		printf ("name : %s, telephone : %.*s\n", inRecord.name, SIZE_OF_TELEPHONE_NUMBER, inRecord.telephone);
+//	};
+//
+//	insertPhoneDirectoryRecord ( &phone_directory, d);
+//	insertPhoneDirectoryRecord ( &phone_directory, c);
+//	insertPhoneDirectoryRecord ( &phone_directory, b);
+//	insertPhoneDirectoryRecord ( &phone_directory, a);
+//
+//	iteratePhoneDirectory (phone_directory, printRecord);
+//
+//	printf ("Update :\n");
+//	t_phone_directory_record new = c;
+//	new.telephone [0]= '9';
+//	updatePhoneDirectoryRecord (&phone_directory, c, new, NULL);
+//	iteratePhoneDirectory (phone_directory, printRecord);
+//
+//	printf ("Ordenar todos :\n");
+//	/* unsort manually 
+//	bbbb -> aaaa -> cccc
+//	*/
+//	t_phone_directory *aaaa = phone_directory;
+//	t_phone_directory *bbbb = aaaa->next;
+//	t_phone_directory *cccc = bbbb->next;
+//	phone_directory = bbbb;
+//	bbbb->next = aaaa;
+//	aaaa->next = cccc;
+//	printf ("Antes de ordenar todos :\n");
+//	iteratePhoneDirectory (phone_directory, printRecord);
+//
+//	sortPhoneDirectory (&phone_directory);
+//	printf ("Despues de ordenar todos :\n");
+//	iteratePhoneDirectory (phone_directory, printRecord);
+//
+//	printf ("Borrar uno :\n");
+//	deletePhoneDirectoryRecord (&phone_directory, a, NULL);
+//	printf ("Nueva :\n");
+//	iteratePhoneDirectory (phone_directory, printRecord);
+//
+//	printf ("Borrar todos :\n");
+//	deleteAllPhoneDirectory (&phone_directory, NULL);
+//	iteratePhoneDirectory (phone_directory, printRecord);
 
 
 };
@@ -449,4 +493,75 @@ void sortPhoneDirectory (t_phone_directory** inPhoneDirectory) {
 	deleteAllPhoneDirectory (&old, iterateCallback);
 
 	*inPhoneDirectory = new;
+};
+
+void displayWrongAction() {
+
+	const char* WRONG_ACTION = "Opción incorrecta";
+	printf ("%s\n\n", WRONG_ACTION);
+};
+
+t_action displayMainMenu(t_phone_directory **phoneDirectory) {
+
+	const int MAX_BUFFER = 250;
+	char buffer [MAX_BUFFER];
+	t_action action = E_EXIT;
+
+	printf ("MENU PRINCIPAL:\n");
+	printf ("1. Buscar:\n");
+	printf ("2. Listar todos:\n");
+	printf ("3. Insertar nuevo registro:\n");
+	printf ("4. Actualizar registro:\n");
+	printf ("5. Borrar registro:\n");
+	printf ("6. Salir:\n");
+	printf ("\nEscoja opcion: ");
+
+	fgets (buffer, MAX_BUFFER, stdin);
+	if (sscanf (buffer, "%d\n", (int*)&action) != 1) {
+		displayWrongAction();
+		action = E_WRONG_ACTION;
+	}
+	else {
+		switch (action) {
+
+			case E_SEARCH :
+				displaySearchMenu(phoneDirectory);
+				break;
+			case E_SEARCH_ALL:
+				displaySearchAllMenu(phoneDirectory);
+				break;
+			case E_INSERT:
+				displayInsertMenu(phoneDirectory);
+				break;
+			case E_UPDATE:
+				displayUpadteMenu(phoneDirectory);
+				break;
+			case E_DELETE: 
+				displayDeleteMenu(phoneDirectory);
+				break;
+			case E_EXIT: 
+				break;
+			default:
+				displayWrongAction();
+				action = E_WRONG_ACTION;
+				break;
+		};
+	};
+
+	return action;
+};
+
+void displaySearchMenu(t_phone_directory **phoneDirectory) {
+};
+
+void displaySearchAllMenu(t_phone_directory **phoneDirectory) {
+};
+
+void displayInsertMenu(t_phone_directory **phoneDirectory) {
+};
+
+void displayUpadteMenu(t_phone_directory **phoneDirectory) {
+};
+
+void displayDeleteMenu(t_phone_directory **phoneDirectory) {
 };
