@@ -169,6 +169,8 @@ def extra():
             search_contacts(contacts)
         elif option == "3":
             contacts = update_contact(contacts)
+        elif option == "4":
+            contacts = delete_contact(contacts)
         else:
             print("Opción desconocida. Ignorando.")
 
@@ -253,6 +255,41 @@ def update_contact(contacts: dict) -> dict:
 
     if phone:
         contacts[contact_id]["phone"] = phone
+
+    return contacts
+
+
+def delete_contact(contacts: dict) -> dict:
+    """
+    Given current contacts 'contacts', remove an existing contact and return updated contacts.
+
+    Args:
+        contacts (dict):
+            Current contact dict.
+
+    Returns:
+        A dictionary with updated contacts.
+    """
+    name, phone = prompt_for_search()
+
+    contact_ids = find_contacts(contacts, name=name, phone=phone)
+
+    if not contact_ids:
+        print("Lo sentimos, no se encontró ningún contacto con esos parámetros. Abortando eliminación...")
+        return contacts
+
+    print(f"Encontrados {len(contact_ids)} contacto{'' if len(contact_ids) == 1 else 's'} con esos parámetros")
+    for contact_id in contact_ids:
+        print(contacts[contact_id])
+    res = input("¿Estás seguro de querer borrarlos todos? [y/n]: ")
+
+    if res != "y":
+        print("Abortando eliminación...")
+        return contacts
+
+    for contact_id in contact_ids:
+        print(f"Eliminando contacto con ID = {contact_id}...")
+        del contacts[contact_id]
 
     return contacts
 
