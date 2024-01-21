@@ -60,10 +60,9 @@ public class frannmv {
                     System.exit(0);
                     break;
 
-                /*
-                 * case null:
-                 * System.out.println("Ingrese un numero valido!");
-                 */
+                case null:
+                    System.out.println("Ingrese un numero valido!");
+
             }
         }
     }
