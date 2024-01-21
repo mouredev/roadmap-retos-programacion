@@ -82,6 +82,7 @@ function funcionVariables(){
 console.log(funcionVariables())
 
 
-function fizzBuzz(num1,num2){
-  for(let i = 0; i <= 100; i++) return `${i % 3 ? '' : 'Fizz'}${i % 5 ? '' : 'Buzz'}` || i
+function fizzBuzz(str1,str2){
+  for(let i = 0; i <= 100; i++) console.log(`${i % 3 ? '' : str1}${i % 5 ? '' : str2}` || i)
 }
+fizzBuzz('Fizz', 'Buzz')
