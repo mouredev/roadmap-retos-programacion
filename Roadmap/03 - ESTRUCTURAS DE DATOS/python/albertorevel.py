@@ -1,3 +1,5 @@
+from enum import Enum
+
 # @author Alberto Revel
 
 """
@@ -60,6 +62,11 @@ dictionary1 = {"name": "Alberto", "surname": "Revel", "birthYear": 1992}
 print("""A dictionary contains key-value pairs
  - "dictionary1 = \{'name': 'Alberto', 'surname': 'Revel', 'brithYear': 1992\}' 
       -> """+f"{dictionary1}\n")
+
+dictionary2 = dict(name = "Alberto", surname = "Revel", birthYear = 1992)
+print("""There's other way to create a dictionary
+ - "dictionary2 = dict(name = "Alberto", surname = "Revel", birthYear = 1992) 
+      -> """+f"{dictionary2}\n")
 
 """
 - Utiliza operaciones de inserción, borrado, actualización y ordenación.
@@ -130,17 +137,133 @@ tuple2+=(3,)
 print(f" - We add the element '3' using the addition operator : {tuple2}")
 tuple2+=(8,2)
 print(f" - We add the elements '(8,2)' using the addition operator : {tuple2}")
+tuple2 = tuple(sorted(tuple2))
+print(f" - We sort the tuple by converting it to a list and then converting it to a tuple again : {tuple2}")
 
 
 # PART 2.4 - Matrix
 
-print("\n** 2.3 - Matrix **\n")
+print("\n** 2.4 - Matrix **\n")
 matrix2 = [['X','O','X'], ['X','O',' '], ['O','X','X ']]
 print(f"Being the initial matrix : {matrix2}")
 matrix2.append(['O','O','X'])
-print(f"- We add the elements '['O','O','X']' with append() : {matrix2}")
+print(f" - We add the elements '['O','O','X']' with append() : {matrix2}")
 matrix2.pop()
-print(f"- We remove elements at the end with pop() : {matrix2}")
+print(f" - We remove elements at the end with pop() : {matrix2}")
 matrix2.sort()
-print(f" - We remove all the elements with clear() : {matrix2}")
+print(f" - We sort matrixes with sort() : {matrix2}")
 print("PS: As a matrix is a list of lists, all list operations are allowed")
+
+
+# PART 2.5 - Dictionaries
+
+print("\n** 2.5 - DICTIONARIES **\n")
+
+dictionary3 = {"name": "Alberto", "surname": "Revel", "birthYear": 1992}
+print(f"Being the initial dictionary : {dictionary3}")
+dictionary3.update({"town" : "Barcelona"})
+print(f" - We add elements from another dictionary with update() : {dictionary3}")
+dictionary3["hairColor"]="brown"
+print(f" - We add elements by assigning a value to a inexistent key with 'dictionary3['hairColour']= 'brown'' : {dictionary3}")
+dictionary3 = dict(sorted(dictionary3.items()))
+print(f" - We sort the items by its keys sorting the items with 'dict(sorted(dictionary3.items()))' : {dictionary3}")
+dictionary3.pop("town")
+print(f" - We remove the element by its key with pop() : {dictionary3}")
+dictionary3.popitem()
+print(f" - We remove a random element with popitem() : {dictionary3}")
+dictionary3.clear()
+print(f" - We remove all the elements with clear() : {dictionary3}")
+print("\n\n")
+
+
+
+
+"""
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una agenda de contactos por terminal.
+ * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+ * - Cada contacto debe tener un nombre y un número de teléfono.
+ * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+ *   los datos necesarios para llevarla a cabo.
+ * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+ *   (o el número de dígitos que quieras)
+ * - También se debe proponer una operación de finalización del programa.
+"""
+
+my_contact_book = {}
+min_digits = 1
+max_digits = 11
+
+
+# Menu operations
+def addContact(name, number):
+     validateContact(name, number)
+     addContact(name, number)
+
+
+def searchContact(name):
+     findContact(name)
+
+
+
+# Contact Operations
+def addContact(name, number):
+      my_contact_book[name] = number
+
+def findContact(name):
+      return my_contact_book[name]
+
+def deleteContact(name):
+      return my_contact_book.pop(name)
+
+# Validations
+def validateContact(name, number):
+     if name in my_contact_book:
+            raise ContactAlreadyExistsException 
+     validateNumber(number)
+     validateName(name)
+     
+def validateNumber(number):
+      if type(number) != 'int':
+            raise NumberNoDigitCharsException
+      elif len(number) < min_digits or len(number) > max_digits:
+            raise NumberExtensionException
+      else:
+            pass
+
+def validateName(name):
+      if type(name) != 'str':
+            raise NumberNoDigitCharsException
+      elif len(name.strip()) == 0:
+            raise NameCannotBeVoid
+
+
+# Enums
+class Operations(Enum):
+     EXIT = 0
+     SEARCH = 1
+     ADDITION = 2
+     UPDATE = 3
+     DELETION = 4
+      
+
+# Exceptions
+class ContactAlreadyExistsException(Exception):
+    "The contact already exists, update the contact instead adding it again"
+    pass
+
+class NumberNoDigitCharsException(Exception):
+    "Phone number can only contain digits"
+    pass
+
+class NumberExtensionException(Exception):
+    f"Phone number length has to be between {min_digits} and {max_digits} digits"
+    pass
+
+class NameFormatError(Exception):
+    f"Contact name has no valid type, please check introduced characters"
+    pass
+
+class NameCannotBeVoid(Exception):
+    f"Contact name cannot be empty"
+    pass
