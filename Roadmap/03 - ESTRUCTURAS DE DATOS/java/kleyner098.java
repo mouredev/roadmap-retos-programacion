@@ -251,8 +251,6 @@ public class kleyner098 {
         Scanner sc = new Scanner(System.in);
         String eleccion;
         int numEleccion = 0;
-        String nombreContacto;
-        int telfContacto;
         // String multilinea
         String option = """
                 Introduce el número de la opción que quieres realizar.
