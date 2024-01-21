@@ -127,10 +127,11 @@ void deleteAllPhoneDirectory (
 	t_callback_record callbackRecord);
 
 /*
-Order all record, inOutPhoneDirectory will be updated with pointer to first element
+Sort all record, inOutPhoneDirectory will be updated with pointer to first element
+This function is never needed as all insert, update or delete mantains the phone directory sorted
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
-void orderPhoneDirectory (t_phone_directory** inPhoneDirectory);
+void sortPhoneDirectory (t_phone_directory** inPhoneDirectory);
 
 
 void main() {
@@ -185,6 +186,29 @@ void main() {
 
 	iteratePhoneDirectory (phone_directory, printRecord);
 
+	printf ("Update :\n");
+	t_phone_directory_record new = c;
+	new.telephone [0]= '9';
+	updatePhoneDirectoryRecord (&phone_directory, c, new, NULL);
+	iteratePhoneDirectory (phone_directory, printRecord);
+
+	printf ("Ordenar todos :\n");
+	/* unsort manually 
+	bbbb -> aaaa -> cccc
+	*/
+	t_phone_directory *aaaa = phone_directory;
+	t_phone_directory *bbbb = aaaa->next;
+	t_phone_directory *cccc = bbbb->next;
+	phone_directory = bbbb;
+	bbbb->next = aaaa;
+	aaaa->next = cccc;
+	printf ("Antes de ordenar todos :\n");
+	iteratePhoneDirectory (phone_directory, printRecord);
+
+	sortPhoneDirectory (&phone_directory);
+	printf ("Despues de ordenar todos :\n");
+	iteratePhoneDirectory (phone_directory, printRecord);
+
 	printf ("Borrar uno :\n");
 	deletePhoneDirectoryRecord (&phone_directory, a, NULL);
 	printf ("Nueva :\n");
@@ -193,6 +217,7 @@ void main() {
 	printf ("Borrar todos :\n");
 	deleteAllPhoneDirectory (&phone_directory, NULL);
 	iteratePhoneDirectory (phone_directory, printRecord);
+
 
 };
 
@@ -313,6 +338,33 @@ void iteratePhoneDirectory(
 };
 
 
+void updatePhoneDirectoryRecord (
+	t_phone_directory** inOutPhoneDirectory,
+	t_phone_directory_record OldPhoneDirectoryRecord,
+	t_phone_directory_record NewPhoneDirectoryRecord,
+	t_callback_record callbackOldRecord) {
+	
+
+	int found = 0;
+	void callback_record (t_phone_directory_record inRecord) {
+
+		found = 1;
+
+		if (callbackOldRecord != NULL) {
+			callbackOldRecord (inRecord);
+		};
+	};
+
+	deletePhoneDirectoryRecord (inOutPhoneDirectory, OldPhoneDirectoryRecord, callback_record);
+
+	if (found) {
+
+		insertPhoneDirectoryRecord (inOutPhoneDirectory, NewPhoneDirectoryRecord);
+
+	};
+
+};
+
 void deletePhoneDirectoryRecord (
 	t_phone_directory** inOutPhoneDirectory,
 	t_phone_directory_record inPhoneDirectoryRecord,
@@ -322,39 +374,41 @@ void deletePhoneDirectoryRecord (
 	t_phone_directory *current = NULL;
 	t_phone_directory *previous = NULL;
 
-	if (first != NULL && isLeftEqualToRight (first->phoneDirectoryRecord, inPhoneDirectoryRecord)) {
-		/* First one is to be removed */
-		
-		if (callbackRecord != NULL) {
-			callbackRecord (first->phoneDirectoryRecord);
-		};
-
-		current = first;
-		first = first->next;
-		free (current);
-	}
-	else {
-		current = first->next;
-		previous = first;
-
-		while (current != NULL) {
-			/* first -> A -> OLD -> C -> NULL*/
-			if (isLeftEqualToRight (current->phoneDirectoryRecord, inPhoneDirectoryRecord)) {
+	if (first != NULL) {
+		if (isLeftEqualToRight (first->phoneDirectoryRecord, inPhoneDirectoryRecord)) {
+			/* First one is to be removed */
+			
+			if (callbackRecord != NULL) {
+				callbackRecord (first->phoneDirectoryRecord);
+			};
 	
-				/* Found */
-				if (callbackRecord != NULL) {
-					callbackRecord (current->phoneDirectoryRecord);
-				};
-
-				previous->next = current->next;
-				free (current);
-				break;
-			}
-			previous = current;
-			current = current->next;
+			current = first;
+			first = first->next;
+			free (current);
+		}
+		else {
+			current = first->next;
+			previous = first;
+	
+			while (current != NULL) {
+				/* first -> A -> OLD -> C -> NULL*/
+				if (isLeftEqualToRight (current->phoneDirectoryRecord, inPhoneDirectoryRecord)) {
+		
+					/* Found */
+					if (callbackRecord != NULL) {
+						callbackRecord (current->phoneDirectoryRecord);
+					};
+	
+					previous->next = current->next;
+					free (current);
+					break;
+				}
+				previous = current;
+				current = current->next;
+			};
 		};
-	};
 
+	};
 	*inOutPhoneDirectory = first;
 };
 
@@ -377,4 +431,22 @@ void deleteAllPhoneDirectory (
 	};
 
 	*inOutPhoneDirectory = current;
+};
+
+void sortPhoneDirectory (t_phone_directory** inPhoneDirectory) {
+
+	/* Instead of sorting it will create a new phone diretory as all elements will be sorted */
+
+	t_phone_directory *old = *inPhoneDirectory;
+	t_phone_directory *new = NULL;
+
+	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
+
+		insertPhoneDirectoryRecord (&new, inPhoneDirectoryRecord);
+
+	};
+
+	deleteAllPhoneDirectory (&old, iterateCallback);
+
+	*inPhoneDirectory = new;
 };
