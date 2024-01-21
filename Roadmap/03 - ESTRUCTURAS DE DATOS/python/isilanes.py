@@ -1,5 +1,6 @@
 import json
 
+
 MAX_TLF_DIGITS = 11
 
 
@@ -163,14 +164,16 @@ def extra():
         elif option == "0":
             print(json.dumps(contacts, indent=4))
         elif option == "1":
-            contacts = insert_into_contacts(contacts)
+            contacts = insert_contact(contacts)
         elif option == "2":
             search_contacts(contacts)
+        elif option == "3":
+            contacts = update_contact(contacts)
         else:
             print("Opción desconocida. Ignorando.")
 
 
-def insert_into_contacts(contacts: dict) -> dict:
+def insert_contact(contacts: dict) -> dict:
     """
     Given current contacts 'contacts', insert a new contact and return updated contacts.
 
@@ -204,10 +207,64 @@ def insert_into_contacts(contacts: dict) -> dict:
 
     contacts[new_id] = {
         "name": name,
-        "phone": phone,
+        "phone": int(phone),
     }
 
     return contacts
+
+
+def update_contact(contacts: dict) -> dict:
+    """
+    Given current contacts 'contacts', update an existing contact and return updated contacts.
+
+    Args:
+        contacts (dict):
+            Current contact dict.
+
+    Returns:
+        A dictionary with updated contacts.
+    """
+    name, phone = prompt_for_search()
+
+    contact_ids = find_contacts(contacts, name=name, phone=phone)
+
+    if not contact_ids:
+        print("Lo sentimos, no hay ningún contacto con esos datos. Abortando actualización...")
+        return contacts
+    elif len(contact_ids) > 1:
+        print("Parece que hay más de un contacto con esos datos:")
+        for contact_id in contact_ids:
+            print(contacts[contact_id])
+        print("Por favor, repite la búsqueda con parámetros más estrictos.")
+        return contacts
+
+    contact_id = contact_ids[0]
+    print(f"Modificando el contacto {contacts[contact_id]}")
+    name = input(f"Introduce el nuevo nombre para el contacto con ID = {contact_id} (deja vacío para ignorar): ")
+    phone = input(f"Introduce el nuevo teléfono para el contacto con ID = {contact_id} (deja vacío para ignorar): ")
+    phone = int(phone) if is_valid_phone(phone) else None
+
+    if not name and not phone:
+        print("No solicitaste ningún cambio. Abortanco actualización...")
+        return contacts
+
+    if name:
+        contacts[contact_id]["name"] = name
+
+    if phone:
+        contacts[contact_id]["phone"] = phone
+
+    return contacts
+
+
+def prompt_for_search() -> tuple[str | None, int | None]:
+    name = input("Introduce el nombre del contacto a buscar (deja vacío para ignorar): ")
+    phone = input("Introduce el teléfono del contacto a buscar (deja vacío para ignorar): ")
+
+    name = name or None
+    phone = int(phone) if is_valid_phone(phone) else None
+
+    return name, phone
 
 
 def is_valid_phone(phone: str) -> bool:
@@ -245,11 +302,7 @@ def search_contacts(contacts: dict) -> None:
     Returns:
         Nothing.
     """
-    name = input("Introduce el nombre del contacto a buscar (deja vacío para ignorar): ")
-    phone = input("Introduce el teléfono del contacto a buscar (deja vacío para ignorar): ")
-
-    name = name or None
-    phone = phone if is_valid_phone(phone) else None
+    name, phone = prompt_for_search()
 
     for contact_id in find_contacts(contacts, name=name, phone=phone):
         print(contacts[contact_id])
