@@ -84,14 +84,14 @@ fn ejercicio_extra(cadena_uno: String, cadena_dos: String) -> i32 {
     for i in 1..100 {
         if i % 3 == 0 {
             println!("{}", cadena_uno);
-        }
-        if i % 5 == 0 {
+        } else if i % 5 == 0 {
             println!("{}", cadena_dos);
-        }
-        if i % 3 == 0 && i % 5 == 0 {
+        } else if i % 3 == 0 && i % 5 == 0 {
             println!("{}{}", cadena_uno, cadena_dos);
+        } else if i % 3 != 0 && i % 5 != 0 {
+            contador += 1;
+            println!("{}", i);
         }
-        contador += 1;
     }
     println!("El contador vale: {}", contador);
     return contador;
