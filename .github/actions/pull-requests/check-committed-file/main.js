@@ -6,9 +6,11 @@ import { getChallengeFolder, getProgrammingLanguageExtension, wrapperChallengesF
 const author = getInput('author')
 const committedFile = getInput('committed-file')
 const title = getInput('title')
+const user = getInput('user')
 debug(`'author' (input): ${author}`)
 debug(`'committed-file' (input): ${committedFile}`)
 debug(`'title' (input): ${title}`)
+debug(`'user' (input): ${user}`)
 
 // Required data
 const titleProps = {
