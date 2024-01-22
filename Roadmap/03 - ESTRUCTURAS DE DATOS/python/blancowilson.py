@@ -87,6 +87,13 @@ for k, v in knights.items():
 
 from tkinter import *
 from tkinter import ttk
+contacts =[ {
+    'name': 'John',
+    'last_name': 'Doe',
+    'phone': '123-456-7890',
+    'email': 'john.doe@example.com'
+}]
+
 
 root = Tk()
 root.title("Agenda")
@@ -132,9 +139,22 @@ trvContacts.heading('mail',text='e-Mail',anchor=CENTER)
 btnDelete = Button(frame, text='Eliminar', command=lambda:delte_contact)
 btnDelete.grid(column=1, row=4)
 btnAdd = Button(frame, text='Agregar', command=lambda:add_contact)
-btnAdd.grid(column=3, row=4)
+btnAdd.grid(column=2, row=4)
 btnModify = Button(frame, text='Eliminar', command=lambda:modify_contact)
-btnModify.grid(column=5, row=4)
+btnModify.grid(column=3, row=4)
+
+def empty_table():
+    rows = trvContacts.get_children()
+    for row in rows:
+        trvContacts.delete(row)
+
+def fill_table():
+    empty_table()
+    for index,row in enumerate(contacts):
+        print(index)
+        trvContacts.insert('', END,index,text=index,values=tuple(row.values()) )
+
+
 
 def delte_contact():
     pass
@@ -144,6 +164,8 @@ def add_contact():
 
 def modify_contact():
     pass
+
+fill_table()
 
 root.mainloop()
 
