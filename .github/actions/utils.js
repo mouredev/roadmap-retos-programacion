@@ -3,7 +3,7 @@ const path = require('node:path')
 
 const wrapperChallengesFolder = 'Roadmap'
 const excludeExtensions = ['.md', '.json']
-const roadmapPath = path.resolve('..', '..', wrapperChallengesFolder)
+const roadmapPath = path.resolve(wrapperChallengesFolder)
 
 // Helpers
 /**
