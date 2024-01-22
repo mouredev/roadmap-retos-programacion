@@ -1,0 +1,68 @@
+name: 'Check pull request'
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+    paths:
+      - 'Roadmap/**'
+      - '!Roadmap/**/*.md'
+
+jobs:
+  check-title:
+    name: Check title of the pull request
+    runs-on: ubuntu-latest
+    outputs:
+      challenge: ${{ steps.check-title.outputs.challenge }}
+      programming-language: ${{ steps.check-title.outputs.programming-language }}
+    steps:
+      - name: Clone repository to virtual machine
+        uses: actions/checkout@v4
+      - name: Check title
+        id: check-title
+        uses: ./.github/actions/pull-requests/check-title
+        with:
+          title: ${{ github.event.pull_request.title }}
+
+  get-changed-files:
+    name: Get changed and modified files of the pull request
+    runs-on: ubuntu-latest
+    outputs:
+      changed-and-modified-files: ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
+    steps:
+      - name: Clone repository to virtual machine
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed and modified files
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+
+  check-changed-and-modified-files:
+    needs: [get-changed-files]
+    name: Check changed and modified files of the pull request
+    runs-on: ubuntu-latest
+    outputs:
+      changed-or-modified-file: ${{ steps.changed-files.outputs.changed-or-modified-file }}
+    steps:
+      - name: Clone repository to virtual machine
+        uses: actions/checkout@v4
+      - name: Check changed and modified files
+        id: changed-files
+        uses: ./.github/actions/pull-requests/check-changed-and-modified-files
+        with:
+          changed-and-modified-files: ${{ needs.get-changed-files.outputs.changed-and-modified-files }}
+
+  check-changed-or-modified-file:
+    needs: [check-title, check-changed-and-modified-files]
+    name: Check the unique changed or modified file of the pull request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository to virtual machine
+        uses: actions/checkout@v4
+      - name: Check the unique changed or modified file
+        uses: ./.github/actions/pull-requests/check-changed-or-modified-file
+        with:
+          author: ${{ github.event.pull_request.user.name }}
+          challenge: ${{ needs.check-title.outputs.challenge }}
+          changed-or-modified-file: ${{ needs.check-changed-and-modified-files.outputs.changed-or-modified-file }}
+          programming-language: ${{ needs.check-title.outputs.programming-language }}

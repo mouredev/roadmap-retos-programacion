@@ -1,0 +1,21 @@
+author: 'hozlucas28'
+name: 'Check changed or modified file of a pull request'
+description: 'Check if changed or modified file of a pull request is valid'
+
+runs:
+  using: 'node20'
+  main: 'main.js'
+
+inputs:
+  author:
+    description: 'Name of the user who created the pull request'
+    required: true
+  challenge:
+    description: 'Challenge number of the pull request title'
+    required: true
+  changed-or-modified-file:
+    description: 'Changed or modified file of the pull request'
+    required: true
+  programming-language:
+    description: 'Programming language name of the pull request title'
+    required: true
