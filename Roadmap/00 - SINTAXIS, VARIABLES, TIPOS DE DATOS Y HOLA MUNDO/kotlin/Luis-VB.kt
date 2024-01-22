@@ -22,7 +22,11 @@ fun main() {
 }
 
 // Imprimir por consola hola kotlin
-fun main() {
+fun main2() {
     val kotlin = "!Hola, Kotlin :)¡"
     println(kotlin)
 }
+
+println(fun main() {
+
+})
