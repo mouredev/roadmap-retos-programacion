@@ -37,6 +37,6 @@ condicion = False
 
 # imprimir en consola
 
-print(f'hola mundo,{edad} ') # para imprimir varias lineas de codigo
+print(f'hola mundo con python') # para imprimir varias lineas de codigo
 
 
