@@ -35,14 +35,16 @@ typedef union {
 	long secondField;
 } t_union;
 
-#define SIZE_OF_TELEPHONE_NUMBER 11
+#define MAX_SIZE_OF_TELEPHONE_NUMBER 11
+
+#define MAX_BUFFER 250
 
 /*
 Define a phone directory record
 */
 typedef struct {
-	const char* name;
-	char telephone [SIZE_OF_TELEPHONE_NUMBER];
+	char* name;
+	char* telephone;
 } t_phone_directory_record;
 
 /*
@@ -65,6 +67,11 @@ Return 1 if inLeft >= inRecord
 int isLeftGreaterOrEqualThanRight (
 	t_phone_directory_record inLeft,
 	t_phone_directory_record inRight);
+
+/*
+Return 1 if inLeft >= inRecord
+*/
+void freeResources (t_phone_directory_record inPhoneDirectoryRecord);
 
 /*
 Define a phone directory list
@@ -199,28 +206,30 @@ void main() {
 	do {
 	} while (displayMainMenu (&phone_directory) != E_EXIT);
 
+	deleteAllPhoneDirectory (&phone_directory, freeResources);
+
 
 	/*Tests*/
 //	t_phone_directory_record a, b, c, d;
 //
 //	a.name = "aaaa";
-//	memcpy (&a.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
+//	a.telephone = "34669587172";
 //
 //	b.name = "bbbb";
-//	memcpy (&b.telephone, "34669587172", SIZE_OF_TELEPHONE_NUMBER);
+//	b.telephone = "33669587172";
 //
 //	c.name = "cccc";
-//	memcpy (&c.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
+//	c.telephone = "34669587173";
 //
 //	d.name = "dddd";
-//	memcpy (&d.telephone, "34669587173", SIZE_OF_TELEPHONE_NUMBER);
+//	d.telephone = "34669587173";
 //
 //	printf ("isLeftGreaterThanRight %d, isLeftEqualToRight: %d\n", isLeftGreaterThanRight (a, b), isLeftEqualToRight (a,b));
 //	printf ("isLeftGreaterOrEqualThanRight %d\n", isLeftGreaterOrEqualThanRight (a,b));
 //
 //	void printRecord (t_phone_directory_record inRecord) {
 //
-//		printf ("name : %s, telephone : %.*s\n", inRecord.name, SIZE_OF_TELEPHONE_NUMBER, inRecord.telephone);
+//		printf ("name : %s, telephone : %s\n", inRecord.name, inRecord.telephone);
 //	};
 //
 //	insertPhoneDirectoryRecord ( &phone_directory, d);
@@ -273,7 +282,7 @@ int isLeftEqualToRight (
 
 	if (strcasecmp (inLeft.name, inRight.name) == 0) {
 
-		res = (strncmp (inLeft.telephone, inRight.telephone, SIZE_OF_TELEPHONE_NUMBER) == 0 ? 1 : 0);
+		res = (strcmp (inLeft.telephone, inRight.telephone) == 0 ? 1 : 0);
 	}
 
 	return res;
@@ -291,7 +300,7 @@ int isLeftGreaterThanRight (
 		res = 1;
 	}
 	else if (compareName == 0) {
-		res = strncmp (inLeft.telephone, inRight.telephone, SIZE_OF_TELEPHONE_NUMBER) < 0 ? 1 : 0;
+		res = strcmp (inLeft.telephone, inRight.telephone) < 0 ? 1 : 0;
 	}
 
 	return res;
@@ -302,6 +311,11 @@ int isLeftGreaterOrEqualThanRight (
 	t_phone_directory_record inRight) {
 
 	return isLeftGreaterThanRight (inLeft, inRight) || isLeftEqualToRight (inLeft, inRight);
+};
+
+void freeResources (t_phone_directory_record inPhoneDirectoryRecord) {
+	free (inPhoneDirectoryRecord.name);
+	free (inPhoneDirectoryRecord.telephone);
 };
 
 void insertPhoneDirectoryRecord (
@@ -503,7 +517,6 @@ void displayWrongAction() {
 
 t_action displayMainMenu(t_phone_directory **phoneDirectory) {
 
-	const int MAX_BUFFER = 250;
 	char buffer [MAX_BUFFER];
 	t_action action = E_EXIT;
 
@@ -555,9 +568,51 @@ void displaySearchMenu(t_phone_directory **phoneDirectory) {
 };
 
 void displaySearchAllMenu(t_phone_directory **phoneDirectory) {
+
+	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
+
+		printf("\nNombre: %s Teléfono : %s", inPhoneDirectoryRecord.name, inPhoneDirectoryRecord.telephone);
+	};
+
+	iteratePhoneDirectory(*phoneDirectory, iterateCallback);
+	printf("\n");
+
 };
 
 void displayInsertMenu(t_phone_directory **phoneDirectory) {
+
+	char buffer [MAX_BUFFER];
+	t_phone_directory_record phoneRecord;
+	phoneRecord.name = NULL;
+	phoneRecord.telephone = NULL;
+	int ok=0;
+
+	printf("\nNombre : ");
+	fgets (buffer, MAX_BUFFER, stdin);
+	phoneRecord.name = malloc (strlen (buffer));
+	strcpy (phoneRecord.name, buffer);
+
+	printf("Telefono (máximo 11 dígitos) : ");
+	fgets (buffer, MAX_BUFFER, stdin);
+	if ( (strlen(buffer) -1) > MAX_SIZE_OF_TELEPHONE_NUMBER || strspn(buffer, "0123456789") != (strlen(buffer)-1) ) {
+		printf ("Wrong number\n");
+		ok=0;
+	}
+	else
+	{
+		ok=1;
+		phoneRecord.telephone = malloc (strlen (buffer));
+		strcpy (phoneRecord.telephone, buffer);
+	}
+
+	if (!ok) {
+		free (phoneRecord.name);
+		free (phoneRecord.telephone);
+	}
+	else {
+		printf ("OK\n");
+		insertPhoneDirectoryRecord (phoneDirectory, phoneRecord);
+	}
 };
 
 void displayUpadteMenu(t_phone_directory **phoneDirectory) {
