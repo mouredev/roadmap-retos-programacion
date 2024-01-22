@@ -60,7 +60,7 @@ print("\n** 1.5 - DICTIONARIES **\n")
 
 dictionary1 = {"name": "Alberto", "surname": "Revel", "birthYear": 1992}
 print("""A dictionary contains key-value pairs
- - "dictionary1 = \{'name': 'Alberto', 'surname': 'Revel', 'brithYear': 1992\}' 
+ - "dictionary1 = {'name': 'Alberto', 'surname': 'Revel', 'brithYear': 1992}' 
       -> """+f"{dictionary1}\n")
 
 dictionary2 = dict(name = "Alberto", surname = "Revel", birthYear = 1992)
@@ -195,48 +195,152 @@ min_digits = 1
 max_digits = 11
 
 
+# Main Menu
+
+def main_program():
+     print("\n--> Welcome to the contacts book v3 <--")
+     selected_op = 1
+     while selected_op > 0:
+          selected_op = query_user_input()
+          perform_operation(selected_op)
+     print("\n--> Ending program, See you soon! <--\n")
+
+
+def query_user_input():
+      selected_op = -1
+      try:
+            selected_op =  int(input("""\nPlease, try an operation by typying the operation number: 
+                  - 0: Exit
+                  - 1: Search a contact
+                  - 2: Add a contact
+                  - 3: Update a contact
+                  - 4: Delete a contact\n"""))
+      except ValueError: 
+            print("Please, select a valid option")
+            selected_op = query_user_input()
+      return selected_op
+
+def query_contact_name():
+     contact_name = str(input("\nPlease, enter the name of the contact: "))
+     
+     try:
+        validate_name(contact_name)
+     except Exception as e: 
+        print("ERROR" + str(e))
+
+     return contact_name
+
+def query_contact_number():
+     contact_number = str(input("\nPlease, enter the number of the contact: "))
+     
+     try:
+        contact_number = convert_str_to_int(contact_number)
+        validate_number(contact_number)
+        return contact_number
+     except Exception as e: 
+        print(e.args)        
+
+def perform_operation(selected_op):
+     match selected_op:
+          case Operations.SEARCH.value:
+               search_operation()
+          case Operations.ADDITION.value:
+               add_operation()
+          case Operations.UPDATE.value:
+               update_operation()
+          case Operations.DELETION.value:
+               delete_operation()
+
+
+def search_operation():
+     contact_name = query_contact_name()
+     contact_number = search_contact(contact_name) 
+             
+     print(f"Seached name: {contact_name},{contact_number}")
+
+
+     if contact_number != None and len(str(contact_number)) > 0:
+          print(f"\nContact found -> {contact_name}: {contact_number}")  
+     else:
+          print(f"\nThere's no contact in address book with name: {contact_name}")    
+
+     print("\n")
+
+def add_operation():
+     contact_name = query_contact_name()
+     contact_number = query_contact_number()
+     
+     add_contact(contact_name, contact_number)
+
+     print("\nContact added\n")
+
+def update_operation():
+     contact_name = query_contact_name()
+
+     contact_number = query_contact_number()
+     add_contact(contact_name, contact_number)
+
+     print("\nContact added\n")
+
+def delete_operation():
+     pass
+
 # Menu operations
-def addContact(name, number):
-     validateContact(name, number)
-     addContact(name, number)
+
+def search_contact(name):
+     return find_contact(name)
+     
+def add_contact(name, number):
+     validate_contact_addition(name, number)
+     set_contact(name, number)
 
 
-def searchContact(name):
-     findContact(name)
-
+def update_contact(name, number):
+     old_contact = find_contact(name)
+     print("OLD CONTACT" + str(old_contact))
 
 
 # Contact Operations
-def addContact(name, number):
+def set_contact(name, number):
       my_contact_book[name] = number
 
-def findContact(name):
+def find_contact(name):
+      print(f"Getting {name}")
+      print(my_contact_book)
+      print(my_contact_book[name])
       return my_contact_book[name]
 
-def deleteContact(name):
+def delete_contact(name):
       return my_contact_book.pop(name)
 
 # Validations
-def validateContact(name, number):
+def validate_contact_addition(name, number):
      if name in my_contact_book:
             raise ContactAlreadyExistsException 
-     validateNumber(number)
-     validateName(name)
+     validate_number(number)
+     validate_name(name)
      
-def validateNumber(number):
-      if type(number) != 'int':
+def validate_number(number):
+      if not(isinstance(number,int)):
             raise NumberNoDigitCharsException
-      elif len(number) < min_digits or len(number) > max_digits:
+      elif len(str(number)) < min_digits or len(str(number)) > max_digits:
             raise NumberExtensionException
       else:
             pass
 
-def validateName(name):
-      if type(name) != 'str':
+def validate_name(name):
+      
+      if not(isinstance(name,str)):
             raise NumberNoDigitCharsException
       elif len(name.strip()) == 0:
             raise NameCannotBeVoid
 
+# Utils
+def convert_str_to_int(str_from):
+     try: 
+        return int(str_from)
+     except:
+        return str_from
 
 # Enums
 class Operations(Enum):
@@ -267,3 +371,6 @@ class NameFormatError(Exception):
 class NameCannotBeVoid(Exception):
     f"Contact name cannot be empty"
     pass
+
+
+main_program()
