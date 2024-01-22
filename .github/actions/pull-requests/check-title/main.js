@@ -12,7 +12,7 @@ debug(`Available challenge numbers: ${challenges}`)
 debug(`Available names of programming languages: ${languageNames}`)
 
 const challengesJoined = challenges.join('|')
-const languageNamesJoined = languageNames.join('|')
+const languageNamesJoined = languageNames.join('|').replaceAll('+', '\\+')
 
 // Regular expressions
 const challengeRegex = new RegExp(`#(${challengesJoined})`)
