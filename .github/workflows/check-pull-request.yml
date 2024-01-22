@@ -32,7 +32,7 @@ jobs:
       - name: Clone repository to virtual machine
         uses: actions/checkout@v4
         with:
-            ref: ${{ github.event.pull_request.base.ref }}
+          ref: ${{ github.event.pull_request.base.ref }}
       - name: Check title of the pull request
         uses: ./.github/actions/pull-requests/check-title
         with:
@@ -48,7 +48,7 @@ jobs:
       - name: Clone repository to virtual machine
         uses: actions/checkout@v4
         with:
-            ref: ${{ github.event.pull_request.base.ref }}
+          ref: ${{ github.event.pull_request.base.ref }}
       - name: Check committed files of the pull request
         id: changed-files
         uses: ./.github/actions/pull-requests/check-committed-files
@@ -63,12 +63,10 @@ jobs:
       - name: Clone repository to virtual machine
         uses: actions/checkout@v4
         with:
-            ref: ${{ github.event.pull_request.base.ref }}
+          ref: ${{ github.event.pull_request.base.ref }}
       - name: Check committed file of the pull request
         uses: ./.github/actions/pull-requests/check-committed-file
         with:
-          log01: ${{ github.event.pull_request }}
-          log02: ${{ github.event.pull_request.user }}
           author: ${{ github.event.pull_request.user.name }}
           committed-file: ${{ needs.check-committed-files.outputs.committed-file }}
           title: ${{ github.event.pull_request.title }}

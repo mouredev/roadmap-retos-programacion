@@ -10,25 +10,25 @@ debug(`'author' (input): ${author}`)
 debug(`'committed-file' (input): ${committedFile}`)
 debug(`'title' (input): ${title}`)
 
-const log01 = getInput('log01')
-const log02 = getInput('log02')
-debug(`'log01' (input): ${log01}`)
-debug(`'log02' (input): ${log02}`)
-console.log(log01)
-console.log(log02)
-
 // Required data
 const titleProps = {
 	challenge: title.slice(1, 3),
 	language: title.slice(6).toLowerCase(),
 }
+debug(`Title properties: ${JSON.stringify(titleProps)}`)
 
 const challengeFolder = getChallengeFolder(titleProps.challenge)
 const committedFileProps = path.parse(committedFile)
+committedFileProps.dir = path.normalize(committedFileProps.dir)
+debug(`Folder name of the programming language: ${challengeFolder}`)
+debug(`Committed file properties: ${JSON.stringify(committedFileProps)}`)
 
 // Check if directory is valid
 const expectedDirectory = path.join(wrapperChallengesFolder, challengeFolder, titleProps.language)
-const isValidDirectory = path.normalize(committedFileProps.dir) === expectedDirectory
+const isValidDirectory = committedFileProps.dir === expectedDirectory
+debug(`Expected directory: ${expectedDirectory}`)
+debug(`Is valid directory? ${isValidDirectory}`)
+
 if (!isValidDirectory) {
 	setFailed(
 		"Directory of committed file doesn't match with the challenge and programming language of the pull request title. " +
@@ -40,6 +40,8 @@ if (!isValidDirectory) {
 
 // Check if file name is valid
 const isValidFileName = committedFileProps.name === author
+debug(`Is valid file name? ${isValidFileName}`)
+
 if (!isValidFileName) {
 	setFailed(
 		"File name of committed file doesn't match with the author name. " +
@@ -52,6 +54,9 @@ if (!isValidFileName) {
 // Check if file extension is valid
 const expectedFileExtension = getProgrammingLanguageExtension(titleProps.language)
 const isValidFileExtension = committedFileProps.ext === expectedFileExtension
+debug(`Expected file extension: ${expectedFileExtension}`)
+debug(`Is valid file extension? ${isValidFileExtension}`)
+
 if (!isValidFileExtension) {
 	setFailed(
 		"File extension of committed file doesn't match with the programming language name of the pull request title. " +
