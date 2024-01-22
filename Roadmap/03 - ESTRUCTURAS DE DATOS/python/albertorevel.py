@@ -50,7 +50,7 @@ print("\n** 1.4 - MATRIXES **\n")
 
 matrix1 = [['X','O',' '], ['X','O',' '], ['O','X','X ']]
 print(f"""A matrix is a list containing other lists
- - 'matrix1 = [['X','O',' '], ['X','O',' '], ['O','X','X ']]' 
+ - 'matrix1 = [['X','O',' '], ['X','O',' '], ['O','X','X ']]'
       -> {matrix1}\n""")
 
 
@@ -60,12 +60,12 @@ print("\n** 1.5 - DICTIONARIES **\n")
 
 dictionary1 = {"name": "Alberto", "surname": "Revel", "birthYear": 1992}
 print("""A dictionary contains key-value pairs
- - "dictionary1 = {'name': 'Alberto', 'surname': 'Revel', 'brithYear': 1992}' 
+ - "dictionary1 = {'name': 'Alberto', 'surname': 'Revel', 'brithYear': 1992}'
       -> """+f"{dictionary1}\n")
 
 dictionary2 = dict(name = "Alberto", surname = "Revel", birthYear = 1992)
 print("""There's other way to create a dictionary
- - "dictionary2 = dict(name = "Alberto", surname = "Revel", birthYear = 1992) 
+ - "dictionary2 = dict(name = "Alberto", surname = "Revel", birthYear = 1992)
       -> """+f"{dictionary2}\n")
 
 """
@@ -209,36 +209,36 @@ def main_program():
 def query_user_input():
       selected_op = -1
       try:
-            selected_op =  int(input("""\nPlease, try an operation by typying the operation number: 
+            selected_op =  int(input("""\nPlease, try an operation by typying the operation number:
                   - 0: Exit
                   - 1: Search a contact
                   - 2: Add a contact
                   - 3: Update a contact
                   - 4: Delete a contact\n"""))
-      except ValueError: 
+      except ValueError:
             print("Please, select a valid option")
             selected_op = query_user_input()
       return selected_op
 
 def query_contact_name():
      contact_name = str(input("\nPlease, enter the name of the contact: "))
-     
+
      try:
         validate_name(contact_name)
-     except Exception as e: 
+     except Exception as e:
         print("ERROR" + str(e))
 
      return contact_name
 
 def query_contact_number():
      contact_number = str(input("\nPlease, enter the number of the contact: "))
-     
+
      try:
         contact_number = convert_str_to_int(contact_number)
         validate_number(contact_number)
         return contact_number
-     except Exception as e: 
-        print(e.args)        
+     except Exception as e:
+        print(e.args)
 
 def perform_operation(selected_op):
      match selected_op:
@@ -254,42 +254,47 @@ def perform_operation(selected_op):
 
 def search_operation():
      contact_name = query_contact_name()
-     contact_number = search_contact(contact_name) 
-             
-     print(f"Seached name: {contact_name},{contact_number}")
-
+     contact_number = search_contact(contact_name)
 
      if contact_number != None and len(str(contact_number)) > 0:
-          print(f"\nContact found -> {contact_name}: {contact_number}")  
+          print(f"\nContact found -> {contact_name}: {contact_number}")
      else:
-          print(f"\nThere's no contact in address book with name: {contact_name}")    
+          print(f"\nThere's no contact in address book with name: {contact_name}")
 
      print("\n")
 
 def add_operation():
      contact_name = query_contact_name()
      contact_number = query_contact_number()
-     
-     add_contact(contact_name, contact_number)
 
-     print("\nContact added\n")
+     try:
+          add_contact(contact_name, contact_number)
+     except ContactAlreadyExistsException as e:
+          print("Contact cannot be added" + str(e))
+     else:
+          print("\nContact added\n")
 
 def update_operation():
      contact_name = query_contact_name()
-
      contact_number = query_contact_number()
-     add_contact(contact_name, contact_number)
 
-     print("\nContact added\n")
+     update_contact(contact_name, contact_number)
+
+     print("\nContact updated\n")
 
 def delete_operation():
-     pass
+     contact_name = query_contact_name()
+     try:
+        delete_contact(contact_name)
+        print("\nContact deleted\n")
+     except:
+         print("\nContact not found, it cannot be deleted\n")
 
 # Menu operations
 
 def search_contact(name):
      return find_contact(name)
-     
+
 def add_contact(name, number):
      validate_contact_addition(name, number)
      set_contact(name, number)
@@ -297,7 +302,10 @@ def add_contact(name, number):
 
 def update_contact(name, number):
      old_contact = find_contact(name)
-     print("OLD CONTACT" + str(old_contact))
+     if old_contact != None:
+          set_contact(name, number)
+     else:
+          raise ContactNotFoundException
 
 
 # Contact Operations
@@ -305,10 +313,7 @@ def set_contact(name, number):
       my_contact_book[name] = number
 
 def find_contact(name):
-      print(f"Getting {name}")
-      print(my_contact_book)
-      print(my_contact_book[name])
-      return my_contact_book[name]
+      return my_contact_book[name] if name in my_contact_book else None
 
 def delete_contact(name):
       return my_contact_book.pop(name)
@@ -316,10 +321,10 @@ def delete_contact(name):
 # Validations
 def validate_contact_addition(name, number):
      if name in my_contact_book:
-            raise ContactAlreadyExistsException 
+            raise ContactAlreadyExistsException
      validate_number(number)
      validate_name(name)
-     
+
 def validate_number(number):
       if not(isinstance(number,int)):
             raise NumberNoDigitCharsException
@@ -329,7 +334,7 @@ def validate_number(number):
             pass
 
 def validate_name(name):
-      
+
       if not(isinstance(name,str)):
             raise NumberNoDigitCharsException
       elif len(name.strip()) == 0:
@@ -337,7 +342,7 @@ def validate_name(name):
 
 # Utils
 def convert_str_to_int(str_from):
-     try: 
+     try:
         return int(str_from)
      except:
         return str_from
@@ -349,11 +354,15 @@ class Operations(Enum):
      ADDITION = 2
      UPDATE = 3
      DELETION = 4
-      
+
 
 # Exceptions
 class ContactAlreadyExistsException(Exception):
     "The contact already exists, update the contact instead adding it again"
+    pass
+
+class ContactNotFoundException(Exception):
+    "The contact doesn't exist"
     pass
 
 class NumberNoDigitCharsException(Exception):
