@@ -219,6 +219,8 @@ void displayDeleteMenu(t_phone_directory **phoneDirectory);
 
 void main() {
 
+	/* Ejemplos de estructuras */
+
 	/* Create a struct */
 	t_structSample myStruct;
 
@@ -238,6 +240,10 @@ void main() {
 	printf ("Struct: First field %d, second field %ld\n", myStruct.firstField, myStruct.secondField);
 
 	printf ("Union: First field %u, second field %ld, remains only second field\n", myUnion.firstField, myUnion.secondField);
+
+	/*
+	El ejercicio de dificultad extra cubre el resto ejercicio básico (inserción, borrado, actualización y ordenación),
+	así que no lo repetimos */
 
 	do {
 	} while (displayMainMenu (&phone_directory) != E_EXIT);
