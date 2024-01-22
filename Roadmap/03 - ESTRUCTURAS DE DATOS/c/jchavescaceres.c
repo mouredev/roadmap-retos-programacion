@@ -94,6 +94,7 @@ typedef void (t_callback_record)(t_phone_directory_record inRecord);
 
 /*
 Iterate the list, invoke callbackRecord for each record 
+DO NOT insert, update or delete while iterating
 Do not malloc or free memory related with t_phone_directory* or "next field", use delete functions
 */
 void iteratePhoneDirectory(
@@ -146,6 +147,21 @@ Menu options
 typedef enum {E_SEARCH=1, E_SEARCH_ALL=2, E_INSERT=3, E_UPDATE=4, E_DELETE=5, E_EXIT=6, E_WRONG_ACTION} t_action;
 
 /*
+Get name from stdin, user MUST free memory
+*/
+char* getInputName();
+
+/*
+Get telephone from stdin, user MUST free memory, return NULL if wrong telephone is input
+*/
+char* getInputTelephone();
+
+/*
+Print telephone record
+*/
+void displayPhoneRecord(t_phone_directory_record inPhoneDirectoryRecord);
+
+/*
 Display wrong action 
 */
 void displayWrongAction();
@@ -156,24 +172,44 @@ Display main menu
 t_action displayMainMenu();
 
 /*
-Display search menu
+Display search by Name,
+optionally results can be stored in a new phoneDirectory (phoneDirectoryResults != NULL)
 */
-void displaySearchMenu(t_phone_directory **phoneDirectory);
+void displaySearchByName(
+	t_phone_directory *phoneDirectory,
+	t_phone_directory **phoneDirectoryResults);
+
+/*
+Display search by Telephone, 
+optionally results can be stored in a new phoneDirectory (phoneDirectoryResults != NULL)
+*/
+void displaySearchByTelephone(
+	t_phone_directory *phoneDirectory,
+	t_phone_directory **phoneDirectoryResults);
+
+/*
+Display search menu,
+optionally results can be stored in a new phoneDirectory (phoneDirectoryResults != NULL)
+*/
+void displaySearchMenu(
+	t_phone_directory *phoneDirectory,
+	t_phone_directory **phoneDirectoryResults);
 
 /*
 Display search all menu
 */
-void displaySearchAllMenu(t_phone_directory **phoneDirectory);
+void displaySearchAllMenu(t_phone_directory *phoneDirectory);
 
 /*
-Display insert menu
+Display insert menu, if newInserted is not NULL 
+it will be set to 1 or 0 if a new record is inserted
 */
-void displayInsertMenu(t_phone_directory **phoneDirectory);
+void displayInsertMenu(t_phone_directory **phoneDirectory, int* newInserted);
 
 /*
 Display update menu
 */
-void displayUpadteMenu(t_phone_directory **phoneDirectory);
+void displayUpdateMenu(t_phone_directory **phoneDirectory);
 
 /*
 Display delete menu
@@ -210,7 +246,7 @@ void main() {
 
 
 	/*Tests*/
-//	t_phone_directory_record a, b, c, d;
+//	t_phone_directory_record a, b, c, d, new;
 //
 //	a.name = "aaaa";
 //	a.telephone = "34669587172";
@@ -224,26 +260,23 @@ void main() {
 //	d.name = "dddd";
 //	d.telephone = "34669587173";
 //
+//	new.name = "cccc";
+//	new.telephone = "94669587173";
+//
 //	printf ("isLeftGreaterThanRight %d, isLeftEqualToRight: %d\n", isLeftGreaterThanRight (a, b), isLeftEqualToRight (a,b));
 //	printf ("isLeftGreaterOrEqualThanRight %d\n", isLeftGreaterOrEqualThanRight (a,b));
 //
-//	void printRecord (t_phone_directory_record inRecord) {
-//
-//		printf ("name : %s, telephone : %s\n", inRecord.name, inRecord.telephone);
-//	};
 //
 //	insertPhoneDirectoryRecord ( &phone_directory, d);
 //	insertPhoneDirectoryRecord ( &phone_directory, c);
 //	insertPhoneDirectoryRecord ( &phone_directory, b);
 //	insertPhoneDirectoryRecord ( &phone_directory, a);
 //
-//	iteratePhoneDirectory (phone_directory, printRecord);
+//	iteratePhoneDirectory (phone_directory, displayPhoneRecord);
 //
 //	printf ("Update :\n");
-//	t_phone_directory_record new = c;
-//	new.telephone [0]= '9';
 //	updatePhoneDirectoryRecord (&phone_directory, c, new, NULL);
-//	iteratePhoneDirectory (phone_directory, printRecord);
+//	iteratePhoneDirectory (phone_directory, displayPhoneRecord);
 //
 //	printf ("Ordenar todos :\n");
 //	/* unsort manually 
@@ -256,20 +289,20 @@ void main() {
 //	bbbb->next = aaaa;
 //	aaaa->next = cccc;
 //	printf ("Antes de ordenar todos :\n");
-//	iteratePhoneDirectory (phone_directory, printRecord);
+//	iteratePhoneDirectory (phone_directory, displayPhoneRecord);
 //
 //	sortPhoneDirectory (&phone_directory);
 //	printf ("Despues de ordenar todos :\n");
-//	iteratePhoneDirectory (phone_directory, printRecord);
+//	iteratePhoneDirectory (phone_directory, displayPhoneRecord);
 //
 //	printf ("Borrar uno :\n");
 //	deletePhoneDirectoryRecord (&phone_directory, a, NULL);
 //	printf ("Nueva :\n");
-//	iteratePhoneDirectory (phone_directory, printRecord);
+//	iteratePhoneDirectory (phone_directory, displayPhoneRecord);
 //
 //	printf ("Borrar todos :\n");
 //	deleteAllPhoneDirectory (&phone_directory, NULL);
-//	iteratePhoneDirectory (phone_directory, printRecord);
+//	iteratePhoneDirectory (phone_directory, displayPhoneRecord);
 
 
 };
@@ -509,6 +542,45 @@ void sortPhoneDirectory (t_phone_directory** inPhoneDirectory) {
 	*inPhoneDirectory = new;
 };
 
+char* getInputName() {
+	char buffer [MAX_BUFFER];
+	char *res = NULL;
+
+	printf("\nNombre : ");
+	fgets (buffer, MAX_BUFFER, stdin);
+	buffer [strlen (buffer)-1] = '\0'; /* remove \n */
+	res = malloc (strlen (buffer)+1);
+	
+	strcpy (res, buffer);
+
+	return res;
+};
+
+char* getInputTelephone() {
+	char buffer [MAX_BUFFER];
+	char *res = NULL;
+
+	printf("Telefono (máximo 11 dígitos) : ");
+	fgets (buffer, MAX_BUFFER, stdin);
+	buffer [strlen (buffer)-1] = '\0'; /* remove \n */
+	if ( (strlen(buffer) > MAX_SIZE_OF_TELEPHONE_NUMBER) || (strspn(buffer, "0123456789") != strlen(buffer))) {
+		printf ("Wrong number\n");
+	}
+	else
+	{
+		res = malloc (strlen (buffer));
+		strcpy (res, buffer);
+	}
+
+	return res;
+};
+
+void displayPhoneRecord(t_phone_directory_record inPhoneDirectoryRecord) {
+
+	printf("\nNombre: %s, teléfono : %s", inPhoneDirectoryRecord.name, inPhoneDirectoryRecord.telephone);
+
+};
+
 void displayWrongAction() {
 
 	const char* WRONG_ACTION = "Opción incorrecta";
@@ -520,7 +592,7 @@ t_action displayMainMenu(t_phone_directory **phoneDirectory) {
 	char buffer [MAX_BUFFER];
 	t_action action = E_EXIT;
 
-	printf ("MENU PRINCIPAL:\n");
+	printf ("\n\n********* MENU PRINCIPAL **********\n");
 	printf ("1. Buscar:\n");
 	printf ("2. Listar todos:\n");
 	printf ("3. Insertar nuevo registro:\n");
@@ -538,16 +610,16 @@ t_action displayMainMenu(t_phone_directory **phoneDirectory) {
 		switch (action) {
 
 			case E_SEARCH :
-				displaySearchMenu(phoneDirectory);
+				displaySearchMenu(*phoneDirectory, NULL);
 				break;
 			case E_SEARCH_ALL:
-				displaySearchAllMenu(phoneDirectory);
+				displaySearchAllMenu(*phoneDirectory);
 				break;
 			case E_INSERT:
-				displayInsertMenu(phoneDirectory);
+				displayInsertMenu(phoneDirectory, NULL);
 				break;
 			case E_UPDATE:
-				displayUpadteMenu(phoneDirectory);
+				displayUpdateMenu(phoneDirectory);
 				break;
 			case E_DELETE: 
 				displayDeleteMenu(phoneDirectory);
@@ -564,59 +636,154 @@ t_action displayMainMenu(t_phone_directory **phoneDirectory) {
 	return action;
 };
 
-void displaySearchMenu(t_phone_directory **phoneDirectory) {
-};
+void displaySearchByName(
+	t_phone_directory *phoneDirectory,
+	t_phone_directory **phoneDirectoryResults) {
 
-void displaySearchAllMenu(t_phone_directory **phoneDirectory) {
+	char* name = getInputName();
 
 	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
 
-		printf("\nNombre: %s Teléfono : %s", inPhoneDirectoryRecord.name, inPhoneDirectoryRecord.telephone);
+		if (strcmp (inPhoneDirectoryRecord.name, name) == 0) {
+
+			displayPhoneRecord(inPhoneDirectoryRecord);
+			insertPhoneDirectoryRecord (phoneDirectoryResults, inPhoneDirectoryRecord);
+
+		};
 	};
 
-	iteratePhoneDirectory(*phoneDirectory, iterateCallback);
+	iteratePhoneDirectory(phoneDirectory, iterateCallback); 
+	free (name);
+};
+
+void displaySearchByTelephone(
+	t_phone_directory *phoneDirectory,
+	t_phone_directory **phoneDirectoryResults) {
+
+	char* telephone = getInputTelephone();
+
+	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
+
+		if (strcmp (inPhoneDirectoryRecord.telephone, telephone) == 0) {
+
+			displayPhoneRecord(inPhoneDirectoryRecord);
+			insertPhoneDirectoryRecord (phoneDirectoryResults, inPhoneDirectoryRecord);
+
+		};
+	};
+
+	if (telephone != NULL) {
+
+		iteratePhoneDirectory(phoneDirectory, iterateCallback); 
+
+		free (telephone);
+	};
+};
+
+void displaySearchMenu(
+	t_phone_directory *phoneDirectory,
+	t_phone_directory **phoneDirectoryResults) {
+
+	char buffer [MAX_BUFFER];
+	char selectedOption = ' ';
+
+	printf("Búsqueda por (N)ombre o (T)eléfono? :");
+	fgets (buffer, MAX_BUFFER, stdin);
+
+	if (sscanf (buffer, "%c\n", &selectedOption) != 1) {
+		displayWrongAction();
+	}
+	else {
+
+		switch (selectedOption) {
+	
+			case 'n':
+			case 'N':
+	
+				displaySearchByName (phoneDirectory, phoneDirectoryResults);
+				break;
+	
+			case 't':
+			case 'T':
+	
+				displaySearchByTelephone (phoneDirectory, phoneDirectoryResults);
+				break;
+	
+			default:
+	
+				displayWrongAction();
+				break;
+	
+		};
+	};
+
+};
+
+void displaySearchAllMenu(t_phone_directory *phoneDirectory) {
+
+	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
+
+		displayPhoneRecord(inPhoneDirectoryRecord);
+	};
+
+	iteratePhoneDirectory(phoneDirectory, iterateCallback);
 	printf("\n");
 
 };
 
-void displayInsertMenu(t_phone_directory **phoneDirectory) {
+void displayInsertMenu(t_phone_directory **phoneDirectory, int* newInserted) {
 
-	char buffer [MAX_BUFFER];
 	t_phone_directory_record phoneRecord;
-	phoneRecord.name = NULL;
-	phoneRecord.telephone = NULL;
-	int ok=0;
+	phoneRecord.name = getInputName();
+	phoneRecord.telephone = getInputTelephone();
+	int ok = 0;
 
-	printf("\nNombre : ");
-	fgets (buffer, MAX_BUFFER, stdin);
-	phoneRecord.name = malloc (strlen (buffer));
-	strcpy (phoneRecord.name, buffer);
-
-	printf("Telefono (máximo 11 dígitos) : ");
-	fgets (buffer, MAX_BUFFER, stdin);
-	if ( (strlen(buffer) -1) > MAX_SIZE_OF_TELEPHONE_NUMBER || strspn(buffer, "0123456789") != (strlen(buffer)-1) ) {
-		printf ("Wrong number\n");
-		ok=0;
-	}
-	else
-	{
-		ok=1;
-		phoneRecord.telephone = malloc (strlen (buffer));
-		strcpy (phoneRecord.telephone, buffer);
-	}
-
-	if (!ok) {
+	if (phoneRecord.telephone == NULL ) {
 		free (phoneRecord.name);
 		free (phoneRecord.telephone);
+		ok=0;
 	}
 	else {
-		printf ("OK\n");
+		ok=1;
 		insertPhoneDirectoryRecord (phoneDirectory, phoneRecord);
 	}
+	if (newInserted != NULL) {
+		*newInserted = ok;
+	};
 };
 
-void displayUpadteMenu(t_phone_directory **phoneDirectory) {
+void displayUpdateMenu(t_phone_directory **phoneDirectory) {
+	t_phone_directory *recordsFound=NULL;
+	int newInserted = 0;
+
+	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
+
+		deletePhoneDirectoryRecord (
+			phoneDirectory,
+			inPhoneDirectoryRecord,
+			freeResources);
+	};
+
+	displaySearchMenu(*phoneDirectory, &recordsFound);
+
+	if (recordsFound != NULL) {
+		/* Old records to update, 
+		them insert new one and remove old one if properlly inserted 
+		(there could be several old records, but they will be replaced 
+		by only one new record*/
+
+		printf ("\nUpdate with: \n");
+		displayInsertMenu(phoneDirectory, &newInserted);
+	};
+
+	if (newInserted) {
+		/* Remove from phoneDirectory the old record(s) */
+		iteratePhoneDirectory(recordsFound, iterateCallback);
+
+		deleteAllPhoneDirectory (&recordsFound, NULL);
+	};
 };
 
 void displayDeleteMenu(t_phone_directory **phoneDirectory) {
+	t_phone_directory *recordsFound=NULL;
 };
