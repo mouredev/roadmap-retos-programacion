@@ -42,7 +42,7 @@ function getChallengeFolders() {
  */
 function getChallengeFolder(challenge) {
 	const challengeFolders = getChallengeFolders()
-	const challengeFolder = challengeFolders.find((folder) => folder.slice(1, 3) === challenge)
+	const challengeFolder = challengeFolders.find((folder) => folder.slice(0, 2) === challenge)
 	return challengeFolder ?? 'null'
 }
 
