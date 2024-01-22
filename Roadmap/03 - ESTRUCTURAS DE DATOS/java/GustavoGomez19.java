@@ -310,7 +310,7 @@ class GustavoGomez192 {
 
         }
         System.out.println("-----*-----*-----*-----*-----");
-        System.out.println("Contactos de la agenda" + "\n" +
+        System.out.println("Contactos registrados de la agenda" + "\n" +
                 agenda);
 
     }
