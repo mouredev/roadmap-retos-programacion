@@ -786,4 +786,21 @@ void displayUpdateMenu(t_phone_directory **phoneDirectory) {
 
 void displayDeleteMenu(t_phone_directory **phoneDirectory) {
 	t_phone_directory *recordsFound=NULL;
+
+	void iterateCallback (t_phone_directory_record inPhoneDirectoryRecord) {
+
+		deletePhoneDirectoryRecord (
+			phoneDirectory,
+			inPhoneDirectoryRecord,
+			freeResources);
+	};
+
+	displaySearchMenu(*phoneDirectory, &recordsFound);
+
+	if (recordsFound != NULL) {
+		/* Remove from phoneDirectory the old record(s) */
+		iteratePhoneDirectory(recordsFound, iterateCallback);
+
+		deleteAllPhoneDirectory (&recordsFound, NULL);
+	};
 };
