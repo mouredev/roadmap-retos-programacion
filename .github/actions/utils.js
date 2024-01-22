@@ -38,7 +38,7 @@ function getChallengeFolders() {
 /**
  * Retrieves the folder name of the given challenge.
  * @param {string} challenge - The challenge number.
- * @returns {string | 'null'} - The folder name of the challenge.
+ * @returns {string | 'null'} - The folder name of the challenge, or 'null' if not found.
  */
 function getChallengeFolder(challenge) {
 	const challengeFolders = getChallengeFolders()
@@ -53,12 +53,21 @@ function getChallengeNumbers() {
 }
 
 // Programming languages data
+/**
+ * Retrieves the file extension associated with a given programming language.
+ *
+ * @param {string} languageName - The name of the programming language.
+ * @returns {string} - The file extension associated with the programming language, or 'null' if not found.
+ */
 function getProgrammingLanguageExtension(languageName) {
 	const challengeFolders = getChallengeFolders()
 	const languagePaths = challengeFolders.map((folder) => path.resolve(roadmapPath, folder, languageName))
-	const file = languagePaths.map((path) => fs.readdirSync(path)).flat()[0]
-	return path.extname(file)
+	const files = languagePaths.map((path) => (fs.existsSync(path) ? fs.readdirSync(path)[0] : ''))
+	const filesFiltered = files.filter((file) => file !== '' && !excludeExtensions.includes(path.extname(file)))
+	return filesFiltered.length > 0 ? path.extname(filesFiltered[0]) : 'null'
 }
+
+console.log(getProgrammingLanguageExtension('sql'))
 
 function getProgrammingLanguageExtensions() {
 	const roadmapContentDeep = fs.readdirSync(roadmapPath, { recursive: true, withFileTypes: true })
