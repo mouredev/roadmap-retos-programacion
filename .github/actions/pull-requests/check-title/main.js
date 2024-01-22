@@ -45,7 +45,7 @@ debug(`Is valid programming language name? ${isValidLanguageName}`)
 
 if (!isValidLanguageName) {
 	const availableLanguageNames = arraytoString({
-		array: languageNames,
+		array: languageNames.map((languageName) => languageName[0].toUpperCase() + languageName.slice(1)),
 		finalSeparator: ', or ',
 		separator: ', ',
 	})
