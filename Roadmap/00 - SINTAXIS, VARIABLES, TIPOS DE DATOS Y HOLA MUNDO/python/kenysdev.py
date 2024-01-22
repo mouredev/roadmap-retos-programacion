@@ -53,12 +53,3 @@ print(type(int_entero)) # Salida: <class 'int'>
 # 5. Imprime: hola, lenguaje:
 # **************************
 print("Hola, Python")
-
-
-
-
-
-
-
-
-
