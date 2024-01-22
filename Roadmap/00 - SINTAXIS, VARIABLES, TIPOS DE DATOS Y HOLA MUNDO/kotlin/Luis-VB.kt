@@ -8,8 +8,8 @@
 */
 
 // Variables y constantes
-var = "Variable"
-val = "Constante"
+var variable: String = "Variable"
+val constante: String = "Constante"
 
 //Tipos de variables
 fun main() {
@@ -19,14 +19,9 @@ fun main() {
     val d: Long  = 100_000_000_000_000
     val e: Boolean = false
     val f: Char = '\n'
-}
 
 // Imprimir por consola hola kotlin
-fun main2() {
-    val kotlin = "!Hola, Kotlin :)¡"
+
+    val kotlin: String = "¡Hola, Kotlin ☺!"
     println(kotlin)
 }
-
-println(fun main() {
-
-})
