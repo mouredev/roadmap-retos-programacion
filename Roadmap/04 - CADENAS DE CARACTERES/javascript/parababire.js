@@ -65,3 +65,7 @@ console.log(unionDeStr);
 
 let saludo_interpolado = `${str} Bienvenidos, esta es mi solución al reto #04. Mi nombre es ${miNombre}`;
 console.log(saludo_interpolado);
+
+//Verificación
+
+console.log(saludo_interpolado.includes(miNombre));//El método includes() es case sensible.
