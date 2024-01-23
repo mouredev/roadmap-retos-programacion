@@ -41,7 +41,7 @@ jobs:
           title: ${{ github.event.pull_request.title }}
 
   check-committed-files:
-    needs: [get-committed-files]
+    needs: [get-committed-files, check-title]
     name: Check committed files
     runs-on: ubuntu-latest
     outputs:
