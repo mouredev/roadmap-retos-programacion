@@ -7,12 +7,11 @@
 *
 */
 
-// Variables y constantes
-var variable: String = "Variable"
-val constante: String = "Constante"
-
-//Tipos de variables
 fun main() {
+    // Variables y constantes
+    var variable: String = "Variable"
+    val constante: String = "Constante"
+    //Tipos de variables
     val a: Int = 1000
     val b: String = "log message"
     val c: Double = 3.14
