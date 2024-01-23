@@ -11,7 +11,7 @@ numeros.insert(0, at: 0) // Inserta al inicio
 numeros.remove(at: 0) // Elimina el primer elemento
 
 // Actualización
-numeros[0] = 10 // Cambia el primer elemento
+numeros[0] = 10 // Camia el primer elemento
 
 // Ordenación
 numeros.sort() // Ordena el array
