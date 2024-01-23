@@ -3,7 +3,7 @@ name: 'Check pull request'
 on:
   pull_request:
     branches: [main]
-    types: [opened, reopened, edited, synchronize]
+    types: [opened, reopened, synchronize]
     paths:
       - 'Roadmap/**'
       - '!Roadmap/**/*.md'
