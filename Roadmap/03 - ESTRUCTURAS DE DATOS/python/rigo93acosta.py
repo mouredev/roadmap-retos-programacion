@@ -16,65 +16,67 @@
 '''
 
 ## List
-# list_1 = []
-# list_2 = list()
-# print(type(list_1))
-# list_3  = ["Hola", "mundo"]
-# print(list_3)
-# list_3.append("!")
-# print(list_3)
-# list_3.remove("Hola")
-# print(list_3)
-# print(list_3[0])
-# list_3[0] = "Rigo"
-# print(list_3)
-# list_3.sort()
-# print(list_3)
+list_1 = []
+list_2 = list()
+print(type(list_1))
+list_3  = ["Hola", "mundo"]
+print(list_3)
+list_3.append("!")
+print(list_3)
+list_3.remove("Hola")
+print(list_3)
+print(list_3[0])
+list_3[0] = "Rigo"
+print(list_3)
+list_3.sort()
+print(list_3)
 
 ## Tuple
-## Tipo Inmutable
-# tuple_1: tuple = ("Rigo", "Acosta", "@rigo93acosta", "30")
-# print(tuple_1)
-# print(type(tuple_1))
-# tuple_1 = tuple(sorted(tuple_1)) # Sort truco
-# print(tuple_1)
-# print(type(tuple_1))
+# Tipo Inmutable
+tuple_1: tuple = ("Rigo", "Acosta", "@rigo93acosta", "30")
+print(tuple_1)
+print(type(tuple_1))
+tuple_1 = tuple(sorted(tuple_1)) # Sort truco
+print(tuple_1)
+print(type(tuple_1))
 
 ## Sets
-# my_set = {"Rigo", "Acosta", "@rigo93acosta", "30"}
-# print(my_set)
-# print(type(my_set))
-# my_set.add("rigo93acosta@gmail.com") # Insert
-# print(my_set)
-# # print(my_set[0]) # Estructura superoptima, no hay posicion directa
-# my_set.add("rigo93acosta@gmail.com") # Evita datos duplicados (No lo inserta)
-# print(my_set)
-# my_set.remove("Rigo")
-# print(my_set)
-# # La actualización sería eliminando y luego insertando. No confundir con el update
-# print(sorted(my_set))
-# print(set(sorted(my_set))) # La ordenación carece de sentido pues las posiciones no son fijas
+my_set = {"Rigo", "Acosta", "@rigo93acosta", "30"}
+print(my_set)
+print(type(my_set))
+my_set.add("rigo93acosta@gmail.com") # Insert
+print(my_set)
+# print(my_set[0]) # Estructura superoptima, no hay posicion directa
+my_set.add("rigo93acosta@gmail.com") # Evita datos duplicados (No lo inserta)
+print(my_set)
+my_set.remove("Rigo")
+print(my_set)
+# La actualización sería eliminando y luego insertando. No confundir con el update
+print(sorted(my_set))
+print(set(sorted(my_set))) # La ordenación carece de sentido pues las posiciones no son fijas
 
 ## Dictionary
-# dict_1: dict = {"name": "Rigoberto", "surname": "Acosta", "alias": "@rigo93acosta", "age": "30"}
-# print(dict_1)
-# print(type(dict_1))
-# dict_1["email"] = "rigo93acosta@gmail.com"  # Insert
-# print(dict_1)
-# # print(dict_1[0])  # Error 
-# print(dict_1["name"]) # Correct!
-# dict_1["name"] = "Rigo" # Update
-# print(dict_1)
-# del dict_1["email"] # Delete
-# print(dict_1)
-# # Sort
-# dict_1 = sorted(dict_1.items())
-# print(dict_1)
-# dict_1 = dict(dict_1)
-# print(dict_1)
+dict_1: dict = {"name": "Rigoberto", "surname": "Acosta", "alias": "@rigo93acosta", "age": "30"}
+print(dict_1)
+print(type(dict_1))
+dict_1["email"] = "rigo93acosta@gmail.com"  # Insert
+print(dict_1)
+# print(dict_1[0])  # Error 
+print(dict_1["name"]) # Correct!
+dict_1["name"] = "Rigo" # Update
+print(dict_1)
+del dict_1["email"] # Delete
+print(dict_1)
+# Sort
+dict_1 = sorted(dict_1.items())
+print(dict_1)
+dict_1 = dict(dict_1)
+print(dict_1)
 
 
 ## Extra
+## Puede mejorarse el check del número de teléfono
+## y del nombre con funciones.
 
 agenda = {}
 
