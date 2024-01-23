@@ -113,3 +113,9 @@ def funcionExtra(param1, param2):
     return contador    
 numero_veces = funcionExtra("Fizz", "Buzz")
 print(f"El número de veces que se ha impreso el número en lugar de los textos es: {numero_veces}")
+
+def variable_key(**keywords):
+    for kw in keywords:
+        print(kw, ":", keywords[kw])
+
+variable_key(nombre="Oriaj", apellido="Oriaj", edad=30)
