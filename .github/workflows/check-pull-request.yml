@@ -58,7 +58,7 @@ jobs:
           committed-files: ${{ needs.get-committed-files.outputs.committed-files }}
 
   check-committed-file:
-    needs: [check-title, check-committed-files]
+    needs: [check-committed-files]
     name: Check committed file
     runs-on: ubuntu-latest
     steps:
