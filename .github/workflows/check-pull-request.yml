@@ -10,7 +10,7 @@ on:
 
 jobs:
   get-committed-files:
-    if: ${{ github.action != 'edited' || github.event.changes.title.from != github.event.pull_request.title}}
+    if: github.event.action != 'edited' || github.event.changes.title.from != github.event.pull_request.title
     name: Get committed files
     runs-on: ubuntu-latest
     outputs:
@@ -27,7 +27,7 @@ jobs:
           separator: '\n'
 
   check-title:
-    if: ${{ github.action != 'edited' || github.event.changes.title.from != github.event.pull_request.title}}
+    if: github.event.action != 'edited' || github.event.changes.title.from != github.event.pull_request.title
     name: Check title
     runs-on: ubuntu-latest
     steps:
