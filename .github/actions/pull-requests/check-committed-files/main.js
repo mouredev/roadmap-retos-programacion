@@ -1,7 +1,7 @@
 const core = require('@actions/core')
 
 // Inputs
-const committedFiles = core.getInput('committed-files').split('\n')
+const committedFiles = core.getInput('committed-files').split('\\n')
 core.debug(`'committed-files' (input): ${committedFiles}`)
 
 // Check if changed and modified files are valid
