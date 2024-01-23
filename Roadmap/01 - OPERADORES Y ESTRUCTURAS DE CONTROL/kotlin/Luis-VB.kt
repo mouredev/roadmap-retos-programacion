@@ -141,6 +141,23 @@ fun main () {
             }
         )
     }
+    // Another Fizz buzz
+    println()
+    for (index in 1..100) {
+        val divisibleBy3 = index % 3 == 0
+        val divisibleBy5 = index % 5 == 0
+        if (divisibleBy3 && divisibleBy5) {
+            println("fizzbuzz")
+        } else if (divisibleBy3) {
+            println("buzz")
+        } else if (divisibleBy5) {
+            println("fizz")
+        } else {
+            println(index)
+        }
+    }
+
+
     // For and if to print only the words that start with the letter l (from a list)
     println()
     val words = listOf("dinosaur", "limousine", "magazine", "language")
