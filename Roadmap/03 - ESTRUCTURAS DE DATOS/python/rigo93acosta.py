@@ -103,7 +103,7 @@ while True:
         else:
             number_phone = input("Escriba el número de teléfono: ")
             number_len = len(number_phone)
-            while number_len > 11 and number_phone.isdigit(): # Check phone number
+            while number_len > 11 and number_len <= 0 and number_phone.isdigit(): # Check new number
                 print("El numéro tiene más de 11 digitos, repita de nuevo")
                 number_phone = input("Escriba el número de teléfono: ")
                 number_len = len(number_phone)
@@ -143,8 +143,8 @@ while True:
             if name in agenda.keys(): # Check name
                 number_phone = input("Escriba el número de teléfono: ")
                 number_len = len(number_phone)
-                while number_len > 11 and number_phone.isdigit(): # Check new number
-                    print("El numéro tiene más de 11 digitos, repita de nuevo")
+                while number_len > 11 and number_len <= 0 and number_phone.isdigit(): # Check new number
+                    print("El número es incorrecto, repita de nuevo")
                     number_phone = input("Escriba el número de teléfono: ")
                     number_len = len(number_phone)
                 agenda[name] = int(number_phone) # Change Number
