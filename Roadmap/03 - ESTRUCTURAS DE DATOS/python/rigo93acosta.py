@@ -75,7 +75,12 @@
 
 
 ## Extra
+
 agenda = {}
+
+def get_number_phone():
+    pass
+
 while True:
     print("Agenda Telefónica:")
     print("1- Insertar")
@@ -89,19 +94,19 @@ while True:
     if answer == "Exit":
         break
     
-    elif int(answer) == 5:
+    elif int(answer) == 5:  # View Agenda
         if len(agenda) == 0:
             print("\nAgenda Empty\n")
         else:
             for name, number in agenda.items():
                 print(f'Nombre: {name} -> Teléfono: {number}\n')
     
-    elif int(answer) == 1:
+    elif int(answer) == 1: # Insert
         name = input("\nEscriba el nombre: ")
         if name in agenda.keys(): # Check name
             print("\nEste contacto esta agendado.\n")
         else:
-            number_phone = input("Escriba el número de teléfono: ")
+            number_phone = input("Escriba el número de teléfono: ") # Check new number
             number_len = len(number_phone)
             while True:
                 if number_len > 0 and number_len <= 11 and number_phone.isnumeric(): # Check new number
@@ -113,61 +118,87 @@ while True:
                     number_len = len(number_phone)
                     
     
-    elif int(answer) == 2:
+    elif int(answer) == 2: # Search
         print("\nBuscar por: \n1-Nombre: \n2-Número:")
         answer = input("Inserte opción: ")
        
-        if int(answer) == 1:
+        if int(answer) == 1: 
             name = input("\nEscriba el nombre: ")
-            if name in agenda.keys():
+            if name in agenda.keys(): # Check name
                 print(f'\nNombre: {name} -> Teléfono: {agenda[name]}\n')
             else:
                print("\nEl nombre no está agendado\n") 
         
         elif int(answer) == 2:
-            number = input("\nEscriba el número de teléfono: ") # Check digit
-            flag = number.isdigit()
-            while flag:
-                   number = input("\nRepita de nuevo el número de teléfono: ") # Check digit
-                   flag = number.isdigit()
+            number_phone = input("Escriba el número de teléfono: ") # Check new number
+            number_len = len(number_phone)
+            while True:
+                if number_len > 0 and number_len <= 11 and number_phone.isnumeric(): # Check new number
+                    
+                    if int(number_phone) in agenda.values():
+                        for name_1, number_1 in agenda.items(): # Search name link number phone
+                            if int(number_phone) == number_1:
+                                print(f'\nNombre: {name_1} -> Teléfono: {number_1}\n')
+                            break
+                    else:
+                        print("\nEl número de teléfono no está agendado\n")
+                    break
+                else:
+                    print("El número es incorrecto, repita de nuevo")
+                    number_phone = input("Escriba el número de teléfono: ")
+                    number_len = len(number_phone)
 
-            if int(number) in agenda.values():
-                for name_1, number_1 in agenda.items():
-                    if int(number) == number_1:
+            if int(number_phone) in agenda.values(): # Ch
+                for name_1, number_1 in agenda.items(): # Search name link number phone
+                    if int(number_phone) == number_1:
                         print(f'\nNombre: {name_1} -> Teléfono: {number_1}\n')
             else:
                 print("\nEl número de teléfono no está agendado\n")
 
-    elif int(answer) == 3:
+    elif int(answer) == 3: # Update
         print("\nActualizar: \n1-Nombre: \n2-Número:")
         answer = input("Inserte opción: ")
         
         if int(answer) == 2:
             name = input("Escriba el nombre: ")
             if name in agenda.keys(): # Check name
-                number_phone = input("Escriba el número de teléfono: ")
+                number_phone = input("Escriba el número de teléfono: ") # Check new number
                 number_len = len(number_phone)
-                while number_len > 11 and number_len <= 0 and number_phone.isdigit(): # Check new number
-                    print("El número es incorrecto, repita de nuevo")
-                    number_phone = input("Escriba el número de teléfono: ")
-                    number_len = len(number_phone)
-                agenda[name] = int(number_phone) # Change Number
+                while True:
+                    if number_len > 0 and number_len <= 11 and number_phone.isnumeric(): # Check new number
+                        agenda[name] = int(number_phone) # Change Number
+                        break
+                    else:
+                        print("El número es incorrecto, repita de nuevo")
+                        number_phone = input("Escriba el número de teléfono: ")
+                        number_len = len(number_phone)
             else:
                 print("\nEl nombre no está agendado\n")
         
         elif int(answer) == 1:
-            number = int(input("Escriba el número de teléfono: "))
+            number_phone = input("Escriba el número de teléfono: ") # Check new number
+            number_len = len(number_phone)
+            while True:
+                if number_len > 0 and number_len <= 11 and number_phone.isnumeric(): # Check new number
+                    number = number_phone
+                    break
+                else:
+                    print("El número es incorrecto, repita de nuevo")
+                    number_phone = input("Escriba el número de teléfono: ")
+                    number_len = len(number_phone)    
+            
             name = input("Escriba el nombre: ")
-            if number in agenda.values(): # Existe el numero
+            if int(number) in agenda.values(): # Existe el numero
                 for name_1, number_1 in agenda.items():
-                    if number == number_1:
+                    if int(number) == number_1:
                         temp_name = name_1 # Nombre Viejo
-                agenda[name] = number # Nombre Nuevo
+                        break
+                agenda[name] = int(number) # Nombre Nuevo
                 del agenda[temp_name] # Eliminando contancto con Nombre Viejo
             else:
                 print("\nEl número de teléfono no está agendado\n")
     
-    elif int(answer) == 4:
+    elif int(answer) == 4: # Delete
         print("\nEliminar empleando: \n1-Nombre: \n2-Número:")
         answer = input("Inserte opción: ")
 
@@ -179,14 +210,24 @@ while True:
                 print("\nEl nombre no está agendado\n")
         
         elif int(answer) == 2:
-            number = int(input("\nEscriba el número de teléfono: "))
-            if number in agenda.values(): # Existe el numero
+            number_phone = input("Escriba el número de teléfono: ") # Check new number
+            number_len = len(number_phone)
+            while True:
+                if number_len > 0 and number_len <= 11 and number_phone.isnumeric(): # Check new number
+                    number = number_phone
+                    break
+                else:
+                    print("El número es incorrecto, repita de nuevo")
+                    number_phone = input("Escriba el número de teléfono: ")
+                    number_len = len(number_phone)
+
+            if int(number) in agenda.values(): # Existe el numero
                 for name_1, number_1 in agenda.items():
-                    if number == number_1:
+                    if int(number) == number_1:
                         break
                 del agenda[name_1] # Eliminando contancto con Nombre Viejo
             else:
                 print("\nEl número de teléfono no está agendado\n")
 
-    else:
+    else: # No case
         print("\nElige una de las opciones\n")
