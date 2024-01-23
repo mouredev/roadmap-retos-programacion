@@ -103,11 +103,15 @@ while True:
         else:
             number_phone = input("Escriba el número de teléfono: ")
             number_len = len(number_phone)
-            while number_len > 11 and number_len <= 0 and number_phone.isdigit(): # Check new number
-                print("El numéro tiene más de 11 digitos, repita de nuevo")
-                number_phone = input("Escriba el número de teléfono: ")
-                number_len = len(number_phone)
-            agenda[name] = int(number_phone)
+            while True:
+                if number_len > 0 and number_len <= 11 and number_phone.isnumeric(): # Check new number
+                    agenda[name] = int(number_phone)
+                    break
+                else:
+                    print("El número es incorrecto, repita de nuevo")
+                    number_phone = input("Escriba el número de teléfono: ")
+                    number_len = len(number_phone)
+                    
     
     elif int(answer) == 2:
         print("\nBuscar por: \n1-Nombre: \n2-Número:")
