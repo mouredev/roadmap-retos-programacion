@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    if: github.repository == 'mouredev/roadmap-retos-programacion'
     runs-on: ubuntu-latest
 
     permissions:
@@ -29,4 +30,4 @@ jobs:
           commit_message: Update stats
           commit_user_name: Brais Moure [GitHub Actions]
           commit_user_email: mouredev@gmail.com
-          commit_author: mouredev
+          commit_author: mouredev <mouredev@gmail.com>
