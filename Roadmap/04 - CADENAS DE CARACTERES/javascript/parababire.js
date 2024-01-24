@@ -69,3 +69,30 @@ console.log(saludo_interpolado);
 //Verificación
 
 console.log(saludo_interpolado.includes(miNombre));//El método includes() es case sensible.
+
+//Dificultad extra
+
+function esPalindromo(txt1, txt2) {
+  let str1 = txt1;
+  let str2 = txt2.split("").reverse().join("");
+  return (str1 === str2);
+}
+
+function contadorLetras(txt) {
+  let texto = txt.replace(/\d/, "").toLowerCase();
+  let letras = {};
+  for (let i = 0; i < texto.length; i++) {
+    letras[texto[i]] = (letras[texto[i]] || 0) + 1;
+  }
+  return letras;
+}
+
+function iterarObj(obj) {
+  for (const key in obj) {
+    if (obj[key] === 1 || obj[key] === 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
