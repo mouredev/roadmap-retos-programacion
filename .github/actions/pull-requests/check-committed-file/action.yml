@@ -1,0 +1,23 @@
+author: 'hozlucas28'
+
+name: 'Check committed file'
+description: 'Check if the committed file of a pull request is valid'
+
+runs:
+  using: 'node20'
+  main: 'main.js'
+
+inputs:
+  author:
+    description: 'Name of the user who created the pull request'
+    required: true
+  committed-file:
+    description: 'Committed file of the pull request'
+    required: true
+  title:
+    description: 'Title of the pull request'
+    required: true
+  log01:
+    required: true
+  log02:
+    required: true
