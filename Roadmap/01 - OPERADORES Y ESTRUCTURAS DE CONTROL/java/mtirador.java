@@ -5,7 +5,7 @@ public class mtirador {
 
     int a=5,b=4;
      //operadores aritméticos
-     
+    
      int resta=a-b;
      int suma=a+b;
      int mult=a*b;
