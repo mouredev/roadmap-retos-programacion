@@ -19,7 +19,7 @@ Ejercicio
  */"""
 
 
-texto_1 = "la casa es roja y dentro está la caja"
+texto_1 = "    la casa es roja y dentro está la caja"
 texto_2 = "el coche tiene cuatro ruedas"
 texto_3 = "2342"
 
@@ -38,8 +38,13 @@ print(f"Método center: [{texto_1.center(30)}] ")
 print(f"Método center: [{texto_1.center(30, '*')}] ")
 
 # Endswith: devuelve true o false si la cadena termina con el argumento especificado
-print(f"Método endswith: {texto_1.endswith("ja")}")
-print(f"Método endswith: {texto_1.endswith("on")}")
+print(f"Método endswith: la frase acaba en ja --> {texto_1.endswith("ja")}")
+print(f"Método endswith: la frase acaba en on --> {texto_1.endswith("on")}")
+
+
+# Startswith: devuelve true o false si la cadena termina con el argumento especificado
+print(f"Método startswith: la frase empieza con un espacio --> {texto_1.startswith(" ")}")
+print(f"Método startswith: la frase empieza por 'on' --> {texto_1.startswith("on")}")
 
 
 # Find: devuelve la primera ocurrencia en una cadena de la subcadena indicada en el parámetro. Con un segundo parámetro,
@@ -86,36 +91,57 @@ else:
     print(f"Método isupper: el texto contiene algo que no son mayúsculas")
 
 
-# is space:
-print(f"Método ")
+# isspace: comprueba si sólamente hay espacios en blanco (si hay algún otro caracter, da false)
+if texto_1.isspace():
+    print(f"Método isspace: el string solamente contiene espacios")
+else:
+    print(f"Método isspace: el string no contiene solamente espacios")
 
-# Lstrip
+
+# Lstrip: elimina todos los espacios en blanco de una cadena. Si tiene un argumento, eliminar todos los carateres
+#          iniciales que estén en dicho argumento
 print(f"Método lstrip: {texto_1.lstrip()}")
+print(f"Método lstrip con argumento: {texto_1.lstrip(" la")}")
 
 
-print(f"Método ")
+# Rstrip: lo mismo que lstrip pero empezando por el final de string
+print(f"Método rstrip: {texto_1.rstrip()}")
+print(f"Método rstrip con argumento: {texto_1.rstrip(" la")}")
 
 
-print(f"Método ")
+# Replace: con dos parámetros devuelve una copia de la cadena original en la que todas las apariciones del primer
+#          argumento han sido reemplazadas por el segundo argumento.
+print(f"Método replace: {texto_1.replace(" ", "*")}")
 
 
-print(f"Método ")
+# Split: El método split() divide la cadena y crea una lista de todas las subcadenas detectadas. El método asume que
+#        las subcadenas están delimitadas por espacios en blanco, los espacios no participan en la operación y no se
+#        copian en la lista resultante.
+print(f"Método split: {texto_1.split()} ")
 
 
-print(f"Método ")
+# Strip: combina los efectos causados por rstrip() y lstrip(), crea una nueva cadena que carece de todos los espacios
+#        en blanco iniciales y finales.
+print(f"Método strip: {texto_1.strip()}")
 
 
-print(f"Método ")
+# Swapcase: crea una nueva cadena intercambiando todas las letras por mayúsculas o minúsculas dentro de la cadena
+#           original: los caracteres en mayúscula se convierten en minúsculas y viceversa.
+print(f"Método swapcase{texto_1.swapcase()}")
 
 
-print(f"Método ")
+# Upper: hace una copia de la cadena de origen, reemplaza todas las letras minúsculas con sus equivalentes en
+#        mayúsculas, y devuelve la cadena como resultado.
+print(f"Método upper: {texto_1.upper()}")
 
-print(texto_1[::-1])
+# Lower: hace una copia de la cadena de origen, reemplaza todas las letras mayúsculas con sus equivalentes en
+#        minúsculas, y devuelve la cadena como resultado.
+print(f"Método lower: {texto_1.lower()}")
 
 
-
+print()
 print("::::::::::::::::::::::::::::::::::::: EXTRA :::::::::::::::::::::::::::::::::::::")
-
+print()
 
 # Palíndromo:
 def palindromo(texto):
@@ -144,17 +170,20 @@ def anagrama(palabra_1, palabra_2):
 def isograma(palabra):
 
     lista_letras = []
+    isograma = False
 
     for letra in palabra:
 
         if letra not in lista_letras:
             lista_letras.append(letra)
+            isograma = True
         else:
+            isograma = False
             print(f"No es un isograma, hay letras repetidas en la palabra '{palabra}'.")
             break
 
-    print(f"La palabra '{palabra}' es un isograma: no tiene letras repatidas.")
-
+    if isograma:
+        print(f"La palabra '{palabra}' es un isograma: no tiene letras repatidas.")
 
 
 
@@ -182,7 +211,7 @@ while opcion_elegida != 4:
         case 2:
             palabra_1 = input("Introduce la primera palabra para comprobar si es un anagrama de la segunda: ")
             palabra_2 = input("Introduce la primera palabra para comprobar si es un anagrama de la primera: ")
-            anagrama(texto_1, texto_2)
+            anagrama(palabra_1, palabra_2)
         case 3:
             palabra = input("Introduce palabra o frase para comprobar si es un isograma: ")
             isograma(palabra)
