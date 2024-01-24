@@ -38,8 +38,6 @@ jobs:
         uses: tj-actions/changed-files@v42
         with:
           separator: '\n'
-      - name: Log
-        run: echo ${{ github.event.action }} && echo ${{ github.event.changes.title.from }} && echo ${{ github.event.pull_request.title }}
 
   check-committed-files:
     needs: [get-committed-files]

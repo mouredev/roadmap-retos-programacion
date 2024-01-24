@@ -1,6 +1,6 @@
 import { debug, getInput, setFailed } from '@actions/core'
 import * as path from 'node:path'
-import { getChallengeFolder, getProgrammingLanguageExtension, wrapperChallengesFolder } from '../../utils.js'
+import { getChallengeFolder, getProgrammingLanguageExtension, wrapperChallengesFolder } from '../../utils.mjs'
 
 // Inputs
 const author = getInput('author')

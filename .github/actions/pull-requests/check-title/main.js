@@ -1,5 +1,5 @@
 import { debug, getInput, setFailed } from '@actions/core'
-import { arraytoString, getChallengeNumbers, getProgrammingLanguageFolderNames } from '../../utils.js'
+import { arraytoString, getChallengeNumbers, getProgrammingLanguageFolderNames } from '../../utils.mjs'
 
 // Inputs
 const title = getInput('title')

@@ -4,10 +4,16 @@
 		"@actions/core": "1.10.1"
 	},
 	"description": "GitHub Action to check if the title of a pull request is correct",
+	"devDependencies": {
+		"@vercel/ncc": "^0.38.1"
+	},
 	"keywords": [],
 	"license": "MIT",
-	"main": "main.js",
+	"main": "dist/index.js",
 	"name": "check-title",
+	"scripts": {
+		"build": "ncc build main.js --minify --target es2022 --license licenses.txt"
+	},
 	"type": "module",
 	"version": "1.0.0"
 }
