@@ -17,6 +17,7 @@ public class mtirador {
 
      //Operadores comparación
     
+     
      System.out.println("Distinto: "+ (a!=b));
      System.out.println("Igual: "+(a==b));
      System.out.println("Menor que: "+ (a<b));
