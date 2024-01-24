@@ -1,0 +1,17 @@
+author: 'hozlucas28'
+
+name: 'Check committed files'
+description: 'Check if committed files of a pull request are valid'
+
+runs:
+  using: 'node20'
+  main: 'main.js'
+
+inputs:
+  committed-files:
+    description: 'Committed files of the pull request'
+    required: true
+
+outputs:
+  committed-file:
+    description: 'Unique committed file of the "committed-files" input'
