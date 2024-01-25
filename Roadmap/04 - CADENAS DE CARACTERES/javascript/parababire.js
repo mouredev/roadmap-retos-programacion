@@ -78,21 +78,30 @@ function esPalindromo(txt1, txt2) {
   return (str1 === str2);
 }
 
-function contadorLetras(txt) {
-  let texto = txt.replace(/\d/, "").toLowerCase();
+function contarLetras(txt) {
+  let textoSinNumerosNiSignos = txt.replace(/\d+\D/, "").toLowerCase();
+  let textoSinAcento = textoSinNumerosNiSignos.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   let letras = {};
-  for (let i = 0; i < texto.length; i++) {
-    letras[texto[i]] = (letras[texto[i]] || 0) + 1;
+  for (let i = 0; i < textoSinAcento.length; i++) {
+    letras[textoSinAcento[i]] = (letras[textoSinAcento[i]] || 0) + 1;
   }
   return letras;
 }
 
-function iterarObj(obj) {
+let palabra = contarLetras("isogram");
+console.log(palabra);
+
+function esIsograma(obj) {
+  let contador = 0;
   for (const key in obj) {
-    if (obj[key] === 1 || obj[key] === 2) {
-      return true;
-    } else {
+    if (contador === 0) {
+      contador = obj[key];
+    }
+    if (contador !== obj[key]) {
       return false;
     }
   }
+  return true;
 }
+
+console.log(esIsograma(palabra));
