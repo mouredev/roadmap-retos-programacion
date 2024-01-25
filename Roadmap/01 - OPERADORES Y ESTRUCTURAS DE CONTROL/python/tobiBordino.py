@@ -121,7 +121,7 @@ except:
 finally:
     print("Finalmente")
 
-# Sección extra
+# Sección extra (realizar un programa)
 # Programa que imprima por consola todos los números entre el 10 y el 55 incluido pero que sean sólo los pares. 
     #Excepto el número 16.
     #Expecto los múltiplos de 3.
