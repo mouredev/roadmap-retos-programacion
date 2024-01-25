@@ -6,7 +6,7 @@
  *   Sin parámetros ni retorno, con uno o varios parámetros, con retorno...
 '''
 
-# Funciones sin parámetros ni retorno
+# Funciones simples sin parámetros ni retorno
 def funcionSinParametrosNiRetorno():
     print("Función sin parámetros ni retorno")
 
