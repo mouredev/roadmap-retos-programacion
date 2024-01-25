@@ -37,6 +37,7 @@ jobs:
       - name: Check committed files of the pull request
         uses: ./.github/actions/pull-requests/check-committed-files
         with:
+          author: ${{ github.event.pull_request.user.name || github.actor }}
           committed-files: ${{ needs.get-committed-files.outputs.committed-files }}
 
 permissions:
