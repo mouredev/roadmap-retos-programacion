@@ -20,7 +20,7 @@ def imprimir(parametro):
 def saludo(nombre):
     return (f"¡Hola, nombre!")
 
-imprimir("Ken")
+imprimir(saludo("Ken"))
 #_________________________
 # Con parametros:
 def resta(a, b):
@@ -72,7 +72,13 @@ imprimir(principal(10))
 # *************************************
 # Solicitar una entrada.
 #entrada = input("Escribe:")
-print(f"Loro: {entrada}")
+#print(f"Loro: {entrada}")
+
+print(len("123"))   # total char
+print("ABC".lower()) # minusculas
+print("abc".upper()) # mayusculas
+a, b = "a b".split() # divide una cadena
+print(b)
 
 # conversión de tipo(int, float, str, list, bool)
 un_bool = True
