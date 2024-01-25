@@ -1,5 +1,7 @@
 import java.lang.String;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import static java.lang.StringTemplate.STR;
 
@@ -68,6 +70,10 @@ public class frannmv {
 
         System.out.println(String.format("La palabra %s es palindromo: %b",palabra1,esPalindromo(palabra1)));
         System.out.println(String.format("La palabra %s es palindromo: %b",palabra2,esPalindromo(palabra2)));
+
+        System.out.println(String.format("La palabra %s es isograma: %b",palabra1,esIsograma(palabra1)));
+        System.out.println(String.format("La palabra %s es isograma: %b",palabra2,esIsograma(palabra2)));
+
     }
 
     private static String darVuelta(String s){
@@ -83,6 +89,13 @@ public class frannmv {
         return s.equals(cadenaEnReversa);
     }
     //sonAnagramas(String s1, String s2);
-   // sonIsogramas(String s1, String s2);
+   private static boolean esIsograma(String s){
+       Set<Character> caracteres = new HashSet<>();
+       char[] cadenaToChar = s.toCharArray();
+       for(char caracter : cadenaToChar){
+           caracteres.add(caracter);
+       }
+       return s.length() == caracteres.size();
+   }
 
 }
