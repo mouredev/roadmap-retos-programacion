@@ -1,13 +1,14 @@
 import java.lang.String;
+import java.util.Scanner;
 
 import static java.lang.StringTemplate.STR;
 
 public class frannmv {
 
     public static void main(String[] args) {
-    /*  ***
+    /*  ************
         Operaciones con Cadenas de Caracteres
-        ***
+        ************
     */
         String cadena = "RoadMap 2024";
 
@@ -54,5 +55,34 @@ public class frannmv {
 
         System.out.println(nuevaCadena.equals(cadena)); // Verificacion
 
+    /*  ************
+        Extra
+        ************
+    */
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Ingrese la primera palabra: ");
+        String palabra1 = keyboard.nextLine();
+
+        System.out.println("Ingrese la segunda palabra: ");
+        String palabra2 = keyboard.nextLine();
+
+        System.out.println(String.format("La palabra %s es palindromo: %b",palabra1,esPalindromo(palabra1)));
+        System.out.println(String.format("La palabra %s es palindromo: %b",palabra2,esPalindromo(palabra2)));
     }
+
+    private static String darVuelta(String s){
+        char[] caracteres = s.toCharArray();
+        StringBuilder newString = new StringBuilder();
+        for(int i = caracteres.length - 1; i >= 0; i--){
+            newString.append(caracteres[i]);
+        }
+        return newString.toString();
+    }
+    private static boolean esPalindromo(String s) {
+        String cadenaEnReversa = darVuelta(s);
+        return s.equals(cadenaEnReversa);
+    }
+    //sonAnagramas(String s1, String s2);
+   // sonIsogramas(String s1, String s2);
+
 }
