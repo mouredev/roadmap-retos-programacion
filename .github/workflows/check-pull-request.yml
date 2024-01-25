@@ -9,21 +9,7 @@ on:
       - '!Roadmap/**/*.md'
 
 jobs:
-  check-title:
-    name: Check title
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone repository to virtual machine
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
-      - name: Check title of the pull request
-        uses: ./.github/actions/pull-requests/check-title
-        with:
-          title: ${{ github.event.pull_request.title }}
-
   get-committed-files:
-    needs: [check-title]
     name: Get committed files
     runs-on: ubuntu-latest
     outputs:
