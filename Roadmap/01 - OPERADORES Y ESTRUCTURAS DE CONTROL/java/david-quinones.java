@@ -3,7 +3,7 @@ import java.sql.SQLException;
 public class david-quinones {
 
     public static void main(String[] args) {
-        davidquinones lopez = new davidquinones();
+        david-quinones lopez = new david-quinones();
         lopez.operadores();
     }   
 
@@ -19,6 +19,7 @@ public class david-quinones {
         excepciones();
         // excepcionesTrows();
         jumpStructure();
+        additionalExercice();
     }
 
     public void arithmetic() {
@@ -231,5 +232,23 @@ public class david-quinones {
         }
         return -1; // sino quadra, retorna valor 
     }
+
+    public void additionalExercice(){
+        /* ADDICIONAL */
+        for(int i = 10; i < 56; i++){
+            if(i == 16 || i % 2 != 0 || i % 3 == 0){ 
+
+                continue;
+            }
+            System.out.println(i);
+        }
+
+    }
+
+
+
+
+
+
 
 }
