@@ -75,6 +75,19 @@ export function getProgrammingLanguageExtensions() {
 	return [...new Set(fileExtensionsFiltered).values()]
 }
 
+/**
+ * Retrieves the folder name of the programming language based on the file extension.
+ * @param {string} extension - The file extension to search for.
+ * @returns {string} - The folder name of the programming language, or 'null' if not found.
+ */
+export function getProgrammingLanguageFolderName(extension) {
+	const challengesFolders = getChallengeFolders()
+	const foldersToSeek = challengesFolders.map((folder) => path.resolve(roadmapPath, folder))
+	const foldersContent = foldersToSeek.map((folder) => fs.readdirSync(folder, { recursive: true })).flat()
+	const folderName = foldersContent.find((folder) => path.extname(folder.toString()) === extension)
+	return folderName?.toString().split(path.sep)[0] ?? 'null'
+}
+
 export function getProgrammingLanguageFolderNames() {
 	const challengesFolders = getChallengeFolders()
 	const foldersToSeek = challengesFolders.map((folder) => path.resolve(roadmapPath, folder))
