@@ -1,7 +1,5 @@
 import java.lang.String;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 import static java.lang.StringTemplate.STR;
 
@@ -68,12 +66,7 @@ public class frannmv {
         System.out.println("Ingrese la segunda palabra: ");
         String palabra2 = keyboard.nextLine();
 
-        System.out.println(String.format("La palabra %s es palindromo: %b",palabra1,esPalindromo(palabra1)));
-        System.out.println(String.format("La palabra %s es palindromo: %b",palabra2,esPalindromo(palabra2)));
-
-        System.out.println(String.format("La palabra %s es isograma: %b",palabra1,esIsograma(palabra1)));
-        System.out.println(String.format("La palabra %s es isograma: %b",palabra2,esIsograma(palabra2)));
-
+        mostrarResultados(palabra1,palabra2);
     }
 
     private static String darVuelta(String s){
@@ -88,7 +81,37 @@ public class frannmv {
         String cadenaEnReversa = darVuelta(s);
         return s.equals(cadenaEnReversa);
     }
-    //sonAnagramas(String s1, String s2);
+
+    private static int cantidadQueAparece(char c, char[] array){
+        int vecesQueAparece = 0;
+        for(int i = 0; i<array.length; i++){
+            if(array[i] == c)
+                vecesQueAparece++;
+        }
+        return vecesQueAparece;
+    }
+    private static void cargarMapa(Map<Character,Integer> a, String s){
+        char[] c = s.toCharArray();
+        for(char caracter : c){
+            a.putIfAbsent(caracter,cantidadQueAparece(caracter,c));
+        }
+    }
+    private static boolean sonAnagrama(String s1, String s2) {
+        Map<Character, Integer> cadena1 = new HashMap<>();
+        Map<Character, Integer> cadena2 = new HashMap<>();
+
+        cargarMapa(cadena1,s1);
+        cargarMapa(cadena2,s2);
+
+        for(Map.Entry<Character,Integer> entry : cadena1.entrySet()){
+            if(cadena2.containsKey(entry.getKey()) && entry.getValue() == cadena2.get(entry.getKey())){
+
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
    private static boolean esIsograma(String s){
        Set<Character> caracteres = new HashSet<>();
        char[] cadenaToChar = s.toCharArray();
@@ -97,5 +120,16 @@ public class frannmv {
        }
        return s.length() == caracteres.size();
    }
+    private static void mostrarResultados(String palabra1, String palabra2){
+        System.out.println(String.format("La palabra %s es palindromo: %b",palabra1,esPalindromo(palabra1)));
+        System.out.println(String.format("La palabra %s es palindromo: %b",palabra2,esPalindromo(palabra2)));
+        System.out.println("-----------------------------------------");
 
+        System.out.println(String.format("Las palabra %s y %s son anagrama: %b",palabra1,palabra2, sonAnagrama(palabra1,palabra2)));
+        System.out.println("-----------------------------------------");
+
+        System.out.println(String.format("La palabra %s es isograma: %b",palabra1,esIsograma(palabra1)));
+        System.out.println(String.format("La palabra %s es isograma: %b",palabra2,esIsograma(palabra2)));
+        System.out.println("-----------------------------------------");
+    }
 }
