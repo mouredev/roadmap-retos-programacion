@@ -29,34 +29,15 @@ jobs:
     needs: [get-committed-files]
     name: Check committed files
     runs-on: ubuntu-latest
-    outputs:
-      committed-file: ${{ steps.changed-files.outputs.committed-file }}
     steps:
       - name: Clone repository to virtual machine
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.base.ref }}
       - name: Check committed files of the pull request
-        id: changed-files
         uses: ./.github/actions/pull-requests/check-committed-files
         with:
           committed-files: ${{ needs.get-committed-files.outputs.committed-files }}
-
-  check-committed-file:
-    needs: [check-committed-files]
-    name: Check committed file
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone repository to virtual machine
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
-      - name: Check committed file of the pull request
-        uses: ./.github/actions/pull-requests/check-committed-file
-        with:
-          author: ${{ github.event.pull_request.user.name || github.actor }}
-          committed-file: ${{ needs.check-committed-files.outputs.committed-file }}
-          title: ${{ github.event.pull_request.title }}
 
 permissions:
   pull-requests: read

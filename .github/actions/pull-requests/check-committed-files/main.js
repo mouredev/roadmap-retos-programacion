@@ -1,4 +1,4 @@
-import { getInput, debug, setOutput, setFailed } from '@actions/core'
+import { debug, getInput, setFailed } from '@actions/core'
 
 // Inputs
 const committedFiles = getInput('committed-files').split('\\n')
@@ -9,11 +9,6 @@ const isValidCommittedFiles = committedFiles.length === 1
 debug(`Is valid committed files? ${isValidCommittedFiles}`)
 
 if (isValidCommittedFiles) {
-	// On valid files, set the output
-	const committedFile = committedFiles[0]
-	debug(`'committed-file' (output): ${committedFile}`)
-
-	setOutput('committed-file', committedFile)
 } else {
 	// On invalid files, set the action as failed
 	setFailed(
