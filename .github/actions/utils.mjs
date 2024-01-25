@@ -91,7 +91,7 @@ export function getProgrammingLanguageFolderName(extension) {
 export function getProgrammingLanguageFolderNames() {
 	const challengesFolders = getChallengeFolders()
 	const foldersToSeek = challengesFolders.map((folder) => path.resolve(roadmapPath, folder))
-	const foldersContent = foldersToSeek.map((folder) => fs.readdirSync(folder)).flat()
-	const folderNames = foldersContent.filter((folder) => path.extname(folder) === '')
+	const foldersContent = foldersToSeek.map((folder) => fs.readdirSync(folder, { withFileTypes: true })).flat()
+	const folderNames = foldersContent.filter((folder) => folder.isDirectory()).map((folder) => folder.name)
 	return [...new Set(folderNames).values()]
 }
