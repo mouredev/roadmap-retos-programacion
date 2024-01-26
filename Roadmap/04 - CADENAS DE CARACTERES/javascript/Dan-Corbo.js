@@ -109,7 +109,7 @@ console.log(esCorreoValido);  // Imprime true
 // Extra - Opcional
 
 
-// Funcion para verificar si una palabra es palindroma
+// Funcion para verificar si una palabra es palíndroma
 function esPalindromo(palabra) {
     const palabraReversa = palabra.split('').reverse().join('');
     return palabraReversa === palabra;
@@ -134,7 +134,7 @@ function esIsograma(palabra) {
 }
 
 
-// Funcion que dependiendo el resultado de si una o mas palabras son palindromos, anagramas o isogramas, devuelve un resultado
+// Funcion que dependiendo el resultado de si una o mas palabras son palíndromos, anagramas o isogramas, devuelve un resultado
 function palabras(palabra1, palabra2) {
     let resultado = "";
 
