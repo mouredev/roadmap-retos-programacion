@@ -72,11 +72,25 @@ console.log(saludo_interpolado.includes(miNombre));//El método includes() es ca
 
 //Dificultad extra
 
-function esPalindromo(txt1, txt2) {
-  let str1 = txt1;
-  let str2 = txt2.split("").reverse().join("");
-  return (str1 === str2);
+function esPalindromo(txt1) {
+  let str1 = txt1.split("").reverse().join("");
+  return (txt1 === str1);
 }
+
+console.log(esPalindromo("anilina"));
+
+function esAnagrama(txt1, txt2) {
+  let word1 = txt1.split("").sort();
+  let word2 = txt2.split("").sort();
+  for (let i = 0; i < word1.length; i++) {
+    if (word1[i] !== word2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(esAnagrama("letras", "lastre"));
 
 function contarLetras(txt) {
   let textoSinNumerosNiSignos = txt.replace(/\d+\D/, "").toLowerCase();
@@ -88,20 +102,18 @@ function contarLetras(txt) {
   return letras;
 }
 
-let palabra = contarLetras("isogram");
-console.log(palabra);
-
-function esIsograma(obj) {
+function esIsograma(txt) {
+  let palabra = contarLetras(txt);
   let contador = 0;
-  for (const key in obj) {
+  for (const key in palabra) {
     if (contador === 0) {
-      contador = obj[key];
+      contador = palabra[key];
     }
-    if (contador !== obj[key]) {
+    if (contador !== palabra[key]) {
       return false;
     }
   }
   return true;
 }
 
-console.log(esIsograma(palabra));
+console.log(esIsograma("murciélago"));
