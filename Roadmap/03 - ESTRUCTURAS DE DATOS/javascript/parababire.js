@@ -126,3 +126,48 @@ incluso lenguajes, sus métodos son estático lo que permite únicamente su pars
     }
   }
 }*/
+
+//Extra
+
+function my_agenda() {
+
+  let agenda = {};
+
+  while (true) {
+
+    console.log("1.- Buscar contacto");
+    console.log("2.- Insertar contacto");
+    console.log("3.- Actualizar contacto");
+    console.log("4.- Borrar contacto");
+    console.log("5.- Salir");
+
+    let operacion = prompt("Selecciona una operación", "");
+
+    switch (operacion) {
+      case "1":
+
+        break;
+      case "2":
+        let name = prompt("Ingresa nombre del contacto", "");
+        let phone = prompt("Ingresa número telefónico del contacto", "");
+        agenda[name] = phone;
+        break;
+      case "3":
+
+        break;
+      case "4":
+
+        break;
+      case "5":
+        console.log("Salir del programa.");
+        break;
+    
+      default:
+        console.log("Tu elección no es válida. Elige un número del 1 al 5.");
+        break;
+    }
+  }
+  
+}
+
+my_agenda();
