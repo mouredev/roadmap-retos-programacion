@@ -23,6 +23,12 @@ print(f"La cadena {hola} tiene {len(hola)} caracteres")
 test_concatenar = "Hola" + " " + "Mundo!" + "(concatenado)"
 print(test_concatenar)
 
+# repeticion
+def separador():
+    print("-" * 25)
+
+separador()
+
 
 '''
  * DIFICULTAD EXTRA (opcional):
