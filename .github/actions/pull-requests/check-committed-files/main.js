@@ -1,6 +1,11 @@
 import { debug, getInput, setFailed } from '@actions/core'
 import path from 'node:path'
-import { getProgrammingLanguageExtension, getProgrammingLanguageFolderName } from '../../utils.mjs'
+import {
+	arraytoString,
+	getProgrammingLanguageExtension,
+	getProgrammingLanguageFolderName,
+	getProgrammingLanguageFolderNames,
+} from '../../utils.mjs'
 
 // Inputs
 const author = getInput('author')
@@ -9,7 +14,10 @@ debug(`'author' (input): ${author}`)
 debug(`'committed-files' (input): ${committedFiles}`)
 
 // Required data
-const authorLowerCased = author.toLowerCase()
+const authorLowerCase = author.toLowerCase()
+const programmingLanguageFolders = getProgrammingLanguageFolderNames()
+debug(`Author name (lowercase): ${authorLowerCase}`)
+debug(`Programming language folder names: ${programmingLanguageFolders}`)
 
 // Check each commited file
 for (const committedFile of committedFiles) {
@@ -17,7 +25,7 @@ for (const committedFile of committedFiles) {
 	debug(`Committed file properties: ${parsedFile}`)
 
 	// Check file name
-	const isValidFileName = parsedFile.name.toLowerCase() === authorLowerCased
+	const isValidFileName = parsedFile.name.toLowerCase() === authorLowerCase
 	debug(`Is valid file name? ${isValidFileName}`)
 
 	if (!isValidFileName) {
@@ -29,15 +37,30 @@ for (const committedFile of committedFiles) {
 		)
 	}
 
-	// Check file extension
-	const lastFolder = parsedFile.dir.split(path.sep).pop() // Get the last folder, in this case the programming language name.
-	debug(`Last folder of the commited file: ${lastFolder}`)
+	// Check programming language folder
+	const programmingLanguageFolder = parsedFile.dir.split(path.sep).pop() // Get the last folder, in this case the programming language name.
+	debug(`Last folder of the commited file: ${programmingLanguageFolder}`)
 
-	if (!lastFolder) {
-		throw new Error(`The last folder of '${parsedFile.base}' (committed file) is undefined!`)
+	if (!programmingLanguageFolder) {
+		throw new Error(
+			`The programming language folder of '${parsedFile.base}' (committed file) inside '${parsedFile.dir}' is undefined!`
+		)
 	}
 
-	const expectedFileExtBasedOnLastFolder = getProgrammingLanguageExtension(lastFolder)
+	if (!programmingLanguageFolders.includes(programmingLanguageFolder)) {
+		setFailed(
+			`The programming language folder '${programmingLanguageFolder}', where '${parsedFile.base}' (committed file) is located doesn't match with an existing one. ` +
+				`It should be on of these: '${arraytoString({
+					array: programmingLanguageFolders,
+					finalSeparator: ', or ',
+					separator: ', ',
+				})}'. ` +
+				'If you think this is an error, please contact an administrator.'
+		)
+	}
+
+	// Check file extension
+	const expectedFileExtBasedOnLastFolder = getProgrammingLanguageExtension(programmingLanguageFolder)
 	const isValidFileExtension = parsedFile.ext === expectedFileExtBasedOnLastFolder
 	debug(`Expected file extension based on the last folder of the commited file: ${expectedFileExtBasedOnLastFolder}`)
 	debug(`Is valid file extension? ${isValidFileExtension}`)
