@@ -99,21 +99,33 @@ def palindromo(palabra1, palabra2):
     palabra1 = palabra1.lower()
     if palabra1 == palabra1[::-1]:
         print(f"{palabra1} es un palíndromo")
+    if palabra2 == palabra2[::-1]:
+        print(f"{palabra2} es un palindromo")
     else:
-        print(f"{palabra1} no es un palíndromo")
+        print(f"Ni {palabra1} ni {palabra2} son palíndromos")
 
 # Anagrama, comprobamos si cambiando el orden puede formar otra palabra
 def anagrama(palabra1, palabra2):
     pass
 
 # Isograma, cada letra aparece el mismo número de veces
+def isograma(palabra1, palabra2):
+    # separar por letras en una lista
+
+    # contar cada letra
+
+    # si dos numeros coinciden avisar
+    pass
 
 # Heterograma, que no tiene ninguna letra repetida
-
+def heterograma(palabra1, palabra2):
+    # mismo que con isograma, pero si el por letras es 1, avisar que es un heterograma
+    pass
+    
 # comprobamos las palabras
-palabra1 = "abba"
-palabra2 = "calabaza"
+palabra_a = "abba"
+palabra_b = "molom"
 
-palindromo(palabra1, palabra2)
+palindromo(palabra_a, palabra_b)
 
 
