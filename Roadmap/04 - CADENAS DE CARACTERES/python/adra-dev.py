@@ -217,20 +217,15 @@ def word_analisis(word1, word2):
             print(f"La palabra {word} es un Anagrama\n")
             print(reversed_word, "\n")
 
-        count = 0
+        set_word = set(word)
         length = len(word)
-        
-        for letter in word:
-            count += word.count(letter)
-        
-        if count == length:
+
+        if len(set_word) == length:
             print(f"La palabra {word} es un Isograma\n")
         else:
             print(f"La palabra {word} no es un Isograma\n") 
-        
-        
-    
-
+            
+            
 word_analisis("rallar", "seder")
 word_analisis("caucasus", "seder")
 word_analisis("caucasus", "ambidiestramente")
