@@ -23,11 +23,34 @@ print(f"La cadena {hola} tiene {len(hola)} caracteres")
 test_concatenar = "Hola" + " " + "Mundo!" + "(concatenado)"
 print(test_concatenar)
 
-# repeticion
+# Aprovechamos la repeción para crear un separador
 def separador():
     print("-" * 25)
 
 separador()
+
+# recorrido
+for i in hola:
+    print(i)
+
+# conversión a mayúsculas, minúsculas, capitalizar, titulo e invertir
+print(hola.upper())
+print(hola.lower())
+print(hola.capitalize())
+print(hola.title())
+print(hola.swapcase())
+
+# reemplazo
+print(hola.replace("Mundo", "chat"))
+
+# división
+
+# unión
+
+# interpolación
+
+# verificación
+
 
 
 '''
