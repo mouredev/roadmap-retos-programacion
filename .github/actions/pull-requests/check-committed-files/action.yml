@@ -5,7 +5,7 @@ description: 'Check if committed files of a pull request are valid'
 
 runs:
   using: 'node20'
-  main: 'main.js'
+  main: 'dist/index.js'
 
 inputs:
   author:
