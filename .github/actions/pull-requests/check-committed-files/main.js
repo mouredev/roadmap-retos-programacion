@@ -72,7 +72,7 @@ for (const committedFile of committedFiles) {
 		setFailed(
 			`The file extension of '${parsedFile.base}' file, inside '${parsedFile.dir}' directory doesn't match with the programming language folder. ` +
 				'Check the file extension or the programming language folder where it is located. ' +
-				`The file extension should be: '${expectedFileExtBasedOnLastFolder}, ` +
+				`The file extension should be: '${expectedFileExtBasedOnLastFolder}', ` +
 				`or the programming language folder where it is located should be: '${expectedLastFolderBasedOnCommittedFileExt}'. ` +
 				'If you think this is an error, please contact an administrator.'
 		)
