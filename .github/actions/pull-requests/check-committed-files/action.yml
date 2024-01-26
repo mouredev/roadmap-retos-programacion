@@ -8,6 +8,9 @@ runs:
   main: 'main.js'
 
 inputs:
+  author:
+    description: 'Name of the user who created the pull request'
+    required: true
   committed-files:
     description: 'Committed files of the pull request'
     required: true
