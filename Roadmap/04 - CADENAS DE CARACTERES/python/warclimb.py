@@ -34,14 +34,13 @@ for i in hola:
     print(i)
 
 # conversión a mayúsculas, minúsculas, capitalizar, titulo e invertir
-print(hola.upper())
-print(hola.lower())
-print(hola.capitalize())
-print(hola.title())
-print(hola.swapcase())
+def transformacion(s):
+   return s.upper(), s.lower(), s.capitalize(), s.title(), s.swapcase()
+
+print(transformacion(hola))
 
 # reemplazo
-print(hola.replace("Mundo", "chat"))
+print(f"Transformacion:\n {'\n'.join(transformacion(hola))}")
 
 # división
 separacion = hola.split(" ")
@@ -94,3 +93,4 @@ print(text == "") # comprobamos si esta vacio
  * - Anagramas
  * - Isogramas
 '''
+
