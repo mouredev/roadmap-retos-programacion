@@ -8,9 +8,20 @@
  *
 '''
 
-string = "Hola Mundo!"
+# el clásico string:
+hola = "Hola Mundo!"
+print(hola)
 
+# subcadena, acceso a caracteres específicos
+subcadena = hola[0:4]
+print(subcadena)
 
+# longitud de la cadena
+print(f"La cadena {hola} tiene {len(hola)} caracteres")
+
+# concatenación
+test_concatenar = "Hola" + " " + "Mundo!" + "(concatenado)"
+print(test_concatenar)
 
 
 '''
