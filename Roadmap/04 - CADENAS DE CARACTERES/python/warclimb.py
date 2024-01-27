@@ -111,6 +111,13 @@ def anagrama(palabra1, palabra2):
 # Isograma, cada letra aparece el mismo número de veces
 def isograma(palabra1, palabra2):
     # separar por letras en una lista
+    comparacion1 = list(palabra1)
+    print(comparacion1)
+    comparacion2 = list(palabra2)
+    for i in comparacion1:
+        if i in comparacion1:
+            print("hay letras repetidas")
+
 
     # contar cada letra
 
@@ -118,15 +125,21 @@ def isograma(palabra1, palabra2):
     pass
 
 # Heterograma, que no tiene ninguna letra repetida
-def heterograma(palabra1, palabra2):
-    # mismo que con isograma, pero si el por letras es 1, avisar que es un heterograma
-    pass
+def heterograma(palabra):
+    # convert the word to lowercase and create a set of its letters
+    letters = list(palabra.lower())
+    print(letters)
     
-# comprobamos las palabras
-palabra_a = "abba"
-palabra_b = "molom"
+    # if the length of the set is equal to the length of the word, it's a heterogram
+    if len(letters) == len(palabra):
+        print("es un heterograma")
+    else:
+        print("no es un heterograma")
 
-palindromo(palabra_a, palabra_b)
+# Usage
+heterograma("esternocleidomastoideo")  # es un heterograma
+heterograma("hola")  # no es un heterograma
+
 
 
 
