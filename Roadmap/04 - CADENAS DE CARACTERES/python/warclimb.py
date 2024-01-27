@@ -107,31 +107,30 @@ def palindromo(*palabras):
   
 
 # Anagrama, comprobamos si cambiando el orden puede formar otra palabra
-def anagrama(palabra1, palabra2):
+def anagrama(*palabras):
     pass
 
 # Isograma, cada letra aparece el mismo número de veces
-def isograma(palabra1, palabra2):
+def isograma(*palabras):
     # convert the word to lowercase and count the occurrences of each letter
-    counts = Counter(palabra1.lower())
-    
-    # if all letters appear the same number of times, it's an isogram
-    if len(set(counts.values())) == 1:
-        print(f"{palabra1} es un isograma")
-    else:
-        print(f"{palabra1} no es un isograma")
+    for palabra in palabras:
+        contador = Counter(palabra.lower())
+        # contamos cada letra y comprobamos si la longitud del set es 1, eso significa que todos los contadores de letras son iguales
+        if len(set(contador.values())) == 1:
+            print(f"{palabra} es un isograma")
+        else:
+            print(f"{palabra} no es un isograma")
 
 # Heterograma, que no tiene ninguna letra repetida
-def heterograma(palabra1, palabra2):
-    # convert the word to lowercase and create a set of its letters
-    letras1 = set(palabra1.lower())
-    #letras2 =
-    
-    # if the length of the set is equal to the length of the word, it's a heterogram
-    if len(letras1) == len(palabra1):
-        print(f"{palabra1} es un heterograma")
-    else:
-        print(f"{palabra1} no es un heterograma")
+def heterograma(*palabras):
+    for palabra in palabras:
+        # convertir la palabra a minusculas
+        letras = set(palabra.lower())
+        # si tras meterlo en el set, tenemos el mismo numero de letras es que es un isograma
+        if len(letras) == len(palabra):
+            print(f"{palabra} es un heterograma")
+        else:
+            print(f"{palabra} no es un heterograma")
 
 # Comprobamos si son palindromos
 palindromo("sometemos", "cabeza")
