@@ -8,6 +8,8 @@
  *
 '''
 
+from collections import Counter
+
 # el clásico string:
 hola = "El veloz murcielago hindú comía feliz cardillo y kiwi."
 print(hola)
@@ -109,37 +111,33 @@ def anagrama(palabra1, palabra2):
     pass
 
 # Isograma, cada letra aparece el mismo número de veces
-def isograma(palabra1, palabra2):
-    # separar por letras en una lista
-    comparacion1 = list(palabra1)
-    print(comparacion1)
-    comparacion2 = list(palabra2)
-    for i in comparacion1:
-        if i in comparacion1:
-            print("hay letras repetidas")
+def isograma(palabra):
+    # convert the word to lowercase and count the occurrences of each letter
+    counts = Counter(palabra.lower())
+    
+    # if all letters appear the same number of times, it's an isogram
+    if len(set(counts.values())) == 1:
+        print(f"{palabra} es un isograma")
+    else:
+        print(f"{palabra} no es un isograma")
 
+# Comprobamos si es un isograma
+isograma("abba")  # es un isograma
+isograma("calabaza")  # no es un isograma
 
-    # contar cada letra
-
-    # si dos numeros coinciden avisar
-    pass
 
 # Heterograma, que no tiene ninguna letra repetida
-def heterograma(palabra):
+def heterograma(palabra1, palabra2):
     # convert the word to lowercase and create a set of its letters
-    letters = list(palabra.lower())
-    print(letters)
+    letras1 = set(palabra.lower())
+    letras2 =
     
     # if the length of the set is equal to the length of the word, it's a heterogram
-    if len(letters) == len(palabra):
-        print("es un heterograma")
+    if len(letras1) == len(palabra):
+        print(f"{palabra1} es un heterograma")
     else:
-        print("no es un heterograma")
+        print(f"{palabra} no es un heterograma")
 
-# Usage
-heterograma("esternocleidomastoideo")  # es un heterograma
-heterograma("hola")  # no es un heterograma
-
-
-
-
+# comprobamos si es un heterograma
+heterograma("esternocleidomastoideo")  # no es un heterograma
+heterograma("centrifugado")  # es un heterograma
