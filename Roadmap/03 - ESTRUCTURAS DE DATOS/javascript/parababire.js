@@ -1,4 +1,3 @@
-const prompt = require('prompt-sync')();
 /*Arrays, colección de datos ordenados por indices*/
 
 let names = ["maria", "angel", "pedro", "luisa"];
@@ -41,7 +40,7 @@ map1.delete("b");//Borrar dato
 //El objeto Map() no posee un método que reordene sus pares.
 
 /*WeakMap, colección de datos por par donde las keys pueden ser objetos o
-symbols no registrados
+symbols no registrados*/
 
 const wm1 = new WeakMap();//Crear objeto WeakMap
 const wm2 = new WeakMap();
@@ -69,7 +68,7 @@ wm3.get(o1); // 37
 
 wm1.has(o1); // true
 wm1.delete(o1);
-wm1.has(o1); // false*/
+wm1.has(o1); // false
 //No se pueden reordenar o mutar los pares en WeakMaps
 
 /*Set, colección de datos únicos, primitivos u objetos*/
@@ -193,13 +192,11 @@ function my_agenda() {
         console.log("Salir del programa.");
         on = false;
         break;
-    
       default:
         console.log("Tu elección no es válida. Elige un número del 1 al 5.");
         break;
     }
   }
-
 }
 
 my_agenda();
