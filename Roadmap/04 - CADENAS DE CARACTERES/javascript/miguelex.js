@@ -1,107 +1,125 @@
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 // Operaciones básicas sobre cadenas de texto
-var texto = "Hola, mundo!";
+const texto = "Hola, mundo!";
+
 // Interpolación de cadenas (uso de plantillas de cadena)
-var nombre = "Migue";
-var lenguaje = "PHP";
-var mensaje = "Hola, me llamo ".concat(nombre, " y trabajo con ").concat(lenguaje, " a\u00F1os.");
+const nombre = "Migue";
+const lenguaje = "PHP";
+const mensaje = `Hola, me llamo ${nombre} y trabajo con ${lenguaje} años.`;
 console.log(mensaje);
+
 // Longitud de la cadena
-var longitud = texto.length;
-console.log("La longitud de la cadena ".concat(texto, " es ").concat(longitud, " caracteres"));
+const longitud = texto.length;
+console.log(`La longitud de la cadena ${texto} es ${longitud} caracteres`);
+
 // Obtener el carácter en una posición específica
-var primerCaracter = texto[0];
-console.log("El primer car\u00E1cter de ".concat(texto, " es ").concat(primerCaracter));
+const primerCaracter = texto[0];
+console.log(`El primer carácter de ${texto} es ${primerCaracter}`);
+
 // Concatenar dos cadenas
-var nuevaCadena = texto + " TypeScript";
-console.log("La nueva cadena de unir ".concat(texto, " con TypeScript es ").concat(nuevaCadena));
+const nuevaCadena = texto + " TypeScript";
+console.log(`La nueva cadena de unir ${texto} con TypeScript es ${nuevaCadena}`);
+
 // Convertir la cadena a minúsculas
-var minusculas = texto.toLowerCase();
-console.log("".concat(texto, " en min\u00FAsculas es ").concat(minusculas));
+const minusculas = texto.toLowerCase();
+console.log(`${texto} en minúsculas es ${minusculas}`);
+
 // Convertir la cadena a mayúsculas
-var mayusculas = texto.toUpperCase();
-console.log("".concat(texto, " en may\u00FAsculas es ").concat(mayusculas));
+const mayusculas = texto.toUpperCase();
+console.log(`${texto} en mayúsculas es ${mayusculas}`);
+
 // Obtener una subcadena
-var subcadena = texto.substring(0, 4);
-console.log("La subcadena de ".concat(texto, " entre las posiciones 0 y 4 es ").concat(subcadena));
+const subcadena = texto.substring(0, 4);
+console.log(`La subcadena de ${texto} entre las posiciones 0 y 4 es ${subcadena}`);
+
 // Reemplazar parte de la cadena
-var reemplazada = texto.replace("Hola", "Saludos");
-console.log("Vamos a reemplazar Hola por Saludos: ".concat(reemplazada));
+const reemplazada = texto.replace("Hola", "Saludos");
+console.log(`Vamos a reemplazar Hola por Saludos: ${reemplazada}`);
+
 // Operaciones adicionales sobre cadenas de texto
-var textoConEspacios = "   Hola,      mundo!   ";
+const textoConEspacios = "   Hola,      mundo!   ";
+
 // Eliminar espacios en blanco al principio y al final
-var sinEspaciosExtremos = textoConEspacios.trim();
-console.log("Cadena sin espacios al principio y al final: ".concat(sinEspaciosExtremos));
+const sinEspaciosExtremos = textoConEspacios.trim();
+console.log(`Cadena sin espacios al principio y al final: ${sinEspaciosExtremos}`);
+
 // Eliminar todos los espacios en blanco
-var sinEspacios = textoConEspacios.replace(/\s/g, "");
-console.log("Cadena sin espacios: ".concat(sinEspacios));
+const sinEspacios = textoConEspacios.replace(/\s/g, "");
+console.log(`Cadena sin espacios: ${sinEspacios}`);
+
 // Unión de dos cadenas
-var cadena1 = "Moure";
-var cadena2 = "Dev";
-var unionCadenas = cadena1.concat(" ", cadena2);
-console.log("La uni\u00F3n de las cadenas ".concat(cadena1, " y ").concat(cadena2, " es ").concat(unionCadenas));
+const cadena1 = "Moure";
+const cadena2 = "Dev";
+const unionCadenas = cadena1.concat(" ", cadena2);
+console.log(`La unión de las cadenas ${cadena1} y ${cadena2} es ${unionCadenas}`);
+
 // Intersección de dos cadenas (caracteres comunes)
-var interseccionCadenas = __spreadArray([], new Set(cadena1), true).filter(function (char) { return cadena2.includes(char); }).join("");
-console.log("Intersecci\u00F3n de las cadenas ".concat(cadena1, " y ").concat(cadena2, " es ").concat(interseccionCadenas));
+const interseccionCadenas = [...new Set(cadena1)].filter(char => cadena2.includes(char)).join("");
+console.log(`Intersección de las cadenas ${cadena1} y ${cadena2} es ${interseccionCadenas}`);
+
 // Acceso a caracteres específicos (por posición)
-var tercerCaracter = texto.charAt(2);
-console.log("El tercer car\u00E1cter de ".concat(texto, " es ").concat(tercerCaracter));
+const tercerCaracter = texto.charAt(2);
+console.log(`El tercer carácter de ${texto} es ${tercerCaracter}`);
+
 // Repetición de una cadena
-var cadenaRepetida = "Hola ".repeat(3);
-console.log("Cadena Hola repetida 3 veces queda ".concat(cadenaRepetida));
+const cadenaRepetida = "Hola ".repeat(3);
+console.log(`Cadena Hola repetida 3 veces queda ${cadenaRepetida}`);
+
 // Recorrido de una cadena (usando un bucle)
-for (var i = 0; i < texto.length; i++) {
-    console.log("Car\u00E1cter en posici\u00F3n ".concat(i, ": ").concat(texto[i]));
+for (let i = 0; i < texto.length; i++) {
+  console.log(`Carácter en posición ${i}: ${texto[i]}`);
 }
+
 // Conversión a título (primera letra en mayúscula)
-var titulo = texto.toLowerCase().replace(/\b\w/g, function (char) { return char.toUpperCase(); });
-console.log("La cadena ".concat(texto, " como t\u00EDtulo ").concat(titulo));
+const titulo = texto.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+console.log(`La cadena ${texto} como título ${titulo}`);
+
 // División de una cadena en un array de substrings
-var palabras = texto.split(" ");
-console.log("Palabras en la cadena ".concat(texto, " son ").concat(palabras));
+const palabras = texto.split(" ");
+console.log(`Palabras en la cadena ${texto} son ${palabras}`);
+
 // Verificación de si una cadena comienza o termina con ciertos caracteres
-var comienzaCon = texto.startsWith("Hola");
-console.log("\u00BFLa cadena ".concat(texto, " comienza con \"Hola\"? ").concat(comienzaCon));
-var terminaCon = texto.endsWith("mundo!");
-console.log("\u00BFLa cadena ".concat(texto, "termina con \"mundo!\"? ").concat(terminaCon));
+const comienzaCon = texto.startsWith("Hola");
+console.log(`¿La cadena ${texto} comienza con "Hola"? ${comienzaCon}`);
+
+const terminaCon = texto.endsWith("mundo!");
+console.log(`¿La cadena ${texto}termina con "mundo!"? ${terminaCon}`);
+
 // Verificar si una cadena es palíndromo
 function esPalindromo(cadena) {
-    var sinEspacios = cadena.replace(/\s/g, "").toLowerCase();
-    var invertida = sinEspacios.split("").reverse().join("");
-    return sinEspacios === invertida;
+  const sinEspacios = cadena.replace(/\s/g, "").toLowerCase();
+  const invertida = sinEspacios.split("").reverse().join("");
+  return sinEspacios === invertida;
 }
+
 // Verificar si una cadena es un anagrama
 function esAnagrama(cadena1, cadena2) {
-    var limpiarCadena = function (cadena) { return cadena.replace(/\s/g, "").toLowerCase(); };
-    var limpiaCadena1 = limpiarCadena(cadena1);
-    var limpiaCadena2 = limpiarCadena(cadena2);
-    var ordenada1 = limpiaCadena1.split("").sort().join("");
-    var ordenada2 = limpiaCadena2.split("").sort().join("");
-    return ordenada1 === ordenada2;
+  const limpiarCadena = (cadena) => cadena.replace(/\s/g, "").toLowerCase();
+  const limpiaCadena1 = limpiarCadena(cadena1);
+  const limpiaCadena2 = limpiarCadena(cadena2);
+
+  const ordenada1 = limpiaCadena1.split("").sort().join("");
+  const ordenada2 = limpiaCadena2.split("").sort().join("");
+
+  return ordenada1 === ordenada2;
 }
+
 // Verificar si una cadena es un isograma
 function esIsograma(cadena) {
-    var caracteres = new Set();
-    for (var _i = 0, cadena_1 = cadena; _i < cadena_1.length; _i++) {
-        var char = cadena_1[_i];
-        var caracter = char.toLowerCase();
-        if (caracteres.has(caracter)) {
-            return false;
-        }
-        caracteres.add(caracter);
+  const caracteres = new Set();
+
+  for (const char of cadena) {
+    const caracter = char.toLowerCase();
+    if (caracteres.has(caracter)) {
+      return false;
     }
-    return true;
+    caracteres.add(caracter);
+  }
+
+  return true;
 }
+
 // Ejemplos de uso de las funciones adicionales
-console.log("\u00BFEs \"".concat(texto, "\" un pal\u00EDndromo? ").concat(esPalindromo(texto)));
-console.log("\u00BFEs Ana un pal\u00EDndromo? ".concat(esPalindromo("Ana")));
-console.log("\u00BFEs \"listen\" un anagrama de \"silent\"? ".concat(esAnagrama("listen", "silent")));
-console.log("\u00BFEs \"programming\" un isograma? ".concat(esIsograma("programming")));
+console.log(`¿Es "${texto}" un palíndromo? ${esPalindromo(texto)}`);
+console.log(`¿Es Ana un palíndromo? ${esPalindromo("Ana")}`);
+console.log(`¿Es "listen" un anagrama de "silent"? ${esAnagrama("listen", "silent")}`);
+console.log(`¿Es "programming" un isograma? ${esIsograma("programming")}`);
