@@ -97,47 +97,47 @@ print(text == "") # comprobamos si esta vacio
 '''
 
 # Palindromo si es un palindromo, que se lea igual de izquierda a derecha o al revés
-def palindromo(palabra1, palabra2):
-    palabra1 = palabra1.lower()
-    if palabra1 == palabra1[::-1]:
-        print(f"{palabra1} es un palíndromo")
-    if palabra2 == palabra2[::-1]:
-        print(f"{palabra2} es un palindromo")
-    else:
-        print(f"Ni {palabra1} ni {palabra2} son palíndromos")
+def palindromo(*palabras):
+    for palabra in palabras:
+        palabra = palabra.lower()
+        if palabra == palabra[::-1]:
+            print(f"{palabra} es un palíndromo")
+        else:
+            print(f"{palabra} no es un palíndromo")
+  
 
 # Anagrama, comprobamos si cambiando el orden puede formar otra palabra
 def anagrama(palabra1, palabra2):
     pass
 
 # Isograma, cada letra aparece el mismo número de veces
-def isograma(palabra):
+def isograma(palabra1, palabra2):
     # convert the word to lowercase and count the occurrences of each letter
-    counts = Counter(palabra.lower())
+    counts = Counter(palabra1.lower())
     
     # if all letters appear the same number of times, it's an isogram
     if len(set(counts.values())) == 1:
-        print(f"{palabra} es un isograma")
+        print(f"{palabra1} es un isograma")
     else:
-        print(f"{palabra} no es un isograma")
-
-# Comprobamos si es un isograma
-isograma("abba")  # es un isograma
-isograma("calabaza")  # no es un isograma
-
+        print(f"{palabra1} no es un isograma")
 
 # Heterograma, que no tiene ninguna letra repetida
 def heterograma(palabra1, palabra2):
     # convert the word to lowercase and create a set of its letters
-    letras1 = set(palabra.lower())
-    letras2 =
+    letras1 = set(palabra1.lower())
+    #letras2 =
     
     # if the length of the set is equal to the length of the word, it's a heterogram
-    if len(letras1) == len(palabra):
+    if len(letras1) == len(palabra1):
         print(f"{palabra1} es un heterograma")
     else:
-        print(f"{palabra} no es un heterograma")
+        print(f"{palabra1} no es un heterograma")
+
+# Comprobamos si son palindromos
+palindromo("sometemos", "cabeza")
+
+# Comprobamos si es un isograma
+isograma("abba", "calabaza")
 
 # comprobamos si es un heterograma
-heterograma("esternocleidomastoideo")  # no es un heterograma
-heterograma("centrifugado")  # es un heterograma
+heterograma("esternocleidomastoideo", "centrifugado")
