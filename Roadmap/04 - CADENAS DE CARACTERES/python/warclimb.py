@@ -8,7 +8,7 @@
  *
 '''
 
-from collections import Counter
+from collections import Counter # necesario para contar letras en el ejercicio extra
 
 # el clásico string:
 hola = "El veloz murcielago hindú comía feliz cardillo y kiwi."
@@ -96,7 +96,7 @@ print(text == "") # comprobamos si esta vacio
  * - Isogramas
 '''
 
-# Palindromo si es un palindromo, que se lea igual de izquierda a derecha o al revés
+# Palindromo: que se lea igual de izquierda a derecha o al revés
 def palindromo(*palabras):
     for palabra in palabras:
         palabra = palabra.lower()
@@ -107,12 +107,18 @@ def palindromo(*palabras):
   
 
 # Anagrama, comprobamos si cambiando el orden puede formar otra palabra
-def anagrama(*palabras):
-    pass
+def anagrama(palabra1, palabra2):
+    orden_palabra1 = sorted(list(palabra1.lower()))
+    orden_palabra2 = sorted(list(palabra2.lower()))
+
+    if orden_palabra1 == orden_palabra2:
+        print(f"{palabra1} y {palabra2} son anagramas")
+    else:
+        print(f"{palabra1} y {palabra2} no son anagramas")
 
 # Isograma, cada letra aparece el mismo número de veces
 def isograma(*palabras):
-    # convert the word to lowercase and count the occurrences of each letter
+    # convertimos la palabra a minusculas y contamos las letras
     for palabra in palabras:
         contador = Counter(palabra.lower())
         # contamos cada letra y comprobamos si la longitud del set es 1, eso significa que todos los contadores de letras son iguales
@@ -132,11 +138,25 @@ def heterograma(*palabras):
         else:
             print(f"{palabra} no es un heterograma")
 
+# Empieza la fiesta
+separador()
+print("EJERCICIO EXTRA:")
+separador()
+
 # Comprobamos si son palindromos
 palindromo("sometemos", "cabeza")
 
+separador()
+
+# Comprobamos si dos palabras son anagramas
+anagrama("Lacteo", "Coleta")
+
+separador()
+
 # Comprobamos si es un isograma
 isograma("abba", "calabaza")
+
+separador()
 
 # comprobamos si es un heterograma
 heterograma("esternocleidomastoideo", "centrifugado")
