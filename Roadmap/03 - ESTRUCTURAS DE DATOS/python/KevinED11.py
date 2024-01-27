@@ -106,9 +106,12 @@ class ContactManager:
             print(f"{name}: {info}")
 
     def add(self, name: str, info: PersonalInfo) -> None:
-        #
         if self.search(name) is not None:
             print(self.setup_messages.contact_already_exists)
+            return
+
+        if not is_valid_phone_number(info.phone):
+            print(self.setup_messages.invalid_phone_number(info.phone))
             return
 
         self.contacts[name] = info
@@ -124,6 +127,10 @@ class ContactManager:
         current_contact_info = self.search(name)
         if current_contact_info is None:
             print(self.setup_messages.contact_not_found)
+            return
+
+        if not is_valid_phone_number(info.phone):
+            print(self.setup_messages.invalid_phone_number(info.phone))
             return
 
         current_contact_info_dict = dataclasses.asdict(current_contact_info)
