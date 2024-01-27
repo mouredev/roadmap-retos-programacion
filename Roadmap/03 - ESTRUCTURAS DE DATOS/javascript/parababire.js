@@ -1,3 +1,4 @@
+const prompt = require('prompt-sync')();
 /*Arrays, colección de datos ordenados por indices*/
 
 let names = ["maria", "angel", "pedro", "luisa"];
@@ -40,7 +41,7 @@ map1.delete("b");//Borrar dato
 //El objeto Map() no posee un método que reordene sus pares.
 
 /*WeakMap, colección de datos por par donde las keys pueden ser objetos o
-symbols no registrados*/
+symbols no registrados
 
 const wm1 = new WeakMap();//Crear objeto WeakMap
 const wm2 = new WeakMap();
@@ -68,7 +69,7 @@ wm3.get(o1); // 37
 
 wm1.has(o1); // true
 wm1.delete(o1);
-wm1.has(o1); // false
+wm1.has(o1); // false*/
 //No se pueden reordenar o mutar los pares en WeakMaps
 
 /*Set, colección de datos únicos, primitivos u objetos*/
@@ -131,35 +132,66 @@ incluso lenguajes, sus métodos son estático lo que permite únicamente su pars
 
 function my_agenda() {
 
+  let name, phone;
+  let on = true;
+  let phoneRegex = /^\s{0}\b\d{11}\b\s{0}$/;
   let agenda = {};
+  function phone_Regex() {
+    phone = prompt("Ingresa número telefónico del contacto: ", "");
+        if (phoneRegex.test(phone)) {
+          agenda[name] = phone;
+        } else {
+          console.log("El número debe tener 11 dígitos, sin espacios.");
+        }
+  }
+  function msjError() {
+    console.log(`El contacto ${name} no existe.`);
+  }
 
-  while (true) {
+  while (on) {
 
+    console.log("");
     console.log("1.- Buscar contacto");
     console.log("2.- Insertar contacto");
     console.log("3.- Actualizar contacto");
     console.log("4.- Borrar contacto");
     console.log("5.- Salir");
 
-    let operacion = prompt("Selecciona una operación", "");
+    let operacion = prompt("\nSelecciona una operación: ", "");
 
     switch (operacion) {
       case "1":
-
+        console.log("");
+        name = prompt("Ingresa nombre del contacto a buscar: ", "");
+        if (agenda.hasOwnProperty(name)) {
+          console.log(`El número de ${name} es: ${agenda[name]}`);
+        } else {
+          msjError();
+        }
         break;
       case "2":
-        let name = prompt("Ingresa nombre del contacto", "");
-        let phone = prompt("Ingresa número telefónico del contacto", "");
-        agenda[name] = phone;
+        name = prompt("Ingresa nombre del contacto: ", "");
+        phone_Regex();
         break;
       case "3":
-
+        name = prompt("Ingresa nombre del contacto a actualizar: ", "");
+        if (agenda.hasOwnProperty(name)) {
+          phone_Regex();
+        } else {
+          msjError();
+        }
         break;
       case "4":
-
+        name = prompt("Ingresa nombre del contacto a eliminar: ", "");
+        if (agenda.hasOwnProperty(name)) {
+          delete agenda[name];
+        } else {
+          msjError();
+        }
         break;
       case "5":
         console.log("Salir del programa.");
+        on = false;
         break;
     
       default:
@@ -167,7 +199,7 @@ function my_agenda() {
         break;
     }
   }
-  
+
 }
 
 my_agenda();
