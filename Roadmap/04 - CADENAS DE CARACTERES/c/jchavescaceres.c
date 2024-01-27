@@ -26,10 +26,6 @@ strrchr
 strcspn 
 strspn 
 strpbrk 
-strpbrk 
-strpbrk 
-strstr 
-strstr 
 strstr 
 strtok 
 strtok_r 
@@ -103,6 +99,19 @@ void main () {
 
 	/* Search in string1 the characters b, c or d, return first position found */
 	printf( "String1: %s, strcspn (string1, \"bcd\"): %lu\n", string1, strcspn (string1, "bcd"));
+
+	/* Search in string1 the characters b, c or d, return pointer first position found */
+	printf( "String1: %s, strpbrk (string1, \"a\"): %s\n", string1, strpbrk (string1, "bcd"));
+
+	/* Search in string1 the string2, return pointer first position found */
+	printf( "String1: %s, strstr (string1, \"dena\"): %s\n", string1, strstr (string1, "dena"));
+
+	/* Split a string into tokens, to get all tokens then call the function with NULL value after the first time */
+	char testStrtok [] = "1, 2, 3 y 4";
+	printf( "strtok (%s, \",\"): ", testStrtok);
+	printf( "%s\n", strtok (testStrtok, "-,"));
+	printf( "strtok (NULL, \",\"): %s\n", strtok (NULL, "-,"));
+	printf( "strtok (NULL, \",\"): %s\n", strtok (NULL, "-,"));
 
 
 };
