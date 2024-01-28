@@ -1,4 +1,4 @@
-public class main {
+public class vixxtory {
     public static void main(String[] args) {
         // https://www.java.com/es/
 
