@@ -50,11 +50,11 @@ for (const committedFile of committedFiles) {
 	if (!programmingLanguageFolders.includes(programmingLanguageFolder)) {
 		setFailed(
 			`The programming language folder '${programmingLanguageFolder}', where '${parsedFile.base}' (committed file) is located doesn't match with an existing one. ` +
-				`It should be on of these: '${arraytoString({
+				`It should be on of these: ${arraytoString({
 					array: programmingLanguageFolders,
 					finalSeparator: ', or ',
 					separator: ', ',
-				})}'. ` +
+				})}. ` +
 				'If you think this is an error, please contact an administrator.'
 		)
 	}
