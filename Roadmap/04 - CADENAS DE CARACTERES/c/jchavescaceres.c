@@ -52,6 +52,23 @@ stpncpy
 #include <string.h>
 #include <locale.h>
 
+void advanced();
+
+/*
+1 if a word is the same reading from left to right and from right to left, e.g. noon
+*/
+int isPalindrome (const char* inString1, const char* inString2);
+
+/*
+1 if both words are anagram: different word but with exactly same letters in a different order, e.g. night and thing
+*/
+int isAnagrame (const char* inString1, const char* inString2);
+
+/*
+1 if all letters of a word appear the same time, e.g. dialogue all letters appears just one, intestines all letters appears twice
+*/
+int isIsograme (const char* inString);
+
 void main () {
 
 	const char *string1 = "Cadena 1";
@@ -167,6 +184,151 @@ void main () {
 	/* Signal name as string */
 	printf( "Signal %d, name %s \n", 15, strsignal (15));
 
+	advanced();
+
 
 };
 
+char* getWord() {
+	const unsigned int MAX_BUFFER=200;
+        char buffer [MAX_BUFFER];
+        char *res = NULL;
+
+        printf("\nNombre : ");
+        fgets (buffer, MAX_BUFFER, stdin);
+        buffer [strlen (buffer)-1] = '\0'; /* remove \n */
+        res = malloc (strlen (buffer)+1);
+
+        strcpy (res, buffer);
+
+        return res;
+};
+
+void advanced() {
+
+	char* words[2] ;
+
+
+	printf ("Escribe primera palabra : ");
+	words[0] = getWord();
+	printf ("Escribe segunda palabra : ");
+	words[1] = getWord();
+
+	printf ("%s y %s %s son palíndromo\n", words[0], words[1], (isPalindrome (words[0], words[1]) ? "": "no"));
+	printf ("%s y %s %s son anagramas\n", words[0], words[1], (isAnagrame (words[0], words[1]) ? "": "no"));
+	printf ("%s %s es isograma\n", words[0], (isIsograme (words[0]) ? "": "no"));
+	printf ("%s %s es isograma\n", words[1], (isIsograme (words[1]) ? "": "no"));
+
+
+	free (words[0]);
+	free (words[1]);
+};
+
+int isPalindrome (const char* inString1, const char* inString2) {
+	int res = 1;
+
+	if (strlen( inString1) == strlen (inString2)) {
+		for (int i = 0, mySize1 = strlen (inString1), j = strlen (inString2)-1; i < mySize1, j >=0; i++, j--) {
+	
+				if (inString1 [i] != inString2 [j]) {
+					/* Is not a palindrome */
+					res = 0;
+					break;
+				}
+		};
+	}
+	else {
+		res = 0;
+	};
+	return res;
+};
+
+void orderWord (char* word) {
+
+	const int sizeString = strlen(word);
+	char temp=0;
+
+	for (int i=1 ; i<sizeString ; i++) {
+		for (int j= 0; j < sizeString-i ; j++)  {
+			if (word[j] > word[j+1]) {
+				temp=word[j];
+				word[j]=word[j+1];
+				word[j+1]=temp;
+			}
+		}
+	}
+}
+
+
+int isAnagrame (const char* inString1, const char* inString2) {
+
+	char* string1 = malloc (strlen (inString1));
+	char* string2 = malloc (strlen (inString1));
+	int res = 0;
+
+	strcpy (string1, inString1);
+	strcpy (string2, inString2);
+
+	/* Order both words, if equal then they are anagrames */
+	orderWord (string1);
+	orderWord (string2);
+
+	if (strcmp (string1, string2) == 0) {
+
+		res = 1;
+	};
+
+	free (string1);
+	free (string2);
+
+	return res;
+};
+
+int isIsograme (const char* inString) {
+
+	int firstCount = 0;
+	int count = 0;
+	char firstChar = 0;
+	char lastChar = 0;
+	char* string1 = malloc (strlen (inString));
+
+	int res = 1;
+
+	strcpy (string1, inString);
+	orderWord (string1);
+
+	/* Count how many times each character appears */
+	for (int i = 0, mySize = strlen (string1) ; i < mySize; i++) {
+
+		if (firstChar == 0) {
+			firstChar = string1 [i];
+			firstCount = 1;
+		}
+		else if (string1 [i] == firstChar) {
+			firstCount++;
+		}
+		else if (lastChar == 0) {
+			lastChar = string1 [i];
+			count = 1;
+		}
+		else if (lastChar == string1 [i]) {
+			count++;
+		}
+		else if (lastChar != string1 [i]) {
+			if (count != firstCount) {
+				res=0;
+				break;
+			}
+			else {
+				lastChar = string1 [i];
+				count = 1;
+			};
+		};
+	};
+	if (res == 1 && count != firstCount) {
+		res = 0;
+	};
+
+	free (string1);
+	return res;
+};
