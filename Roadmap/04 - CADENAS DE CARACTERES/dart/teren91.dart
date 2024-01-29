@@ -17,7 +17,6 @@
 
 void main()
 {
-
   //NOTA IMPORTANTE: En Dart, las cadenas de caracteres se pueden definir con comillas simples o dobles
   //                y se pueden usar indistintamente. En este ejemplo se usan comillas dobles.
 
