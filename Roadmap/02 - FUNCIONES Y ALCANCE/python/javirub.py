@@ -56,11 +56,11 @@ print(verdad())
 def extra(param1, param2):
     for i in range(1,100):
         if i%3 == 0 and i%5 == 0:
-            print(param1, param2)
+            print(f'{i}: {param1} {param2}')
         elif i%3 == 0:
-            print(param1)
+            print(f'{i}: {param1}')
         else:
-            print(param2)
+            print(f'{i}: {param2}')
 
 print("Introduce las cadenas de texto que quieres usar para el ejercicio extra:")
 parametro1 = input("Introduce el primer parametro: ")
