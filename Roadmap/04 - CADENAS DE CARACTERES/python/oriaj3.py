@@ -200,9 +200,8 @@ palabra4 = "enterre"
 print(isAnagrama(palabra3, palabra4)) # True
 print(isAnagrama2(palabra3, palabra4)) # True
 
-## ISOGRAMAS
-# Los isogramas son palabras que no tienen letras repetidas
-
+## ISOGRAMAS de primer orden
+# Los isogramas son palabras que no tienen letras repetidas y todas ellas se repiten el mismo número de veces
 
 # Función óptimizada
 def isIsograma(cadena):
@@ -228,3 +227,29 @@ print(isIsograma(palabra6)) # False
 
 print(isIsograma2(palabra5)) # True
 print(isIsograma2(palabra6)) # False
+
+## Isogramas de orden N 
+
+def isogramasN(cadena):
+    cadena = cadena.lower()
+    letras = {}
+    for letra in cadena:
+        letras[letra] = letras.get(letra, 0) + 1
+    #Compruebo que todas las letras tengan el mismo número de repeticiones
+    repeticiones = letras.get(cadena[0])
+    for letra in letras:
+        if letras[letra] != repeticiones:
+            return False
+    return repeticiones
+
+# Prueba isogramas de orden N
+
+print("*** ISOGRAMAS DE ORDEN N ***")
+palabra = "murcielago"
+print(f"La palabra {palabra} es un isograma de orden {isogramasN(palabra)}") # 1
+
+palabra = "murcielagomurcielago"
+print(f"La palabra {palabra} es un isograma de orden {isogramasN(palabra)}") # 2
+
+palabra = "murcielagomurcielagomurcielago"
+print(f"La palabra {palabra} es un isograma de orden {isogramasN(palabra)}") # 3
