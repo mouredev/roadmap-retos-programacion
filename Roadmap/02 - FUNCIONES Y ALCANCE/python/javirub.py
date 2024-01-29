@@ -54,7 +54,7 @@ print(verdad())
 
 #Ejercicio extra:
 def extra(param1, param2):
-    for i in range(1,100):
+    for i in range(1,101):
         if i%3 == 0 and i%5 == 0:
             print(f'{i}: {param1} {param2}')
         elif i%3 == 0:
