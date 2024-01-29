@@ -164,16 +164,15 @@ def isAnagrama(cadena1, cadena2):
 def isAnagrama2(cadena1, cadena2):
     cadena1 = cadena1.lower()
     cadena2 = cadena2.lower()
-    if len(cadena1) != len(cadena2):
-        return False
-    for i in range(0, len(cadena1)):
-        if cadena1[i] not in cadena2:
-            return False
-    return True
+    letras1 = {}
+    letras2 = {}
+    for letra in cadena1:
+        letras1[letra] = letras1.get(letra, 0) + 1
+                           
+    for letra in cadena2:
+        letras2[letra] = letras2.get(letra, 0) + 1
 
-def anagrama3(cadena1, cadena2): 
-    
-    
+    return letras1 == letras2    
 
 # Prueba palíndromos
 print("*** PALÍNDROMOS ***")
@@ -187,9 +186,45 @@ print(isPalindromo2(palabra)) # True
 print(isPalindromo2(palabra2)) # False
 
 # Prueba anagramas
-print("*** ANAGRAMAS ***")
+print("*** ANAGRAMAS FALSE***")
+palabra3 = "retener"
+palabra4 = "entere"
+
+print(isAnagrama(palabra3, palabra4)) # False
+print(isAnagrama2(palabra3, palabra4)) # False
+
+print("*** ANAGRAMAS TRUE***")
 palabra3 = "retener"
 palabra4 = "enterre"
 
 print(isAnagrama(palabra3, palabra4)) # True
 print(isAnagrama2(palabra3, palabra4)) # True
+
+## ISOGRAMAS
+# Los isogramas son palabras que no tienen letras repetidas
+
+
+# Función óptimizada
+def isIsograma(cadena):
+    cadena = cadena.lower()
+    return len(cadena) == len(set(cadena))
+
+# Función sin optimizar
+def isIsograma2(cadena):
+    letras = {}
+    for letra in cadena:
+        letras[letra] = letras.get(letra, 0) + 1
+        if letras[letra] > 1:
+            return False
+    return True
+
+# Prueba isogramas
+print("*** ISOGRAMAS ***")
+palabra5 = "murcielago"
+palabra6 = "murcielagoos"
+
+print(isIsograma(palabra5)) # True
+print(isIsograma(palabra6)) # False
+
+print(isIsograma2(palabra5)) # True
+print(isIsograma2(palabra6)) # False
