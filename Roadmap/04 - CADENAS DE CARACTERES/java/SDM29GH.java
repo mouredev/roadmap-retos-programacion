@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SDM29GH {
 
     public static void main(String[] args) {
@@ -109,6 +111,35 @@ public class SDM29GH {
         System.out.println("La cadena5 en mayúsculas es: " + cadena5.toUpperCase());
         System.out.println("La cadena6 en mayúsculas es: " + cadena6.toUpperCase());
 
+        // EXTRA
+
+        /* PALÍNDROMO: palabra, frase, número o cualquier otra secuencia de unidades
+        que tiene la propiedad de leerse igual hacia adelante que hacia atrás. */ 
+        /*Ejemplo:
+        Palabra: "anilina", "arenera".
+        Frase: "Anita lava la tina".
+        Número: 12321. */
+        
+        System.out.println("Método Palíndromo");
+
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Ingrese la palabra, frase o número: ");
+        String palabra = entrada.nextLine();
+        System.out.println("La palabra, frase o número " + palabra + " ¿es un palíndromo?");
+        palíndromo(palabra);
+    }
+    public static void palíndromo(String palabra) {
+        String cadenaInvertida = "";
+        for (int i = palabra.length() - 1; i >= 0; i--) {
+            cadenaInvertida += palabra.charAt(i);
+        }
+        if (palabra.equals(cadenaInvertida)) {
+            System.out.println("Es Palíndromo");
+        } else {
+            System.out.println("No es palíndromo");
+        }
     }
 
 }
+
