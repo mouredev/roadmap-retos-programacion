@@ -262,8 +262,8 @@ void orderWord (char* word) {
 
 int isAnagrame (const char* inString1, const char* inString2) {
 
-	char* string1 = malloc (strlen (inString1));
-	char* string2 = malloc (strlen (inString1));
+	char* string1 = malloc (strlen (inString1)+1);
+	char* string2 = malloc (strlen (inString1)+1);
 	int res = 0;
 
 	strcpy (string1, inString1);
@@ -290,7 +290,7 @@ int isIsograme (const char* inString) {
 	int count = 0;
 	char firstChar = 0;
 	char lastChar = 0;
-	char* string1 = malloc (strlen (inString));
+	char* string1 = malloc (strlen (inString)+1);
 
 	int res = 1;
 
