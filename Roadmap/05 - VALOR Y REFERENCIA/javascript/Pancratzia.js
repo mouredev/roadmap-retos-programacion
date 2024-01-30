@@ -53,3 +53,44 @@ personaB.nombre = "Laura"; //No importa la variable que se cambie. La referencia
 
 console.log(personaA); // Salida: { nombre: 'Laura' }
 console.log(personaB); // Salida: { nombre: 'Laura' }
+
+/* FUNCION CON VARIABLES POR VALOR */
+
+function dividir (num) {
+  num /= 2;
+  return num;
+}
+
+function multiplicar (num) {
+  num *= 2;
+  console.log(num);
+}
+
+let original = 10;
+let resultado = dividir(original);
+
+console.log(original); // Salida: 10 (el valor original no cambia)
+console.log(resultado); // Salida: 5
+
+original = 20;
+resultado = multiplicar(original);
+
+multiplicar(original); // El valor de la variable original no cambia. Cambia el valor de la variable dentro de la función
+console.log(original); // Salida: 20 (el valor original no cambia)
+
+/* FUNCION CON VARIABLES POR REFERENCIA */
+
+function marcarComoLeido(libro){
+  libro.leido = true;
+}
+
+let libroOriginal = {
+  autor: 'J.K. Rowling',
+  titulo: 'Harry Potter y la Piedra Filosofal',
+  leido: false
+};
+
+console.log(libroOriginal.leido);
+marcarComoLeido(libroOriginal);
+console.log(libroOriginal.leido); //El valor de la variable original cambia
+
