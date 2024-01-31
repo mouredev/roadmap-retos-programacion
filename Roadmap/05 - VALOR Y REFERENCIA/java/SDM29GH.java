@@ -15,9 +15,9 @@ public class SDM29GH {
         // Asignación de variables por referencia
         System.out.println("Asignación de variables por Referencia");
         ArrayList<Integer> lista1 = new ArrayList<>();
-        lista1.add(10);
+        lista1.add(100);
         ArrayList<Integer> lista2 = lista1;
-        lista1.add(20);
+        lista1.add(200);
         System.out.println(lista2);
     }
 }
