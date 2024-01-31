@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class SDM29GH {
 
     public static void main(String[] args) {
-
+        
         String ejemploCadena = "Operaciones de cadena de caracteres";
         String cadena1 = "Hola Mundo"; String cadena2 = "Bienvenido"; String cadena3 = "Bienvenido"; String cadena4 = "BIENVENIDO";
         String cadena5 = "Mundo"; String cadena6 = "Hola"; String cadenaVacía = "";
@@ -110,7 +110,7 @@ public class SDM29GH {
         System.out.println("La cadena4 en mayúsculas es: " + cadena4.toUpperCase());
         System.out.println("La cadena5 en mayúsculas es: " + cadena5.toUpperCase());
         System.out.println("La cadena6 en mayúsculas es: " + cadena6.toUpperCase());
-
+        
         // EXTRA
 
         /* PALÍNDROMO: palabra, frase, número o cualquier otra secuencia de unidades
@@ -128,6 +128,7 @@ public class SDM29GH {
         String palabra = entrada.nextLine();
         System.out.println("La palabra, frase o número " + palabra + " ¿es un palíndromo?");
         palíndromo(palabra);
+        
     }
     public static void palíndromo(String palabra) {
         String cadenaInvertida = "";
