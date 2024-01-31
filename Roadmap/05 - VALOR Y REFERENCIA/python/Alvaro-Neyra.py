@@ -83,6 +83,7 @@ anadir_elemento(variable_conjunto)
 print(variable_conjunto)
 
 """DIFICULTAD EXTRA:"""
+# Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
 variable_valor1 = 400
 variable_valor2 = "'Hola, Mundo!'"
 variable_referencia1 = [30, 600, 81, 20]
