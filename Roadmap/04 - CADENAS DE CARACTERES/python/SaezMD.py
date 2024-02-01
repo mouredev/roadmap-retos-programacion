@@ -103,6 +103,9 @@ surname = "Analisais"
 sorted = sorted(surname)
 print(sorted)
 
+#Count currents
+print(surname.lower().count("a"))
+
 
 print()
 print()
