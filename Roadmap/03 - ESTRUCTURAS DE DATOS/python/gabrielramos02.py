@@ -93,6 +93,7 @@ def actualizar():
         encontrado = False
         for contacto in agenda:
             if nombre == contacto["Nombre"]:
+                num_telf = int()
                 try:
                     system("cls")
                     num_telf = int(input("Introduzca el nuevo numero de telefono: "))
