@@ -48,3 +48,19 @@ let fruto = {
 
 console.log(comer(fruto));
 console.log(fruto.cantidad);
+
+//Extra
+
+let colorBike1 = "azul";
+let colorBike2 = "rojo";
+
+function intercambio(var1, var2) {
+  let valVar1 = var1;
+  var1 = var2;
+  var2 = valVar1;
+  return [var1, var2];
+}
+
+let [colorBike3, colorBike4] = intercambio(colorBike1, colorBike2);
+console.log(colorBike3);
+console.log(colorBike4);
