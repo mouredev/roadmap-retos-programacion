@@ -21,8 +21,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 15 de Enero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/mouredev?event=1193838918689374298)** por país y crea un **[recordatorio](https://discord.gg/mouredev?event=1193838918689374298)**
+> #### Lunes 5 de Febrero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/YEU3gzfe?event=1201413529924796416)** por país y crea un **[recordatorio](https://discord.gg/YEU3gzfe?event=1201413529924796416)**
 
 ## Roadmap
 
@@ -30,8 +30,10 @@
 |---|-----------|------------|-------|-----------|
 |00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[📝](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/python/mouredev.py)|[▶️](https://youtu.be/gEIBJ7rmLa0)|[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
 |01|[OPERADORES Y ESTRUCTURAS DE CONTROL](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/ejercicio.md)|[📝](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/python/mouredev.py)|[▶️](https://youtu.be/DLSGCh9jdes)|[👥](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/)
-|02|[FUNCIONES Y ALCANCE](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/ejercicio.md)|[📝](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/python/mouredev.py)||[👥](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/)
-|03|[ESTRUCTURAS DE DATOS](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/ejercicio.md)|[🗓️ 22/01/24](https://discord.gg/xxpG8mFu?event=1196482983721455729)||[👥](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/)
+|02|[FUNCIONES Y ALCANCE](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/ejercicio.md)|[📝](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/python/mouredev.py)|[▶️](https://youtu.be/auxClgiX6UM)|[👥](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/)
+|03|[ESTRUCTURAS DE DATOS](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/ejercicio.md)|[📝](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/python/mouredev.py)|[▶️](https://youtu.be/brxtPtUbU7M)|[👥](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/)
+|04|[CADENAS DE CARACTERES](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/ejercicio.md)|[📝](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/python/mouredev.py)|[▶️](https://youtu.be/CKzY7nHwulA)|[👥](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/)
+|05|[VALOR Y REFERENCIA](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/ejercicio.md)|[🗓️ 05/02/24](https://discord.gg/YEU3gzfe?event=1201413529924796416)||[👥](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/)
 
 ## Instrucciones
 
