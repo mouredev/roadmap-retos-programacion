@@ -4,3 +4,17 @@ let variable = 'Hola Mundo';
 variable = 5
 let mundo;
 mundo = 'Hola Mundo';
+
+
+//Tipos de datos primitivos
+
+let Boolean = true;
+let Number = 5;
+let BigInt = 9007199254740991n;
+let __undefined = undefined;
+let __null = null;
+let String = 'Hola Mundo';
+let Symbol = Symbol('Hola Mundo');
+
+//PRINT
+console.log("Hola Mundo");
