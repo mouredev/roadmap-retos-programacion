@@ -1,4 +1,3 @@
-const prompt = require('prompt-sync')();
 //Asignación de variables.
 
 /*Asignar valor:
@@ -25,7 +24,7 @@ let carro1 = carro;//El motor de javascript busca la referencia asignada a la va
 carro.puertas = 4;//Se modifica la propiedad puertas del objeto guardado en la variable carro.
 console.log(`\nComo ambas variables tienen la misma referencia los cambios al objeto se pueden acceder desde sus copias ejem: carro1.puertas = ${carro1.puertas}.`);
 
-//Parámetros asignados por valor
+//Parámetros asignados por valor.
 
 function sumar(suma) {
   return suma = suma + 1;
@@ -35,7 +34,7 @@ let suma = 1;
 console.log(sumar(suma));
 console.log(suma);
 
-//Parámetros asignados por referencia
+//Parámetros asignados por referencia.
 
 function comer(fruto) {
   return fruto.cantidad = fruto.cantidad -1;
@@ -57,7 +56,7 @@ let bike2 = "rojo";
 //Función de asignación por valor
 
 /*Cabe aclarar que las funciones solo retornan un valor, pero con el uso de arrays u objetos
-podemos simular el retorno de más de un valor*/
+podemos simular el retorno de más de un valor.*/
 function intercambio(bike1, bike2) {
   let temp = bike1;
   bike1 = bike2;
@@ -65,14 +64,14 @@ function intercambio(bike1, bike2) {
   return [bike1, bike2];
 }
 
-//El uso de desestructuración podemos asignar el resultado de una función a un conjunto de variables.
+//El uso de desestructuración permite asignar el resultado de una función a un conjunto de variables.
 let [bike3, bike4] = intercambio(bike1, bike2);
 console.log(bike1);
 console.log(bike2);
 console.log(bike3);
 console.log(bike4);
 
-//Función de asignación por referencia
+//Función de asignación por referencia.
 
 let persona1 = {
   cabello: true,
