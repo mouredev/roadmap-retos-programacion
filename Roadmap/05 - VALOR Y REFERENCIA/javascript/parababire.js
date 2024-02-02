@@ -13,7 +13,7 @@ console.log(`La ${fruta} es el nuevo valor de la variable fruta. Ésta al conten
 la copia de su valor en fruta2, no es alterado y sigue siendo ${fruta2}.`);//
 
 /*Asignar referencia:
-Los datos tipo Array, Object y Function*/
+De datos tipo Array, Object y Function*/
 
 //Al asignar un objeto a una variable, este es guardado en un espacio de memoria libre (referencia).
 let carro = {
@@ -21,7 +21,7 @@ let carro = {
   puertas: 2,
   ruedas: 4,
 }
-let carro1 = carro;//JS busca la referencia asiganada a la variable carro y la copia a carro1.
+let carro1 = carro;//El motor de javascript busca la referencia asignada a la variable carro y la copia a carro1.
 carro.puertas = 4;//Se modifica la propiedad puertas del objeto guardado en la variable carro.
 console.log(`\nComo ambas variables tienen la misma referencia los cambios al objeto se pueden acceder desde sus copias ejem: carro1.puertas = ${carro1.puertas}.`);
 
@@ -51,16 +51,48 @@ console.log(fruto.cantidad);
 
 //Extra
 
-let colorBike1 = "azul";
-let colorBike2 = "rojo";
+let bike1 = "azul";
+let bike2 = "rojo";
 
-function intercambio(var1, var2) {
-  let valVar1 = var1;
-  var1 = var2;
-  var2 = valVar1;
-  return [var1, var2];
+//Función de asignación por valor
+
+/*Cabe aclarar que las funciones solo retornan un valor, pero con el uso de arrays u objetos
+podemos simular el retorno de más de un valor*/
+function intercambio(bike1, bike2) {
+  let temp = bike1;
+  bike1 = bike2;
+  bike2 = temp;
+  return [bike1, bike2];
 }
 
-let [colorBike3, colorBike4] = intercambio(colorBike1, colorBike2);
-console.log(colorBike3);
-console.log(colorBike4);
+//El uso de desestructuración podemos asignar el resultado de una función a un conjunto de variables.
+let [bike3, bike4] = intercambio(bike1, bike2);
+console.log(bike1);
+console.log(bike2);
+console.log(bike3);
+console.log(bike4);
+
+//Función de asignación por referencia
+
+let persona1 = {
+  cabello: true,
+  nombre: 'angel'
+}
+
+let persona2 = {
+  cabello: false,
+  nombre: 'luis'
+}
+
+function asignarPorRefencia(persona1, persona2) {
+  let temp = persona1.nombre;
+  persona1.nombre = persona2.nombre;
+  persona2.nombre = temp;
+  return [persona1, persona2];
+}
+
+const [persona3, persona4] = asignarPorRefencia(persona1, persona2);
+console.log(persona1);
+console.log(persona2);
+console.log(persona3);
+console.log(persona4);
