@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class frangarmez21 {
 
     public static void main(String[] args) {
@@ -41,7 +43,7 @@ public class frangarmez21 {
         se les asigna una dirección de memoria por lo que cualquier cambio sobre estos afecta a esa dirección de memoria
         y por lo tanto verá modificado su valor inicial.*/
         System.out.println("Creamos un Array de enteros de 3 posiciones");
-        int [] misNumeros = new int[3];
+        int[] misNumeros = new int[3];
 
         System.out.println("Asignamos valores a nuestro Array");
         misNumeros[0] = 10;
@@ -49,7 +51,7 @@ public class frangarmez21 {
         misNumeros[2] = 30;
 
         System.out.println("Imprimimos el contenido de nuestro Array");
-        for (int numero: misNumeros) {
+        for (int numero : misNumeros) {
             System.out.println(numero);
         }
 
@@ -57,7 +59,7 @@ public class frangarmez21 {
         modificarArray(misNumeros);
 
         System.out.println("Imprimimos el contenido de nuestro Array");
-        for (int numero: misNumeros) {
+        for (int numero : misNumeros) {
             System.out.println(numero);
         }
 
@@ -74,8 +76,61 @@ public class frangarmez21 {
          *   Comprueba también que se ha conservado el valor original en las primeras.
          */
 
+        System.out.println("Programa 1: parámetros por valor");
+        System.out.println();
 
+        int numberOne = 1;
+        System.out.println("Variable inicial 1: " + numberOne);
+        int numberTwo = 2;
+        System.out.println("Variable inicial 2: " + numberTwo);
+        System.out.println("Llamamos a la funcion de intercambio de valor");
+        List<Integer> resulList = changeVariableByValue(numberOne, numberTwo);
+        int contador = 1;
+        for (int numero : resulList) {
+            System.out.println("Variable " + contador + ": " + numero);
+            contador++;
+        }
+        System.out.println("Variable inicial 1: " + numberOne);
+        System.out.println("Variable inicial 2: " + numberTwo);
 
+        System.out.println();
+        System.out.println("Programa 2: parámetros por referencia");
+        System.out.println();
+
+        Integer integerOne = 1;
+        System.out.println("Variable inicial 1: " + numberOne);
+        Integer integerTwo = 2;
+        System.out.println("Variable inicial 2: " + numberTwo);
+        System.out.println("Llamamos a la funcion de intercambio de valor");
+        List<Integer> resultList = changeVariableByReference(numberOne, numberTwo);
+        contador = 1;
+        for (Integer numero : resultList) {
+            System.out.println("Variable " + contador + ": " + numero);
+            contador++;
+        }
+        System.out.println("Variable inicial 1: " + numberOne);
+        System.out.println("Variable inicial 2: " + numberTwo);
+
+    }
+
+    private static List<Integer> changeVariableByReference(Integer number1, Integer number2) {
+        System.out.println("Dentro de la funcion:");
+        System.out.println("Cambiamos el valor de variable 1");
+        Integer numberOne = number2;
+        System.out.println("Cambiamos el valor de variable 2");
+        Integer numberTwo = number1;
+        System.out.println("Salimos de la función");
+        return List.of(numberOne, numberTwo);
+    }
+
+    private static List<Integer> changeVariableByValue(int number1, int number2) {
+        System.out.println("Dentro de la funcion:");
+        System.out.println("Cambiamos el valor de variable 1");
+        int numberOne = number2;
+        System.out.println("Cambiamos el valor de variable 2");
+        int numberTwo = number1;
+        System.out.println("Salimos de la función");
+        return List.of(numberOne, numberTwo);
     }
 
     private static void modificarNumero(int miNumero) {
@@ -88,11 +143,10 @@ public class frangarmez21 {
         miCadena = "Esto es un String cuya referencia se hace por valor";
         System.out.println("valor dentro de la funcion: " + miCadena);
     }
-    private static void modificarArray(int [] misNumeros) {
+
+    private static void modificarArray(int[] misNumeros) {
         misNumeros[0] = 1;
         misNumeros[1] = 2;
         misNumeros[2] = 3;
     }
-
-
 }
