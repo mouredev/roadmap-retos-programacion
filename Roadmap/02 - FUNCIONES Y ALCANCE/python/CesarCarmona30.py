@@ -37,7 +37,6 @@ def average(*args):
 result = average(9, 8, 7, 9, 9, 8, 10, 10)
 print(result)
 
-
 # Función con parámetros variables con identificador
 def capitals(**kwargs):
   for country, city in kwargs.items():
@@ -71,7 +70,6 @@ operation = exterior_function(5)
 print(operation)
 
 # Funciones nativas
-
 my_list = [5, 6, 7, 3, 6, 7, 9, 3, 5, 8]
 print(f'Esta es la función nativa: print()\nMi lista: {my_list}')
 print(f'Tipo de dato: {type(my_list)}')
@@ -118,7 +116,6 @@ def printNumbers(text1, text2):
       print(f"{number}")
       printed_numbers += 1
   return printed_numbers  
-
 
 prints = printNumbers(text2 = 'Múltiplo de 5', text1 = 'Múltiplo de 3')
 print(prints)
