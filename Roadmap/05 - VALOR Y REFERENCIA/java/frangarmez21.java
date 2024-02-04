@@ -144,9 +144,9 @@ public class frangarmez21 {
         System.out.println("valor dentro de la funcion: " + miCadena);
     }
 
-    private static void modificarArray(int[] misNumeros) {
-        misNumeros[0] = 1;
-        misNumeros[1] = 2;
-        misNumeros[2] = 3;
+    private static void modificarArray(int[] miArray) {
+        miArray[0] = 1;
+        miArray[1] = 2;
+        miArray[2] = 3;
     }
 }
