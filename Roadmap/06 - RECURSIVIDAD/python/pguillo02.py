@@ -10,7 +10,7 @@ def recursiva(n):
 
 recursiva(100)
 
-def factorial(n, x=1):
+def factorial(n, x =1):
 
     if n == 0:
         print("Factorial = ", x)
