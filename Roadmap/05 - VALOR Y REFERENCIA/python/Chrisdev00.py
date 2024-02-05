@@ -103,7 +103,11 @@ print("Fuera de la función:", mi_lista)  # Salida: Fuera de la función: [1, 2,
 
 print("\n")
 
-######   Dificultad Extra   ##########
+
+
+"""
+######------------------ Dificultad Extra------------------------ ##########
+"""
 
 print("Funcion con Parametros por valor")
 
@@ -112,7 +116,6 @@ def value_exchange(a, b):
     a, b = b, a
     return a, b
 
-# Ejemplo de uso:
 x = 5
 y = 10
 
@@ -132,14 +135,13 @@ print("Funcion con Parametros por Referencia")
 def reference_exchange(lista1, lista2):
     # Verificar que ambas listas tengan exactamente tres elementos
     if len(lista1) == len(lista2) == 3:
-        # Intercambiar los valores de las listas usando una lista como contenedor temporal
+        # Intercambiar los valores de las listas usando una lista temporal
         lista_temporal = lista1[:]
         lista1[:] = lista2
         lista2[:] = lista_temporal
     else:
         raise ValueError("Ambas listas deben tener exactamente tres elementos.")
 
-# Variables originales
 lista_a = [1, 2, 3]
 lista_b = [4, 5, 6]
 
