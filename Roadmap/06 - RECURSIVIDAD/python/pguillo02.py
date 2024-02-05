@@ -18,3 +18,15 @@ def factorial(n, x =1):
         factorial(n-1, x*n)
 
 factorial(4)
+
+def fibonnacci(n):
+
+    if n == 1:
+        return 1
+    elif n == 2: 
+        return 1
+    else:
+        return fibonnacci(n-1) + fibonnacci(n-2)
+    
+print(fibonnacci(3))
+
