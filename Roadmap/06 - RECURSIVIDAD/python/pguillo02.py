@@ -9,3 +9,12 @@ def recursiva(n):
         recursiva(n-1)
 
 recursiva(100)
+
+def factorial(n, x=1):
+
+    if n == 0:
+        print("Factorial = ", x)
+    else:
+        factorial(n-1, x*n)
+
+factorial(4)
