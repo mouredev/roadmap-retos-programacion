@@ -27,6 +27,7 @@ func imprimirNumeros(_ numero: Int) {
     }
 }
 
+print("De 100 a 0 usando rercursividad: ")
 imprimirNumeros(100)
 
 // Extra

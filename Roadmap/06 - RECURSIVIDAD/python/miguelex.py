@@ -21,6 +21,7 @@ def imprimir_numeros(numero):
         print(numero, end=" ")
         imprimir_numeros(numero - 1)
 
+print("De 100 a 0 usando rercursividad: ")
 imprimir_numeros(100)
 print();
 

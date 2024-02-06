@@ -31,6 +31,7 @@
         }
     }
     
+    echo "De 100 a 0 usando rercusividad: ";
     imprimirNumeros(100);
     echo "\n";
 

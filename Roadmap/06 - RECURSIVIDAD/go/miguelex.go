@@ -42,6 +42,7 @@ func main() {
 	fmt.Println("La potencia de 2^3 usando recursividad es: ", potencia(2, 3))
 	fmt.Println("El valor de 5! es: ", factorial(5))
 	fmt.Println("El valor de del 10º numero de Fibonacci es: ", fibonacci(10))
+	fmt.Println("De 100 a 0 usando rercursividad: ")
 	imprimirNumeros(100)
 	var n int
 	fmt.Println("Ingrese un número para calcular su factorial: ")
