@@ -18,3 +18,14 @@ function countTo0(num) {
 }
 
 countTo0(100);
+
+//DIFICULTAS EXTRA (opcional):
+
+function nFactorial(num) {
+  if (num === 0 || num === 1) return 1;
+  else return num * nFactorial(num - 1);
+}
+
+const randomNum = Math.floor(Math.random() * 10 + 1);
+
+console.log(`El factorial de ${randomNum} es ${nFactorial(randomNum)}`);
