@@ -24,6 +24,16 @@
     echo potenciaRecursiva(2, 3);
     echo "\n";
 
+    function imprimirNumeros($numero) {
+        if ($numero >= 0) {
+            echo $numero . " ";
+            imprimirNumeros($numero - 1);
+        }
+    }
+    
+    imprimirNumeros(100);
+    echo "\n";
+
     // Extra 
 
     echo "Como ejercicios extras, vamos a calcular el factorial de 5 y el octavo número de la serie de Fibonacci\n";

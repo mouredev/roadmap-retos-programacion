@@ -20,6 +20,15 @@ func potenciaRecursiva(base: Int, exponente: Int) -> Int {
 
 print("La potencia de 2^3 usando recursividad es = " +  String(potenciaRecursiva(base: 2, exponente: 3)))
 
+func imprimirNumeros(_ numero: Int) {
+    if numero >= 0 {
+        print(numero, terminator: " ")
+        imprimirNumeros(numero - 1)
+    }
+}
+
+imprimirNumeros(100)
+
 // Extra
 
 func factorialRecursivo(numero: Int) -> Int {

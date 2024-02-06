@@ -30,12 +30,19 @@ func suma(a, b int) int {
 	return 1 + suma(a, b-1)
 }
 
+func imprimirNumeros(numero int) {
+	if numero >= 0 {
+		fmt.Print(numero, " ")
+		imprimirNumeros(numero - 1)
+	}
+}
+
 func main() {
 	fmt.Println("La suma de 3 + 5 usando recursividad es: ", suma(3, 5))
 	fmt.Println("La potencia de 2^3 usando recursividad es: ", potencia(2, 3))
 	fmt.Println("El valor de 5! es: ", factorial(5))
 	fmt.Println("El valor de del 10º numero de Fibonacci es: ", fibonacci(10))
-
+	imprimirNumeros(100)
 	var n int
 	fmt.Println("Ingrese un número para calcular su factorial: ")
 	fmt.Scan(&n)

@@ -16,6 +16,15 @@ function potenciaRecursiva(a: number, b: number): number {
 
 console.log("El resultado de 2 elevado a 3 es: " + potenciaRecursiva(2, 3));
 
+function imprimirNumeros(numero: number): void {
+    if (numero >= 0) {
+        console.log(numero);
+        imprimirNumeros(numero - 1);
+    }
+}
+
+imprimirNumeros(100);
+
 // Extra
 
 function factorialRecursivo(a: number): number {

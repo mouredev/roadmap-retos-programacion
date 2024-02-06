@@ -16,6 +16,14 @@ def potenciaRecursiva(a,b):
 print("Potencia recursiva de 2^3: ")
 print(potenciaRecursiva(2,3))
 
+def imprimir_numeros(numero):
+    if numero >= 0:
+        print(numero, end=" ")
+        imprimir_numeros(numero - 1)
+
+imprimir_numeros(100)
+print();
+
 # Extra
 def factorial(n):
     if n == 0:
