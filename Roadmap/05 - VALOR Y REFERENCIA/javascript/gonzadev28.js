@@ -34,9 +34,9 @@ console.log(modelo);
  xValor();
 
 n1 = 54321;
-xValor(); //No se modifica el valor de n1
+xValor(); //No se modifica el valor de n1.
 
-console.log(n1); //Se imprime el nuevo valor de n1
+console.log(n1); //Se imprime el nuevo valor de n1.
 
 //Funcion con asignacion por referencia.
 
