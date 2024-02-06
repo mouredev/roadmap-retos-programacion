@@ -37,12 +37,12 @@ for i in hola:
 
 # conversión a mayúsculas, minúsculas, capitalizar, titulo e invertir
 def transformacion(s):
-   return s.upper(), s.lower(), s.capitalize(), s.title(), s.swapcase()
+    return s.upper(), s.lower(), s.capitalize(), s.title(), s.swapcase()
 
 print(transformacion(hola))
 
 # reemplazo
-print(f"Transformacion:\n {'\n'.join(transformacion(hola))}")
+print(f"Transformacion: {hola.join(transformacion(hola))}")
 
 # división
 separacion = hola.split(" ")
