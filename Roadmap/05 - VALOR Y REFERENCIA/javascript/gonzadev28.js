@@ -38,7 +38,7 @@ xValor(); //No se modifica el valor de n1
 
 console.log(n1); //Se imprime el nuevo valor de n1
 
-//Funcion con asignacion por referencia
+//Funcion con asignacion por referencia.
 
 function xReferencia(lista){
     lista.push(4);
