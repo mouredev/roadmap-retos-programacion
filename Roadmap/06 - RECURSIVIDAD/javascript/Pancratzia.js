@@ -19,7 +19,7 @@ function countTo0(num) {
 
 countTo0(100);
 
-//DIFICULTAS EXTRA (opcional):
+//DIFICULTAD EXTRA (opcional):
 
 function nFactorial(num) {
   if (num === 0 || num === 1) return 1;
