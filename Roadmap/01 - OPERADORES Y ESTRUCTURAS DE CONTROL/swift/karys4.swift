@@ -1,3 +1,15 @@
+// Operadores Aritméticos
+let num1 = 10
+let num2 = 5
+
+let add = num1 + num2
+let subtract = num1 - num2
+let multiply = num1 * num2
+let divide = num1 / num2
+let module = num1 % num2
+
+print("Add: \(add),  subtract: \(subtract), multiply: \(multiply), divide: \(divide), module: \(module)")
+
 // Control Flow
 // For-In Loop
 var numberOfDays = 5
