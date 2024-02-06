@@ -11,7 +11,6 @@
  */
 
 #include <stdio.h>
-#include <unistd.h>
 
 void             imprimir_del_100_al_0(int num);
 unsigned int     factorial(unsigned int num);
@@ -25,35 +24,38 @@ unsigned int    num2 = 1;
 
 int main(void)
 {
-//    printf("Imprimir del 100 al 0 con recursividad\n");
-//    
-//    /* === 1 === */
-//    imprimir_del_100_al_0(100);
-//    printf("\n\n\n");
-//
-//    /* === DIFICULTAD EXTRA === */
-//    // Calcular el factorial
-//    unsigned int num;
-//    printf("Factorial de un número\n");
-//    printf("Introduce un número: ");
-//    scanf("%u", &num);
-//    printf("%u! %u\n\n\n", num, factorial(num));
-//
-//    // Encontrar un elemento en la sucesión de Fibonacci
-//    unsigned int pos;
-//    printf("La sucesión de Fibonacci es 0, 1, 1, 2, 3, 5, 8, 13, 21...\n");
-//    printf("Introduce una posición: ");
-//    scanf("%u", &pos);
-//    printf("La posición %u de la sucesión de Fibonacci es: %u\n\n\n", pos, fibonacci(pos));
+    printf("Imprimir del 100 al 0 con recursividad\n");
+    
+    /* === 1 === */
+    imprimir_del_100_al_0(100);
+    printf("\n\n\n");
+
+    /* === DIFICULTAD EXTRA === */
+    // Calcular el factorial
+    unsigned int num;
+    printf("Factorial de un número\n");
+    printf("Introduce un número: ");
+    scanf("%u", &num);
+    printf("%u! %u\n\n\n", num, factorial(num));
+
+    // Encontrar un elemento en la sucesión de Fibonacci
+    unsigned int pos;
+    printf("La sucesión de Fibonacci es 0, 1, 1, 2, 3, 5, 8, 13, 21...\n");
+    printf("Introduce una posición: ");
+    scanf("%u", &pos);
+    printf("La posición %u de la sucesión de Fibonacci es: %u\n\n\n", pos, fibonacci(pos));
 
     // EXTRA
     char str[] = "Hola";
     // Imprimir el string con recursividad
+    printf("Imprimir el string \"%s\" del derecho: ", str);
     imprimir_string(str, 0);
     printf("\n");
+    printf("Imprimir el string \"%s\" del revés: ", str);
     imprimir_string_al_reves(str, 0);
     printf("\n");
 
+    return (0);
 }
 
 void imprimir_del_100_al_0(int num)
