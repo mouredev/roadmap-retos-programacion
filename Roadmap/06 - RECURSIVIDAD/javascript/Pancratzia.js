@@ -26,6 +26,12 @@ function nFactorial(num) {
   else return num * nFactorial(num - 1);
 }
 
+function fibonacci(num) {
+  if (num <= 1) return 1;
+  else return fibonacci(num - 1) + fibonacci(num - 2);
+}
+
 const randomNum = Math.floor(Math.random() * 10 + 1);
 
 console.log(`El factorial de ${randomNum} es ${nFactorial(randomNum)}`);
+console.log(`El elemento ${randomNum} de la sucesión de Fibonacci es ${fibonacci(randomNum)}`);
