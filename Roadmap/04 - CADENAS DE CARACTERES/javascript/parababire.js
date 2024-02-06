@@ -72,25 +72,15 @@ console.log(saludo_interpolado.includes(miNombre));//El método includes() es ca
 
 //Dificultad extra
 
-function esPalindromo(txt1) {
-  let str1 = txt1.split("").reverse().join("");
-  return (txt1 === str1);
+function check(word1, word2) {
+
+  //Palindromo
+  console.log(`Es ${word1} un palindromo?: ${word1 === word1.split("").reverse().join("")}`);
+  console.log(`Es ${word2} un palindromo?: ${word2 === word2.split("").reverse().join("")}`);
+  
+  //Anagrama
+  console.log(`Es ${word1} un anagrama de ${word2}?: ${word1.split("").sort().join("") === word2.split("").sort().join("")}`);
 }
-
-console.log(esPalindromo("anilina"));
-
-function esAnagrama(txt1, txt2) {
-  let word1 = txt1.split("").sort();
-  let word2 = txt2.split("").sort();
-  for (let i = 0; i < word1.length; i++) {
-    if (word1[i] !== word2[i]) {
-      return false;
-    }
-  }
-  return true;
-}
-
-console.log(esAnagrama("letras", "lastre"));
 
 function contarLetras(txt) {
   let textoSinNumerosNiSignos = txt.replace(/\d+\D/, "").toLowerCase();
