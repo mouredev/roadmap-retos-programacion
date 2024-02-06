@@ -140,6 +140,25 @@ while True:
             print ('campos OK, se inserta nuevo contacto en diccionario')
             contacto.setdefault(n,t)
     
+    elif (opcion == '3'):
+        
+        print('##### ACTUALIZACION DE UN CONTACTO ########')
+        
+        nam_upd = input("Ingrese nombre de contacto a actualizar: ")
+        tel_upd = input('Ingrese número telefono contacto: ')
+        
+        get_bus = contacto.get(nam_upd, 3000)
+        
+        if ( get_bus == 3000):
+            print('elemento no encontrado')
+        elif (tel_upd.isalpha()): 
+            print ('nº de telefono contiene caracteres alphanumericos')
+        elif (len(tel_upd) >= 11):
+            print ('nº de telefono +11 digitos no es correcto, no se actualiza registro')
+        else:
+            print ('campos OK, se actualiza el contacto')
+            contacto.update({nam_upd:tel_upd})
+        
     elif (opcion == '4'):
     
         print ('##### ELIMINAR CONTACTO ########')
