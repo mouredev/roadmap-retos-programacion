@@ -20,7 +20,7 @@ public class pguillo02 {
 
         public static int factorial(int n){
             if (n == 0){
-                System.out.println(1);
+                return 1;
             } else{
                 return n*factorial(n-1);
             }
