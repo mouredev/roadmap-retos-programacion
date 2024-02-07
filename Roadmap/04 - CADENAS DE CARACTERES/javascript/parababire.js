@@ -80,30 +80,27 @@ function check(word1, word2) {
   
   //Anagrama
   console.log(`Es ${word1} un anagrama de ${word2}?: ${word1.split("").sort().join("") === word2.split("").sort().join("")}`);
-}
 
-function contarLetras(txt) {
-  let textoSinNumerosNiSignos = txt.replace(/\d+\D/, "").toLowerCase();
+  //isograma
+function isograma(word) {
+  let textoSinNumerosNiSignos = word.replace(/\d+\D/, "").toLowerCase();
   let textoSinAcento = textoSinNumerosNiSignos.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  let letras = {};
-  for (let i = 0; i < textoSinAcento.length; i++) {
-    letras[textoSinAcento[i]] = (letras[textoSinAcento[i]] || 0) + 1;
+  let objLetras = {};
+  for (const letras in textoSinAcento) {
+    objLetras[textoSinAcento[letras]] = (objLetras[textoSinAcento[letras]] || 0) + 1;
   }
-  return letras;
-}
-
-function esIsograma(txt) {
-  let palabra = contarLetras(txt);
-  let contador = 0;
-  for (const key in palabra) {
-    if (contador === 0) {
-      contador = palabra[key];
-    }
-    if (contador !== palabra[key]) {
-      return false;
+  let isograma = true;
+  let values = Object.values(objLetras);
+  let isogramaLen = values[0];
+  for (let wordCount of values) {
+    if (wordCount !== isogramaLen) {
+      isograma = false;
     }
   }
-  return true;
+  return isograma;
+}
+console.log(`Es ${word1} un isograma?: ${isograma(word1)}`);
+console.log(`Es ${word2} un isograma?: ${isograma(word2)}`);
 }
 
-console.log(esIsograma("murciélago"));
+check("caso", "saco");
