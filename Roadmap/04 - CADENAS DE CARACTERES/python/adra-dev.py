@@ -201,32 +201,42 @@ print("---------")
 Extra
 """
 
-def word_analisis(word1, word2):
+def check(word1: str, word2: str):
 
-    words = [word1, word2]
+    # Palíndromos
+    print(f"¿{word1} es un palíndromo?: {word1 == word1[::-1]}")
+    print(f"¿{word2} es un palíndromo?: {word2 == word2[::-1]}")
 
-    for word in words:
-        list_word = list(word)
-        list_word.reverse()
-        reversed_word ="".join(list_word)
+    # Anagramas
+    print(f"¿{word1} es anagrama de {word2}?: {sorted(word1) == sorted(word2)}")
 
-        if word == reversed_word:
-            print(f"La palabra {word} es Palíndroma\n")
-            print(word, "\n")
-        elif word != reversed_word:
-            print(f"La palabra {word} es un Anagrama\n")
-            print(reversed_word, "\n")
+    # Isogramas
 
-        set_word = set(word)
-        length = len(word)
+    def isogram(word: str) -> bool:
 
-        if len(set_word) == length:
-            print(f"La palabra {word} es un Isograma\n")
-        else:
-            print(f"La palabra {word} no es un Isograma\n") 
+        word_dict = dict()
+        for character in word:
+            word_dict[character] = word_dict.get(character, 0) + 1
+
+        isogram = True
+        values = list(word_dict.values())
+        isogram_len = values[0]
+        for word_count in values:
+            if word_count != isogram_len:
+                isogram = False
+                break
+
+        return isogram
+
+    print(f"¿{word1} es un isograma?: {isogram(word1)}")
+    print(f"¿{word2} es un isograma?: {isogram(word2)}")
+
+
+check("radar", "pythonpythonpythonpython")
+# check("amor", "roma")
             
             
-word_analisis("rallar", "seder")
-word_analisis("caucasus", "seder")
-word_analisis("caucasus", "ambidiestramente")
-word_analisis("PUBVEXINGFJORD-SCHMALTZY", "hola")
+check("rallar", "seder")
+check("caucasus", "seder")
+check("caucasus", "ambidiestramente")
+check("PUBVEXINGFJORD-SCHMALTZY", "hola")
