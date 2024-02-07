@@ -19,5 +19,5 @@ var simbolo rune = '±'
 
 
 func main()  {
-	
+	fmt.Println(cadena)	
 }
