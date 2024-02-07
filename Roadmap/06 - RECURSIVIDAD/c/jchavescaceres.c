@@ -44,43 +44,18 @@ unsigned long getFactorial (unsigned long inNumber) {
 Next numbers is got adding previos to previousPrevious
 0,1,1,2,3,5,8,13,21,etc.
 */
-unsigned long computeFibonacciNumber
-	(unsigned long inPreviousNumber,
-	 unsigned long inPreviousPreviousNumber,
-	 unsigned long inCurrentPosition,
-	 unsigned long inSearchedPosition) {
-	
-	unsigned long res = 0; 
-
-	if (inCurrentPosition == inSearchedPosition) {
-		res = inPreviousNumber + inPreviousPreviousNumber;
-	}
-	else {
-		res = computeFibonacciNumber
-			(inPreviousNumber + inPreviousPreviousNumber,
-			 inPreviousNumber,
-			 inCurrentPosition + 1,
-			 inSearchedPosition);
-	}
-
-	return res;
-}
-
-
-/*
-Next numbers is got adding previos to previousPrevious
-0,1,1,2,3,5,8,13,21,etc.
-*/
 unsigned long getFibonacciNumber (unsigned long inPosition) {
 	unsigned long res = 0; 
 
-	if (inPosition == 0) {
-		res = 0;
-	} else if (inPosition == 1) {
-		res = 1;
+	if (inPosition == 0 || inPosition == 1) {
+		res = inPosition;
 	} else {
-		res = computeFibonacciNumber (1, 0, 2, inPosition);
+		res =
+			getFibonacciNumber (inPosition-1) +
+			getFibonacciNumber (inPosition-2);
 	};
+
+	return res;
 };
 
 void main() {
