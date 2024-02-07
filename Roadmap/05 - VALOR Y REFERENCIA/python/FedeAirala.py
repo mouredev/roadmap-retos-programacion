@@ -1,7 +1,5 @@
 # #05 VALOR Y REFERENCIA
 
-
-## Ejercicio
 """
 
  * EJERCICIO:
