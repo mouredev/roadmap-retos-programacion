@@ -67,6 +67,173 @@ en este caso es un array de un elemento: ${arrayOneElement2}
 culla longitud es ${arrayOneElement2.length}.`);
 console.log(`===============`);
 
+//Manejo de arrays:
+console.log(`===============`);
+console.log(`Operaciones Con Arrays`);
+console.log(`===============`);
+let arrayEmpty3 =[];
+console.log(`Un array se puede declarar vacio, let arrayEmpty3 = [${arrayEmpty3}];`);
+console.log(`===============`);
+arrayEmpty3.push("Alberto","Estella");
+console.log(`Con el metodo arraEmpy3.push("${arrayEmpty3[0]}","${arrayEmpty3[1]}"), añadimos contenido [${arrayEmpty3}]`);
+console.log(`===============`);
+console.log(`===============`);
+let array1=arrayEmpty3;
+let array2=new Array("Jalivur","Pamplona");
+console.log(`Teniendo dos array, array1=[${array1}] y array2=[${array2}],
+Con el metodo array1.concat(array2), concatenamos el contenido [${array1=array1.concat(array2)}]`);
+console.log(`===============`);
+console.log(`===============`);
+array1[4]=true;
+console.log(`Tambien podemos añadir, o modificar los valores de un array haciendo referencia al index a añadir o modificar,
+array1[4]=${array1[4]}, de esta manera ahora array1=[${array1}].`);
+array1[3]="Falces"
+console.log(`Si hacemos referencia a un index vacio, lo ocupamos, mientras que si hacemos referencia a un index ocupado, actualizamos su valor.
+array1[3]="${array1[3]}", ahora el array queda array1=[${array1}]`);
+array1[20]="hola"
+console.log(`Si hacemos referencia a un index vacio lejano de los ocupados,
+array1[20]="${array1[20]}", ahora el array queda array1=[${array1}]`);
+console.log(`===============`);
+console.log(`===============`);
+let allValues=array1.join('-');
+console.log(`Con el metodo join(delimiter=('-')) podemos unir todos los elementos en un string separados por el caracter del delimitador,
+let allValues=array1.join('-')= ${allValues}.`);
+console.log(`===============`);
+console.log(`===============`);
+let popValue = array1.pop();
+console.log(`Con el metodo pop() extrae el ultimo valor del array,
+let popValue = array1.pop()= ${array1}.
+podemos usar par ir eliminando los valores desde el ultimo, o podemos almacenar esos valores en variables.
+popValue = ${popValue}`);
+console.log(`===============`);
+console.log(`===============`);
+let shiftValue = array1.shift();
+console.log(`Con el metodo shift() extrae el primer valor del array,
+let shiftValue = array1.shift()= ${array1}.
+podemos usar par ir eliminando los valores desde el primero, o podemos almacenar esos valores en variables.
+shiftValue = ${shiftValue}`);
+console.log(`===============`);
+console.log(`===============`);
+let unshiftValue1 = ("Alberto");
+let unshiftValue2 = (2);
+array1.unshift(unshiftValue1,unshiftValue2)
+console.log(`Con el metodo unshift() añadir valores al principio del array,
+array1.unshift(${unshiftValue1},${unshiftValue2})= ${array1}.`);
+console.log(`===============`);
+console.log(`===============`);
+let startIndex=0;
+let upToIndex=4;
+let sliceArray = array1.slice(startIndex,upToIndex)
+console.log(`Con el metodo slice() añadir valores al principio del array,
+array1.slice(${startIndex},${upToIndex})= [${sliceArray}}].`);
+console.log(`===============`);
+console.log(`===============`);
+let index=5;
+let countToRemove=20;
+let addElement1="Tecnico De Mantenimento";
+let addElement2="Volkswagen Navarra";
+array1.splice(index, countToRemove, addElement1, addElement2)
+console.log(`Con el metodo splice() eliminar valores, indicando el primer index a eliminar, y el numero de valores a eliminar,
+y opcionalmente se pueden añadir valores.
+array1.splice(${index},${countToRemove},${addElement1},${addElement2})= [${array1}].`);
+console.log(`===============`);
+console.log(`===============`);
+console.log(`array1=[${array1}]`)
+array1.reverse()
+console.log(`Con el metodo revese() invertimos el orden del array.
+array1.reverse()= [${array1}].`);
+console.log(`===============`);
+console.log(`===============`);
+console.log(`array1=[${array1}]`)
+array1.sort()
+console.log(`Con el metodosort() ordenamos el array.
+array1.sort()= [${array1}].`);
+console.log(`===============`);
+
+//Map:
+console.log(`===============`);
+console.log(`Objeto Mapa, Map(), son objetos clave,valor:
+Se puede definir,
+let matrimonios = new Map()`);
+let matrimonios = new Map();
+let setKey1 = "Alberto";
+let setValue1 = "Sandra";
+let setKey2 = "Cesar";
+let setValue2 = "Nadie";
+matrimonios.set(setKey1, setValue1);
+matrimonios.set(setKey2, setValue2);
+console.log(`===============`);
+console.log(`Con el metodo set(), añadimos las parejas de clave valor al mapa.
+let setKey1 = "Alberto";
+let setValue1 = "Sandra";
+let setKey2 = "Cesar";
+let setValue2 = "Nadie";
+matrimonios.set(setKey1, setValue1)
+matrimonios.set(setKey2, setValue2)`);
+for (let [key, value] of matrimonios) {
+    console.log(key + " esta casado con " + value);
+};
+console.log(`===============`);
+console.log(`===============`);
+matrimonios.delete(setKey2)
+console.log(`Con el metodo delete(), eliminamos mediante la clave, el objeto del mapa correspodiente.
+matrimonios.delete("${setKey2}")`);
+
+for (let [key, value] of matrimonios) {
+    console.log(key + " esta casado con " + value);
+};
+console.log(`===============`);
+console.log(`===============`);
+console.log(`Con el metodo has(), podemos comprobar si algo se encuentra en el mapa.`);
+console.log(`matrimonios.has(${setKey1})=${matrimonios.has(setKey1)}`);
+console.log(`matrimonios.has(${setKey2})=${matrimonios.has(setKey2)}`);
+console.log(`===============`);
+matrimonios.set(setKey2,setValue2)
+console.log(`Al volver a utilizar el metodo set(), ahora matrimonios.has(${setKey2})=${matrimonios.has(setKey2)}`);
+console.log(`===============`);
+console.log(`===============`);
+console.log(`Con el metodo get() obtenemos el valor para una clave, matrimonios.get(${setKey2})=${matrimonios.get(setKey2)}.`);
+console.log(`===============`);
+console.log(`===============`);
+console.log(`Con el metodo size() obtenemos el valor del tamaño del mapa, matrimonios.size=${matrimonios.size}.`);
+console.log(`===============`);
+console.log(`===============`);
+matrimonios.clear();
+console.log(`Con el metodo clear() limpiamos el mapa, matrimonios.clear() = matrimonios.size = ${matrimonios.size}.`);
+console.log(`===============`);
+
+//Set:
+console.log(`===============`);
+let mySet = new Set();
+let setValue3 = 1;
+let setValue4 = "algún texto";
+let setValue5 = "foo";
+mySet.add(setValue3);
+mySet.add(setValue4);
+mySet.add(setValue5);
+console.log(`Un objeto Set, se declara:
+let mySet = new Set();.
+Estos son colecciones de valores, con el metodo add() añadimos valores.
+let setValue3 = 1;
+let setValue4 = "algún texto";
+let setValue5 = "foo";
+mySet.add(${setValue3});
+mySet.add(${setValue4});
+mySet.add(${setValue5});`)
+for (let item of mySet) console.log(item);
+console.log(`===============`);
+console.log(`mySet.has(${setValue3}) = ${mySet.has(setValue3)}`); // true
+console.log(`===============`);
+mySet.delete("foo");
+mySet.size; // 2
+for (let item of mySet) console.log(item);
+console.log(`===============`);
+
+
+
+
+
+
 
 
 
