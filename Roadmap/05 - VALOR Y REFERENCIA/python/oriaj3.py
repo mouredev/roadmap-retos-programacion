@@ -108,3 +108,35 @@ new_list_1, new_list_2 = exchange_references(original_list_1, original_list_2)
 
 print(f"Original Lists: {original_list_1}, {original_list_2}")  # Original Lists: ['Hola', 'Mundo'], ['Python', '3.10.11']
 print(f"New Lists: {new_list_1}, {new_list_2}")  # New Lists: ['Python', '3.10.11'], ['Hola', 'Mundo']
+
+
+#Corrección del programa 2 después de ver directo Mouredev
+#Intercambio de parámetros por referencia (con listas)
+
+def references(list_1: list, list_2: list) -> tuple:
+    list_1, list_2 = list_2, list_1
+    return list_1, list_2
+
+
+# Ejemplo de uso 1
+original_list_1 = ['Hola']
+original_list_2 = ['Python']
+
+my_list_e = [10, 20]
+my_list_f = [30, 40]
+my_list_g, my_list_h = references(my_list_e, my_list_f)
+print(f"Original: {my_list_e}, {my_list_f}")
+print(f"Modificadas: {my_list_g}, {my_list_h}")
+
+def references2(list_1: list, list_2: list) -> tuple:
+    temp = list_1
+    list_1 = list_2
+    list_2 = temp
+    return list_1, list_2
+
+# Ejemplo de uso 2
+my_list_i = [10, 20]
+my_list_j = [30, 40]
+my_list_k, my_list_l = references2(my_list_i, my_list_j)
+print(f"Original: {my_list_i}, {my_list_j}")
+print(f"Modificadas: {my_list_k}, {my_list_l}")
