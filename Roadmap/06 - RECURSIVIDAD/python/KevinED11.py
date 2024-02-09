@@ -14,11 +14,8 @@ def factorial(number: int = 5) -> int:
 
 @functools.lru_cache()
 def fibonacci(number: int) -> int:
-    if number == 0:
-        return 0
-
-    if number == 1:
-        return 1
+    if number <= 1:
+        return number
 
     return fibonacci(number - 2) + fibonacci(number - 1)
 
