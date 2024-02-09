@@ -79,28 +79,28 @@ function check(word1, word2) {
   console.log(`Es ${word2} un palindromo?: ${word2 === word2.split("").reverse().join("")}`);
   
   //Anagrama
-  console.log(`Es ${word1} un anagrama de ${word2}?: ${word1.split("").sort().join("") === word2.split("").sort().join("")}`);
+  console.log(`Es ${word2} un anagrama de ${word1}?: ${word1.split("").sort().join("") === word2.split("").sort().join("")}`);
 
   //isograma
-function isograma(word) {
-  let textoSinNumerosNiSignos = word.replace(/\d+\D/, "").toLowerCase();
-  let textoSinAcento = textoSinNumerosNiSignos.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  let objLetras = {};
-  for (const letras in textoSinAcento) {
-    objLetras[textoSinAcento[letras]] = (objLetras[textoSinAcento[letras]] || 0) + 1;
-  }
-  let isograma = true;
-  let values = Object.values(objLetras);
-  let isogramaLen = values[0];
-  for (let wordCount of values) {
-    if (wordCount !== isogramaLen) {
-      isograma = false;
+  function isograma(word) {
+    let textoSinNumerosNiSignos = word.replace(/\d+\D/, "").toLowerCase();
+    let textoSinAcento = textoSinNumerosNiSignos.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    let objLetras = {};
+    for (const letras in textoSinAcento) {
+      objLetras[textoSinAcento[letras]] = (objLetras[textoSinAcento[letras]] || 0) + 1;
     }
+    let isograma = true;
+    let values = Object.values(objLetras);
+    let isogramaLen = values[0];
+    for (let wordCount of values) {
+      if (wordCount !== isogramaLen) {
+        isograma = false;
+      }
+    }
+    return isograma;
   }
-  return isograma;
-}
-console.log(`Es ${word1} un isograma?: ${isograma(word1)}`);
-console.log(`Es ${word2} un isograma?: ${isograma(word2)}`);
+  console.log(`Es ${word1} un isograma?: ${isograma(word1)}`);
+  console.log(`Es ${word2} un isograma?: ${isograma(word2)}`);
 }
 
 check("caso", "saco");
