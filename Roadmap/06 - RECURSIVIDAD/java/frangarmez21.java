@@ -14,28 +14,37 @@ public class frangarmez21 {
         System.out.println("##Creando función recursiva que imprime números del 100 al 0.##");
         System.out.println();
 
-
+        int initialNumber = 100;
+        System.out.println("Llamamos al método recursivo:");
+        recursiveCounting(initialNumber);
+        System.out.println("Salimos del método recursivo.");
 
         System.out.println();
         System.out.println("##Dificultad Extra##");
         System.out.println();
+//
+//        /* * DIFICULTAD EXTRA (opcional):
+//         * Utiliza el concepto de recursividad para:
+//         * - Calcular el factorial de un número concreto (la función recibe ese número).
+//         * - Calcular el valor de un elemento concreto (según su posición) en la
+//         *   sucesión de Fibonacci (la función recibe la posición).
+//         */
+//
+//        System.out.println("Calcular el factorial de un número concreto");
+//        System.out.println();
+//
+//
+//        System.out.println();
+//        System.out.println("Calcular el valor de un elemento concreto en la sucesión de Fibonacci");
+//        System.out.println();
 
-        /* * DIFICULTAD EXTRA (opcional):
-         * Utiliza el concepto de recursividad para:
-         * - Calcular el factorial de un número concreto (la función recibe ese número).
-         * - Calcular el valor de un elemento concreto (según su posición) en la
-         *   sucesión de Fibonacci (la función recibe la posición).
-         */
 
-        System.out.println("Calcular el factorial de un número concreto");
-        System.out.println();
+    }
 
-
-
-        System.out.println();
-        System.out.println("Calcular el valor de un elemento concreto en la sucesión de Fibonacci");
-        System.out.println();
-
-
+    private static void recursiveCounting(int initialNumber) {
+        System.out.println(initialNumber);
+        if (initialNumber > 0) {
+            recursiveCounting(initialNumber - 1);
+        }
     }
 }
