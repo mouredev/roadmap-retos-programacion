@@ -257,13 +257,11 @@ let email;
 let busqueda;
 
 function insertAgenda(nombre,tel,email){
-    for (let objeto in agenda){
-        let contacto=agenda[objeto];
-        if (contacto["nombre"]===nombre){
+        let contacto=agenda.find(contacto=>contacto.nombre===nombre);
+        if (contacto){
             console.log(contacto);
             console.log(`Existe un contacto con nombre ${nombre}, instroduzca nombre diferente.`);
             main();
-            break;
         }else{
             let contacto={
                 "nombre":nombre,
@@ -273,27 +271,49 @@ function insertAgenda(nombre,tel,email){
             agenda.push(contacto)
             console.log("Contacto añadido con exito.")
             main();
-            break
         }
-    }
 
 }
 
 function buscar(busqueda){
-    for (let objeto in agenda){
-        let contacto= agenda[objeto]
-        if (contacto["nombre"]=== busqueda){
+        let contacto= agenda.find(contacto=>contacto.nombre===busqueda)
+        if (contacto){
+            console.log("Buscando····")
             console.log("Contacto Encotrado: ");
             console.log(contacto);
-            main();
-            break;
         }else{
-            console.log("Buscando····")
+            console.log("Contacto no encotrado, Pruebe de nuevo.")
         }
     }
-    console.log("Contacto no encotrado, Pruebe de nuevo.")
+    
+function actualizar(nombre, tel, email){
+    let contacto= agenda.findIndex(contacto=>contacto.nombre === nombre, tel, email)
+    if (contacto !== -1){
+        if (tel){
+            agenda[contacto].tel = tel;
+        }
+        if(email){
+            agenda[contacto].email = email;
+        }
+        console.log(`Informacion actualizada: ${JSON.stringify(agenda[contacto])}`)
+    }else{
+        console.log("Contacto no encotrado, Pruebe de nuevo.")
+    }
+
 }
 
+function eliminar(nombre){
+    
+    const agendaActualizada = agenda.filter(contacto => contacto.nombre !== nombre);
+    
+    if (agenda.length !== agendaActualizada.length){
+        console.log('Contacto eliminado con exito');
+        agenda = agendaActualizada;
+        console.log(agenda)
+    }else{
+        console.log('Persona no encontrada')
+    }
+}
 
 function listaContactos(){
     for (let objeto in agenda){
@@ -303,7 +323,7 @@ function listaContactos(){
 }
 
 function main(){
-        rl.question("Eliga opcion 1, insertar contacto, opcion 2, buscar contacto,opcion 3, lista de contactos, opcion 4, salir: ", (respuesta) =>{
+        rl.question("Eliga opcion 1, insertar contacto, opcion 2, buscar contacto, opcion 3, lista de contactos, opcion 4, actualizar, opcion 5, eliminar, opcion 6, salir: ", (respuesta) =>{
             let select = respuesta;
             switch(select){
                 case "1":
@@ -312,10 +332,10 @@ function main(){
                         console.log(`Tu contacto se llama ${respuesta}`)
                         rl.question("Telefono del contacto: ", (respuesta) =>{
                             tel = respuesta
-                            console.log(`Tu contacto se tiene el telefono ${respuesta}`)
+                            console.log(`Tu contacto tiene el telefono ${respuesta}`)
                             rl.question("Email del contacto: ", (respuesta) =>{
                                 email = respuesta
-                                console.log(`Tu contacto se tiene el email ${respuesta}`)
+                                console.log(`Tu contacto tiene el email ${respuesta}`)
                                 insertAgenda(nombre,tel,email);
                                 main();
                             });
@@ -334,6 +354,29 @@ function main(){
                     main();
                     break;
                 case "4":
+                    rl.question("Nombre del contacto a actualizar: ", (respuesta) =>{
+                        nombre = respuesta
+                        console.log(`Tu contacto se llama ${respuesta}`)
+                        rl.question("Nuevo Telefono del contacto: ", (respuesta) =>{
+                            tel = respuesta
+                            console.log(`Tu contacto tiene ahora el telefono ${respuesta}`)
+                            rl.question("Email del contacto: ", (respuesta) =>{
+                                email = respuesta
+                                console.log(`Tu contacto tiene ahora el email ${respuesta}`)
+                                actualizar(nombre,tel,email);
+                                main();
+                            });
+                        });
+                    });
+                    break;
+                case "5":
+                    rl.question("Nombre del contacto a eliminar: ",(respuesta)=>{
+                        busqueda=respuesta;
+                        eliminar(busqueda)
+                        main()
+                    });
+                    break;
+                case "6":
                     console.log("Te veo pronto, Adios.")
                     rl.close();
                     break;
