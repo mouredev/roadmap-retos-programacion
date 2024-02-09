@@ -228,6 +228,7 @@ mySet.delete("foo");
 mySet.size; // 2
 for (let item of mySet) console.log(item);
 console.log(`===============`);
+const { copyFileSync } = require('fs');
 /*
 * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
@@ -240,7 +241,113 @@ console.log(`===============`);
  * - También se debe proponer una operación de finalización del programa.
  */
 
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
 
+});
+let agenda = [
+    {"nombre":"alberto", "tel":"638432255", "email":"esteya92@gmail.com"},
+    {"nombre":"sandra", "tel":"622445676", "email":"recio_98@hotmail.com"},
+]
+let nombre;
+let tel;
+let email;
+let busqueda;
+
+function insertAgenda(nombre,tel,email){
+    for (let objeto in agenda){
+        let contacto=agenda[objeto];
+        if (contacto["nombre"]===nombre){
+            console.log(contacto);
+            console.log(`Existe un contacto con nombre ${nombre}, instroduzca nombre diferente.`);
+            main();
+            break;
+        }else{
+            let contacto={
+                "nombre":nombre,
+                "tel":tel,
+                "email":email,
+            }
+            agenda.push(contacto)
+            console.log("Contacto añadido con exito.")
+            main();
+            break
+        }
+    }
+
+}
+
+function buscar(busqueda){
+    for (let objeto in agenda){
+        let contacto= agenda[objeto]
+        if (contacto["nombre"]=== busqueda){
+            console.log("Contacto Encotrado: ");
+            console.log(contacto);
+            main();
+            break;
+        }else{
+            console.log("Buscando····")
+        }
+    }
+    console.log("Contacto no encotrado, Pruebe de nuevo.")
+}
+
+
+function listaContactos(){
+    for (let objeto in agenda){
+        let contacto=agenda[objeto]
+        console.log(contacto)
+    }
+}
+
+function main(){
+        rl.question("Eliga opcion 1, insertar contacto, opcion 2, buscar contacto,opcion 3, lista de contactos, opcion 4, salir: ", (respuesta) =>{
+            let select = respuesta;
+            switch(select){
+                case "1":
+                    rl.question("Nombre del contacto: ", (respuesta) =>{
+                        nombre = respuesta
+                        console.log(`Tu contacto se llama ${respuesta}`)
+                        rl.question("Telefono del contacto: ", (respuesta) =>{
+                            tel = respuesta
+                            console.log(`Tu contacto se tiene el telefono ${respuesta}`)
+                            rl.question("Email del contacto: ", (respuesta) =>{
+                                email = respuesta
+                                console.log(`Tu contacto se tiene el email ${respuesta}`)
+                                insertAgenda(nombre,tel,email);
+                                main();
+                            });
+                        });
+                    });
+                    break;
+                case "2":
+                    rl.question("Nombre del contacto a buscar: ",(respuesta)=>{
+                        busqueda=respuesta;
+                        buscar(busqueda)
+                        main()
+                    });
+                    break;
+                case "3":
+                    listaContactos();
+                    main();
+                    break;
+                case "4":
+                    console.log("Te veo pronto, Adios.")
+                    rl.close();
+                    break;
+                default:
+                    console.log("Inserte opcion valida")
+                    main();
+                    
+            }
+
+        });
+
+}
+
+main()
 
 
 
