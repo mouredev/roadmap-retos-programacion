@@ -1,4 +1,3 @@
-import java.util.List;
 
 public class frangarmez21 {
 
