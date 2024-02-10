@@ -31,7 +31,7 @@ def Fibonacci(numero , a = 1 , b = 0 ):
     if numero == 0 :
         return a
 
-    return Fibonacci(numero -1 , a + b , b + a )
+    return Fibonacci(numero -1 , a + b ,a )
 
 print("recursividad , del 100 al 0 : " , Recursividad_del_100_al_0(100))
 print("factorial de 5 es : " , factorial(5))
