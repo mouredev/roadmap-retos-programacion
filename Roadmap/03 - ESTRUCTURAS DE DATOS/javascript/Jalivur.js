@@ -231,63 +231,80 @@ console.log(`===============`);
 const { copyFileSync } = require('fs');
 /*
 * DIFICULTAD EXTRA (opcional):
- * Crea una agenda de contactos por terminal.
- * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
- * - Cada contacto debe tener un nombre y un número de teléfono.
- * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
- *   los datos necesarios para llevarla a cabo.
- * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
- *   (o el número de dígitos que quieras)
- * - También se debe proponer una operación de finalización del programa.
- */
+* Crea una agenda de contactos por terminal.
+* - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+* - Cada contacto debe tener un nombre y un número de teléfono.
+* - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+*   los datos necesarios para llevarla a cabo.
+* - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+*   (o el número de dígitos que quieras)
+* - También se debe proponer una operación de finalización del programa.
+*/
 
+//Creacion de interactividad con consola.
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 
 });
+//Variables
 let agenda = [
     {"nombre":"alberto", "tel":"638432255", "email":"esteya92@gmail.com"},
-    {"nombre":"sandra", "tel":"622445676", "email":"recio_98@hotmail.com"},
 ]
+
 let nombre;
 let tel;
 let email;
 let busqueda;
+let contacto;
+let select;
 
+//Funciones
 function insertAgenda(nombre,tel,email){
-        let contacto=agenda.find(contacto=>contacto.nombre===nombre);
-        if (contacto){
-            console.log(contacto);
-            console.log(`Existe un contacto con nombre ${nombre}, instroduzca nombre diferente.`);
-            main();
-        }else{
-            let contacto={
+        const esTelefonoValido = (telefono) => {
+            // Verifica que el teléfono solo contenga dígitos
+            const contieneSoloDigitos = Array.from(telefono).every(caracter => '0123456789'.includes(caracter));
+            return contieneSoloDigitos && telefono.length <= 11;
+        };
+        if (esTelefonoValido(tel)){
+            contacto={
                 "nombre":nombre,
                 "tel":tel,
                 "email":email,
-            }
-            agenda.push(contacto)
-            console.log("Contacto añadido con exito.")
+            };
+            agenda.push(contacto);
+            console.log(`===============`);
+            console.log("Contacto añadido con exito.");
+            console.log(`===============`);
             main();
-        }
-
-}
+        }else{
+            console.log(`===============`);
+            console.log("Telefono no valido, deve contener solo numeros y maximo 11.");
+            console.log(`===============`);
+            main();
+        };
+};
 
 function buscar(busqueda){
-        let contacto= agenda.find(contacto=>contacto.nombre===busqueda)
+        let contacto= agenda.find(contacto=>contacto.nombre===busqueda);
         if (contacto){
-            console.log("Buscando····")
+            console.log(`===============`);
+            console.log("Buscando····");
+            console.log(`===============`);
             console.log("Contacto Encotrado: ");
+            console.log(`===============`);
             console.log(contacto);
+            console.log(`===============`);
         }else{
-            console.log("Contacto no encotrado, Pruebe de nuevo.")
-        }
-    }
-    
+            console.log(`===============`);
+            console.log("Contacto no encotrado, Pruebe de nuevo.");
+            console.log(`===============`);
+        };
+};
+
 function actualizar(nombre, tel, email){
-    let contacto= agenda.findIndex(contacto=>contacto.nombre === nombre, tel, email)
+    contacto= agenda.findIndex(contacto=>contacto.nombre === nombre, tel, email);
     if (contacto !== -1){
         if (tel){
             agenda[contacto].tel = tel;
@@ -295,9 +312,13 @@ function actualizar(nombre, tel, email){
         if(email){
             agenda[contacto].email = email;
         }
-        console.log(`Informacion actualizada: ${JSON.stringify(agenda[contacto])}`)
+        console.log(`===============`);
+        console.log(`Informacion actualizada: ${JSON.stringify(agenda[contacto])}`);
+        console.log(`===============`);
     }else{
-        console.log("Contacto no encotrado, Pruebe de nuevo.")
+        console.log(`===============`);
+        console.log("Contacto no encotrado, Pruebe de nuevo.");
+        console.log(`===============`);
     }
 
 }
@@ -307,46 +328,72 @@ function eliminar(nombre){
     const agendaActualizada = agenda.filter(contacto => contacto.nombre !== nombre);
     
     if (agenda.length !== agendaActualizada.length){
+        console.log(`===============`);
         console.log('Contacto eliminado con exito');
+        console.log(`===============`);
         agenda = agendaActualizada;
-        console.log(agenda)
+        console.log(`===============`);
+        console.log(agenda);
+        console.log(`===============`);
     }else{
-        console.log('Persona no encontrada')
-    }
-}
+        console.log(`===============`);
+        console.log('Persona no encontrada');
+        console.log(`===============`);
+    };
+};
 
 function listaContactos(){
-    for (let objeto in agenda){
-        let contacto=agenda[objeto]
-        console.log(contacto)
-    }
-}
+    console.log(`===============`);
+    console.log("Esta es tu agenda completa:");
+    console.log(agenda);
+    console.log(`===============`);
+};
 
+//Menu de seleccion.
 function main(){
-        rl.question("Eliga opcion 1, insertar contacto, opcion 2, buscar contacto, opcion 3, lista de contactos, opcion 4, actualizar, opcion 5, eliminar, opcion 6, salir: ", (respuesta) =>{
-            let select = respuesta;
+    console.log(`===============`);
+        rl.question("Eliga una opcion: \nopcion 1, insertar contacto, \nopcion 2, buscar contacto, \nopcion 3, mostrar agenda completa, \nopcion 4, actualizar, \nopcion 5, eliminar, \nopcion 6, salir, \n¿Cual elige?:", (respuesta) =>{
+            select = respuesta;
             switch(select){
                 case "1":
+                    console.log(`===============`);
                     rl.question("Nombre del contacto: ", (respuesta) =>{
                         nombre = respuesta
-                        console.log(`Tu contacto se llama ${respuesta}`)
-                        rl.question("Telefono del contacto: ", (respuesta) =>{
-                            tel = respuesta
-                            console.log(`Tu contacto tiene el telefono ${respuesta}`)
-                            rl.question("Email del contacto: ", (respuesta) =>{
-                                email = respuesta
-                                console.log(`Tu contacto tiene el email ${respuesta}`)
-                                insertAgenda(nombre,tel,email);
-                                main();
+                        let contacto=agenda.find(contacto=>contacto.nombre===nombre);
+                        if (contacto){
+                            console.log(`===============`);
+                            console.log(contacto);
+                            console.log(`===============`);
+                            console.log(`Existe un contacto con nombre ${nombre}, instroduzca nombre diferente.`);
+                            console.log(`===============`);
+                            main();
+                        }else{
+                            console.log(`===============`);
+                            console.log(`Tu contacto se llama ${respuesta}`)
+                            console.log(`===============`);
+                            rl.question("Telefono del contacto: ", (respuesta) =>{
+                                tel = respuesta
+                                console.log(`===============`);
+                                console.log(`Tu contacto tiene el telefono ${respuesta}`);
+                                console.log(`===============`);
+                                rl.question("Email del contacto: ", (respuesta) =>{
+                                    email = respuesta
+                                    console.log(`===============`);
+                                    console.log(`Tu contacto tiene el email ${respuesta}`);
+                                    console.log(`===============`);
+                                    insertAgenda(nombre,tel,email);
+                                    main();
+                                });
                             });
-                        });
+                        };
                     });
                     break;
                 case "2":
+                    console.log(`===============`);
                     rl.question("Nombre del contacto a buscar: ",(respuesta)=>{
                         busqueda=respuesta;
-                        buscar(busqueda)
-                        main()
+                        buscar(busqueda);
+                        main();
                     });
                     break;
                 case "3":
@@ -354,43 +401,74 @@ function main(){
                     main();
                     break;
                 case "4":
+                    console.log(`===============`);
                     rl.question("Nombre del contacto a actualizar: ", (respuesta) =>{
                         nombre = respuesta
-                        console.log(`Tu contacto se llama ${respuesta}`)
-                        rl.question("Nuevo Telefono del contacto: ", (respuesta) =>{
-                            tel = respuesta
-                            console.log(`Tu contacto tiene ahora el telefono ${respuesta}`)
-                            rl.question("Email del contacto: ", (respuesta) =>{
-                                email = respuesta
-                                console.log(`Tu contacto tiene ahora el email ${respuesta}`)
-                                actualizar(nombre,tel,email);
-                                main();
+                        let contacto= agenda.find(contacto=>contacto.nombre===nombre);
+                        if (contacto){
+                            console.log(`===============`);
+                            console.log(`Tu contacto se llama ${respuesta}`);
+                            console.log(`===============`);
+                            rl.question("Nuevo Telefono del contacto: ", (respuesta) =>{
+                                tel = respuesta
+                                if (tel){
+                                    console.log(`===============`);
+                                    console.log(`Tu contacto tiene ahora el telefono ${respuesta}`);
+                                }else{
+                                    console.log(`===============`);
+                                    console.log(`Tu contacto tiene ahora el mismo telefono que antes ${contacto["tel"]}`);
+                                    console.log(`===============`);
+                                }
+                                console.log(`===============`);
+                                rl.question("Email del contacto: ", (respuesta) =>{
+                                    email = respuesta
+                                    if (email){
+                                        console.log(`===============`);
+                                        console.log(`Tu contacto tiene ahora el email ${respuesta}`);
+                                        actualizar(nombre,tel,email);
+                                        main();
+                                    }else{
+                                        console.log(`===============`);
+                                        console.log(`Tu contacto tiene ahora el mismo email que antes ${contacto["email"]}`);
+                                        console.log(`===============`);
+                                        actualizar(nombre,tel,email);
+                                        main();
+                                    }
+                                });
                             });
-                        });
+                        }else{
+                            console.log(`===============`);
+                            console.log("Contacto no Encontrado.");
+                            console.log(`===============`);
+                            main();
+                        };
                     });
                     break;
                 case "5":
+                    console.log(`===============`);
                     rl.question("Nombre del contacto a eliminar: ",(respuesta)=>{
                         busqueda=respuesta;
-                        eliminar(busqueda)
-                        main()
+                        eliminar(busqueda);
+                        main();
                     });
                     break;
                 case "6":
-                    console.log("Te veo pronto, Adios.")
+                    console.log(`===============`);
+                    console.log("Te veo pronto, Adios.");
+                    console.log(`===============`);
                     rl.close();
                     break;
                 default:
-                    console.log("Inserte opcion valida")
+                    console.log(`===============`);
+                    console.log("Inserte opcion valida");
+                    console.log(`===============`);
                     main();
                     
-            }
+            };
 
         });
-
-}
-
-main()
+};
+main();
 
 
 
