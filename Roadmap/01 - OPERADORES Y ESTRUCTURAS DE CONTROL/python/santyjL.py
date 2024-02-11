@@ -93,7 +93,7 @@ print("""
      """)
 
 #identidad
-print("------------asignación----------------")
+print("------------identidad----------------")
 
 mayor_que is True
 not menor_que is False

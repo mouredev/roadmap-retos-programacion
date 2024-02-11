@@ -9,7 +9,7 @@ printLog()
 
 # Function with Parameters
 def sumNumbers(number1: int, number2: int) -> int:
-    #sum 2 numbers
+    """sum 2 numbers"""
     numberResult = number1 + number2  
     return print(f"The sum of {number1} and {number2} results {numberResult}.")
 
@@ -21,6 +21,7 @@ def func1(x, y=100):
     print("Y = ", y)
 
 func1(50)
+func1(50,20)
  
 # Function Keyword arguments (The idea is to allow the caller to specify the argument name with values so that the caller does not need to remember the order of parameters.)
 def student(firstname, lastname):
@@ -68,7 +69,7 @@ def factorial(n):
 print(factorial(6))
       
       
-#Built-in Functions)
+#Built-in Functions:
 def all(iterable):
     for element in iterable:
         if not element:
@@ -80,8 +81,12 @@ all([12,2,3,4,5,6,7])
 all("home")
 # all(0) ; FALSE
 
-# Variables Globales y locales
+print(len("SaezMD"))
+print(type(36))
+print("SaezMD".upper())
 
+
+# Variables Globales y locales
 counter = 10
 
 def restartCounter():
@@ -99,7 +104,6 @@ value = 10
 def func10():
 	value = 20
 	print(f'Inside value: {value}')
-
 
 func10()
 print(f'Outside value: {value}')

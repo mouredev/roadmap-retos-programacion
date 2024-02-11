@@ -37,7 +37,7 @@ print(f"El módulo de {a} % {b} es: {a%b}")
 # Exponente
 print(f"El exponente de {a} ** {b} es: {a**b}")
 
-# División entera
+# División entera o Resto
 print(f"La división entera de {a} // {b} es: {a//b}")
 
 ### Operadores de comparación

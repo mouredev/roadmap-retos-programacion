@@ -23,6 +23,19 @@
 numero_de_llamadas_por_funcion = dict()
 
 
+def contador_de_ejecuciones(funcion: str) -> None:
+    """
+    Contabiliza la llamada
+    :return: None
+    """
+    global numero_de_llamadas_por_funcion
+
+    if funcion in numero_de_llamadas_por_funcion.keys():
+        numero_de_llamadas_por_funcion[funcion] += 1
+    else:
+        numero_de_llamadas_por_funcion[funcion] = 1
+
+
 def imprimir_llamadas_a_funcion() -> None:
     """
     Imprime la cantidad de veces que se ejecutó una función
@@ -31,17 +44,7 @@ def imprimir_llamadas_a_funcion() -> None:
     """
     global numero_de_llamadas_por_funcion
 
-    def contador_de_ejecuciones():
-        """
-        Contabiliza la llamada
-        :return: None
-        """
-        if "imprimir_llamadas_a_funcion" in numero_de_llamadas_por_funcion.keys():
-            numero_de_llamadas_por_funcion["imprimir_llamadas_a_funcion"] += 1
-        else:
-            numero_de_llamadas_por_funcion["imprimir_llamadas_a_funcion"] = 1
-
-    contador_de_ejecuciones()
+    contador_de_ejecuciones("imprimir_llamadas_a_funcion")
 
     for k, v in numero_de_llamadas_por_funcion.items():
         print(f"La función {k} fue llamada {v} veces.")
@@ -53,24 +56,24 @@ def sumar(*args) -> int:
     :param args: numeros a sumar
     :return: suma
     """
-    global numero_de_llamadas_por_funcion
+    def validar() -> bool:
+        for n in args:
+            if n.__class__.__name__ not in ("int", "float", "str"):
+                return False
+            if n.__class__.__name__ == "str" and not n.isnumeric():
+                return False
 
-    def contador_de_ejecuciones():
-        """
-        Contabiliza la llamada
-        :return: None
-        """
-        if "sumar" in numero_de_llamadas_por_funcion.keys():
-            numero_de_llamadas_por_funcion["sumar"] += 1
-        else:
-            numero_de_llamadas_por_funcion["sumar"] = 1
+        return True
 
-    contador_de_ejecuciones()
+    contador_de_ejecuciones("sumar")
 
     suma = 0
 
-    for sumando in args:
-        suma += sumando
+    if validar():
+        for sumando in args:
+            suma += int(sumando) if sumando.__class__.__name__ == "str" else sumando
+    else:
+        print("ERROR en sumar: argumentos NO validados.")
 
     return suma
 
@@ -81,23 +84,25 @@ def multiplicar(*args) -> int:
     :param args: números a multiplicar
     :return: producto
     """
-    global numero_de_llamadas_por_funcion
+    def validar() -> bool:
+        for n in args:
+            if n.__class__.__name__ not in ("int", "float", "str"):
+                return False
+            if n.__class__.__name__ == "str" and not n.isnumeric():
+                return False
 
-    def contador_de_ejecuciones():
-        """
-        Contabiliza la llamada
-        :return: None
-        """
-        if "multiplicar" in numero_de_llamadas_por_funcion.keys():
-            numero_de_llamadas_por_funcion["multiplicar"] += 1
-        else:
-            numero_de_llamadas_por_funcion["multiplicar"] = 1
+        return True
 
-    contador_de_ejecuciones()
+    contador_de_ejecuciones("multiplicar")
 
     producto = 1
-    for p in args:
-        producto *= p
+
+    if validar:
+        for factor in args:
+            producto *= int(factor) if factor.__class__.__name__ == "str" else factor
+    else:
+        print("ERROR en multiplicar: argumentos NO validados.")
+
     return producto
 
 
@@ -107,19 +112,7 @@ def mail(*args) -> str:
     :param args: Para, Copiar, Asunto y Texto
     :return: representación del mail
     """
-    global numero_de_llamadas_por_funcion
-
-    def contador_de_ejecuciones():
-        """
-        Contabiliza la llamada
-        :return: None
-        """
-        if "mail" in numero_de_llamadas_por_funcion.keys():
-            numero_de_llamadas_por_funcion["mail"] += 1
-        else:
-            numero_de_llamadas_por_funcion["mail"] = 1
-
-    contador_de_ejecuciones()
+    contador_de_ejecuciones("mail")
 
     return f"To: {args[0]}\nCc: {args[1]}\nAsunto: {args[2]}\n{args[3]}\n"
 
@@ -138,23 +131,11 @@ def ejecutar(funcion, args):
 def complejidad_extra(cadena1: str, cadena2: str) -> int:
     """
     Sigue los lineamientos indicados al ppio del reto.
-    :param cadena1:
-    :param cadena2:
-    :return:
+    :param cadena1: a imprimir si es múltiplo de 3 o de 3 y 5
+    :param cadena2: a imprimir si es múltiplo de 5 o de 3 y 5
+    :return: número de veces que NO se imprimió la cadena
     """
-    global numero_de_llamadas_por_funcion
-
-    def contador_de_ejecuciones():
-        """
-        Contabiliza la llamada
-        :return: None
-        """
-        if "complejidad_extra" in numero_de_llamadas_por_funcion.keys():
-            numero_de_llamadas_por_funcion["complejidad_extra"] += 1
-        else:
-            numero_de_llamadas_por_funcion["complejidad_extra"] = 1
-
-    contador_de_ejecuciones()
+    contador_de_ejecuciones("complejidad_extra")
 
     numero_de_veces = 0
 
@@ -177,7 +158,7 @@ tareas = {
     "suma 1": ["sumar", (1, 4, 7, 9)],
     "producto 1": ["multiplicar", (3, 3, 4)],
     "suma 2": ["sumar", (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)],
-    "suma 3": ["sumar", (1, 2, 3, 5, 8, 13, 21, 34)],
+    "suma 3": ["sumar", (1, 2, 3, 5, 8, '1E', 21, 34)],
     "producto 2": ["multiplicar", (1, 2, 3, 4, 5,  6)],
     "correo": ["mail", ("neslarra@fibertel.com.ar",
                         "Brais.Moure@mouredev.com.es",
@@ -190,8 +171,8 @@ tareas = {
 for k, v in tareas.items():
     print(f"{k} =>  {ejecutar(v[0], v[1])}")
 
-print(f"Otra suma: {sumar(1, 29, 30, 40, 50)}")
-print(f"Otro producto: {multiplicar(1, 2, 4, 8, 16, 32, 64)}", end="\n\n")
+print(f"Otra suma: {sumar(1, '29', 30, 40, 50)}")
+print(f"Otro producto: {multiplicar(1, 2, 4, '8', 16, 32, 64)}", end="\n\n")
 print(f"Otro correo: {mail('neslarra@fibertel.com.ar', 'Brais.Moure@mouredev.com.es', 'Reto# 2 - funciones (2)', 'Agregué complejidad extra.')}")
 
 imprimir_llamadas_a_funcion()
