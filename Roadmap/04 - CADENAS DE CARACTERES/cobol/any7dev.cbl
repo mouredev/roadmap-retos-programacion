@@ -27,6 +27,9 @@
            77 CADENA6 PIC X(21).
            77 CADENA7 PIC X(12) VALUE "ROADMAP 2024".
            77 CADENA8 PIC X(10) VALUE "hola mundo".
+           77 CADENA9 PIC X(35) VALUE "Cadena con espacios al final".
+           77 CADENA10 PIC X(50) VALUE "     Cadena con espacios al "-
+                                       "principio".
       *ENTEROS PARA EJEMPLO
            77 CONTADOR PIC 9(2).
            77 LONG PIC 9(2).
@@ -36,12 +39,19 @@
            77 PALABRA2 PIC X(20).
            77 CARACTER PIC X.
            77 PALABRA4 PIC X(20).
+           77 FRASE PIC X(200).
+           77 CARACI PIC X.
+           77 CARACJ PIC X.
       *ENTEROS PARA EJERCICIO EXTRA
            77 REPE1 PIC 9.
            77 REPE2 PIC 9 VALUE 0.
            77 CONT PIC 9(2) VALUE 1.
-           77 LONG1 PIC 9(2).
-           77 LONG2 PIC 9(2).
+           77 LONG1 PIC 9(3).
+           77 LONG2 PIC 9(3).
+           77 RESTO PIC 9.
+           77 MITAD PIC 9(2).
+           77 I PIC 9(2) VALUE 1.
+           77 J PIC 9(2).
 
        PROCEDURE DIVISION.
 
@@ -72,9 +82,19 @@
       *EXTRAER LA LONGITUD DE UNA CADENA.
        LONGITUD.
            DISPLAY "-LONGITUD"
-           DISPLAY CADENA1.
-           MOVE FUNCTION LENGTH(CADENA1) TO LONG.
-           DISPLAY LONG.
+           DISPLAY CADENA9.
+      *Hay que tener en cuenta que en esto en cobol te dice la longitud de la variable
+           MOVE FUNCTION LENGTH(CADENA9) TO LONG.
+           DISPLAY "Longitud variable: " LONG.
+      *Para saber exactamente la longitud quitando los espacios del final:
+           COMPUTE LONG = FUNCTION LENGTH
+                              (FUNCTION TRIM(CADENA9, TRAILING)).
+           DISPLAY "Longitud sin espacios al final: " LONG.
+      *Si los espacios estuvieran al principio:
+           DISPLAY CADENA10.
+           COMPUTE LONG = FUNCTION LENGTH
+                              (FUNCTION TRIM(CADENA10, LEADING)).
+           DISPLAY "Longitud sin espacios al principio: " LONG.
            DISPLAY SPACES.
 
       *INVERTIR CADENA
@@ -149,8 +169,38 @@
            DISPLAY SPACES.
 
        PALINDROMOS.
-      *PENDIENTE DE TERMINAR
-
+      *Palabra o expresión que es igual si se lee de izquierda a derecha que de derecha a izquierda.
+           DISPLAY "-PALINDROMO"
+           DISPLAY "INTRODUCE LA FRASE O PALABRA: ".
+           ACCEPT FRASE.
+           MOVE FUNCTION LOWER-CASE(FRASE) TO FRASE.
+           COMPUTE LONG1 = FUNCTION LENGTH
+                              (FUNCTION TRIM(FRASE, TRAILING)).
+           DIVIDE LONG1 BY 2 GIVING MITAD REMAINDER RESTO.
+           MOVE LONG1 TO J.
+           PERFORM UNTIL I > MITAD
+               PERFORM UNTIL J < MITAD
+                   MOVE FRASE(I:LONG1) TO CARACI
+                   IF CARACI = SPACE
+                       ADD 1 TO I
+                       MOVE FRASE(I:LONG1) TO CARACI
+                   END-IF
+                   MOVE FRASE(J:1) TO CARACJ
+                   IF CARACJ = SPACE
+                       SUBTRACT 1 FROM J
+                       MOVE FRASE(J:1) TO CARACJ
+                   END-IF
+                   IF CARACI = CARACJ
+                       ADD 1 TO I
+                       SUBTRACT 1 FROM J
+                   ELSE
+                       DISPLAY "NO ES PALINDROMO"
+                       GO TO ANAGRAMAS
+                   END-IF
+               END-PERFORM
+           END-PERFORM.
+           DISPLAY "ES PALINDROMO".
+           DISPLAY SPACES.
 
        ANAGRAMAS.
       *Una palabra es anagrama de otra si las dos tienen las mismas letras, con el mismo número de apariciones, pero en un orden diferente.
@@ -211,13 +261,13 @@
                    MOVE REPE1 TO REPE2
                END-IF
                IF REPE1 NOT EQUAL REPE2
-                   DISPLAY "NO ISOGRAMA"
+                   DISPLAY "NO ES ISOGRAMA"
                    STOP RUN
                ELSE
                    ADD 1 TO CONT
                    MOVE 0 TO REPE1
                END-PERFORM
-           DISPLAY "ISOGRAMA".
+           DISPLAY "ES ISOGRAMA".
            STOP RUN.
 
        END PROGRAM RETO-04.
