@@ -8,7 +8,6 @@ fun main () {
     val e: Double = 3.23
     val f: String = "myString "
     val g: String = "anotherString"
-
 // Operaciones aritmeticas con las variables previas:
     val sum: Int = b + a
     val sum2: String = f + g
@@ -17,13 +16,11 @@ fun main () {
     val div = b / a
     val aRem2 = a % 2
     val bRem2 = b % 2
-
 // Operadores Lógicos
     val myTrue: Boolean = true
     val myFalse: Boolean = false
     val isAEven: Boolean = aRem2 == 0
     val isAOdd: Boolean = bRem2 != 0
-
 // Valores de las constantes
     println(a)
     println(b)
@@ -55,7 +52,18 @@ fun main () {
     println()
 
 // Operadores de asignación
-
+    var myNumber = 11
+    println(myNumber)
+    myNumber += 1
+    println(myNumber)
+    myNumber -= 2
+    println(myNumber)
+    myNumber *= 3
+    println(myNumber)
+    myNumber /= 2
+    println(myNumber)
+    myNumber %= 2
+    println(myNumber)
 
 //  Estructuras de control = Control flow
 // If expression
@@ -103,9 +111,9 @@ fun main () {
         println("Yummy, it´s a $cake cake!")
     }
 
-
-// While loops
-    /* Using a when expression, update the following program so that when you input
+/*
+/While loops
+ Using a when expression, update the following program so that when you input
      the names of GameBoy buttons, the actions are printed to output.
 */
     println()
@@ -130,34 +138,6 @@ fun main () {
     } while (pizzaSlices <= 8)
     println("Hooray! We have a whole pizza! :D")
 
-    // Fizz buzz
-    for (i in 1..100) {
-        println(
-            when {
-                i % 15 == 0 -> "fizzbuzz"
-                i % 3 == 0 -> "fizz"
-                i % 5 == 0 -> "buzz"
-                else -> i.toString()
-            }
-        )
-    }
-    // Another Fizz buzz
-    println()
-    for (index in 1..100) {
-        val divisibleBy3 = index % 3 == 0
-        val divisibleBy5 = index % 5 == 0
-        if (divisibleBy3 && divisibleBy5) {
-            println("fizzbuzz")
-        } else if (divisibleBy3) {
-            println("buzz")
-        } else if (divisibleBy5) {
-            println("fizz")
-        } else {
-            println(index)
-        }
-    }
-
-
     // For and if to print only the words that start with the letter l (from a list)
     println()
     val words = listOf("dinosaur", "limousine", "magazine", "language")
@@ -166,8 +146,29 @@ fun main () {
             println(word)
     }
 
-
 // Break and continue loops
+    println()
+    mainLoop@ for (i in 1..5) {
+        val letras = listOf("a", "b", "c")
+
+        secondaryLoop@ for (letra in letras) {
+
+            if (letra == "c") {
+                break@secondaryLoop
+            }
+            println(letra)
+        }
+    }
+
+// Error handling
+    println()
+    try {
+        println(1 / 0)
+    } catch (e: ArithmeticException) {
+        println("Error: División por cero")
+    } finally {
+        println("Esto se imprime siempre")
+    }
 
 //Ejercicio extra
     println()

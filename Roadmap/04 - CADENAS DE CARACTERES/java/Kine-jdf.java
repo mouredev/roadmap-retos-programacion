@@ -48,11 +48,11 @@ static boolean  anagram (String uno, String dos){
           char[] aux2;
          if(uno.length()==dos.length()){
              
-             aux = uno.toCharArray();
-             aux2=dos.toCharArray();
-            aux.sort();
-            aux2.sort();
-son = aux.toString().equalsIgnoreCase(aux2.toString());
+             aux = uno.toLowerCase().toCharArray();
+             aux2=dos.toLowerCase().toCharArray();
+            Arrays.sort(aux);
+            Arrays.sort(aux2);
+           son = Arrays.equals(aux,aux2);
      }       
                return son; }
 
