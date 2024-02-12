@@ -23,23 +23,36 @@ def recursiva():
 
 # Ejercicio extra
 # Calcular el factorial de un número concreto (la función recibe ese número)
-def factorial(num_factorial):
-    """Los factoriales son funciones matemáticas.
-    Multiplican un número por todos los números que lo preceden.
+def factorial(n):
+    """Los factoriales son funciones matemáticas que
+    multiplican un número por todos los números que lo preceden.
     La fórmula del factorial puede expresarse como: = n ( n − 1 )
     """
-    pass
+    result = 1 # Almacenamos el resultado
+    for i in range(1, n + 1): # recorremos desde 1 hasta el numero introducido en incrementos de 1
+        result *= i # multiplicamos el resultado por el numero actual
+    return result
 
 # Calcular el valor de un elemento concreto (según su posición) en la sucesión de Fibonacci.
-def fibonacci(num_fibonacci):
-    """La secuencia de sucesión de Fibonacci tiene la fórmula
+def fibonacci(fn):
+    """La secuencia de sucesión de Fibonacci consiste en la fórmula:
     Fn = Fn-1 + Fn-2 .
     En otras palabras, el siguiente número es una suma de los dos anteriores.
     Los dos primeros números son 1 , luego 2(1+1) , luego 3(1+2) , 5(2+3) y así sucesivamente: 1, 1, 2, 3, 5, 8, 13, 21...
     """
-    pass
+    result = 0
+    # recorremos desde 1 hasta el numero introducido en incrementos de 1
+    for i in range(1, fn + 1):
+        result += i # sumamos el el numero anterior por el actual
+    return result
 
+# Vamos a ello! Aqui llamamos las funciones
 if __name__ == "__main__":
     # Llamamos a la funcion del ejercicio 1
     recursiva()
-    factorial(58)
+
+    # Llamamos a la funcion del factorial
+    print(factorial(8)) # Factorial de 8 deberia dar 40320
+
+    # Llamamos a la funcion de fibonacci
+    print(fibonacci(8)) # Fibonacci de 8 deberia dar 36
