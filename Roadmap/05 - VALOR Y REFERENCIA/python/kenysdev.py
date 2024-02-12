@@ -112,15 +112,16 @@ Pre-Intercambio:
 """)
 
 def por_valor(str1, str2):
-    s1 = str2
-    s2 = str1
-    return s1, s2
+    temp = str1
+    str1 = str2
+    str2 = temp
+    return str1, str2
 
 def por_referencia(list1, list2):
-    cambiar = tuple(list1)
-    l1[0:2] = list2
-    l2[0:2] = list(cambiar)
-    return l1, l2
+    cambiar = list1
+    list1 = list2
+    list2 = cambiar
+    return list1, list2
 
 new_s1, new_s2 = por_valor(s1, s2)
 new_l1, new_l2 = por_referencia(l1, l2)
