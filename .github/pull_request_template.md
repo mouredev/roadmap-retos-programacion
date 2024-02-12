@@ -12,7 +12,7 @@ Asegúrate de cumplir los siguientes puntos antes de realizar la "Pull Request":
 	- c++, no cplusplus
 	- go, no golang
 	- javascript, no js
-- [ ] Únicamente he incluído los ficheros de ejercicios. No se aceptarán Pull Requests que contengan archivos adicionales asociados a editores de código o semejantes.
+- [ ] Únicamente he incluido los ficheros de ejercicios. No se aceptarán Pull Requests que contengan archivos adicionales asociados a editores de código o semejantes.
 
 ## Información
 
