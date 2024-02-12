@@ -1,5 +1,4 @@
 fun main() {
-    
     // String operations
     val str = "Hello, World!"
     println("Access specific character: ${str[1]}") // Access specific character
