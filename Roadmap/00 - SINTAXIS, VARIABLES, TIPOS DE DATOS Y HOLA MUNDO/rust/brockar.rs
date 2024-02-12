@@ -7,8 +7,9 @@ https://www.rust-lang.org/es
 // https://www.rust-lang.org/es
 
 fn main(){
-    let mut variable = "Esto es una variable";
-    let constante = "Esto es una constante";
+    let mut variable = "Esto es una variable"; // variable mutable
+    let constante = "Esto es una constante"; // variable inmutable
+    const PI: f32 = 3.1416; // const must be declared with a type
 
     // INT 
     let entero8: i8= 126; // -128 to 127
