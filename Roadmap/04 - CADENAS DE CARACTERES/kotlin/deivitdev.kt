@@ -25,4 +25,5 @@ fun main() {
 fun isPalindrome(word: String): Boolean = word == word.reversed()
 
 fun areAnagrams(word1: String, word2: String): Boolean = word1.toCharArray().sorted() == word2.toCharArray().sorted()
+
 fun isIsogram(word: String): Boolean = word.length == word.toSet().size
