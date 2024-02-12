@@ -14,6 +14,9 @@ print(list)
 list.append("rio")
 print(list)
 #remove:
+list.remove("campo")
+print(list)
+#remove:
 list.pop(2)
 print(list)
 #insert:
@@ -24,20 +27,32 @@ list.sort()
 print(list)
 list.sort(reverse=True)
 print(list)
+#access:
+print(list[2])
 
 #Tuples (inmutable lists)
 numbs = (1,2,3,4,5,8)
 print(numbs)
+#Access:
 print(numbs[4:6])
+#Sort and generate a tuple:
+myTuple = tuple(sorted(numbs))
+
+#Sets (non sorted structure)
+mySet = {"saul","Saez", 38}
+print(mySet)
+mySet.add("saul") #Error! Duplicated
+mySet.remove("Saez")
+print(mySet)
+sortedSet = set(sorted(mySet)) #You can't use the sorted
 
 #Matrix (define the type)
 from array import array
 numsMatrix = array('f',[1.5,4.5,7.5,2.5])
 print(numsMatrix)
-#modify
+#modify:
 numsMatrix[0]=3.5
 print(numsMatrix)
-
 
 # Dictionaries: key+value
 books = {"title":"Ready Player One"}
@@ -157,6 +172,23 @@ def mainCaller():
 
 mainCaller()
 
+def maincaller2():
+    while True:
+        option = input("Enter operation: (Search/Insert/Update/Erase or Exit)")
+        match option:
+            case "Exit":
+                break
+            case "Search":
+                pass
+            case "Insert":
+                pass
+            case "Update":
+                pass
+            case "Erase":
+                pass
+
+        
+        
 
 
 

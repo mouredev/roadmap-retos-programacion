@@ -63,3 +63,64 @@ set_1.add(111)
 set_1.pop()
 set_1.remove(44)
 print(set_1)
+
+
+# Dificultad extra. Creación de una agenda de contactos.
+
+def my_agenda():
+
+    agenda = {}
+
+    def insert_contact():
+        phone = input("Insert phone number: ")
+        if phone.isdigit() and len(phone) > 0 and len(phone) <= 11:
+            agenda[name] = phone
+        else:
+            print("Not a valid phone number")
+    
+    while True:
+
+        print("")
+        print("1. Search contact")
+        print("2. Insert contact")
+        print("3. Update contact")
+        print("4. Delete contact")
+        print("5. Exit")
+
+        option = input("Select your choice: ")
+
+        match option:
+            case "1":
+                name = input("Insert contact's name: ")
+                if name in agenda:
+                    print(f"{name}'s number is {agenda[name]}.")
+                else:
+                    print(f"{name} does not exist.")
+            
+            case "2":
+                name = input("Insert contact's name: ")
+                insert_contact()
+            
+            case "3":
+                name = input("Insert contact's name: ")
+                if name in agenda:
+                    insert_contact()
+                else:
+                    print(f"{name} does not exist.")
+            
+            case "4":
+                name = input("Insert contact's name: ")
+                if name in agenda:
+                    del agenda[name]
+                else:
+                    print(f"{name} does not exist.")
+            
+            case "5":
+                print("Exiting agenda...")
+                break
+
+            case _:
+                print("Non valid option.")
+            
+
+my_agenda()
