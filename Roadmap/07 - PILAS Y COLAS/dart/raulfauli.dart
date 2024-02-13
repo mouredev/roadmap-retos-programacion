@@ -1,5 +1,7 @@
 /// #07 PILAS Y COLAS
 
+import 'dart:io';
+
 void main() {
   /**
    * Implementa los mecanismos de introducción y recuperación de elementos propios de las
@@ -9,22 +11,28 @@ void main() {
   exampleQueue();
   exampleStack();
 
-  /**
-   * DIFICULTAD EXTRA
-   * Implementa un historial de navegación de un navegador web. Deberás implementar
-   * las funciones de ir hacia adelante y hacia atrás, y deberás almacenar las páginas
-   * visitadas en dos pilas diferentes.
-  */
-  browserHistory();
+  // DIFICULTAD EXTRA
 
-  /**
-   * DIFICULTAD EXTRA
-   * Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
-   * impresora compartida que recibe documentos y los imprime cuando así se le indica.
-   * La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
-   * interpretan como nombres de documentos.
-  */
-  printer();
+  String option = "";
+  do {
+    print('''
+    1. Navegador web
+    2. Imprimir documento
+    Q. Salir o "Ctrl + C"
+    ''');
+    option = stdin.readLineSync()!.toLowerCase();
+
+    switch (option) {
+      case "1":
+        browserHistory();
+        break;
+      case "2":
+        printer();
+        break;
+      case "q":
+        print('Programa finalizado');
+    }
+  } while (option != "q");
 }
 
 void exampleQueue() {
@@ -75,12 +83,25 @@ void exampleStack() {
 }
 
 void browserHistory() {
+  const String home = "duckduckgo.com";
+
   final List<String> history = [];
   final List<String> forwardHistory = [];
 
   void navigateTo(String page) {
+    print('Navegando a $page');
     history.add(page);
     forwardHistory.clear();
+  }
+
+  void goHome() {
+    history.clear();
+    navigateTo(home);
+  }
+
+  void printHistory() {
+    print('Historial:');
+    print(history);
   }
 
   void goBack() {
@@ -88,6 +109,7 @@ void browserHistory() {
       return;
     }
     final page = history.removeLast();
+    print('Volviendo a $page');
     forwardHistory.add(page);
   }
 
@@ -96,24 +118,47 @@ void browserHistory() {
       return;
     }
     final page = forwardHistory.removeLast();
+    print('Avanzando a $page');
     history.add(page);
   }
 
-  navigateTo('google.com');
-  navigateTo('youtube.com');
-  navigateTo('facebook.com');
-  print(history); // [google.com, youtube.com, facebook.com]
-  goBack();
-  print(history); // [google.com, youtube.com]
-  print(forwardHistory); // [facebook.com]
-  goForward();
-  print(history); // [google.com, youtube.com, facebook.com]
-  goBack();
-  goBack();
-  print(history); // [google.com]
-  navigateTo('twitter.com');
-  print(history); // [google.com, twitter.com]
-  print(forwardHistory); // []
+  print('''
+    Introduce una web o bien una de las siguientes opciones:
+    N. Inicio
+    H. Historial
+    [. Atrás
+    ]. Adelante
+    Q. Salir
+  ''');
+
+  goHome();
+
+  String option = "";
+  do {
+    option = stdin.readLineSync()!.toLowerCase();
+
+    switch (option) {
+      case "n" || "home":
+        goHome();
+        break;
+      case "h" || "history":
+        printHistory();
+        break;
+      case "[" || "prev" || "back":
+        goBack();
+        break;
+      case "]" || "next" || "forward":
+        goForward();
+        break;
+      case "q":
+        print('Cerrando navegador');
+        break;
+      default:
+        if (!option.isEmpty) {
+          navigateTo(option);
+        }
+    }
+  } while (option != "q");
 }
 
 void printer() {
@@ -121,6 +166,8 @@ void printer() {
 
   void addDocument(String document) {
     queue.add(document);
+    print('Documento añadido: $document');
+    print('Hay ${queue.length} documentos en la cola');
   }
 
   void printDocument() {
@@ -128,14 +175,31 @@ void printer() {
       return;
     }
     final document = queue.removeAt(0);
-    print('Imprimiendo: $document');
+    if (document.isEmpty) {
+      print('No hay documentos para imprimir');
+    } else {
+      print('Imprimiendo: $document');
+    }
   }
 
-  addDocument('documento1');
-  addDocument('documento2');
-  addDocument('documento3');
-  printDocument(); // Imprimiendo: documento1
-  printDocument(); // Imprimiendo: documento2
-  printDocument(); // Imprimiendo: documento3
-  printDocument(); // No imprime nada
+  print('''
+    Añade un nuevo documento o bien una de las siguientes opciones:
+    "P" o "Imprimir" para imprimir
+    "Q" para Salir
+  ''');
+
+  String option = "";
+  do {
+    option = stdin.readLineSync()!.toLowerCase();
+
+    switch (option) {
+      case "p" || "print" || "imprimir":
+        printDocument();
+        break;
+      default:
+        if (!option.isEmpty) {
+          addDocument(option);
+        }
+    }
+  } while (option != "q");
 }
