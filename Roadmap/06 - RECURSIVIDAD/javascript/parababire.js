@@ -1,4 +1,4 @@
-//Vuenta regresiva por recursión
+//Cuenta regresiva por recursión
 
 let cuentaRegresiva = numero => {
   //Base case: donde finaliza la función de llamarse así misma.
