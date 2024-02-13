@@ -26,47 +26,53 @@ Un ejemplo de pila es el historial del navegador, donde podemos ver que cada pá
 /****************/
 
 class Pila {
+  constructor() {
+    this.pila = [];
+  }
 
-    constructor() {
-        this.pila = [];
-    }
+  push(elemento) {
+    this.pila.push(elemento);
+  }
 
-    push(elemento) {
-        this.pila.push(elemento);
-    }
+  pop() {
+    this.pila.pop();
+  }
 
-    pop() {
-        this.pila.pop();
-    }
+  peek() {
+    return this.pila[this.pila.length - 1];
+  }
 
-    peek(){
-        return this.pila[this.pila.length - 1]
-    }
+  size() {
+    return this.pila.length;
+  }
 
-    size() {
-        return this.pila.length
-    }
-
-    print() {
-        return this.pila
-    }
-
+  print() {
+    return this.pila;
+  }
 }
 
 const ejemploPila = new Pila();
 
-console.log(`Al inicio, la pila está vacía por lo que el size() devolverá 0: ${ejemploPila.size()}`);
+console.log(
+  `Al inicio, la pila está vacía por lo que el size() devolverá 0: ${ejemploPila.size()}`
+);
 
 for (let i = 0; i < 5; i++) {
-    ejemploPila.push(i);
+  ejemploPila.push(i);
 }
 
-console.log(`Luego del push, la pila tiene ${ejemploPila.size()} elementos, que son: ${ejemploPila.print()}`);
-console.log(`El peek o primer elemento de la pila es: ${ejemploPila.peek()}. Recuerda que este es el último elemento agregado a la pila.`);
+console.log(
+  `Luego del push, la pila tiene ${ejemploPila.size()} elementos, que son: ${ejemploPila.print()}`
+);
+console.log(
+  `El peek o primer elemento de la pila es: ${ejemploPila.peek()}. Recuerda que este es el último elemento agregado a la pila.`
+);
 
 ejemploPila.pop();
 
-console.log(`Luego del pop, la pila tiene ${ejemploPila.size()} elementos, que son: ${ejemploPila.print()}. Su peek ahora es ${ejemploPila.peek()}`);
+console.log(
+  `Luego del pop, la pila tiene ${ejemploPila.size()} elementos, que son: ${ejemploPila.print()}. Su peek ahora es ${ejemploPila.peek()}`
+);
 
 /***** COLAS *****/
 /*
@@ -76,41 +82,107 @@ Un ejemplo de cola es la cola de un banco, donde podemos ver que los clientes en
 /****************/
 
 class Cola {
+  constructor() {
+    this.cola = [];
+  }
 
-    constructor() {
-        this.cola = [];
-    }
+  encolar(elemento) {
+    this.cola.push(elemento);
+  }
 
-    encolar(elemento) {
-        this.cola.push(elemento);
-    }
+  desencolar() {
+    this.cola.shift();
+  }
 
-    desencolar() {
-        this.cola.shift();
-    }
+  peek() {
+    return this.cola[0];
+  }
 
-    peek(){
-        return this.cola[0]
-    }
+  size() {
+    return this.cola.length;
+  }
 
-    size() {
-        return this.cola.length
-    }
-
-    print() {
-        return this.cola
-    }
+  print() {
+    return this.cola;
+  }
 }
 
 const ejemploCola = new Cola();
-console.log(`Al inicio, la cola está vacia por lo que el size() devolverá 0: ${ejemploCola.size()}`);
+console.log(
+  `Al inicio, la cola está vacia por lo que el size() devolverá 0: ${ejemploCola.size()}`
+);
 
 for (let i = 0; i < 5; i++) {
-    ejemploCola.encolar(i);
+  ejemploCola.encolar(i);
 }
 
-console.log(`Luego del encolar, la cola tiene ${ejemploCola.size()} elementos, que son: ${ejemploCola.print()}`);
-console.log(`El peek o primer elemento de la cola es: ${ejemploCola.peek()}. Recuerda que este es el primero en ser encolado y el primero que será desencolado.`);
+console.log(
+  `Luego del encolar, la cola tiene ${ejemploCola.size()} elementos, que son: ${ejemploCola.print()}`
+);
+console.log(
+  `El peek o primer elemento de la cola es: ${ejemploCola.peek()}. Recuerda que este es el primero en ser encolado y el primero que será desencolado.`
+);
 ejemploCola.desencolar();
 
-console.log(`Luego del desencolar, la cola tiene ${ejemploCola.size()} elementos, que son: ${ejemploCola.print()}. Su peek ahora es ${ejemploCola.peek()}`);
+console.log(
+  `Luego del desencolar, la cola tiene ${ejemploCola.size()} elementos, que son: ${ejemploCola.print()}. Su peek ahora es ${ejemploCola.peek()}`
+);
+
+/************************ PARTE 2 ************************/
+
+class NavegadorWeb {
+  constructor() {
+    this.historial = new Pila();
+    this.paginaActual = "";
+    this.indexPaginaActual = 0;
+  }
+
+  navegar(pagina) {
+    this.historial.push(pagina);
+    this.paginaActual = pagina;
+    this.indexPaginaActual = this.historial.size() - 1;
+  }
+
+  adelante() {
+    if (this.historial.size() > 0) {
+      this.indexPaginaActual++;
+      this.paginaActual = this.historial.pila[this.indexPaginaActual]
+    } else {
+      console.log("No hay historial en este navegador");
+    }
+  }
+
+  atras() {
+    if (this.historial.size() > 0) {
+        this.indexPaginaActual--;
+        this.paginaActual = this.historial.pila[this.indexPaginaActual]
+    } else {
+      console.log("No hay historial en este navegador");
+    }
+  }
+
+  mostrarPaginaActual(){
+    return this.paginaActual;
+  }
+}
+
+const navegador = new NavegadorWeb();
+
+navegador.atras()
+navegador.adelante() //No hay historial actualmente
+
+navegador.navegar("https://www.google.com")
+navegador.navegar("https://www.facebook.com")
+navegador.navegar("https://www.twitter.com")
+navegador.navegar("https://www.youtube.com")
+navegador.navegar("https://www.linkedin.com")
+
+console.log(`Tu historial actual es: ${navegador.historial.print()}. Y te encuentras en al página ${navegador.mostrarPaginaActual()}`);
+
+navegador.atras()
+navegador.atras()
+navegador.atras()
+navegador.atras()
+
+console.log(`Ahora te encuentras en la página: ${navegador.mostrarPaginaActual()}`);
+
