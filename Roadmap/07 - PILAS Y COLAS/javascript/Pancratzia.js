@@ -68,3 +68,49 @@ ejemploPila.pop();
 
 console.log(`Luego del pop, la pila tiene ${ejemploPila.size()} elementos, que son: ${ejemploPila.print()}. Su peek ahora es ${ejemploPila.peek()}`);
 
+/***** COLAS *****/
+/*
+Una COLA es una estructura de datos que almacena datos en una secuencia. La operacion de inserción de un elemento en la COLA se llama encolar y la operación de extracción de un elemento se llama desencolar. Operan bajo la modalidad llamada FIFO, es decir, siempre el primer elemento agregado va a ser el primero que se extraiga.
+Un ejemplo de cola es la cola de un banco, donde podemos ver que los clientes en la cola son los primeros en ser atendidos. 
+*/
+/****************/
+
+class Cola {
+
+    constructor() {
+        this.cola = [];
+    }
+
+    encolar(elemento) {
+        this.cola.push(elemento);
+    }
+
+    desencolar() {
+        this.cola.shift();
+    }
+
+    peek(){
+        return this.cola[0]
+    }
+
+    size() {
+        return this.cola.length
+    }
+
+    print() {
+        return this.cola
+    }
+}
+
+const ejemploCola = new Cola();
+console.log(`Al inicio, la cola está vacia por lo que el size() devolverá 0: ${ejemploCola.size()}`);
+
+for (let i = 0; i < 5; i++) {
+    ejemploCola.encolar(i);
+}
+
+console.log(`Luego del encolar, la cola tiene ${ejemploCola.size()} elementos, que son: ${ejemploCola.print()}`);
+console.log(`El peek o primer elemento de la cola es: ${ejemploCola.peek()}. Recuerda que este es el primero en ser encolado y el primero que será desencolado.`);
+ejemploCola.desencolar();
+
+console.log(`Luego del desencolar, la cola tiene ${ejemploCola.size()} elementos, que son: ${ejemploCola.print()}. Su peek ahora es ${ejemploCola.peek()}`);
