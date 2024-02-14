@@ -15,5 +15,16 @@
  *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
  *   interpretan como nombres de documentos.
  """
+ from collections import deque
 
 # Implementamos las pilas y colas
+# impelemntacion como pila
+pila = []
+pila.append("fuego") # añadimos fuego a la pila
+pila.pop("fuego") # sacamos fuego de la pila
+
+# implementacion como cola
+cola = deque()
+cola.append("fuego") # añadimos fuego a la cola
+cola.popleft("fuego") # sacamos fuego de la cola
+
