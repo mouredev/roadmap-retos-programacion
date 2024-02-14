@@ -30,4 +30,4 @@ def fibonacci(n_fib :  int, fib1=0, fib2=1):
     elif n_fib == 1:
         return fib2
     else:
-        return n_fibonacci(n_fib - 1, fib2, fib1 + fib2)
+        return fibonacci(n_fib - 1, fib2, fib1 + fib2)
