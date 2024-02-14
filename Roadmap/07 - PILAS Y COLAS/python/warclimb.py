@@ -24,7 +24,18 @@ pila.append("fuego") # añadimos fuego a la pila
 pila.pop("fuego") # sacamos fuego de la pila
 
 # implementacion como cola
-cola = deque()
-cola.append("fuego") # añadimos fuego a la cola
-cola.popleft("fuego") # sacamos fuego de la cola
+cola = []
+
+def enqueue(element):
+    cola.append(element)
+
+def dequeue():
+    if len(cola) > 0:
+        return cola.pop(0)
+    else:
+        return None
+
+# añadimos a la cola:
+enqueue("fuego")  # añadimos fuego a la cola
+dequeue()  # sacamos fuego de la cola
 
