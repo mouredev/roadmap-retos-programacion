@@ -53,10 +53,9 @@ print(not(c < b)) #Invierte el resultado de la comparacion.
  entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3'''
  
 def main():
-    x=10
-    for x in 55:
-        if x % 2 == 0:
-            print(x)
+    for i in range(10,56): #Itera entre 10 y 55
+        if i % 2 == 0 and i != 16 and i % 3 != 0: #Si el numero es par, no es 16 y no es multiplo de 3
+            print(i)
           
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
