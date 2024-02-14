@@ -128,3 +128,28 @@ print(f"El fibonacci hasta {10} es igual a {fibonacci_hasta(11)}.")
 # Fibonnaci del 0 al 9	
 for i in range(11):	
     print(f"El fibonacci de {i} es igual a {fibonnaci_valor(i)}.")
+
+# Corrección Factorial:
+def factorial(number: int)-> int:
+    if number == 0:
+        return 1
+    elif number < 0:
+        print("No se puede calcular el factorial de un número negativo")
+        return 0
+    else:
+        return number * factorial(number-1)
+
+#Ejemplo 
+print(factorial(5)) # 120
+
+# Corrección Fibonacci:
+def fibonacci(number: int)-> int:
+    if number < 0: 
+        print("No se puede calcular la sucesión de Fibonacci de un número negativo")
+        return 0
+    elif number == 0:
+        return 0
+    elif number == 1:
+        return 1
+    else:
+        return fibonacci(number-1) + fibonacci(number-2) 
