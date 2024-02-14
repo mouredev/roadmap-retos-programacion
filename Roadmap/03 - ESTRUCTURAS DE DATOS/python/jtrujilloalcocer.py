@@ -159,6 +159,7 @@ def main():
         elif opcion == 5:
             print('Fin del programa')
         else:
-            print('Opción no válida')           
+            print('Opción no válida')  
+                     
 main() #Ejecuta el programa
             
