@@ -54,17 +54,111 @@ dict_1.pop('edad') #Elimina la clave edad
 dict_2.popitem() #Elimina el último elemento insertado
 dict_1.clear() #Elimina todos los elementos del diccionario
 dict_2.update({'nombre':'Maria', 'edad': 30, 'cursos': ['Python','Django','Flask']}) #Actualiza el diccionario
+dict_1.keys() #Devuelve las claves del diccionario
+dict_2.values() #Devuelve los valores del diccionario
     
 #-LOS CONJUNTOS son mutables
 conjunto_1 = {1,2,3,4,5}
 conjunto_2 = {6,7,8,9,10}
 
+#INSERTAR / BORRAR / ACTUALIZAR / ORDENAR
+conjunto_1.add(6) #Agrega un elemento al conjunto
+conjunto_2.remove(6) #Elimina el elemento 6 del conjunto
+conjunto_1.discard(6) #Elimina el elemento 6 del conjunto
+conjunto_2.pop() #Elimina un elemento aleatorio del conjunto
+conjunto_1.clear() #Elimina todos los elementos del conjunto
+conjunto_2.update([11,12,13,14,15]) #Agrega varios elementos al conjunto
+
 #-LAS COLAS son mutables
 cola_1 = [1,2,3,4,5]
 cola_2 = [6,7,8,9,10]
+
+#INSERTAR / BORRAR / ACTUALIZAR / ORDENAR
+cola_1.append(6) #Agrega un elemento al final de la cola
+cola_2.insert(0,5) #Agrega un elemento en la posición 0
+cola_1.pop(0) #Elimina el elemento en la posición 0
+cola_2.remove(6) #Elimina el elemento 6 de la cola
+cola_1.clear() #Elimina todos los elementos de la cola
+cola_2[0] = 1 #Actualiza el elemento en la posición 0   
 
 #-LAS PILAS son mutables
 pila_1 = [1,2,3,4,5]
 pila_2 = [6,7,8,9,10]
 
- 
+#INSERTAR / BORRAR / ACTUALIZAR / ORDENAR
+pila_1.append(6) #Agrega un elemento al final de la pila
+pila_2.insert(0,5) #Agrega un elemento en la posición 0
+pila_1.pop() #Elimina el último elemento de la pila
+pila_2.pop(0) #Elimina el elemento en la posición 0
+pila_1.clear() #Elimina todos los elementos de la pila
+pila_2[0] = 1 #Actualiza el elemento en la posición 0
+
+#PROGRAMA DE AGENDA DE CONTACTOS    
+agenda = {} #Diccionario para almacenar los contactos
+
+def insertar_contacto(): #Función para insertar un contacto
+    print('Insertar contacto:')
+    nombre = input('Nombre:') #Solicita el nombre del contacto   
+    telefono = input('Teléfono:') #Solicita el teléfono del contacto 
+    if nombre in agenda: #Verifica si el contacto ya existe
+        print('El contacto ya existe')
+    else:
+        agenda[nombre] = telefono #Agrega el contacto a la agenda
+        print('Contacto agregado')
+
+def buscar_contacto(): #Función para buscar un contacto
+    print('Buscar contacto:')
+    nombre = input('Nombre:') #Solicita el nombre del contacto
+    if nombre in agenda: #Verifica si el contacto existe
+        print('Teléfono:', agenda[nombre]) #Muestra el teléfono del contacto
+    else:
+        print('El contacto no existe') 
+
+def actualizar_contacto(): #Función para actualizar un contacto
+    print('Actualizar contacto:')
+    nombre = input('Nombre:') #Solicita el nombre del contacto
+    if nombre in agenda: #Verifica si el contacto existe
+        telefono = input('Teléfono:') #Solicita el nuevo teléfono del contacto
+        agenda[nombre] = telefono #Actualiza el teléfono del contacto
+        print('Contacto actualizado')
+    else:
+        print('El contacto no existe')
+        
+def eliminar_contacto(): #Función para eliminar un contacto
+    print('Eliminar contacto:')
+    nombre = input('Nombre:') #Solicita el nombre del contacto
+    if nombre in agenda: #Verifica si el contacto existe
+        del agenda[nombre] #Elimina el contacto de la agenda
+        print('Contacto eliminado')
+    else:
+        print('El contacto no existe')        
+               
+def menu(): #Función para mostrar el menú
+    print('Agenda de contactos')
+    print('1. Buscar contacto')
+    print('2. Insertar contacto')
+    print('3. Actualizar contacto')
+    print('4. Eliminar contacto')
+    print('5. Salir')
+    opcion = int(input('Seleccione una opción: '))  #Solicita la opción a realizar
+    return opcion
+    
+#funcion main
+def main():
+    opcion = 0
+    while opcion != 5: #Muestra el menú hasta que se seleccione la opción 5
+        opcion = menu()
+        if opcion == 1:
+            buscar_contacto()
+        elif opcion == 2:
+            insertar_contacto()
+        elif opcion == 3:
+            actualizar_contacto()
+        elif opcion == 4:
+            eliminar_contacto()
+        elif opcion == 5:
+            print('Fin del programa')
+        else:
+            print('Opción no válida')           
+main() #Ejecuta el programa
+            
