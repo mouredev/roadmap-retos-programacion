@@ -254,8 +254,14 @@ void main () {
 	const char* C_C = "Elemento C";
 	const char* C_D = "Elemento D";
 	t_queue queue;
-
 	initialize_queue (&queue);
+
+	const unsigned int C_SIZE_BUFFER = 200;
+
+	char myBuffer [C_SIZE_BUFFER];
+	memset (myBuffer, 0, sizeof (myBuffer));
+
+	unsigned opcionEscogida = 1;
 
 	printf ("Ejemplo LIFO:\n");
 	push (&queue, C_A);
@@ -287,7 +293,28 @@ void main () {
 	printf ("pop %s\n", pop_fifo (&queue));
 	printf ("pop %s\n", pop_fifo (&queue));
 
-	C_FUNCTIONS [0]();
+	while (opcionEscogida) {
+
+		printf ("1. Navegador web.\n");
+		printf ("2. Impresora.\n");
+		printf ("0. Salir.\n");
+		printf ("\nSeleccione opción: ");
+
+		fgets (myBuffer, C_SIZE_BUFFER, stdin);
+		myBuffer [strlen (myBuffer)-1] = '\0'; /* remove \n */
+
+		if (strspn (myBuffer, "012") != strlen (myBuffer)) {
+			printf ("Valor no admitido\n");
+		}
+		else {
+			sscanf (myBuffer, "%u\n", &opcionEscogida);
+
+			if (opcionEscogida != 0) {
+				C_FUNCTIONS [opcionEscogida-1]();
+			}
+		}
+
+	};
 
 };
 
