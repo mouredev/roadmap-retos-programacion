@@ -40,7 +40,7 @@
 |03|[ESTRUCTURAS DE DATOS](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/ejercicio.md)|[📝](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/python/mouredev.py)|[▶️](https://youtu.be/brxtPtUbU7M)|[👥](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/)
 |04|[CADENAS DE CARACTERES](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/ejercicio.md)|[📝](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/python/mouredev.py)|[▶️](https://youtu.be/CKzY7nHwulA)|[👥](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/)
 |05|[VALOR Y REFERENCIA](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/ejercicio.md)|[📝](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/python/mouredev.py)|[▶️](https://youtu.be/P2OQDT9Wrb0)|[👥](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/)
-|06|[RECURSIVIDAD](./Roadmap/06%20-%20RECURSIVIDAD/ejercicio.md)|[📝](./Roadmap/06%20-%20RECURSIVIDAD/python/mouredev.py)||[👥](./Roadmap/06%20-%20RECURSIVIDAD/)
+|06|[RECURSIVIDAD](./Roadmap/06%20-%20RECURSIVIDAD/ejercicio.md)|[📝](./Roadmap/06%20-%20RECURSIVIDAD/python/mouredev.py)|[▶️](https://youtu.be/nTfDkLRrYiM)|[👥](./Roadmap/06%20-%20RECURSIVIDAD/)
 |07|[PILAS Y COLAS](./Roadmap/07%20-%20PILAS%20Y%20COLAS/ejercicio.md)|[🗓️ 19/02/24](https://discord.gg/bhdquzMy?event=1206182685077143592)||[👥](./Roadmap/07%20-%20PILAS%20Y%20COLAS/)
 
 ## Instrucciones
