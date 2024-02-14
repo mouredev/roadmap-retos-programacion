@@ -18,9 +18,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define ELEMENT_TYPE const char*
-const ELEMENT_TYPE NULL_ELEMENT_TYPE = NULL;
+const ELEMENT_TYPE C_NULL_ELEMENT_TYPE = NULL;
 
 
 /*
@@ -86,7 +87,7 @@ Get element from queue applying LIFO policy
 */
 ELEMENT_TYPE pop_lifo (t_queue* inOutQueue) {
 
-	ELEMENT_TYPE element = NULL_ELEMENT_TYPE;
+	ELEMENT_TYPE element = C_NULL_ELEMENT_TYPE;
 	t_queue_element* lastElement = inOutQueue->lastElement;
 
 	if (lastElement != NULL) {
@@ -114,7 +115,7 @@ Get element from queue applying FIFO policy
 */
 ELEMENT_TYPE pop_fifo (t_queue* inOutQueue) {
 
-	ELEMENT_TYPE element = NULL_ELEMENT_TYPE;
+	ELEMENT_TYPE element = C_NULL_ELEMENT_TYPE;
 	t_queue_element* firstElement = inOutQueue->firstElement;
 
 	if (firstElement != NULL) {
@@ -136,6 +137,114 @@ ELEMENT_TYPE pop_fifo (t_queue* inOutQueue) {
 	return element;
 
 };
+
+void webBrowserSimulator() {
+
+	const char* C_ADELANTE = "adelante";
+	const char* C_ATRAS = "atras";
+	const char* C_SALIR = "salir";
+	const unsigned int C_SIZE_BUFFER = 200;
+
+	char myBuffer [C_SIZE_BUFFER];
+	memset (myBuffer, 0, sizeof (myBuffer));
+
+	char myExit = 0;
+	char *page = NULL;
+
+	t_queue queueBack, queueNext;
+	initialize_queue (&queueBack);
+	initialize_queue (&queueNext);
+
+	/*
+	A: 
+	B: push back (old page), empty queue_next
+	C: push back (old page), empty queue_next
+	atras: pop lifo back -> str, push str
+	atras: pop lifo back -> str, push str
+	delante: pop lifo next -> str, push back
+
+
+	A B C
+	atras
+	B 
+	atras
+	A
+	delante
+	B
+	D
+	E
+	atras
+	E
+	atras
+	D
+	atras
+	B
+	*/
+
+	while (!myExit) {
+
+		printf ("Página? %s? %s? o %s?: ", C_ADELANTE, C_ATRAS, C_SALIR);
+		fgets (myBuffer, C_SIZE_BUFFER, stdin);
+		myBuffer [strlen (myBuffer)-1] = '\0'; /* remove \n */
+
+		if (!strcmp (myBuffer, C_SALIR)) {
+			myExit = 1;
+		} else if (!strcmp (myBuffer, C_ATRAS)) {
+			/* save previous page */
+			if (page != NULL) {
+				push (&queueNext, page);
+			}
+			page = (char*) pop_lifo (&queueBack);
+			
+		} else if (!strcmp (myBuffer, C_ADELANTE)) {
+			/* save previous page */
+			if (page != NULL) {
+				push (&queueBack, page);
+			}
+			page = (char*) pop_lifo (&queueNext);
+		} else {
+
+			/* save previous page */
+			if (page != C_NULL_ELEMENT_TYPE) {
+				push (&queueBack, page);
+			}
+
+			/* empty queue next */
+			while ( (page=(char*)pop_lifo (&queueNext)) != NULL) {
+				free (page);
+			}
+
+			page = malloc (strlen (myBuffer)+1);
+			strcpy (page, myBuffer);
+		};
+
+		if (page != C_NULL_ELEMENT_TYPE) {
+			printf ("Display %s\n", page);
+		} else {
+			printf ("No hay más páginas \n");
+		}
+
+	};
+
+	free (page);
+
+	while ( (page=(char*)pop_lifo (&queueNext)) != NULL) {
+		free (page);
+	}
+	while ( (page=(char*)pop_lifo (&queueBack)) != NULL) {
+		free (page);
+	}
+
+
+}
+
+void printerSimulator() {
+}
+
+void (* const C_FUNCTIONS []) () = {
+	webBrowserSimulator,
+	printerSimulator };
+
 
 
 void main () {
@@ -177,6 +286,8 @@ void main () {
 	printf ("pop %s\n", pop_fifo (&queue));
 	printf ("pop %s\n", pop_fifo (&queue));
 	printf ("pop %s\n", pop_fifo (&queue));
+
+	C_FUNCTIONS [0]();
 
 };
 
