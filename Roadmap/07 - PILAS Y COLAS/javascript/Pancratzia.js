@@ -130,32 +130,32 @@ console.log(
 
 /************************ PARTE 2 ************************/
 
-class NavegadorWeb {
+class NavegadorWeb extends Pila {
   constructor() {
-    this.historial = new Pila();
+    super();
     this.paginaActual = "";
     this.indexPaginaActual = 0;
   }
 
   navegar(pagina) {
-    this.historial.push(pagina);
+    this.push(pagina);
     this.paginaActual = pagina;
-    this.indexPaginaActual = this.historial.size() - 1;
+    this.indexPaginaActual = this.size() - 1;
   }
 
   adelante() {
-    if (this.historial.size() > 0) {
+    if (this.size() > 0) {
       this.indexPaginaActual++;
-      this.paginaActual = this.historial.pila[this.indexPaginaActual]
+      this.paginaActual = this.pila[this.indexPaginaActual]
     } else {
       console.log("No hay historial en este navegador");
     }
   }
 
   atras() {
-    if (this.historial.size() > 0) {
+    if (this.size() > 0) {
         this.indexPaginaActual--;
-        this.paginaActual = this.historial.pila[this.indexPaginaActual]
+        this.paginaActual = this.pila[this.indexPaginaActual]
     } else {
       console.log("No hay historial en este navegador");
     }
@@ -177,7 +177,7 @@ navegador.navegar("https://www.twitter.com")
 navegador.navegar("https://www.youtube.com")
 navegador.navegar("https://www.linkedin.com")
 
-console.log(`Tu historial actual es: ${navegador.historial.print()}. Y te encuentras en al página ${navegador.mostrarPaginaActual()}`);
+console.log(`Tu historial actual es: ${navegador.print()}. Y te encuentras en al página ${navegador.mostrarPaginaActual()}`);
 
 navegador.atras()
 navegador.atras()
