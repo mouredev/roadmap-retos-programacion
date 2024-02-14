@@ -186,3 +186,54 @@ navegador.atras()
 
 console.log(`Ahora te encuentras en la página: ${navegador.mostrarPaginaActual()}`);
 
+navegador.adelante()
+navegador.adelante()
+console.log(`Ahora te encuentras en la página: ${navegador.mostrarPaginaActual()}`);
+
+navegador.navegar("www.randompage.com");
+
+console.log(`Ahora te encuentras en la página: ${navegador.mostrarPaginaActual()}`);
+
+class Impresora{
+
+  constructor(){
+    this.cola = new Cola();
+  }
+
+  imprimir(){
+    if(this.cola.size() > 0){
+    console.log(`Imprimiendo el archivo: ${this.cola.peek()}`);
+    this.cola.desencolar();}
+    else{
+      console.log("La cola esta vacia");
+    }
+  }
+
+}
+
+
+const impresora = new Impresora();
+
+impresora.cola.encolar("Tarea");
+impresora.cola.encolar("Trabajo");
+impresora.cola.encolar("Tesis");
+impresora.cola.encolar("Cuestionario");
+impresora.cola.encolar("Reporte");
+impresora.cola.encolar("Foto");
+
+console.log(`La cola tiene ${impresora.cola.size()} elementos, que son: ${impresora.cola.print()}`);
+console.log(`El documento a imprimir es ${impresora.cola.peek()}`);
+
+impresora.imprimir();
+impresora.imprimir();
+
+console.log(`La cola tiene ${impresora.cola.size()} elementos, que son: ${impresora.cola.print()}`);
+
+impresora.imprimir();
+impresora.imprimir();
+impresora.imprimir();
+impresora.imprimir();
+
+console.log(`La cola tiene ${impresora.cola.size()} elementos, que son: ${impresora.cola.print()}`);
+
+impresora.imprimir(); //Ya que ya no hay elementos, se nos indica que la cola está vacia
