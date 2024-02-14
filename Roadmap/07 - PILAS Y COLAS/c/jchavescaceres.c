@@ -138,6 +138,14 @@ ELEMENT_TYPE pop_fifo (t_queue* inOutQueue) {
 
 };
 
+ /*
+ * DIFICULTAD EXTRA (opcional):
+ * - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
+ *   de un navegador web. Crea un programa en el que puedas navegar a una página o indicarle
+ *   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
+ *   Las palabras "adelante", "atras" desencadenan esta acción, el resto se interpreta como
+ *   el nombre de una nueva web.
+ */
 void webBrowserSimulator() {
 
 	const char* C_ADELANTE = "adelante";
@@ -238,7 +246,56 @@ void webBrowserSimulator() {
 
 }
 
+ /*
+ * DIFICULTAD EXTRA (opcional):
+ * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
+ *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
+ *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
+ *   interpretan como nombres de documentos.
+ */
 void printerSimulator() {
+	const char* C_IMPRIMIR = "imprimir";
+	const char* C_SALIR = "salir";
+	const unsigned int C_SIZE_BUFFER = 200;
+
+	char myBuffer [C_SIZE_BUFFER];
+	memset (myBuffer, 0, sizeof (myBuffer));
+
+	char myExit = 0;
+	char *document = NULL;
+
+	t_queue queue;
+	initialize_queue (&queue);
+
+	while (!myExit) {
+
+		printf ("Documento? %s? o %s?: ", C_IMPRIMIR, C_SALIR);
+		fgets (myBuffer, C_SIZE_BUFFER, stdin);
+		myBuffer [strlen (myBuffer)-1] = '\0'; /* remove \n */
+
+		if (!strcmp (myBuffer, C_SALIR)) {
+			myExit = 1;
+		} else if (!strcmp (myBuffer, C_IMPRIMIR)) {
+			document = (char*) pop_fifo (&queue);
+			if (document != C_NULL_ELEMENT_TYPE) {
+				printf ("Imprimiendo %s\n", document);
+				free (document);
+			} else {
+				printf ("No hay documentos para imprimir \n");
+			}
+		} else {
+			document = malloc (strlen (myBuffer)+1);
+			strcpy (document, myBuffer);
+			push (&queue, document);
+		};
+
+
+	};
+
+	while ( (document=(char*)pop_fifo (&queue)) != NULL) {
+		free (document);
+	}
+
 }
 
 void (* const C_FUNCTIONS []) () = {
@@ -293,6 +350,9 @@ void main () {
 	printf ("pop %s\n", pop_fifo (&queue));
 	printf ("pop %s\n", pop_fifo (&queue));
 
+	/*
+	Dificultad extra
+	*/
 	while (opcionEscogida) {
 
 		printf ("1. Navegador web.\n");
