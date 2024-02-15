@@ -67,10 +67,45 @@ const stackObject = new Stack_Obect();
 console.log(stackObject.size());
 console.log(stackObject.push("Liliana"));//Se agrega el primer elemento a la pila.
 console.log(stackObject.size());
-console.log(stackObject.peak());
+console.log(stackObject.peak());//Retorna el ultimo elemento de la pila.
 console.log(stackObject.push("Luisa"));
 console.log(stackObject.size());
 stackObject.print();
 console.log(stackObject.peak());
-console.log(stackObject.pop());
+console.log(stackObject.pop());//Elimina el último elemento de la pila.
 stackObject.print();
+
+//Queue
+
+class Queue {
+  constructor() {
+    this.queue = [];
+  }
+  enqueue(element) {
+    this.queue.push(element);
+    return this.queue;
+  }
+  dequeue() {
+    return this.queue.shift();
+  }
+  peak() {
+    return this.queue[0]
+  }
+  size() {
+    return this.queue.length;
+  }
+  isEmpty() {
+    return this.queue.length === 0;
+  }
+  print() {
+    console.log(this.queue);
+  }
+}
+const queue = new Queue();
+console.log(queue.isEmpty());
+console.log(queue.enqueue("Luis"));
+console.log(queue.enqueue("María"));
+console.log(queue.enqueue("Lysa"));
+queue.print();
+console.log(queue.dequeue());
+queue.print();
