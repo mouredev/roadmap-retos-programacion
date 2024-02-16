@@ -1,5 +1,3 @@
-# @author Alberto Revel
-
 """
 - Crea ejemplos de funciones básicas que representen las diferentes
     posibilidades del lenguaje:
@@ -78,7 +76,7 @@ def recursion_power(base,exponent):
     elif (exponent == 1):
       return base
     elif (exponent == -1):
-      return 1/base
+       return 1/base
     else:
         exponent -= 1 if exponent > 0 else -1
         return recursion_power(base * base, exponent)
