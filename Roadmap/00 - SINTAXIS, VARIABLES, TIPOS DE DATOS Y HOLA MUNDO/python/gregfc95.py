@@ -4,7 +4,8 @@
 
 # * - Representa las diferentes sintaxis que existen de crear comentarios
 # *   en el lenguaje (en una línea, varias...).
-    #   Python realmente no tiene una sintaxis multilineas, pero ignorará string que no estan asignados a una variable
+    #   Python realmente no tiene una sintaxis multilineas, pero 
+    #ignorará string que no estan asignados a una variable
 
 """
     Comentario
@@ -28,8 +29,11 @@ x = "Mundial"
 
 varString = str("Es es una string")
 varInt = int(10)
-varFloat = float(3)
-varBoolean = bool(true)
+varFloat = float(3.41)
+#cualquier String es true a menos que esté vacia
+varBooleanTrue = bool("Hello")
+#cualquier String es true a menos que esté vacia
+varBooleanFalse = bool("")
 
 varText = str("¡Hola, [y el nombre de tu lenguaje]!")
 print(varText) 
