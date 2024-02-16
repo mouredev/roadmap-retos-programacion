@@ -62,4 +62,5 @@ while opcion_elegida != '5':
             break
         case _:
             print("Opción no válida.")
+
     opcion_elegida = input("Elige una opción: ")
