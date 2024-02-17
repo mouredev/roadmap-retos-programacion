@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class mtirador {
 
-
-
  public static void main(String[] args) {
 
     /*Operaciones con caracteres */
@@ -77,7 +75,7 @@ public class mtirador {
     Heterograma(palabra1, palabra2);
 
 
-
+    ent.close();
  }
  
 /*Heterograma */
