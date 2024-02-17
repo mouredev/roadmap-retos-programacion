@@ -27,10 +27,10 @@ public class frangarmez21 {
          *   sucesión de Fibonacci (la función recibe la posición).
          */
 
-        System.out.println("Calcular el factorial de un número concreto");
+        System.out.println("Calcular el factorial de un número concreto:");
         System.out.println();
 
-        int number = 4;
+        int number = 10;
         System.out.println("Llamamos al método calcular factorial con el número: " + number);
         System.out.println();
         int factorial = factorialCalculation(number, number);
@@ -40,18 +40,26 @@ public class frangarmez21 {
             System.out.println("No se ha podido calcular, debe ser un numero natural");
         }
 
-//        System.out.println();
-//        System.out.println("Calcular el valor de un elemento concreto en la sucesión de Fibonacci");
-//        System.out.println();
+        System.out.println();
+        System.out.println("Calcular el valor de un elemento concreto en la sucesión de Fibonacci:");
+        System.out.println();
 
-
+        int position = 6;
+        int initNumber = 1;
+        int prevNumber = 0;
+        System.out.println("Llamamos al método obtener valor en Fibonacci en la posición: " + position);
+        System.out.println();
+        int fibonacciResult = getFibonacciValue(position - 1, initNumber, prevNumber);
+        System.out.println("El valor en la posición " + position + " de la sucesión de Fibonacci es: " + fibonacciResult);
     }
 
-    private static void recursiveCounting(int initialNumber) {
-        System.out.println(initialNumber);
-        if (initialNumber > 0) {
-            recursiveCounting(initialNumber - 1);
+    private static int getFibonacciValue(int position, int initNumber, int prevNumber) {
+        int result = initNumber + prevNumber;
+        position--;
+        if (position > 0) {
+            result = getFibonacciValue(position, result, initNumber);
         }
+        return result;
     }
 
     private static int factorialCalculation(int number, int initMultiplier) {
@@ -68,6 +76,13 @@ public class frangarmez21 {
         } else {
             result = -1;
             return result;
+        }
+    }
+
+    private static void recursiveCounting(int initialNumber) {
+        System.out.println(initialNumber);
+        if (initialNumber > 0) {
+            recursiveCounting(initialNumber - 1);
         }
     }
 }
