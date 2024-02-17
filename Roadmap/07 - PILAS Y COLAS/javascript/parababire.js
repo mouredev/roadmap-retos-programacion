@@ -37,7 +37,7 @@ console.log(stackArray.peak());
 /*Modalidad con
 Object*/
 
-class Stack_Obect {
+class Stack_Object {
   constructor() {
     this.stack = {};
     this.count = 0;
@@ -63,7 +63,7 @@ class Stack_Obect {
     console.log(this.stack);
   }
 }
-const stackObject = new Stack_Obect();
+const stackObject = new Stack_Object();
 console.log(stackObject.size());
 console.log(stackObject.push("Liliana"));//Se agrega el primer elemento a la pila.
 console.log(stackObject.size());
@@ -77,7 +77,10 @@ stackObject.print();
 
 //Queue
 
-class Queue {
+/*Modalidad con
+Array*/
+
+class Queue_Array {
   constructor() {
     this.queue = [];
   }
@@ -101,7 +104,7 @@ class Queue {
     console.log(this.queue);
   }
 }
-const queue = new Queue();
+const queue = new Queue_Array();
 console.log(queue.isEmpty());
 console.log(queue.enqueue("Luis"));
 console.log(queue.enqueue("María"));
@@ -109,3 +112,51 @@ console.log(queue.enqueue("Lysa"));
 queue.print();
 console.log(queue.dequeue());
 queue.print();
+
+/*Modalidad con
+Object*/
+
+class Queue_Object {
+  constructor() {
+    this.element = {};
+    this.head = 0;
+    this.tail = 0;
+  }
+  enqueue(element) {
+    this.element[this.tail] = element;
+    this.tail++;
+    return this.element;
+  }
+  dequeue() {
+    const item = this.element[this.head];
+    delete this.element[this.head];
+    this.head++;
+    return item;
+  }
+  peak() {
+    if (!this.element.hasOwnProperty(this.head)) {
+      return "Empty Queue";
+    } else {
+      return this.element[this.head];
+    }
+  }
+  size() {
+    return Object.keys(this.element).length;
+  }
+  print() {
+    console.log(this.element);
+  }
+  isEmpty() {
+    return this.tail === 0;
+  }
+}
+const queue1 = new Queue_Object();
+console.log(queue1.enqueue("cliente1"));
+console.log(queue1.enqueue("cliente2"));
+console.log(queue1.enqueue("cliente3"));
+console.log(queue1.dequeue());
+console.log(queue1.enqueue("cliente4"));
+console.log(queue1.peak());
+console.log(queue1.size());
+queue1.print();
+console.log(queue1.isEmpty());
