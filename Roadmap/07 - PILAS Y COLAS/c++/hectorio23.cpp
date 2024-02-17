@@ -1,8 +1,8 @@
 // Author: hectorio23
-#include <codecvt>
 #include <iostream>
 #include <memory>
 #include <ostream>
+// #include <cstdlib>
 
 /*
  * EJERCICIO:
@@ -36,20 +36,19 @@
 //     getTitle -> retorna el titulo del documento
 // }
 class WebPage {
-    private:
-    std::string Title;
-    int length = 0;
-
     public:
+    int index = 0;
     WebPage() {}
-    WebPage(std::string sValue, int index): Title(sValue), length(index) {}
+    std::string Title;
+    WebPage(std::string title, int index): Title(title), index(index) {}
+    WebPage(const WebPage& other) : Title(other.Title) {}
 
     void getInfo() {
         // <Object WebPage at 0x7f61993bf420>
         std::cout << "<Object WebPage - " << Title << " at " << (this) << ">\n";
     }
 
-    std::string getTitle () const { return Title; };
+    std::string getTitle() { return this->Title; }
 };
 
 /// OPERATOR OVERLOADED FOR PRINT THE WebPage Memory
@@ -82,34 +81,32 @@ struct Stack {
     public:
     int size = 0;
     WebPage page;
-    Stack() {};
-    Stack(WebPage& item, std::shared_ptr<Stack> pointer): page(item), next(pointer) {}
+
+    Stack() {}
+    Stack(WebPage& item, std::shared_ptr<Stack> pointer) : page(item), next(pointer) {}
 
     void push(WebPage& WebPageObject) {
-        std::shared_ptr<Stack> tmp = std::make_shared<Stack>( WebPageObject, this->next );
-        this->next = tmp;
+        std::shared_ptr<Stack> tmp = std::make_unique<Stack>(WebPageObject, next);
+        next = tmp;
         size++;
     }
 
-    // Pop retorna un numero entero en base al estado del Stack, es decir, Si el Stack se
-    // encurentra vacio (0), no debería de tratar de sacar elementos porque dara un error, por
-    // otro lado, en caso de existir por lo menos un objeto, este sera eliminado de la estructura
-    int pop() {
-        if (size == 0) return size;
+    // Modificación de la función pop para que devuelva el elemento eliminado si existe o nullptr si la pila está vacía
+    WebPage* pop() {
+        if (size == 0) return nullptr;
 
         std::shared_ptr<Stack> aux = next;
-        // garbage->push(aux->page);
-        std::cout << "Se ha sacado el elemento: " << next->page.getTitle() << "\n";
         next = aux->next;
 
         size--;
-        return 1;
+        return &(aux->page);
     }
 };
 
 /***************************************************
 *******************QUEUE DINAMICO*******************
 ****************************************************/
+
 /// QUEUE STRUCTURE
 // Objecto{
 //     Atributes
@@ -123,57 +120,154 @@ struct Stack {
 // }
 struct Queue {
     private:
-    // std::shared_ptr<Queue> back = nullptr; 
-    std::shared_ptr<Queue> front = nullptr; 
+    std::shared_ptr<Queue> next = nullptr;
+    std::shared_ptr<Queue> last = nullptr; // Puntero al último elemento de la cola
 
     public:
     int size = 0;
-    
     WebPage page;
+    
     Queue() {}
-    Queue(WebPage& item, std::shared_ptr<Queue> pointer): page(item), front(pointer) {}
-    Queue(WebPage& item): page(item) {}
+    Queue(WebPage& item, std::shared_ptr<Queue> pointer) : page(item), next(pointer) {}
 
+    // Agrega un elemento al final de la cola
     void push(WebPage& WebPageObject) {
-        std::shared_ptr<Queue> tmp = std::make_shared<Queue>( WebPageObject, front);
-        front = tmp;
+        std::shared_ptr<Queue> tmp = std::make_shared<Queue>(WebPageObject, nullptr);
+        if (size == 0) {
+            next = tmp;
+            last = tmp;
+        } else {
+            last->next = tmp;
+            last = tmp;
+        }
         size++;
-
     }
 
-    // Elimina el ultimo elemento insertado al Queue
-    int pop() {
-        if (size == 0) return size;
+    // Elimina y retorna el primer elemento de la cola
+    // Si la cola está vacía, devuelve nullptr
+    WebPage* pop() {
+        if (size == 0) return nullptr;
 
-        std::cout << "Elemento " << front->page.getTitle() << " sacado de la lista\n"; 
-        std::shared_ptr<Queue> temp = front;
-        this->front = temp;
+
+        std::shared_ptr<Queue> aux = next;
+        next = aux->next;
+
         size--;
 
-        return size;
+        // Si después de eliminar el elemento la cola queda vacía,
+        // también actualizamos el puntero al último elemento
+        if (size == 0) {
+            last = nullptr;
+        }
+
+        return &(aux->page);
     }
 };
 
+// Prototipo de funciones
+void imprimirMenu(int&);
 
 int main() {
-    Queue q1 ;
-    WebPage w1 {"Node Filer", 67};
-    WebPage w2 {"Py Proxy Documentation", 575};
-    WebPage w3 {"Pychw", 384};
+    Queue q1;
+    Stack s1;
+    int counter = 1; 
 
+
+    /***************************************************
+    ************USO DE UN STACK DINAMICO****************
+    ****************************************************/
+
+    WebPage w1{ "Index", 2 };
+    w1.getInfo();
+    WebPage w2{ "Account", 5 };
+    w2.getInfo();
+    WebPage w3{ "Login", 6 };
+    w3.getInfo();
+
+    std::cout << "Cantidad de elemtos de Stack antes de agregarlos:  " << s1.size << " elementos\n";
+    // Agregando elementos al Stack
+    s1.push(w1);
+    s1.push(w2);
+    s1.push(w3);
+
+    std::cout << "Cantidad de elemtos de Stack despues de agregarlos:  " << s1.size << " elementos\n";
+    // Eliminando elementos del stack
+    s1.pop();
+    s1.pop();
+    s1.pop();
+    std::cout << "Cantidad de elemtos de Stack despues de eliminarlos:  " << s1.size << " elementos\n";
+
+
+    /***************************************************
+    ************USO DE UN QUEUE DINAMICO****************
+    ****************************************************/
+
+    // Agregando elementos al Queue
+    std::cout << "Cantidad de elemtos de Queue antes de agregarlos:  " << q1.size << " elementos\n";
     q1.push(w1);
     q1.push(w2);
     q1.push(w3);
+    std::cout << "Cantidad de elemtos de Queue despues de agregarlos:  " << q1.size << " elementos\n";
 
-    std::cout << q1.size << "\n";
+    // Eliminando elementos del Queue
+    std::cout << "Imprimiendo el documento:  " << q1.size - 2<< "\n";
     q1.pop();
-    std::cout << q1.size << "\n";
+    std::cout << "Imprimiendo el documento:  " << q1.size  << "\n";
     q1.pop();
-    std::cout << q1.size << "\n";
     q1.pop();
-    std::cout << q1.size << "\n";
-    q1.pop();
-    std::cout << q1.size << "\n";
+    std::cout << "imprimiendo el documento:  " << q1.size + 3 << "\n";
+    
+    imprimirMenu(counter);
 
     return 0;
+}
+
+void imprimirMenu(int& counter) {
+    WebPage index { "index", counter };
+    WebPage test  = index;
+    Stack stack;
+    Stack back;
+    std::string choose;
+
+    stack.push(index);
+
+    while (true) {
+
+        std::cout << "\n=======================================================\n";
+        std::cout << "          Bienvenido a la pagina No." << stack.size << "\n";
+        std::cout << "=======================================================\n";
+        std::cout << "Atras(press a|A)             Siguiente(press s|S)\n";
+        std::cout << "opcion_usuario> ";
+        std::getline(std::cin, choose);
+        
+        if (choose.size() > 1) {
+            WebPage temporal { choose, counter };
+            test = temporal;
+            stack.push(temporal);
+        }
+
+        else if ((choose == "a" || choose == "A") && stack.size > 1) {
+            WebPage otro_temporal = *stack.pop();
+            test = stack.page;
+            otro_temporal.getInfo();
+            stack.page.getInfo();
+            back.push(otro_temporal);
+            std::cout << "Mostrando página anterior...\n";
+        }
+
+        else if ((choose == "s" || choose == "S") && back.size > 0) {
+            WebPage atras_temporal = *back.pop();
+            test = atras_temporal;
+            atras_temporal.getInfo();
+            stack.page.getInfo();
+            stack.push(atras_temporal);
+            std::cout << "Mostrando siguiente página...\n";
+        }
+
+        else {
+            std::cout << "Opcion no disponible, Por favor, crear una Pagina WEB!\n";
+        }
+
+        // std::system("clear");
+    }
 }
