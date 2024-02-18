@@ -1,11 +1,3 @@
-/*
- * EJERCICIO:
- * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
- *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
- *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
- *   interpretan como nombres de documentos.
- */
-
 package main
 
 import "fmt"
@@ -102,7 +94,7 @@ func menu() {
 		fmt.Scanln(&input)
 		switch input {
 			case 1:
-				webNavigator()
+				webBrowser()
 			case 2:
 				sharedPrinter()
 			case 3:
@@ -114,7 +106,7 @@ func menu() {
 }
 
 // Simula el mecanismo adelante/atrás de un navegador web
-func webNavigator() {
+func webBrowser() {
 	history := StringStack{}
 	forward := StringStack{}
 	current := "google.com"
