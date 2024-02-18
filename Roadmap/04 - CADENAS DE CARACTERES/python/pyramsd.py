@@ -80,7 +80,10 @@ def palAnaIso(txt: str, txt2=''):
         tx = tx.lower()
         return len(set(tx)) == len(tx)
 
-    return f'Palindormo({txt}): {palindromo(txt)}, Anagrama{txt, txt2}: {anagrama(txt, txt2)}, Isograma({txt}): {isograma(txt)}'
+    if txt2:
+        return f'Palindormo({txt}): {palindromo(txt)}, Anagrama{txt, txt2}: {anagrama(txt, txt2)}, Isograma({txt}): {isograma(txt)}'
+    else:
+        return f'Palindormo({txt}): {palindromo(txt)}, Isograma({txt}): {isograma(txt)}'
 
 print(palAnaIso('Ana'))
 print(palAnaIso('anal', 'lana'))
