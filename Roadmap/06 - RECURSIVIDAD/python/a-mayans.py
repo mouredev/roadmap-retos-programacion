@@ -29,9 +29,12 @@ print(f'El factorial del número {num} es: {factorial}')
 
 # Funcion recursiva para calcular el valor de un elemento concreto (según su posición) en la sucesión de Fibonacci
 def valor_fibonacci(n):
-  if n == 0:
+  if n <= 0:
+    print("La posición tiene que ser mayor que cero")
     return 0
   elif n == 1:
+    return 0
+  elif n == 2:
     return 1
   else:
     return valor_fibonacci(n-1) + valor_fibonacci(n-2)
