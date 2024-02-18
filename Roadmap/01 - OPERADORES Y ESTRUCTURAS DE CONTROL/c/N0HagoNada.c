@@ -71,7 +71,14 @@ int main()
         printf("For ciclo: %d\n", i);
     }
 
-    // No hay estructuras de control para excepciones en C estándar.
+    // pcional
+    for (int i = 10; i <= 55; i++)
+    {
+        if (i % 2 == 0 && i != 16 && i % 3 != 0)
+        {
+            printf("%d\n", i);
+        }
+    }
 
     return 0;
 }
