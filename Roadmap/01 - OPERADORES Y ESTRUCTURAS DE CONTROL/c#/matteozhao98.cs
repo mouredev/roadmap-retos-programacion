@@ -4,7 +4,6 @@ internal class Program
 {
     static void Main(string[] args)
     {
-
         int a = 100;
         int b = 2;
 
