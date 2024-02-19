@@ -188,7 +188,7 @@ while True:
     print(f"Estoy en página https://{pagina}")
     habilitar_botones()
 
-print("\n\nDificultad extra Navegador (usando PILA)\n\n")
+print("\n\nDificultad extra Navegador (usando COLA)\n\n")
 
 spool_impresion = []
 
