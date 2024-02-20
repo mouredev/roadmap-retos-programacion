@@ -23,7 +23,6 @@ class Animal:
         return f"Este es una animal de tipo {self.tipo} y de altura {self.altura}"
 
 ejemplo = Animal("mamífero", 3)
-
 print(ejemplo)
 
     
