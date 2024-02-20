@@ -1,7 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-//
+/* Funciones Matemáticas
+ceil(x) // Redonde al entero mas cercaco
+abs(x) // valor abosulot
+floor(x) -> redondea para abajo
+sqrt(x) -> raiz cuadrada
+fmod(x,y) -> calcula el resto de la division de x/y
+pow(x,y) -> calcula x elevado y
+*/
 int funcRetoExtra(char *str1, char *str2);
 // Variable global
 int globalVar = 100;
@@ -36,6 +44,18 @@ void funcionUsaVariableGlobal()
     printf("Acceso a variable global: %d\n", globalVar);
 }
 
+long factorial(int n)
+{
+    if (n <= 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return (n * factorial(n - 1));
+    }
+}
+
 int main()
 {
     // Llamada a función sin parámetros ni retorno
@@ -61,13 +81,16 @@ int main()
     int localVar = 20;
     printf("Variable local en main: %d\n", localVar);
 
+    // Funcion recursiva
+    printf("Factorial de 20 es %li\n", factorial(localVar));
+
     return funcRetoExtra("FIZZ", "FUZZ");
 }
 
 int funcRetoExtra(char *str1, char *str2)
 {
     int rtn = 0;
-    for (int i = 100; i >= 0; i--)
+    for (int i = 100; i > 0; i--)
     {
         if ((i % 3 == 0) && (i % 5 == 0))
         {
