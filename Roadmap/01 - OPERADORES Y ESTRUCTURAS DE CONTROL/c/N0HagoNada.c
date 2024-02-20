@@ -71,7 +71,7 @@ int main()
         printf("For ciclo: %d\n", i);
     }
 
-    // pcional
+    // opcional
     for (int i = 10; i <= 55; i++)
     {
         if (i % 2 == 0 && i != 16 && i % 3 != 0)
