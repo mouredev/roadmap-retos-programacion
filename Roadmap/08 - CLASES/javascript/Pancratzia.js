@@ -85,10 +85,41 @@ class Pila {
   }
 }
 
-
 const pila = new Pila();
 pila.push("hola");
 pila.push("mundo");
 pila.push("!");
 console.log(pila.print());
 console.log(pila.size());
+
+class Cola {
+  constructor() {
+    this.cola = [];
+  }
+
+  encolar(elemento) {
+    this.cola.push(elemento);
+  }
+
+  desencolar() {
+    this.cola.shift();
+  }
+
+  size() {
+    return this.cola.length;
+  }
+
+  print() {
+    return this.cola;
+  }
+}
+
+const cola = new Cola();
+cola.encolar("hola");
+cola.encolar("mundo");
+cola.encolar("!");
+cola.encolar("Soy");
+cola.encolar("una");
+cola.encolar("cola");
+console.log(cola.print());
+console.log(cola.size());
