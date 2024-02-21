@@ -167,7 +167,7 @@ try {
     let resultado = 10 / 0;
     console.log(resultado);
 } catch (error) {
-    console.log("Ha ocurrido un error: ", error.message);
+    console.log("Ha ocurrido un error:", error.message);
 }
 
 
