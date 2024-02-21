@@ -14,6 +14,8 @@
  *
  */
 
+/************* PARTE 1 *************/
+
 class Perro {
   constructor(nombre = "Tiffany", raza = "Poodle", edad = 8) {
     this._nombre = nombre;
@@ -55,6 +57,38 @@ class Perro {
 const perro = new Perro();
 console.log(perro.toString());
 
-console.log("Pero espera... ¡ES EL CUMPLEAÑOS DE TIFFANY!")
+console.log("Pero espera... ¡ES EL CUMPLEAÑOS DE TIFFANY!");
 perro.edad = 9;
 console.log(perro.toString());
+
+/************* DIFICULTAD EXTRA *************/
+
+class Pila {
+  constructor() {
+    this.pila = [];
+  }
+
+  push(elemento) {
+    this.pila.push(elemento);
+  }
+
+  pop() {
+    this.pila.pop();
+  }
+
+  size() {
+    return this.pila.length;
+  }
+
+  print() {
+    return this.pila;
+  }
+}
+
+
+const pila = new Pila();
+pila.push("hola");
+pila.push("mundo");
+pila.push("!");
+console.log(pila.print());
+console.log(pila.size());
