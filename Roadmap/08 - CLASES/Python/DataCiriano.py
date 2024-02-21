@@ -51,7 +51,7 @@ felix.modificar_atributos("felix el gato", 7, "negro" )
 felix.caracteristicas()
 
 
-#-----EXTRA-----
+#------EXTRA------
 
 #Clase que simula un pila de libros
 
