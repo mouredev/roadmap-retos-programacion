@@ -1,162 +1,130 @@
 //Stack
 
-/*Modalidad con
-Array*/
+let stackArr = [];
 
-class Stack_Array {
-  constructor() {
-    this.stack = [];
-  }
-  push(element) {//Se agrega un nuevo elemento al final de la pila.
-    this.stack.push(element);
-    return this.stack;
-  }
-  pop() {//Se elimina el ultimo elemento de la pila.
-    return this.stack.pop();
-  }
-  peak() {//Retorna el ultimo valor de la pila.
-    return this.stack[this.stack.length - 1];
-  }
-  size() {
-    return this.stack.length;
-  }
-  print() {
-    console.log(this.stack);
-  }
-}
-const stackArray = new Stack_Array();
-console.log(stackArray.size());
-console.log(stackArray.push("Pedro"));
-console.log(stackArray.push("María"));
-console.log(stackArray.size());
-stackArray.print();
-console.log(stackArray.peak());
-console.log(stackArray.pop());
-console.log(stackArray.peak());
+/*push*/
+stackArr.push("Luis");
+stackArr.push("María");
+stackArr.push("Luisa");
+console.log(stackArr);
 
-/*Modalidad con
-Object*/
-
-class Stack_Object {
-  constructor() {
-    this.stack = {};
-    this.count = 0;
-  }
-  push(element) {
-    this.stack[this.count] = element;
-    this.count++;
-    return this.stack;
-  }
-  pop() {
-    this.count--;
-    const element = this.stack[this.count];
-    delete this.stack[this.count];
-    return element;
-  }
-  peak() {
-    return this.stack[this.count - 1];
-  }
-  size() {
-    return this.count;
-  }
-  print() {
-    console.log(this.stack);
-  }
-}
-const stackObject = new Stack_Object();
-console.log(stackObject.size());
-console.log(stackObject.push("Liliana"));//Se agrega el primer elemento a la pila.
-console.log(stackObject.size());
-console.log(stackObject.peak());//Retorna el ultimo elemento de la pila.
-console.log(stackObject.push("Luisa"));
-console.log(stackObject.size());
-stackObject.print();
-console.log(stackObject.peak());
-console.log(stackObject.pop());//Elimina el último elemento de la pila.
-stackObject.print();
+/*pop*/
+console.log(stackArr.pop());
+console.log(stackArr);
 
 //Queue
 
-/*Modalidad con
-Array*/
+let queueArr = [];
 
-class Queue_Array {
-  constructor() {
-    this.queue = [];
-  }
-  enqueue(element) {
-    this.queue.push(element);
-    return this.queue;
-  }
-  dequeue() {
-    return this.queue.shift();
-  }
-  peak() {
-    return this.queue[0]
-  }
-  size() {
-    return this.queue.length;
-  }
-  isEmpty() {
-    return this.queue.length === 0;
-  }
-  print() {
-    console.log(this.queue);
-  }
-}
-const queue = new Queue_Array();
-console.log(queue.isEmpty());
-console.log(queue.enqueue("Luis"));
-console.log(queue.enqueue("María"));
-console.log(queue.enqueue("Lysa"));
-queue.print();
-console.log(queue.dequeue());
-queue.print();
+/*enqueue*/
 
-/*Modalidad con
-Object*/
+queueArr.push("Corolla");
+queueArr.push("Ford");
+queueArr.push("Chevrolet");
+console.log(queueArr);
 
-class Queue_Object {
-  constructor() {
-    this.element = {};
-    this.head = 0;
-    this.tail = 0;
-  }
-  enqueue(element) {
-    this.element[this.tail] = element;
-    this.tail++;
-    return this.element;
-  }
-  dequeue() {
-    const item = this.element[this.head];
-    delete this.element[this.head];
-    this.head++;
-    return item;
-  }
-  peak() {
-    if (!this.element.hasOwnProperty(this.head)) {
-      return "Empty Queue";
-    } else {
-      return this.element[this.head];
+/*dequeue*/
+
+console.log(queueArr.shift());
+console.log(queueArr);
+
+//Extra
+
+/*Navegador*/
+
+function navegadorWeb() {
+
+  let url;
+  let on = true;
+  let stack = [];
+
+  while (on) {
+
+    console.log("");
+    console.log("1.- Ingresar URL");
+    console.log("2.- Adelantar Web");
+    console.log("3.- Atras Web");
+    console.log("4.- Salir");
+
+    let comand = prompt("\nSelecciona una operación: ", "");
+
+    switch (comand) {
+      case "1":
+        url = prompt("Ingresa la URL deseada: ", "");
+        stack.push(url);
+        console.log(`Has ingresado a: ${stack[stack.length - 1]}`);
+        break;
+      case "2":
+        if (stack.length !== 0) {
+          console.log(`Te encuentras actualmente en la página: ${stack[stack.length - 1]}`);
+        } else {
+          console.log("Estas en la página de inicio");
+        }
+        break;
+      case "3":
+        if (stack.length !== 0) {
+          stack.pop();
+          if (stack.length > 0) {
+            console.log(`Has retornado a la página ${stack[stack.length - 1]}`);
+          } else {
+            console.log("El registro ahora está vacio.");
+          }
+        } else {
+          console.log("No existen url's en el registro");
+        }
+        break;
+      case "4":
+        console.log("Salir del programa.");
+        on = false;
+        break;
+      default:
+        console.log("Tu elección no es válida. Elige un número del 1 al 4.");
+        break;
     }
   }
-  size() {
-    return Object.keys(this.element).length;
-  }
-  print() {
-    console.log(this.element);
-  }
-  isEmpty() {
-    return this.tail === 0;
+}
+navegadorWeb();
+
+/*Copiadora*/
+
+function impresoraCompartida() {
+
+  let on = true;
+  let stack = [];
+
+  while (on) {
+    
+    console.log("");
+    console.log("1.- Ingresar documento en cola");
+    console.log("2.- Imprimir documento");
+    console.log("3.- Salir");
+
+    let comand = prompt("\nSelecciona una operación: ", "");
+
+    switch (comand) {
+      case "1":
+        stack.push(prompt("Ingresa documento: "))
+        console.log(`Documentos en cola: ${stack}`);
+        break;
+      case "2":
+        if (stack.length !== 0) {
+          if (stack.length > 0) {
+            console.log(`Se imprimió el primer elemento de la cola: ${stack.shift()}`);
+          } 
+        } else {
+          console.log("No existen documentos en cola");
+        }
+        break;
+      case "3":
+        console.log("Salir del programa");
+        on = false;
+        break;
+    
+      default:
+        console.log("Solicitud inválida. Elige números de 1 al 3.");
+        break;
+    }
   }
 }
-const queue1 = new Queue_Object();
-console.log(queue1.enqueue("cliente1"));
-console.log(queue1.enqueue("cliente2"));
-console.log(queue1.enqueue("cliente3"));
-console.log(queue1.dequeue());
-console.log(queue1.enqueue("cliente4"));
-console.log(queue1.peak());
-console.log(queue1.size());
-queue1.print();
-console.log(queue1.isEmpty());
+
+impresoraCompartida();
