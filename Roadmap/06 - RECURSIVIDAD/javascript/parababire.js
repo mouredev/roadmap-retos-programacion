@@ -2,13 +2,12 @@
 
 let cuentaRegresiva = numero => {
   //Base case: donde finaliza la función de llamarse así misma.
-  if (numero === 0) {
-    return;
+  if (numero >= 0) {
+    console.log(numero);
+    cuentaRegresiva(numero - 1);
   }
-  console.log(numero);
-  return cuentaRegresiva(numero - 1);
 }
-console.log(cuentaRegresiva(100));
+cuentaRegresiva(100);
 
 //Extra
 
