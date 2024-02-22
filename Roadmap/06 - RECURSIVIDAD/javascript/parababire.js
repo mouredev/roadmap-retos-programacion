@@ -26,10 +26,14 @@ console.log(factorial(5));
 
 /*Fibonachi*/
 let fibNum = n => {
-  if (n <= 1) {
-    return n;
+  if (n <= 0) {
+    return "Posición no valida";
+  } else if (n === 1) {
+    return 0;
+  } else if (n === 2) {
+    return 1;
   } else {
     return fibNum(n - 1) + fibNum(n - 2);
   }
 }
-console.log(fibNum(8));
+console.log(fibNum(7));
