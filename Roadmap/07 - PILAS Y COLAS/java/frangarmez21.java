@@ -2,6 +2,9 @@ import java.util.*;
 
 public class frangarmez21 {
 
+    public static final String NUEVA_WEB = "nueva web";
+    static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         System.out.println("##Ejercicios de pilas y colas##");
@@ -26,7 +29,6 @@ public class frangarmez21 {
         }
         System.out.println("4-Resultado de desapilar: " + stack);
         System.out.println();
-
         System.out.println("##Las colas (queue - FIFO)##");
         ArrayList queue = new ArrayList();
         System.out.println("1-Añadimos elementos a la cola");
@@ -39,7 +41,6 @@ public class frangarmez21 {
             queue.removeFirst();
         }
         System.out.println("4-Resultado de desencolar: " + queue);
-
         System.out.println();
         System.out.println("##Dificultad Extra##");
         System.out.println();
@@ -60,12 +61,49 @@ public class frangarmez21 {
 
         System.out.println("Simula el mecanismo adelante/atrás de un navegador web:");
         System.out.println();
-
+        webBrowser();
 
         System.out.println();
         System.out.println("Simula el mecanismo de una impresora:");
         System.out.println();
 
 
+    }
+
+    private static void webBrowser() {
+        int position = 0;
+        ArrayList webs = new ArrayList<>();
+        webs.add("Primera_página");
+        webs.add("Segunda_página");
+
+        System.out.println("Estás en: " + webs.get(position));
+        //Para salir del programa basta con darle a Enter cuando pide acción
+        System.out.println("Introduce acción para el navegador (adelante|atras|nombre de nueva pagina):");
+        String word = sc.nextLine();
+        while (!word.isEmpty()) {
+            if (!(word.contains("adelante") || word.contains("atras"))) {
+                webs.add(word);
+                System.out.println("Continuas en: " + webs.get(position) + " y se añade la página: " + word);
+                word = sc.nextLine();
+            } else {
+                position = action(word, position);
+                System.out.println("Estás en: " + webs.get(position));
+                word = sc.nextLine();
+            }
+        }
+
+    }
+
+    private static int action(String word, int position) {
+        switch (word) {
+            case "adelante":
+                position++;
+                break;
+
+            case "atras":
+                position--;
+                break;
+        }
+        return position;
     }
 }
