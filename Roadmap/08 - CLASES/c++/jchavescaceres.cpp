@@ -83,38 +83,13 @@ class Element {
 		virtual void print() = 0;
 };
 
-//Element::Element () : previousElement (NULL), nextElement (NULL) {
 Element::Element () {
 };
-
-//Element* Element::getPreviousElement() {
-//	return previousElement;
-//};
-//
-//Element* Element::getNextElement() {
-//	return nextElement;
-//};
-//
-//
-//void Element::setPreviousElement(Element *inElement) {
-//	previousElement = inElement;
-//};
-//
-//void Element::setNextElement(Element *inElement) {
-//	nextElement = inElement;
-//};
-
 
 //Generic Storage
 class Storage {
 
 	protected:
-//		typedef struct t_struct_inner_element {
-//			Element *currentElement;
-//			struct t_struct_inner_element *previousElement;
-//			struct t_struct_inner_element *nextElement;
-//		} t_inner_element;
-
 		class InnerElement {
 			public:
 
@@ -198,7 +173,7 @@ class Queue : public Storage {
 
 	public:
 		Queue();
-		virtual Element* pop () =0;
+		virtual Element* pop ();
 };
 
 Queue::Queue() : Storage() {
@@ -232,7 +207,7 @@ class Stack : public Storage {
 
 	public:
 		Stack();
-		virtual Element* pop () =0;
+		virtual Element* pop ();
 };
 
 Stack::Stack() : Storage() {
@@ -264,7 +239,7 @@ Element* Stack::pop () {
 //Document element
 class Document : public Element {
 	private:
-		char* page;
+		char* document;
 	public:
 		Document (const char* inPage);
 		Document (const Document& inDocument);
@@ -272,142 +247,27 @@ class Document : public Element {
 		virtual void print();
 };
 
-Document::Document (const char* inPage) : page (NULL) {
+Document::Document (const char* inPage) : document (NULL) {
 	if (inPage != NULL) {
-		page = (char*)malloc (strlen (inPage)+1);
-		strcpy (page, inPage);
+		document = (char*)malloc (strlen (inPage)+1);
+		strcpy (document, inPage);
 	};
 };
 
-Document::Document (const Document& inDocument) : page (NULL) {
-	if (inDocument.page != NULL) {
-		page = (char*)malloc (strlen (inDocument.page)+1);
-		strcpy (page, inDocument.page);
+Document::Document (const Document& inDocument) : document (NULL) {
+	if (inDocument.document != NULL) {
+		document = (char*)malloc (strlen (inDocument.document)+1);
+		strcpy (document, inDocument.document);
 	};
 };
 
 Document::~Document () {
-	free (page);
+	free (document);
 };
 
 void Document::print() {
-	std::cout << "Page " << page << "\n";
+	std::cout << "Document " << document << "\n";
 };
-
-//WebPage element, same as Document
-class WebPage : public Document {
-	public:
-		WebPage (const char* inPage);
-};
-
-WebPage::WebPage (const char* inPage) : Document (inPage) {
-};
-
- /*
- * DIFICULTAD EXTRA (opcional):
- * - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
- *   de un navegador web. Crea un programa en el que puedas navegar a una página o indicarle
- *   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
- *   Las palabras "adelante", "atras" desencadenan esta acción, el resto se interpreta como
- *   el nombre de una nueva web.
- */
-//void webBrowserSimulator() {
-//
-//	const char* C_ADELANTE = "adelante";
-//	const char* C_ATRAS = "atras";
-//	const char* C_SALIR = "salir";
-//	const unsigned int C_SIZE_BUFFER = 200;
-//
-//	char myBuffer [C_SIZE_BUFFER];
-//	memset (myBuffer, 0, sizeof (myBuffer));
-//
-//	char myExit = 0;
-//	char *page = NULL;
-//
-//	Queue queueBack, queueNext;
-//
-//	/*
-//	A: 
-//	B: push back (old page), empty queue_next
-//	C: push back (old page), empty queue_next
-//	atras: pop lifo back -> str, push str
-//	atras: pop lifo back -> str, push str
-//	delante: pop lifo next -> str, push back
-//
-//
-//	A B C
-//	atras
-//	B 
-//	atras
-//	A
-//	delante
-//	B
-//	D
-//	E
-//	atras
-//	E
-//	atras
-//	D
-//	atras
-//	B
-//	*/
-//
-//	while (!myExit) {
-//
-//		printf ("Página? %s? %s? o %s?: ", C_ADELANTE, C_ATRAS, C_SALIR);
-//		fgets (myBuffer, C_SIZE_BUFFER, stdin);
-//		myBuffer [strlen (myBuffer)-1] = '\0'; /* remove \n */
-//
-//		if (!strcmp (myBuffer, C_SALIR)) {
-//			myExit = 1;
-//		} else if (!strcmp (myBuffer, C_ATRAS)) {
-//			/* save previous page */
-//			if (page != NULL) {
-//				push (&queueNext, page);
-//			}
-//			page = (char*) pop_lifo (&queueBack);
-//			
-//		} else if (!strcmp (myBuffer, C_ADELANTE)) {
-//			/* save previous page */
-//			if (page != NULL) {
-//				push (&queueBack, page);
-//			}
-//			page = (char*) pop_lifo (&queueNext);
-//		} else {
-//
-//			/* save previous page */
-//			if (page != C_NULL_ELEMENT_TYPE) {
-//				push (&queueBack, page);
-//			}
-//
-//			/* empty queue next */
-//			while ( (page=(char*)pop_lifo (&queueNext)) != NULL) {
-//				free (page);
-//			}
-//
-//			page = malloc (strlen (myBuffer)+1);
-//			strcpy (page, myBuffer);
-//		};
-//
-//		if (page != C_NULL_ELEMENT_TYPE) {
-//			printf ("Display %s\n", page);
-//		} else {
-//			printf ("No hay más páginas \n");
-//		}
-//
-//	};
-//
-//	free (page);
-//
-//	while ( (page=(char*)pop_lifo (&queueNext)) != NULL) {
-//		free (page);
-//	}
-//	while ( (page=(char*)pop_lifo (&queueBack)) != NULL) {
-//		free (page);
-//	}
-//
-//
-//}
 
 int main () {
 
@@ -416,6 +276,114 @@ int main () {
 	myObject.setArg1 (3);
 	myObject.setArg2 (4);
 	myObject.print();
+
+//Dificultad extra
+	//Queue  example
+	Queue queue;
+	Stack stack;
+	Document d1 ("1");
+	Document d2 ("2");
+	Document d3 ("3");
+	Document d4 ("4");
+	Document d5 ("5");
+
+	std::cout << "\nEjemplo cola\n";
+	queue.push (&d1);
+	std::cout << "Push "; 
+	d1.print();
+	queue.push (&d2);
+	std::cout << "Push ";
+	d2.print();
+	queue.push (&d3);
+	std::cout << "Push ";
+	d3.print();
+
+	std::cout << "Número elementos en cola " << queue.getElementsCount() << "\n";
+	std::cout << "Contenido cola: \n";
+	queue.print();
+
+	std::cout << "\n";
+
+	//print 1
+	std::cout << "pop ";
+	queue.pop()->print();
+
+	queue.push (&d4);
+	std::cout << "Push "; 
+	d4.print();
+
+	//print 2
+	std::cout << "pop ";
+	queue.pop()->print();
+
+	queue.push (&d5);
+	std::cout << "Push "; 
+	d5.print();
+
+	//print 3
+	std::cout << "pop ";
+	queue.pop()->print();
+
+	//print 4
+	std::cout << "pop ";
+	queue.pop()->print();
+
+	//print 5
+	std::cout << "pop ";
+	queue.pop()->print();
+
+	std::cout << "Número elementos en cola " << queue.getElementsCount() << "\n";
+	queue.print();
+
+
+	//Stack  example
+	std::cout << "\nEjemplo pila\n";
+	stack.push (&d1);
+	std::cout << "Push "; 
+	d1.print();
+	stack.push (&d2);
+	std::cout << "Push ";
+	d2.print();
+	stack.push (&d3);
+	std::cout << "Push ";
+	d3.print();
+
+	std::cout << "Número elementos en pila " << stack.getElementsCount() << "\n";
+	std::cout << "Contenido pila: \n";
+	stack.print();
+
+	std::cout << "\n";
+
+	//print 3
+	std::cout << "pop ";
+	stack.pop()->print();
+
+	stack.push (&d4);
+	std::cout << "Push "; 
+	d4.print();
+
+	//print 4
+	std::cout << "pop ";
+	stack.pop()->print();
+
+	stack.push (&d5);
+	std::cout << "Push "; 
+	d5.print();
+
+	//print 5
+	std::cout << "pop ";
+	stack.pop()->print();
+
+	//print 2
+	std::cout << "pop ";
+	stack.pop()->print();
+
+	//print 1
+	std::cout << "pop ";
+	stack.pop()->print();
+
+	std::cout << "Número elementos en pila " << stack.getElementsCount() << "\n";
+	stack.print();
 
 	return 0;
 };
