@@ -11,10 +11,8 @@
     *   (y tener en cuenta que cada lenguaje puede poseer más o menos posibilidades)
 */
 
-let globalVar = "Soy Variable Global";
 
 // Función sin parámetros ni retorno:
-let variableGLobal = "Global"
 const Saludar = () =>{
     let localVar = "Soy una variable local"
     console.log("Soy una función básica");
