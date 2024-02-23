@@ -52,22 +52,42 @@ public class frangarmez21 {
          *   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
          *   Las palabras "adelante", "atras" desencadenan esta acción, el resto se interpreta como
          *   el nombre de una nueva web.
-         *
-         * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
-         *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
-         *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
-         *   interpretan como nombres de documentos.
          */
-
         System.out.println("Simula el mecanismo adelante/atrás de un navegador web:");
         System.out.println();
         webBrowser();
 
+         /* - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
+         *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
+         *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
+         *   interpretan como nombres de documentos.
+         */
         System.out.println();
         System.out.println("Simula el mecanismo de una impresora:");
         System.out.println();
+        printer();
+    }
 
-
+    private static void printer() {
+        ArrayList printQueue = new ArrayList<>();
+        System.out.println("Introduce acción para el navegador (imprimir|nombre de documento a encolar):");
+        String action = sc.nextLine();
+        while (!action.isBlank()) {
+            if (action.contains("imprimir")) {
+                if (printQueue.isEmpty()) {
+                    System.out.println("No hay documentos para imprimir");
+                    action = sc.nextLine();
+                } else {
+                    String printElement = printQueue.removeFirst().toString();
+                    System.out.println("Se imprime: " + printElement + ". Quedan " + printQueue.size() + " documentos");
+                    action = sc.nextLine();
+                }
+            } else {
+                printQueue.add(action);
+                System.out.println("Se añade a la cola de impresión el documento: " + action);
+                action = sc.nextLine();
+            }
+        }
     }
 
     private static void webBrowser() {
@@ -80,7 +100,7 @@ public class frangarmez21 {
         //Para salir del programa basta con darle a Enter cuando pide acción
         System.out.println("Introduce acción para el navegador (adelante|atras|nombre de nueva pagina):");
         String word = sc.nextLine();
-        while (!word.isEmpty()) {
+        while (!word.isBlank()) {
             if (!(word.contains("adelante") || word.contains("atras"))) {
                 webs.add(word);
                 System.out.println("Continuas en: " + webs.get(position) + " y se añade la página: " + word);
