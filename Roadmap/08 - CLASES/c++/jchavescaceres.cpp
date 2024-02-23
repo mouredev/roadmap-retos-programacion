@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 class MyClass {
@@ -67,48 +68,67 @@ void MyClass::print () {
 //Element abstract class, setPrint must be overwrite
 class Element {
 	private:
-		Element *previousElement;
-		Element *nextElement;
+		//Element *previousElement;
+		//Element *nextElement;
 
 	protected:
 		Element ();
 	public:
-		virtual Element* getPreviousElement();
-		virtual Element* getNextElement();
+		//virtual Element* getPreviousElement();
+		//virtual Element* getNextElement();
 
-		virtual void setPreviousElement(Element *inElement);
-		virtual void setNextElement(Element *inElement);
+		//virtual void setPreviousElement(Element *inElement);
+		//virtual void setNextElement(Element *inElement);
 
 		virtual void print() = 0;
 };
 
-Element::Element () : previousElement (NULL), nextElement (NULL) {
+//Element::Element () : previousElement (NULL), nextElement (NULL) {
+Element::Element () {
 };
 
-Element* Element::getPreviousElement() {
-	return previousElement;
-};
-
-Element* Element::getNextElement() {
-	return nextElement;
-};
-
-
-void Element::setPreviousElement(Element *inElement) {
-	previousElement = inElement;
-};
-
-void Element::setNextElement(Element *inElement) {
-	nextElement = inElement;
-};
+//Element* Element::getPreviousElement() {
+//	return previousElement;
+//};
+//
+//Element* Element::getNextElement() {
+//	return nextElement;
+//};
+//
+//
+//void Element::setPreviousElement(Element *inElement) {
+//	previousElement = inElement;
+//};
+//
+//void Element::setNextElement(Element *inElement) {
+//	nextElement = inElement;
+//};
 
 
 //Generic Storage
 class Storage {
 
 	protected:
-		Element *firstElement;
-		Element *lastElement;
+//		typedef struct t_struct_inner_element {
+//			Element *currentElement;
+//			struct t_struct_inner_element *previousElement;
+//			struct t_struct_inner_element *nextElement;
+//		} t_inner_element;
+
+		class InnerElement {
+			public:
+
+				InnerElement() :
+					element (NULL), previousElement (NULL),
+					nextElement (NULL) {
+				};
+				Element *element;
+				InnerElement *previousElement;
+				InnerElement *nextElement;
+		};
+
+		InnerElement *firstElement;
+		InnerElement *lastElement;
 
 		Storage ();
 
@@ -131,12 +151,12 @@ int Storage::isStorageEmpty() {
 
 unsigned long Storage::getElementsCount() {
 
-	Element *currentElement = firstElement;
+	InnerElement *currentElement = firstElement;
 	unsigned long totalElements = 0;
 
 	while (currentElement != NULL) {
 		totalElements++;
-		currentElement = currentElement->getNextElement();
+		currentElement = currentElement->nextElement;
 	};
 	return totalElements;
 };
@@ -144,28 +164,31 @@ unsigned long Storage::getElementsCount() {
 void Storage::push (Element *newElement) {
 	/* Add new element at the end of the list*/
 
-	newElement->setPreviousElement (lastElement);
-	newElement->setNextElement (NULL);
-	
+	InnerElement *innerElement = new InnerElement();
+
+	innerElement->previousElement = lastElement;
+	innerElement->nextElement = NULL;
+	innerElement->element = newElement;
+
 	if (firstElement == NULL) {
-		firstElement = newElement;
+		firstElement = innerElement;
 	};
 
 	if (lastElement == NULL) {
-		lastElement = newElement;
+		lastElement = innerElement;
 	} else {
-		lastElement->setNextElement (newElement);
-		lastElement = newElement;
+		lastElement->nextElement = innerElement;
+		lastElement = innerElement;
 	};
 
 };
 
 void Storage::print() {
-	Element *currentElement = firstElement;
-	unsigned long totalElements = 0;
+	InnerElement *currentElement = firstElement;
 
 	while (currentElement != NULL) {
-		currentElement->print();
+		currentElement->element->print();
+		currentElement = currentElement->nextElement;
 	};
 };
 
@@ -184,16 +207,17 @@ Queue::Queue() : Storage() {
 //FIFO
 Element* Queue::pop () {
 	Element *element = NULL;
-	Element *nextElement = NULL;
+	InnerElement *nextElement = NULL;
 
 	if (firstElement != NULL) {
-		element = firstElement;
+		element = firstElement->element;
 
-		nextElement = firstElement->getNextElement();
+		nextElement = firstElement->nextElement;
+		delete firstElement;
 
 		if (nextElement != NULL) { 
 			firstElement = nextElement;
-			firstElement->setPreviousElement (NULL);
+			firstElement->previousElement = NULL;
 		} else {
 			firstElement = NULL;
 			lastElement = NULL;
@@ -217,16 +241,17 @@ Stack::Stack() : Storage() {
 //LIFO
 Element* Stack::pop () {
 	Element *element = NULL;
-	Element *previousElement = NULL;
+	InnerElement *previousElement = NULL;
 
 	if (lastElement != NULL) {
-		element = lastElement;
+		element = lastElement->element;
 
-		previousElement = lastElement->getPreviousElement();
+		previousElement = lastElement->previousElement;
+		delete lastElement;
 
 		if (previousElement != NULL) { 
 			lastElement = previousElement;
-			lastElement->setNextElement (NULL);
+			lastElement->nextElement = NULL;
 		} else {
 			firstElement = NULL;
 			lastElement = NULL;
@@ -242,6 +267,7 @@ class Document : public Element {
 		char* page;
 	public:
 		Document (const char* inPage);
+		Document (const Document& inDocument);
 		~Document ();
 		virtual void print();
 };
@@ -250,6 +276,13 @@ Document::Document (const char* inPage) : page (NULL) {
 	if (inPage != NULL) {
 		page = (char*)malloc (strlen (inPage)+1);
 		strcpy (page, inPage);
+	};
+};
+
+Document::Document (const Document& inDocument) : page (NULL) {
+	if (inDocument.page != NULL) {
+		page = (char*)malloc (strlen (inDocument.page)+1);
+		strcpy (page, inDocument.page);
 	};
 };
 
