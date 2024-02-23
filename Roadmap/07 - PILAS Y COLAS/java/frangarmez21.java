@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class frangarmez21 {
 
     public static void main(String[] args) {
@@ -12,14 +14,31 @@ public class frangarmez21 {
         System.out.println("##Implementando los mecanismos de introducción y recuperación de elementos.##");
         System.out.println();
         System.out.println("##Las pilas (stacks - LIFO)##");
+        ArrayList stack = new ArrayList();
+        System.out.println("1-Añadimos elementos a la pila.");
+        stack.add(1);
+        stack.add(2);
+        stack.add(3);
+        System.out.println("2-Tenemos la siguiente pila: " + stack);
+        System.out.println("3-Quitamos elementos de la pila.");
+        while (!stack.isEmpty()) {
+            stack.removeLast();
+        }
+        System.out.println("4-Resultado de desapilar: " + stack);
         System.out.println();
-
-
 
         System.out.println("##Las colas (queue - FIFO)##");
-        System.out.println();
-
-
+        ArrayList queue = new ArrayList();
+        System.out.println("1-Añadimos elementos a la cola");
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        System.out.println("2-Tenemos la siguiente cola: " + queue);
+        System.out.println("3-Quitamos elementos de la cola");
+        while (!queue.isEmpty()) {
+            queue.removeFirst();
+        }
+        System.out.println("4-Resultado de desencolar: " + queue);
 
         System.out.println();
         System.out.println("##Dificultad Extra##");
@@ -43,11 +62,9 @@ public class frangarmez21 {
         System.out.println();
 
 
-
         System.out.println();
         System.out.println("Simula el mecanismo de una impresora:");
         System.out.println();
-
 
 
     }
