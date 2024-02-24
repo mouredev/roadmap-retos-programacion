@@ -1,4 +1,4 @@
-public class JoseEsmil {
+public class JoseEsmil04 {
     public static void main(String[] args) {
         // Sitio Oficial del Lenguaje
         // https://www.java.com
