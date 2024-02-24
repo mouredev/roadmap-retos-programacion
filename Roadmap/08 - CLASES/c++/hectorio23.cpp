@@ -88,6 +88,7 @@ struct Queue {
     }
 };
 
+
 struct Stack {
     private:
     std::shared_ptr<Stack> next = nullptr;
@@ -118,18 +119,86 @@ struct Stack {
     }
 };
 
-class Persona {
-   private:
-   std::string name, major;
-   char sex, curp[10];
-   int age;
 
-   public:
-   Persona(std::string curp) {}
+class Persona {
+private:
+    std::string nombre;
+    int edad;
+
+public:
+    // Constructor que inicializa los atributos
+    Persona(std::string nombre, int edad) {
+        this->nombre = nombre;
+        this->edad = edad;
+    }
+
+    // Función para imprimir los atributos
+    void info() {
+        std::cout << "Nombre: " << nombre << std::endl;
+        std::cout << "Edad: " << edad << std::endl;
+    }
+
+    // Función para establecer el nombre
+    void setNombre(std::string nuevoNombre) {
+        nombre = nuevoNombre;
+    }
+
+    // Función para establecer la edad
+    void setEdad(int nuevaEdad) {
+        edad = nuevaEdad;
+    }
 };
 
-
  int main() {
+    // Crear una instancia de Persona
+    Persona persona("Juan", 30);
 
+    // Imprimir los atributos
+    std::cout << "Datos de la persona:" << std::endl;
+    persona.info();
+
+    // Modificar los atributos
+    persona.setNombre("María");
+    persona.setEdad(25);
+
+    // Imprimir los atributos actualizados
+    std::cout << "\nDatos de la persona actualizados:" << std::endl;
+
+    persona.info();
+
+    // Creando los objetos que se van a unir y eliminar del Stack y del Queue 
+    WebPage p1 { "index", 1 };
+    WebPage p2 { "index", 2 };
+    WebPage p3 { "index", 3 };
+
+    // Creando un objeto de tipo Stack and Queue
+    Queue queue;
+    Stack stack;
+
+    // Zona en donde se agregan los elementos de tipo
+    // WebPage al stack para posteriormente eliminarlos
+    queue.push(p1);
+    queue.push(p2);
+    queue.push(p3);
+
+    std::cout << "\nNo. de elementos del queue: " << queue.size << "\n";
+    queue.pop();
+    queue.pop();
+    queue.pop();
+    std::cout << "\nNo. de elementos del queue despues de eliminarlos: " << queue.size << "\n";
+
+    // Zona en donde se agregan los elementos de tipo
+    // WebPage al Queue para posteriormente eliminarlos
+
+    stack.push(p1);
+    stack.push(p2);
+    stack.push(p3);
+    std::cout << "\nNo. de elementos del stack: " << stack.size << "\n";
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    std::cout << "\nNo. de elementos del stack despues de eliminarlos: " << queue.size << "\n";
+
+    
     return 0;
  }
