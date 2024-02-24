@@ -3,20 +3,22 @@
 /*Declaración de clases*/
 
 class Vehiculo {//Utilizamos la palabra reservada class y por convención el nombre en mayuscula.
-  constructor(ruedas, puertas) {//Solo puede ser llamado un constructor o inicializador por clase.
-    this.ruedas = ruedas;
-    this.puertas = puertas;
+  constructor(fabricante, modelo) {//Solo puede ser llamado un constructor o inicializador por clase.
+    this.fabricante = fabricante;
+    this.modelo = modelo;
   }
-  caracteristicas() {
-    console.log(`El carro posee ${this.ruedas} ruedas y ${this.puertas} puertas`);
+  get caracteristicas() {
+    return `El carro marca ${this.fabricante} es modelo ${this.modelo}.`;
+  }
+  set caracteristicas(val1) {
+    [this.fabricante, this.modelo] = val1.split(" ");
   }
 }
-let corrolla = new Vehiculo(4, 2);
-console.log(`Compre un corrolla ${corrolla.puertas} puertas.`);
-console.log(`El corrolla tiene neumáticos nuevos en las ${corrolla.ruedas} ruedas.`);
-corrolla.caracteristicas();
-corrolla.puertas = 4;
-console.log(corrolla.puertas);
+let carro = new Vehiculo("Toyota", "Corrolla");
+console.log(`Compre un ${carro.fabricante} ${carro.modelo}.`);
+console.log(carro.caracteristicas);
+carro.caracteristicas = "Ford Bronco";
+console.log(carro.caracteristicas);
 
 /*Expresión de clases*/
 
