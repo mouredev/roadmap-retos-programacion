@@ -79,7 +79,6 @@ def difficult_part():
         elif 0 == (i % 2):
             print(i)
 
-
 if __name__ == '__main__':
     arithmetic_operations()
     comparison()
