@@ -69,7 +69,19 @@ def comparison():
     less_or_equal_comparison = 3 <= 5
     print(f'3 <= 5 --> {less_or_equal_comparison}')
 
+def difficult_part():
+    print('\n ======= DIFFICULT PART OUTPUT =======')
+    for i in range(10, 56):
+        if 16 == i:
+            continue
+        elif 0 == (i % 3):
+            continue
+        elif 0 == (i % 2):
+            print(i)
+
+
 if __name__ == '__main__':
     arithmetic_operations()
     comparison()
     logics()
+    difficult_part()
