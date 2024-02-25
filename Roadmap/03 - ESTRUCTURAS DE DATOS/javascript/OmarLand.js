@@ -180,8 +180,8 @@ const comenzarPrograma = () => {
                 break;
         }    
 
-    comenzarPrograma();
-});
+        comenzarPrograma();
+    });
 
 }
 
