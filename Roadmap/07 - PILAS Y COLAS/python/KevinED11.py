@@ -1,6 +1,6 @@
 from collections import deque
 from abc import ABC, abstractmethod
-from typing import NoReturn, Collection, Optional, Callable
+from typing import NoReturn, Collection, Optional, Callable, Iterable
 from enum import StrEnum, Enum
 
 
@@ -69,16 +69,25 @@ class Printable(ABC):
     def print(self) -> None:
         pass
 
+    @abstractmethod
+    def set_document(self, document: str) -> None:
+        pass
+
     @property
     @abstractmethod
     def document_history(self) -> Structure[str]:
         pass
 
 
-class PrinterActions(Enum):
-    PRINT: int = 1
-    EXIT: int = 2
-    SHOW_DOCUMENT_HISTORY: int = 3
+def user_input(prompt: str) -> str:
+    return input(prompt)
+
+
+class PrinterActions(StrEnum):
+    PRINT: str = "1"
+    EXIT: str = "2"
+    SHOW_DOCUMENT_HISTORY: str = "3"
+    SET_DOCUMENT: str = "4"
 
 
 class Printer(Printable):
@@ -91,6 +100,9 @@ class Printer(Printable):
 
         print("Printing...")
         print(self.document_history.pop())
+
+    def set_document(self, document: str) -> None:
+        self.document_history.push(document)
 
     @property
     def document_history(self) -> Queue[str]:
@@ -155,7 +167,32 @@ class WebBrowser(Navegable):
 
 
 def execute_printable(printable: Printable) -> None:
-    printable.print()
+    while True:
+        print("1 - Print, 2 - Exit, 3 - Show document history, 4 - Set document")
+        user_option = user_input(prompt="Choose an option: ")
+
+        match user_option:
+            case PrinterActions.PRINT:
+                try:
+                    printable.print()
+                except HistoryEmptyException as err:
+                    print(err)
+            case PrinterActions.EXIT:
+                print("Bye!")
+                break
+            case PrinterActions.SHOW_DOCUMENT_HISTORY:
+                if printable.document_history.is_empty:
+                    print("No documents to print")
+                    continue
+
+                for document in printable.document_history.elements:
+                    print(document)
+            case PrinterActions.SET_DOCUMENT:
+                document = user_input(prompt="Enter a document: ")
+                printable.set_document(document=document)
+                print(f"Document set: {document} successfully")
+            case _:
+                print("Invalid option")
 
 
 def execute_navegable(navegable: Navegable) -> None:
@@ -185,6 +222,9 @@ def main() -> None:
     print(stack.elements)
     print(stack)
     print(stack.is_empty)
+
+    printer = Printer()
+    execute_printable(printable=printer)
 
 
 if __name__ == "__main__":
