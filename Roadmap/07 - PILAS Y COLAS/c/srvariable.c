@@ -87,16 +87,15 @@ int	main(void)
 {
 	int	status;
 
-	printf("=== INICIO STACK ===\n");
+	printf("========== INICIO STACK ==========\n\n");
 	status = test_stack();
 	if (status) return (status);
-	printf("=== FIN STACK ===\n");
+	printf("========== FIN STACK ==========\n");
 	printf("\n");
-	printf("=== INICIO QUEUE ===\n");
+	printf("========== INICIO QUEUE ==========\n\n");
 	status = test_queue();
 	if (status) return (status);
-	printf("=== FIN QUEUE ===\n");
-
+	printf("========== FIN QUEUE ==========\n");
 	return (0);
 }
 
@@ -152,19 +151,28 @@ void	destroy_node(t_node **node)
  */
 int	error_handler(void *address, int status, t_function type)
 {
-	if (type == POP || type == PEEK_STACK) printf("La pila está vacía\n");
-	else if (type == DEQUEUE || type == PEEK_QUEUE) printf("La cola está vacía\n");
-	else if (type = PUSH)
+	if (type == POP || type == PEEK_STACK) printf("La pila está vacía\n\n");
+	else if (type == DEQUEUE || type == PEEK_QUEUE) printf("La cola está vacía\n\n");
+	else if (type == PUSH)
 	{
 		printf("Error añadiendo el elemento a la pila, llamada %d\n", status);
 		destroy_stack((t_stack **) address);
 	}
-	else if (type = ENQUEUE)
+	else if (type == ENQUEUE)
 	{
 		printf("Error añadiendo el elemento a la cola, llamada %d\n", status);
 		destroy_queue((t_queue **) address);
 	}
 	return (status);
+}
+
+void	ft_print(t_node *first, t_node *last, t_function type)
+{
+	if (!first || !last) return ;
+	if (type == PUSH || type == POP)
+		printf("Bottom: %s | Top: %s\n\n", first->item, last->item);
+	else if (type == ENQUEUE || type == DEQUEUE)
+		printf("Front: %s | Back: %s\n\n", first->item, last->item);
 }
 
 /**
@@ -182,84 +190,89 @@ int	test_stack(void)
 	stack = NULL;
 
 	status = push(&stack, "Hola");
+	printf("Push:\n");
 	if (status) return (error_handler(&stack, status, PUSH));
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, PUSH);
 
 	status = push(&stack, "Mundo");
+	printf("Push:\n");
 	if (status) return (error_handler(&stack, status, PUSH));
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, PUSH);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	status = push(&stack, "La");
+	printf("Push:\n");
 	if (status) return (error_handler(&stack, status, PUSH));
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, PUSH);
 
 	status = push(&stack, "Pila");
+	printf("Push:\n");
 	if (status) return (error_handler(&stack, status, PUSH));
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, PUSH);
 
 	status = push(&stack, "Funciona");
+	printf("Push:\n");
 	if (status) return (error_handler(&stack, status, PUSH));
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, PUSH);
 
 	element = peek_stack(stack);
+	printf("Peek_stack:\n");
 	if (!element) error_handler(&stack, status, PEEK_STACK);
-	else printf("El último elemento de la pila es: %s\n", element);
+	else printf("El último elemento de la pila es: %s\n\n", element);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	element = peek_stack(stack);
+	printf("Peek_stack:\n");
 	if (!element) error_handler(&stack, status, PEEK_STACK);
-	else printf("El último elemento de la pila es: %s\n", element);
+	else printf("El último elemento de la pila es: %s\n\n", element);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	element = peek_stack(stack);
+	printf("Peek_stack:\n");
 	if (!element) error_handler(&stack, status, PEEK_STACK);
-	else printf("El último elemento de la pila es: %s\n", element);
+	else printf("El último elemento de la pila es: %s\n\n", element);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	element = peek_stack(stack);
+	printf("Peek_stack:\n");
 	if (!element) error_handler(&stack, status, PEEK_STACK);
-	else printf("El último elemento de la pila es: %s\n", element);
+	else printf("El último elemento de la pila es: %s\n\n", element);
 
 	status = pop(&stack);
+	printf("Pop:\n");
 	if (status) error_handler(&stack, status, POP);
-	if (stack->bottom)
-		printf("Bottom: %s | Top: %s\n", stack->bottom->item, stack->top->item);
+	if (stack->bottom) ft_print(stack->bottom, stack->top, POP);
 
 	element = peek_stack(stack);
+	printf("Peek_stack:\n");
 	if (!element) error_handler(&stack, status, PEEK_STACK);
-	else printf("El último elemento de la pila es: %s\n", element);
+	else printf("El último elemento de la pila es: %s\n\n", element);
 
 	destroy_stack(&stack);
 	return (0);
@@ -274,80 +287,83 @@ int		test_queue(void)
 	queue = NULL;
 
 	status = enqueue(&queue, "Hola");
+	printf("Enqueue:\n");
 	if (status) error_handler(&queue, status, ENQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, ENQUEUE);
 
 	status = enqueue(&queue, "Mundo");
+	printf("Enqueue:\n");
 	if (status) error_handler(&queue, status, ENQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, ENQUEUE);
 
 	status = dequeue(&queue);
+	printf("Dequeue:\n");
 	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
 
 	status = dequeue(&queue);
+	printf("Dequeue:\n");
 	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
 
 	status = dequeue(&queue);
+	printf("Dequeue:\n");
 	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
 
 	status = enqueue(&queue, "La");
+	printf("Enqueue:\n");
 	if (status) error_handler(&queue, status, ENQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, ENQUEUE);
 
 	status = enqueue(&queue, "Cola");
+	printf("Enqueue:\n");
 	if (status) error_handler(&queue, status, ENQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, ENQUEUE);
 
 	status = enqueue(&queue, "Funciona");
+	printf("Enqueue:\n");
 	if (status) error_handler(&queue, status, ENQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, ENQUEUE);
 
 	element = peek_queue(queue);
+	printf("Peek_queue:\n");
 	if (!element) error_handler(&queue, status, PEEK_QUEUE);
-	else printf("El primer elemento de la cola es: %s\n", element);
+	else printf("El primer elemento de la cola es: %s\n\n", element);
+
+	status = dequeue(&queue);
+	printf("Dequeue:\n");
+	if (status) error_handler(&queue, status, DEQUEUE);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
+
+	element = peek_queue(queue);
+	printf("Peek_queue:\n");
+	if (!element) error_handler(&queue, status, PEEK_QUEUE);
+	else printf("El primer elemento de la cola es: %s\n\n", element);
 
 	status = dequeue(&queue);
 	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
 
 	element = peek_queue(queue);
+	printf("Peek_queue:\n");
 	if (!element) error_handler(&queue, status, PEEK_QUEUE);
-	else printf("El primer elemento de la cola es: %s\n", element);
+	else printf("El primer elemento de la cola es: %s\n\n", element);
 
 	status = dequeue(&queue);
+	printf("Dequeue:\n");
 	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
 
 	element = peek_queue(queue);
+	printf("Peek_queue:\n");
 	if (!element) error_handler(&queue, status, PEEK_QUEUE);
-	else printf("El primer elemento de la cola es: %s\n", element);
+	else printf("El primer elemento de la cola es: %s\n\n", element);
 
 	status = dequeue(&queue);
+	printf("Dequeue:\n");
 	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
-
-	element = peek_queue(queue);
-	if (!element) error_handler(&queue, status, PEEK_QUEUE);
-	else printf("El primer elemento de la cola es: %s\n", element);
-
-	status = dequeue(&queue);
-	if (status) error_handler(&queue, status, DEQUEUE);
-	if (queue->front)
-		printf("Front: %s | Back: %s\n", queue->front->item, queue->back->item);
+	if (queue->front) ft_print(queue->front, queue->back, DEQUEUE);
 
 	destroy_queue(&queue);
 	return (0);
@@ -422,7 +438,6 @@ int	push(t_stack **stack, const char *item)
 	static int	calls;
 
 	++calls;
-	printf("Push:		");
 	if (!(*stack))
 	{
 		*stack = create_stack(item);
@@ -457,7 +472,6 @@ int	pop(t_stack **stack)
 	t_node		*temp;
 
 	++calls;
-	printf("Pop:		");
 	if (!(*stack) || !(*stack)->top) return (calls);
 	if (!(*stack)->bottom->next)
 	{
@@ -483,7 +497,6 @@ int	pop(t_stack **stack)
  */
 char	*peek_stack(t_stack *stack)
 {
-	printf("Peek:		");
 	if (!stack || !stack->top) return (NULL);
 	return (stack->top->item);
 }
@@ -555,7 +568,6 @@ int		enqueue(t_queue **queue, const char *item)
 	static int	calls;
 
 	++calls;
-	printf("Enqueue:	");
 	if (!(*queue))
 	{
 		*queue = create_queue(item);
@@ -591,7 +603,6 @@ int		dequeue(t_queue **queue)
 	t_node		*temp;
 
 	++calls;
-	printf("Dequeue:	");
 	if (!(*queue) || !(*queue)->front) return (calls);
 	if (!(*queue)->front->next)
 	{
@@ -615,11 +626,10 @@ int		dequeue(t_queue **queue)
  * @param queue La pila.
  *
  * @return - NULL si no hay ningún elemento.
- * @return - El último elemento de la cola.
+ * @return - El primer elemento de la cola.
  */
 char	*peek_queue(t_queue *queue)
 {
-	printf("Peek:		");
 	if (!queue || !queue->front) return (NULL);
 	return (queue->front->item);
 }
