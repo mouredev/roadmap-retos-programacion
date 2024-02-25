@@ -1,7 +1,8 @@
 from collections import deque
 from abc import ABC, abstractmethod
-from typing import NoReturn, Collection, Callable
+from typing import NoReturn, Collection, Callable, Iterable, Self
 from enum import StrEnum
+from functools import partial
 
 
 class HistoryEmptyException(Exception):
@@ -20,9 +21,14 @@ def raise_program_not_running_exception(msg: str) -> NoReturn:
     raise ProgramNotRunningException(msg)
 
 
+raise_program_not_running_partial_fn = partial(
+    raise_program_not_running_exception, msg="the program is not running"
+)
+
+
 class Structure[T](ABC):
     @abstractmethod
-    def push(self, element: T) -> None:
+    def push(self, element: T) -> Self:
         pass
 
     @abstractmethod
@@ -41,13 +47,18 @@ class Structure[T](ABC):
     def is_empty(self) -> bool:
         return len(self.elements) == 0
 
+    def __iter__(self):
+        return iter(self.elements)
+
 
 class Queue[T](Structure[T]):
     def __init__(self) -> None:
         self.__elements: deque[T] = deque()
 
-    def push(self, element: T) -> None:
+    def push(self, element: T) -> Self:
         self.__elements += [element]
+
+        return self
 
     def pop(self) -> T:
         return self.__elements.popleft()
@@ -61,8 +72,10 @@ class Stack[T](Structure[T]):
     def __init__(self) -> None:
         self.__elements: list[T] = []
 
-    def push(self, element: T) -> None:
+    def push(self, element: T) -> Self:
         self.__elements += [element]
+
+        return self
 
     def pop(self) -> T:
         return self.elements.pop()
@@ -88,7 +101,7 @@ class Printable(ABC):
 
 
 def user_input(prompt: str) -> str:
-    return input(prompt)
+    return input(prompt).lower()
 
 
 class PrinterActions(StrEnum):
@@ -160,6 +173,9 @@ class WebBrowser(Navegable):
         self.__running = False
 
     def go_to_page(self, page: str) -> None:
+        if not self.__running:
+            raise_program_not_running_partial_fn()
+
         self.page_history.push(self.current_page)
         self.__current_page = page
         self.current_page_index += 1
@@ -167,6 +183,9 @@ class WebBrowser(Navegable):
         print(f"Going to {page}")
 
     def undo(self) -> None:
+        if not self.__running:
+            raise_program_not_running_partial_fn()
+
         if self.page_history.is_empty:
             raise_history_empty_exception(msg="there are not previous pages to go back")
 
@@ -174,6 +193,9 @@ class WebBrowser(Navegable):
         print(f"Going back to {self.current_page}")
 
     def redo(self) -> None:
+        if not self.__running:
+            raise_program_not_running_partial_fn()
+
         if self.page_history.is_empty:
             raise_history_empty_exception(msg="there are not next pages to go forward")
 
@@ -214,7 +236,7 @@ def execute_printable(printable: Printable) -> None:
                     print("No documents to print")
                     continue
 
-                for document in printable.document_history.elements:
+                for document in printable.document_history:
                     print(document)
             case PrinterActions.SET_DOCUMENT:
                 document = user_input(prompt="Enter a document: ")
