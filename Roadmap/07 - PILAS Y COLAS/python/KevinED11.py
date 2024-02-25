@@ -87,11 +87,11 @@ class Stack[T](Structure[T]):
 
 class Printable(ABC):
     @abstractmethod
-    def print(self) -> None:
+    def print(self) -> Self:
         pass
 
     @abstractmethod
-    def set_document(self, document: str) -> None:
+    def set_document(self, document: str) -> Self:
         pass
 
     @property
@@ -115,15 +115,19 @@ class Printer(Printable):
     def __init__(self) -> None:
         self.__document_history: Queue[str] = Queue[str]()
 
-    def print(self) -> None:
+    def print(self) -> Self:
         if self.document_history.is_empty:
             raise_history_empty_exception("No documents to print")
 
         print("Printing...")
         print(self.document_history.pop())
 
-    def set_document(self, document: str) -> None:
+        return self
+
+    def set_document(self, document: str) -> Self:
         self.document_history.push(document)
+
+        return self
 
     @property
     def document_history(self) -> Queue[str]:
@@ -132,15 +136,15 @@ class Printer(Printable):
 
 class Navegable(ABC):
     @abstractmethod
-    def go_to_page(self, page: str) -> None:
+    def go_to_page(self, page: str) -> Self:
         pass
 
     @abstractmethod
-    def undo(self) -> None:
+    def undo(self) -> Self:
         pass
 
     @abstractmethod
-    def redo(self) -> None:
+    def redo(self) -> Self:
         pass
 
     @abstractmethod
@@ -172,7 +176,7 @@ class WebBrowser(Navegable):
         self.current_page_index: int = 0
         self.__running = False
 
-    def go_to_page(self, page: str) -> None:
+    def go_to_page(self, page: str) -> Self:
         if not self.__running:
             raise_program_not_running_partial_fn()
 
@@ -182,7 +186,9 @@ class WebBrowser(Navegable):
 
         print(f"Going to {page}")
 
-    def undo(self) -> None:
+        return self
+
+    def undo(self) -> Self:
         if not self.__running:
             raise_program_not_running_partial_fn()
 
@@ -192,12 +198,16 @@ class WebBrowser(Navegable):
         self.__current_page = self.page_history.elements.pop()
         print(f"Going back to {self.current_page}")
 
-    def redo(self) -> None:
+        return self
+
+    def redo(self) -> Self:
         if not self.__running:
             raise_program_not_running_partial_fn()
 
         if self.page_history.is_empty:
             raise_history_empty_exception(msg="there are not next pages to go forward")
+
+        return self
 
     def run(self) -> None:
         self.__running = True
