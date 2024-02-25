@@ -1,15 +1,23 @@
 from collections import deque
 from abc import ABC, abstractmethod
-from typing import NoReturn, Collection, Optional, Callable, Iterable
-from enum import StrEnum, Enum
+from typing import NoReturn, Collection, Callable
+from enum import StrEnum
 
 
 class HistoryEmptyException(Exception):
     pass
 
 
+class ProgramNotRunningException(Exception):
+    pass
+
+
 def raise_history_empty_exception(msg: str) -> NoReturn:
     raise HistoryEmptyException(msg)
+
+
+def raise_program_not_running_exception(msg: str) -> NoReturn:
+    raise ProgramNotRunningException(msg)
 
 
 class Structure[T](ABC):
@@ -126,6 +134,16 @@ class Navegable(ABC):
     def run(self) -> None:
         pass
 
+    @property
+    @abstractmethod
+    def page_history(self) -> Structure[str]:
+        pass
+
+    @property
+    @abstractmethod
+    def current_page(self) -> str:
+        pass
+
 
 class WebBrowserActions(StrEnum):
     EXIT: str = "exit"
@@ -136,13 +154,14 @@ class WebBrowserActions(StrEnum):
 
 class WebBrowser(Navegable):
     def __init__(self) -> None:
-        self.page_history: Stack[str] = Stack[str]()
-        self.current_page: str = "inicio"
+        self.__page_history: Stack[str] = Stack[str]()
+        self.__current_page: str = "inicio"
         self.current_page_index: int = 0
+        self.__running = False
 
     def go_to_page(self, page: str) -> None:
         self.page_history.push(self.current_page)
-        self.current_page = page
+        self.__current_page = page
         self.current_page_index += 1
 
         print(f"Going to {page}")
@@ -151,7 +170,7 @@ class WebBrowser(Navegable):
         if self.page_history.is_empty:
             raise_history_empty_exception(msg="there are not previous pages to go back")
 
-        self.current_page = self.page_history.elements.pop()
+        self.__current_page = self.page_history.elements.pop()
         print(f"Going back to {self.current_page}")
 
     def redo(self) -> None:
@@ -159,11 +178,21 @@ class WebBrowser(Navegable):
             raise_history_empty_exception(msg="there are not next pages to go forward")
 
     def run(self) -> None:
-        pass
+        self.__running = True
+
+        while self.__running:
+            print(f"Current page: {self.current_page}")
+
+    def __operations(self) -> dict[str, Callable]:
+        return {"go_to_page": self.go_to_page, "undo": self.undo, "redo": self.redo}
 
     @property
-    def operations(self) -> dict[str, Callable]:
-        return {"go_to_page": self.go_to_page, "undo": self.undo, "redo": self.redo}
+    def page_history(self) -> Stack[str]:
+        return self.__page_history
+
+    @property
+    def current_page(self) -> str:
+        return self.__current_page
 
 
 def execute_printable(printable: Printable) -> None:
