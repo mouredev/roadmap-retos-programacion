@@ -1,4 +1,4 @@
-//Clases: funciones especiales. Poseen dos componentes.
+//Clases: funciones especiales. La sintaxis puede ser de dos formas.
 
 /*Declaración de clases*/
 
@@ -7,18 +7,27 @@ class Vehiculo {//Utilizamos la palabra reservada class y por convención el nom
     this.fabricante = fabricante;
     this.modelo = modelo;
   }
-  get caracteristicas() {
-    return `El carro marca ${this.fabricante} es modelo ${this.modelo}.`;
+  get fabricante() {
+    return this._fabricante;
   }
-  set caracteristicas(val1) {
-    [this.fabricante, this.modelo] = val1.split(" ");
+  set fabricante(fabricante) {
+    this._fabricante = fabricante;
+  }
+  get modelo() {
+    return this._modelo;
+  }
+  set modelo(modelo) {
+    this._modelo = modelo;
+  }
+  caracteristicas() {
+    console.log(`Vehiculo marca ${this.fabricante} modelo ${this.modelo}`);
   }
 }
 let carro = new Vehiculo("Toyota", "Corrolla");
 console.log(`Compre un ${carro.fabricante} ${carro.modelo}.`);
-console.log(carro.caracteristicas);
-carro.caracteristicas = "Ford Bronco";
-console.log(carro.caracteristicas);
+carro.caracteristicas();
+carro.modelo = "Prius";
+carro.caracteristicas();
 
 /*Expresión de clases*/
 
@@ -38,3 +47,62 @@ let Rectangulo = class Rectangulo1 {
     this.ancho = ancho;
   }
 }
+
+//Extra
+
+class Pila {
+  constructor() {
+    this.pila = [];
+  }
+  push(element) {
+    this.pila.push(element);
+    return this.pila;
+  }
+  pop() {
+    return this.pila.pop();
+  }
+  size() {
+    return this.pila.length;
+  }
+  print() {
+    console.log(this.pila);
+  }
+}
+
+let pila = new Pila();
+pila.push("María");
+pila.push("Luis");
+pila.push("Pedro");
+pila.push("Yolanda");
+pila.print();
+console.log(pila.pop());
+console.log(pila.size());
+pila.print();
+
+class Queue {
+  constructor() {
+    this.queue = [];
+  }
+  enqueue(element) {
+    this.queue.push(element);
+  }
+  dequeue() {
+    return this.queue.shift();
+  }
+  size() {
+    return this.queue.length;
+  }
+  print() {
+    console.log(this.queue);
+  }
+}
+
+let queue = new Queue();
+queue.enqueue("María");
+queue.enqueue("Luis");
+queue.enqueue("Pedro");
+queue.enqueue("Yolanda");
+queue.print();
+console.log(queue.dequeue());
+console.log(queue.size());
+queue.print();
