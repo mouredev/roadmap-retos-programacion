@@ -62,5 +62,10 @@ int main() {
 		C_ARRAY_ANIMALS [i]->printSound();
 	};
 
+	//Free memory
+	for (int i = 0; i < sizeof (C_ARRAY_ANIMALS) / sizeof (Animal*); i++) {
+		delete C_ARRAY_ANIMALS [i];
+	};
+
 	return 0;
 }
