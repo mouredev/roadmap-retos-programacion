@@ -93,99 +93,155 @@ console.log(" ");
  * - También se debe proponer una operación de finalización del programa.
 */
 
-// console.log("#### - Agenda de Contactos 1.0 - ####");
-// console.log(" ");
-// console.log("Pulse 1 -> Para Insertar nuevo contacto");
-// console.log("Pulse 2 -> Para Eliminar un contacto");
-// console.log("Pulse 3 -> Para Actualizar un contacto");
-// console.log("Pulse 4 -> Para Buscar contacto");
-
-
-const readline = require('readline');
-
+let contacts = [];
+const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
+//Validando el numero de telefono ingresado
+const validatePhonenumer = (number) => {
+  const format = /^\d{1,11}$/;
+  return format.test(number);
+};
 
-const optionsMenu = () => {
-    console.log(" ");
-    console.log("#### - Agenda de Contactos 1.0 - ####");
-    console.log(" ");
-    console.log("Pulse 1 -> Para Insertar nuevo contacto");
-    console.log("Pulse 2 -> Para Eliminar un contacto");
-    console.log("Pulse 3 -> Para Actualizar un contacto");
-    console.log("Pulse 4 -> Para Buscar contacto");
-    console.log("Pulse 5 -> Mostrar todos los contactos");
-    console.log("Pulse 6 -> Para Salir");
-    console.log(" ");
-}
-
+// Inserción de datos
 const insertContact = () => {
- //ToDo
-}
+  rl.question("Ingresa nombre de contacto: ", (userInput) => {
+    let userName = userInput;
 
-const deleteContact = () => {
- //ToDo
-}
-
-const updateContact = () => {
- //ToDo
-}
-
-const searchContact = () => {
- //ToDo
-}
-
-const showAllContacts = () => {
- //ToDo
-}
-
-const comenzarPrograma = () => {
-
-    optionsMenu();
-
-    // Pregunta al usuario y espera la respuesta
-    rl.question('¿Que desea realizar? ', (option) => {
-        const selectedOption = parseInt(option);
-        switch ( selectedOption ) {
-            case 1:
-                insertContact();
-                break;
-        
-            case 2:
-                deleteContact();
-                break;
-        
-            case 3:
-                updateContact();
-                break;
-        
-            case 4:
-                searchContact();
-                break;
-        
-            case 5:
-                showAllContacts();
-                break;
-        
-            case 6:
-                console.log("Gracias por usar la agenda 1.0. ¡Hasta luego!");
-                rl.close();
-                break;
-        
-            default:
-                console.log("No ha ingresado una opción válida.");
-                break;
-        }    
-
+    rl.question("Ingresa numero de telefono: ", (userInput) => {
+      let numberValidation = validatePhonenumer(userInput);
+      if (numberValidation == true) {
+        let phoneNumber = userInput;
+        contacts.push({ userName, phoneNumber });
+        console.log("\n Contacto agregado");
         comenzarPrograma();
+      } else {
+        console.log("Formato de numero invalido");
+        insertContact();
+      }
     });
+  });
+};
 
-}
+// Eliminando contacto
+const deleteContact = () => {
+  rl.question("DIme que usuario deseas borrar del registro", (userName) => {
+    index = findContact(userName);
+    if (index != -1) {
+      contacts.splice([index], 1);
+      console.log("\n Contacto borrado");
+    } else {
+      console.log(
+        "\n No hemos encontrados coincidencias con el dato ingresado",
+      );
+    }
+  });
+};
 
+// Actualizando un contacto
+const updateContact = () => {
+  rl.question("Indique el usuario a actualizar:", (userName) => {
+    index = findContact(userName);
+    if (index != -1) {
+      rl.question("Ingrese el nuevo nombre de contacto:", (userName) => {
+        contacts[index].userName = userName;
+        rl.question("Ingrese el nuevo numero de telefono:", (phoneNumber) => {
+          contacts[index].phoneNumber = phoneNumber;
+          console.log("\n Contacto actualizado");
+          comenzarPrograma();
+        });
+      });
+    } else {
+      console.log("\n No logro encontrar el contacto indicado o no existe.");
+    }
+    comenzarPrograma();
+  });
+};
 
+//Encontrar coincidencias
+const findContact = (name) => {
+  let contact = contacts.findIndex((contact) => contact.userName == name);
+  return contact;
+};
+
+// Buscando un contacto
+const searchContact = () => {
+  rl.question("Ingresa nombre de contacto: ", (userName) => {
+    index = findContact(userName);
+    if (index != -1) {
+      console.log(
+        `
+          Nombre: ${contacts[index].userName}
+          Numero: ${contacts[index].phoneNumber}
+        `,
+      );
+    } else {
+      console.log("\n No se encontraron coincidencias");
+    }
+    comenzarPrograma();
+  });
+};
+
+// Muestra todos los contactos
+const showAllContacts = () => {
+  for (i = 0; i <= contacts.length - 1; i++) {
+    console.log(`
+   Nombre: ${contacts[i].userName} - Numero: ${contacts[i].phoneNumber}`);
+  }
+  comenzarPrograma();
+};
+
+// Menu principal
+const comenzarPrograma = () => {
+  // Pregunta al usuario y espera la respuesta
+  rl.question(
+    `
+      #### - Agenda de Contactos 1.0 - ####
+      Pulse 1 -> Para Insertar nuevo contacto
+      Pulse 2 -> Para Eliminar un contacto
+      Pulse 3 -> Para Actualizar un contacto
+      Pulse 4 -> Para Buscar contacto
+      Pulse 5 -> Mostrar todos los contactos
+      Pulse 6 -> Para Salir
+    `,
+    (userInput) => {
+      const selectedOption = parseInt(userInput);
+      switch (selectedOption) {
+        case 1:
+          insertContact();
+          break;
+
+        case 2:
+          deleteContact();
+          break;
+
+        case 3:
+          updateContact();
+          break;
+
+        case 4:
+          searchContact();
+          break;
+
+        case 5:
+          showAllContacts();
+          break;
+
+        case 6:
+          console.log("Gracias por usar la agenda 1.0. ¡Hasta luego!");
+          rl.close();
+          break;
+
+        default:
+          console.log("No ha ingresado una opción válida.");
+          comenzarPrograma();
+      }
+    },
+  );
+};
 
 comenzarPrograma();
 
