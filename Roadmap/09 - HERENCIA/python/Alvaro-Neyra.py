@@ -90,7 +90,10 @@ class Gerente(Empleado):
         super().__init__(nombre, id_de_empleado)
         self.empleados_a_monitorear = []
     def agregar_empleados(self, empleado):
-        self.empleados_a_monitorear.append(empleado)
+        if not empleado in self.empleados_a_monitorear:
+            self.empleados_a_monitorear.append(empleado)
+        else:
+            print(f"Ya esta en la lista de empleados a cargo!")
     def despedir_empleado(self, empleado):
         if empleado in self.empleados_a_monitorear:
             self.empleados_a_monitorear.remove(empleado)
@@ -108,7 +111,10 @@ class GerenteDeProyectos(Empleado):
         super().__init__(nombre, id_de_empleado)
         self.proyectos_a_cargo = []
     def agregar_proyectos(self, proyecto):
-        self.proyectos_a_cargo.append(proyecto)
+        if not proyecto in self.proyectos_a_cargo:
+            self.proyectos_a_cargo.append(proyecto)
+        else:
+            print(f"{proyecto} ya esta en la lista de proyectos a cargo del gerente de proyectos {self.nombre}")
     def eliminar_proyectos(self, proyecto):
         if proyecto in self.proyectos_a_cargo:
             self.proyectos_a_cargo.remove(proyecto)
@@ -126,5 +132,60 @@ class Programador(Empleado):
         super().__init__(nombre, id_de_empleado)
         self.lenguages = []
     def anadir_lenguage(self, lenguaje):
-        self.lenguages.append(lenguaje)
-    
+        if lenguaje not in self.lenguages:
+            self.lenguages.append(lenguaje)
+        else:
+            print(f"{lenguaje} ya esta en la lista de lenguajes del programador: {self.nombre}")
+    def mostrar_informacion(self):
+        super().mostrar_informacion()
+        print(f"Lenguajes aprendidos por el programador: {self.nombre}")
+        for lenguaje in self.lenguages:
+            print("- %s" % lenguaje)
+
+
+## GERENTE:
+## Usando las subclases de la superclase Empleado:
+gerente_principal = Gerente("Alvaro", 143)
+gerente_principal_de_proyectos = GerenteDeProyectos("Juan", 120)
+programador_junior = Programador("Carlos", 902)
+programador_midlevel = Programador("Coder", 101)
+el_mejor_programador_del_mundo = Programador("Brais Moure", 404)
+lider_del_proyecto = Programador("SuperCoder", 1902)
+
+# Agregando empleados como gerente
+gerente_principal.agregar_empleados(programador_junior)
+gerente_principal.agregar_empleados(programador_midlevel)
+gerente_principal.agregar_empleados(el_mejor_programador_del_mundo)
+# Mostrando informacion del gerente principal
+gerente_principal.mostrar_informacion()
+# Eliminando un empleado (despedir):
+gerente_principal.despedir_empleado(programador_junior)
+gerente_principal.mostrar_informacion()
+# Eliminando un empleado que no esta en la lista de empleados del gerente principal:
+gerente_principal.despedir_empleado(lider_del_proyecto)
+# Usando el metodo .cargo() de la superclase Empleado:
+gerente_principal.cargo()
+
+## GERENTE DE PROYECTOS:
+gerente_principal_de_proyectos = GerenteDeProyectos("Alvaro Neyra", 1293)
+# Agregando proyectos:
+gerente_principal_de_proyectos.agregar_proyectos("Clon de Spotify")
+gerente_principal_de_proyectos.agregar_proyectos("PassVault")
+gerente_principal_de_proyectos.agregar_proyectos("E-Commerce")
+# Conseguiendo la informacion del gerente de proyectos:
+gerente_principal_de_proyectos.mostrar_informacion()
+# Eliminando un proyecto
+gerente_principal_de_proyectos.eliminar_proyectos("Clon de Spotify")
+gerente_principal_de_proyectos.mostrar_informacion()
+
+## PROGRAMADOR:
+# Anadiendo lenguajes al lider del proyecto
+lider_del_proyecto.anadir_lenguage("Java")
+lider_del_proyecto.anadir_lenguage("Python")
+lider_del_proyecto.anadir_lenguage("JavaScript")
+lider_del_proyecto.anadir_lenguage("Rust")
+# Repetiendo un lenguaje:
+lider_del_proyecto.anadir_lenguage("Python")
+# Mostrando informacion
+lider_del_proyecto.mostrar_informacion()
+
