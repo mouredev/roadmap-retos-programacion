@@ -1,7 +1,7 @@
 class Animal{
-    private final String name;
-    private final int peso;
-    private final int tamaño;
+    final String name;
+    final int peso;
+    final int tamaño;
 
     public Animal(String name, int peso, int tamaño){
         this.name = name;
@@ -10,6 +10,19 @@ class Animal{
     }
 
     public void sound(){}
+}
 
+class Gato extends Animal{
+    private final String sonido;
+
+    public Gato(String name, int peso, int tamaño, String sonido){
+        super(name, peso, tamaño);
+        this.sonido = sonido;
+    }
+
+    @Override
+    public void sound(){
+        System.out.println("El" + name + "suena" + sonido);
+    }
 }
 
