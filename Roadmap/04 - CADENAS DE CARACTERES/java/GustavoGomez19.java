@@ -19,7 +19,7 @@ public class GustavoGomez19 {
     boolean esIgaul = name.equals(lastName); // Compara el valor del String
     boolean esIgual2 = name.equalsIgnoreCase(lastName); // Compara el valor del String ignorando mayúsculas y minúsculas
     int valor = name.compareTo(lastName); //Devuelve un 0 si las cadenas son iguales, un # (-) si 'name' tiene menos carácteres y un # (+) si 'name' tiene más carácteres
-    String nuevoValor = 
+    
 
     
 }
