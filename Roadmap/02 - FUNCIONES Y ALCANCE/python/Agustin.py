@@ -1,4 +1,4 @@
-## RETO 02.  DIFICULTAD EXTRA
+## RETO 02  DIFICULTAD EXTRA
 
 def fuction(value_one, value_two):
     contador = 0
