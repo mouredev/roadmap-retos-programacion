@@ -13,6 +13,7 @@
  */
 
 #include <iostream>
+#include <string>
 
  class Animal {
 
@@ -49,6 +50,23 @@ const char* Cat::sound() const {
 	return "miau miau";
 };
 
+//class Employee {
+//	private:
+//		const unsigned int id;
+//		const string name;
+//		Employee (unsigned int inId, string inName);
+//	
+//};
+
+/*
+ * DIFICULTAD EXTRA (opcional):
+ * Implementa la jerarquía de una empresa de desarrollo formada por Empleados que
+ * pueden ser Gerentes, Gerentes de Proyectos o Programadores.
+ * Cada empleado tiene un identificador y un nombre.
+ * Dependiendo de su labor, tienen propiedades y funciones exclusivas de su
+ * actividad, y almacenan los empleados a su cargo.
+ */
+
 int main() {
 
 	const Animal* C_ARRAY_ANIMALS [] = {
@@ -68,4 +86,4 @@ int main() {
 	};
 
 	return 0;
-}
+};
