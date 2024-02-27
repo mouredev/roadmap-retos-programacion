@@ -26,3 +26,10 @@ class Gato extends Animal{
     }
 }
 
+public class pguillo02 {
+
+    public static void main(String args[]){
+        Gato g = new Gato("Gato", 22, 22, "Miau");
+        g.sound();
+    }
+}
