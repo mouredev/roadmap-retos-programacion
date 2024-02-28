@@ -24,7 +24,7 @@ Las dos variables son independientes y ocupan ubicaciones de memoria diferentes.
  */
 let variableoriginal= 10
 let variablecopia= variableoriginal //Asignación por valor
-variableoriginal=20
+variableoriginal=20 
 
 console.log(`La variable original ahora vale ${variableoriginal} mientras que la variable copia 
 guarda el primer valor de la original en este caso ${variablecopia}`)
