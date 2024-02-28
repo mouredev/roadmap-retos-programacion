@@ -793,11 +793,8 @@ int		web_browser_navigate(t_web	**web)
 	status = push(&(*web)->history, (*web)->input);
 	if (status) printf("Error navegando a %s\n", (*web)->input);
 	if ((*web)->flag == 1)
-	{
 		destroy_stack(&(*web)->temp);
-		(*web)->home_counter = 0;
-	}
-	else (*web)->flag = 0;
+	(*web)->flag = 0;
 	if (!strcmp(peek_stack((*web)->history), "Inicio"))
 		(*web)->home_counter++;
 	return (status);
