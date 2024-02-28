@@ -42,7 +42,8 @@
 |05|[VALOR Y REFERENCIA](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/ejercicio.md)|[📝](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/python/mouredev.py)|[▶️](https://youtu.be/P2OQDT9Wrb0)|[👥](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/)
 |06|[RECURSIVIDAD](./Roadmap/06%20-%20RECURSIVIDAD/ejercicio.md)|[📝](./Roadmap/06%20-%20RECURSIVIDAD/python/mouredev.py)|[▶️](https://youtu.be/nTfDkLRrYiM)|[👥](./Roadmap/06%20-%20RECURSIVIDAD/)
 |07|[PILAS Y COLAS](./Roadmap/07%20-%20PILAS%20Y%20COLAS/ejercicio.md)|[📝](./Roadmap/07%20-%20PILAS%20Y%20COLAS/python/mouredev.py)|[▶️](https://youtu.be/cBeRWS2X0CA)|[👥](./Roadmap/07%20-%20PILAS%20Y%20COLAS/)
-|08|[CLASES](./Roadmap/08%20-%20CLASES/ejercicio.md)|[🗓️ 26/02/24](https://discord.gg/NPWdyguk?event=1209116800462364723)||[👥](./Roadmap/08%20-%20CLASES/)
+|08|[CLASES](./Roadmap/08%20-%20CLASES/ejercicio.md)|[📝](./Roadmap/08%20-%20CLASES/python/mouredev.py)|[▶️](https://youtu.be/W4tv8WUbum4)|[👥](./Roadmap/08%20-%20CLASES/)
+|09|[HERENCIA](./Roadmap/09%20-%20HERENCIA/ejercicio.md)|[🗓️ 04/03/24](https://discord.gg/mouredev?event=1211576792909873152)||[👥](./Roadmap/09%20-%20HERENCIA/)
 
 ## Instrucciones
 
