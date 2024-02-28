@@ -51,6 +51,14 @@ typedef struct s_node
 t_node	*create_node(const char *item);
 void	destroy_node(t_node **node);
 
+// Manejo de errores
+
+int		error_handler(void *address, int status, t_function name);
+
+// Utils
+
+void	ft_print(t_node *first, t_node *last, t_function name);
+
 // Estructura de una pila
 
 typedef struct s_stack
@@ -83,10 +91,6 @@ int		enqueue(t_queue **queue, const char *item);
 int		dequeue(t_queue **queue);
 char	*peek_queue(t_queue *queue);
 int		test_queue(void);
-
-// Manejo de errores
-
-int		error_handler(void *address, int status, t_function type);
 
 // Estructura del navegador web
 
@@ -187,20 +191,20 @@ void	destroy_node(t_node **node)
  *
  * @param address Dirección de memoria de la pila/cola.
  * @param status Estado que indica en qué llamada ha fallado.
- * @param type 
+ * @param name Nombre de la función.
  *
- * @return - status
+ * @return - status Devuelve el parámetro status.
  */
-int	error_handler(void *address, int status, t_function type)
+int	error_handler(void *address, int status, t_function name)
 {
-	if (type == POP || type == PEEK_STACK) printf("La pila está vacía\n\n");
-	else if (type == DEQUEUE || type == PEEK_QUEUE) printf("La cola está vacía\n\n");
-	else if (type == PUSH)
+	if (name == POP || name == PEEK_STACK) printf("La pila está vacía\n\n");
+	else if (name == DEQUEUE || name == PEEK_QUEUE) printf("La cola está vacía\n\n");
+	else if (name == PUSH)
 	{
 		printf("Error añadiendo el elemento a la pila, llamada %d\n", status);
 		destroy_stack((t_stack **) address);
 	}
-	else if (type == ENQUEUE)
+	else if (name == ENQUEUE)
 	{
 		printf("Error añadiendo el elemento a la cola, llamada %d\n", status);
 		destroy_queue((t_queue **) address);
@@ -208,17 +212,24 @@ int	error_handler(void *address, int status, t_function type)
 	return (status);
 }
 
-void	ft_print(t_node *first, t_node *last, t_function type)
+/**
+ * @brief Mensaje personalizado para pilas y colas
+ *
+ * @param first Nodo al primer elemento.
+ * @param last Nodo al último elemento.
+ * @param name Nombre de la función.
+ */
+void	ft_print(t_node *first, t_node *last, t_function name)
 {
 	if (!first || !last) return ;
-	if (type == PUSH || type == POP)
+	if (name == PUSH || name == POP)
 		printf("Bottom: %s | Top: %s\n\n", first->item, last->item);
-	else if (type == ENQUEUE || type == DEQUEUE)
+	else if (name == ENQUEUE || name == DEQUEUE)
 		printf("Front: %s | Back: %s\n\n", first->item, last->item);
 }
 
 /**
- * @brief Test de funciones del stack.
+ * @brief Test de funciones de la pila.
  *
  * @return - > 0 Si hay algún error grave.
  * @return - 0 Si el test se ejecuta correctamente.
@@ -320,6 +331,12 @@ int	test_stack(void)
 	return (0);
 }
 
+/**
+ * @brief Test de funciones de la cola.
+ *
+ * @return - > 0 Si hay algún error grave.
+ * @return - 0 Si el test se ejecuta correctamente.
+ */
 int		test_queue(void)
 {
 	t_queue	*queue;
@@ -676,6 +693,8 @@ char	*peek_queue(t_queue *queue)
 	return (queue->front->item);
 }
 
+/* === DIFICULTAD EXTRA === */
+
 /**
  * @brief Simulación de un navegador web.
  *
@@ -718,7 +737,7 @@ int	web_browser(void)
 		else if (!strcmp(web->input, "Salir") || !strcmp(web->input, "salir")
 				|| !strcmp(web->input, "X") || !strcmp(web->input, "x"))
 		{
-			printf("Has cerrado el navegador\n");
+			printf("Has cerrado el navegador\n\n\n");
 			status = 0;
 			break;
 		}
@@ -887,6 +906,7 @@ int		printer(void)
  */
 void	printer_menu(void)
 {
+	printf("========== IMPRESORA ==========\n");
 	printf("Introduce:\n");
 	printf("- El nombre del documento, para añadirlo a la cola\n");
 	printf("- Imprimir, para imprimir el primer documento en la cola\n");
