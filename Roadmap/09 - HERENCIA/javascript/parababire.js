@@ -3,21 +3,27 @@ class Animal {
     this.color = color;
     this.nombre = nombre;
   }
-  get color() {
-    return this._color;
-  }
-  set color(color) {
-    return this._color = color;
-  }
-  get nombre() {
-    return this.nombre;
-  }
-  set nombre(nombre) {
-    return this.nombre = nombre;
-  }
 }
 class Perro extends Animal {
-  constructor() {
-    super(color, nombre)
+  constructor(color, nombre, sonido) {
+    super(color, nombre);
+    this.sonido = sonido;
+  }
+  oir() {
+    console.log(this.sonido);
   }
 }
+class Gato extends Animal {
+  constructor(color, nombre, sonido) {
+    super(color, nombre);
+    this.sonido = sonido;
+  }
+  oir() {
+    console.log(this.sonido);
+  }
+}
+
+let perro = new Perro("blanco", "FeFe", "Wof Wof");
+let gato = new Gato("negro", "pesadilla", "Meau");
+perro.oir();
+gato.oir();
