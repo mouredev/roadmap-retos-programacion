@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
  class Animal {
 
@@ -37,7 +38,7 @@ class Dog : public Animal {
 
 
 const char* Dog::sound() const {
-	return "guau guau";
+	return "guau";
 };
 
 class Cat : public Animal {
@@ -47,16 +48,106 @@ class Cat : public Animal {
 };
 
 const char* Cat::sound() const {
-	return "miau miau";
+	return "miau";
 };
 
-//class Employee {
-//	private:
-//		const unsigned int id;
-//		const string name;
-//		Employee (unsigned int inId, string inName);
-//	
-//};
+class Employee {
+	private:
+		const unsigned int id;
+		const std::string name;
+		std::list<Employee*> listSubordinates;
+		
+	protected:
+		Employee (unsigned int inId, std::string inName);
+	
+	public:
+		int getId();
+		std::string getName();
+
+		void addSubordinate (Employee* inEmployee);
+		std::list<Employee*> getListSubordinates();
+};
+
+Employee::Employee (unsigned int inId, std::string inName) :
+	id (inId), name (inName), listSubordinates() {
+
+};
+
+int Employee::getId() {
+	return id;
+};
+
+std::string Employee::getName() {
+	return name;
+};
+
+void Employee::addSubordinate (Employee* inEmployee) {
+
+	listSubordinates.push_back (inEmployee);
+
+};
+
+std::list<Employee*> Employee::getListSubordinates() {
+	return listSubordinates;
+};
+
+
+class GeneralManager : public Employee {
+	private:
+		const std::string department;
+	
+	public:
+		GeneralManager (unsigned int inId, std::string inName, std::string inDepartment);
+		std::string getDepartment();
+
+};
+
+GeneralManager::GeneralManager (unsigned int inId, std::string inName, std::string inDepartment) : 
+	Employee (inId, inName), department (inDepartment) {
+
+};
+
+std::string GeneralManager::getDepartment() {
+	return department;
+}
+
+class ProjectManager : public Employee {
+	private:
+		const std::string project;
+	
+	public:
+		ProjectManager (unsigned int inId, std::string inName, std::string inProject);
+		std::string getProject();
+
+};
+
+ProjectManager::ProjectManager (unsigned int inId, std::string inName, std::string inProject) : 
+	Employee (inId, inName), project (inProject) {
+
+};
+
+std::string ProjectManager::getProject() {
+	return project;
+}
+
+class Developer : public Employee {
+	private:
+		const std::string project;
+	
+	public:
+		Developer (unsigned int inId, std::string inName, std::string inProject);
+		std::string getProject();
+
+};
+
+Developer::Developer (unsigned int inId, std::string inName, std::string inProject) : 
+	Employee (inId, inName), project (inProject) {
+
+};
+
+std::string Developer::getProject() {
+	return project;
+}
 
 /*
  * DIFICULTAD EXTRA (opcional):
