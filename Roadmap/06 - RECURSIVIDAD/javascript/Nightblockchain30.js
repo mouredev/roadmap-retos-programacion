@@ -9,7 +9,6 @@ var recursiveFunction = function(value){
 
 recursiveFunction(10);
 
-
 var obtenerFactorial = function(num){
     if (num === 0 || num === 1){
         return 1;
