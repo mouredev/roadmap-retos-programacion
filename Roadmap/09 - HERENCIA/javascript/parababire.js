@@ -4,7 +4,7 @@ class Animal {
     this.color = color;
     this.nombre = nombre;
   }
-  sonido() {
+  caracteristicas() {
     return `${this.nombre} es un ${this.raza} de color ${this.color}`;
   }
 }
@@ -12,23 +12,23 @@ class Perro extends Animal {
   constructor(raza, color, nombre) {
     super(raza, color, nombre);
   }
-  oir() {
-    return `${this.sonido()} hace Woof Woof.`;
+  sonido() {
+    return `${super.caracteristicas()} hace Woof Woof.`;
   }
 }
 class Gato extends Animal {
   constructor(raza, color, nombre) {
     super(raza, color, nombre);
   }
-  oir() {
-    return `${this.sonido()} hace Meau.`;
+  sonido() {
+    return `${super.caracteristicas()} hace Meau.`;
   }
 }
 
 let perro = new Perro("Poodle", "blanco", "FeFe");
 let gato = new Gato("Abisinio", "negro", "Pesadilla");
-console.log(perro.oir());
-console.log(gato.oir());
+console.log(perro.sonido());
+console.log(gato.sonido());
 
 /*Extra*/
 
@@ -48,7 +48,7 @@ class Gerente extends Empleado {
     this.nomina = [];
   }
   presentacion() {
-    return `${this.informacion()} Manejo el área de ${this.cargo}.`
+    return `${super.informacion()} Manejo el área de ${this.cargo}.`
   }
   contratar(empleado) {
     this.nomina.push(empleado);
@@ -71,7 +71,7 @@ class GerenteProyecto extends Empleado {
     this.proyecto = [];
   }
   presentacion() {
-    return `${this.informacion()} Manejo el área de ${this.cargo}.`
+    return `${super.informacion()} Manejo el área de ${this.cargo}.`
   }
   contratar(empleado) {
     this.nomina.push(empleado);
@@ -104,6 +104,9 @@ class Programador extends Empleado {
     this.cargo = cargo;
     this.lenguaje = lenguaje;
   }
+  presentacion() {
+    return `${super.informacion()} Me desempeño como ${this.cargo} y me especializo en ${this.lenguaje}.`
+  }
 }
 const gerenteVentas = new Gerente(12075, "Ángel", "Gerencia");
 console.log(gerenteVentas.presentacion());
@@ -124,3 +127,6 @@ gerenteProyecto.desarrollos("Proyecto1");
 console.log(gerenteProyecto.planificacion());
 gerenteProyecto.desarrollos("Proyecto2");
 console.log(gerenteProyecto.planificacion());
+
+const programador = new Programador(25624, "Robert", "Programador", "Javascript");
+console.log(programador.presentacion());
