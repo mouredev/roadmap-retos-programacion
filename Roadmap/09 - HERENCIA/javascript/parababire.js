@@ -117,15 +117,9 @@ console.log(gerenteVentas.empleados());
 
 const gerenteProyecto = new GerenteProyecto(31023, "Luis", "Gerencia de Proyecto");
 console.log(gerenteProyecto.presentacion());
-console.log(gerenteProyecto.empleados());
 gerenteProyecto.contratar("Empleado1");
 console.log(gerenteProyecto.empleados());
-gerenteProyecto.contratar("Empleado2");
-console.log(gerenteProyecto.empleados());
-console.log(gerenteProyecto.planificacion());
 gerenteProyecto.desarrollos("Proyecto1");
-console.log(gerenteProyecto.planificacion());
-gerenteProyecto.desarrollos("Proyecto2");
 console.log(gerenteProyecto.planificacion());
 
 const programador = new Programador(25624, "Robert", "Programador", "Javascript");
