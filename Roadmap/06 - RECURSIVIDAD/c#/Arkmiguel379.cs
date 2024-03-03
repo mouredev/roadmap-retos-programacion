@@ -37,26 +37,25 @@ Console.WriteLine();
 
 Console.WriteLine("=== CALCULO SUCESION FIBONACCI === \n");
 
-int a = 0;
-
-int b = a + 1;
-
-int c = a + b;
-
 int Fibonacci(int x)
 {
-    if (x == 0)
+    if (x <= 0)
     {
-        return b - a;
+        Console.WriteLine("No se acepta el numero 0 o valores negativos");
+        return 0;
     }
-
-    a = b;
-    b = c;
-    c = a + b;
-
-    return Fibonacci(x - 1);
+    else if (x == 1)
+    {
+        return 0;
+    }
+    else if (x == 2)
+    {
+        return 1;
+    }
+    else
+    {
+        return Fibonacci(x - 1) + Fibonacci(x - 2);
+    }
 }
 
-Console.WriteLine(Fibonacci(9)); // Según la posición que se le pase a la función, ella mostrará el valor de la sucesión de Fibonacci
-                                 // que se encuentra en esa posición, teniendo presente que 0 es la posición 1.
-
+Console.WriteLine(Fibonacci(5));
