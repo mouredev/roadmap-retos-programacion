@@ -1,6 +1,4 @@
-﻿using System.Timers;
-
-int Resta(int x)
+﻿int Resta(int x)
 {
     if (x == 0)
     {
