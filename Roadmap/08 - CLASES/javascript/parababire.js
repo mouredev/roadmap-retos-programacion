@@ -59,7 +59,11 @@ class Pila {
     return this.pila;
   }
   pop() {
-    return this.pila.pop();
+    if (this.pila.length === 0) {
+      return "Sin elementos";
+    } else {
+      return this.pila.pop();
+    }
   }
   size() {
     return this.pila.length;
@@ -70,6 +74,7 @@ class Pila {
 }
 
 let pila = new Pila();
+console.log(pila.pop());
 pila.push("María");
 pila.push("Luis");
 pila.push("Pedro");
