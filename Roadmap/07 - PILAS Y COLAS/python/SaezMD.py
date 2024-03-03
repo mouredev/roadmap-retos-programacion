@@ -90,16 +90,20 @@ def printUsingQueues():
     while True:
         instruction = input("Add a new document or print from the queu. (You can exit using: 'Exit'): ").lower()
         if instruction == "print":
-            toPrintNow = listToPrint.pop(0)
-            print(toPrintNow)
+            if len(listToPrint) > 0:
+                toPrintNow = listToPrint.pop(0)
+                print(f"Printing... {toPrintNow}")
+            else:
+                print("Nothing to print.")
         elif instruction == "exit":
             break
         else:
             listToPrint.append(instruction)
             print(f'"{instruction}" file added to the printer queu.')
-            print(f"Current files in the queu: {listToPrint}")
+        
+        print(f"Current files in the queu: {listToPrint}")
 
 
-#printUsingQueues()
+printUsingQueues()
 
 
