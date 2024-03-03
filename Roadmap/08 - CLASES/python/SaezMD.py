@@ -61,19 +61,19 @@ class Queue:
         return len(self.listOfObjects)
     
     def printAll(self):
-        return print(self.listOfObjects)
+        for item in self.listOfObjects:
+            print(item)
 
 d = Queue()
 d.addItem("cap01")
-print(d.listOfObjects)
 d.addItem("cap02")
-print(d.listOfObjects)
+d.addItem("cap03")
+d.addItem("cap04")
 d.removeItem()
-print(d.listOfObjects)
 print(d.lenght())
 d.printAll()
 
-class Stack:
+class Stack: #LIFO
     def __init__(self):
         self.listOfObjects = []
 
@@ -90,17 +90,18 @@ class Stack:
         return len(self.listOfObjects)
     
     def printAll(self):
-        return print(self.listOfObjects)
+        for item in reversed(self.listOfObjects):
+            print(item)
 
 s = Stack()
 s.addItem("show01")
-print(s.listOfObjects)
 s.addItem("show02")
-print(s.listOfObjects)
+s.addItem("show03")
+s.addItem("show04")
 s.removeItem()
-print(s.listOfObjects)
 print(s.lenght())
 s.printAll()
+
 
         
 
