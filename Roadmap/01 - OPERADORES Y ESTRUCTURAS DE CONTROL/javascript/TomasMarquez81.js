@@ -21,9 +21,9 @@
 // Operadores aritméticos
 console.log(`Suma: 10 + 3 = ${10 + 3}`);
 console.log(`Resta: 10 - 3 = ${10 - 3}`);
-console.log(`Multiplicacion: 10 X 3 = ${10 * 3}`);
+console.log(`Multiplicación: 10 X 3 = ${10 * 3}`);
 console.log(`Division: 9 / 3 = ${9 / 3}`);
-console.log(`Modulo: 10 % 3 = ${10 % 3}`);
+console.log(`Módulo: 10 % 3 = ${10 % 3}`);
 console.log(`Exponente: 10 ** 3 = ${10 ** 3}`);
 
 // Operadores de comparación
@@ -36,7 +36,7 @@ console.log(`Menor que: 10 < 3: ${10 < 3}`);
 console.log(`Mayor o igual que: 10 >= 3: ${10 >= 3}`);
 console.log(`Menor o igual que: 10 <= 3: ${10 <= 3}`);
 
-// Operadores logicos
+// Operadores lógicos
 console.log(
   `AND &&: 10 + 3 == 13 && 5 - 1 == 4: ${10 + 3 == 13 && 5 - 1 == 4}`
 );
@@ -50,11 +50,11 @@ my_number += 1; // Suma y asignación
 console.log(my_number);
 my_number -= 1; // Resta y asignación
 console.log(my_number);
-my_number *= 2; // Multiplicacion y asignación
+my_number *= 2; // Multiplicación y asignación
 console.log(my_number);
-my_number /= 2; // Division y asignación
+my_number /= 2; // División y asignación
 console.log(my_number);
-my_number %= 2; // Modulo y asignación
+my_number %= 2; // Módulo y asignación
 console.log(my_number);
 my_number **= 3; // Exponente y asignación
 console.log(my_number);
@@ -65,7 +65,7 @@ console.log(
   `my_number es estrictamente igual a my_new_number es: ${
     my_new_number === my_number
   }`
-); // Compara no solo el valor tambien el tipo de dato
+); // Compara no solo el valor también el tipo de dato
 my_number = "1";
 console.log(
   `my_number es estrictamente igual a my_new_number es: ${
@@ -127,7 +127,7 @@ try {
 } catch (error) {
   console.log("Error en el programa");
 } finally {
-  console.log("Se ha finalizado el manejor de excepciones");
+  console.log("Se ha finalizado el manejo de excepciones");
 }
 
 // DIFICULTAD EXTRA
