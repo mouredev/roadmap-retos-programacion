@@ -61,7 +61,7 @@ print(animals)
 
 def runWebMovement():
     listOfWebs = ["abc.es", "facebook.com", "youtube.com", "google.com"]
-    popped = []
+    #popped = []
 
     while True:
         movement = input('You can enter the webpage or enter the movement command ("back"/"forward") or "exit": ').lower()
@@ -70,16 +70,11 @@ def runWebMovement():
             break
         elif movement == "back":
             if len(listOfWebs) > 0:
-                poppedItem = listOfWebs.pop()
-                popped.append(poppedItem) 
+                listOfWebs.pop()
             else:
                 print("You can't go back anymore.")
         elif movement == "forward":
-            if len(popped) > 0:
-                listOfWebs.append(popped[0])
-                popped.pop(0)
-            else:
-                print("You can't go to the next one.")
+            print("You can't go to the next one.")
         else:
             listOfWebs.append(movement)
     
