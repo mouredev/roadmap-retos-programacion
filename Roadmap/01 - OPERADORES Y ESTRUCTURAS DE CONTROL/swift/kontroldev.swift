@@ -19,13 +19,13 @@ import Foundation
  */
 
 
-# Operadores aritméticos
-suma = 5 + 3
-resta = 10 - 2
-multiplicacion = 4 * 6
-division = 15 / 3
-modulo = 7 % 2
-potencia = 2 ** 4
+// Operadores aritméticos
+let suma = 5 + 3
+let resta = 10 - 2
+let multiplicacion = 4 * 6
+let division = 15 / 3
+let modulo = 7 % 2
+let potencia = Int(pow(2, 4))
 
 print("Operadores aritméticos:")
 print("Suma:", suma)
@@ -35,34 +35,34 @@ print("División:", division)
 print("Módulo:", modulo)
 print("Potencia:", potencia)
 
-# Operadores lógicos
-and_resultado = True and False
-or_resultado = True or False
-not_resultado = not True
+// Operadores lógicos
+let andResultado = true && false
+let orResultado = true || false
+let notResultado = !true
 
 print("\nOperadores lógicos:")
-print("AND:", and_resultado)
-print("OR:", or_resultado)
-print("NOT:", not_resultado)
+print("AND:", andResultado)
+print("OR:", orResultado)
+print("NOT:", notResultado)
 
-# Operadores de comparación
-igual = 5 == 5
-distinto = 5 != 10
-mayor = 10 > 5
-menor = 3 < 8
-mayor_o_igual = 7 >= 7
-menor_o_igual = 6 <= 6
+// Operadores de comparación
+let igual = 5 == 5
+let distinto = 5 != 10
+let mayor = 10 > 5
+let menor = 3 < 8
+let mayorOigual = 7 >= 7
+let menorOigual = 6 <= 6
 
 print("\nOperadores de comparación:")
 print("Igual:", igual)
 print("Distinto:", distinto)
 print("Mayor:", mayor)
 print("Menor:", menor)
-print("Mayor o igual:", mayor_o_igual)
-print("Menor o igual:", menor_o_igual)
+print("Mayor o igual:", mayorOigual)
+print("Menor o igual:", menorOigual)
 
-# Operadores de asignación
-x = 5
+// Operadores de asignación
+var x = 5
 x += 3
 x -= 2
 x *= 4
@@ -70,57 +70,72 @@ x /= 2
 
 print("\nOperadores de asignación:", x)
 
-# Operadores de identidad
-a = [1, 2, 3]
-b = [1, 2, 3]
-identidad = a is b
-no_identidad = a is not b
+// Operadores de identidad
+let a = [1, 2, 3]
+let b = [1, 2, 3]
+let identidad = a === b
+let noIdentidad = a !== b
 
 print("\nOperadores de identidad:")
 print("Identidad:", identidad)
-print("No identidad:", no_identidad)
+print("No identidad:", noIdentidad)
 
-# Operadores de pertenencia
-lista = [1, 2, 3, 4, 5]
-pertenencia = 3 in lista
-no_pertenencia = 6 not in lista
-
+// Operadores de pertenencia
+let lista = [1, 2, 3, 4, 5]
+let pertenencia = 3
+let noPertenencia = 6
 print("\nOperadores de pertenencia:")
-print("Pertenencia:", pertenencia)
-print("No pertenencia:", no_pertenencia)
+print("Pertenencia:", lista.contains(pertenencia))
+print("No pertenencia:", !lista.contains(noPertenencia))
 
-# Operadores de bits
-bitwise_and = 5 & 3
-bitwise_or = 5 | 3
-bitwise_xor = 5 ^ 3
-bitwise_not = ~5
-shift_izquierda = 5 << 1
-shift_derecha = 5 >> 1
+// Operadores de bits
+let bitwiseAnd = 5 & 3
+let bitwiseOr = 5 | 3
+let bitwiseXor = 5 ^ 3
+let bitwiseNot = ~5
+let shiftIzquierda = 5 << 1
+let shiftDerecha = 5 >> 1
 
 print("\nOperadores de bits:")
-print("AND:", bitwise_and)
-print("OR:", bitwise_or)
-print("XOR:", bitwise_xor)
-print("NOT:", bitwise_not)
-print("Shift izquierda:", shift_izquierda)
-print("Shift derecha:", shift_derecha)
+print("AND:", bitwiseAnd)
+print("OR:", bitwiseOr)
+print("XOR:", bitwiseXor)
+print("NOT:", bitwiseNot)
+print("Shift izquierda:", shiftIzquierda)
+print("Shift derecha:", shiftDerecha)
 
-# Estructuras de control
+// Estructuras de control
 
-# Condicionales
-if 5 > 3:
+// Condicionales
+if 5 > 3 {
     print("\nCondicionales:")
     print("5 es mayor que 3")
+}
 
-# Iterativas
+// Iterativas
 print("\nIterativas:")
-for i in range(10, 56):
-    if i % 2 == 0 and i != 16 and i % 3 != 0:
+for i in 10...55 {
+    if i % 2 == 0 && i != 16 && i % 3 != 0 {
         print(i)
+    }
+}
 
-# Excepciones
+// Excepciones
 print("\nExcepciones:")
-try:
-    resultado = 10 / 0
-except ZeroDivisionError:
+do {
+    let resultado = try dividir(dividendo: 10, divisor: 0)
+    print(resultado)
+} catch {
     print("Error: división por cero")
+}
+
+func dividir(dividendo: Int, divisor: Int) throws -> Int {
+    if divisor == 0 {
+        throw CustomError.divisionByZero
+    }
+    return dividendo / divisor
+}
+
+enum CustomError: Error {
+    case divisionByZero
+}
