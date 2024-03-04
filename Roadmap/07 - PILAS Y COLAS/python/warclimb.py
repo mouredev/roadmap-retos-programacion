@@ -39,3 +39,4 @@ def dequeue():
 enqueue("fuego")  # añadimos fuego a la cola
 dequeue()  # sacamos fuego de la cola
 
+# Extra: Simulamos el mecanismo adelante/atrás de un navegador web
