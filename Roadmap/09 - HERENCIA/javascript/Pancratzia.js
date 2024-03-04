@@ -58,3 +58,60 @@ dog.makeSound();
 
 const cat = new Cat("Tuna");
 cat.makeSound();
+
+/*******************EJERCICIO EXTRA*******************/
+
+class Employee {
+    constructor(name) {
+        this.id = Math.floor(Math.random() * 1000) + 1;
+        this.name = name;
+    }
+}
+
+class Manager extends Employee {
+    constructor(name, department) {
+        super(name);
+        this.department = department;
+        this.employeesUnderManagement = [];
+    }
+
+    assignEmployee(employee) {
+        this.employeesUnderManagement.push(employee);
+    }
+}
+
+class ProjectManager extends Manager {
+    constructor(name, department, projects) {
+        super(name, department);
+        this.projects = projects;
+    }
+
+    assignProject(project) {
+        this.projects.push(project);
+    }
+}
+
+class Programmer extends Employee {
+    constructor(name, language) {
+        super(name);
+        this.language = language;
+    }
+
+    develop() {
+        console.log(`${this.name} is developing in ${this.language}.`);
+    }
+}
+
+
+const manager1 = new Manager('Arthuro Dugarte', 'Development');
+const projectManager1 = new ProjectManager('Laura Ortega', 'Development', ['Project A']);
+const programmer1 = new Programmer('Tiffany Ortega', 'JavaScript');
+
+manager1.assignEmployee(projectManager1);
+projectManager1.assignEmployee(programmer1);
+
+console.log(manager1);
+console.log(projectManager1);
+console.log(programmer1);
+
+programmer1.develop();
