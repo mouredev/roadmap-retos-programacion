@@ -1,4 +1,4 @@
-# #09 HERENCIA
+# #09 HERENCIA Y POLIMORFISMO
 > #### Dificultad: Media | Publicación: 26/02/24 | Corrección: 04/03/24
 
 ## Ejercicio
