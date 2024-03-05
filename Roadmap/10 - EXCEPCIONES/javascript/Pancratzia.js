@@ -30,5 +30,31 @@ try{
 
 console.log("El programa sigue con normalidad");
 
+/******************* EXTRA *******************/
 
+function processParams(param1, param2) {
+    try {
+        if (typeof param1 !== 'number' || typeof param2 !== 'number') {
+            throw new TypeError('Los parámetros deben ser números');
+        }
+
+        if (param1 === 0 || param2 === 0) {
+            throw new Error('Los parámetros no pueden ser cero');
+        }
+
+        if (param1 < 0 || param2 < 0) {
+            throw new Error('Valores negativos no permitidos');
+        }
+
+        console.log('No se ha producido ningún error');
+    } catch (error) {
+        console.error('Tipo de error:', error instanceof Error ? error.name : 'Error personalizado');
+        console.error('Mensaje de error:', error.message || error);
+    }
+}
+
+processParams(10, 20); // No se produce ningún error
+processParams(0, 30); // Lanza una excepción por división por cero
+processParams(-5, 10); // Lanza una excepción personalizada por valores negativos
+processParams('abc', 10); // Lanza una excepción por tipo de parámetro incorrecto
 
