@@ -16,3 +16,19 @@
  * - Imprime si no se ha producido ningún error.
  * - Imprime que la ejecución ha finalizado. 
  */
+
+/******************* PARTE 1 *******************/
+const a = 10;
+
+try{
+    console.log(a/b);
+} catch(error){
+    console.log(error); //Se mostrará el error, debido a que la variable "b" no ha sido declarada
+} finally{
+    console.log("La ejecución ha finalizado");
+}
+
+console.log("El programa sigue con normalidad");
+
+
+
