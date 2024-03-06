@@ -48,4 +48,20 @@ no_index(5)
  * - Imprime si no se ha producido ningún error.
  * - Imprime que la ejecución ha finalizado.''' 
 
- 
+ def test_excepciones(param):
+    try:
+        if param == 1:
+            raise ValueError("Error 1")
+        elif param == 2:
+            raise TypeError("Error 2")
+        else:
+            print("Todo bien!")
+
+    except ValueError as e:
+        print(f"Error: {e}")
+
+    except TypeError as e:
+        print(f"Error: {e}")
+
+    finally:
+        print("Ejecución finalizada")
