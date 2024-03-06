@@ -3,6 +3,11 @@
 ' ║ GitHub: https://github.com/Kenysdev ║
 ' ║ 2024 -  VB.NET                      ║
 ' ╚═════════════════════════════════════╝
+'-----------------------------------------------
+'EXCEPCIONES
+'-----------------------------------------------
+'- Representan una forma de controlar el comportamiento de un programa
+'cuando se produce un error.
 Module Program
     Sub Main()
         Dim a As Integer = 7
