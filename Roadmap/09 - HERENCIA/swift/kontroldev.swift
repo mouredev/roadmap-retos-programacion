@@ -65,85 +65,85 @@ miGato.hacerSonido() // Salida: El gato ONYX hace miau.
 
 // MARK: - DIFICULTAD EXTRA (opcional):
 // Definición del protocolo Empleado
-protocol Empleado {
-    var id: Int { get }
-    var nombre: String { get }
-    
-    func trabajar()
-}
-
-// Implementación del protocolo para el empleado base
-extension Empleado {
-    func trabajar() {
-        print("\(nombre) está trabajando.")
-    }
-}
-
-// Definición de la estructura para los gerentes
-struct GerenteStruct: Empleado {
+class Employee {
     var id: Int
-    var nombre: String
-    var empleadosACargo: [Empleado]
+    var name: String
+    var employees: [Employee]
     
-    init(id: Int, nombre: String, empleadosACargo: [Empleado] = []) {
+    init(id: Int, name: String) {
         self.id = id
-        self.nombre = nombre
-        self.empleadosACargo = empleadosACargo
+        self.name = name
+        self.employees = []
     }
     
-    mutating func asignarEmpleado(_ empleado: Empleado) {
-        empleadosACargo.append(empleado)
-        print("\(nombre) ha asignado a \(empleado.nombre) a su equipo.")
+    func add(employee: Employee) {
+        self.employees.append(employee)
     }
     
-    func trabajar() {
-        print("\(nombre) está gestionando el equipo.")
+    func printEmployees() {
+        for employee in self.employees {
+            print(employee.name)
+        }
     }
 }
 
-// Definición de la clase GerenteProyecto
-class GerenteProyecto: Empleado {
-    var id: Int
-    var nombre: String
-    var proyectos: [String]
-    
-    init(id: Int, nombre: String, proyectos: [String]) {
-        self.id = id
-        self.nombre = nombre
-        self.proyectos = proyectos
-    }
-    
-    func trabajar() {
-        print("\(nombre) está supervisando proyectos.")
+class Manager: Employee {
+    func coordinateProjects() {
+        print("\(self.name) está coordinando todos los proyectos de la empresa.")
     }
 }
 
-// Definición de la clase Programador
-class Programador: Empleado {
-    var id: Int
-    var nombre: String
-    var lenguajeDominante: String
+class ProjectManager: Employee {
+    var project: String
     
-    init(id: Int, nombre: String, lenguajeDominante: String) {
-        self.id = id
-        self.nombre = nombre
-        self.lenguajeDominante = lenguajeDominante
+    init(id: Int, name: String, project: String) {
+        self.project = project
+        super.init(id: id, name: name)
     }
     
-    func trabajar() {
-        print("\(nombre) está programando en \(lenguajeDominante).")
+    func coordinateProject() {
+        print("\(self.name) está coordinando su proyecto.")
     }
 }
 
-// Ejemplo de uso
-var gerente = GerenteStruct(id: 1, nombre: "Roswell")  // 👈 este es mi jefe Roswell 😋 🫣 👀
-let gerenteProyecto = GerenteProyecto(id: 2, nombre: "MoureDev", proyectos: ["Proyecto A", "Proyecto B"])
-let programador = Programador(id: 3, nombre: "kontroldev", lenguajeDominante: "Swift")
+class Programmer: Employee {
+    var language: String
+    
+    init(id: Int, name: String, language: String) {
+        self.language = language
+        super.init(id: id, name: name)
+    }
+    
+    func code() {
+        print("\(self.name) está programando en \(self.language).")
+    }
+    
+    override func add(employee: Employee) {
+        print("Un programador no tiene empleados a su cargo. \(employee.name) no se añadirá.")
+    }
+}
 
-gerente.asignarEmpleado(gerenteProyecto)
-gerente.asignarEmpleado(programador)
+let myManager = Manager(id: 1, name: "MoureDev")
+let myProjectManager = ProjectManager(id: 2, name: "Brais", project: "Proyecto 1")
+let myProjectManager2 = ProjectManager(id: 3, name: "Moure", project: "Proyecto 2")
+let myProgrammer = Programmer(id: 4, name: "Kontrol", language: "Swift")
+let myProgrammer2 = Programmer(id: 5, name: "Roswell", language: "Cobol")
+let myProgrammer3 = Programmer(id: 6, name: "Bushi", language: "klotin 😜")
+let myProgrammer4 = Programmer(id: 7, name: "lordzzz", language: "Python")
 
-// Llamada a los métodos trabajar específicos de cada empleado
-gerente.trabajar()
-gerenteProyecto.trabajar()
-programador.trabajar()
+myManager.add(employee: myProjectManager)
+myManager.add(employee: myProjectManager2)
+
+myProjectManager.add(employee: myProgrammer)
+myProjectManager.add(employee: myProgrammer2)
+myProjectManager2.add(employee: myProgrammer3)
+myProjectManager2.add(employee: myProgrammer4)
+
+myProgrammer.add(employee: myProgrammer2)
+
+myProgrammer.code()
+myProjectManager.coordinateProject()
+myManager.coordinateProjects()
+myManager.printEmployees()
+myProjectManager.printEmployees()
+myProgrammer.printEmployees()
