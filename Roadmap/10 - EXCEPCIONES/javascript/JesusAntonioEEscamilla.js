@@ -28,13 +28,18 @@ try {
 //---EJEMPLOS---
 //  Hacemos un ejemplo de 10/0 para demostrar el try-catch
 try {
+    //  Vemos la operación ejecución
     let resultado = 10 / 0;
+    //  Aquí validamos que no se 0
     if (resultado == 0) {
+        //  Este es un error personalizado
         throw Error("No se puede dividir por 0");
     } else {
+        //  Si no es 0 entonces que lo imprima
         console.log("El resultado de la division es:", resultado);
     }
 } catch (error) {
+    //Error si algo sale mal en el TRY
     console.error("Ha ocurrido un error:", error.message);
 }
 
