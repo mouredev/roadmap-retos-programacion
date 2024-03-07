@@ -133,7 +133,26 @@ end
   |                                                                        |
   |                         Stack Implementations                          |
   |                                                                        |
-  |  TODO: Fill this section during a future review.                       |
+  |  The most common implementation of a stack is a singly-linked list.    |
+  |  As a quick reminder: a SLL is a data structure formed with nodes      |
+  |  that hold a value and point to the next node which can calso be       |
+  |  a null terminator to signal that the end of the list was reached.     |
+  |    In imperative languages we can just create a [struct] that lives    |
+  |  in a random place in memory and points to another node or [null] by   |
+  |  reference; or they are implemented with an array which is a mutable   |
+  |  and sequential (in RAM) data structure with finite size.              |
+  |  Now, in functional programming languages that are able to define      |
+  |  variant types such as Haskell, OCaml, Rust, etc; the type can be      |
+  |  defined as a recursive parameterized variant similar to that of a     |
+  |  singly linked list but with limited operations and semantics.         |
+  |                                                                        |
+  |  Using an [Array] as the underlying type introduces a new concern:     |
+  |  dealing with the finite nature of it. We can just leave the stack     |
+  |  finite and throw an exception (or return an [Error] result) when      |
+  |  the client tries to push elements into a full stack. Or we could      |
+  |  implement a similar mechanism to the [ArrayList] type in {e Java}     |
+  |  which automatically replaces the original array with a new one of     |
+  |  greater length and all the elements of the original copied.           |
   |                                                                        |
   \------------------------------------------------------------------------/*)
 
@@ -251,7 +270,44 @@ end
   |                                                                        |
   |                         Queue Implementations                          |
   |                                                                        |
-  |  TODO: Fill this section during a future review.                       |
+  |  Queues are a little bit harder to implement because inserting at the  |
+  |  rear of a collection needs to be a constant time operation just as    |
+  |  removing and accessing the front of it. There are 2 main ways of      |
+  |  doing it and the first one is to have either 2 lists or a list and a  |
+  |  reference to the last node. Having 2 lists achieves immutability      |
+  |  at the cost of having to reverse the rear every time an element is    |
+  |  {e dequeued}; and having a list as the front along with a reference   |
+  |  to its last element as the rear achieves constant time operations at  |
+  |  the very small cost of having to manage pointers and memory in low    |
+  |  level languages, and having to update references in high level        |
+  |  imperative languages. Thankfully, OCaml provides mutable record       |
+  |  fields which allow us to implement queues the imperative way.         |
+  |                                                                        |
+  |  Using arrays, just like with stacks, makes things a bit easier but    |
+  |  we still have to solve the limited length problem and in order not    |
+  |  to waste blocks, we need to implement it as a {b circular array}.     |
+  |                                                                        |
+  |            ┌────R───────────F───────────────────┐                      |
+  |            │  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗ │  F=Front             |
+  |            └─>║ 9 ║   ║   ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║─┘  R=Rear              |
+  |               ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝                        |
+  |                 0   1   2   3   4   5   6   7                          |
+  |                                                                        |
+  |               i=0               As the diagram illustrates, there is   |
+  |              ┌───┐              really nothing circular about the      |
+  |        i=7   │ 9 │   i=1        array's shape. The name comes from     |
+  |       ┌───┐  └───┘  ┌───┐       the use of the {e modulo} operator     |
+  |       │ 8 │         │   │       to compute the index of the next       |
+  |   i=6 └───┘         └───┘ i=2   block to enqueue an element into.      |
+  |  ┌───┐                   ┌───┐                                         |
+  |  │ 7 │                   │   │  The modulo operator will return 0 if   |
+  |  └───┘ i=5           i=3 └───┘  the next index is equal to the length  |
+  |       ┌───┐         ┌───┐       of the array, thus giving us the       |
+  |       │ 6 │   i=4   │ 4 │       illusion of a cyclic iteration.        |
+  |       └───┘  ┌───┐  └───┘       When the rear index [+1] is equal to   |
+  |              │ 5 │              the front index, we say it's full.     |
+  |              └───┘              The rear and the front indices are     |
+  |                                 equal at the start (empty state).      |
   |                                                                        |
   \------------------------------------------------------------------------/*)
 
@@ -273,7 +329,6 @@ module Queue : FIFO = struct
 
   let enqueue elt q =
     let to_insert = Node { value = elt; next = Empty } in
-    (* TODO: Replace with an if statement and is_empty. *)
     (match q.rear with
      | Empty -> q.front <- to_insert
      | Node last -> last.next <- to_insert);
@@ -320,67 +375,155 @@ module Queue : FIFO = struct
   let size q = q.length
   let is_empty q = size q = 0
 end
-;;
 
-let test_queue = Queue.create () in
-let f_exec_count = ref 0 in
-let iteration_values : int list ref = ref [] in
-let open Queue in
-begin
-  (* A newly created queue:
+module CircularQueue : sig
+  include FIFO
 
-     - Must be empty by default.
-     - Must return [None] if peeked and dequeued.
-     - Must have a size of 0.
-     - Must not be iterated with a function [f]. *)
-  assert (is_empty test_queue);
-  assert (front test_queue = None);
-  assert (dequeue test_queue = None);
-  assert (size test_queue = 0);
-  iter ~f:(fun _ -> incr f_exec_count) test_queue;
-  assert (!f_exec_count = 0);
-  (* After enqueueing one element, the queue:
+  val enqueue : 'a -> 'a t -> (unit, 'a) result
 
-     - Must not be empty.
-     - Must return [Some 'a] if peeked at.
-     - Must have a size of 1. *)
-  enqueue 1 test_queue;
-  assert (is_empty test_queue = false);
-  assert (front test_queue = Some 1);
-  assert (size test_queue = 1);
-  (* After enqueueing nine more elements, the queue:
+  (** [create ?len x] is a mutable circular queue of maximum size [len]. The
+      initialization process requires you to pass an placeholder value [x] of
+      type ['a] to fill the underlying {e Array} of type ['a array]. If the
+      optional argument [len] is not provided, it defaults to [10]. *)
+  val create : ?len:int -> 'a -> 'a t
 
-     - Must return the first insertion (1) if peeked at.
-     - Must iterate its elements in order of first to last.
-     - Must have a size of 10. *)
-  for i = 2 to 10 do
-    enqueue i test_queue
-  done;
-  assert (front test_queue = Some 1);
-  iter ~f:(fun n -> iteration_values := n :: !iteration_values) test_queue;
-  assert (!iteration_values = [ 10; 9; 8; 7; 6; 5; 4; 3; 2; 1 ]);
-  assert (size test_queue = 10);
-  (* After dequeueing once, the queue:
+  (** [is_full q] returns [true] if there is no more space for more elements to
+      be enqueued into [q]'s rear. [false] is returned otherwise. *)
+  val is_full : 'a t -> bool
+end = struct
+  type 'a t =
+    { mutable front : int
+    ; mutable rear : int
+    ; elements : 'a array
+    ; max_size : int
+    }
 
-     - Must have returned and deleted the first element.
-     - Must now have a size of 9.
-     - Peeking it returns the second element (2). *)
-  let dequeued = dequeue test_queue in
-  assert (dequeued = Some 1);
-  assert (size test_queue = 9);
-  assert (front test_queue = Some 2);
-  (* After dequeueint nine times, the queue:
+  let create ?(len = 10) x =
+    let max_size = if len < 2 then 2 else len in
+    { max_size; front = -1; rear = -1; elements = Array.make max_size x }
+  ;;
 
-     - Must have returned the dequeued elements in order.
-     - Must now be empty and have size of 0. *)
-  let dequeue_list =
-    Seq.(
-      init 9 Int.succ
-      |> fold_left (fun acc _ -> (dequeue test_queue |> Option.get) :: acc) [])
-  in
-  assert (dequeue_list = [ 10; 9; 8; 7; 6; 5; 4; 3; 2 ]);
-  assert (is_empty test_queue && size test_queue = 0)
+  let is_empty q = q.front = -1 && q.rear = -1
+  let is_full q = (q.rear + 1) mod q.max_size = q.front
+
+  let clear q =
+    q.front <- -1;
+    q.rear <- -1
+  ;;
+
+  let enqueue elt q =
+    if is_full q
+    then Error elt
+    else begin
+      if not (is_empty q)
+      then q.rear <- (q.rear + 1) mod q.max_size
+      else begin
+        q.front <- 0;
+        q.rear <- 0
+      end;
+      q.elements.(q.rear) <- elt;
+      Ok ()
+    end
+  ;;
+
+  let dequeue q =
+    if is_empty q
+    then None
+    else begin
+      let dequeued = Some q.elements.(q.front) in
+      if q.front = q.rear
+      then clear q
+      else q.front <- (q.front + 1) mod q.max_size;
+      dequeued
+    end
+  ;;
+
+  (* The 2nd conditional branch below can be simplified to:
+     [1 + q.rear - q.front + q.max_size * Bool.to_int (q.front > q.rear) ]
+     ----------------------------------------------------------------------- *)
+  let size q =
+    if is_empty q
+    then 0
+    else if q.front <= q.rear
+    then q.rear - q.front + 1
+    else q.max_size - q.front + q.rear + 1
+  ;;
+
+  let iter ~f q =
+    if not (is_empty q)
+    then
+      for i = 0 to size q - 1 do
+        f q.elements.((q.front + i) mod q.max_size)
+      done
+    else ()
+  ;;
+
+  let front q = if is_empty q then None else Some q.elements.(q.front)
 end
+
+let () =
+  let q = Queue.create () in
+  (* let q = CircularQueue.create 0 in *)
+  let f_exec_count = ref 0 in
+  let iteration_values : int list ref = ref [] in
+  let open Queue in
+  (* let open CircularQueue in *)
+  begin
+    (* A newly created queue:
+
+       - Must be empty by default.
+       - Must return [None] if peeked and dequeued.
+       - Must have a size of 0.
+       - Must not be iterated with a function [f]. *)
+    assert (is_empty q);
+    assert (front q = None);
+    assert (dequeue q = None);
+    assert (size q = 0);
+    iter ~f:(fun _ -> incr f_exec_count) q;
+    assert (!f_exec_count = 0);
+    (* After enqueueing one element, the queue:
+
+       - Must not be empty.
+       - Must return [Some 'a] if peeked at.
+       - Must have a size of 1. *)
+    enqueue 1 q;
+    assert (is_empty q = false);
+    assert (front q = Some 1);
+    assert (size q = 1);
+    (* After enqueueing nine more elements, the queue:
+
+       - Must return the first insertion (1) if peeked at.
+       - Must iterate its elements in order of first to last.
+       - Must have a size of 10. *)
+    for i = 2 to 10 do
+      enqueue i q
+    done;
+    assert (front q = Some 1);
+    iter ~f:(fun n -> iteration_values := n :: !iteration_values) q;
+    assert (!iteration_values = [ 10; 9; 8; 7; 6; 5; 4; 3; 2; 1 ]);
+    assert (size q = 10);
+    (* After dequeueing once, the queue:
+
+       - Must have returned and deleted the first element.
+       - Must now have a size of 9.
+       - Peeking it returns the second element (2). *)
+    let dequeued = dequeue q in
+    assert (dequeued = Some 1);
+    assert (size q = 9);
+    assert (front q = Some 2);
+    (* After dequeueint nine times, the queue:
+
+       - Must have returned the dequeued elements in order.
+       - Must now be empty and have size of 0. *)
+    let dequeue_list =
+      Seq.(
+        init 9 Int.succ
+        |> fold_left (fun acc _ -> (dequeue q |> Option.get) :: acc) [])
+    in
+    assert (dequeue_list = [ 10; 9; 8; 7; 6; 5; 4; 3; 2 ]);
+    assert (is_empty q && size q = 0)
+  end
+;;
 
 (*/------------------------------------------------------------------------\
   |                                                                        |
@@ -425,7 +568,6 @@ module BrowserExample = struct
       (Stack.size future)
   ;;
 
-  (* TODO: Find a way to make this function's code less DRY. *)
   let dispatch h action =
     begin
       match action with
@@ -487,9 +629,8 @@ module BrowserExample = struct
     end
   ;;
 end
-;;
 
-BrowserExample.run ()
+(* BrowserExample.run () *)
 (* Output of the example scenario:
 
    Mr. Moure is done with today's work. Time for some web browsing!
@@ -537,4 +678,46 @@ BrowserExample.run ()
    └───────> Web Browsing History: 2 [◀] - [▶] 1
 *)
 
-(* TODO: Complete the printer exercise. *)
+module PrinterExample = struct
+  let printer = CircularQueue.create ~len:5 ""
+
+  let run () =
+    print_endline "A shared printer sits on a desk ready to be used.";
+    print_endline
+      "One of the officer workers decides to print [2024Q1report.xlsx].";
+    Result.get_ok @@ CircularQueue.enqueue "2024Q1report.xlsx" printer;
+    print_endline
+      "Shortly after that, before the printer even begins to print the";
+    print_endline
+      "previous document, the CEO queues [vacation.pdf] and [vendor.docx]!";
+    Result.get_ok @@ CircularQueue.enqueue "vacation.pdf" printer;
+    Result.get_ok @@ CircularQueue.enqueue "vendor.docx" printer;
+    let dequeued = CircularQueue.dequeue printer in
+    printf
+      "Printer> Document [%s] finished printing.\n"
+      (Core.Option.value_exn dequeued);
+    print_endline "Printer> Here's the printing queue:";
+    CircularQueue.iter ~f:print_endline printer;
+    print_endline "The rest of the queue finishes printing.";
+    while CircularQueue.dequeue printer <> None do
+      ()
+    done;
+    print_endline "5 more documents are queued, making the queue full...";
+    for i = 1 to 5 do
+      Result.get_ok
+      @@ CircularQueue.enqueue (sprintf "document%d.pdf" i) printer
+    done;
+    print_endline "Printer> Here's the printing queue:";
+    CircularQueue.iter ~f:print_endline printer;
+    print_endline "then, the CFO wants to queue [payroll.xls] but she can't.";
+    begin
+      match CircularQueue.enqueue "payroll.xls" printer with
+      | Error doc ->
+        printf "Printer> ERROR: Could not enequeue [%s], queue is full.\n" doc
+      | Ok () -> ()
+    end
+  ;;
+end
+;;
+
+PrinterExample.run ()
