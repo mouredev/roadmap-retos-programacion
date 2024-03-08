@@ -24,6 +24,7 @@ def division(num1, num2):
     finally:
         print("Ejecución finalizada")
 
+# Fuerzo error de índice no existente
 def no_index(posicion):
     try:
         lista = [1,2,3]
@@ -35,9 +36,6 @@ def no_index(posicion):
     finally:
         print("Ejecución finalizada")
 
-division(10,4)
-no_index(5)
-
 ''' DIFICULTAD EXTRA (opcional):
  * Crea una función que sea capaz de procesar parámetros, pero que también
  * pueda lanzar 3 tipos diferentes de excepciones (una de ellas tiene que
@@ -48,20 +46,43 @@ no_index(5)
  * - Imprime si no se ha producido ningún error.
  * - Imprime que la ejecución ha finalizado.''' 
 
- def test_excepciones(param):
+# Función que lanza excepciones personalizadas
+def test_excepciones(param):
     try:
+        # comprobamos el numero que se pasa por parametro
         if param == 1:
-            raise ValueError("Error 1")
+            # incluimos un mensaje en el error
+            raise ValueError("ValueError: La función espera un valor determinado pero recibe otro.")
         elif param == 2:
-            raise TypeError("Error 2")
+            raise TypeError("TypeError: El tipo de dato no es el esperado.")
+        elif param == 3:
+            raise Exception("Exception: Error general.")
+        elif param == 4:
+            raise IndexError("IndexError: El índice no existe.")
         else:
             print("Todo bien!")
 
+    # Capturamos los errores
     except ValueError as e:
-        print(f"Error: {e}")
+        print(f"Error! {e}")
 
     except TypeError as e:
-        print(f"Error: {e}")
+        print(f"Error! {e}")
+
+    except Exception as e:
+        print(f"Error! {e}")
+    
+    except IndexError as e:
+        print(f"Error! {e}")
 
     finally:
         print("Ejecución finalizada")
+
+# vamos a probar!
+if __name__ == "__main__":
+    # Ejercicio manejo de excepciones
+    division(10, 0)
+    no_index(3)
+    
+    # EXTRA
+    test_excepciones(2)
