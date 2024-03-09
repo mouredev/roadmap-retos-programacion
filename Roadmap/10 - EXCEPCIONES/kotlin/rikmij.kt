@@ -21,6 +21,8 @@ fun calculator(n1: Int, n2: Int) {
             4 -> println(n1 / n2)
             else -> println("Este número está fuera del rango. Ingrese un número del 1 al 4")
         }
+        println("Felicidades, no ha habido ningún error")
+        
     }catch (e: ArithmeticException){
         println("N")
     }
