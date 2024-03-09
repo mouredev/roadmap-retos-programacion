@@ -61,6 +61,24 @@ public class GustavoGomez19 {
       System.out.println("Nombre persona 1 modidifado por método: " + persona1.nombre);
       System.out.println("Nombre persona 2 modidifado por método: " + persona2.nombre);
 
+      // Por valor
+      int num1 = 10;
+      int num2 = 7;
+      System.out.println("Valores originales: ");
+      System.out.println("num1: " + num1 + ", num2: " + num2);
+      int[] cambio = cambioPorValor(num1, num2);
+      System.out.println("Variables intercambiadas: ");
+      System.out.println("num1: " + cambio[0] + " - num2: " + cambio[1]);
+
+      // Por referencia
+      int[] c = {17};
+      int[] d = {19};
+      System.out.println("Variables originales");
+      System.out.println("c[0] " + c[0] + " | " + "d[0] " + d[0]);
+      int[] e = cambioPorReferencia(c, d);
+      System.out.println("Variables intercambiadas");
+      System.out.println("c[0] " + e[0] + " | " + "d[0] " + e[0]);
+
    }
 
    // Método para cambiar el valor de la variable copia
@@ -73,5 +91,31 @@ public class GustavoGomez19 {
    public static String cambioDeValorPorReferencia(String nombre) {
       return nombre;
    }
+
+   /* Desafio dificultad extra: Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
+    * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
+        Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
+        se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
+        variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
+        Comprueba también que se ha conservado el valor original en las primeras.
+    */
+
+    // Por valor
+    
+
+    public static int[] cambioPorValor(int num1, int num2){
+      int aux = num1;
+      num1 = num2;
+      num2 = aux;
+      return new int[] {num1, num2};
+    }
+
+    // Por referencia
+    public static int[] cambioPorReferencia(int[]a, int[]b){
+      int aux = a[0];
+      a[0] = b[0];
+      b[0] = aux;
+      return new int[] {a[0], b[0]};
+    }
 
 }
