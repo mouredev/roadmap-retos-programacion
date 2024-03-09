@@ -24,7 +24,7 @@ fun calculator(n1: Int, n2: Int) {
         println("Felicidades, no ha habido ningún error")
         
     }catch (e: ArithmeticException){
-        println("N")
+        println("Ha habido un fallo con las operaciones. Recuerda que no se puede dividire entre 0")
     }
     catch (e: NoInputError){
         println("No has introducido nada. Debes introducir algo")
