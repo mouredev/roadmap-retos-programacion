@@ -32,27 +32,31 @@ const char* MyExceptionType::what() const throw() {
 	return "Mi propia excepción";
 };
 
-void testException (int throwOutOfRangeException, 
-	int throwIntException, 
-	int throwMyExceptionType) throw () {
+/*
+1 throw std::out_of_range& myOutOfRange
+2 throw int exception
+4 throw MyExceptionType
+others no exception thrown
+*/
+void testException (int typeException) {
 
 	std::vector<int> myVector;
 	MyExceptionType myException;
 	
-	if (throwOutOfRangeException) {
+	if (typeException == 1) {
 
 		std::cout << myVector.at (5) << "\n";
 
-	} else if (throwIntException) {
+	} else if (typeException == 2) {
 
-		throw (2);
+		throw 2;
 
-	} else if (throwMyExceptionType) {
+	} else if (typeException == 4) {
 
 		throw myException;
 	};
 
-	std::cout << "Fin funcion testException sin errores";
+	std::cout << "Fin funcion testException sin errores\n";
 };
 
 int main() {
@@ -70,15 +74,23 @@ int main() {
 
 	std::cout << "Programa continua\n";
 
-	try {
-		testException (0, 0 , 1);
-	} catch (std::out_of_range& myOutOfRange) {
-		std::cout << myOutOfRange.what() << "\n";
-	} catch (MyExceptionType& myExceptionType) {
-		std::cout << myExceptionType.what() << "\n";
-	} catch (int& i) {
-		std::cout << "Excepcion int " << i << "\n";
-	};
+	int typeException = 1;
+
+	for (int i = 0; i < 4; i++) {
+		try {
+			testException (typeException);
+			std::cout << "Sin error al llamar a testException\n";
+		} catch (std::out_of_range& myOutOfRange) {
+			std::cout << myOutOfRange.what() << "\n";
+		} catch (MyExceptionType& myExceptionType) {
+			std::cout << myExceptionType.what() << "\n";
+		} catch (int& i) {
+			std::cout << "Excepcion int " << i << "\n";
+		};
+
+		typeException <<= 1;
+
+	}
 
 	std::cout << "Fin\n";
 }
