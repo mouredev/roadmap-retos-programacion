@@ -18,7 +18,7 @@
 """
 Este es otro
 tipo de comentario
-en Python
+en Python.
 """
 
 #3. Variable y constante
