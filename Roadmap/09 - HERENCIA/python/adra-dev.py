@@ -30,6 +30,8 @@ Herencia:
     definan esos metodos y atributos.
 """
 
+# Superclase
+
 class Animal():
 
     def __init__(self, name: str, age: int, species: str):
@@ -46,6 +48,7 @@ class Animal():
     def describe(self):
         print("Soy un Animal del tipo", type(self).__name__)
 
+# Subclases
 
 class Dog(Animal):
 
@@ -60,9 +63,9 @@ class Dog(Animal):
         print("Camina en 4 patas")
 
     def describe(self):
-        return super().describe()
+        print(f"Soy un Animal del tipo {self.species},de la raza {self.breed}")
     
-
+        
 class Cat(Animal):
 
     def __init__(self, name: str, age:int, breed: str):
@@ -76,17 +79,19 @@ class Cat(Animal):
         print("Camina en 4 patas")
 
     def describe(self):
-        return super().describe()
+        print(f"Soy un Animal del tipo {self.species}, de la raza {self.breed}")
 
+def print_sound(animal: Animal):
+    animal.sound()
 
 my_animal = Animal("Bolo", "chango", 11)
-my_animal.sound()
-my_animal2 = Dog("Cleo", 7, "Westie")
-my_animal2.describe()
-my_animal2.sound()
-my_animal3 = Cat("Silvestre", 12, "Spynx")
-my_animal3.describe()
-my_animal3.sound()
+print_sound(my_animal)
+my_dog = Dog("Cleo", 7, "Westie")
+my_dog.describe()
+print_sound(my_dog)
+my_cat = Cat("Silvestre", 12, "Spynx")
+my_cat.describe()
+print_sound(my_cat)
 
 
 """
@@ -97,6 +102,7 @@ class Employee():
     def __init__(self, ID:int, name:str):
         self.ID = ID
         self.name = name
+        self.employees = []
         self.jobtitle = type(self).__name__
         
 
@@ -104,75 +110,65 @@ class Employee():
             mesage = f"Nombre: {self.name} | ID: {self.ID} | JT: {self.jobtitle} "
             print(mesage)
 
+    def add(self, employee):
+        self.employees.append(employee)
 
-class Programer(Employee):
+    def print_employees(self):
+        for employee in self.employees:
+            print(employee.name)
 
-    def __init__(self, ID:int, name:str):
-        super().__init__(ID, name)
-        self.jobtitle = type(self).__name__
-
-    def program(self):
-        print("Programar")
-        
-
-    def print(self):
-            mesage = f"Nombre: {self.name} | ID: {self.ID} | JT: {self.jobtitle} "
-            print(mesage)
- 
 
 class Manager(Employee):
     
-    def __init__(self, ID: int, name: str):
-        super().__init__(ID, name)
-        self.jobtitle = type(self).__name__
-        self.team = []
-
-    def manage(self):
-        print("Generar facturas, Generar sueldos, Administar proyectos, Administrar empleados")
+    def coordinate_projects(self):
+        print(f"{self.name} está coordinando todos los proyectos de la empresa.")
 
     def print(self):
         return super().print()
-    
-    def groups(self, *args):
-        self.team.append(args)
-    
-    def in_charge(self):
-        for person in self.team:
-            print(person)
 
 
-class Proyect_Manager(Manager, Employee):
+class ProjectManager(Manager, Employee):
     
-    def __init__(self, ID: int, name: str):
+    def __init__(self, ID: int, name: str, project: str):
+        super().__init__(ID, name)
+        self.project = project
+
+    def coordinate_project(self):
+        print(f"{self.name} está coordinando su proyecto.")
+
+
+class Programmer(Employee):
+
+    def __init__(self, ID:int, name:str, language):
         super().__init__(ID, name)
         self.jobtitle = type(self).__name__
-        self.team = []
+        self.language = language
 
-    def manage(self):
-        mesage = "Administar proyectos, Administrar empleados"
-        print(mesage)
 
-    def print(self):
-        return super().print()
-    
-    def groups(self, *args):
-        return super().groups(args)
-    
-    def in_charge(self):
-        return super().in_charge()
+    def code(self):
+        print(f"{self.name} está programando en {self.language}.")
+
+    def add(self, employee: Employee):
+        print(
+            f"Un programador no tiene empleados a su cargo. {employee.name} no se añadirá.")
+        
+
        
     
 print()
-my_emp = Programer(1, "Adrian")
+my_emp = Programmer(1, "Adrian", "python")
 my_emp.print()
-my_emp.program()
-my_emp2 = Proyect_Manager(2, "Fernando")
+my_emp.code()
+
+my_emp2 = ProjectManager(2, "Fernando", "Proyecto1")
 my_emp2.print()
-my_emp2.manage()
-my_emp2.groups(my_emp)
-my_emp2.in_charge()
+my_emp2.add(my_emp)
+my_emp2.coordinate_project()
+
+my_emp.add(my_emp2)
 my_emp3 = Manager(3, "Brais")
 my_emp3.print()
-my_emp3.manage()
-my_emp3.groups(my_emp, my_emp2)
-my_emp3.in_charge()
+my_emp3.coordinate_projects()
+my_emp3.add(my_emp)
+my_emp3.add(my_emp2)
+my_emp3.print_employees()
