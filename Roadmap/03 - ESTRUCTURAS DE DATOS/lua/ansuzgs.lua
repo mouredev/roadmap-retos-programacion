@@ -53,6 +53,68 @@ for i, v in ipairs(personas) do
   print(i, v.nombre, v.apellido)
 end
 
+--[[
+--EXTRA
+--]]
+
+-- Agenda
+
+agenda = {}
+
+function agregar_contacto(nombre, telefono)
+  agenda[nombre] = telefono
+end
+
+function buscar_contacto(nombre)
+  return agenda[nombre]
+end
+
+function actualizar_contacto(nombre, telefono)
+  agenda[nombre] = telefono
+end
+
+function eliminar_contacto(nombre)
+  agenda[nombre] = nil
+end
+
+-- bucle infinito
+while true do
+  print("1. Agregar contacto")
+  print("2. Buscar contacto")
+  print("3. Actualizar contacto")
+  print("4. Eliminar contacto")
+  print("5. Salir")
+  print("Opcion:")
+  opcion = io.read("*n", "*l")
+  if opcion == 1 then
+    print("Nombre:")
+    nombre = io.read()
+    print("Telefono: ")
+    telefono = io.read()
+    agregar_contacto(nombre, telefono)
+  elseif opcion == 2 then
+    print("Nombre: ")
+    nombre = io.read()
+    telefono = buscar_contacto(nombre)
+    if telefono then
+      print("Telefono: " .. telefono)
+    else
+      print("No se encontro el contacto")
+    end
+  elseif opcion == 3 then
+    print("Nombre: ")
+    nombre = io.read()
+    print("Telefono: ")
+    telefono = io.read()
+    actualizar_contacto(nombre, telefono)
+  elseif opcion == 4 then
+    print("Nombre: ")
+    nombre = io.read()
+    eliminar_contacto(nombre)
+  elseif opcion == 5 then
+    break
+  end
+end
 
 
 
