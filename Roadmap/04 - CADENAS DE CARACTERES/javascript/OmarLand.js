@@ -29,7 +29,7 @@ let repeatible = "I feel good!!!";
 console.log( repeatible.repeat(3) );
 
 // Recorrido de una cadena:
-for(let i = 0; i <= firstString.length; i++){
+for(let i = 1; i <= firstString.length; i++){
     let caracter = firstString[i - 1];
     console.log(`Position: ${i} >>> `, caracter);
 }
@@ -63,12 +63,57 @@ const verificando = firstString.includes('Javascript');
 console.log("Contiene Javascript: >>>", verificando);
 
 
-
 /*
     * DIFICULTAD EXTRA (opcional):
     * Crea un programa que analice dos palabras diferentes y realice comprobaciones
     * para descubrir si son:
-    * - Palíndromos
-    * - Anagramas
+    * - ✔️ Palíndromos
+    * - ✔️ Anagramas
     * - Isogramas
 */
+
+// Compruebo si dos palabras son Palíndromos:
+let str4 = 'Reconocer';
+let check0 = str4.toLowerCase().split('').join();
+let check1 = str4.toLowerCase().split('').reverse().join();
+
+if( check0 === check1 ){
+    console.log('>>> Se trata de un Palíndromo...');
+} else {
+    console.log('>>> No se trata de un Palíndromo...');
+}
+
+// Compruebo si la palabra es un anagrama:
+const isAnagrama = (palabra, posibleAnagrama) => {
+    let check = palabra.toLowerCase().split("").sort().join();
+    let check1 = posibleAnagrama.toLowerCase().split("").sort().join();
+  
+    if (check === check1) {
+      console.log(">>> Se trata de un Anagrama...");
+    } else {
+      console.log(">>> No se trata de un anagrama");
+    }
+    return "Proceso completado.";
+  };
+  
+  console.log(isAnagrama("Omar", "roma"));
+  
+// Compruebo si una palabra es Isograma:
+console.log("\n##### Comprobando si un String es Isograma #####");
+const isIsograma = (string) => {
+  
+  const word = string.toLowerCase();
+
+  const wordArray = word.split("");
+  const wordSet = new Set(wordArray);
+  if (wordArray.length === wordSet.size){
+    console.log(">>> Se trata de un Isograma...");
+  } else {
+    console.log(">>> No se trata de un Isograma...");
+  }
+
+  return "Proceso completado.";;
+
+};
+
+console.log( isIsograma("Hola") );
