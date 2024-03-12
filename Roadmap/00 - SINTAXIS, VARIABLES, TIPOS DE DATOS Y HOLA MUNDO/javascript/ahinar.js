@@ -30,4 +30,4 @@ let boolFalse = false;
 
 //- Imprime por terminal el texto: "¡Hola, Javascript!"
 
-console.log("¡Hola, Javascript!")
+console.log("¡Hola, Javascript!");
