@@ -21,6 +21,7 @@ try:
     print(colors[3])
 except IndexError as e:
     print(e)
+    print(f"There is an error: {e} ({type(e).__name__})")
 
 print('Continue to run')
 
