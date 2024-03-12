@@ -37,3 +37,16 @@ const factorial = ( value ) => {
 factorial( 6 );
 
 // Fibonacci:
+const fibonacci = (value) => {
+
+  let numbers = [0, 1];
+  for (let i = 2; i < value; i++) {
+    numbers[i] = numbers[i - 1] + numbers[i - 2];
+  }
+
+  return numbers;
+
+};
+
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...
+console.log( fibonacci( 10 ) );
