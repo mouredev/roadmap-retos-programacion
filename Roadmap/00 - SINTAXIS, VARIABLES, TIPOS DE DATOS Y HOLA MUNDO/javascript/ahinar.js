@@ -1,39 +1,33 @@
-/*
- * -
- *
- *
- * -
- *
- * 
- *
- * ¿Fácil? No te preocupes, recuerda que esta es una ruta de estudio y
- * debemos comenzar por el principio.
- */
+/*Crea un comentario en el código
+ y coloca la URL del sitio web oficial del  lenguaje de programación que has seleccionado.*/
 
-//solución
-
-//-Crea un comentario en el código y coloca la URL del sitio web oficial del lenguaje de programación que has seleccionado.
-//https://developer.mozilla.org/es/docs/Web/JavaScript
+// La pagina que se acerca mas a ser la oficial es https://developer.mozilla.org/en-US/
 
 //- Representa las diferentes sintaxis que existen de crear comentarios en el lenguaje (en una línea, varias...).
-// Este es comentario de una linea
-/*este
-es un comentario
+
+// este es un comentario de una linea
+
+/* Este es
+un comentario
 multilinea*/
 
-//-Crea una variable (y una constante si el lenguaje lo soporta).
+//- Crea una variable (y una constante si el lenguaje lo soporta).
 
-let var1 = 20; //variable let
-const var2 = "Constante"; //constante
+let var1 = "variable";
+const var2 = "Constante";
 
 /*- Crea variables representando todos los tipos de datos primitivos
 del lenguaje (cadenas de texto, enteros, booleanos...).*/
 
-let cadena = "Cadena o string"; //cadena
-let numeroEntero = 4565; // entero
-const pi = 3.1416; // float
-const verdadero = true; //boleano
+//variables tipo numero
+let entero = 1452; //numero entero
+let float = 3.15; //float
 
-//- Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
+let cadena = "esto es un string";// tipo string
 
-console.log ("¡Hola, Javascriptff!");
+let boolTrue = true; //booleanos
+let boolFalse = false;
+
+//- Imprime por terminal el texto: "¡Hola, Javascript!"
+
+console.log("¡Hola, Javascript!")
