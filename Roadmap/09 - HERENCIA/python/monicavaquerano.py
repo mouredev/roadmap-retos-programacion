@@ -143,9 +143,9 @@ alice.imprimir_informacion()
 bob.imprimir_informacion()
 charlie.imprimir_informacion()
 
-
 alice.agregar_empleado(bob)
 alice.agregar_empleado(charlie)
+
 print(f"\n{alice.nombre} tiene a cargo los siguientes empleados:")
 for empleado in alice.empleados_a_cargo:
     print("\t", empleado)
