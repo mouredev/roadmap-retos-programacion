@@ -35,10 +35,12 @@ my_function(100)
 
 # Factorial de un número
 def factorial(n: int) -> int:
-    if n == 1:
+    if n < 0:
+        print("Número no válido")
+        return 0
+    elif n == 0:
         return 1
-    else:
-        return n * factorial(n - 1)
+    return n * factorial(n - 1)
 
 
 print_sep("Factorial")
@@ -54,10 +56,13 @@ def fibonacci(position: int) -> int:
     Esta función tiene complejidad algorítmica de O(2^n).
     Es decir que es muy ineficiente para valores grandes de position
     """
-    if position in (1, 2):
+    if position <= 0:
+        print("Número no válido")
+        return 0
+    elif position <= 2:
         return position - 1
-    else:
-        return fibonacci(position - 1) + fibonacci(position - 2)
+
+    return fibonacci(position - 1) + fibonacci(position - 2)
 
 
 print_sep("Fibonacci")
