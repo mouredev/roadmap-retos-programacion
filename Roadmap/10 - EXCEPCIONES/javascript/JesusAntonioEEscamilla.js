@@ -43,6 +43,52 @@ try {
     console.error("Ha ocurrido un error:", error.message);
 }
 
+//  Hacemos con una lista
+try {
+    // Código que puede generar un error
+    let array = [1, 2, 3];
+    let elemento = array[10];  // Intenta acceder a un índice que está fuera del rango del array
+    if (elemento == undefined) {
+        throw Error(`La lista es de ${array.length}.`)
+    } else {
+        console.log(elemento);
+    }
+} catch (error) {
+    // Captura el error y realiza acciones necesarias
+    console.error("Se ha producido un error al acceder al índice:", error.message);
+} 
+
 /**-----DIFICULTAD EXTRA-----*/
-//  Pendiente
+
+// Mi excepción Personalizados
+class excepciónPersonalizado extends Error{
+    constructor(message){
+        super(message);
+        this.name = 'Mi_Excepción_Personalizada';
+    }
+}
+
+// La función del programa (Utilize una lista)
+function procesarParámetros(lista) {
+    if (lista.length < 3) {
+        throw new TypeError("Tiene que ser mas de 3 elementos");
+    }
+    if(typeof lista[2] !== 'number'){
+        throw new Error("Los parámetros tiene que ser el mismo tipo");
+    }
+    if (lista === 'vació') {
+        throw new excepciónPersonalizado("La lista no valida");
+    }
+    console.log('La ejecución ha finalizado sin errores');
+}
+
+// El TRY-CATCH-FINALLY para la ejecución
+try {
+    procesarParámetros([1, 2, 3, 4]);
+} catch (error) {
+    console.error("Ocurrió un error:", error.message);
+} finally{
+    console.log('Programa Finalizado')
+}
+
 /**-----DIFICULTAD EXTRA-----*/
