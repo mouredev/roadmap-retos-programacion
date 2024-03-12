@@ -36,4 +36,4 @@ const verdadero = true; //boleano
 
 //- Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
-console.log ("¡Hola, Javascript!");
+console.log ("¡Hola, Javascriptff!");
