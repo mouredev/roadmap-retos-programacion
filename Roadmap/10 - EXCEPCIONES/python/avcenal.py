@@ -29,24 +29,25 @@ index_exception()
 """
 
 class MyException(Exception):
-    message = "Esta es mi excepción personalizada"
+    pass
 
 def exception_function(item_1,item_2,item_3):
-    try:
-        #result = item_1+item_2
-        #result = (int(item_1) + int(item_2))/item_3
-        result = (item_1 + item_2)/item_3
-    except TypeError as error :
-        print(f"La función ha dado un \"{error}\"")
-    except ValueError as error:
-        print(f"La función ha dado un \"{error}\"")
-    except:
-        try:
-            raise MyException()
-        except MyException as error:
-            print(error.message)
-    else:
-        print(f"el resultado es: {result}")
-
-exception_function(1,"alex",9)
-exception_function(6,3,0)
+    if item_1 == 1:
+        raise IndexError
+    elif item_3> 5:
+        raise TypeError
+    elif type(item_2) == str:
+        raise MyException("Esta es mi excepción personalizada")
+    
+try:
+    exception_function(2,"alex",5)
+except TypeError as error :
+    print(f"La función ha dado un \"{error}\"")
+except ValueError as error:
+    print(f"La función ha dado un \"{error}\"")
+except MyException as error:
+    print(f"{error}")
+except:
+    print("La función ha dado un error genérico")
+finally:
+    print("el programa ha finalizado")
