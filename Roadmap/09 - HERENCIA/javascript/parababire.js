@@ -36,91 +36,64 @@ class Empleado {
   constructor(id, nombre) {
     this.id = id;
     this.nombre = nombre;
+    this.empleados = [];
   }
-  informacion() {
-    return `Mi nombre es: ${this.nombre}, número de identificación ${this.id}.`;
+  contratar(empleados) {
+    this.empleados.push(empleados);
+  }
+  print() {
+    this.empleados.forEach(empleados => {
+      console.log(empleados.nombre);
+    });
   }
 }
 class Gerente extends Empleado {
-  constructor(id, nombre, cargo) {
-    super(id, nombre);
-    this.cargo = cargo;
-    this.nomina = [];
-  }
-  presentacion() {
-    return `${super.informacion()} Manejo el área de ${this.cargo}.`
-  }
-  contratar(empleado) {
-    this.nomina.push(empleado);
-  }
-  empleados() {
-    if (this.nomina.length === 0) {
-      return `${this.nombre} aún no ha contratado empleados.`;
-    } else if (this.nomina.length === 1) {
-      return `${this.nombre} maneja una nómina de ${this.nomina.length} empleado.`;
-    } else {
-      return `${this.nombre} maneja una nómina de ${this.nomina.length} empleados.`;
-    }
+  coordinar() {
+    console.log(`${this.nombre} coordina todos los proyectos de la empresa`);
   }
 }
 class GerenteProyecto extends Empleado {
-  constructor(id, nombre, cargo) {
+  constructor(id, nombre, proyecto) {
     super(id, nombre);
-    this.cargo = cargo;
-    this.nomina = [];
-    this.proyecto = [];
+    this.proyecto = proyecto;
   }
-  presentacion() {
-    return `${super.informacion()} Manejo el área de ${this.cargo}.`
-  }
-  contratar(empleado) {
-    this.nomina.push(empleado);
-  }
-  empleados() {
-    if (this.nomina.length === 0) {
-      return `La ${this.cargo} a cargo de ${this.nombre} aún no ha contratado empleados.`;
-    } else if (this.nomina.length === 1) {
-      return `La ${this.cargo} a cargo de ${this.nombre} maneja una nómina de ${this.nomina.length} empleado.`;
-    } else {
-      return `La ${this.cargo} a cargo de ${this.nombre} maneja una nómina de ${this.nomina.length} empleados.`;
-    }
-  }
-  desarrollos(proyecto) {
-    return this.proyecto.push(proyecto);
-  }
-  planificacion() {
-    if (this.proyecto.length === 0) {
-      return `La ${this.cargo} no está desaarrollando proyectos actualmente.`;
-    } else if (this.proyecto.length === 1) {
-      return `La ${this.cargo} desarrolla actualmente ${this.proyecto.length} proyecto.`;
-    } else {
-      return `La ${this.cargo} desarrolla ${this.proyecto.length} proyectos simultaneamente.`;
-    }
+  coordinar() {
+    console.log(`${this.nombre} coordina su proyecto`);
   }
 }
 class Programador extends Empleado {
-  constructor(id, nombre, cargo, lenguaje) {
+  constructor(id, nombre, lenguaje) {
     super(id, nombre);
-    this.cargo = cargo;
     this.lenguaje = lenguaje;
   }
-  presentacion() {
-    return `${super.informacion()} Me desempeño como ${this.cargo} y me especializo en ${this.lenguaje}.`
+  code() {
+    console.log(`${this.nombre} está programando en ${this.lenguaje}`);
+  }
+  contratar(empleados) {
+    console.log(`${this.nombre} no puede contratar. ${empleados.nombre} no será contratado`);
   }
 }
-const gerenteVentas = new Gerente(12075, "Ángel", "Gerencia");
-console.log(gerenteVentas.presentacion());
-gerenteVentas.contratar("empleado1");
-console.log(gerenteVentas.empleados());
-gerenteVentas.contratar("empleado2");
-console.log(gerenteVentas.empleados());
 
-const gerenteProyecto = new GerenteProyecto(31023, "Luis", "Gerencia de Proyecto");
-console.log(gerenteProyecto.presentacion());
-gerenteProyecto.contratar("Empleado1");
-console.log(gerenteProyecto.empleados());
-gerenteProyecto.desarrollos("Proyecto1");
-console.log(gerenteProyecto.planificacion());
+const gerente = new Gerente(1, "Luis");
+const gerenteProyecto1 = new GerenteProyecto(2, "Pedro", "Proyecto1");
+const gerenteProyecto2 = new GerenteProyecto(3, "José", "Proyecto2");
+const programador = new Programador(4, "Ángel", "Javascript");
+const programador2 = new Programador(5, "Tomas", "Java");
+const programador3 = new Programador(6, "Marcos", "Phyton");
 
-const programador = new Programador(25624, "Robert", "Programador", "Javascript");
-console.log(programador.presentacion());
+gerente.contratar(gerenteProyecto1);
+gerente.contratar(gerenteProyecto2);
+
+gerenteProyecto1.contratar(programador);
+gerenteProyecto2.contratar(programador2);
+gerenteProyecto2.contratar(programador3);
+
+programador.contratar(programador2);
+
+programador.code();
+gerente.coordinar();
+gerenteProyecto1.coordinar();
+gerenteProyecto2.coordinar();
+gerente.print();
+gerenteProyecto2.print();
+programador.print();
