@@ -53,52 +53,45 @@ continuar la aplicacion o detenerla, dependiendo de cada caso.
 """
 
 try:
-    resultado = 10/0
-    print(resultado)
-except IOError:
-    print("Error de entrada/salida.")
-except ZeroDivisionError:
-    print("Error de division por cero.")
-else:
-    print("No han ocurrido errores")
-    print("El resultado de la divison es", resultado)
-finally:
-    print("La ejecucion ha finalizado")
-
+    print(10/0)
+    print([1, 2, 3, 4][4])
+except Exception as e:
+    print(f"Se ha producido un error: {e} ({type(e).__name__})")
 
 """
 Extra
 """
 
-
-class MyExcepcion(TypeError):
+class StrTypeError(Exception):
     pass
 
 
-def division(value1, value2):
-    result = value1/value2
-    return result
+def process_params(parameters: list):
 
-def program(value1, value2):
+    if len(parameters) < 3:
+        raise IndexError()
+    elif parameters[1] == 0:
+        raise ZeroDivisionError()
+    elif type(parameters[2]) == str:
+        raise StrTypeError(
+            "El tercer elemento no puede ser una cadena de texto.")
 
-    try:
-       resultado = division(value1, value2)
+    print(parameters[2])
+    print(parameters[0]/parameters[1])
+    print(parameters[2] + 5)
 
-    except MyExcepcion as ex:
-        print("Excepcion MyExcepcion: Es un tipo de dato string", type(ex))
-    except TypeError:
-        print("Excepcion TypeError: No es un tipo de dato entero")
-    except ZeroDivisionError:
-        print("Excepcion ValueEror: No se puede dividr entre cero")
-    
-    else:
-        print("No han ocurrido errores")
-        print("El resultado de la divison es", resultado)
-    finally:
-        print("La ejecucion ha finalizado")
 
-print()
-program(5, "uno")
-program(7, 0)
-program(20, -5)
-program(15, 2)
+try:
+    process_params([1, 2, 3, 4])
+except IndexError as e:
+    print("El número de elementos de la lista debe ser mayor que dos.")
+except ZeroDivisionError as e:
+    print("El segundo elemento de la lista no puede ser un cero.")
+except StrTypeError as e:
+    print(f"{e}")
+except Exception as e:
+    print(f"Se ha producido un error inesperado: {e}")
+else:
+    print("No se ha producido ningún error.")
+finally:
+    print("El programa finaliza sin detenerse.")
