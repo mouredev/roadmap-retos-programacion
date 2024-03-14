@@ -319,5 +319,3 @@ while not SHOULD_EXIT:
         SHOULD_EXIT = True
     else:
         print("\nInvalid operation! Try again...")
-
-# No elimina
