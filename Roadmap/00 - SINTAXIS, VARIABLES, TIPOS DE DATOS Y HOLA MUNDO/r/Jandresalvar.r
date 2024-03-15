@@ -1,4 +1,6 @@
-## Ejercicio 00 - SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
+### 00 - SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
+
+## Ejercicio
   
 # - Crea un comentario en el c??digo y coloca la URL del sitio web oficial del
 #   lenguaje de programaci??n que has seleccionado.
