@@ -58,7 +58,8 @@ public class jmichael39 {
         static int choice = 0;
 
         static void init() {
-            while (true) {
+            boolean exit = false;
+            while (!exit) {
                 System.out.println("\n1 - Añadir producto");
                 System.out.println("2 - Consultar productos");
                 System.out.println("3 - Actualizar producto");
@@ -74,24 +75,7 @@ public class jmichael39 {
 
                 switch (choice) {
                     case 1:
-                        System.out.println("Nombre del producto a dar de alta: ");
-                        nombre = scanner.next();
-                        System.out.println("Unidades vendidas: ");
-                        cantidadVendida = scanner.nextInt();
-                        System.out.println("Precio del producto: ");
-                        precio = Double.parseDouble(scanner.next());
-                        lista.add(new Producto(nombre, cantidadVendida, precio));
-
-                        try {
-                            fileWriter.write("Nuevo producto - ID: " + lista.get(Producto.nextId - 1).getId()
-                                    + " Nombre: " + lista.get(Producto.nextId - 1).getNombre()
-                                    + " Unidades vendidas: " + lista.get(Producto.nextId - 1).getCantidadVendida()
-                                    + " Precio:" + lista.get(Producto.nextId - 1).getPrecio() + "\n");
-                            fileWriter.flush();
-                        } catch (IOException e) {
-                            e.getCause();
-                        }
-
+                        addProduct();
                         break;
                     case 2:
                         checkProducts();
@@ -100,42 +84,49 @@ public class jmichael39 {
                         updateProducts();
                         break;
                     case 4:
-                        System.out.print("Id del producto a eliminar: ");
-                        int id = scanner.nextInt() - 1;
-                        System.out.println("Se ha eliminado el producto: " + lista.get(id));
-                        lista.remove(id);
+                        deleteProduct();
                         break;
                     case 5:
-                        double totalGlobal = 0;
-                        for (Producto producto : lista) {
-                            totalGlobal += producto.getCantidadVendida() * producto.getPrecio();
-                        }
-                        System.out.println("El importe total de las ventas es: " + totalGlobal + "$");
+                        totalSales();
                         break;
                     case 6:
-                        System.out.println("Seleccione un ID de producto para calcular el total de ventas de ese producto");
-                        checkProducts();
-                        int product = scanner.nextInt() - 1;
-                        double totalPerProduct = lista.get(product).getCantidadVendida() * lista.get(product).getPrecio();
-                        System.out.println("El importe de las ventas de " + lista.get(product) + " es: " + totalPerProduct + "$");
+                        salesPerProduct();
                         break;
                     case 7:
-                        try {
-                            fileWriter.close();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        System.out.println(file.delete() ? "Archivo de ventas eliminado" : "Ha habido un problema borrando el archivo");
-                        System.exit(0);
+                        exit = true;
+                        exit();
                         break;
                     default:
-                        System.out.println("No se reconoce el comando, intentelo de nuevo");
+                        System.out.println("\nNo se reconoce el comando, intentelo de nuevo");
                         init();
                 }
             }
         }
 
+        private static void addProduct() {
+            System.out.print("\nNombre del producto a dar de alta: ");
+            nombre = scanner.next();
+            System.out.print("Unidades vendidas: ");
+            cantidadVendida = scanner.nextInt();
+            System.out.print("Precio del producto: ");
+            precio = Double.parseDouble(scanner.next());
+            lista.add(new Producto(nombre, cantidadVendida, precio));
+
+            try {
+                fileWriter.write("Nuevo producto - ID: " + lista.get(Producto.nextId - 1).getId()
+                        + " Nombre: " + lista.get(Producto.nextId - 1).getNombre()
+                        + " Unidades vendidas: " + lista.get(Producto.nextId - 1).getCantidadVendida()
+                        + " Precio:" + lista.get(Producto.nextId - 1).getPrecio() + "\n");
+                fileWriter.flush();
+            } catch (IOException e) {
+                e.getCause();
+            }
+        }
+
         private static void checkProducts() {
+            isEmpty();
+
+            System.out.println("\n --- PRODUCTOS DADOS DE ALTA ---\n");
             for (Producto producto : lista) {
                 System.out.println("Id: " + producto.getId()
                         + " , Nombre del artículo: " + producto.getNombre()
@@ -145,35 +136,36 @@ public class jmichael39 {
         }
 
         private static void updateProducts() {
+            isEmpty();
             int productToUpdate;
             int fieldToUpdate;
             String nuevoNombre;
             double nuevoPrecio;
             int nuevaCantidadVendida;
 
-            System.out.println("Seleccione el id del producto a actualizar: \n");
             checkProducts();
+            System.out.print("\nSeleccione el id del producto a actualizar: ");
 
             while (!scanner.hasNextInt()) {
-                System.out.println("Debe introducir un número");
+                System.out.print("\nDebe introducir un número. Seleccione el id del producto a actualizar: ");
                 scanner.next();
             }
             productToUpdate = scanner.nextInt() - 1;
 
-            System.out.println("¿Qué campo desea actualizar?");
-            System.out.println("1 - Nombre");
+            System.out.println("\n1 - Nombre");
             System.out.println("2 - Precio");
             System.out.println("3 - Cantidad vendida");
+            System.out.print("\nCampo que desea actualizar: ");
 
             while (!scanner.hasNextInt()) {
-                System.out.println("Debe introducir un número");
+                System.out.print("\nDebe introducir un número. Seleccione el campo que desea actualizar: ");
                 scanner.next();
             }
             fieldToUpdate = scanner.nextInt();
 
             switch (fieldToUpdate) {
                 case 1:
-                    System.out.print("Nuevo nombre del producto: ");
+                    System.out.print("\nNuevo nombre del producto: ");
                     nuevoNombre = scanner.next();
 
                     try {
@@ -184,10 +176,10 @@ public class jmichael39 {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    System.out.println("Se ha actualizado el producto: " + lista.get(productToUpdate));
+                    System.out.println("\nSe ha actualizado el producto: " + lista.get(productToUpdate));
                     break;
                 case 2:
-                    System.out.print("Nuevo precio para el producto: ");
+                    System.out.print("\nNuevo precio para el producto: (ACTUAL)" + lista.get(productToUpdate).getPrecio());
                     nuevoPrecio = Double.parseDouble(scanner.next());
 
                     try {
@@ -199,7 +191,7 @@ public class jmichael39 {
                         throw new RuntimeException(e);
                     }
 
-                    System.out.println("Se ha actualizado el producto: " + lista.get(productToUpdate));
+                    System.out.println("\nSe ha actualizado el producto: " + lista.get(productToUpdate));
                     break;
                 case 3:
                     System.out.print("Nueva cantidad: ");
@@ -215,10 +207,57 @@ public class jmichael39 {
                     }
 
                     lista.get(productToUpdate).setCantidadVendida(nuevaCantidadVendida);
-                    System.out.println("Se ha actualizado el producto: " + lista.get(productToUpdate));
+                    System.out.println("\nSe ha actualizado el producto: " + lista.get(productToUpdate));
                     break;
                 default:
-                    System.out.println("Error");
+                    System.out.println("\nError");
+            }
+        }
+
+        private static void salesPerProduct() {
+            isEmpty();
+            checkProducts();
+            System.out.print("\nSeleccione un ID para calcular el total de ventas de ese producto: ");
+            int product = scanner.nextInt() - 1;
+            double totalPerProduct = lista.get(product).getCantidadVendida() * lista.get(product).getPrecio();
+            System.out.println("\nEl importe de las ventas de " + lista.get(product) + " es: " + totalPerProduct + "$");
+        }
+
+        private static void totalSales() {
+            isEmpty();
+            double totalGlobal = 0;
+            for (Producto producto : lista) {
+                totalGlobal += producto.getCantidadVendida() * producto.getPrecio();
+            }
+            System.out.println("\nEl importe total de las ventas es: " + totalGlobal + "$");
+        }
+
+        private static void deleteProduct() {
+            isEmpty();
+            checkProducts();
+            System.out.print("Id del producto a eliminar: "
+                    + "\n Pulse 0 si desea volver al menú principal");
+            if (scanner.nextInt() == 0) init();
+            int id = scanner.nextInt() - 1;
+            System.out.println("\nSe ha eliminado el producto: " + lista.get(id));
+            lista.remove(id);
+        }
+
+        private static void exit() {
+            try {
+                fileWriter.close();
+                scanner.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(file.delete() ? "\nArchivo de ventas eliminado" : "\nHa habido un problema borrando el archivo");
+            System.exit(0);
+        }
+
+        private static void isEmpty() {
+            if (lista.isEmpty()) {
+                System.out.println("NO HAY NINGÚN ARTÍCULO DADO DE ALTA");
+                init();
             }
         }
     }
