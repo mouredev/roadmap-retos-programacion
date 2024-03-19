@@ -41,9 +41,8 @@ with open(nameOfFile + extension, 'r') as file:
     print(myFile)
 
 #delete file
-#input("press enter key to delete the file...")
+input("press enter key to delete the file...")
 os.remove(nameOfFile + extension)
-
 
 #EXTRA
 
@@ -130,7 +129,37 @@ while True:
         except:
             print("Item not found!")        
 
+    elif inputUser == "total":
+        with open("shopFileRecords.txt",'r') as file:
+            lines = file.readlines()
+            totalAmount = 0
+            for line in lines:
+                list = line.split(",")
+                units = list[2].split('\n')[0]
+                listClean = []
+                listClean.append(list[1].strip())
+                listClean.append(units.strip())
+                #print(listClean)
+                totalAmount += ((float(listClean[0].strip())) * int(listClean[1].strip()))
+    
+        print(f"Total of sales: {totalAmount}")
 
+    elif inputUser == "psale":
+        inputProductSale = input("Subtotal for item: ").lower()
+
+        with open("shopFileRecords.txt",'r') as file:
+            lines = file.readlines()
+            for line in lines:    
+                if line.find(inputProductSale) == -1:  # find() returns -1 if no match is found
+                    pass
+                else:
+                    list = line.split(",")
+                    units = list[2].split('\n')[0]
+                    listClean = []
+                    listClean.append(list[1].strip())
+                    listClean.append(units.strip())
+                    productAmount =((float(listClean[0].strip())) * int(listClean[1].strip()))                    
+                    print(f"Total for: {inputProductSale} is: {productAmount}")
 
 
 
