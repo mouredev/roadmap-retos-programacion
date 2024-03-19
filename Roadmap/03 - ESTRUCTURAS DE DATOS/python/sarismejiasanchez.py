@@ -237,3 +237,71 @@ del person
  *   (o el número de dígitos que quieras)
  * - También se debe proponer una operación de finalización del programa.
 """
+
+def my_agenda():
+
+    agenda = {}
+
+    """
+    Cada contacto debe tener un nombre y un número de teléfono.
+    """
+    def insert_contact():
+        phone = input("Introduce el teléfono del contacto: ")
+        """
+        El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+        (o el número de dígitos que quieras)
+        """
+        if phone.isdigit() and len(phone) > 0 and len(phone) <= 11:
+            agenda[name] = phone
+        else:
+            print(
+                "Debes introducir un número de teléfono un máximo de 11 dígitos.")
+
+    while True:
+        """
+        Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+        """
+        print("")
+        print("1. Buscar contacto")
+        print("2. Insertar contacto")
+        print("3. Actualizar contacto")
+        print("4. Eliminar contacto")
+        print("5. Salir") # También se debe proponer una operación de finalización del programa.
+
+        """
+        El programa solicita en primer lugar cuál es la operación que se quiere realizar, 
+        y a continuación los datos necesarios para llevarla a cabo.
+        """
+        option = input("\nSelecciona una opción: ")
+
+        match option:
+            case "1":
+                name = input("Introduce el nombre del contacto a buscar: ")
+                if name in agenda:
+                    print(
+                        f"El número de teléfono de {name} es {agenda[name]}.")
+                else:
+                    print(f"El contacto {name} no existe.")
+            case "2":
+                name = input("Introduce el nombre del contacto: ")
+                insert_contact()
+            case "3":
+                name = input("Introduce el nombre del contacto a actualizar: ")
+                if name in agenda:
+                    insert_contact()
+                else:
+                    print(f"El contacto {name} no existe.")
+            case "4":
+                name = input("Introduce el nombre del contacto a a eliminar: ")
+                if name in agenda:
+                    del agenda[name]
+                    print(f"Se eliminó el contacto {name}.")
+                else:
+                    print(f"El contacto {name} no existe.")
+            case "5":
+                print("Saliendo de la agenda.")
+                break
+            case _:
+                print("Opción no válida. Elige una opción del 1 al 5.")
+
+my_agenda()
