@@ -1,4 +1,4 @@
-#Solo la aprte de dificultad extra
+#Solo la parte de dificultad extra
 eleccion = 0
 base = {}
 datos = {"Nombre": "","Telefono": ""}
