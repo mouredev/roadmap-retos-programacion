@@ -10,10 +10,10 @@
 # Si existe Herencia estariamos hablando de Polimorfismo.
 # Incluso en lenguajes que no soportan el concepto de Duck Typing, es decir que son de tipado estático,gracias al poliformismo podemos conseguir algo parecido al Duck Typing.
 
-
+"""
 #TIPOS POLIFORMISMO:
 # --> Subtipos
-"""
+
 En python tenemos que tener muy en cuenta el DUCK TYPING: If is walks like a duck and it quacks like a duck then it must be a duck.
 
 En python lo más importante importa si existe el método el tipo de dato!!
