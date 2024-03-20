@@ -6,7 +6,7 @@
 '''
 
 #BUILT IN DATA STRUCTURES
-
+'''
 ## 1. List
 my_list = [2,3,4,-10-4]
 other_list = list()
@@ -67,7 +67,7 @@ print(list(my_dict))
 dict_al_cuadrado = {"Num("+str(x)+")":"Potencia("+str(x*2)+")" for x in dict_numerico}
 
 print(" ----------------------------------- ")
-
+'''
 '''
  * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
