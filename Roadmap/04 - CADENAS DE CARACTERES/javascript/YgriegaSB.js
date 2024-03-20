@@ -64,3 +64,4 @@ const checkIsograma = (palabra1, palabra2) => {
 };
 
 checkIsograma('Nicolas', 'Nicole');
+checkIsograma('Andres', 'Caca');
