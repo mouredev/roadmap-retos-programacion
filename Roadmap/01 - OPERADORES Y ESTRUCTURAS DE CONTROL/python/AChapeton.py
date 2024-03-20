@@ -99,3 +99,36 @@ cc = 4
 print('AA es BB', aa is bb) # muestra True
 print('AA no es BB',aa is not bb) # muestra False
 print('AA no es CC', aa is not cc) # muestra True
+
+# Condicionales
+
+# If
+edad = 18
+if edad < 18:
+  print("Menor de edad")
+elif edad >= 18:
+  print('Mayor de edad')
+else:
+  print('No se va a ejecutar')
+
+
+# For
+lenguajes = ['Python', 'JavaScript', 'Dart']
+for lenguaje in lenguajes:
+  print(lenguaje)
+
+# While
+contador = 0
+while contador < 3:
+  print("Dentro del bucle", contador)
+  contador += 1
+
+
+
+# DIFICULTAD EXTRA
+
+for i in range(10, 56):
+  if i % 2 == 0:
+    if i != 16 and i % 3 != 0:
+      print(i)
+
