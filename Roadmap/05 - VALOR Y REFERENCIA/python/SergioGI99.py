@@ -43,7 +43,6 @@ def fun_two(my_list: list):
     for i, n in enumerate(my_list):
         my_list[i] *= 2
 
-
 l = [1, 2, 3]
 
 fun_two(l)
@@ -57,8 +56,8 @@ print(my_list_b)
 
 # Ejercicio Extra
 
-value_valor_one = 1
-value_valor_two = 2
+value_one = 1
+value_two = 2
 
 def my_fun(value_a: int, value_b: int):
     temp = value_a
@@ -67,13 +66,12 @@ def my_fun(value_a: int, value_b: int):
     return value_a, value_b
 
 print("\nAsignación por valor:")
-value_valor_three, value_valor_four = (my_fun(value_valor_one, value_valor_two))
-print(f"Originales: {value_valor_one}, {value_valor_two}")
-print(f"Nuevos: {value_valor_three}, {value_valor_four}")
+value_three, value_four = (my_fun(value_one, value_two))
+print(f"Originales: {value_one}, {value_two}")
+print(f"Nuevos: {value_three}, {value_four}")
 
 value_ref_one = [10, 20]
 value_ref_two = [30, 40]
-
 
 def my_other_fun(value_a: list, value_b: list):
     temp = value_a
@@ -83,8 +81,7 @@ def my_other_fun(value_a: list, value_b: list):
     value_b.append(30)
     return value_a, value_b
 
-
 print("\nAsignación por referencia:")
-value_ref_three, value_ref_four = my_other_fun(value_ref_one, value_ref_two)
+value_three, value_four = my_other_fun(value_ref_one, value_ref_two)
 print(f"Originales: {value_ref_one}, {value_ref_two}")
-print(f"Nuevos: {value_ref_three}, {value_ref_four}")
+print(f"Nuevos: {value_three}, {value_four}")
