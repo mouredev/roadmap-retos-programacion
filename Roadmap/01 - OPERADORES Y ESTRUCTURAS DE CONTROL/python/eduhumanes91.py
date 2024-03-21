@@ -78,10 +78,6 @@ print(f"Suponiendo la lista: {lista}")
 print(f"Pertenencia: 2 in lista = {2 in lista}")
 print(f"No Pertenencia: 2 not in lista = {2 not in lista}")
 
-# Estructuras de Control
-
-print("\n *******Estructuras de Control******* \n")
-
 # Condicionales
 
 print("\n *******Condicionales******* \n")
