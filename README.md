@@ -43,7 +43,10 @@
 |06|[RECURSIVIDAD](./Roadmap/06%20-%20RECURSIVIDAD/ejercicio.md)|[📝](./Roadmap/06%20-%20RECURSIVIDAD/python/mouredev.py)|[▶️](https://youtu.be/nTfDkLRrYiM)|[👥](./Roadmap/06%20-%20RECURSIVIDAD/)
 |07|[PILAS Y COLAS](./Roadmap/07%20-%20PILAS%20Y%20COLAS/ejercicio.md)|[📝](./Roadmap/07%20-%20PILAS%20Y%20COLAS/python/mouredev.py)|[▶️](https://youtu.be/cBeRWS2X0CA)|[👥](./Roadmap/07%20-%20PILAS%20Y%20COLAS/)
 |08|[CLASES](./Roadmap/08%20-%20CLASES/ejercicio.md)|[📝](./Roadmap/08%20-%20CLASES/python/mouredev.py)|[▶️](https://youtu.be/W4tv8WUbum4)|[👥](./Roadmap/08%20-%20CLASES/)
-|09|[HERENCIA](./Roadmap/09%20-%20HERENCIA/ejercicio.md)|[🗓️ 04/03/24](https://discord.gg/mouredev?event=1211576792909873152)||[👥](./Roadmap/09%20-%20HERENCIA/)
+|09|[HERENCIA Y POLIMORFISMO](./Roadmap/09%20-%20HERENCIA/ejercicio.md)|[📝](./Roadmap/09%20-%20HERENCIA/python/mouredev.py)|[▶️](https://youtu.be/PVBs5PWjedA)|[👥](./Roadmap/09%20-%20HERENCIA/)
+|10|[EXCEPCIONES](./Roadmap/10%20-%20EXCEPCIONES/ejercicio.md)|[📝](./Roadmap/10%20-%20EXCEPCIONES/python/mouredev.py)|[▶️](https://youtu.be/mfOzfj-BrQo)|[👥](./Roadmap/10%20-%20EXCEPCIONES/)
+|11|[MANEJO DE FICHEROS](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/ejercicio.md)|[📝](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/python/mouredev.py)|[▶️](https://youtu.be/Bsiay2nax4Y)|[👥](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/)
+|12|[JSON Y XML](./Roadmap/12%20-%20JSON%20Y%20XML/ejercicio.md)|[🗓️ 25/03/24](https://discord.gg/NtSqCkZK?event=1216862528257130496)||[👥](./Roadmap/12%20-%20JSON%20Y%20XML/)
 
 ## Instrucciones
 
