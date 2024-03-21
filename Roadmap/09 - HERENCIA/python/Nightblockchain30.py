@@ -31,7 +31,7 @@ En python lo más importante importa si existe el método el tipo de dato!!
                                                 Si tengo este método: métodoCualquiera("Hola", "Hello", "Ciao") --> Invocaremos el método A
 
     CARACTERÍSTICAS:
-        1. Poliformimso dinámico
+        1. Poliformimso dinámico 
 
 
 2.Poliformismo "paramétrico" = Genéricos en JAVA
