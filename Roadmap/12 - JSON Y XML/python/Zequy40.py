@@ -92,7 +92,7 @@ class Datos:
                 datos_xml[child.tag] = child.text
         return cls(**datos_xml)
 
-# Rutas de los archivos
+# Rutas de los archivos tanto en json como xml
 ruta_json = 'datos.json'
 ruta_xml = 'datos.xml'
 
