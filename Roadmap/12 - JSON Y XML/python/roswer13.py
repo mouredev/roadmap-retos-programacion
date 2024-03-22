@@ -73,17 +73,17 @@ if __name__ == "__main__":
             "birth_date": birth_date,
             "languages": languages
         }
-        xml = XML(data=data)
-        json = JSON(data=data)
-
-        file = FileOperation(file_name=file_name)
         print("-" * 50)
         # Write and read XML file.
+        xml = XML(data=data)
+        file = FileOperation(file_name=f"{file_name}.xml")
         file.write(data=xml)
         file.read()
         file.delete()
         print("-" * 50)
         # Write and read JSON file.
+        json = JSON(data=data)
+        file = FileOperation(file_name=f"{file_name}.json")
         file.write(data=json)
         file.read()
         file.delete()
