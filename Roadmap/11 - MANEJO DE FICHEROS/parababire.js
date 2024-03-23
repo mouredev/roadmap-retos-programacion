@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-const fs = require('fs');
+const fsPromises = require('fs').promises;
 const fileName = "parababire.txt";
 
 /*const fileOps = async () => {
@@ -14,7 +14,7 @@ const fileName = "parababire.txt";
     console.error(error);
   }
 }
-fileOps();
+
 
 const finalArchivo = async () => {
   try {
@@ -27,6 +27,26 @@ setTimeout(finalArchivo, 5000);*/
 
 //Extra
 let on = true;
+
+const writeFile = async (name, quantity, price) => {
+  try {
+    await fsPromises.writeFile(fileName, `${name + ", " + quantity + ", " + price + "\n"}`);//Crear archivo.
+    /*const data = await fsPromises.readFile(fileName, 'utf8');//Leer Archivo.
+    console.log(data);*/
+  } catch (error) {
+    console.error(error);
+  }
+}
+const readFile = async () => {
+  try {
+    /*await fsPromises.writeFile(fileName, `${name + quantity + price}`);//Crear archivo.*/
+    const data = await fsPromises.readFile(fileName, 'utf8');//Leer Archivo.
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 while (on) {
   console.log("");
@@ -41,16 +61,13 @@ while (on) {
   const operacion = prompt("Elige una opción ");
   switch (operacion) {
     case "1":
-      let name = prompt("Nombre del producto");
-      let quantity = prompt("Existencia del producto");
-      let price = prompt("Precio del producto");
-      fs.writeFile(fileName, `${name + quantity + price}`,  (err) => {
-        if (err) throw err;
-        console.log('Producto creado');
-      });
+      let name = prompt("Nombre del producto ");
+      let quantity = prompt("Existencia del producto ");
+      let price = prompt("Precio del producto ");
+      writeFile(name, quantity, price);
       break;
-    case "2":
-      
+    case "2":     
+      readFile();
       break;
     case "3":
       
