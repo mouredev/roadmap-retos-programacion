@@ -1,13 +1,17 @@
-const prompt = require('prompt-sync')();
-const fsPromises = require('fs').promises;
-const fileName = "parababire.txt";
+//const prompt = require('prompt-sync')();
+//const fsPromises = require('fs').promises;
+const fs = require('fs');
+const readline = require('readline');
+const userName = "parababire";
+const fileName = `${userName}.txt`;
+const fileContent = "Nombre: Ángel Narváez.\n Edad: 44 años.\n Lenguaje de programación: Javascript."
 
 /*const fileOps = async () => {
   try {
-    await fsPromises.writeFile(fileName, 'Ángel Narváez');//Crear archivo.
+    await fsPromises.writeFile(fileName, fileContent);//Crear archivo.
     const data = await fsPromises.readFile(fileName, 'utf8');//Leer Archivo.
     console.log(data);
-    await fsPromises.appendFile(fileName, '\n36\nJavascript');//Agregar contenido.
+    await fsPromises.appendFile(fileName, '\nHello World');//Agregar contenido.
     const newData = await fsPromises.readFile(fileName, 'utf8');
     console.log(newData);
   } catch (error) {
@@ -26,7 +30,7 @@ const finalArchivo = async () => {
 setTimeout(finalArchivo, 5000);*/
 
 //Extra
-let on = true;
+let rl = readline.createInterface(process.stdin, process.stdout);
 
 const writeFile = async (name, quantity, price) => {
   try {
@@ -47,8 +51,7 @@ const readFile = async () => {
   }
 }
 
-
-while (on) {
+const menu = () => {
   console.log("");
   console.log("1.- Anadir producto");
   console.log("2.- Consultar producto");
@@ -57,42 +60,59 @@ while (on) {
   console.log("5.- Calcular venta total");
   console.log("6.- Calcular venta por producto");
   console.log("7.- Salir");
-
-  const operacion = prompt("Elige una opción ");
-  switch (operacion) {
-    case "1":
-      let name = prompt("Nombre del producto ");
-      let quantity = prompt("Existencia del producto ");
-      let price = prompt("Precio del producto ");
-      writeFile(name, quantity, price);
-      break;
-    case "2":     
-      readFile();
-      break;
-    case "3":
-      
-      break;
-    case "4":
-      
-      break;
-    case "5":
-      
-      break;
-    case "6":
-      
-      break;
-    case "7":
-      
-      console.log("Salir del programa");
-      on = false;
-      break;
-  
-    default:
-      fs.unlink(fileName,  (err) => {
-        if (err) throw err;
-        console.log('Producto eliminado');
-      });
-      console.log("Selecciona una opción correcta");
-      break;
-  }
+  selecionarOperacion();
 }
+
+const selecionarOperacion = () => {
+  rl.question("Elige una opción ", opcion => {
+    switch (opcion) {
+      case "1":
+        rl.question("Nombre del producto ", nombre => {
+          rl.question("Cantidad del producto ", cantidad => {
+            rl.question("Precio del producto ", precio => {
+              const producto = `${nombre + ", " + cantidad + ", " + precio}`;
+              fs.writeFile("producto.txt", producto, err => {
+                if (err) throw err;
+                console.log("Producto creado");
+                menu();
+                selecionarOperacion();
+              })
+            });
+          });
+        });
+        break;
+      case "2":
+        fs.readFile("producto.txt", "utf8", (err, data) => {
+          if (err) throw err;
+          console.log(data);
+          menu();
+          selecionarOperacion();
+        });
+        break;
+      case "3":
+        
+        break;
+      case "4":
+        
+        break;
+      case "5":
+        
+        break;
+      case "6":
+        
+        break;
+      case "7":
+        fs.unlink("producto.txt", err => {
+          if (err) throw err;
+          console.log("Saliste del programa");
+        })
+        rl.close(); 
+        break;
+    
+      default:
+        break;
+    }
+  });
+}
+menu();
+
