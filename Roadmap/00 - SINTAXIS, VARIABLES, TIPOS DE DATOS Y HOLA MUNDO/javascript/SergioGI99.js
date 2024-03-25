@@ -31,13 +31,13 @@ var myString = "Esto es un string"
 
 const myConst = "Esto es una constante"
 
-var myInt = 8
-var myFloat = 3.14
-var myBool = true
-var myNull = null
-var myUndefined = undefined 
-var myBigInt = 123124235234123123124n
-var mySymbol = Symbol()
+let myInt = 8
+let myFloat = 3.14
+let myBool = true
+let myNull = null
+let myUndefined = undefined 
+let myBigInt = 123124235234123123124n
+let mySymbol = Symbol()
 
 const myLang = "JavaScript"
 
