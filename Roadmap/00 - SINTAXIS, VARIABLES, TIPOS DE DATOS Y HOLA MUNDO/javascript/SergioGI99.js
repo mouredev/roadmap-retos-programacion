@@ -39,5 +39,7 @@ var myUndefined = undefined
 var myBigInt = 123124235234123123124n
 var mySymbol = Symbol()
 
-console.log("¡Hola, JavaScript")
+const myLang = "JavaScript"
+
+console.log(`¡Hola, ${myLang}`)
 
