@@ -48,6 +48,24 @@ class TestSum(unittest.TestCase):
         expected = value1 + value2
         # Assert
         self.assertEqual(self.sum.calculate(value1, value2), expected)
+    
+    def test_sum_float_number(self):
+        # Arrange
+        value1 = 1.5
+        value2 = 2.5
+        # Act
+        expected = value1 + value2
+        # Assert
+        self.assertEqual(self.sum.calculate(value1, value2), expected)
+
+    def test_sum_no_number(self):
+        # Arrange
+        value1 = "1"
+        value2 = 2
+        # Act
+        # Assert
+        self.assertRaises(TypeError, self.sum.calculate)
+
 
 # DIFICULTAD EXTRA (opcional):
 # Crea un diccionario con las siguientes claves y valores:
