@@ -34,8 +34,7 @@ public class TestJUNIT {
 
     @Test
     public void testSum() {
-        PruebasJUNIT sum = new PruebasJUNIT();
-        assertEquals(5, sum.sumar(2, 3));
+        assertEquals(5, pruebasJUNIT.sumar(2, 3));
     }
 
     @Test
