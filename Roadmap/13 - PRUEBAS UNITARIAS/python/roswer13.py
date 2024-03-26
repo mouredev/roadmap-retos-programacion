@@ -76,8 +76,6 @@ class TestSum(unittest.TestCase):
 # Crea dos test:
 # - Un primero que determine que existen todos los campos.
 # - Un segundo que determine que los datos introducidos son correctos.
-
-
 class TestUserData(unittest.TestCase):
     def setUp(self):
         self.key_name = "name"
