@@ -13,14 +13,14 @@ Comentarios
 de varias
 líneas
 '''
-import math 
 
-# Variables: no existe una palabra reservada para declarar una variable 
+# Variables: no existe una palabra reservada para declarar una variable solo hay que escribirla en minúscula y en snake_case
 string = "hola"
-
+my_variable = "Hola Python"
 
 # Constantes
 # No hay constantes en Python, pero sí hay forma de declarar una constante y esperar a que los demás respeten.
+import math 
 CONSTANTE = math.pi
 
 # Integer ( int )
