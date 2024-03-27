@@ -21,5 +21,3 @@ random_float = 12.334 # Un float, un valor decimal
 random_bool = True # Un booleano, verdadero o falso
 
 print("Hola, " + language_name + "!")
-
-
