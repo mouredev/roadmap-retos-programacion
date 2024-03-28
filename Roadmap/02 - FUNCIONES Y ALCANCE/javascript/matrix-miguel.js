@@ -24,13 +24,13 @@
 // Function without param
 function withoutParam() {
   console.log("Hello Matrix");
-}
+};
 withoutParam();
 
 //with arg and default value
 function withParam(a = 1, b = 2) {
   console.log(a + " " + b);
-}
+};
 withParam("Hi", "Matrix");
 withParam((b = 20), (a = 30));
 withParam();
@@ -41,13 +41,13 @@ function greetComunity(...names) {
   for (const name of names) {
     console.log(`hello ${name}`);
   }
-}
+};
 greetComunity("Matrix", "Machine Learning", "Anonymous");
 
 // with return
 function withReturn() {
   return ["Hello", "Matrix"];
-}
+};
 console.log(withReturn());
 let [word, name] = withReturn();
 
@@ -61,7 +61,7 @@ function doubleFunction() {
   }
 
   return print();
-}
+};
 console.log(doubleFunction());
 
 //Function Built in - random number
