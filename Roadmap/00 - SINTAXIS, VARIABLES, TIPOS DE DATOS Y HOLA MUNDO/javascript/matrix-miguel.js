@@ -39,8 +39,8 @@
 /* comentario de multiples líneas*/
 
 // variable and constant
-let variable = 'variable'
-const constante = 'constante'
+let variable = 'variable';
+const constante = 'constante';
 
 //datos primitivos
 let number = 1;
