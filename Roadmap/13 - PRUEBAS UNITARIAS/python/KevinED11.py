@@ -1,5 +1,5 @@
 from functools import lru_cache, partial, wraps
-from typing import TypeAlias, TypeVar, Generic, Protocol, NamedTuple
+from typing import TypeAlias, TypeVar, Protocol, NamedTuple, Iterable
 import pytest
 
 
@@ -10,8 +10,7 @@ T = TypeVar("T", bound=Number)
 
 
 class OperationFn(Protocol):
-    def __call__(self, a: T, b: T) -> T:
-        ...
+    def __call__(self, a: T, b: T) -> T: ...
 
 
 def validate_operation(fn: OperationFn) -> OperationFn:
@@ -69,17 +68,12 @@ def test_add_invalid_cases() -> None:
     ]
 
     for case in cases:
-        invalid_arguments = any(
-            not isinstance(value, (int, float)) for value in (case.a, case.b)
-        )
-        assert invalid_arguments, f"{case} failed"
-
         with pytest.raises(TypeError):
             add(case.a, case.b)
 
 
 def create_programmer(
-    name: str, age: int, birth_date: str, programming_languages: list[str]
+    name: str, age: int, birth_date: str, programming_languages: Iterable[str]
 ) -> dict:
     return dict(
         name=name,
@@ -117,8 +111,7 @@ def test_field_type() -> None:
         ), f"{field} is not a valid type"
 
 
-def main() -> None:
-    ...
+def main() -> None: ...
 
 
 if __name__ == "__main__":
