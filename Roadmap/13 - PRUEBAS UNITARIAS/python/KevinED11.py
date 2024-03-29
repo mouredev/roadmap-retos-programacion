@@ -1,9 +1,9 @@
 from functools import lru_cache, partial, wraps
-from typing import TypeAlias, TypeVar, Protocol, NamedTuple, Iterable
+from typing import TypeAlias, TypeVar, Protocol, NamedTuple, Iterable, Union
 import pytest
 
 
-Number: TypeAlias = int | float
+Number: TypeAlias = Union[int, float]
 
 
 T = TypeVar("T", bound=Number)
