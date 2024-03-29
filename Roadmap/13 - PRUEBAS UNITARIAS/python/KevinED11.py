@@ -10,7 +10,8 @@ T = TypeVar("T", bound=Number)
 
 
 class OperationFn(Protocol):
-    def __call__(self, a: T, b: T) -> T: ...
+    def __call__(self, a: T, b: T) -> T:
+        ...
 
 
 def validate_operation(fn: OperationFn) -> OperationFn:
@@ -62,14 +63,19 @@ def test_add_valid_cases() -> None:
 
 
 def test_add_invalid_cases() -> None:
-    cases = [
-        Case("a", 2, 3),
-        Case(1, "b", 4),
-    ]
+    cases = [Case("a", 2, 3), Case(1, "b", 4), Case(3, 5, 9)]
 
     for case in cases:
-        with pytest.raises(TypeError):
-            add(case.a, case.b)
+        a_is_int_or_float = isinstance(case.a, (int, float))
+        b_is_int_or_float = isinstance(case.b, (int, float))
+
+        if not a_is_int_or_float or not b_is_int_or_float:
+            with pytest.raises(TypeError):
+                add(case.a, case.b)
+
+        if a_is_int_or_float and b_is_int_or_float:
+            result = add(case.a, case.b)
+            assert result != case.expected
 
 
 def create_programmer(
@@ -111,7 +117,8 @@ def test_field_type() -> None:
         ), f"{field} is not a valid type"
 
 
-def main() -> None: ...
+def main() -> None:
+    ...
 
 
 if __name__ == "__main__":
