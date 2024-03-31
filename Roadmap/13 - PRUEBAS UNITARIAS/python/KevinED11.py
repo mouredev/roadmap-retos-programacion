@@ -10,14 +10,24 @@ T = TypeVar("T", bound=Number)
 
 
 class OperationFn(Protocol):
-    def __call__(self, a: T, b: T) -> T:
-        ...
+    def __call__(self, a: T, b: T) -> T: ...
+
+
+TypeTupleOrType: TypeAlias = Union[type, tuple[type, ...]]
+
+
+def any_is_instance_of(*args, types: TypeTupleOrType) -> bool:
+    return any(isinstance(arg, types) for arg in args)
+
+
+def is_instance_of(obj: object, types: TypeTupleOrType) -> bool:
+    return isinstance(obj, types)
 
 
 def validate_operation(fn: OperationFn) -> OperationFn:
     @wraps(fn)
     def wrapper(a: T, b: T) -> T:
-        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        if not any_is_instance_of(a, b, types=(int, float)):
             raise TypeError("a and b must be numbers")
 
         return fn(a, b)
@@ -58,7 +68,7 @@ def test_add_valid_cases() -> None:
     for case in cases:
         result = add(case.a, case.b)
         assert result == case.expected, f"{case} failed"
-        assert isinstance(result, (int, float)), f"{case} failed"
+        assert is_instance_of(result, (int, float)), f"{case} failed"
         print(f"{case} passed")
 
 
@@ -66,8 +76,8 @@ def test_add_invalid_cases() -> None:
     cases = [Case("a", 2, 3), Case(1, "b", 4), Case(3, 5, 9)]
 
     for case in cases:
-        a_is_int_or_float = isinstance(case.a, (int, float))
-        b_is_int_or_float = isinstance(case.b, (int, float))
+        a_is_int_or_float = is_instance_of(case.a, (int, float))
+        b_is_int_or_float = is_instance_of(case.b, (int, float))
 
         if not a_is_int_or_float or not b_is_int_or_float:
             with pytest.raises(TypeError):
@@ -117,8 +127,7 @@ def test_field_type() -> None:
         ), f"{field} is not a valid type"
 
 
-def main() -> None:
-    ...
+def main() -> None: ...
 
 
 if __name__ == "__main__":
