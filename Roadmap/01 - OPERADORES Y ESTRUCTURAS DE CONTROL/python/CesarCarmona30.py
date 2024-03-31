@@ -70,8 +70,8 @@ print(f"AND: 10 & 12 = {10 & 12}")
 print(f"OR: 10 | 12 = {10 | 12}")  
 print(f"XOR: 10 ^ 12 = {10 ^ 12}")  
 print(f"NOT: ~2 = {~2}")
-print(f"Desplazamiento a la derecha: 10 >> 2 = {12 >> 2}") 
-print(f"Desplazamiento a la izquierda: 10 << 2 = {12 << 2}")
+print(f"Desplazamiento a la derecha: 10 >> 2 = {10 >> 2}") 
+print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}")
 
 '''
   ESTRUCTURAS DE CONTROL
