@@ -1,6 +1,7 @@
 from functools import lru_cache, partial, wraps
 from typing import TypeAlias, TypeVar, Protocol, NamedTuple, Iterable, Union
 import pytest
+from enum import StrEnum
 
 
 Number: TypeAlias = Union[int, float]
@@ -10,7 +11,8 @@ T = TypeVar("T", bound=Number)
 
 
 class OperationFn(Protocol):
-    def __call__(self, a: T, b: T) -> T: ...
+    def __call__(self, a: T, b: T) -> T:
+        ...
 
 
 TypeTupleOrType: TypeAlias = Union[type, tuple[type, ...]]
@@ -18,6 +20,10 @@ TypeTupleOrType: TypeAlias = Union[type, tuple[type, ...]]
 
 def any_is_instance_of(*args, types: TypeTupleOrType) -> bool:
     return any(isinstance(arg, types) for arg in args)
+
+
+def all_is_instance_of(*args, types: TypeTupleOrType) -> bool:
+    return all(isinstance(arg, types) for arg in args)
 
 
 def is_instance_of(obj: object, types: TypeTupleOrType) -> bool:
@@ -108,26 +114,37 @@ kevin_programmer = partial(
 )
 
 
+class KeysObj(StrEnum):
+    NAME = "name"
+    AGE = "age"
+    BIRTH_DATE = "birth_date"
+    PROGRAMMING_LANGUAGES = "programming_languages"
+
+
 @lru_cache(maxsize=None)
-def object_fields():
-    return ["name", "age", "birth_date", "programming_languages"]
+def dict_keys():
+    return [key.value for key in KeysObj]
 
 
 def test_field_exist() -> None:
     kevin = kevin_programmer()
-    for field in object_fields():
-        assert field in kevin, f"{field} does not exist"
+    assert all(field in kevin for field in dict_keys()), f"{field} does not exist"
 
 
 def test_field_type() -> None:
     kevin = kevin_programmer()
-    for field in object_fields():
-        assert isinstance(
-            kevin[field], (str, int, list)
-        ), f"{field} is not a valid type"
+
+    assert all_is_instance_of(
+        kevin[KeysObj.NAME], kevin[KeysObj.BIRTH_DATE], types=str
+    ), "name or birth_date is not a string"
+    assert is_instance_of(kevin[KeysObj.AGE], int), "age is not an integer"
+    assert is_instance_of(
+        kevin[KeysObj.PROGRAMMING_LANGUAGES], list
+    ), "programming_languages is not a list"
 
 
-def main() -> None: ...
+def main() -> None:
+    ...
 
 
 if __name__ == "__main__":
