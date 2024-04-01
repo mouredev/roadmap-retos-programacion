@@ -11,8 +11,7 @@ T = TypeVar("T", bound=Number)
 
 
 class OperationFn(Protocol):
-    def __call__(self, a: T, b: T) -> T:
-        ...
+    def __call__(self, a: T, b: T) -> T: ...
 
 
 TypeTupleOrType: TypeAlias = Union[type, tuple[type, ...]]
@@ -133,18 +132,19 @@ def test_field_exist() -> None:
 
 def test_field_type() -> None:
     kevin = kevin_programmer()
+    languages = kevin[KeysObj.PROGRAMMING_LANGUAGES]
 
     assert all_is_instance_of(
         kevin[KeysObj.NAME], kevin[KeysObj.BIRTH_DATE], types=str
     ), "name or birth_date is not a string"
     assert is_instance_of(kevin[KeysObj.AGE], int), "age is not an integer"
-    assert is_instance_of(
-        kevin[KeysObj.PROGRAMMING_LANGUAGES], list
-    ), "programming_languages is not a list"
+    assert is_instance_of(languages, list), "programming_languages is not a list"
+    assert all_is_instance_of(
+        *languages, types=str
+    ), "programming_languages is not a list of strings"
 
 
-def main() -> None:
-    ...
+def main() -> None: ...
 
 
 if __name__ == "__main__":
