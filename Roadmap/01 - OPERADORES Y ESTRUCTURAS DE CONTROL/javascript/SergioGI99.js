@@ -117,8 +117,10 @@ console.log("- Switch");
 switch (myName) {
         case "Jose":
                 console.log("Me llamo Jose");
+                break
         case "Sergio":
                 console.log("Me llamo Sergio");
+                break
 };
 
         //Bucles For
