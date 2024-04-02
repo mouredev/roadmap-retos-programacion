@@ -1,5 +1,3 @@
-//const prompt = require('prompt-sync')();
-const fsPromises = require('fs').promises;
 const { File } = require('buffer');
 const { log } = require('console');
 const fs = require('fs');
@@ -8,7 +6,7 @@ const userName = "parababire";
 const fileName = `${userName}.txt`;
 const fileContent = "Nombre: Ángel Narváez.\nEdad: 44 años.\nLenguaje de programación: Javascript."
 
-fs.open(fileName, "w", (err, fd) => {
+/* fs.open(fileName, "w", (err, fd) => {
   if (err) throw err;
   fs.appendFile(fileName, fileContent, (err) => {
     if (err) throw err;
@@ -26,10 +24,10 @@ fs.open(fileName, "w", (err, fd) => {
     console.log("Datos agregados");
   });
   console.log("archivo abierto");
-});
+}); */
 
 //Extra
-/* let rl = readline.createInterface(process.stdin, process.stdout);
+let rl = readline.createInterface(process.stdin, process.stdout);
 
 const leerArchivo = (archivo) => {
   fs.readFile(archivo, 'utf8', (err, data) => {
@@ -71,14 +69,25 @@ const consultarProducto = () => {
   });
 }
 
-const actualizarProducto = () => {
+const actualizarProducto = () => {//Pendiente finalizar
   rl.question("Nombre del producto: ", nombre => {
     rl.question("Cantidad del producto: ", cantidad => {
       rl.question("Precio del producto: ", precio => {
-        //const productoActualizado = `${nombre}, ${cantidad}, ${precio}`;
-        fs.open("producto.txt", "r", (err, data) => {
+        const productoActualizado = `${nombre}, ${cantidad}, ${precio}`;
+        fs.readFile("producto.txt", "utf8", (err, data) => {
           if (err) throw err;
-          console.log(data.toLocaleString());
+          const inventario = data.split("\n");
+          for (const producto of inventario) {
+            if (producto.split(",")[0] === nombre) {
+              fs.writeFile("producto.txt", producto, err => {
+                if (err) throw err;
+              });//No logro el objetivo
+            } else {
+              fs.appendFile("producto.txt", productoActualizado, err => {
+                if (err) throw err;
+              });
+            }
+          }
           menu();
           selecionarOperacion();
         })
@@ -153,5 +162,5 @@ const selecionarOperacion = () => {
     }
   });
 }
-menu(); */
+menu();
 
