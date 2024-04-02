@@ -18,3 +18,27 @@
  */
 '''
 
+### Pila/Stack (LIFO) 
+## List in Python is a stack
+stack = []
+stack.append("1") # push
+stack.append("2") # push
+stack.append("3") # push
+print(stack)
+element = stack.pop() # pop
+print(element)
+print(stack)
+
+### Cola/Queue (FIFO)
+queue = []
+#enqueue
+queue.append("1") 
+queue.append("2") 
+queue.append("3") 
+print(queue)
+#dequeue
+element = queue.pop(0)
+print(element)
+print(queue)
+
+### EXTRA
