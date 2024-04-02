@@ -41,4 +41,55 @@ element = queue.pop(0)
 print(element)
 print(queue)
 
-### EXTRA
+## EXTRA
+### EXTRA 1
+
+def web_navegation():
+    
+    stack = []
+
+    while True:
+
+        action = input(
+            "Añade una url o interactúa con palabras adelante/atrás/salir: "
+            )
+        
+        if action == 'salir':
+            print('Saliendo del navegador web.')
+            break 
+        elif action == 'adelante': # El stack no podemos hacer
+            pass
+        elif action == "atrás":
+            if len(stack) > 0:
+                stack.pop()
+        else:
+            stack.append(action)
+        
+        if len(stack) > 0:
+            print(f"Has navegado a la web: {stack[len(stack) - 1]}")
+        else:
+            print("Estás en la página de inicio.")
+
+#web_navegation()
+
+### EXTRA 2
+def online_printer():
+    queue = []
+
+    while True:
+        action = input("Añade documento o selecciona imprimir/salir: ")
+
+        if action == "imprimir":
+            if len(queue) > 0:
+                print(f"Imprimiendo documento '{queue.pop(0)}'")
+            else:
+                print("No hay documento en cola.")
+        elif action == "salir":
+            print("Apagando la impresora LOL!!!")
+            break
+        else:
+            queue.append(action)
+
+        print(f"Cola de Impresora {queue}")
+
+online_printer()
