@@ -33,8 +33,7 @@
 
 
 //Crear una variable
-let variable = "Mi variable";
-// console.log(variable);   
+let variable = "Mi variable"; 
 variable = 1;  // Cambiar el valor de la variable
 // console.log(variable);
 
