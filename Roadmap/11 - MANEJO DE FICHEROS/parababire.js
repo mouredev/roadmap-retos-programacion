@@ -77,17 +77,12 @@ const actualizarProducto = () => {//Pendiente finalizar
         fs.readFile("producto.txt", "utf8", (err, data) => {
           if (err) throw err;
           const inventario = data.split("\n");
-          for (const producto of inventario) {
-            if (producto.split(",")[0] === nombre) {
-              fs.writeFile("producto.txt", producto, err => {
-                if (err) throw err;
-              });//No logro el objetivo
-            } else {
-              fs.appendFile("producto.txt", productoActualizado, err => {
-                if (err) throw err;
-              });
-            }
-          }
+          for (let i = 0; i < inventario.length; i++) {
+            if (inventario[i].split(",")[0] === nombre) {
+              inventario[i] = productoActualizado;
+            }          
+          }//No logro darle final
+          console.log(inventario);
           menu();
           selecionarOperacion();
         })
