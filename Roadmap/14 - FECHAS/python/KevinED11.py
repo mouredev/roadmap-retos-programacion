@@ -33,7 +33,7 @@ def choice_random_elements[T](elements: Iterable[T], quantity: int) -> list[T]:
 
 
 def display_formatted_date_in_various_ways(date: datetime, quantity: int = 10) -> None:
-    MAXIMUM_ALLOWED_FORMATS: Final = 10
+    MAXIMUM_ALLOWED_FORMATS: Final[int] = 10
 
     if quantity > MAXIMUM_ALLOWED_FORMATS:
         print("la cantidad maxima de fechas a imprimir es 10")
