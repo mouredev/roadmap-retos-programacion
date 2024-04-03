@@ -151,6 +151,7 @@ function productoVenta() {
     });
 }
 
+//  Se crea la lista del menu
 function menuVenta() {
     console.log("\n--- Gestión de Ventas ---");
     console.log("1. Agregar producto");
