@@ -29,3 +29,18 @@ print(birthdayDatef)
 diffYears = today - birthdayDate
 
 print(diffYears.days/365)
+
+#EXTRA
+print("EXTRA, more formats:")
+print(birthdayDate.strftime('%H:%M:%S'))
+print(birthdayDate.strftime('%a'))
+print(birthdayDate.strftime('%A'))
+print(birthdayDate.strftime('%b'))
+print(birthdayDate.strftime('%B'))
+print(birthdayDate.strftime('%w'))
+print(birthdayDate.strftime('%H:%M:%S %p'))
+print(birthdayDate.strftime('%j'))
+print(birthdayDate.strftime('%U'))
+print(birthdayDate.strftime('%c'))
+
+
