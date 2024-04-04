@@ -128,13 +128,17 @@ fs.unlinkSync('Faty.json');
 
 /**-----DIFICULTAD EXTRA-----*/
 
+//  Se utiliza una librería de XML
 const xml2js = require('xml2js');
+
+//  Se crea la clase de transformación de XML y JSON
 class dataTransformer{
     constructor(xmlObjeto, jsonObjeto){
         this.xmlObjeto = xmlObjeto,
         this.jsonObjeto = jsonObjeto
     }
 
+    // Se crea una transformación de XML
     transformFromXML() {
         const xmlDoc = this._parseXmlString(this.xmlObjeto);
         const dataNode = xmlDoc.getElementsByTagName('data')[0];
@@ -149,11 +153,13 @@ class dataTransformer{
         return { nombre, edad, fechaNacimiento, lenguajes };
     }
 
+    // Se hace la transformación
     _parseXmlString(xmlString) {
         const parser = new DOMParser();
         return parser.parseFromString(xmlString, 'text/xml');
     }
 
+    // Se crea una transformación de JSON
     transformJSON() {
         return JSON.parse(this.jsonObjeto.data);
     }
