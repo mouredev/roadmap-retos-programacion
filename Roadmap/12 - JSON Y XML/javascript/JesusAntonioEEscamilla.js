@@ -48,7 +48,7 @@ try {
     console.log(leerXML);
 
     // Se elimina el fichero XML
-    //fs.unlinkSync(xmlFile);
+    fs.unlinkSync(xmlFile);
 } catch (error) {
     console.error('Se encontró un error en el XML: ', error);
 }
@@ -86,7 +86,7 @@ fs.unlinkSync('Faty.xml');
 jsonFile = 'JesusAntonioEEscamilla.json';
 
 // Creando el JSON
-const dataJSON = {
+const jsonObjeto = {
     data: {
         nombre: 'Jesus Antonio Escamilla Escamilla',
         edad: 24,
@@ -95,8 +95,8 @@ const dataJSON = {
     }
 };
 
-// Convetir en formato JSON
-const JsonData = JSON.stringify(dataJSON, null, 2);
+// Convertir en formato JSON
+const JsonData = JSON.stringify(jsonObjeto, null, 2);
 
 try {
     // Se crea el fichero JSON
@@ -107,7 +107,7 @@ try {
     console.log(leerJSON);
 
     // Se elimina el fichero JSON
-    // fs.unlinkSync(jsonFile);
+    fs.unlinkSync(jsonFile);
 } catch (error) {
     console.error('Se encontró un error en el JSON: ', error);
 }
@@ -127,5 +127,52 @@ fs.unlinkSync('Faty.json');
 
 
 /**-----DIFICULTAD EXTRA-----*/
-// Pendiente
+
+//  Se utiliza una librería de XML
+const xml2js = require('xml2js');
+
+//  Se crea la clase de transformación de XML y JSON
+class dataTransformer{
+    constructor(xmlObjeto, jsonObjeto){
+        this.xmlObjeto = xmlObjeto,
+        this.jsonObjeto = jsonObjeto
+    }
+
+    // Se crea una transformación de XML
+    transformFromXML() {
+        const xmlDoc = this._parseXmlString(this.xmlObjeto);
+        const dataNode = xmlDoc.getElementsByTagName('data')[0];
+
+        const nombre = dataNode.getElementsByTagName('nombre')[0].textContent;
+        const edad = parseInt(dataNode.getElementsByTagName('edad')[0].textContent);
+        const fechaNacimiento = dataNode.getElementsByTagName('fecha_Nacimiento')[0].textContent;
+
+        const lenguajesNode = dataNode.getElementsByTagName('programación_Lenguaje')[0];
+        const lenguajes = Array.from(lenguajesNode.getElementsByTagName('item')).map(item => item.textContent);
+
+        return { nombre, edad, fechaNacimiento, lenguajes };
+    }
+
+    // Se hace la transformación
+    _parseXmlString(xmlString) {
+        const parser = new DOMParser();
+        return parser.parseFromString(xmlString, 'text/xml');
+    }
+
+    // Se crea una transformación de JSON
+    transformJSON() {
+        return JSON.parse(this.jsonObjeto.data);
+    }
+}
+
+// Crear una instancia de la clase DataTransformer
+const transformer = new dataTransformer(xmlData, JSON.stringify(jsonData));
+
+// Transformar y mostrar los datos
+console.log("Datos transformados desde XML:");
+console.log(transformer.transformXML());
+
+console.log("\nDatos transformados desde JSON:");
+console.log(transformer.transformJSON());
+
 /**-----DIFICULTAD EXTRA-----*/
