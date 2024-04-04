@@ -29,7 +29,7 @@ const fileContent = "Nombre: Ángel Narváez.\nEdad: 44 años.\nLenguaje de prog
 //Extra
 let rl = readline.createInterface(process.stdin, process.stdout);
 
-const leerArchivo = (archivo) => {
+const leerArchivo = (archivo) => {//Buscarle uso a esta función
   fs.readFile(archivo, 'utf8', (err, data) => {
     if (err) throw err;
     return data.split("\n");
@@ -69,25 +69,50 @@ const consultarProducto = () => {
   });
 }
 
-const actualizarProducto = () => {//Pendiente finalizar
+const actualizarProducto = () => {
   rl.question("Nombre del producto: ", nombre => {
-    rl.question("Cantidad del producto: ", cantidad => {
-      rl.question("Precio del producto: ", precio => {
-        const productoActualizado = `${nombre}, ${cantidad}, ${precio}`;
+    rl.question("Cantidad del producto: ", cantidadNueva => {
+      rl.question("Precio del producto: ", precioNuevo => {
         fs.readFile("producto.txt", "utf8", (err, data) => {
           if (err) throw err;
           const inventario = data.split("\n");
-          for (let i = 0; i < inventario.length; i++) {
-            if (inventario[i].split(",")[0] === nombre) {
-              inventario[i] = productoActualizado;
-            }          
-          }//No logro darle final
-          console.log(inventario);
+          const productosActualizados = inventario.map(linea => {
+            const [producto, cantidad, precio] = linea.split(", ");
+            if (producto === nombre) {
+              return `${nombre}, ${cantidadNueva}, ${precioNuevo}`;
+            }
+            return linea;
+          });
+          fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
+            if (err) throw err;
+            console.log("Producto actualizado");
+          })
           menu();
           selecionarOperacion();
         })
       });
     });
+  });
+}
+
+const borrarProducto = () => {
+  rl.question("Nombre del producto: ", nombre => {
+    fs.readFile("producto.txt", "utf8", (err, data) => {
+      if (err) throw err;
+      const inventario = data.split("\n");
+      const productosActualizados = inventario.filter(linea => {
+        const [producto, cantidad, precio] = linea.split(", ");
+        if (producto !== nombre) {
+          return linea;
+        }
+      });
+      fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
+        if (err) throw err;
+        console.log("Producto borrado");//El resultado no es el esperado.
+      })
+      menu();
+      selecionarOperacion();
+    })
   });
 }
 
@@ -134,7 +159,7 @@ const selecionarOperacion = () => {
         actualizarProducto();
         break;
       case "4":
-        
+        borrarProducto();
         break;
       case "5":
         mostrarProductos();
