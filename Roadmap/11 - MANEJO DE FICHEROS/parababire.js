@@ -29,11 +29,13 @@ const fileContent = "Nombre: Ángel Narváez.\nEdad: 44 años.\nLenguaje de prog
 //Extra
 let rl = readline.createInterface(process.stdin, process.stdout);
 
-const leerArchivo = (archivo) => {//Buscarle uso a esta función
-  fs.readFile(archivo, 'utf8', (err, data) => {
-    if (err) throw err;
-    return data.split("\n");
-  });
+const leerArchivo = () => {//Buscarle uso a esta función
+  try {
+    return fs.readFileSync("producto.txt", "utf8").split("\n");
+  } catch (error) {
+    console.log("Archivo no encontrado");
+    return [];
+  }
 }
 
 const crearProducto = () => {
@@ -54,9 +56,8 @@ const crearProducto = () => {
 
 const consultarProducto = () => {
   rl.question("Producto solicitado: ", (nombre) => {
-    const data = fs.readFileSync("producto.txt", "utf8");
-      const productos = data.split("\n");
-      const productoBuscado = productos.find((producto) => producto.split(",")[0] === nombre);
+    const data = leerArchivo();
+      const productoBuscado = data.find((producto) => producto.split(",")[0] === nombre);
       if (productoBuscado) {
         console.log(productoBuscado);
         menu();
@@ -86,9 +87,9 @@ const actualizarProducto = () => {
           fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
             if (err) throw err;
             console.log("Producto actualizado");
+            menu();
+            selecionarOperacion();
           })
-          menu();
-          selecionarOperacion();
         })
       });
     });
@@ -96,24 +97,31 @@ const actualizarProducto = () => {
 }
 
 const borrarProducto = () => {
-  rl.question("Nombre del producto: ", nombre => {
-    fs.readFile("producto.txt", "utf8", (err, data) => {
-      if (err) throw err;
-      const inventario = data.split("\n");
-      const productosActualizados = inventario.filter(linea => {
-        const [producto, cantidad, precio] = linea.split(", ");
-        if (producto !== nombre) {
-          return linea;
-        }
-      });
-      fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
+  if (fs.existsSync("producto.txt")) {
+    rl.question("Nombre del producto: ", nombre => {
+      fs.readFile("producto.txt", "utf8", (err, data) => {
         if (err) throw err;
-        console.log("Producto borrado");//El resultado no es el esperado.
+        const inventario = data.split("\n");
+        const productosActualizados = inventario.filter(linea => {
+          const [producto, cantidad, precio] = linea.split(", ");
+          if (producto !== nombre) {
+            return `${linea}\n`;
+          }
+        });
+        fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
+          if (err) throw err;
+          console.log("Producto borrado");//El resultado no es el esperado.?
+          menu();
+          selecionarOperacion();
+        })
       })
-      menu();
-      selecionarOperacion();
-    })
-  });
+    });
+  } else {
+    console.log("Archivo no existe");
+    menu();
+    selecionarOperacion();
+  }
+  
 }
 
 const mostrarProductos = () => {
@@ -123,6 +131,22 @@ const mostrarProductos = () => {
     menu();
     selecionarOperacion();
   });
+}
+
+const ventaTotal = () => {
+  const ventas = leerArchivo();
+  let total = 0;
+  ventas.forEach((venta) => {
+    const [_, cantidad, precio] = venta.split(", ");
+    if (cantidad === undefined && precio === undefined) {
+      return 0;
+    } else {
+      total += parseInt(cantidad) * parseFloat(precio);
+    }
+  });
+  console.log(`Venta total: ${total}`);
+  menu();
+  selecionarOperacion();
 }
 
 const cerrarPrograma = () => {
@@ -165,7 +189,7 @@ const selecionarOperacion = () => {
         mostrarProductos();
         break;
       case "6":
-        
+        ventaTotal();
         break;
       case "7":
         
