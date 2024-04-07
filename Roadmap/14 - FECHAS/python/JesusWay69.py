@@ -70,9 +70,6 @@ print("Fecha y hora en España:",current_datetime,"\n",
 os.system('pause')
 
 
-
-
-
 def input_data()->D:
     while True:
         year = input("Escriba su año de nacimiento: ")
@@ -82,8 +79,11 @@ def input_data()->D:
         elif int(year)<1900:
             print ("Aunque seas demasiado viejo no creo que hayas nacido antes de 1900, intenta otro año posterior")
             continue
-        elif int(year)>D.today().year:
-            print("A no ser que vengas del futuro no puedes poner un año que aun no ha llegado, intenta de nuevo")
+        elif int(year)<1900:
+            print ("Aunque seas demasiado viejo no creo que hayas nacido antes de 1900, intenta otro año posterior")
+            continue
+        elif int(year)>=D.today().year -3:
+            print("Te has debido equivocar de año porque un bebé no sabe teclear en un ordenador, intenta de nuevo")
             continue
         while True:
             month = input("Escriba el mes de nacimiento: ")
