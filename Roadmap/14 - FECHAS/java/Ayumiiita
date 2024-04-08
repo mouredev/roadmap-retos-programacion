@@ -1,0 +1,15 @@
+import java.util.Calendar;
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+    Date fecha = new Date();
+
+    Date fecha1 = new Date(1989, Calendar.OCTOBER,21);
+
+    System.out.println(fecha.toString());
+    System.out.println(fecha1.toString());
+
+
+    }
+}
