@@ -79,11 +79,11 @@ def input_data()->D:
         elif int(year)<1900:
             print ("Aunque seas demasiado viejo no creo que hayas nacido antes de 1900, intenta otro año posterior")
             continue
-        elif int(year)<1900:
-            print ("Aunque seas demasiado viejo no creo que hayas nacido antes de 1900, intenta otro año posterior")
-            continue
-        elif int(year)>=D.today().year -3:
+        elif int(year)>=D.today().year -3 and int(year)<= D.today().year:
             print("Te has debido equivocar de año porque un bebé no sabe teclear en un ordenador, intenta de nuevo")
+            continue
+        elif int(year)>D.today().year:
+            print("A no ser que vengas del futuro no puedes poner un año que aun no ha llegado, intenta de nuevo")
             continue
         while True:
             month = input("Escriba el mes de nacimiento: ")
@@ -98,6 +98,9 @@ def input_data()->D:
                 if not day.isdigit or len(day)>2 or len(day)<=0:
                    print ("ERROR: El día debe ser numérico de 1 o 2 cifras")
                    continue
+                elif int(month)==4 or int(month)==6 or int(month)==9 or int(month)==11 and int(day)>30:
+                    print (f"El mes de {months[int(month)-1]} no puede tener más de 30 días") 
+                    continue
                 elif int(day)<1 or int(day)>31:
                    print ("ERROR: El día no debe ser menor a 0 ni mayor a 31")
                    continue
@@ -118,7 +121,7 @@ def show_data(date_object:D):
 
     print(f"\nHoy es {current_week_day} día {DT.now().day} de {current_month} de {DT.now().year}")
     print(f"Y son las {DT.now().hour} horas y {DT.now().minute} minutos\n")
-    print(f"Han transcurrido {weeks_passed} semanas y estamos en el día {days_passed.days+1} de {D.today().year}\n")
+    print(f"Estamos en la semana {weeks_passed} y en el día {days_passed.days+1} de {D.today().year}\n")
     if DT.now().hour>=6 and DT.now().hour<12:
       print("¡¡Buenos días!!\n")
     elif DT.now().hour>=12 and DT.now().hour<=20:
