@@ -69,7 +69,7 @@ async def main() -> None:
         ]
     )
 
-    (lambda: print("¡Adiós"))()
+    print("Adios")
 
 
 if __name__ == "__main__":
