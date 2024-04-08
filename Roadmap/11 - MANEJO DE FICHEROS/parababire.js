@@ -6,32 +6,33 @@ const userName = "parababire";
 const fileName = `${userName}.txt`;
 const fileContent = "Nombre: Ángel Narváez.\nEdad: 44 años.\nLenguaje de programación: Javascript."
 
-/* fs.open(fileName, "w", (err, fd) => {
+fs.open(fileName, "w", (err, fd) => {
   if (err) throw err;
   fs.appendFile(fileName, fileContent, (err) => {
     if (err) throw err;
     fs.readFile(fileName, "utf8", (err, data) => {
       if (err) throw err;
       console.log(data);
-      const borrado = () => {
-        fs.unlink(fileName, err => {
-          if (err) throw err;
-          console.log("Archivo borrado");
-        });
-      } 
-      setTimeout(borrado, 5000);
     })
     console.log("Datos agregados");
+    const borrado = () => {
+      fs.unlink(fileName, err => {
+        if (err) throw err;
+        console.log("Archivo borrado");
+      });
+      rl.close();
+    };
+    setTimeout(borrado, 5000);
   });
   console.log("archivo abierto");
-}); */
+});
 
 //Extra
 let rl = readline.createInterface(process.stdin, process.stdout);
 
-const leerArchivo = () => {//Buscarle uso a esta función
+const leerArchivo = () => {
   try {
-    return fs.readFileSync("producto.txt", "utf8").split("\n");
+    return fs.readFileSync(fileName, "utf8").split("\n");
   } catch (error) {
     console.log("Archivo no encontrado");
     return [];
@@ -43,7 +44,7 @@ const crearProducto = () => {
     rl.question("Cantidad del producto: ", cantidad => {
       rl.question("Precio del producto: ", precio => {
         const producto = `${nombre}, ${cantidad}, ${precio}\n`;
-        fs.appendFile("producto.txt", `${producto}`, err => {
+        fs.appendFile(fileName, `${producto}`, err => {
           if (err) throw err;
           console.log("Producto creado");
           menu();
@@ -74,63 +75,54 @@ const actualizarProducto = () => {
   rl.question("Nombre del producto: ", nombre => {
     rl.question("Cantidad del producto: ", cantidadNueva => {
       rl.question("Precio del producto: ", precioNuevo => {
-        fs.readFile("producto.txt", "utf8", (err, data) => {
+        const inventario = leerArchivo();
+        const productosActualizados = inventario.map(linea => {
+          const [producto, cantidad, precio] = linea.split(", ");
+          if (producto === nombre) {
+            return `${nombre}, ${cantidadNueva}, ${precioNuevo}`;
+          }
+          return linea;
+        });
+        fs.writeFile(fileName, productosActualizados.join("\n"), err => {
           if (err) throw err;
-          const inventario = data.split("\n");
-          const productosActualizados = inventario.map(linea => {
-            const [producto, cantidad, precio] = linea.split(", ");
-            if (producto === nombre) {
-              return `${nombre}, ${cantidadNueva}, ${precioNuevo}`;
-            }
-            return linea;
-          });
-          fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
-            if (err) throw err;
-            console.log("Producto actualizado");
-            menu();
-            selecionarOperacion();
-          })
-        })
+          console.log("Producto actualizado");
+          menu();
+          selecionarOperacion();
+        });
       });
     });
   });
 }
 
 const borrarProducto = () => {
-  if (fs.existsSync("producto.txt")) {
+  if (fs.existsSync(fileName)) {
     rl.question("Nombre del producto: ", nombre => {
-      fs.readFile("producto.txt", "utf8", (err, data) => {
+      const inventario = leerArchivo();
+      const productosActualizados = inventario.filter(linea => {
+        const [producto, cantidad, precio] = linea.split(", ");
+        if (producto !== nombre) {
+          return `${linea}\n`;
+        }
+      });
+      fs.writeFile(fileName, productosActualizados.join("\n"), err => {
         if (err) throw err;
-        const inventario = data.split("\n");
-        const productosActualizados = inventario.filter(linea => {
-          const [producto, cantidad, precio] = linea.split(", ");
-          if (producto !== nombre) {
-            return `${linea}\n`;
-          }
-        });
-        fs.writeFile("producto.txt", productosActualizados.join("\n"), err => {
-          if (err) throw err;
-          console.log("Producto borrado");//El resultado no es el esperado.?
-          menu();
-          selecionarOperacion();
-        })
-      })
+        console.log("Producto borrado");
+        menu();
+        selecionarOperacion();
+      });
     });
   } else {
     console.log("Archivo no existe");
     menu();
     selecionarOperacion();
   }
-  
 }
 
 const mostrarProductos = () => {
-  fs.readFile("producto.txt", "utf8", (err, data) => {
-    if (err) throw err;
-    console.log(data);
-    menu();
-    selecionarOperacion();
-  });
+  const producto = leerArchivo();
+  console.log(producto.join("\n"));
+  menu();
+  selecionarOperacion();
 }
 
 const ventaTotal = () => {
@@ -149,8 +141,26 @@ const ventaTotal = () => {
   selecionarOperacion();
 }
 
+const ventaPorProducto = () => {
+  rl.question("Producto solicitado: ", (nombre) => {
+    let total = 0;
+    const data = leerArchivo();
+    const productoBuscado = data.find((producto) => producto.split(",")[0] === nombre);
+      if (productoBuscado) {
+        total += parseInt(productoBuscado.split(",")[1]) * parseFloat(productoBuscado.split(",")[2]);
+        console.log(`Total venta producto: ${total}`);
+        menu();
+        selecionarOperacion();
+      } else {
+        console.log("Producto no encontrado");
+        menu();
+        selecionarOperacion();
+      }
+  });
+}
+
 const cerrarPrograma = () => {
-  fs.unlink("producto.txt", err => {
+  fs.unlink(fileName, err => {
     if (err) console.log(err = "Archivo no creado");
     console.log("Saliste del programa");
   })
@@ -192,7 +202,7 @@ const selecionarOperacion = () => {
         ventaTotal();
         break;
       case "7":
-        
+        ventaPorProducto();
         break;
       case "8":
         cerrarPrograma();
@@ -207,4 +217,3 @@ const selecionarOperacion = () => {
   });
 }
 menu();
-
