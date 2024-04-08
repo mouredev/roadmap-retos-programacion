@@ -1,31 +1,34 @@
+from builtins import list
+
 print('#####  CADENAS DE CARACTERES #####')
 
-string = 'Programa en Python'
+string = 'Programa en python'
 print(str(reversed(string)))
 
-concatenation = 'Hola ' + string
-print(f"Concatenación: {concatenation}")
+print(f"Concatenación: {'Hola ' + string}")
 
-multiplication = 3 * string
-print(f'Multiplicación: {multiplication}')
+print(f'Multiplicación: {3 * string}')
 
-len_string = len(string)
-print(f'Obtener largo de una string: {len_string}')
+print(f"Indexación: {string[0] + string[1] + string[2]}")
 
-sub_string = string[0:3:1]  # [Inicio: Fin(no incluido): paso]
-print(f'Subcadena con los 3 primeros caracteres de la cadena "{string}": {sub_string}')
+print(f'Longitud de un string: {len(string)}')
 
-upper_string = string.upper()
-print(f'Pasamos a mayusculas la cadena "{string}": {upper_string}')
+print(f'Subcadena con los 3 primeros caracteres de la cadena "{string}": {string[0:3:1]}')  # [Inicio: Fin: paso]
+print(f'Subcadena del 2do caracter al ultimo de la cadena "{string}": {string[1:]}')  # [Inicio: Fin: paso]
 
-lower_string = string.lower()
-print(f'Pasamos a minusculas la cadena "{string}": {lower_string}')
+print(f"Buscador: {'Python' in string}")
 
-title_string = lower_string.title()
-print(f'Pasamos de minusculas a notación de titulo la cadena "{lower_string}": {title_string}')
+print(f"Reemplaza la 'e' de la cadena '{string}' por la 'E': {string.replace('e', 'E')}")
 
-replace_string = string.replace('e', 'E')
-print(f'Reemplazamos la "e" de la cadena "{string}" por la "E": {replace_string}')
+print(f"Dividir cadena: {string.split(' ')}")
+
+print(f'Pasamos a mayusculas la cadena "{string}": {string.upper()}')
+
+print(f'Pasamos a minusculas la cadena "{string}": {string.lower()}')
+
+print(f'Pasamos a notación de titulo la cadena "{string}": {string.title()}')
+
+print(f"Capitalizar la cadena 'yuber Miranda': {'yuber Miranda'.capitalize()}")
 
 new_string = '      Hola Python      '
 
@@ -33,12 +36,36 @@ print(f'Elimina los espacios vacios al inicio de la cadena "{new_string}": {new_
 
 print(f'Elimina los espacios vacios al final de la cadena "{new_string}": {new_string.rstrip()}')
 
-email = 'example@example.com'
-print(f'Separa las palabras de la cadena "{string}" acorde al parametro enviado: {email.split("@")}')
+print(f'Elimina todos los espacios vacios de la cadena "{new_string}": {new_string.strip()}')
 
 print(f'Recorrer caracteres de la cadena "{string}":')
 for caracter in string:
     print(caracter)
+
+print(f"Buscar al principio de la cadena: {string.startswith('Pro')} || {string.startswith('Py')}")
+
+print(f"Buscar al final de la cadena: {string.endswith('thon')} || {string.endswith('ma')}")
+
+print(f"Buscar posición: {string.find('en')} || {string.lower().find('En')}")  # -1 es cuando no es encontrado
+
+print(f"Buscar concurrencias: {string.lower().count('o')}")
+
+print("Formateo: String1 = {}, string2 = {}".format(string, new_string))
+
+print(f"Interpolación: String1 = {string}, string2 = {new_string}")
+
+list_characters = list(string)
+print(f"Transforma string en lista: {list_characters}")
+
+print(f"Transforma lista en string: {''.join(list_characters)}")
+
+print(f"Transforma string a enteros: {type(int('12345'))}")
+
+print(f"Transforma string a decimales: {type(float('12.4'))}")
+
+print(f"Comprueba si es un número: {string.isalnum()}")
+print(f"Comprueba si es un string: {string.isalpha()}")
+print(f"Comprueba si es númerico: {string.isnumeric()}")
 
 access_first_character = string[0]
 print(f'Acceder al primer caracter del string: {access_first_character}')
