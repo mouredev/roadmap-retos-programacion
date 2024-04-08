@@ -17,28 +17,26 @@ def get_function_name(func: Callable) -> str:
 
 async def function_a() -> None:
     await sleep_program(1, name="Function A")
-    print("function a finished")
 
 
 async def function_b() -> None:
     await sleep_program(2, name="Function B")
-    print("function b finished")
 
 
 async def function_c() -> None:
     await sleep_program(3, name="Function C")
-    print("function c finished")
 
 
-def func_d() -> None:
-    print("function d started")
-    time.sleep(1)
-    print("function d finished")
+async def function_d() -> None:
+    await sleep_program(1, name="Function D")
+
+
+async def function_e() -> None:
+    await sleep_program(11, name="Function E")
 
 
 async def execute_void_async_functions(funcs: Iterable[VoidAsyncFunction]) -> None:
-    for func in funcs:
-        await func()
+    await asyncio.gather(*[func() for func in funcs])
 
 
 async def sleep_program(seconds: Number, name: str = "Sleep") -> None:
@@ -52,14 +50,26 @@ async def sleep_program(seconds: Number, name: str = "Sleep") -> None:
     print(f"{current_name} program finished")
 
 
+async def goodbye() -> None:
+    print("¡Adiós, mundo!")
+
+
 async def main() -> None:
     await sleep_program(5)
     print("¡Hola, mundo!")
 
-    await execute_void_async_functions([function_c, function_b, function_a])
-    func_d()
+    await execute_void_async_functions(
+        [
+            function_e,
+            function_c,
+            function_b,
+            function_a,
+            function_d,
+            goodbye,
+        ]
+    )
 
-    print("¡Adiós, mundo!")
+    (lambda: print("¡Adiós"))()
 
 
 if __name__ == "__main__":
