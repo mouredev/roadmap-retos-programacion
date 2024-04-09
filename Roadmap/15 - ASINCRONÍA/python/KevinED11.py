@@ -64,11 +64,10 @@ async def main() -> None:
             function_c,
             function_b,
             function_a,
-            function_d,
             goodbye,
         ]
     )
-
+    await function_d()
     print("Adios")
 
 
