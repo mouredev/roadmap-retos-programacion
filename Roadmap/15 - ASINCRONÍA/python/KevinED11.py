@@ -5,13 +5,14 @@ import time
 
 type Number = int | float
 type VoidAsyncFunction = Callable[[], None]
+type VariadicFunction[T] = Callable[[T, ...], T]
 
 
-def set_function_name(func: Callable, new_name: str) -> None:
+def set_function_name(func: VariadicFunction, new_name: str) -> None:
     func.__name__ = new_name
 
 
-def get_function_name(func: Callable) -> str:
+def get_function_name(func: VariadicFunction) -> str:
     return func.__name__
 
 
@@ -64,6 +65,7 @@ async def main() -> None:
             function_c,
             function_b,
             function_a,
+            function_d,
             goodbye,
         ]
     )
