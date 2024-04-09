@@ -37,7 +37,8 @@ async def function_e() -> None:
 
 
 async def execute_void_async_functions(funcs: Iterable[VoidAsyncFunction]) -> None:
-    await asyncio.gather(*[func() for func in funcs])
+    tasks = [func() for func in funcs]
+    await asyncio.gather(*tasks)
 
 
 async def sleep_program(seconds: Number, name: str = "Sleep") -> None:
