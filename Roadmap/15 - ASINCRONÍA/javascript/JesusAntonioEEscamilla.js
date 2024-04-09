@@ -31,7 +31,7 @@ const main = async () => {
 }
 
 // Se ejecuta el main
-// main()
+main()
 
 
 
