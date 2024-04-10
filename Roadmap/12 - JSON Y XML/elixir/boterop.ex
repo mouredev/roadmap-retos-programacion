@@ -8,6 +8,7 @@ defmodule Boterop.JSON do
       |> Map.from_struct()
       |> Enum.map(fn {k, v} -> format(k, v) end)
       |> Enum.join("\n\t")
+      |> String.slice(0..-2//1)
 
     "{\n\t#{json}\n}"
   end
@@ -16,7 +17,7 @@ defmodule Boterop.JSON do
   def decode(json_string) do
     json_string
     |> String.split("\n")
-    |> Enum.map(fn v -> Regex.replace(~r/\\|\n|\t|\"/, v, "") end)
+    |> Enum.map(fn v -> Regex.replace(~r/\\|\n|\t|\"|,+$/, v, "") end)
     |> List.delete_at(0)
     |> List.delete_at(-1)
     |> to_map()
@@ -53,9 +54,9 @@ defmodule Boterop.JSON do
 
   @spec format(k :: String.t(), list(String.t()) | Date.t() | String.t()) :: String.t()
   defp format(k, [_head | _tail] = list),
-    do: "#{format_key(k)}: [\"#{Enum.join(list, "\", \"")}\"]"
+    do: "#{format_key(k)}: [\"#{Enum.join(list, "\", \"")}\"],"
 
-  defp format(k, text), do: "#{format_key(k)}: \"#{text}\""
+  defp format(k, text), do: "#{format_key(k)}: \"#{text}\","
 
   @spec format_key(k :: String.t()) :: String.t()
   defp format_key(k), do: "\"#{k}\""
@@ -252,10 +253,10 @@ user
 |> Boterop.JSON.encode()
 |> (&File.write("#{path}/user.json", &1)).()
 
-# Write user.xml file
-user
-|> Boterop.XML.encode()
-|> (&File.write("#{path}/user.xml", &1)).()
+# # Write user.xml file
+# user
+# |> Boterop.XML.encode()
+# |> (&File.write("#{path}/user.xml", &1)).()
 
 # Extra
 
@@ -266,13 +267,13 @@ user
 |> Boterop.User.from_map()
 |> IO.inspect()
 
-# Read user.xml and print the %User{} info
-"#{path}/user.xml"
-|> File.read!()
-|> Boterop.XML.decode()
-|> Boterop.User.from_map()
-|> IO.inspect()
+# # Read user.xml and print the %User{} info
+# "#{path}/user.xml"
+# |> File.read!()
+# |> Boterop.XML.decode()
+# |> Boterop.User.from_map()
+# |> IO.inspect()
 
 # Remove files
 File.rm_rf("#{path}/user.json")
-File.rm_rf("#{path}/user.xml")
+# File.rm_rf("#{path}/user.xml")
