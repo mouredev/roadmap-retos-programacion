@@ -1,5 +1,5 @@
 """	
-06 - PILAS Y COLAS	
+07 - PILAS Y COLAS	
 Autor de la solución: Oriaj3	
 Teoría:	
 Las pilas y las colas son estructuras de datos que permiten almacenar y recuperar elementos.
@@ -102,7 +102,7 @@ el nombre de una nueva web.
 """
 
 #Al ser una pila, cuando se añade un elemento se añade al final, y cuando se saca se saca del final
-def w_new(elemento: str)-> str:
+def     w_new(elemento: str)-> str:
     global lista_web
     lista_web.append(elemento)
     return str(elemento)
