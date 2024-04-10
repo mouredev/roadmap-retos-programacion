@@ -188,16 +188,16 @@ console.log(numeroAleatorio);
 console.log(typeof(numeroAleatorio));
 
 //***ALCANCE***
-let n = 78; //aqui n tiene alcance global
-console.log(n + 23);
+let n = 'Soy una variable con alcance global'; //aqui n tiene alcance global
+console.log(n);
 
 function local() {
-    let m = 20;
+    let m = 'Soy una variable con alcance local';
+    console.log(m);
 };
 
-//console.log(n + m); --> da error, debido a que m solo es accesible dentro de la funcion
-
-
+//si escribieramos console.log(m); daria error, debido a que m solo es accesible dentro de la funcion
+local();
 
 /* DIFICULTAD EXTRA (opcional):
  * Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
@@ -208,7 +208,7 @@ function local() {
  *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
  */
 
-function cadenaDeTexto(a = 'Tres', b = 'Cinco') {
+function muestraNumeros(a = 'Fizz', b = 'Buzz') {
     for (let i = 1;i <= 100; i++ ) {
         if (i % 3 === 0 && i % 5 === 0) {
             console.log(a + ' ' + b);
@@ -222,4 +222,4 @@ function cadenaDeTexto(a = 'Tres', b = 'Cinco') {
     };
 };
 
-cadenaDeTexto('Papa', 'Frita');
+muestraNumeros('Papa', 'Frita');
