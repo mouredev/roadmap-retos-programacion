@@ -50,9 +50,87 @@ defmodule Boterop.JSON do
   end
 
   @spec format(k :: String.t(), list(String.t()) | Date.t() | String.t()) :: String.t()
-  defp format(k, [_head | _tail] = list), do: "\"#{k}\": [\"#{Enum.join(list, "\", \"")}\"]"
-  defp format(k, %Date{} = date), do: "\"#{k}\": \"#{date}\""
-  defp format(k, text), do: "\"#{k}\": \"#{text}\""
+  defp format(k, [_head | _tail] = list),
+    do: "#{format_key(k)}: [\"#{Enum.join(list, "\", \"")}\"]"
+
+  defp format(k, text), do: "#{format_key(k)}: \"#{text}\""
+
+  @spec format_key(k :: String.t()) :: String.t()
+  def format_key(k), do: "\"#{k}\""
+end
+
+defmodule Boterop.XML do
+  @spec encode(map :: map()) :: String.t()
+  def encode(%{} = map) do
+    xml =
+      map
+      |> Map.from_struct()
+      |> Enum.map(fn {k, v} -> format(k, v) end)
+      |> Enum.join("\n")
+
+    xml_start = ~S(<?xml version="1.0" encoding="UTF-8"?>)
+    xml_start <> "\n#{xml}"
+  end
+
+  @spec decode(xml_string :: String.t()) :: map()
+  def decode(xml_string) do
+    xml_string
+    |> String.split("\n")
+    |> Enum.map(fn v -> Regex.replace(~r/\\|\n|\t|\"/, v, "") end)
+    |> List.delete_at(0)
+    |> List.delete_at(-1)
+    |> to_map()
+  end
+
+  @spec to_map(list :: list(String.t()), map :: map()) :: map()
+  defp to_map(list, map \\ %{})
+  defp to_map([], map), do: map
+
+  defp to_map([head | tail], map) do
+    [key | [value]] = String.split(head, ":")
+    key = String.to_atom(key)
+    value = value |> String.trim() |> format_value()
+    new_map = Map.put(map, key, value)
+
+    to_map(tail, new_map)
+  end
+
+  @spec format_value(text :: String.t()) :: String.t() | integer()
+  defp format_value("[" <> text) do
+    text
+    |> String.replace("]", "")
+    |> String.split(",")
+    |> Enum.map(fn v -> v |> String.trim() end)
+  end
+
+  defp format_value(text) do
+    case Integer.parse(text) do
+      :error -> text
+      {num, ""} -> num
+      {_num, _decimals} -> text
+    end
+  end
+
+  @spec format(k :: String.t(), list(String.t()) | Date.t() | String.t()) :: String.t()
+  defp format(k, [_head | _tail] = list) do
+    singular_k =
+      k
+      |> Atom.to_string()
+      |> (&Regex.replace(~r/s$/, &1, "")).()
+
+    start_singular = format_key(singular_k)
+    end_singular = format_end_key(singular_k)
+
+    "#{format_key(k)}\n\t#{start_singular}#{Enum.join(list, "#{end_singular}\n\t#{start_singular}")}#{end_singular}\n#{format_key(k)}"
+  end
+
+  defp format(k, text), do: "#{format_key(k)}#{text}#{format_end_key(k)}"
+
+  @spec format_key(k :: String.t()) :: String.t()
+  def format_key(k), do: "<#{k}>"
+
+  @spec format_end_key(k :: String.t()) :: String.t()
+  def format_end_key(k), do: "</#{k}>"
 end
 
 defmodule Boterop.User do
@@ -118,4 +196,5 @@ user
 |> Boterop.JSON.encode()
 |> Boterop.JSON.decode()
 |> Boterop.User.from_map()
-|> IO.inspect()
+|> Boterop.XML.encode()
+|> IO.puts()
