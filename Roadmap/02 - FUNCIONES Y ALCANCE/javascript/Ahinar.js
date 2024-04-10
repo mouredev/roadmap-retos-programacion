@@ -77,3 +77,34 @@ operaciones(resultsuma,resultresta);//usamos las variables que almacenamos en la
 console.log(redondear(3.1415));
 probarScope();
 console.log(pi); // Muestra la variable global pi nuevamente
+
+// Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
+//  * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
+//  *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
+//  *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
+//  *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+//  *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
+
+var textoANum = function (text1,text2) {
+    let contador=0
+
+    for (let i = 1; i <=100; i++) {
+
+        if ( i%3==0 && i%5==0){
+            console.log(text1+text2)       
+
+        }else if (i%5==0) {
+            console.log(text2);
+        }else if (i %3==0){
+        console.log(text1);
+        }else{
+            console.log(i) 
+            contador ++
+        }
+        
+    }
+    console.log("Numeros impresos: ", contador);
+  r
+}
+
+textoANum("pa","co")
