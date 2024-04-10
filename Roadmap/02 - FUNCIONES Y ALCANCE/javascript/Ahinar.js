@@ -104,7 +104,7 @@ var textoANum = function (text1,text2) {
         
     }
     console.log("Numeros impresos: ", contador);
-  r
+  
 }
 
 textoANum("pa","co")
