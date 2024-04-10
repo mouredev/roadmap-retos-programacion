@@ -1,5 +1,7 @@
 defmodule Boterop.JSON do
-  @spec encode(map :: map()) :: String.t()
+  @type json :: String.t()
+
+  @spec encode(map :: map()) :: json()
   def encode(%{} = map) do
     json =
       map
@@ -10,7 +12,7 @@ defmodule Boterop.JSON do
     "{\n\t#{json}\n}"
   end
 
-  @spec decode(json_string :: String.t()) :: map()
+  @spec decode(json_string :: json()) :: map()
   def decode(json_string) do
     json_string
     |> String.split("\n")
@@ -60,7 +62,9 @@ defmodule Boterop.JSON do
 end
 
 defmodule Boterop.XML do
-  @spec encode(map :: map()) :: String.t()
+  @type xml :: String.t()
+
+  @spec encode(map :: map()) :: xml()
   def encode(%{} = map) do
     xml =
       map
@@ -72,7 +76,7 @@ defmodule Boterop.XML do
     xml_start <> "\n#{xml}"
   end
 
-  @spec decode(xml_string :: String.t()) :: map()
+  @spec decode(xml_string :: xml()) :: map()
   def decode(xml_string) do
     xml_string
     |> String.split("\n")
