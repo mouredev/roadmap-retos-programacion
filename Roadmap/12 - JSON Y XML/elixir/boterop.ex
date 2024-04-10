@@ -58,7 +58,7 @@ defmodule Boterop.JSON do
   defp format(k, text), do: "#{format_key(k)}: \"#{text}\""
 
   @spec format_key(k :: String.t()) :: String.t()
-  def format_key(k), do: "\"#{k}\""
+  defp format_key(k), do: "\"#{k}\""
 end
 
 defmodule Boterop.XML do
@@ -78,12 +78,44 @@ defmodule Boterop.XML do
 
   @spec decode(xml_string :: xml()) :: map()
   def decode(xml_string) do
-    xml_string
-    |> String.split("\n")
-    |> Enum.map(fn v -> Regex.replace(~r/\\|\n|\t|\"/, v, "") end)
-    |> List.delete_at(0)
-    |> List.delete_at(-1)
+    map =
+      xml_string
+      |> String.split("\n")
+      |> List.delete_at(0)
+      |> List.delete_at(-1)
+      |> Enum.map(fn v -> Regex.replace(~r/<\/[a-zA-Z_]+>/, v, "") end)
+      |> Enum.map(fn v -> Regex.replace(~r/</, v, "") end)
+      |> Enum.map(fn v -> Regex.replace(~r/>/, v, ":") end)
+
+    lists =
+      map
+      |> Enum.filter(fn v -> Regex.match?(~r/.*:$/, v) end)
+      |> Enum.map(fn v -> Regex.replace(~r/:/, v, "") end)
+      |> Enum.map(fn v -> singularize(v) end)
+
+    map
+    |> Enum.filter(fn v -> not Regex.match?(~r/.*:$/, v) end)
+    |> Enum.map(fn v -> String.trim(v) end)
+    |> join_lists(lists)
     |> to_map()
+  end
+
+  @spec join_lists(list :: list(String.t()), list(String.t())) :: list(String.t())
+  defp join_lists(list, []), do: list
+
+  defp join_lists(list, [head | tail]) do
+    plural_k = head <> "s"
+
+    list_data =
+      list
+      |> Enum.filter(fn v -> String.contains?(v, head) end)
+      |> Enum.map(fn v -> Regex.replace(~r/^.*?:/, v, "") end)
+      |> Enum.join(", ")
+
+    list
+    |> Enum.filter(fn v -> not String.contains?(v, head) end)
+    |> Enum.concat(["#{plural_k}: [#{list_data}]"])
+    |> join_lists(tail)
   end
 
   @spec to_map(list :: list(String.t()), map :: map()) :: map()
@@ -120,21 +152,24 @@ defmodule Boterop.XML do
     singular_k =
       k
       |> Atom.to_string()
-      |> (&Regex.replace(~r/s$/, &1, "")).()
+      |> singularize()
 
     start_singular = format_key(singular_k)
     end_singular = format_end_key(singular_k)
 
-    "#{format_key(k)}\n\t#{start_singular}#{Enum.join(list, "#{end_singular}\n\t#{start_singular}")}#{end_singular}\n#{format_key(k)}"
+    "#{format_key(k)}\n\t#{start_singular}#{Enum.join(list, "#{end_singular}\n\t#{start_singular}")}#{end_singular}\n#{format_end_key(k)}"
   end
 
   defp format(k, text), do: "#{format_key(k)}#{text}#{format_end_key(k)}"
 
+  @spec singularize(text :: String.t()) :: String.t()
+  defp singularize(text), do: Regex.replace(~r/s$/, text, "")
+
   @spec format_key(k :: String.t()) :: String.t()
-  def format_key(k), do: "<#{k}>"
+  defp format_key(k), do: "<#{k}>"
 
   @spec format_end_key(k :: String.t()) :: String.t()
-  def format_end_key(k), do: "</#{k}>"
+  defp format_end_key(k), do: "</#{k}>"
 end
 
 defmodule Boterop.User do
@@ -201,4 +236,6 @@ user
 |> Boterop.JSON.decode()
 |> Boterop.User.from_map()
 |> Boterop.XML.encode()
-|> IO.puts()
+|> Boterop.XML.decode()
+|> Boterop.User.from_map()
+|> IO.inspect()
