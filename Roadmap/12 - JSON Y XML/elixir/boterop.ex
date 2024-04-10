@@ -1,4 +1,5 @@
 defmodule Boterop.JSON do
+  @spec encode(map :: map()) :: String.t()
   def encode(%{} = map) do
     json =
       map
@@ -9,6 +10,7 @@ defmodule Boterop.JSON do
     "{\n\t#{json}\n}"
   end
 
+  @spec decode(json_string :: String.t()) :: map()
   def decode(json_string) do
     json_string
     |> String.split("\n")
@@ -18,10 +20,11 @@ defmodule Boterop.JSON do
     |> to_map()
   end
 
-  def to_map(list, map \\ %{})
-  def to_map([], map), do: map
+  @spec to_map(list :: list(String.t()), map :: map()) :: map()
+  defp to_map(list, map \\ %{})
+  defp to_map([], map), do: map
 
-  def to_map([head | tail], map) do
+  defp to_map([head | tail], map) do
     [key | [value]] = String.split(head, ":")
     key = String.to_atom(key)
     value = value |> String.trim() |> format_value()
@@ -30,6 +33,7 @@ defmodule Boterop.JSON do
     to_map(tail, new_map)
   end
 
+  @spec format_value(text :: String.t()) :: String.t() | integer()
   defp format_value("[" <> text) do
     text
     |> String.replace("]", "")
@@ -41,20 +45,11 @@ defmodule Boterop.JSON do
     case Integer.parse(text) do
       :error -> text
       {num, ""} -> num
-      {_num, "-" <> _rest} -> format_date(text)
       {_num, _decimals} -> text
     end
   end
 
-  defp format_date(text) do
-    [year | [month | [day]]] =
-      text
-      |> String.split("-")
-      |> Enum.map(fn text -> String.to_integer(text) end)
-
-    Date.new!(year, month, day)
-  end
-
+  @spec format(k :: String.t(), list(String.t()) | Date.t() | String.t()) :: String.t()
   defp format(k, [_head | _tail] = list), do: "\"#{k}\": [\"#{Enum.join(list, "\", \"")}\"]"
   defp format(k, %Date{} = date), do: "\"#{k}\": \"#{date}\""
   defp format(k, text), do: "\"#{k}\": \"#{text}\""
@@ -70,6 +65,12 @@ defmodule Boterop.User do
 
   defstruct [:name, :age, :birth_date, :programming_languages]
 
+  @spec new(
+          name :: String.t(),
+          age :: integer(),
+          birth_date :: Date.t() | [day: integer(), month: integer(), year: integer()],
+          programming_languages :: list(atom())
+        ) :: __MODULE__.t()
   def new(name, age, birth_date, programming_languages) when is_list(birth_date) do
     day = Keyword.get(birth_date, :day)
     month = Keyword.get(birth_date, :month)
@@ -92,7 +93,23 @@ defmodule Boterop.User do
     }
   end
 
-  def from_map(%{} = map), do: struct(__MODULE__, map)
+  @spec from_map(map :: map()) :: __MODULE__.t()
+  def from_map(%{} = map) do
+    __MODULE__
+    |> struct(map)
+    |> format_date()
+  end
+
+  @spec format_date(user :: __MODULE__.t()) :: __MODULE__.t()
+  defp format_date(%__MODULE__{birth_date: text} = user) do
+    [year | [month | [day]]] =
+      text
+      |> String.split("-")
+      |> Enum.map(fn text -> String.to_integer(text) end)
+
+    date = Date.new!(year, month, day)
+    %__MODULE__{user | birth_date: date}
+  end
 end
 
 user = Boterop.User.new("boterop", 24, [day: 9, month: 10, year: 1999], [:elixir, :python])
