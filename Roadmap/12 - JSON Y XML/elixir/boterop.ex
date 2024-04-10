@@ -245,11 +245,34 @@ end
 
 user = Boterop.User.new("boterop", 24, [day: 9, month: 10, year: 1999], [:elixir, :python])
 
+path = Regex.replace(~r/\/[^\/]+$/, __ENV__.file, "")
+
+# Write user.json file
 user
 |> Boterop.JSON.encode()
+|> (&File.write("#{path}/user.json", &1)).()
+
+# Write user.xml file
+user
+|> Boterop.XML.encode()
+|> (&File.write("#{path}/user.xml", &1)).()
+
+# Extra
+
+# Read user.json and print the %User{} info
+"#{path}/user.json"
+|> File.read!()
 |> Boterop.JSON.decode()
 |> Boterop.User.from_map()
-|> Boterop.XML.encode()
+|> IO.inspect()
+
+# Read user.xml and print the %User{} info
+"#{path}/user.xml"
+|> File.read!()
 |> Boterop.XML.decode()
 |> Boterop.User.from_map()
 |> IO.inspect()
+
+# Remove files
+File.rm_rf("#{path}/user.json")
+File.rm_rf("#{path}/user.xml")
