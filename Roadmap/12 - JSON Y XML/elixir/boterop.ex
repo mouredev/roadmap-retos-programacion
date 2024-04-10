@@ -74,7 +74,7 @@ defmodule Boterop.XML do
       |> Enum.join("\n")
 
     xml_start = ~S(<?xml version="1.0" encoding="UTF-8"?>)
-    xml_start <> "\n#{xml}"
+    xml_start <> "\n#{create_block("item", xml, "\n")}"
   end
 
   @spec decode(xml_string :: xml()) :: map()
@@ -83,8 +83,11 @@ defmodule Boterop.XML do
       xml_string
       |> String.split("\n")
       |> List.delete_at(0)
+      |> List.delete_at(0)
+      |> List.delete_at(-1)
       |> List.delete_at(-1)
       |> Enum.map(fn v -> Regex.replace(~r/<\/[a-zA-Z_]+>/, v, "") end)
+      |> Enum.map(fn v -> Regex.replace(~r/<item>|\t/, v, "") end)
       |> Enum.map(fn v -> Regex.replace(~r/</, v, "") end)
       |> Enum.map(fn v -> Regex.replace(~r/>/, v, ":") end)
 
@@ -156,7 +159,7 @@ defmodule Boterop.XML do
       |> singularize()
 
     list_block = create_block(singular_k, list)
-    create_block(k, list_block, "\n", "\t")
+    create_block(k, list_block, "\n")
   end
 
   defp format(k, text), do: create_block(k, text)
@@ -164,17 +167,33 @@ defmodule Boterop.XML do
   @spec create_block(
           k :: String.t(),
           v :: String.t(),
-          separator :: String.t(),
-          tab :: String.t()
+          separator :: String.t()
         ) :: String.t()
-  defp create_block(k, list, separator \\ "", tab \\ "")
+  defp create_block(k, list, separator \\ "")
 
-  defp create_block(k, list, _separator, _tab) when is_list(list) do
-    "#{format_key(k)}#{Enum.join(list, "#{format_end_key(k)}\n\t#{format_key(k)}")}#{format_end_key(k)}"
+  defp create_block(k, list, _separator) when is_list(list) do
+    block =
+      list
+      |> Enum.join("#{format_end_key(k)}\n\t#{format_key(k)}")
+
+    "\t#{format_key(k)}#{block}#{format_end_key(k)}"
   end
 
-  defp create_block(k, v, separator, tab) do
-    "#{format_key(k)}#{separator <> tab}#{v}#{separator}#{format_end_key(k)}"
+  defp create_block(k, v, separator) do
+    block =
+      v
+      |> to_string()
+      |> String.contains?("\n")
+      |> if do
+        v
+        |> String.split("\n")
+        |> Enum.map(fn value -> "\t#{value}" end)
+        |> Enum.join("\n")
+      else
+        v
+      end
+
+    "#{format_key(k)}#{separator}#{block}#{separator}#{format_end_key(k)}"
   end
 
   @spec singularize(text :: String.t()) :: String.t()
@@ -253,10 +272,10 @@ user
 |> Boterop.JSON.encode()
 |> (&File.write("#{path}/user.json", &1)).()
 
-# # Write user.xml file
-# user
-# |> Boterop.XML.encode()
-# |> (&File.write("#{path}/user.xml", &1)).()
+# Write user.xml file
+user
+|> Boterop.XML.encode()
+|> (&File.write("#{path}/user.xml", &1)).()
 
 # Extra
 
@@ -267,13 +286,13 @@ user
 |> Boterop.User.from_map()
 |> IO.inspect()
 
-# # Read user.xml and print the %User{} info
-# "#{path}/user.xml"
-# |> File.read!()
-# |> Boterop.XML.decode()
-# |> Boterop.User.from_map()
-# |> IO.inspect()
+# Read user.xml and print the %User{} info
+"#{path}/user.xml"
+|> File.read!()
+|> Boterop.XML.decode()
+|> Boterop.User.from_map()
+|> IO.inspect()
 
 # Remove files
 File.rm_rf("#{path}/user.json")
-# File.rm_rf("#{path}/user.xml")
+File.rm_rf("#{path}/user.xml")
