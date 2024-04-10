@@ -154,13 +154,27 @@ defmodule Boterop.XML do
       |> Atom.to_string()
       |> singularize()
 
-    start_singular = format_key(singular_k)
-    end_singular = format_end_key(singular_k)
-
-    "#{format_key(k)}\n\t#{start_singular}#{Enum.join(list, "#{end_singular}\n\t#{start_singular}")}#{end_singular}\n#{format_end_key(k)}"
+    list_block = create_block(singular_k, list)
+    create_block(k, list_block, "\n", "\t")
   end
 
-  defp format(k, text), do: "#{format_key(k)}#{text}#{format_end_key(k)}"
+  defp format(k, text), do: create_block(k, text)
+
+  @spec create_block(
+          k :: String.t(),
+          v :: String.t(),
+          separator :: String.t(),
+          tab :: String.t()
+        ) :: String.t()
+  defp create_block(k, list, separator \\ "", tab \\ "")
+
+  defp create_block(k, list, _separator, _tab) when is_list(list) do
+    "#{format_key(k)}#{Enum.join(list, "#{format_end_key(k)}\n\t#{format_key(k)}")}#{format_end_key(k)}"
+  end
+
+  defp create_block(k, v, separator, tab) do
+    "#{format_key(k)}#{separator <> tab}#{v}#{separator}#{format_end_key(k)}"
+  end
 
   @spec singularize(text :: String.t()) :: String.t()
   defp singularize(text), do: Regex.replace(~r/s$/, text, "")
