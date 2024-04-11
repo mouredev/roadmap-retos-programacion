@@ -92,10 +92,3 @@ def comprobaciones(word1:str, word2:str):
     print(f"¿{word2} es un isograma?:{isogram(word2)}")
 
 comprobaciones("radar","pythonpythonpython")
-
-
-
-
-
-
-
