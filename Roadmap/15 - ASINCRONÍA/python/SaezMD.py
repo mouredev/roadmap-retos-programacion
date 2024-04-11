@@ -20,12 +20,12 @@ import asyncio
 async def nameAndWait(nameFunct: str, seconds: int) -> int:
     """function to wait"""
 
-    print(nameFunct)
+    print(f"Fucntion name: {nameFunct}")
     now = datetime.today().strftime('%d/%m/%Y %H:%M:%S')
-    print(f"Starting at: {now}")
-    print(f"Wait for: {seconds} seconds.")
+    print(f"{nameFunct} Starting at: {now}")
+    print(f"{nameFunct} Wait for: {seconds} seconds.")
     await asyncio.sleep(seconds)
-    print(f"Ending at: {datetime.today().strftime('%d/%m/%Y %H:%M:%S')}")
+    print(f"{nameFunct} Ending at: {datetime.today().strftime('%d/%m/%Y %H:%M:%S')}")
 
 asyncio.run(nameAndWait("Wait for five minutes...",1))
 #asyncio.run(sumWithWait(20,2,2))
