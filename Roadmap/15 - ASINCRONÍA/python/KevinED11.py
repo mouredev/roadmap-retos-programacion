@@ -1,6 +1,5 @@
 import asyncio
 from typing import Callable, Iterable
-import time
 
 
 type Number = int | float
@@ -37,8 +36,9 @@ async def function_e() -> None:
 
 
 async def execute_void_async_functions(funcs: Iterable[VoidAsyncFunction]) -> None:
-    tasks = [func() for func in funcs]
-    await asyncio.gather(*tasks)
+    async with asyncio.TaskGroup() as tg:
+        for coroutine in funcs:
+            tg.create_task(coroutine())
 
 
 async def sleep_program(seconds: Number, name: str = "Sleep") -> None:
