@@ -17,22 +17,46 @@
 from datetime import datetime 
 
 import asyncio
-async def sumWithWait(nameFunct: str, seconds: int) -> int:
+async def nameAndWait(nameFunct: str, seconds: int) -> int:
     """function to wait"""
 
-    print("\n\n" + nameFunct)
+    print(nameFunct)
     now = datetime.today().strftime('%d/%m/%Y %H:%M:%S')
     print(f"Starting at: {now}")
     print(f"Wait for: {seconds} seconds.")
     await asyncio.sleep(seconds)
     print(f"Ending at: {datetime.today().strftime('%d/%m/%Y %H:%M:%S')}")
 
-asyncio.run(sumWithWait("Wait for five minutes...",5))
+asyncio.run(nameAndWait("Wait for five minutes...",1))
 #asyncio.run(sumWithWait(20,2,2))
 
 #EXTRA:
+import time
 
+async def main():
+    """calling the functions together"""
+    # testing
+    await asyncio.gather(
+        nameAndWait("C", 3),
+        nameAndWait("B", 1),
+        nameAndWait("A", 1)
+    )
 
+async def second():
+    """calling more functions before"""
+    await asyncio.gather(
+        nameAndWait("D", 1)
+    )
 
+if __name__ == "__main__":
+    init_time = time.time()
+
+    # strating main function
+    asyncio.run(main())
+    asyncio.run(second())
+
+    finish_time = time.time()
+
+    print(f"\nAll Excecution took: {round(finish_time - init_time, 3)} seconds.")
 
 
