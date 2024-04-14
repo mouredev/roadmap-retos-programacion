@@ -4,7 +4,7 @@ import asyncio
  ║ Autor:  Juxxon23                    ║
  ║ GitHub: https://github.com/juxxon23 ║
  ║ Python - 2024                       ║
- ║ Reto 13 - PRUEBAS UNITARIAS         ║
+ ║ Reto 15 - ASINCRONIA                ║
  ╚═════════════════════════════════════╝
 
 EJERCICIO:
