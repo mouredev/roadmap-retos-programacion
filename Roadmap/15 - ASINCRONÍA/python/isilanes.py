@@ -8,6 +8,7 @@ async def async_func(name: str, delay: int) -> None:
 
 
 async def main(delay: int) -> None:
+    print("==== MAIN ====")
     coro = async_func("tontería", delay)
     print("Hemos definido la corrutina, pero todavía no se está ejecutando nada")
 
@@ -23,5 +24,24 @@ async def main(delay: int) -> None:
     print("Tras el await, la tarea ya terminó")
 
 
+async def extra() -> None:
+    print("==== EXTRA ====")
+    coros = [
+        async_func("C", 3),
+        async_func("B", 2),
+        async_func("A", 1),
+        async_func("D", 1),
+    ]
+    print("Corrutinas definidas...")
+
+    tasks = [asyncio.create_task(c) for c in coros[:3]]
+    print("Tareas arrancadas...")
+
+    await asyncio.gather(*tasks)
+    print("Tareas terminadas. Arrancamos la D...")
+    await coros[3]
+
+
 if __name__ == "__main__":
     asyncio.run(main(delay=3))
+    asyncio.run(extra())
