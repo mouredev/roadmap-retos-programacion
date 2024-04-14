@@ -8,7 +8,7 @@ type TAwaitable = Awaitable[T]
 type VoidCoroutine = Awaitable[None]
 type VoidCoroutineFn = Callable[[], VoidCoroutine]
 type CoroutineFn = Callable[..., TAwaitable]
-type VariadicFunction = Callable[..., T] | Callable[..., TAwaitable] | TAwaitable
+type VariadicFunction = Callable[..., T] | Callable[..., TAwaitable]
 
 
 def set_function_name(func: VariadicFunction, new_name: str) -> None:
