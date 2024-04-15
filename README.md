@@ -50,7 +50,7 @@
 |13|[PRUEBAS UNITARIAS](./Roadmap/13%20-%20PRUEBAS%20UNITARIAS/ejercicio.md)|[📝](./Roadmap/13%20-%20PRUEBAS%20UNITARIAS/python/mouredev.py)|[▶️](https://youtu.be/3WFQ2grp0h0)|[👥](./Roadmap/13%20-%20PRUEBAS%20UNITARIAS/)
 |14|[FECHAS](./Roadmap/14%20-%20FECHAS/ejercicio.md)|[📝](./Roadmap/14%20-%20FECHAS/python/mouredev.py)|[▶️](https://youtu.be/EQIAhF7NNMI)|[👥](./Roadmap/14%20-%20FECHAS/)
 |15|[ASINCRONÍA](./Roadmap/15%20-%20ASINCRONÍA/ejercicio.md)|[📝](./Roadmap/15%20-%20ASINCRONÍA/python/mouredev.py)||[👥](./Roadmap/15%20-%20ASINCRONÍA/)
-|16|[EXPRESIONES REGULARES](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/ejercicio.md)|[🗓️ 22/04/24](https://discord.gg/8ke6EqSt?event=1227006064784969818)||[👥](./Roadmap/15%20-%20EXPRESIONES%20REGULARES/)
+|16|[EXPRESIONES REGULARES](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/ejercicio.md)|[🗓️ 22/04/24](https://discord.gg/8ke6EqSt?event=1227006064784969818)||[👥](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/)
 
 ## Instrucciones
 
