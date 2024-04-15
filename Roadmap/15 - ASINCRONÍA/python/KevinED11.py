@@ -1,11 +1,14 @@
 import asyncio
-from typing import Callable, Iterable
-import time
+from typing import Callable, Iterable, Awaitable
 
 
+type T[T] = T
 type Number = int | float
-type VoidAsyncFunction = Callable[[], None]
-type VariadicFunction[T] = Callable[[T, ...], T]
+type TAwaitable = Awaitable[T]
+type VoidCoroutine = Awaitable[None]
+type VoidCoroutineFn = Callable[[], VoidCoroutine]
+type CoroutineFn = Callable[..., TAwaitable]
+type VariadicFunction = Callable[..., T] | Callable[..., TAwaitable]
 
 
 def set_function_name(func: VariadicFunction, new_name: str) -> None:
@@ -16,29 +19,38 @@ def get_function_name(func: VariadicFunction) -> str:
     return func.__name__
 
 
-async def function_a() -> None:
-    await sleep_program(1, name="Function A")
+async def generic_function(wait_time: Number, func_name: str) -> None:
+    await sleep_program(seconds=wait_time, name=func_name)
 
 
-async def function_b() -> None:
-    await sleep_program(2, name="Function B")
+def is_coroutine_function(func: CoroutineFn) -> bool:
+    return asyncio.iscoroutinefunction(func)
 
 
-async def function_c() -> None:
-    await sleep_program(3, name="Function C")
+def async_partial(func: CoroutineFn, *args, **kwargs) -> CoroutineFn:
+    async def f2(*args2, **kwargs2) -> T:
+        result = func(*args, *args2, **kwargs, **kwargs2)
+        if is_coroutine_function(func):
+            result = await result
+
+        return result
+
+    return f2
 
 
-async def function_d() -> None:
-    await sleep_program(1, name="Function D")
+function_a = async_partial(generic_function, wait_time=1, func_name="Function A")
+function_b = async_partial(generic_function, wait_time=2, func_name="Function B")
+function_c = async_partial(generic_function, wait_time=3, func_name="Function C")
+function_d = async_partial(generic_function, wait_time=1, func_name="Function D")
+function_e = async_partial(generic_function, wait_time=11, func_name="Function E")
 
 
-async def function_e() -> None:
-    await sleep_program(11, name="Function E")
-
-
-async def execute_void_async_functions(funcs: Iterable[VoidAsyncFunction]) -> None:
-    tasks = [func() for func in funcs]
-    await asyncio.gather(*tasks)
+async def execute_void_coroutines_simultaneously(
+    coros: Iterable[VoidCoroutineFn],
+) -> None:
+    async with asyncio.TaskGroup() as tg:
+        for coro in coros:
+            tg.create_task(coro())
 
 
 async def sleep_program(seconds: Number, name: str = "Sleep") -> None:
@@ -60,16 +72,20 @@ async def main() -> None:
     await sleep_program(5)
     print("¡Hola, mundo!")
 
-    await execute_void_async_functions(
-        [
-            function_e,
-            function_c,
-            function_b,
-            function_a,
-            function_d,
-            goodbye,
-        ]
-    )
+    cor = function_a()
+    result = await cor
+    print(result)
+
+    void_coroutine_functions = [
+        function_e,
+        function_c,
+        function_b,
+        function_a,
+        function_d,
+        goodbye,
+    ]
+    await execute_void_coroutines_simultaneously(void_coroutine_functions)
+
     await function_d()
     print("Adios")
 
