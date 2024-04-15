@@ -16,7 +16,7 @@ class SearchPattern(StrEnum):
 
 
 @lru_cache
-def generic_searcher(pattern: str, text: str) -> IntTuple:
+def generic_searcher(pattern: SearchPattern, text: str) -> IntTuple:
     return tuple(re.findall(pattern, text))
 
 
@@ -34,7 +34,7 @@ class ValidationPattern(StrEnum):
 
 
 @lru_cache
-def generic_validator(pattern: str, value: str) -> bool:
+def generic_validator(pattern: ValidationPattern, value: str) -> bool:
     return re.search(pattern, value) is not None
 
 
