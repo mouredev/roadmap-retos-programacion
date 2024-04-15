@@ -1,6 +1,6 @@
 import re
 from typing import Protocol
-from functools import partial
+from functools import partial, lru_cache
 from enum import StrEnum
 
 
@@ -15,6 +15,7 @@ class SearchPattern(StrEnum):
     ALL_NUMBERS = r"\d+"
 
 
+@lru_cache
 def generic_searcher(pattern: str, text: str) -> IntTuple:
     return tuple(re.findall(pattern, text))
 
@@ -32,6 +33,7 @@ class ValidationPattern(StrEnum):
     URL = r"^https?://.+$"
 
 
+@lru_cache
 def generic_validator(pattern: str, value: str) -> bool:
     return re.search(pattern, value) is not None
 
