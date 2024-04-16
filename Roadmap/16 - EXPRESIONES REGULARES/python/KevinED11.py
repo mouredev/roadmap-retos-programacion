@@ -29,18 +29,22 @@ class ValidatorFn(Protocol):
 
 class ValidationPattern(StrEnum):
     EMAIL = r"^\w+@\w+\.\w+$"
+    EMAIL2 = r"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+    EMAIL3 = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
     PHONE = r"^\+?\d{10, 15}$"
+    PHONE2 = r"^\+?1?\d{9,15}$"
     URL = r"^https?://.+$"
+    URL2 = r"^(http|https)://[a-zA-Z0-9-\.].+\.[a-zA-Z]{2,4}(/\S*)?$"
 
 
 @lru_cache
 def generic_validator(pattern: ValidationPattern, value: str) -> bool:
-    return re.search(pattern, value) is not None
+    return re.match(pattern, value) is not None
 
 
 validate_email = partial(generic_validator, pattern=ValidationPattern.EMAIL)
 validate_phone = partial(generic_validator, pattern=ValidationPattern.PHONE)
-validate_url = partial(generic_validator, pattern=ValidationPattern.URL)
+validate_url = partial(generic_validator, pattern=ValidationPattern.URL2)
 
 
 def execute_validator(validator: ValidatorFn, value: str) -> bool:
