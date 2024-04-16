@@ -28,11 +28,21 @@ class ValidatorFn(Protocol):
 
 
 class ValidationPattern(StrEnum):
+    pass
+
+
+class EmailValidationPattern(ValidationPattern):
     EMAIL = r"^\w+@\w+\.\w+$"
     EMAIL2 = r"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
     EMAIL3 = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+
+
+class PhoneValidationPattern(ValidationPattern):
     PHONE = r"^\+?\d{10, 15}$"
     PHONE2 = r"^\+?1?\d{9,15}$"
+
+
+class UrlValidationPattern(ValidationPattern):
     URL = r"^https?://.+$"
     URL2 = r"^(http|https)://[a-zA-Z0-9-\.].+\.[a-zA-Z]{2,4}(/\S*)?$"
 
@@ -42,9 +52,9 @@ def generic_validator(pattern: ValidationPattern, value: str) -> bool:
     return re.match(pattern, value) is not None
 
 
-validate_email = partial(generic_validator, pattern=ValidationPattern.EMAIL)
-validate_phone = partial(generic_validator, pattern=ValidationPattern.PHONE)
-validate_url = partial(generic_validator, pattern=ValidationPattern.URL2)
+validate_email = partial(generic_validator, pattern=EmailValidationPattern.EMAIL)
+validate_phone = partial(generic_validator, pattern=PhoneValidationPattern.PHONE)
+validate_url = partial(generic_validator, pattern=UrlValidationPattern.URL2)
 
 
 def execute_validator(validator: ValidatorFn, value: str) -> bool:
@@ -63,7 +73,7 @@ def main() -> None:
     email_result = execute_validator(validator=validate_email, value="a@a.com")
     phone_result = execute_validator(validator=validate_phone, value="000000000000")
     url_result = execute_validator(
-        validator=validate_url, value="https://www.google.com"
+        validator=validate_url, value="https://wwwgoogle.com"
     )
     print(email_result, phone_result, url_result, sep=Separator.LINE_BREAK)
 
