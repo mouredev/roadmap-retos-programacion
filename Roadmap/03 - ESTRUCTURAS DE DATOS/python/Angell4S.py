@@ -14,3 +14,11 @@ print(my_list)
 
 my_list.sort() # Ordenación
 print(my_list)
+
+# Tuplas
+my_tuple = ('Moure', 'Dev', '@mouredev', '36')
+print(my_tuple[1])# Acceso
+print(my_tuple[3])
+my_tuple = tuple(sorted(my_tuple)) # Ordenación
+print(type(my_tuple))
+print(my_tuple)
