@@ -27,7 +27,7 @@ async def nameAndWait(nameFunct: str, seconds: int) -> int:
     await asyncio.sleep(seconds)
     print(f"{nameFunct} Ending at: {datetime.today().strftime('%d/%m/%Y %H:%M:%S')}")
 
-asyncio.run(nameAndWait("Wait for five minutes...",1))
+asyncio.run(nameAndWait("Wait for five minutes...",5))
 #asyncio.run(sumWithWait(20,2,2))
 
 #EXTRA:
@@ -58,5 +58,14 @@ if __name__ == "__main__":
     finish_time = time.time()
 
     print(f"\nAll Excecution took: {round(finish_time - init_time, 3)} seconds.")
+
+
+#extraMOURE
+async def aync_tasks():
+    await asyncio.gather(nameAndWait("C",3), nameAndWait("B",2), nameAndWait("A",1))
+    await nameAndWait("A",1)
+
+asyncio.run(aync_tasks())
+
 
 
