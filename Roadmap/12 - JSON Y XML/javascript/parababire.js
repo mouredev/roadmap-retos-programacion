@@ -1,7 +1,6 @@
-const { log } = require("console");
 const fs = require("fs");
-const { parse } = require("path");
 const xml2js = require("xml2js");
+const parseString = require("xml2js").parseString;
 const {Builder} = require("xml2js");
 const xmlFile = "parababire.xml";
 const jsonFile = "parababire.json";
@@ -58,11 +57,8 @@ guardarXml();
 crearJson();
 
 const parser = new xml2js.Parser();
-fs.readFile(xmlFile, "utf8", (err, data) => {
-  parser.parseString(data, (err, result) => {
-    if (err) throw err;
-    return console.dir(result);
-  });
+const objDataFromXml = parseString(xmlData, function (err, result) {
+  console.dir(result);
 });
 
 const objDataFromJson = JSON.parse(data);
