@@ -36,7 +36,7 @@ let miPerro = new Perro('Ferr');
 
 miPerro.sonido();
 
-let miGato = new Gato('Fran');
+let miGato = new Gato('Frank');
 
 miGato.sonido();
 
