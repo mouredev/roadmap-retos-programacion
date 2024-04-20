@@ -18,3 +18,46 @@
  */
 '''
 
+'''
+Ejercicio
+'''
+try:
+    print(10/1)
+    print([1, 2, 3][4])
+except Exception as e:  ## Error padre
+    print(f"Error: {e} -- Tipo de Error: {type(e).__name__}")
+
+print("Continuando con el programa...")
+
+'''
+Extra
+'''
+class StrTypeError(Exception):
+    pass
+
+def procesar_parametros(parametro: list):
+    
+    if len(parametro) < 3:
+        raise IndexError()
+    elif parametro[1] == 0:
+        raise ZeroDivisionError()
+    elif type(parametro[2]) == str:
+        raise StrTypeError("El tercer parametro no puede ser un string.")
+
+    print(parametro[2])
+    print(parametro[0]/parametro[1])
+    print(parametro[2]+ 5)
+try:
+    procesar_parametros([1, 2, 3, 4])
+except IndexError as e:
+    print("El parametro debe tener al menos 3 elementos.")
+except ZeroDivisionError as e:
+    print("No se puede dividir por 0.")
+except StrTypeError as e:
+    print(e)
+except Exception as e:
+    print(f"Error inesperado: {type(e).__name__} - {e}")
+else: # Cuando no se cumple ninguna excepción
+    print("No se ha producido ningún error.")
+finally:  # Pase lo que pase se va a ejecutar
+    print("La ejecución ha finalizado sin errores.")
