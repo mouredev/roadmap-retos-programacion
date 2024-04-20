@@ -50,6 +50,6 @@ print(my_dict)
 print(my_dict['name']) # Acceso
 my_dict['edad'] = '37' # Modificación
 print(my_dict)
-my_dict = dict(sorted(my_dict.items())) # Ordenación
+my_dict = dict(sorted(my_dict.items())) # Ordenación 
 print(my_dict)
 print(type(my_dict))
