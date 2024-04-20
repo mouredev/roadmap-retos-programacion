@@ -8,37 +8,37 @@
 //---EJERCIÓ---
 // Aquí esta función asíncrona
 async function asyncFunction(nombre, segundo) {
-    console.log(`Inicia la ejecución de ${nombre}.`)
+    console.log(`Inicia la ejecución de ${nombre}, empieza en ${new Date().toLocaleTimeString()}.`)
 
     // La forma asíncrona para simular la esperar utilizando SetTimeout
     await new Promise (res => {
         setTimeout(res, segundo * 1000);
     });
 
-    console.log(`Se finaliza la ejecución de ${nombre} en ${segundo / 1000} segundos.`);
+    console.log(`Se finaliza la ejecución de ${nombre} en ${segundo / 1000} segundos, finalizo en ${new Date().toLocaleTimeString()}.`);
 }
 
-// Una función main para ejecutar la función asíncrona
-const main = async () => {
-    const promise1 = asyncFunction('Proceso1', 3);
-    const promise2 = asyncFunction('Proceso2', 5);
-
+// Una función muestra para ejecutar la función asíncrona
+async function muestra() {
     try {
-        await Promise.all([promise1, promise2])
+        await Promise.all([
+            asyncFunction('Proceso1', 2),
+            asyncFunction('Proceso2', 3)
+        ]);
     } catch (error) {
         console.error('Se produjo un error:', error);
     }
 }
 
 // Se ejecuta el main
-main()
+muestra()
 
 
 
 /**-----DIFICULTAD EXTRA-----*/
 
 //  Ejecución de funciones de A B C D
-async function funciones() {
+async function main() {
     //  Se un Try-Catch para evitar errores al ejecutarlos
     try {
         //  La funciones a ejecutar
@@ -56,6 +56,6 @@ async function funciones() {
 }
 
 //  La ejecución de la función principal
-funciones()
+main()
 
 /**-----DIFICULTAD EXTRA-----*/
