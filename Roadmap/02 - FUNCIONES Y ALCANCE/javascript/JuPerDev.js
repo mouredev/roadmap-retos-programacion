@@ -84,5 +84,4 @@ function printNumbers(text1, text2){
     }
     console.log(`Se han impreso ${count} números`);
 }
-
 printNumbers('Fizz', 'Buzz');
