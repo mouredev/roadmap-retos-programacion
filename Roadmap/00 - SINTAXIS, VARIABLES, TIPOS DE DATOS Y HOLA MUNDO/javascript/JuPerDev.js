@@ -11,7 +11,6 @@
     en varias 
     líneas
 */
-
 // Declaración variable y constante
 let variable = 0;
 const constante = 3.14;
