@@ -40,5 +40,37 @@ console.log('Se lo logro encontrar abc:', reg_especifico.test(abecedario));
 
 
 /**-----DIFICULTAD EXTRA-----*/
-//Pendientes
+
+//  Excreción para Email
+const regex_Email = /^[\w.%+-]+@[\w.-]+\.[\w]{2,4}$/;   //Aquí es la expresión regular propia
+// Los ejemplos de correos electrónicos
+const emailJesus = 'JesusA@outlook.com';
+const emailEmpresa = '@trnetwork.com.mx'
+//  Imprimiendo en la consola
+console.log(`Es valido el correo "${emailJesus}":`, regex_Email.test(emailJesus));
+console.log(`Es valido el correo "${emailEmpresa}"`, regex_Email.test(emailEmpresa));
+
+
+//  Expresión para Teléfono
+const regex_Teléfono = /^\+([\d]{2})-([\d]{3})-([\d]{3})-([\d]{4})/;    //Aquí es la expresión regular propia
+// Los ejemplos de los teléfonos
+const teléfonoA = '+52-953-123-4567';
+const teléfonoB = '+1 123 456 7890';
+//  Imprimiendo en la consola
+console.log(`Es valido el teléfono "${teléfonoA}":`, regex_Teléfono.test(teléfonoA));
+console.log(`Es valido el teléfono "${teléfonoB}"`, regex_Teléfono.test(teléfonoB));
+
+
+//  Expresión para URL
+const regex_URL = /^(https?:\/\/)?([\d\w]*\.)?[\w]*\.([\w]{3})(\.[\w]{2,3})?\/?$/;  //Aquí es la expresión regular propia
+// Los ejemplos de URL
+const google_Url = 'www.google.com';
+const moure_Url = 'https://www.moure.dev';
+const aventure_Url = 'jajatoonstime.blogspot'
+//  Impresiones en la consola
+console.log(`Es valido la URL "${google_Url}":`, regex_URL.test(google_Url));
+console.log(`Es valido la URL "${moure_Url}":`, regex_URL.test(moure_Url));
+console.log(`Es valido la URL "${aventure_Url}":`, regex_URL.test(aventure_Url));
+
+
 /**-----DIFICULTAD EXTRA-----*/
