@@ -9,7 +9,7 @@
   usando 
   múltiples
   líneas
-#=
+=#
 
 # Creando una variable 
 mi_variable = "string julia";
