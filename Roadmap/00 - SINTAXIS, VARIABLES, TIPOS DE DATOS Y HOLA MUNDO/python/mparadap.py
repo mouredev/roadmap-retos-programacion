@@ -3,22 +3,19 @@
 
 
 # Comentario en una línea: utilizando la almohadilla (#)
-# 2.1.3. Comentarios
 
 
-# Comentario en varias líneas: utilizando triple comillas dobles ("""")
 """
-Un comentario comienza con un carácter de almohadilla (#) que no es parte de un literal de cadena, y termina
-al final de la línea física. Un comentario implica el final de la línea lógica, a menos que se invoque la regla implícita
-de unión de líneas. Los comentarios son ignorados por la sintaxis.
+Comentario en
+varias líneas:
+utilizando triple comillas dobles (")
 """
 
 
-# Comentario en varias líneas: utilizando triple comillas simples (''')
 '''
-Un comentario comienza con un carácter de almohadilla (#) que no es parte de un literal de cadena, y termina
-al final de la línea física. Un comentario implica el final de la línea lógica, a menos que se invoque la regla implícita
-de unión de líneas. Los comentarios son ignorados por la sintaxis.
+Comentario en
+varias líneas:
+utilizando triple comillas simples (')
 '''
 
 # Crear una variable
