@@ -193,11 +193,7 @@ print("DIFICULTAD EXTRA \n");
 print(" * * * * * * * * * * * * * * *\n");
 
 nums = range(10,step=1,stop=55);
-#=
-* DIFICULTAD EXTRA (opcional):
-* Crea un programa que imprima por consola todos los números comprendidos
-* entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
-=#
+
 for num ∈ nums
     if num%3!=0 && num%2==0 && num != 16
         println(num)
