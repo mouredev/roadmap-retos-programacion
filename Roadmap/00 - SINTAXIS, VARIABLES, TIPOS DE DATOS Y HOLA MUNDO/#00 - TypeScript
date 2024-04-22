@@ -1,0 +1,18 @@
+//Sitio web oficial: https://www.typescriptlang.org/docs/
+
+//Esto es un comentario de una linea
+
+/*Esto también
+ es un comentario
+ en múltiples lineas*/
+
+let variable: string = 'cadena';
+const constante: string = 'constantes';
+
+let stringType: string  = 'string';
+let numberType: number = 24;
+let booleanType: boolean = true;
+let nullType: null = null;
+let undefinedType: undefined= undefined;
+
+console.log("¡Hola, TypeScript!");
