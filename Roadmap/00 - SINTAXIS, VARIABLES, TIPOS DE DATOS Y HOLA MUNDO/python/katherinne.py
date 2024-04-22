@@ -19,4 +19,67 @@ variable_bool1 = True
 variable_bool2 = False
 variable_string = "Hola mundo"
 
-print("¡Hola, Python!")
+print("¡Holaaa  Python!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- INSERT --
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
