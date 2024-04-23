@@ -74,26 +74,16 @@ print(f"Queue: {queue}")
 
 """
 * DIFICULTAD EXTRA (opcional):
-* - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
-*   de un navegador web. Crea un programa en el que puedas navegar a una página o indicarle
-*   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
-*   Las palabras "adelante", "atrás" desencadenan esta acción, el resto se interpreta como
-*   el nombre de una nueva web.
-* - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
-*   impresora compartida que recibe documentos y los imprime cuando así se le indica.
-*   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
-*   interpretan como nombres de documentos.
 """
+# Pintar de colores... para el menú ^_^ 
+def red(skk): print("\033[91m {}\033[00m" .format(skk))
+def grey(skk): print("\033[97m {}\033[00m" .format(skk))
+def green(skk): print("\033[92m {}\033[00m" .format(skk))
 
 print("\n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n")
 
 def navegador():
 
-    # Pintar de colores... para el menú ^_^ 
-    def red(skk): print("\033[91m {}\033[00m" .format(skk))
-    def grey(skk): print("\033[97m {}\033[00m" .format(skk))
-    def green(skk): print("\033[92m {}\033[00m" .format(skk))
-    
     back_history = []
     forward_history = []
     
@@ -150,3 +140,51 @@ def navegador():
             navegar(action)
                 
 navegador()
+
+# Impresora
+
+def impresora():
+    
+    option = 1
+    
+    impresora = []
+    
+    def put_impresora(doc_name):
+        impresora.append(doc_name)
+    
+    def get_impresora():
+        if(len(impresora) == 0):
+            red("Cola vacía, no hay nada que imprimir.")
+            return
+        document = impresora[0]
+        del impresora[0]
+        green(f"Imprimiendo documento: '{document}'")
+    
+    def print_option_2():
+        msg = "\t - Escriba 'Imprimir' para comenzar la impresión'"
+        if(len(impresora) == 0):
+            grey(msg)
+        else:
+            green(msg)
+    
+    def show_menu_impresora() -> str:
+        print("\nOpciones: ")
+        green("\t - Escriba el nombre del documento")
+        print_option_2()
+        red("\t - Escriba 'Salir' o '0' para salir de la aplicación'")
+        return input("\n\t > ")
+    
+    def process_option(option: str):
+        if option == "0" or option.upper() == "SALIR":
+            return "0"
+        elif option.upper() == "IMPRIMIR":
+            get_impresora()
+        else:
+            put_impresora(option)
+        return 1
+    
+    while(option != "0"):
+        print(f"\n\n\nCola de impresión: {impresora}")
+        option = process_option(show_menu_impresora())
+    
+impresora()
