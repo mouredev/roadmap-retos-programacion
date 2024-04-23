@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
+// compilar con gcc -pthread -o Asincronia .\N0HagoNada.c
 typedef struct
 {
     const char *nombre;
@@ -12,10 +13,10 @@ typedef struct
 void *funcionAsincrona(void *arg)
 {
     FuncionInfo *info = (FuncionInfo *)arg;
-    printf("%s comenzó\n", info->nombre);
-    printf("%s tardará %d segundos en finalizar\n", info->nombre, info->duracion);
+    printf("%s comenzo\n", info->nombre);
+    printf("%s tardara %d segundos en finalizar\n", info->nombre, info->duracion);
     sleep(info->duracion);
-    printf("%s finalizó\n", info->nombre);
+    printf("%s finalizo\n", info->nombre);
     free(info);
     return NULL;
 }
@@ -27,17 +28,17 @@ int main()
 
     // Ejecutar las funciones C, B y A en paralelo
     info = malloc(sizeof(FuncionInfo));
-    info->nombre = "Función C";
+    info->nombre = "Funcion C";
     info->duracion = 3;
     pthread_create(&hilos[0], NULL, funcionAsincrona, info);
 
     info = malloc(sizeof(FuncionInfo));
-    info->nombre = "Función B";
+    info->nombre = "Funcion B";
     info->duracion = 2;
     pthread_create(&hilos[1], NULL, funcionAsincrona, info);
 
     info = malloc(sizeof(FuncionInfo));
-    info->nombre = "Función A";
+    info->nombre = "Funcion A";
     info->duracion = 1;
     pthread_create(&hilos[2], NULL, funcionAsincrona, info);
 
@@ -49,7 +50,7 @@ int main()
 
     // Ejecutar la función D
     info = malloc(sizeof(FuncionInfo));
-    info->nombre = "Función D";
+    info->nombre = "Funcion D";
     info->duracion = 1;
     funcionAsincrona(info);
 
