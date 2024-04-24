@@ -41,7 +41,7 @@ let nula = null
 let indefinida = undefined
 let simboloRaro = Symbol()
 
-console.log('Hola Javascript∫');
+console.log('Hola Javascript');
 
 console.log(typeof(string));
 console.log(typeof(number));
