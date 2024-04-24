@@ -25,7 +25,7 @@
 
 const fs = require('fs');
 
-let filePath = 'C:/Users/larre/Desktop/nlarrea.txt';
+let filePath = 'nlarrea.txt';
 const data = [
     'Name: Naia',
     'Age: 25',
@@ -65,7 +65,7 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
-filePath = 'C:/Users/larre/Desktop/sales.txt';
+filePath = 'sales.txt';
 
 function askOption(options) {
     console.log('\nMENU');
