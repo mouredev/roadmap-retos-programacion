@@ -17,7 +17,7 @@ class SearchPattern(StrEnum):
 
 @lru_cache
 def generic_searcher(pattern: SearchPattern, text: str) -> StrTuple:
-    return re.findall(pattern, text)
+    return tuple(re.findall(pattern, text))
 
 
 search_all_numbers = partial(generic_searcher, pattern=SearchPattern.ALL_NUMBERS)
