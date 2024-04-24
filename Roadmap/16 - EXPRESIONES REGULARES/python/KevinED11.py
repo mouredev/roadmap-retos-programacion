@@ -4,11 +4,11 @@ from functools import partial, lru_cache
 from enum import StrEnum
 
 
-type IntTuple = tuple[int, ...]
+type StrTuple = tuple[str, ...]
 
 
 class SearcherFn(Protocol):
-    def __call__(self, text: str) -> IntTuple: ...
+    def __call__(self, text: str) -> StrTuple: ...
 
 
 class SearchPattern(StrEnum):
@@ -16,8 +16,8 @@ class SearchPattern(StrEnum):
 
 
 @lru_cache
-def generic_searcher(pattern: SearchPattern, text: str) -> IntTuple:
-    return tuple(re.findall(pattern, text))
+def generic_searcher(pattern: SearchPattern, text: str) -> StrTuple:
+    return re.findall(pattern, text)
 
 
 search_all_numbers = partial(generic_searcher, pattern=SearchPattern.ALL_NUMBERS)
@@ -61,7 +61,7 @@ def execute_validator(validator: ValidatorFn, value: str) -> bool:
     return validator(value=value)
 
 
-def execute_searcher(searcher: SearcherFn, text: str) -> IntTuple:
+def execute_searcher(searcher: SearcherFn, text: str) -> StrTuple:
     return searcher(text=text)
 
 
