@@ -31,10 +31,11 @@ de varias lineas
 
 let variable1 = "Variable let"
 var variable2 = "Variable var"
-const variable3 = "Variable o constante const"
+const pi = 3.14
 
 let string = "string"
 let number = 0
+let numGrande = 2727272727272727n;
 let boolean = true 
 let nula = null
 let indefinida = undefined
@@ -48,3 +49,4 @@ console.log(typeof(boolean));
 console.log(typeof(nula));
 console.log(typeof(indefinida));
 console.log(typeof(simboloRaro));
+console.log(typeof(numGrande));
