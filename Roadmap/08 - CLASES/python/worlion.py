@@ -36,8 +36,7 @@ en el ejercicio número 7 de la ruta de estudio)
 
 print("\n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n")
 
-# Pila / Stack
-
+# Pila / Stack (LIFO)
 class Stack:
     
     data = []
@@ -63,6 +62,7 @@ class Stack:
         print(self.data[::-1])
 
 def test_stack():
+    print("\n\n\t - STACK TEST -")
     pila = Stack()
     pila.push("A")
     pila.push("B")
@@ -79,3 +79,44 @@ def test_stack():
     pila.print()
 
 test_stack()
+
+# Cola / Queue (FIFO)
+class Queue:
+    
+    data = []
+    def __init__(self) -> None:
+        self.data = []
+        
+    def get(self):
+        if(len(self.data) == 0):
+            # raise Exception("Empty queue :(")
+            print("WARN: empty queue!")
+            return None
+        return self.data.pop(0)
+        
+    def put(self, element):
+        self.data.append(element)
+        
+    def size(self):
+        return len(self.data)
+    
+    def print(self):
+        print(f"OUTPUT ← :{self.data}: ← INPUT")
+    
+def test_queue():
+    print("\n\n\t - STACK TEST -")
+    cola = Queue()
+    cola.put("A")
+    cola.put("B")
+    cola.put("C")
+    cola.print()
+    print(f"get: {cola.get()}")
+    cola.print()
+    print(f"get: {cola.get()}")
+    cola.print()
+    print(f"get: {cola.get()}")
+    cola.print()
+    print(f"get: {cola.get()}")
+    cola.print()
+    
+test_queue()
