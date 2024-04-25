@@ -142,11 +142,60 @@ console.log(
 //Este operador nos permite identifica el tipo de dato que contiene uan variable, en JS con su libertad de lenguaje,
 //podemos a veces perderle la pista a este tipo de cosas, por eso es necesario usarlo.
 
+// -------------------------> Estructuras de Control.
+
+// ---------->> IF/ELSE 
+let soyLaCondicion = true;
+
+if (soyLaCondicion === true) { // La estructura if verifica una condición y en base a la misma ejecuta o pasa de largo.
+  console.log("!! He entrado¡¡")
+}else {// Esta estructura nos permite controlar el rechazo de un if con el cuál podemos manejar las negativas de la 
+//condicion.
+  console.log("!!NO eh entrado¡¡")
+}else if(soyLaCondicion){ // Esta es otra medida en este sistema de manejo de condiciones que nos permite controlar mas 
+// las opciones requeridas en el programa.
+  console.log("Ja soy falso, noooo")
+}
+
+// ------------>> WHILE/DO-WHILE 
+//
+let soyElContadorDelWhile = 0;
+while (soyElContadorDelWhile > 10) { // La estructura del while se define por el hecho de iterar, de generar una ejecución 
+// continua de el codigo que contiene hasta que se cumple la condición que procesa. 
+  console.log(`Estamos contando en el while vamos en ${soyElContadorDelWhile}`);
+  ++soyElContadorDelWhile;
+}
+
+do {// Esta estructura mantiene las mismas base de el while pero se ejecutara al menos uan vez.
+console.log("Pooooor lo menos una vez, ejecuuuutame.")  
+} while (soyElContadorDelWhile==10);
+
+// ------------->> SWITCH 
+let diaDeDescanso = "Martes"
+switch (diaDeDescanso) { // El switch obtiene una variable a traves de la cuál puede selecionar la opcion a ejecutar.
+  case "Lunes":
+    console.log("Pues el lunes sera.")
+    break;
+  case "Martes":
+  console.log("Uy si, el martes")
+  default:
+  console.log("Pues no se man...")
+    break;
+}
+
+// -------------->> FOR 
+
+for (let index =10; index == 0; index--) {// For nos permite controlar la cantidad de ejecuciones que queremos tener 
+// de un codigo en especifico.
+  console.log(`Despegando en ${index}`)
+}
+
+
 // -------------------------> Programa NoSoyNiInparNiMultiploDeTres.
 
 function NoSoyNiInparNiMultiploDeTres(startLine = 10, FinalLIne = 55) {
   for (let index = startLine; index <= FinalLIne; index++) {
-    if (index % 3 != 0 && index != 16) {
+    if (index % 2 == 0 && index % 3 != 0 && index != 16) {
       console.log(index);
     }
   }
