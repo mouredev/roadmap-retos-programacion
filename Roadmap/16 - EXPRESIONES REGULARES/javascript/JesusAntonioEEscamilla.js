@@ -10,15 +10,18 @@
 let re = new RegExp("Jesus Antonio");
 
 // Expresión Literal
-let regex = /\d/;
+let regex = /\d+/g;
 
 // El textos en particulares.
 const texto1 = "Yo nací en 1999 y tengo 24 años de edad.";
 const yo = "Jesus Antonio Escamilla - de la tierra 616, del universo 999"
 
-// Se llama en consola y se usa uno de los métodos de excreciones regulares el text(string).
-console.log(`El texto, "${texto1}" contiene números:`, regex.test(texto1));
-
+// Se llama la función y se usa uno de los métodos de excreciones regulares que muestre los números.
+function texto_Num(texto) {
+    const númerosEncontrados = texto.match(regex);
+    return númerosEncontrados.map(num => parseInt(num));
+}
+console.log(`El texto, "${texto1}" contiene los siguientes números:`,texto_Num(texto1));
 
 //---Alguno Método de Expresiones Regulares---
 // exec(string)
@@ -42,7 +45,7 @@ console.log('Se lo logro encontrar abc:', reg_especifico.test(abecedario));
 /**-----DIFICULTAD EXTRA-----*/
 
 //  Excreción para Email
-const regex_Email = /^[\w.%+-]+@[\w.-]+\.[\w]{2,4}$/;   //Aquí es la expresión regular propia
+const regex_Email = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]+$/;   //Aquí es la expresión regular propia
 // Los ejemplos de correos electrónicos
 const emailJesus = 'JesusA@outlook.com';
 const emailEmpresa = '@trnetwork.com.mx'
@@ -62,7 +65,7 @@ console.log(`Es valido el teléfono "${teléfonoB}"`, regex_Teléfono.test(telé
 
 
 //  Expresión para URL
-const regex_URL = /^(https?:\/\/)?([\d\w]*\.)?[\w]*\.([\w]{3})(\.[\w]{2,3})?\/?$/;  //Aquí es la expresión regular propia
+const regex_URL = /^(http[s]?:\/\/)?([\d\w]*\.)?[\w]*\.([\w]{3})(\.[\w]{2,3})?\/?$/;  //Aquí es la expresión regular propia
 // Los ejemplos de URL
 const google_Url = 'www.google.com';
 const moure_Url = 'https://www.moure.dev';
