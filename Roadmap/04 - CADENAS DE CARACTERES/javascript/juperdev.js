@@ -5,13 +5,7 @@
  * - Acceso a caracteres específicos, subcadenas, longitud, concatenación, repetición, recorrido,
  *   conversión a mayúsculas y minúsculas, reemplazo, división, unión, interpolación, verificación...
  *
- * DIFICULTAD EXTRA (opcional):
- * Crea un programa que analice dos palabras diferentes y realice comprobaciones
- * para descubrir si son:
- * - Palíndromos
- * - Anagramas
- * - Isogramas
- */
+*/
 
 // Concatenation
 // Used + or concat()
@@ -72,3 +66,102 @@ console.log(exampleCharAt.endsWith('a')); // False
 // This method verify if the string contain the word thar you indicate.
 // is case sensitive
 console.log(exampleCharAt.includes('Hello')); // True
+
+/*
+* DIFICULTAD EXTRA (opcional):
+* Crea un programa que analice dos palabras diferentes y realice comprobaciones
+* para descubrir si son:
+* - Palíndromos
+* - Anagramas
+* - Isogramas
+*/
+
+// Importamos elmódulo 'readline' de Node.js para poder recuperar los datos de terminal
+const readline = require('readline');
+
+// Interfaz de lectura
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+function readTerminal(){
+    rl.question('Elije la opción deseada:\n1: Verificar si es palindromo\n2: Verificar si es un anagrama\n3: Verificar si es un isograma\n0: Salir\n ', (opcion) => {
+        if(opcion === '0'){
+            console.log('Se ha terminado la ejecución!')
+            rl.close();
+            process.exit(0);
+        } else if(opcion > 0 && opcion < 4){
+            opciones(opcion);
+        } else {
+
+        }
+    })
+}
+
+// Options
+function opciones(option){
+        switch (option) {
+        case '1':
+            console.log('opcion 1!!!!');
+            palindromo();
+            break;
+        case '2':
+            anagrama();
+            break;
+        case '3':
+            isograma();
+            break;
+    }
+}
+
+
+// Funcion Palíndromo
+function palindromo(){
+    rl.question('Ingrese la palabra a evaluar: ', palabra => {
+        let reverseWord = [];
+        let palabraArray = palabra.split('')
+        for(let i = 0; i < palabraArray.length; i++){
+            reverseWord.unshift(palabraArray[i]);
+
+        }
+        let str = reverseWord.join('');
+        (str === palabra) ? console.log('- - - - - - - - - - -\nEs palindromo!\n- - - - - - - - - -') : console.log('- - - - - - - - - - -\nNo es palindromo!\n- - - - - - - - - -');
+        readTerminal();
+    })
+}
+
+function anagrama(){
+    rl.question('Ingrese la primera palabra a comparar: ', palabra1 => {
+        rl.question('Ingrese la segunda palabra a comparar: ', palabra2 => {
+            let str = palabra1.split('').sort().join();
+            let str2 = palabra2.split('').sort().join();
+                if(str === str2){
+                    console.log('- - - - - - - - \n Es un anagrama!\n- - - - - - -'); 
+                } else {
+                    console.log('- - - - - - - - \n No es anagrama!\n- - - - - - -');
+                    readTerminal();
+                }
+            readTerminal();         
+        })
+})};
+
+function isograma(){
+    let isIso = true;
+    rl.question('Ingrese la palabra para verificar si es un isograma: ', palabra => {
+        let str = palabra.split('').sort();
+        for(let i = 1; i <= str.length; i++){
+            if(str[i-1] === str[i]){
+                console.log('- - - - - - - - - - -\nNo es un isograma!\n- - - - - - - - - - -')
+                isIso = false;
+                break;
+            }
+        }
+        if(isIso){
+        console.log('- - - - - - - - - - -\nEs un isograma :D!\n- - - - - - - - - - -');
+        }
+        readTerminal();
+    })
+}
+
+readTerminal();
