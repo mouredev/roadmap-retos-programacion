@@ -27,5 +27,19 @@ números.forEach(number => {     //Y el Método forEach va iterando todos los el
 
 
 /**-----DIFICULTAD EXTRA-----*/
-//Pendiente
+
+//Otra Forma de hacer Iteraciones:
+//  DO...WHILE
+let k = 1;  // Variable nueva
+do {
+    console.log(`Se imprimen ${k}`);
+    k++
+} while (k <= 10);
+
+//  FOR...OF
+const iterable = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for (const item of iterable) {
+    console.log(`El numero es : ${item}`);
+}
+
 /**-----DIFICULTAD EXTRA-----*/
