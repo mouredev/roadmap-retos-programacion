@@ -10,7 +10,7 @@
 def dividir(x: int, y: int):
     print(f"vamos a intentar dividir '{x}' entre '{y}'")
     try:
-        return x/y;
+        return x // y;
     except ZeroDivisionError:
         print("❌ No puedes dividir entre 0, melón! 🍈")
         return None
@@ -30,3 +30,42 @@ for i in range(0, lista.__len__()+1):
 
 
 
+
+"""
+* DIFICULTAD EXTRA (opcional):
+"""
+
+print("\n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n")
+
+class my_exception(Exception):
+    pass
+
+def process_parameters(parametros: list):
+
+    if not isinstance(parametros[0], int) or not isinstance(parametros[1], int):
+        raise my_exception("Los parámetros tienen que ser enteros")
+    
+    print(f"division: {parametros[0]} / {parametros[1]} = {parametros[0] / parametros[1]}")
+    
+def try_it(lista_parametros):
+    try:
+        print(f"\nvamos a intentar procesar: {lista_parametros}")
+        process_parameters(lista_parametros)
+    
+    except my_exception as e:
+        print(f"Esta es mi excepcion: {e} ❌")
+    except ZeroDivisionError as e:
+        print(f"{e}: Division entre 0 ❌")
+    except IndexError as e:
+        print(f"{e}: Nos hemos salido del array ❌")
+    else:
+        print("sin errores... sorprendente! ✅")
+    finally:
+        print("por aqui pasamos siempre... hemos hecho lo que hemos podido")    
+    
+        
+try_it([1,2]) # OK
+
+try_it(['a','b']) # Error: tipo de datos (personalizada)
+try_it([20,0]) # Error: div by 0
+try_it([1]) # Error: index out of range
