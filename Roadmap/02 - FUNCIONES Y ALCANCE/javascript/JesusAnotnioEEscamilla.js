@@ -1,3 +1,4 @@
+/** #02 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * Dentro de las Funciones Básicas de JavaScript se utilizan:
  * Declarativas
