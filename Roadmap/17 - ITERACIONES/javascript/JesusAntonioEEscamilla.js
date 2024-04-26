@@ -1,3 +1,4 @@
+/** #17 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * Las iteraciones en JavaScript son acciones encargadas de extraer datos permanentemente que son solicitados a la base de datos para ser mostrados en el lado del cliente.
  * Una de las principales ventajas de la programación es la posibilidad de crear bucles y repeticiones para tareas específicas, y que no tengamos que realizar el mismo código varias veces de forma manual.
