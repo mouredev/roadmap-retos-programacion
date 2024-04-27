@@ -30,6 +30,6 @@ var4 = True
 
 # Imprimir un mensaje
 template = '¡Hola, {0:s}!'
-langague = 'Python'
-message = template.format(langague)
+language = 'Python'
+message = template.format(language)
 print(message)
