@@ -1,0 +1,1 @@
+/home/moris/learning/roadmap-retos-programacion/Roadmap/03\ -\ ESTRUCTURAS\ DE\ DATOS/rust/gabrielmoris/target/debug/gabrielmoris: /home/moris/learning/roadmap-retos-programacion/Roadmap/03\ -\ ESTRUCTURAS\ DE\ DATOS/rust/gabrielmoris/src/main.rs
