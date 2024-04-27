@@ -22,7 +22,7 @@ namespace SandraDev
 
             // Ejercicio 4 - Datos primitivos
 
-            int NumeroEntero = 0;
+            int NumeroEntero = 1;
             long NumeroEnteroLargo = 1234567890;
             float NumeroDecimal = 1.5f;
             double NumeroDecimalLargo = 12.50;
