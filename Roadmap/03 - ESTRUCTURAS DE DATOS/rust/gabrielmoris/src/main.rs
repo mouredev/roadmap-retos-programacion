@@ -5,6 +5,9 @@
  *
  */
 
+use std::io::{ self };
+use std::collections::HashMap;
+
 fn main() {
     // Arays: Are Fixed size. They are created with [T; N] there T is type and N is size
     let mut array: [i32; 5] = [1, 5, 2, 4, 3];
@@ -18,6 +21,18 @@ fn main() {
     fruits.push("orange");
     let fruits_to_string = fruits.join("/");
     print!("{fruits_to_string}\n");
+    let dramatic_fruits: Vec<String> = fruits
+        .iter()
+        .map(|x| format!("{}!", x))
+        .collect();
+    println!("{:?}", dramatic_fruits);
+    let filter_fruits: Vec<String> = dramatic_fruits
+        .iter()
+        .filter(|x| x.contains("pp"))
+        .cloned()
+        .collect();
+    // I need to clone and collect to actually send the filtered vector
+    println!("{:?}", filter_fruits);
 
     // Tuples: Are fixed size and can handle different types
     let tup = (71, "a", false);
@@ -54,12 +69,13 @@ fn main() {
     println!("{:?}", my_color);
 
     // HashMaps: unordered collections of key-value pairs
-    use std::collections::HashMap;
+    // use std::collections::HashMap; It is already imported, but I note here as a cutiosity that it must be imported.
     let mut scores: HashMap<String, u32> = HashMap::new();
     scores.insert("Alice".to_string(), 90);
     scores.insert("Bob".to_string(), 85);
     let it_print = scores.get_key_value("Alice");
-    println!("{:?}", it_print)
+    println!("{:?}", it_print);
+    challenge()
 }
 /*
  * EXTRA CHALLENGE (optional):
@@ -72,3 +88,65 @@ fn main() {
  *   11 digits (or the number of digits you prefer).
  * - Additionally, propose an operation to exit the program.
  */
+
+fn challenge() {
+    let mut contacts: HashMap<String, String> = HashMap::new();
+
+    loop {
+        println!("What would you like to do?");
+        println!("1. Add a contact");
+        println!("2. Delete a contact");
+        println!("3. Search a contact");
+        println!("4. Edit a contact");
+        println!("5. Exit");
+
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Failed to read line");
+
+        let choice: u32 = input.trim().parse().expect("Invalid input");
+
+        match choice {
+            1 => add_contact(&mut contacts),
+            2 => delete_contact(&mut contacts),
+            3 => search_contact(&mut contacts),
+            4 => edit_contact(&mut contacts),
+            5 => {
+                println!("Goodbye!");
+                break;
+            }
+            _ => println!("Invalid choice. Please try again."),
+        }
+
+        println!();
+    }
+}
+
+fn add_contact(contacts: &mut HashMap<String, String>) {
+    println!("Enter the contact Name");
+    let mut name: String = String::new();
+    io::stdin().read_line(&mut name).expect("Failed to read name");
+    let name: String = name.trim().to_string();
+    println!("Enter the phone number");
+    let mut phone: String = String::new();
+    io::stdin().read_line(&mut phone).expect("Failed to read phone");
+    let phone: String = phone.trim().to_string();
+
+    if phone.len() > 11 {
+        println!("The phone number must be shorter than 11 digits.")
+    } else {
+        contacts.insert(name, phone);
+    }
+}
+
+fn delete_contact(contacts: &mut HashMap<String, String>) {
+    println!("Enter the contact Name that you want to DELETE");
+    let mut name: String = String::new();
+    io::stdin().read_line(&mut name).expect("Failed to read name");
+    let name: String = name.trim().to_string();
+
+    contacts.remove(&name);
+    println!("{name} has ben deleted.");
+}
+
+fn search_contact(contacts: &mut HashMap<String, String>) {}
+fn edit_contact(contacts: &mut HashMap<String, String>) {}
