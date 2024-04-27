@@ -1,3 +1,4 @@
+/** #06 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * La recursividad es un concepto que se llama la misma función asi misma,
     siempre y cuanto tenga donde llegar y donde iniciar, claro tener un punto de rotura
