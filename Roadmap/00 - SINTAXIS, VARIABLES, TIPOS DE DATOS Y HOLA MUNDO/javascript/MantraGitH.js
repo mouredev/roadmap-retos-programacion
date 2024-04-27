@@ -39,6 +39,7 @@ let datoSinDefinir;
 
 //5. Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
+console.log("hola mundo");
 
 
 
