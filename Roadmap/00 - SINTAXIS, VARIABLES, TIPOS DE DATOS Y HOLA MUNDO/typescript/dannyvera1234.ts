@@ -18,4 +18,4 @@
  var verdad = true;
  const falso = false;
 
-console.log("hola"+ lenguaje );
+console.log("hola "+ lenguaje );
