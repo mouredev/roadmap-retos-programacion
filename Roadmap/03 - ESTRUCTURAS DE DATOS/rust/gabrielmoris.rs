@@ -93,12 +93,18 @@ fn challenge() {
     let mut contacts: HashMap<String, String> = HashMap::new();
 
     loop {
-        println!("What would you like to do?");
-        println!("1. Add a contact");
-        println!("2. Delete a contact");
-        println!("3. Search a contact");
-        println!("4. Edit a contact");
-        println!("5. Exit");
+        println!(
+            "
+            ===========================
+            What would you like to do?
+            1. Add a contact
+            2. Delete a contact
+            3. Search a contact
+            4. Edit a contact
+            5. Exit
+            ===========================
+            "
+        );
 
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read line");
@@ -148,5 +154,71 @@ fn delete_contact(contacts: &mut HashMap<String, String>) {
     println!("{name} has ben deleted.");
 }
 
-fn search_contact(contacts: &mut HashMap<String, String>) {}
-fn edit_contact(contacts: &mut HashMap<String, String>) {}
+fn search_contact(contacts: &mut HashMap<String, String>) {
+    println!("Enter the contact Name");
+    let mut name: String = String::new();
+    io::stdin().read_line(&mut name).expect("Failed to read name");
+    let name: String = name.trim().to_string();
+    let found_contact = contacts.get(&name);
+
+    match found_contact {
+        Some(phone) => println!("{}'s phone is {}", name, phone),
+        None => println!("Contact not found."),
+    }
+}
+
+fn edit_contact(contacts: &mut HashMap<String, String>) {
+    println!("Enter the contact Name");
+    let mut name = String::new();
+    io::stdin().read_line(&mut name).expect("Failed to read name");
+    let name = name.trim().to_string();
+
+    // Separate scope for the immutable reference
+    {
+        let found_contact = contacts.get(&name);
+
+        match found_contact {
+            Some(existing_name) => {
+                // Clone the existing name to avoid borrowing issues
+                let existing_name_clone = existing_name.clone();
+                contact_edition(contacts);
+                contacts.remove(&existing_name_clone);
+            }
+            None => {
+                println!(
+                    "Contact not found. Do you want to add a new contact with this name? (y/n)"
+                );
+                let mut response = String::new();
+                io::stdin().read_line(&mut response).expect("Failed to read response");
+                let response = response.trim().to_lowercase();
+
+                if response == "y" || response == "yes" {
+                    add_contact(contacts);
+                } else {
+                    println!("No changes made.");
+                }
+            }
+        }
+    } // Immutable reference ends here
+
+    // Now you can safely mutate `contacts` outside the inner scope
+}
+
+fn contact_edition(contacts: &mut HashMap<String, String>) {
+    println!("Enter New Name");
+    let mut new_name = String::new();
+    io::stdin().read_line(&mut new_name).expect("Failed to read name");
+    let new_name = new_name.trim().to_string();
+
+    println!("Enter the new phone number");
+    let mut phone = String::new();
+    io::stdin().read_line(&mut phone).expect("Failed to read phone");
+    let phone = phone.trim().to_string();
+
+    if phone.len() > 11 {
+        println!("The phone number must be shorter than 11 digits.");
+    } else {
+        // Insert the updated contact
+        contacts.insert(new_name, phone);
+    }
+}
