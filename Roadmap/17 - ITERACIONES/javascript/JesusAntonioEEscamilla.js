@@ -1,3 +1,4 @@
+/** #17 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * Las iteraciones en JavaScript son acciones encargadas de extraer datos permanentemente que son solicitados a la base de datos para ser mostrados en el lado del cliente.
  * Una de las principales ventajas de la programación es la posibilidad de crear bucles y repeticiones para tareas específicas, y que no tengamos que realizar el mismo código varias veces de forma manual.
@@ -27,5 +28,19 @@ números.forEach(number => {     //Y el Método forEach va iterando todos los el
 
 
 /**-----DIFICULTAD EXTRA-----*/
-//Pendiente
+
+//Otra Forma de hacer Iteraciones:
+//  DO...WHILE
+let k = 1;  // Variable nueva
+do {
+    console.log(`Se imprimen ${k}`);
+    k++
+} while (k <= 10);
+
+//  FOR...OF
+const iterable = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for (const item of iterable) {
+    console.log(`El numero es : ${item}`);
+}
+
 /**-----DIFICULTAD EXTRA-----*/
