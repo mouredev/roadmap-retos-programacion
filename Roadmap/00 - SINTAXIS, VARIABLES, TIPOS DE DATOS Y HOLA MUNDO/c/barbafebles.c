@@ -6,7 +6,7 @@
 
 /*
     Para comentar varias lineas 
-    se puede hacer de esta manera
+    Se puede hacer de esta manera
 */
 
 #include <stdio.h> // printf
@@ -15,7 +15,7 @@
 int num = 1; 
 int num2 = 2;
 
-// Variable constante 
+// Variable constante
 const float PI = 3.1416; 
 
 // Variables 
