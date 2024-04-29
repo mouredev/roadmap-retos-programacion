@@ -1,3 +1,4 @@
+/** #12 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * XML (Extensible Markup Lenguaje), es similar a HTML pero con etiquetas personalizadas.
  * XML tiene una sintaxis estandarizada, lo que permite que los datos compartidos o transmitidos a través de sistemas o plataformas puedan ser analizados por el destinatario.

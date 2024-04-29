@@ -1,3 +1,4 @@
+/** #07 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * En JavaScript, las pilas y colas son estructuras de datos comúnmente utilizadas para organizar y gestionar elementos.
  * El LIFO (Last In, First Out) es conocido como Pila, se van apilando y sale el ultimo
