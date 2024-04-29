@@ -34,3 +34,25 @@ print(f'8.: {lista}')
 # 9. Eliminar todo el contenido de la lista
 lista.clear()
 print(f'9.: {lista}')
+
+print('DIFICULTAD EXTRA')
+
+# 1. Crear dos conjuntos de datos
+conjunto1 = set(['a', 'b', 'c', 'd'])
+conjunto2 = set(['c', 'd', 'e', 'f'])
+
+# 2. Realizar la unión de los dos conjuntos
+union = conjunto1.union(conjunto2)
+print(f'Unión: {union}')
+
+# 3. Realizar la intersección de los dos conjuntos
+interseccion = conjunto1.intersection(conjunto2)
+print(f'Intersección: {interseccion}')
+
+# 4. Realizar la diferencia de los dos conjuntos
+diferencia = conjunto1.difference(conjunto2)
+print(f'Diferencia: {diferencia}')
+
+# 5. Realizar la diferencia simétrica de los dos conjuntos
+diferencia_simetrica = conjunto1.symmetric_difference(conjunto2)
+print(f'Diferencia simétrica: {diferencia_simetrica}')
