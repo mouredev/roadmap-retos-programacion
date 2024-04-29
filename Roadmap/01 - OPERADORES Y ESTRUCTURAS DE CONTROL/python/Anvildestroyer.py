@@ -106,18 +106,3 @@ c = 3
 print (a is b) # muestra True
 print (a is not b) # muestra False
 print (a is not c) # muestra True
-
-
-
-"""
-numero_nograto = 16
-var_inicio = 10
-var_fin = 55
-while var_inicio <= var_fin:
-    print(var_inicio)
-    var_inicio += 1
-    if var_inicio == numero_nograto and var_inicio *= 3 :
-        print("no lo imprimo no me lo permite el ejercicio")
-    else:  
-        print(var_inicio)
-"""
