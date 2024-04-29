@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 29 de Abril de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/QGJ36ARZ?event=1229569230727413860)** por país y crea un **[recordatorio](https://discord.gg/QGJ36ARZ?event=1229569230727413860)**
+> #### Lunes 6 de mayo de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/33hUYsY9?event=12321116576777544390)** por país y crea un **[recordatorio](https://discord.gg/33hUYsY9?event=1232111657677754439)**
 
 ## Roadmap
 
@@ -51,7 +51,8 @@
 |14|[FECHAS](./Roadmap/14%20-%20FECHAS/ejercicio.md)|[📝](./Roadmap/14%20-%20FECHAS/python/mouredev.py)|[▶️](https://youtu.be/EQIAhF7NNMI)|[👥](./Roadmap/14%20-%20FECHAS/)
 |15|[ASINCRONÍA](./Roadmap/15%20-%20ASINCRONÍA/ejercicio.md)|[📝](./Roadmap/15%20-%20ASINCRONÍA/python/mouredev.py)|[▶️](https://youtu.be/YA8Ssd3AUwA)|[👥](./Roadmap/15%20-%20ASINCRONÍA/)
 |16|[EXPRESIONES REGULARES](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/ejercicio.md)|[📝](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/python/mouredev.py)|[▶️](https://youtu.be/0L7IfEF19ow)|[👥](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/)
-|17|[ITERACIONES](./Roadmap/17%20-%20ITERACIONES/ejercicio.md)|[🗓️ 29/04/24](https://discord.gg/QGJ36ARZ?event=1229569230727413860)||[👥](./Roadmap/17%20-%20ITERACIONES/)
+|17|[ITERACIONES](./Roadmap/17%20-%20ITERACIONES/ejercicio.md)|[📝](./Roadmap/17%20-%20ITERACIONES/python/mouredev.py)||[👥](./Roadmap/17%20-%20ITERACIONES/)
+|18|[CONJUNTOS](./Roadmap/18%20-%20CONJUNTOS/ejercicio.md)|[🗓️ 06/05/24](https://discord.gg/33hUYsY9?event=1232111657677754439)||[👥](./Roadmap/18%20-%20CONJUNTOS/)
 
 ## Instrucciones
 
