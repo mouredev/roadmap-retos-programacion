@@ -1,7 +1,7 @@
 
 // Funciondes definidas por el usuario 
 #include <stdio.h>
-#include <string.h>     // strlen
+#include <string.h>      // strlen
 
 void simple()
 {
