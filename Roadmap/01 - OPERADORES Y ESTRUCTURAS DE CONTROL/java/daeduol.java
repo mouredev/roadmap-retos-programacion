@@ -124,6 +124,92 @@ public class Main {
         // Operador ternario 	? :
         int valor = (a > b) ? a : b;
         System.out.println("Operador ternario: " + valor);
+        // Condicionales
+        int myInt1 = 5;
+        int myInt2 = 5;
+        int myInt3 = 4;
+        // if
+        if (myInt1 == myInt2) {
+            System.out.println("ok");
+        }
+
+        //if-else
+        if (myInt1 == myInt3) {
+            System.out.println("ok");
+        } else {
+            System.out.println("error");
+        }
+        // if-else-if
+        if (myInt1 == myInt2) {
+            System.out.println("ok");
+        } else {
+            System.out.println("error");
+        }
+        if (myInt2 >= myInt3) {
+            System.out.println("es mayor");
+        }
+        // switch
+        int opcion = 2;
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Seleccionaste la opción 1");
+                break;
+            case 2:
+                System.out.println("Seleccionaste la opción 2");
+                break;
+            case 3:
+                System.out.println("Seleccionaste la opción 3");
+                break;
+            default:
+                System.out.println("Opción no válida");
+        }
+        // Iterativas
+
+        // for
+        for (int i = 0; i <= 10; i++) {
+            System.out.print(i);
+        }
+        int contador = 0;
+        while (contador < 6) {
+            System.out.println("numero " + contador);
+            contador++;
+        }
+        // do while
+        do {
+            int num5 = 5;
+            num5++;
+            System.out.println(num5);
+            if (num5 >= 6) {
+                break;
+            }
+        } while (true);
+        // try catch
+        try {
+            int dividendo = 10;
+            int divisor = 0;
+
+            int resultado = dividendo / divisor;
+            System.out.println("Resultado de la división: " + resultado);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: División por cero no permitida. Mensaje de la excepción: " + e.getMessage());
+
+        }
+        // try catch finally
+        try {
+            int di = 10;
+            int divis = 0;
+
+            int result = di / divis;
+            System.out.println("Resultado de la división: " + result);
+        } catch (ArithmeticException e){
+            System.out.println("Error2: División por cero no permitida. Mensaje de la excepción: " + e.getMessage());
+        }
+        finally {
+            System.out.println("java Dev");
+        }
+
+    }
         /*
         reto extra
          */
@@ -131,5 +217,6 @@ public class Main {
             if (i % 2 == 0 && i != 16 && i % 3 != 0)
                 System.out.println(i);
         }
+
     }
 }
