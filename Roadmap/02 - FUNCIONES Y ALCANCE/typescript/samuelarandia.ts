@@ -1,6 +1,5 @@
 /*
  * EJERCICIO:
- * - Comprueba si puedes crear funciones dentro de funciones.
  * - Utiliza algún ejemplo de funciones ya creadas en el lenguaje.
  * - Pon a prueba el concepto de variable LOCAL y GLOBAL.
  * - Debes hacer print por consola del resultado de todos los ejemplos.
@@ -50,4 +49,17 @@ console.log(variosParametros(2, 3))
 
 //Funcion dentro de funcion
 
+function funcionExterna(){
+    function funcionInterna(){
+        console.log('Funcion interna')
+    }
+    funcionInterna()
+}
 
+funcionExterna()
+
+//Funciones ya creadas en el lenguaje
+
+const arrayEjemplo: number[] = [1, 2, 3, 4, 5]
+const restaArray = arrayEjemplo.reduce((a, b) => a - b, 0)
+console.log("Suma del array:", restaArray)
