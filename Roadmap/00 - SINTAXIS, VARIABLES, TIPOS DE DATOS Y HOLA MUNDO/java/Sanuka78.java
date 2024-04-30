@@ -1,3 +1,7 @@
+public class Sanuka78 {
+    
+    public static void main(String[] args) {
+
 // https://www.java.com/es
 
 // Comentario de una línea
@@ -23,3 +27,5 @@ boolean booleano = false;
 
 //Imprimir por pantalla
 System.out.println ("Hola Mundo");
+    }
+}
