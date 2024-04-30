@@ -148,3 +148,4 @@ for (let i = 1; i <= 100; i++){
 }
 
 console.log(correccionExtra('multiplo de 3', 'multiplo de 5'))
+// correcion de coomit
