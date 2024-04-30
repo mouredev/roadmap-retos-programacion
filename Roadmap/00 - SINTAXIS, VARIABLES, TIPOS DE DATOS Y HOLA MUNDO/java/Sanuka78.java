@@ -22,4 +22,4 @@ float altura = 50.0;
 boolean booleano = false;
 
 //Imprimir por pantalla
-SYstem.out.println ("Hola Mundo");
+System.out.println ("Hola Mundo");
