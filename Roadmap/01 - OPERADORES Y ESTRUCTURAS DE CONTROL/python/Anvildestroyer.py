@@ -135,3 +135,4 @@ print(a << 2)  # Resultado es 240 = 1111 0000
 a = 60  # 60 = 0011 1100
 print(a >> 2)  # Resultado es 15 = 0000 1111
 
+#reto
