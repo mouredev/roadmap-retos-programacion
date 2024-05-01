@@ -27,6 +27,14 @@ import Foundation
  * debemos comenzar por el principio.
  */
 
+// El sitio web para buscar la documentacion de Swift es https://www.swift.org
+
+// Esto es una comentario en una sola linea 
+
+/* Esto es una comentario 
+    varias lineas
+*/
+ 
  var texto // Esto es una variable 
 let texto // Esto es una contante 
 
