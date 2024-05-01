@@ -10,7 +10,18 @@
  *   Fibonacci sequence (the function receives the position).
  */
 
-
 fn main() {
-    println!("Hello, world!");
+    let mut n = 1;
+
+    fn print_recursive(num: &mut i32) {
+        if *num > 100 {
+            return;
+        }
+
+        println!("{}", *num);
+
+        let mut new_num = *num + 1;
+        print_recursive(&mut new_num);
+    }
+    print_recursive(&mut n);
 }
