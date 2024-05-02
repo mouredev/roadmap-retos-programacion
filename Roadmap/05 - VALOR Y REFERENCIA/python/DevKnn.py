@@ -37,7 +37,7 @@ palabra1 = "caiman"
 palabra2 = "gorilla"
 
 def valor(valor1,valor2):
-    valor1,valor2 = valor1,valor2
+    valor1,valor2 = valor2,valor1
     return valor1,valor2
 nuevaPalabra1,nuevaPalabra2 = valor(palabra1, palabra2)
 
@@ -48,7 +48,7 @@ print("Nuevas:", nuevaPalabra1, nuevaPalabra2)
 lista1 = ["cocodrilo"]
 lista2 =["pescado"]
 def referencia(referencia1,referencia2):
-    referencia1[0],referencia1[0] = referencia1[0],referencia1[0]
+    referencia1[0],referencia2[0] = referencia2[0],referencia1[0]
     return referencia1,referencia2
 
 nuevaLista1,nuevaLista2 = referencia(lista1,lista2)
