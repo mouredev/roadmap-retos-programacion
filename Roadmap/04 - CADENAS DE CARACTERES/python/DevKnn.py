@@ -15,6 +15,15 @@
  * - Isogramas
  */"""
  
+def Palidromo():
+    palabra = input("Ingrese la palabra para comprobar si es un anagrama: ").lower()
+    palabra2 = palabra[::-1]
+    if (palabra == palabra2):
+        return f"La palabra {palabra}\nEs un palidromo."
+    else:
+        return f"La palabra {palabra}/nNo es un palidromo."   
+print(Palidromo())
+
 def anagrama():
     tx1 = input("Ingrese la primera palabra: ").lower()
     txt2 = input("Ingrese la segunda palabra: ").lower()
@@ -22,6 +31,6 @@ def anagrama():
     if len(sorted(tx1)) == len(sorted(txt2)):
         return f"La palabra {tx1}y la palabra {txt2}:\nSon un anagrama."
     else:
-        return f"La palabra {tx1} y la palabra {txt2}:\nNo son anagrama."
-    
-print(anagrama())
+        return f"La palabra {tx1} y la palabra {txt2}:\nNo son anagrama." 
+#print(anagrama())
+
