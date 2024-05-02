@@ -11,33 +11,27 @@
  
  */"""
  
-i = 100
+"""i = 100
 while(0<=i):
     print(i)
     i-=1
-
-n = 10
-i = 0
+    """
+n = 5
 def factorial(n):
-    while(0<=n):
-        
-        if n < 1:
-            return 1
-        else:
-            resultado = n * factorial(n-1) 
-            return resultado
-        i+=1
+    if n < 1:
+        return 1
+    else:
+        resultado = n * factorial(n-1) 
+        return resultado
 print(factorial(n))
 
-def finobacci(n=list):
-    while(0<=n):
-        if n <= 1:
-            return n
-        else:
-            return finobacci(n-1)+finobacci(n-2)
-    i+=1
+def finobacci(n):
+    if n <= 1:
+        return n
+    else:
+        return finobacci(n-1)+finobacci(n-2)
 
 
 
-n = 10
+n = 5
 print(finobacci(n))
