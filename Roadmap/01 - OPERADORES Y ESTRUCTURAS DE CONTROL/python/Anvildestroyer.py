@@ -1,19 +1,3 @@
-"""
- * EJERCICIO:
- *   (Ten en cuenta que cada lenguaje puede poseer unos diferentes)
- * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
- *   que representen todos los tipos de estructuras de control que existan
- *   en tu lenguaje:
- *   Condicionales, iterativas, excepciones...
- * - Debes hacer print por consola del resultado de todos los ejemplos.
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea un programa que imprima por consola todos los números comprendidos
- * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
- *
- * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
-"""
-
 var_numero1 = 1
 var_numero2 = 2
 var_numero3 = 4
@@ -135,4 +119,65 @@ print(a << 2)  # Resultado es 240 = 1111 0000
 a = 60  # 60 = 0011 1100
 print(a >> 2)  # Resultado es 15 = 0000 1111
 
+
+# Estructuras de control
+
+# Condicionales If,  elif y else, permite ejecutar un bloque de código si una condición específica es verdadera.
+edad = 18
+if edad < 18:
+    print("Menor de edad")
+elif edad >= 18:
+    print("Mayor de edad")
+else:
+    print("Este código nunca se ejecutará")
+
+# While  se utilizara mientras una condición sea verdadera.
+contador = 0
+while contador < 3:
+    print("Dentro del bucle")
+    contador += 1
+
+# For se utiliza para iterar sobre una secuencia
+frutas = ["manzana", "banana", "cereza"]
+for fruta in frutas:
+    print(fruta)
+
+#try-except - Excepciones
+a = 0
+b = 6
+
+try:
+    c = a / b 
+except ZeroDivisionError:
+    print("Estás intentando dividir por cero")
+
+#Range  genera una secuencia de números que van desde 0 por defecto hasta el número que se pasa como parámetro menos 1
+
+for i in range(6):
+    print(i) #0, 1, 2, 3, 4, 5
+
+# Break
+for num in range(5):
+    if num == 3:
+        break    # Sale del bucle
+    print(num)
+
+# Continue
+for a in range(5):
+    if a == 2:
+        continue
+    print(f"a es {a}")
+
+
 #reto
+
+"""
+* Crea un programa que imprima por consola todos los números comprendidos
+* entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+"""
+
+i = 9
+while i <= 54:
+    i += 1
+    if (i % 2 == 0) and (i != 16) and (i % 3 != 0):
+        print(i)
