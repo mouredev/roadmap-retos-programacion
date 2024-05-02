@@ -240,7 +240,7 @@ def update_Contact(numberContact, nameContact, option):
 
         while not check_Input(newNumberContact):
             print("Ingresaste un valor erroneo, vuelvelo a intentar")
-            numberContact = input("Ingresalo nuevamente: ")
+            newNumberContact = input("Ingresalo nuevamente: ")
         
         print(f'Vas a actualizar {numberContact} por {newNumberContact}')
         update = input("¿ Estas segur@ de realizar esta operacion ? (Yes/No): ")
