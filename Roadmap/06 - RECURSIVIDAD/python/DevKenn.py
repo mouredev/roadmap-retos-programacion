@@ -11,11 +11,11 @@
  
  */"""
  
-"""i = 100
+i = 100
 while(0<=i):
     print(i)
     i-=1
-  """
+
 n = 10
 i = 0
 def factorial(n):
@@ -29,7 +29,7 @@ def factorial(n):
         i+=1
 print(factorial(n))
 
-def finobacci(n):
+def finobacci(n=list):
     while(0<=n):
         if n <= 1:
             return n
