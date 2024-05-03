@@ -25,27 +25,32 @@ public class Jeigar2 {
         System.out.println("---colas---");
         gestionCola();
         System.out.println("OK");
-        int opcion;
-        Scanner scanner = new Scanner(System.in);
+        int opcion = -1;
         do {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Qué acción quieres hacer");
             System.out.println("(1) Navegación por Internet");
             System.out.println("(2) Impresora");
             System.out.println("(0) Salir");
-            opcion = scanner.nextInt();
-            switch (opcion){
-                case 1: {
-                    navegar(scanner);
-                    break;
+            try {
+                opcion = scanner.nextInt();
+                switch (opcion) {
+                    case 1: {
+                        navegar(scanner);
+                        break;
+                    }
+                    case 2: {
+                        imprimir(scanner);
+                        break;
+                    }
+                    case 0: {
+                        scanner.close();
+                        System.exit(0);
+                    }
                 }
-                case 2: {
-                    imprimir(scanner);
-                    break;
-                }
-                case 0: {
-                    scanner.close();
-                    System.exit(0);
-                }
+            }catch (InputMismatchException e) {
+                System.out.println("Introduce el número de tu opción, por favor");
+                opcion = -1;
             }
         }while (true);
     }
@@ -70,19 +75,28 @@ public class Jeigar2 {
     }
 
     private static void navegar(Scanner scanner) {
-        int comando;
+        int comando = -1;
         Navegador navegador = new Navegador();
-        scanner = new Scanner(System.in);
         String pagina = null;
         do {
-            System.out.println("Navegador, que accion quieres hacer");
-            System.out.println("(1) Url");
-            if(navegador.existeSiguentePagina())
-                System.out.println("(2) Adelante");
-            if(navegador.existeSiguenteAnterior())
-                System.out.println("(3) Atrás");
-            System.out.println("(0) Salir");
-            comando = scanner.nextInt();
+            do {
+                System.out.println("Navegador, que accion quieres hacer");
+                System.out.println("(1) Url");
+                if(navegador.existeSiguentePagina()) {
+                    System.out.println("(2) Adelante");
+                }
+                if(navegador.existeSiguenteAnterior()) {
+                    System.out.println("(3) Atrás");
+                }
+                System.out.println("(0) Salir");
+                scanner = new Scanner(System.in);
+                try {
+                    comando = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Introduce el número de tu opción, por favor");
+                    comando = -1;
+                }
+            }while (!(comando >= 0 && comando <= 3));
 
             switch (Navegador.Comando.values()[comando]){
                 case URL_PAGINA -> {
@@ -164,12 +178,15 @@ class Navegador {
     }
 
     public void nuevaPagina(String pagina){
+        // vaciamos las páginas siguientes porque hay nueva navegación
+        while(!pilaAvance.isEmpty()) {
+            pilaAvance.pop();
+        }
         pilaRetroceso.push(paginaActual);
         paginaActual = pagina;
     }
 
     public String adelante(){
-        //if(!HOME.equals(paginaActual) && !pilaAvance.isEmpty()){
         if(!pilaAvance.isEmpty()){
             pilaRetroceso.push(paginaActual);
             paginaActual = pilaAvance.pop();
@@ -178,7 +195,6 @@ class Navegador {
     }
 
     public String atras(){
-//        if(!HOME.equals(paginaActual) && !pilaRetroceso.isEmpty()){
         if(!pilaRetroceso.isEmpty()){
             pilaAvance.push(paginaActual);
             paginaActual = pilaRetroceso.pop();
