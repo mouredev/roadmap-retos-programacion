@@ -81,7 +81,7 @@ else:
 for i in range(11):
     print(1)
 
-i <= 0:
+i <= 0
 
 while i <= 10:
     print(i)
@@ -100,5 +100,5 @@ Extra
 """
 
 for number in range(10, 56):
-    if number % 2 == 0 and number != 16 and % 3 != 0:
+    if number % 2 == 0 and number != 16 and number % 3 != 0:
         print(number)
