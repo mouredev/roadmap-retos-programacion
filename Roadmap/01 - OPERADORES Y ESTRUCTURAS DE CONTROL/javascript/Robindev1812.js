@@ -71,6 +71,99 @@ incremento // 10
 
 
 // Operador ternario: condicion ? expresionSiTrue : expresionSiFalse;
-let edad = 25;
+// let edad = 25;
 let mensaje1 = edad >= 18 ? 'Eres mayor de edad.' : 'Eres menor de edad.';
 console.log(mensaje); // Imprime 'Eres mayor de edad.'
+
+
+
+/*
+2. Utilizando las operaciones con operadores que tú quieras, crea ejemplos que representen todos los tipos de estructuras de control que existan en tu lenguaje:
+Condicionales, iterativas, excepciones...
+Debes hacer print por consola del resultado de todos los ejemplos.
+*/
+
+// Estructuras de control condicionales:
+
+// if...else
+let edad = 18;
+if (edad >= 18) {
+  console.log("Eres mayor de edad");
+} else {
+  console.log("Eres menor de edad");
+}
+
+// else if
+let hora = 14;
+if (hora < 12) {
+  console.log("Buenos días");
+} else if (hora < 18) {
+  console.log("Buenas tardes");
+} else {
+  console.log("Buenas noches");
+}
+
+// Switch
+let dia = 2;
+switch (dia) {
+  case 1:
+    console.log("Lunes");
+    break;
+  case 2:
+    console.log("Martes"); // Martes
+    break;
+  case 3:
+    console.log("Miércoles");
+    break;
+  default:
+    console.log("Día no válido");
+}
+
+// Estructuras de control iterativas (bucles):
+
+//For
+for (let i = 0; i < 5; i++) {
+  console.log("Iteración " + (i + 1)); // Interacion 1... Iteracion 5
+}
+
+// While
+let contador = 0;
+while (contador < 5) {
+  console.log("Contador: " + contador); // Contador 0 ... Contador 4
+  contador++;
+}
+
+// Do while
+let r = 0;
+do {
+  console.log("Número: " + r); // 0, 1, 2
+  r++;
+} while (r < 3);
+
+//Estructuras de control de salto:
+
+// Breack
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    break; // Sale del bucle cuando i es igual a 5
+  }
+  console.log(i);
+}
+
+// Continue
+for (let i = 0; i < 5; i++) {
+  if (i === 2) {
+    continue; // Salta la iteración cuando i es igual a 2
+  }
+  console.log(i);
+}
+
+// Return
+function sumar(a, b) {
+  if (typeof a !== "number" || typeof b !== "number") {
+    return "Error: Ambos argumentos deben ser números";
+  }
+  return a + b;
+}
+console.log(sumar(3, 5)); // Devuelve 8
+console.log(sumar(3, "5")); // Devuelve "Error: Ambos argumentos deben ser números"
