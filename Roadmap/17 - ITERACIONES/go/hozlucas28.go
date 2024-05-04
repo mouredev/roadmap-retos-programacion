@@ -1,7 +1,7 @@
-package main
+// package main
 
-import "fmt"
-
+//import "fmt"
+/*
 const FROM int = 1
 const TO int = 10
 
@@ -16,8 +16,8 @@ func recursiveFn(from int, to int) {
 func main() {
 	/*
 		Iterations...
-	*/
-
+*/
+/*
 	fmt.Println("Additional challenge...")
 
 	fmt.Println("\nFirst method...")
@@ -39,8 +39,8 @@ func main() {
 
 	/*
 		Additional challenge...
-	*/
-
+*/
+/*
 	fmt.Println("\nAdditional challenge...")
 
 	fmt.Println("\nFirst method...")
@@ -63,3 +63,4 @@ func main() {
 		fmt.Printf("\n%d", i+1)
 	}
 }
+*/
