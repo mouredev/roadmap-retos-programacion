@@ -24,7 +24,7 @@ public class worlion {
 
     private static void playWithLists() {
         log("\nEjercicio básico: ");
-        List<String> myList = new LinkedList<>( List.of("b", "c") );
+        List<String> myList = new LinkedList<>(List.of("b", "c"));
         log("Lista inicial: " + myList);
 
         // Añade un elemento al final.
@@ -54,19 +54,18 @@ public class worlion {
 
     }
 
-/* 
-
-    }
-
-/* 
- * DIFICULTAD EXTRA (opcional):
- * Muestra ejemplos de las siguientes operaciones con conjuntos:
- * - Unión.
- * - Intersección.
- * - Diferencia.
- * - Diferencia simétrica.
- */
-
+    /*
+     * 
+     * }
+     * 
+     * /*
+     * DIFICULTAD EXTRA (opcional):
+     * Muestra ejemplos de las siguientes operaciones con conjuntos:
+     * - Unión.
+     * - Intersección.
+     * - Diferencia.
+     * - Diferencia simétrica.
+     */
 
     private static void log(String message) {
         System.out.println(message);
