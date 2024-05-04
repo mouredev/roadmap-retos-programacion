@@ -1,25 +1,18 @@
 /*
- * EJERCICIO:
- * Utilizando tu lenguaje crea un conjunto de datos y realiza las siguientes
- * operaciones (debes utilizar una estructura que las soporte):
- * - Añade un elemento al final.
- * - Añade un elemento al principio.
- * - Añade varios elementos en bloque al final.
- * - Añade varios elementos en bloque en una posición concreta.
- * - Elimina un elemento en una posición concreta.
- * - Actualiza el valor de un elemento en una posición concreta.
- * - Comprueba si un elemento está en un conjunto.
- * - Elimina todo el contenido del conjunto.
+ * EJERCICIO: básico (Conjuntos)
  */
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class worlion {
 
     public static void main(String[] args) {
 
         playWithLists();
+        dificultadExtra();
     }
 
     private static void playWithLists() {
@@ -55,17 +48,39 @@ public class worlion {
     }
 
     /*
-     * 
-     * }
-     * 
-     * /*
      * DIFICULTAD EXTRA (opcional):
-     * Muestra ejemplos de las siguientes operaciones con conjuntos:
-     * - Unión.
-     * - Intersección.
-     * - Diferencia.
-     * - Diferencia simétrica.
      */
+
+
+    private static void dificultadExtra() {
+        log("\nDificultad extra: ");
+        Set<String> set_1 = new HashSet<String>(Set.of("a", "b", "c"));
+        log("Conjunto A: "+set_1);  
+
+        Set<String> set_2 = new HashSet<String>(Set.of("c", "e", "f"));
+        log("Conjunto A: "+set_2);  
+
+        // Unión.
+        Set<String> union = new HashSet<String>(set_1);
+        union.addAll(set_2);
+        log("Unión: " + union);  
+
+        // Intersección.
+        Set<String> intersection = new HashSet<String>(set_1);
+        intersection.retainAll(set_2);
+        log("Intersección: " + intersection);  
+
+        // Diferencia.
+        Set<String> difference = new HashSet<String>(set_1);
+        difference.removeAll(set_2);
+        log("Diferencia: " + difference);  
+
+        // Diferencia simétrica.
+        Set<String> simetricDifference = union;
+        simetricDifference.removeAll(intersection);
+        log("Intersección: " + simetricDifference);  
+
+    } 
 
     private static void log(String message) {
         System.out.println(message);
