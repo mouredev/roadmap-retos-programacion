@@ -10,7 +10,7 @@ public class devVdroid01 {
         /* Esto es un comentario de una 
         o más líneas (multilínea)*/
 
-        /** Esto es un comentario para javadoc (documentación esta herramienta) */
+        /** Esto es un comentario para javadoc (para documentar con esta herramienta) */
 	
         int variable_edad;
         final int NUMERO_CABEZA = 1;
