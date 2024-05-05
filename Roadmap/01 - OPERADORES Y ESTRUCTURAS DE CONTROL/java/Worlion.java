@@ -1,26 +1,27 @@
-/*
- * EJERCICIO:
- * - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
- *   Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits...
- *   (Ten en cuenta que cada lenguaje puede poseer unos diferentes)
- * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
- *   que representen todos los tipos de estructuras de control que existan
- *   en tu lenguaje:
- *   Condicionales, iterativas, excepciones...
- * - Debes hacer print por consola del resultado de todos los ejemplos.
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea un programa que imprima por consola todos los números comprendidos
- * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
- *
- * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
- */
+import java.util.logging.ConsoleHandler;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Worlion {
 
+    private static Logger log = Logger.getLogger(Worlion.class.getName());
+    
+    static {
+        log.setUseParentHandlers(false);
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setFormatter(new SimpleFormatter() {
+            @Override
+            public String format(LogRecord record) {
+                return record.getMessage() + "\n";
+            }
+        });
+        log.addHandler(consoleHandler);
+    }
+    
     public static void main(String[] args) {
         
-        print(" \nTipos de operadores en JAVA:\n");
+        log.info(" \nTipos de operadores en JAVA:\n");
         arithmetics();
         logicals();
         comparision();
@@ -28,153 +29,251 @@ public class Worlion {
         identity();
         bitwise();
 
+        log.info(" \nEstructuaras de control en JAVA:\n");
+        conditionals();
+        loops();
+        exceptions();
+
+        log.info(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
+        extra();
     }
 
     // Tipos de operadores:
 
     public static void arithmetics() {
 
-        print(" - Operadores aritméticos:");
+        log.info(" - Operadores aritméticos:");
     
         // addition (+)
-        print("\tsuma: 2+2="+ (2+2));
+        log.info("\tsuma: 2+2="+ (2+2));
 
         // Subtraction (-)
-        print("\tresta: 5-2="+ (5-2));
+        log.info("\tresta: 5-2="+ (5-2));
 
         // Multiplication (*)
-        print("\tproducto (*): 3x2="+ (3*2));
+        log.info("\tproducto (*): 3x2="+ (3*2));
 
         // Division (/)
-        print("\tdivision (/): 25/5="+ (25/5));
+        log.info("\tdivision (/): 25/5="+ (25/5));
 
         // Modulus (%)
-        print("\tmódulo (%): 12%5="+ (12%5));
+        log.info("\tmódulo (%): 12%5="+ (12%5));
 
         // Increment (++)
         int n = 5;
-        print("\tincremento (++): "+ (n++) + "++ = "+n);
+        log.info("\tincremento (++): "+ (n++) + "++ = "+n);
 
         // Decrement (--)
-        print("\tdecremento (--): "+ (n--) + "++ = "+n);
+        log.info("\tdecremento (--): "+ (n--) + "++ = "+n);
 
     }
 
     public static void logicals() {
 
-        print("\n - Operadores lógicos:");
+        log.info("\n - Operadores lógicos:");
     
         // AND (&&)
-        print("\tAnd: Verdadero Y Verdadero=" + (true && true));
-        print("\tAnd: Verdadero Y Falso=" + (true && false));
+        log.info("\tAnd: Verdadero Y Verdadero=" + (true && true));
+        log.info("\tAnd: Verdadero Y Falso=" + (true && false));
             
         // OR (||)
-        print("\tOr: Falso O Verdadero=" + (false || true));
-        print("\tOr: Falso O Falso=" + (false || false));
+        log.info("\tOr: Falso O Verdadero=" + (false || true));
+        log.info("\tOr: Falso O Falso=" + (false || false));
             
         // NOT (!)
-        print("\tNot: No(Verdadero)=" + (!true));
-        print("\tNot: No(Falso)=" + (!false));
+        log.info("\tNot: No(Verdadero)=" + (!true));
+        log.info("\tNot: No(Falso)=" + (!false));
 
         // XOR (^)
-        print("\tXOR: Verdadero XOR Verdadero=" + (true ^ true));
-        print("\tXOR: Verdadero XOR Falso=" + (true ^ false));
+        log.info("\tXOR: Verdadero XOR Verdadero=" + (true ^ true));
+        log.info("\tXOR: Verdadero XOR Falso=" + (true ^ false));
     }
 
     public static void comparision(){
-        print("\n - Operadores comparacióin:");
+        log.info("\n - Operadores comparacióin:");
 
         // Equal (==)
-        print("\tIgual: 5==5=" + (5==5));
+        log.info("\tIgual: 5==5=" + (5==5));
 
         // Not equal (!=)   
-        print("\tNo igual: 5!=5=" + (5!=5));
+        log.info("\tNo igual: 5!=5=" + (5!=5));
 
         // Greater than (>)
-        print("\tMayor que: 5>3=" + (5>3));
+        log.info("\tMayor que: 5>3=" + (5>3));
 
         // Less than (<)
-        print("\tMenor que: 5<3=" + (5<3));
+        log.info("\tMenor que: 5<3=" + (5<3));
 
         // Greater than or equal to (>=)
-        print("\tMayor o igual que: 5>=5=" + (5>=5));
+        log.info("\tMayor o igual que: 5>=5=" + (5>=5));
 
         // Less than or equal to (<=)
-        print("\tMenor o igual que: 5<=5=" + (5<=5));
+        log.info("\tMenor o igual que: 5<=5=" + (5<=5));
 
         // instanceof
         Object obj = new String("Hello");
-        print("\tInstancia de: obj instanceof String = " + (obj instanceof String));
+        log.info("\tInstancia de: obj instanceof String = " + (obj instanceof String));
     }
 
     public static void assignment(){
-        print("\n - Operadores asisgnación:");
+        log.info("\n - Operadores asisgnación:");
 
         int n = 10;
         
         // Igualdad
-        print("\tIgualdad: n=10="+n);
+        log.info("\tIgualdad: n=10="+n);
         
         // Suma y asignación
-        print("\tSuma y asignación: n+=5 -> "+ (n+=5));
+        log.info("\tSuma y asignación: n+=5 -> "+ (n+=5));
         
         // Resta y asignación
-        print("\tResta y asignación: n-=5 -> "+ (n-=5));
+        log.info("\tResta y asignación: n-=5 -> "+ (n-=5));
         
         // Multiplicación y asignación
-        print("\tMultiplicación y asignación: n*=5 -> "+ (n*=5));
+        log.info("\tMultiplicación y asignación: n*=5 -> "+ (n*=5));
         
         // División y asignación
-        print("\tDivisión y asignación: n/=5 -> "+ (n/=5));
+        log.info("\tDivisión y asignación: n/=5 -> "+ (n/=5));
         
         // Modulo y asignación
-        print("\tModulo y asignación: n%=5 -> "+ (n%=5));
+        log.info("\tModulo y asignación: n%=5 -> "+ (n%=5));
     }
 
     public static void identity(){
-        print("\n - Operadores identidad:");
+        log.info("\n - Operadores identidad:");
 
         int n = 10;
         int m = 10;
         
         // Igualdad
-        print("\tIgualdad: n==m -> "+ (n==m));
+        log.info("\tIgualdad: n==m -> "+ (n==m));
 
         // Diferente
-        print("\tDiferente de: n!=m -> "+ (n!=m));
+        log.info("\tDiferente de: n!=m -> "+ (n!=m));
     }
 
     public static void bitwise(){
-        print("\n - Operadores de bit:");
+        log.info("\n - Operadores de bit:");
 
         int n = 10;
         int m = 5;
         String nBinary = Integer.toBinaryString(n);
         String mBinary = Integer.toBinaryString(m);
-        print("\t -> n = "+n +"("+ nBinary+")");
-        print("\t -> m = "+m +"("+ mBinary+")");
+        log.info("\t -> n = "+n +"("+ nBinary+")");
+        log.info("\t -> m = "+m +"("+ mBinary+")");
 
 
         // AND bit
-        print("\tAND bit: n("+nBinary+") & m("+mBinary+") -> "+ (n&m) +"(" +Integer.toBinaryString(n&m)+")");
+        log.info("\tAND bit: n("+nBinary+") & m("+mBinary+") -> "+ (n&m) +"(" +Integer.toBinaryString(n&m)+")");
 
         // OR bit
-        print("\tOR bit: n("+nBinary+")|m("+mBinary+") -> "+ (n|m) +"(" +Integer.toBinaryString(n|m)+")");
+        log.info("\tOR bit: n("+nBinary+")|m("+mBinary+") -> "+ (n|m) +"(" +Integer.toBinaryString(n|m)+")");
 
         // XOR bit
-        print("\tXOR bit: n("+nBinary+")^m("+mBinary+") -> "+ (n^m) +"(" +Integer.toBinaryString(n^m)+")");
+        log.info("\tXOR bit: n("+nBinary+")^m("+mBinary+") -> "+ (n^m) +"(" +Integer.toBinaryString(n^m)+")");
 
         // NOT bit
-        print("\tNOT bit: ~n("+nBinary+") -> "+ (~n) +"(" +Integer.toBinaryString(~n)+")");
+        log.info("\tNOT bit: ~n("+nBinary+") -> "+ (~n) +"(" +Integer.toBinaryString(~n)+")");
 
         // desplazamiento a la izquierda
-        print("\tDesplazamiento a la izquierda: n("+nBinary+")<<2 -> "+ (n<<2) +"(" +Integer.toBinaryString(n<<2)+")");
+        log.info("\tDesplazamiento a la izquierda: n("+nBinary+")<<2 -> "+ (n<<2) +"(" +Integer.toBinaryString(n<<2)+")");
 
         // desplazamiento a la derecha
-        print("\tDesplazamiento a la derecha: n("+nBinary+")>>2 -> "+ (n>>2) +"(" +Integer.toBinaryString(n>>2)+")");
+        log.info("\tDesplazamiento a la derecha: n("+nBinary+")>>2 -> "+ (n>>2) +"(" +Integer.toBinaryString(n>>2)+")");
     }
 
-    public static void print(String s){
-        System.out.println(s);
+    // Estructuras de control:
+    public static void conditionals(){
+        
+        // if - else if - else
+        int n = 10;
+        if (n > 5) {
+            log.info("El número es mayor que 5");
+        } 
+        else if(n < 5) {
+            log.info("El número es menor que 5");
+        }
+        else {
+            log.info("El número es igual a 5");
+        }
+
+        int dia = 3;
+        String diaString = null;
+        switch (dia) {
+            case 1: 
+                diaString = "Lunes"; 
+                break;
+            case 2: 
+                diaString = "Martes"; 
+                break;
+            case 3: 
+                diaString = "Miércoles"; 
+                break;
+            case 4: 
+                diaString = "Jueves"; 
+                break;
+            case 5: 
+                diaString = "Viernes"; 
+                break;
+            case 6: 
+                diaString = "Sábado"; 
+                break;
+            case 7: 
+                diaString = "Domingo"; 
+                break;
+            
+            default: log.info("Día no válido"); break;
+        }
+        if(diaString!=null) {
+            log.info("El día '"+ dia+"' de la semana es: " + diaString);
+        }
+    }
+
+    public static void loops(){
+    
+        // for
+        log.info(" - Iterando con el for:");
+        for (int i = 0; i < 5; i++) {
+            log.info("\t -Iteración: "+i);
+        }
+
+        // while
+        log.info(" - Iterando con el while:");
+        int i = 0;
+        while (i < 5) {
+            log.info("\t -Iteración: "+i);
+            i++;
+        }
+
+        // do-while
+        log.info(" - Iterando con el do-while:");
+        i = 0;
+        do {
+            log.info("\t -Iteración: "+i);
+            i++;
+        } while (i < 5);
+    }
+    
+    public static void exceptions(){
+        try {
+            int n = 5/0;
+        } catch (ArithmeticException e) {
+            log.info("Error: "+e.getMessage());
+        } finally {
+            log.info("Finalizando el programa");
+        }
+    }
+
+/* 
+ *DIFICULTAD EXTRA (opcional):
+ */
+
+    private static void extra() {
+        for( int i = 10; i <= 55; i+=2) {
+            if(i != 16 || i % 3 != 0) {
+                System.out.println(i);
+            }
+        }
+    
     }
 }
