@@ -22,5 +22,5 @@ boolean_is_false = False # Valor tipo booleano, falso (False) o un no, por así 
 any_value = None # Valor tipo None o Null, donde literalmente no hay ningún valor dentro de la variable.
 
 # * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
-language = 'Python'
-print(f'¡Hola, {language}!')
+language_is = 'Python'
+print(f'¡Hola, {language_is}!')
