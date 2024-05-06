@@ -179,7 +179,7 @@ for valor in valores:
 def ejercicioExtra():
     # Crear numeros entre 10 y 55
     for i in range(10, 56):
-        # Si el módulo de i entre 2 da 0, y el indice i NO es igual a 16, y el módulo de i entre 3 no es igual a 0, entonces print.
+        # Si el módulo de i entre 2 da 0, y el indice i NO es igual a 16, y el módulo de i entre 3 no es igual a 0, entonces haz print.
         if i % 2 == 0 and i != 16 and i % 3 != 0:
             print(i)
 
