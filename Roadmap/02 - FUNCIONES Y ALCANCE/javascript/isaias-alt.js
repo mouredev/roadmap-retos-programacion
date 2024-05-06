@@ -4,8 +4,8 @@ function greet() {
 }
 
 // Función con un parámetro y retorno
-function square(numero) {
-  return numero * numero;
+function squareOp(num) {
+  return num * num;
 }
 
 // Función con varios parámetros y retorno
@@ -36,7 +36,7 @@ function imprimirMensajeLocal() {
 
 // Ejemplos de funciones ya creadas
 greet();
-console.log(square(4));
+console.log(squareOp(4));
 console.log(sum(2, 3));
 console.log(complexOperation());
 
