@@ -74,7 +74,7 @@ mi_diccionario.pop("active")
 # Actualizacion
 mi_diccionario["estatura"] = 1.85
 
-# Extra
+# Dificultad Extra
 
 def agregar_contacto(agenda, nombre, telefono):
     if len(str(telefono)) > 11 or not telefono.isdigit():
