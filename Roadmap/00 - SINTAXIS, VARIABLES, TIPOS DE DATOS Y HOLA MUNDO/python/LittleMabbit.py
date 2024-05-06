@@ -21,6 +21,6 @@ boolean_is_true = True # Valor tipo booleano, verdadero (True) o un sí, por as�
 boolean_is_false = False # Valor tipo booleano, falso (False) o un no, por así decirlo.
 any_value = None # Valor tipo None o Null, donde literalmente no hay ningún valor dentro de la variable.
 
-# * - Imprime por terminal el texto: "¡Hola [y el nombre de tu lenguaje]!"
+# * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 language = 'Python'
 print(f'¡Hola, {language}!')
