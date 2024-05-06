@@ -34,8 +34,8 @@ public class Worlion {
         variableLocal();
 
 
-        // log.info(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
-        // extra();
+        log.info(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
+        log.info("Ejercicio Extra: " + extra("chori", "pan"));
 
     }
 
@@ -91,7 +91,22 @@ public class Worlion {
     * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
     * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
     */
-    // private static void extra(){
+    private static int extra(String str1, String str2){
+        int count = 0;
+        for(int i = 1; i <= 100; i++){
+            if(i % 3 == 0 && i % 5 == 0){
+                log.info(str1 + str2);
+            } else if(i % 3 == 0){
+                log.info(str1);
+            } else if(i % 5 == 0){
+                log.info(str2);
+            } else {
+                log.info(String.valueOf(i));
+                count ++;
+            }
+        }
+        return count;
+    }
 
 
 }
