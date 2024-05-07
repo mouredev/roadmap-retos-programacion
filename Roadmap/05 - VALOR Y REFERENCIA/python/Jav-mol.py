@@ -1,4 +1,4 @@
-# Tipos de datos por valor
+# Tipos de datos por valor 
 
 variable_a = 20
 
@@ -61,4 +61,3 @@ lista_2:list = [40,50,60]
 
 new_lista_1, new_lista_2 = variables(lista_1,lista_2) 
 print(f"Parametros: {lista_1} - {lista_2} \nRetorno: {new_lista_1} - {new_lista_2}")
- 
