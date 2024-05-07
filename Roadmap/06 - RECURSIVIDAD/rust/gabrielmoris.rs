@@ -31,7 +31,7 @@ fn main() {
 
     let mut memo = HashMap::new(); // Hashmap to save the recursive answers and save memory.
     let fib = fibonacci(7, &mut memo);
-    println!("Fibonacci number in 7th possition = {fib}"); // should be 7
+    println!("Fibonacci number in 7th possition = {fib}"); // should be 13
 
     // Own Challenge: Get the possition of a fibonacci number. Return 0 if it doesn't belong to fibonacci serie.
     let fibo = fibonacci_position(13);
