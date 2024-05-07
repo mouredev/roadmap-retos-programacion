@@ -138,7 +138,7 @@ print(variable_global)
 # print(variable_local) # No se puede acceder a esta variable ya que se encunetra dentro de la función
 
 """
-Ejercicio extra
+Extra
 """
 
 
