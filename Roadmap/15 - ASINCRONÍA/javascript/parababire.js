@@ -6,9 +6,17 @@ function date() {
 function task(name, timer) {
   const seg = timer / 1000;
   console.log(`Tarea: ${name}, Duración: ${seg}seg, Inicio: ${date()}`);
-  setTimeout(function () {
-    console.log(`Tarea: ${name}, Fin: ${date()}`);
-  }, 3000);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(`Tarea: ${name}, Fin: ${date()}`);
+      resolve();
+    }, timer);
+  });
 }
 
-task('1', 3000);
+async function esperaTask() {
+  await Promise.all([task('C', 3000), task('B', 2000), task('A', 1000)]);
+  await task('D', 1000);
+}
+
+esperaTask();
