@@ -35,7 +35,7 @@ let elementList = list.includes('Zanahoria');
 console.log('Se encuentra el elemento:', elementList);
 
 // Se elimina toda la lista
-list.length = 0;
+list = [];
 console.log('Se elimino la lista', list);
 
 
@@ -55,8 +55,10 @@ let intersección = new Set([...conjuntoA].filter(x => conjuntoB.has(x)));
 console.log('Se encontró las mismas letras en los conjuntos A y B',intersección);
 
 //  DIFERENCIA A - B
-let diferencia = new Set([...conjuntoA].filter(x => !conjuntoB.has(x)));
-console.log('Se encontró las siguientes diferencias en los conjuntos A y B',diferencia);
+let diferenciaA = new Set([...conjuntoA].filter(x => !conjuntoB.has(x)));
+console.log('Se encontró las siguientes diferencias en los conjuntos A y B',diferenciaA);
+let diferenciaB = new Set([...conjuntoB].filter(x => !conjuntoA.has(x)));
+console.log('Se encontró las siguientes diferencias en los conjuntos B y A',diferenciaB);
 
 //  DIFERENCIA SIMETRÍA A ^ B
 let diferenciaSimétrica = new Set([...conjuntoA].filter(x => !conjuntoB.has(x)).concat([...conjuntoB].filter(x => !conjuntoA.has(x))));
