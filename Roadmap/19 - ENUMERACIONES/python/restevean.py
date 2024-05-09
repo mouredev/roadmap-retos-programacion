@@ -82,3 +82,8 @@ if __name__ == "__main__":
     print(pedido2.mostrar_estado())
     pedido2.cancelar_pedido()
     print(pedido2.mostrar_estado())
+
+    pedido3 = Pedido(3)
+    print(pedido3.mostrar_estado())
+    pedido3.enviar_pedido()
+    print(pedido3.mostrar_estado())
