@@ -1,7 +1,7 @@
 <?php
 
 // Enumeración de los días de la semana
-enum DiaSemana: int {
+enum WeekDay: int {
     case LUNES = 1;
     case MARTES = 2;
     case MIERCOLES = 3;
@@ -11,26 +11,38 @@ enum DiaSemana: int {
     case DOMINGO = 7;
 }
 
-function dayOfWeek($day) {
-    switch ($day) {
-        case DiaSemana::LUNES:
-            return "Lunes";
-        case DiaSemana::MARTES:
-            return "Martes";
-        case DiaSemana::MIERCOLES:
-            return "Miércoles";
-        case DiaSemana::JUEVES:
-            return "Jueves";
-        case DiaSemana::VIERNES:
-            return "Viernes";
-        case DiaSemana::SABADO:
-            return "Sábado";
-        case DiaSemana::DOMINGO:
-            return "Domingo";
-        default:
-            return "Día no válido";
-    }
+function dayOfWeek($day){
+
+    echo "El día de la semana correspondiente al número $day es: ";
+    echo WeekDay::from($day)->name;
+    echo "\n";
+                
 }
 
-echo dayOfWeek(DiaSemana::LUNES) . "\n";
-echo dayOfWeek(7) . "\n";
+for ($i = 1; $i <= 7; $i++) {
+    dayOfWeek($i);
+}
+
+// Extra
+
+enum Status: int {
+    case PENDIENTE = 1;
+    case ENVIADO = 2;
+    case ENTREGADO = 3;
+    case CANCELADO = 4;
+}
+class Parcel {
+
+    private $id;
+    private $status;
+
+    function __construct($id, $status) {
+        $this->id = $id;
+        $this->status = $status;
+    }
+
+
+}
+
+
+
