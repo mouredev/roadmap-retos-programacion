@@ -25,7 +25,6 @@ def get_weekday_name(day_number):
 """
 Extra
 """
-from enum import Enum, auto
 
 
 class EstadoPedido(Enum):
