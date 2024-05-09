@@ -26,15 +26,15 @@ public class AlgelOro {
         //Variable tipo boolean
         boolean isBoolean = false;
         //Variable tipo float
-        float varFloat = 9.7f
+        float varFloat = 9.7f;
         //Variable tipo double
-        double varDouble = 6.4d
+        double varDouble = 6.4d;
         //Variable tipo char
-        char varChar = \u0000;
+
         //Variable tipo byte
         byte varByte = 0;
         
-        System.out.println("¡Hola, Java!")
+        System.out.println("¡Hola, Java!");
     }
  
  }
