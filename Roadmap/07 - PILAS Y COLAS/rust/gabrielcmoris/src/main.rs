@@ -14,7 +14,9 @@ fn main() {
     impl<T> Stack<T> {
         // Create Stack
         pub fn new() -> Self {
-            Stack { elements: Vec::new() }
+            Stack {
+                elements: Vec::new(),
+            }
         }
         // Push Item
         pub fn push(&mut self, item: T) {
@@ -42,7 +44,7 @@ fn main() {
             self.elements.len()
         }
     }
-
+    println!(" ======== STACK ======== ");
     let mut stack = Stack::new();
     stack.push(1);
     stack.push(1);
@@ -56,6 +58,58 @@ fn main() {
     println!("{:?}", stack.is_empty()); // Prints: false
     println!("{:?}", stack.pop().unwrap()); // Prints: 1
     println!("{:?}", stack.is_empty()); // Prints: true
+
+    // QUEUE
+    pub struct Queue<T> {
+        elements: Vec<T>,
+    }
+
+    impl<T> Queue<T> {
+        // Create Stack
+        pub fn new() -> Self {
+            Queue {
+                elements: Vec::new(),
+            }
+        }
+        // enqueue
+        pub fn enqueue(&mut self, item: T) {
+            self.elements.push(item);
+        }
+
+        pub fn dequeue(&mut self) -> T {
+            self.elements.remove(0)
+        }
+
+        pub fn check(&self) -> Option<&T> {
+            self.elements.first()
+        }
+
+        pub fn length(&self) -> usize {
+            self.elements.len()
+        }
+
+        pub fn is_empty(&self) -> bool {
+            self.elements.is_empty()
+        }
+
+        pub fn clear(&mut self) {
+            self.elements.clear();
+        }
+    }
+    println!(" ======== QUEUE ======== ");
+    let mut queue = Queue::new();
+    queue.enqueue(1);
+    queue.enqueue(1);
+    println!("{:?}", queue.length()); // Prints: 2
+    queue.clear();
+    println!("{:?}", queue.length()); // Prints: 0
+    queue.enqueue(1);
+    queue.enqueue(2);
+    println!("{:?}", queue.dequeue()); // Prints: 1
+    println!("{:?}", queue.check().unwrap()); // Prints: 2
+    println!("{:?}", queue.is_empty()); // Prints: false
+    println!("{:?}", queue.dequeue()); // Prints: 2
+    println!("{:?}", queue.is_empty()); // Prints: true
 }
 
 /*
