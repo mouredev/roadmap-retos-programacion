@@ -1,9 +1,22 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class Worlion {
     /*
  * EJERCICIO: #04 CADENAS DE CARACTERES
  */
 
     public static void main(String[] args) {
+        new Worlion().run();
+    }
+    
+    public void run() {
+        base();
+        analiceWords("arroz", "zorra");
+    }
+
+    public void base() {
         String cadena = "Hola Mundo";
         System.out.println("Cadena original: " + cadena);
 
@@ -52,5 +65,45 @@ public class Worlion {
         // Verificación
         System.out.println("¿La cadena contiene 'Mundo'?: " + cadena.contains("Mundo"));
     }
+ /*
+ * DIFICULTAD EXTRA (opcional):
+ * Crea un programa que analice dos palabras diferentes y realice comprobaciones
+ * para descubrir si son:
+ * - Palíndromos
+ * - Anagramas
+ * - Isogramas
+ */
 
+    public void analiceWords(String word1, String word2) {
+
+        System.out.println(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
+
+        System.out.println("Analizando las palabas: '" + word1 + "'' y '" + word2+"'");
+
+        System.out.println("Es palíndromo '"+ word1 +"'': " + palindrome(word1));
+        System.out.println("Es palíndromo '"+ word2 +"'': " + palindrome(word2));
+        System.out.println("Son anagramas: " + anagram(word1, word2));
+        System.out.println("Es isograma '"+ word1 +"'': " + isogram(word1));
+        System.out.println("Es isograma '"+ word2 +"'': " + isogram(word2));
+
+    }
+
+    private boolean palindrome(String word){
+        return new StringBuilder(word).reverse().toString().equals(word);
+    }
+    private boolean anagram(String word1, String word2) {
+        String w1 = word1.chars().sorted().collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+        String w2 = word2.chars().sorted().collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
+
+        return w1.equals(w2);
+    }
+    private boolean isogram(String word) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        word.chars().forEach( c -> map.merge( (char)c, 1, Integer::sum));
+
+        Integer first = map.values().stream().findFirst().get();
+
+        return map.values().stream().allMatch(c -> c.equals(first));
+    }
 }
