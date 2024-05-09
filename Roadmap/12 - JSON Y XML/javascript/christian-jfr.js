@@ -54,7 +54,7 @@ function main() {
 	// setTimeout(deleteFiles, 2000);
 }
 
-async function createJSONFile(data) {
+function createJSONFile(data) {
 	const toJSON = JSON.stringify(data);
 	fs.writeFile('data.json', toJSON, (err) => {
 		if (err) {
