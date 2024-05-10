@@ -1,6 +1,6 @@
 //: [Previous](@previous)
 
-/* 18miguelgalarza.swift Release #05 - swift
+/* 18miguelgalarza.swift Release #06 - swift
  * EJERCICIO:
  * Entiende el concepto de recursividad creando una función recursiva que imprima
  * números del 100 al 0.
