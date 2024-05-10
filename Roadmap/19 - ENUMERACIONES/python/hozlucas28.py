@@ -30,7 +30,6 @@ print(f"Name of the fifth week day: {WeekDays.Friday.name}")
 print(f"Name of the sixth week day: {WeekDays.Saturday.name}")
 print(f"Name of the seventh week day: {WeekDays.Sunday.name}")
 
-
 print(
     "\n# ---------------------------------------------------------------------------------- #\n"
 )
