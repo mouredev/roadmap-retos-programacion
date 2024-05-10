@@ -35,6 +35,8 @@ console.log("módulo", a % b); // 2
 console.log("incremento", a++); // 5
 //Decremento (--)
 console.log("decremento", b--); // 3
+//exponenciación (**)
+console.log("exponenciación", 5 ** 3); // 125
 
 
 //---- Operadores lógicos
@@ -81,11 +83,12 @@ console.log("Asignación de adición", g += h); // 6
 // Asignación de sustracción (-=)
 console.log("Asignación de sustracción", g -= h); // 3
 // Asignación de multiplicación (*=)
-console.log("Asignación de multiplicación", g *= h); // 15
+console.log("Asignación de multiplicación", g *= h); // 9
 // Asignación de división (/=)
-console.log("Asignación de división", g /= h); // 5
+console.log("Asignación de división", g /= h); // 3
 // Asignación de módulo (%=)
-console.log("Asignación de módulo", g %= h); // 2
+console.log("Asignación de módulo", g %= h); // 0
+
 
 
 //---- Operadores de identidad
