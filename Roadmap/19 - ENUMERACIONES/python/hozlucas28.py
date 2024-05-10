@@ -1,6 +1,5 @@
 # pylint: disable=missing-function-docstring,pointless-string-statement,missing-module-docstring,missing-class-docstring,broad-exception-raised,broad-exception-caught
 
-
 from enum import Enum
 from typing import Self
 
