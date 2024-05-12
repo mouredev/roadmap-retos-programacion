@@ -15,11 +15,40 @@ fn main() {
     println!("Program still works this second time as well.");
     err_handling_clojures();
     println!("Program still works this third time as well.");
-    hard_error();
+    println!("========= CHALLENGE =========");
+
+    // It Works Ok(2) The program keeps running
+    let challenge: Result<i32, String> = match parameter_processor(2, 1) {
+        Ok(result) => Ok(result),
+        Err(err) => Err(err),
+    };
+    println!("{:?}", challenge);
+
+    // Returns Err("Sorry, x is smaller!"). because x == 0. The program keeps running
+    let challenge: Result<i32, String> = match parameter_processor(0, 1) {
+        Ok(result) => Ok(result),
+        Err(err) => Err(err),
+    };
+    println!("{:?}", challenge);
+
+    // Returns Err("Sorry, x is smaller!") because  x > y is false. The program keeps running
+    let challenge: Result<i32, String> = match parameter_processor(1, 1) {
+        Ok(result) => Ok(result),
+        Err(err) => Err(err),
+    };
+    println!("{:?}", challenge);
+
+    // Returns This can't be possible because y == 0 is false, panics and stops the program here.
+    let challenge: Result<i32, String> = match parameter_processor(1, 0) {
+        Ok(result) => Ok(result),
+        Err(err) => Err(err),
+    };
+    println!("{:?}", challenge);
     println!("Program stopped wrking before. This Log wont be Printed!")
 }
 
-fn hard_error() {
+fn _example_hard_error() {
+    // This would stop the program at this point.
     panic!("Fire and chaos.")
 }
 
@@ -32,16 +61,6 @@ fn recoverable_error() {
         }
     };
     println!("{result}")
-}
-
-fn infinite() -> Result<i32, String> {
-    // I am handling manually the error
-    let denominator = 0;
-    let result = match denominator {
-        0 => Err("Division by zero".to_string()),
-        _ => Ok(10 / denominator),
-    };
-    result
 }
 
 fn another_recoverable_err() -> Result<(), String> {
@@ -64,6 +83,16 @@ fn err_handling_clojures() {
     println!("{greeting_file}")
 }
 
+fn infinite() -> Result<i32, String> {
+    // I am handling manually the error
+    let denominator = 0;
+    let result = match denominator {
+        0 => Err("Division by zero".to_string()),
+        _ => Ok(10 / denominator),
+    };
+    result
+}
+
 /* EXTRA DIFFICULTY (optional):
 * Create a function that can process parameters, but also
 * can throw 3 different types of exceptions (one of them has to
@@ -80,21 +109,26 @@ fn parameter_processor(x: i32, y: i32) -> Result<i32, String> {
         panic!("This can't be possible")
     }
 
-    let x_must_be_bigger =x_is_Smaller(x,y)? ;
+    let x_must_be_bigger = x_is_smaller(x, y)?;
+
+    fn x_is_smaller(x: i32, y: i32) -> Result<bool, String> {
+        let result = match x > y {
+            false => Err("Sorry, x is smaller!".to_string()),
+            _ => Ok(true),
+        };
+        result
+    }
+
+    let _it_works = match x_must_be_bigger {
+        false => Err("Please, x must be a bigger number".to_string()),
+        true => Ok(true),
+    };
 
     let division = match x {
         0 => Err("Please, Divide for a bigger number".to_string()),
         _ => Ok(x / y),
     };
 
-    println!("tis Worked Fine {:?}", division);
+    println!("this Worked Fine {:?}", division);
     return division;
-}
-
-fn x_is_Smaller(x: i32, y: i32) -> Result<bool, String> {
-    let result = match x > y {
-        false => Err("Sorry, x is smaller!".to_string()),
-        _ => Ok(true),
-    };
-    result
 }
