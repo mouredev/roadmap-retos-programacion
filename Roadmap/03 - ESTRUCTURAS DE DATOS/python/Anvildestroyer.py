@@ -97,26 +97,6 @@ print(type(d1))
 
 
 #Extra
-agenda = {}
-
-def showMenu():
-    print("\nAgenda de Contactos")
-    print("1. Buscar contacto")
-    print("2. Insertar contacto")
-    print("3. Actualizar contacto")
-    print("4. Eliminar contacto")
-    print("5. Mostrar todos los contactos")
-    print("6. Salir")
-
-def searchContact():
-    nombre = input("Ingrese el nombre del contacto a buscar: ")
-    if nombre in agenda:
-        print(f"Nombre: {nombre}, Teléfono: {agenda[nombre]}")
-    else:
-        print(f"El contacto {nombre} no existe en la agenda.")
-
-
-
 """
 * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
@@ -130,3 +110,80 @@ def searchContact():
  * - También se debe proponer una operación de finalización del programa.
 
 """
+contactos =  {}
+
+def menu_usuario():
+    while True:
+        print("Agenda de Contactos\n"
+        "Si quiere buscar un contacto presione 1\n"
+        "Si quiere Insentar un contacto presione 2\n"
+        "Si quiere Actualizar un contacto presione 3\n"
+        "Si quiere eliminar un contacto presione 4\n"
+        "Si quiere salir presione 5")
+        seleccion = input("escoja una opcion del siguiente listado: ")
+        if 1 <= int(seleccion) <= 5:
+            if int(seleccion) == 1:
+                buscar_datos_lista()
+            elif int(seleccion) == 2:
+                añadir_datos_lista()
+            elif int(seleccion) == 3:
+                Actualizar_contacto_lista()
+            elif int(seleccion) == 4:
+                Remover_contacto_lista()
+            elif int(seleccion) == 5:
+                print("Gracias por usar mi Agenda!")
+                break
+        else:
+            print("Opción no válida. Por favor, seleccione una opción del 1 al 5.")
+
+def añadir_datos_lista():
+    global contactos
+    nombre = input("Escribe tu nombre: ")
+    apellido = input("Ingresa tu apellido: ")  
+    # Validación del número de teléfono
+    while True:
+        telefono = input("Ingresa tu telefono: ")
+        if telefono.isdigit() and len(telefono) <= 11:
+            break
+        else:
+            print("Por favor, ingresa un número de teléfono válido de hasta 11 dígitos.")
+    identificador = input("Ingresa tu identificador: ")    
+    if identificador in contactos:
+        print(f"el identificador {identificador} ya existe intenta con otro!!!")
+    else:
+        contactos[identificador] = ["Nombre: " + nombre, "Apellido: "+ apellido, "Telefono: " + telefono]
+        print (f"el contacto {identificador} se ha añadido correctamente a la agenda!")
+
+def buscar_datos_lista():
+    global contactos
+    identificador = input("Ingresa el identificador del contacto que quieres buscar: ")
+    if identificador in contactos:
+        print(f"el contacto esta en la agenda {contactos[identificador]}")
+    else:
+        print("El contacto no existe.")
+
+def Actualizar_contacto_lista():
+    global contactos
+    identificador = input("Ingresa el identificador del contacto que quieres Actualizar: ")
+    if identificador in contactos:
+        nombre = input("Escribe tu nombre: ")
+        apellido = input("Ingresa tu apellido: ")
+        while True:
+            telefono = input("Ingresa tu telefono: ")
+            if telefono.isdigit() and len(telefono) <= 11:
+                break
+        contactos[identificador] = ["Nombre: " + nombre, "Apellido: "+ apellido, "Telefono: " + telefono]
+        print (f"El contacto {identificador} se ha actualizado correctamente!")
+    else:
+        print("El contacto no existe")
+
+def Remover_contacto_lista():
+    global contactos
+    identificador = input("Ingresa el identificador del contacto que quieres Eliminar: ")
+    if identificador in contactos:
+        del contactos[identificador]
+        print (f"el contacto {identificador} se ha eliminado correctamente")
+    else:
+        print("El contacto no existe!")
+
+menu_usuario()
