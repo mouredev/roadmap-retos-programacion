@@ -96,6 +96,27 @@ print(f"Ordenando el directorio:",d1)
 print(type(d1))
 
 
+#Extra
+agenda = {}
+
+def showMenu():
+    print("\nAgenda de Contactos")
+    print("1. Buscar contacto")
+    print("2. Insertar contacto")
+    print("3. Actualizar contacto")
+    print("4. Eliminar contacto")
+    print("5. Mostrar todos los contactos")
+    print("6. Salir")
+
+def searchContact():
+    nombre = input("Ingrese el nombre del contacto a buscar: ")
+    if nombre in agenda:
+        print(f"Nombre: {nombre}, Teléfono: {agenda[nombre]}")
+    else:
+        print(f"El contacto {nombre} no existe en la agenda.")
+
+
+
 """
 * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
