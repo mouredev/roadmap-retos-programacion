@@ -34,7 +34,7 @@ class Order():
         self.status = OrderStatus(1)       
     
     def change_status(self):
-        print("Selecciona el nuevo estado del pedido (del 2 al 4): ")
+        print("\nSelecciona el nuevo estado del pedido (del 2 al 4): ")
         new_status = OrderStatus(int(input("2:ENVIADO, 3:CANCELADO, 4:ENTREGADO: ")))
             
         if self.status == OrderStatus.CANCELADO:
@@ -44,9 +44,16 @@ class Order():
         else:
             self.status = new_status
             print(f"Pedido cambiado a {self.status.name.lower()}")
-                  
+        print(self)
+        self.new_change()
+        
+    def new_change(self):
+        new_change = input("\n¿quieres cambiar el estado (si/no): ").lower()
+        if new_change == "si":
+            self.change_status()
+                      
     def __str__(self):
-        return f"\nId: {self.id}\nStatus: {self.status.name.capitalize()}" 
+        return f"\nEstado del pedido:\nId: {self.id}\nStatus: {self.status.name.capitalize()}" 
 
 def new_order():
     id = input("identificador del pedido: ")    
@@ -54,12 +61,5 @@ def new_order():
 
 
 my_order = new_order()
-print("\nEstado del pedido:",my_order)
+print(my_order)
 my_order.change_status()
-print("\nEstado del pedido:",my_order)
-my_order.change_status()
-print("\nEstado del pedido:",my_order)
-my_order.change_status()
-print("\nEstado del pedido:",my_order)
-my_order.change_status()
-print("\nEstado del pedido:",my_order)
