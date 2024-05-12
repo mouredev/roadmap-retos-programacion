@@ -10,6 +10,7 @@ public class Worlion {
 
     public void run() {
         valueOrReference();
+        extra();
     }
 
 
@@ -94,5 +95,41 @@ public class Worlion {
 
     private void picante(Chorizo c) {
         c.setPicantez(c.getPicantez() * 2);
+    }
+
+    /*
+    * DIFICULTAD EXTRA (opcional):
+    */
+
+    private void intercambioPorValor(int a, int b) {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    private void intercambioPorReferencia(Chorizo c, Chorizo d) {
+        Chorizo temp = c;
+        c = d;
+        d = temp;
+    }
+
+    private void extra() {
+
+        // En java los tipos primitivos se pasan por valor: Se crea una copia de la variable
+        System.out.println(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
+        int a = 5;
+        int b = 10;
+        System.out.println("a: " + a + " - b: " + b);
+        intercambioPorValor(a, b);
+        System.out.println("a: " + a + " - b: " + b + " (no se ha modificado)");
+
+        // En java los objetos se pasan por referencia: Se pasa la referencia al objeto
+        // PERO java crea una copia de la referencia, por lo que no se modifica el objeto original
+
+        Chorizo c = new Chorizo("Sarta", 2);
+        Chorizo d = new Chorizo("Txistorra", 3);
+        System.out.println("c: " + c + " - d: " + d);
+        intercambioPorReferencia(c, d);
+        System.out.println("c: " + c + " - d: " + d + " (no se ha modificado)");
     }
 }
