@@ -23,7 +23,6 @@ public class AngelDevSarrollo {
         System.out.println("Character.MIN_VALUE = " + Character.MIN_VALUE);
         System.out.println("Character.MAX_VALUE = " + Character.MAX_VALUE);
 
-
         // Enteros y flotantes
         byte numeroByte = 127;
         System.out.println("numeroByte = " + numeroByte);
