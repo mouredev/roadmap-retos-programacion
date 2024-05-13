@@ -57,7 +57,7 @@ print(f"And &&: 10 > 3 and 8 < 19: {10 > 3 and 8 < 19}")
 print(f"Or ||: 10 > 3 and 8 > 19: {10 > 3 or 8 > 19}")
 print(f"NOT !: 10 + 3 = 14: {not 10 + 3 == 14}")
 
-### Operadores de asignación
+## Operadores de asignación
 
 my_number = 18 #asignacion
 print(my_number)
@@ -101,7 +101,7 @@ print(my_number_three)
 my_number_three <<= 1 # y asignacion
 print(my_number_three)
 
-### Operadores de identidad
+## Operadores de identidad
 
 #Los valores de identidad lo que buscan es comparar es el valor en memoria.
 #Por eso dando el mismo valor, da false. Porque tienen direcciones en la memoria distintas
@@ -110,12 +110,12 @@ print(my_number)
 print(f"my_number is my_new_number es {my_number is my_new_number}")
 print(f"my_new_number is my_new_number es {my_new_number is my_new_number}")
 
-### Operadores de pertenencia
+## Operadores de pertenencia
 
 print(f" 'd' in 'dans182' = {'d' in 'dans182'}")
 print(f" 'd' not in 'dans182' = {'d' not in 'dans182'}")
 
-### Operadores bit a bit
+## Operadores bit a bit
 #8421
 a = 10 #1010
 b = 3  #0011
@@ -128,4 +128,47 @@ print(f"Dezplazamiento a la derecha: 10 >> 2 = {10 >> 2}") #1010 >> 2 -> 0010 (2
 print(f"Dezplazamiento a la izquierda: 10 << 2 = {10 << 2}") #1010 << 2 -> 101000 (40) 
 
 
-### Operadores de pertenencia
+## Operadores de pertenencia
+
+
+# Estructuras de Control
+
+##Condicioneales.
+
+## If
+
+my_string = "Dans182"
+
+if my_string == "Dans182":
+    print("my_string es 'Dans182'")
+elif my_string == "Daniel":
+    print("my_string es 'Daniel'")
+else:
+    print("my_string no es 'Dans182' ni 'Daniel'")
+
+## Iterativas
+
+for i in range(11):
+    print(i)
+
+i = 0
+
+while i <= 10:
+    print(i)
+    i += 1
+
+## Manejo de excepciones
+try:
+    print(10 / 0)
+except:
+    print("Se ha producido un error")
+finally:
+    print("Ha finalizado el manejo de excepciones")
+
+"""
+Extra
+"""
+
+for number in range(10, 56):
+    if number % 2 == 0 and number != 16 and number % 3 != 0:
+        print(number)
