@@ -83,7 +83,26 @@ print(my_number)
 my_number //= 1 #division entera y asignacion
 print(my_number)
 
+my_number_three = 3
+print(my_number_three)
+
+my_number_three &= 1 # y asignacion
+print(my_number_three)
+
+my_number_three |= 1 # y asignacion
+print(my_number_three)
+
+my_number_three ^= 1 # y asignacion
+print(my_number_three)
+
+my_number_three >>= 1 # y asignacion
+print(my_number_three)
+
+my_number_three <<= 1 # y asignacion
+print(my_number_three)
+
 ### Operadores de identidad
+
 #Los valores de identidad lo que buscan es comparar es el valor en memoria.
 #Por eso dando el mismo valor, da false. Porque tienen direcciones en la memoria distintas
 my_new_number = 0.0
@@ -92,9 +111,21 @@ print(f"my_number is my_new_number es {my_number is my_new_number}")
 print(f"my_new_number is my_new_number es {my_new_number is my_new_number}")
 
 ### Operadores de pertenencia
+
 print(f" 'd' in 'dans182' = {'d' in 'dans182'}")
 print(f" 'd' not in 'dans182' = {'d' not in 'dans182'}")
 
 ### Operadores bit a bit
+#8421
+a = 10 #1010
+b = 3  #0011
+
+print(f"AND: 10 & 3 = {10 & 3}") #0010 -> 2 en decimal Compara bit a bit, y si los dos bits son "uno", devuelve uno
+print(f"OR: 10 | 3 = {10 | 3}") #1011 -> 11 en decimal Compara bit a bit, y si al menos uno de los dos bits es uno, devuelve uno
+print(f"XOR: 10 ^ 3 = {10 ^ 3}") #0101 -> 9 en decimal Compara bit a bit, y si los bits son diferentes, devuelve uno
+print(f"NOT: ~10 = {~10}") #Invierte cada bit en el operando
+print(f"Dezplazamiento a la derecha: 10 >> 2 = {10 >> 2}") #1010 >> 2 -> 0010 (2) 
+print(f"Dezplazamiento a la izquierda: 10 << 2 = {10 << 2}") #1010 << 2 -> 101000 (40) 
+
 
 ### Operadores de pertenencia
