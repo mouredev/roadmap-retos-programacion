@@ -47,17 +47,15 @@ while True:
 """
 
 class Status(Enum):
-    values = [
-        "PENDIENTE",
-        "ENVIADO",
-        "ENTREGADO",
-        "CANCELADO"
-    ]
+    PENDIENTE = 1
+    ENVIADO = 2
+    ENTREGADO = 3
+    CANCELADO = 4
 
 class Order():
     def __init__(self,id): #se inicializa un pedido directamente como pendiente
         self.id = id
-        self.status = Status.values.value[0]
+        self.status = Status.PENDIENTE
 
     def check_id(self,num):
         if int(num) == int(self.id):
@@ -67,42 +65,42 @@ class Order():
 
     def show_order(self):
         print(f"NÚMERO DE PEDIDO: {self.id}")
-        print(f"ESTADO: {self.status}")
+        print(f"ESTADO: {self.status.name}")
         print("\n")
     
     def send_order(self):
-        if self.status == Status.values.value[3]:
+        if self.status == Status.CANCELADO:
             print("El pedido no puede ser enviado porque está cancelado")
-        elif self.status == Status.values.value[2]:
+        elif self.status == Status.ENTREGADO:
             print("El pedido no puede ser enviado porque ya está entregado")
-        elif self.status == Status.values.value[1]:
+        elif self.status == Status.ENVIADO:
             print("El pedido ya ha sido enviado previamente")
         else:
-            self.status = Status.values.value[1]
+            self.status = Status.ENVIADO
             print(f"Pedido {self.id} ENVIADO")
         print("\n")
 
     def cancel_order(self):
-        if self.status == Status.values.value[1]:
+        if self.status == Status.ENVIADO:
             print("El pedido no puede ser cancelado porque ya se ha enviado")
-        elif self.status == Status.values.value[2] or self.status == Status.values.value[1]:
+        elif self.status == Status.ENTREGADO: #or self.status == Status.ENVIADO:
             print("El pedido no se puede cancelar porque ya está entregado")
-        elif self.status == Status.values.value[3]:
+        elif self.status == Status.CANCELADO:
             print("El pedido ya ha sido cancelado anteriormente")
         else:
-            self.status = Status.values.value[3]
+            self.status = Status.CANCELADO
             print(f"Pedido {self.id} CANCELADO")
         print("\n")
 
     def order_delivered(self):
-        if self.status == Status.values.value[3]:
+        if self.status == Status.CANCELADO:
             print("El pedido no se puede entregar porque está cancelado")
-        elif self.status == Status.values.value[2]:
+        elif self.status == Status.ENTREGADO:
             print("El pedido ya ha sido entregado anteriormente")
-        elif self.status != Status.values.value[1]:
+        elif self.status != Status.ENVIADO:
             print("El pedido no ha sido enviado aún, no se puede marcar como entregado")
         else:
-            self.status = Status.values.value[2]
+            self.status = Status.ENTREGADO
             print(f"Pedido {self.id} ENTREGADO")
         print("\n")
 
@@ -118,9 +116,14 @@ while True:
     else:
         if option == "n":
             num_order = int(input("Entendido, dime el número de pedido: "))
-            new_order = Order(num_order)
-            orders.append(new_order)
-            print(f"Pedido con ID {num_order} creado y almacenado en el sistema")
+            for element in orders:
+                if int(num_order) == int(element.id):
+                    print(f"El pedido {num_order} se encuentra ya registrado en sistema")
+                    break
+            else:
+                new_order = Order(num_order)
+                orders.append(new_order)
+                print(f"Pedido con ID {num_order} creado y almacenado en el sistema")
             sleep(1)
         elif option == "s":
             order_id = input("Ok, dime el id del pedido que quieres ver: ")
