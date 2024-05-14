@@ -15,3 +15,6 @@ const mail = 'angelenarvaezm@gmail.com';
 const regexMail = /\w+([.][\w]+)*@\w+([.][\w]+)*\.[a-zA-Z]{2,5}/;
 console.log(regexMail.test(mail));
 /* Debo buscar prohibir espacios \s */
+
+/* Validaciín url */
+const regexUrl = /^w{3}\.[a-zA-Z_.]{1,14}\.(com|org)$/;
