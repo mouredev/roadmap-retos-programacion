@@ -31,6 +31,7 @@ let opcion = 0;
 switch(opcion){
     case 0:
         console.log(`[SWITCH] Opción 0`);
+        break;
     case 1: 
         console.log(`[SWITCH] Opción 1`);
         break;

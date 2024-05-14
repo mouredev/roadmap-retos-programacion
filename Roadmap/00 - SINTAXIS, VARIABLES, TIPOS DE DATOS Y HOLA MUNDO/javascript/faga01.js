@@ -39,5 +39,6 @@ const arreglo = ["primero", "campeon", 1];
 
 // Punto 5.
 // Imprimir en el Dom y en consola
-document.write(nulo);
-console.log(objeto);
+console.log("objeto");
+document.write("nulo");
+
