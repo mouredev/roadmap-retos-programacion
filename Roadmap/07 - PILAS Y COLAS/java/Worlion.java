@@ -75,6 +75,9 @@ public class Worlion {
     private static final String RED_BACKGROUND = "\u001B[41m";
     private static final String ANSI_RESET = "\u001B[0m";
     
+    public static void clearScreen() {
+        System.out.print("\033\143");
+    }
 
     Scanner scanner = new Scanner(System.in);
 
@@ -153,11 +156,6 @@ public class Worlion {
     private void extra() {
         /*
         * DIFICULTAD EXTRA (opcional):
-        * - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
-        *   de un navegador web. Crea un programa en el que puedas navegar a una página o indicarle
-        *   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
-        *   Las palabras "adelante", "atrás" desencadenan esta acción, el resto se interpreta como
-        *   el nombre de una nueva web.
         * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
         *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
         *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
@@ -174,12 +172,9 @@ public class Worlion {
         String option = null;
         do{
             option = showMenu();
-            processOption(option);
+            processOption(option.toLowerCase());
 
         } while (!"0".equals(option));
-        
-
-
     }
 
     private String showMenu() {
@@ -198,8 +193,11 @@ public class Worlion {
     }
 
     private void processOption(String option){
+        clearScreen();
         switch (option) {
             case "1":
+            case "back":
+            case "go back":
                 if(history.size()==1) {
                     System.out.println("\n"+RED+"Invalid option:"+ ANSI_RESET+" the history is empty (you are in the home page)");
                 }
@@ -207,8 +205,12 @@ public class Worlion {
                     System.out.println("going back...");
                     backHistory.push(history.pop());
                 }
+                
                 break;
+
             case "2":
+            case "ahead":
+            case "go ahead":
                 if(backHistory.isEmpty()) {
                     System.out.println("\n"+RED+"Invalid option:"+ ANSI_RESET+" the forward history is empty");
                 }
@@ -217,17 +219,23 @@ public class Worlion {
                     history.push(backHistory.pop());
                 }
                 break;
+
             case "3":
+            case "show":
+            case "history":
+            case "show history":
                 System.out.println("\nShowing history:");
                 System.out.print(" - Back history: ");
                 history.printStack();
                 System.out.print(" - Forward history: ");
                 backHistory.printStack();
-
                 break;
+
             case "0":
+            case "exit":
                 System.out.println("\nSee you soon...");
                 break;
+
             default:
                 System.out.println("Browsing to '" + option + "'...");
                 history.push(option);
@@ -251,4 +259,6 @@ public class Worlion {
         }
         return GREEN + msg + ANSI_RESET;
     }
+
+    
 }
