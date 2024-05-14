@@ -10,7 +10,7 @@ class Stack<T> {
     private List<T> stack = new LinkedList<T>();
 
     public T pop() {
-        if(this.stack.isEmpty()) {
+        if(stack.isEmpty()) {
             //throw new Exception("Pila vacia!");
             System.err.println("Pila vacia!");
             return null;
@@ -21,7 +21,7 @@ class Stack<T> {
     }
 
     public void push(T element) {
-        this.stack.add(element);
+        stack.add(element);
     }
 
     public void printStack() {
@@ -49,7 +49,7 @@ class Queue<T> {
     private List<T> queue = new LinkedList<T>();
 
     public T get() {
-        if(this.queue.isEmpty()) {
+        if(queue.isEmpty()) {
             //throw new Exception("Pila vacia!");
             System.err.println("Cola vacia!");
             return null;
@@ -60,15 +60,23 @@ class Queue<T> {
     }
     
     public void put(T element) {
-        this.queue.add(element);
+        queue.add(element);
     }
 
     public void printQueue() {
         System.out.println("Queue content:" + queue);
     }
+
+    public int size(){
+        return queue.size();
+    }
+
+    public boolean isEmpty() {
+        return queue.isEmpty();
+    }
 }
 
-class webBrowser {
+class WebBrowser {
 
     private Stack<String> history = new Stack<String>();
     private Stack<String> backHistory = new Stack<String>();
@@ -170,6 +178,65 @@ class webBrowser {
 
     
 }
+
+class Printer {
+
+    private Queue<String> impresora = new Queue<String>();
+
+    public void run() {
+            /* - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
+        *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
+        *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
+        *   interpretan como nombres de documentos.
+        */
+        String option  ="";
+        do {
+            option = showMenu();
+        } while(! "0".equals(processOption(option)) );
+
+    }
+
+    private String showMenu(){
+
+        System.out.println("  --- COLA DE IMPRESIÓN --- ");
+        impresora.printQueue();
+        
+        System.out.println("\nOpciones: ");
+        System.out.println(Worlion.GREEN + "\t - Escriba el nombre del documento" + Worlion.ANSI_RESET);
+        String msg = "\t - Escriba 'Imprimir' o '1' para comenzar la impresión'";
+        if(impresora.size() == 0) {
+            System.out.println( Worlion.RED+ msg + Worlion.ANSI_RESET );
+        } else {
+            System.out.println( Worlion.GREEN+ msg + Worlion.ANSI_RESET );
+        }
+        System.out.println( Worlion.RED + "\t - Escriba 'Salir' o '0' para salir de la aplicación'"+ Worlion.ANSI_RESET);
+
+        System.out.print("\n\t > ");
+        return Worlion.scanner.nextLine();
+    }
+
+    private String processOption(String option) {
+        if ("0".equals(option) || "salir".equalsIgnoreCase(option)){
+            return "0";
+        }
+        if ("1".equals(option) || "imprimir".equalsIgnoreCase(option)) {
+            print();
+        } else{
+            impresora.put(option);
+        }
+        return "1";
+    }
+
+    private void print() {
+        if(impresora.isEmpty()){
+            System.out.println(Worlion.RED + "WARNING: "+Worlion.ANSI_RESET + "Cola de impresión vacía, nada que imprimir");
+        }
+        else {
+            System.out.println("Imprimiendo '"+impresora.get()+"'...");
+        }
+    }
+}
+
 public class Worlion {
 
     public static final String GREEN = "\u001B[32m";
@@ -197,7 +264,9 @@ public class Worlion {
         */
         System.out.println(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
 
-        new webBrowser().run();
+        new WebBrowser().run();
+
+        new Printer().run();
     }
 
     private void playWithStack(){
