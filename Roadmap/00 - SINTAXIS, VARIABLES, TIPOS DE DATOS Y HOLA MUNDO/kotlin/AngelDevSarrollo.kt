@@ -1,74 +1,34 @@
 fun main() {
-    // caracteres
-    val caracter: Char = '\u0040'
-    val decimal: Char = 64.toChar()
-    println("caracter = $caracter")
-    println("decimal = $decimal")
-    println("decimal = caracter: ${decimal == caracter}")
+    println("¡Hola Mundo!")
 
-    val simbolo: Char = '@'
-    println("simbolo = $simbolo")
-    println("simbolo = caracter: ${simbolo == caracter}")
+    val nombre: String = "Juan"
+    var edad: Int = 30
+    val altura: Double = 1.75
+    var esEstudiante: Boolean = true
 
-    val espacio: Char = '\u0020'
-    val retroceso: Char = '\b'
-    val tabulador: Char = '\t'
-    val nuevaLinea: Char = '\n'
-    val retornoCarro: Char = '\r'
+    println("Nombre: $nombre")
+    println("Edad: $edad")
+    println("Altura: $altura")
+    println("¿Es estudiante? $esEstudiante")
 
-    println("char corresponde en byte:\n${Character.BYTES}")
-    println("Char corresponde en bits = ${Character.SIZE}")
-    println("Character.MIN_VALUE = ${Character.MIN_VALUE}")
-    println("Character.MAX_VALUE = ${Character.MAX_VALUE}")
+    val nombre = "María"
+    val edad = 25
 
-    // Enteros y flotantes
-    val numeroByte: Byte = 127
-    println("numeroByte = $numeroByte")
-    println("tipo byte corresponde en byte a ${Byte.BYTES}")
-    println("tipo byte corresponde en bits a ${Byte.SIZE}")
-    println("valor máximo de un byte: ${Byte.MAX_VALUE}")
-    println("valor mínimo de un byte: ${Byte.MIN_VALUE}")
+    println("Hola, mi nombre es $nombre y tengo $edad años.")
 
-    val numeroShort: Short = 32767
-    println("numeroShort = $numeroShort")
-    println("tipo short corresponde en byte a ${Short.BYTES}")
-    println("tipo short corresponde en bits a ${Short.SIZE}")
-    println("valor máximo de un short: ${Short.MAX_VALUE}")
-    println("valor mínimo de un short: ${Short.MIN_VALUE}")
+    val numeroEntero: Int = 42
+    val numeroLong: Long = numeroEntero.toLong()
+    val numeroDouble: Double = 3.14
+    val numeroFloat: Float = numeroDouble.toFloat()
 
-    val numeroInt: Int = 2147483647
-    println("numeroInt = $numeroInt")
+    println("Número entero: $numeroEntero")
+    println("Número long: $numeroLong")
+    println("Número double: $numeroDouble")
+    println("Número float: $numeroFloat")
 
-    println("tipo int corresponde en byte a ${Integer.BYTES}")
-    println("tipo int corresponde en bits a ${Integer.SIZE}")
-    println("valor máximo de un int: ${Integer.MAX_VALUE}")
-    println("valor mínimo de un int: ${Integer.MIN_VALUE}")
+    val PI = 3.14159
+    val nombre: String? = null // Permitir valores nulos
 
-    val numeroLong: Long = 9223372036854775807L
-    println("numeroLong = $numeroLong")
-
-    println("tipo long corresponde en byte a ${Long.BYTES}")
-    println("tipo long corresponde en bits a ${Long.SIZE}")
-    println("valor máximo de un long: ${Long.MAX_VALUE}")
-    println("valor mínimo de un long: ${Long.MIN_VALUE}")
-
-    val numeroVar = 9223372036854775808f
-
-    // booleanos
-    var datoLogico = true
-    println("datoLogico = $datoLogico")
-
-    val d = 98765.43e-3 // 98.76543
-    println("d = $d")
-
-    val f = 1.2345e2f // 123.45
-    println("f = $f")
-
-    datoLogico = d < f
-    println("datoLogico = $datoLogico")
-
-    val esIgual = 3 - 2 == 1
-    println("esIgual = $esIgual")
-
-    val nombre = "AngelDev"
+    println("El valor de PI es $PI")
+    println("Nombre: $nombre")
 }
