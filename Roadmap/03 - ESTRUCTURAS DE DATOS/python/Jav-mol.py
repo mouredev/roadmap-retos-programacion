@@ -117,8 +117,8 @@ class Contacto:
             return {'name':name, 'phone':int(phone_number)}
         
 class AgendaContactos:
-    cont_id = 0
-    contactos: dict = {} 
+    cont_id:int = 0
+    contactos:dict = {} 
     
     
     def agregar_contacto(self):
@@ -134,29 +134,29 @@ class AgendaContactos:
         """
         Busca un contanto por su ID.
         """
-        id = input('Introduce el Id: ')
+        id:int = input('Introduce el Id: ')
         print(self.contactos.get(f'id-{id}', 'No se encontro ningun contacto con ese ID'))
-    
 
+    
     def actualizar_contacto(self):
         """ 
         Actualiza un contacto existente en la agenda de contactos.
         """
-        id = input('Introduce el ID del contacto que deseas actualizar: ')
+        id:int = input('Introduce el ID del contacto que deseas actualizar: ')
         
-        if id not in self.contactos.keys():
+        if f'id-{id}' not in self.contactos.keys():
             print('Ingrese un ID valido')
             return        
         
         contacto = Contacto()
-        self.contactos.get[f'id-{id}'] = contacto.data
+        self.contactos[f'id-{id}'] = contacto.data
     
         
     def borrar_contacto(self):
         """ 
         Elimina un contacto de la agenda de contactos.
         """
-        id = input('Introduce el ID del contacto que deseas borrar: ')
+        id:int = input('Introduce el ID del contacto que deseas borrar: ')
         self.contactos.pop(f'id-{id}', None)
     
     
