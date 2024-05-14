@@ -23,6 +23,9 @@ class Stack<T> {
         this.stack.add(element);
     }
 
+    public void printStack() {
+        System.out.println("Stack content:" + stack);
+    }
 }
 
 class Queue<T> {
@@ -31,7 +34,7 @@ class Queue<T> {
     public T get() {
         if(this.queue.isEmpty()) {
             //throw new Exception("Pila vacia!");
-            System.err.println("Pila vacia!");
+            System.err.println("Cola vacia!");
             return null;
         }
         T element = queue.getFirst();
@@ -39,8 +42,12 @@ class Queue<T> {
         return element;
     }
     
-    public void add(T element) {
+    public void put(T element) {
         this.queue.add(element);
+    }
+
+    public void printQueue() {
+        System.out.println("Queue content:" + queue);
     }
 }
 
@@ -51,6 +58,65 @@ public class Worlion {
     }
 
     public void run() {
-        
+        playWithStack();
+        playWithQueue();
     }
+
+    private void playWithStack(){
+        System.out.println("Jugando con la pila...");
+        Stack<Integer> stack = new Stack<Integer>();
+        System.out.println("Añado 4 valores:");
+        stack.push(3);
+        stack.push(65);
+        stack.push(1);
+        stack.push(99);
+        stack.printStack();
+
+        System.out.println("elimino el primero: ");
+        System.out.println("pop: {" + stack.pop() + "}");
+        stack.printStack();
+
+        System.out.println("elimino otro: ");
+        System.out.println("pop: {" + stack.pop() + "}");
+        stack.printStack();
+
+        System.out.println("elimino otro: ");
+        System.out.println("pop: {" + stack.pop() + "}");
+        stack.printStack();
+
+        System.out.println("elimino otro: ");
+        System.out.println("pop: {" + stack.pop() + "}");
+        stack.printStack();
+        
+        System.out.println("elimino otro: ");
+        System.out.println("pop: {" + stack.pop() + "}");
+        stack.printStack();
+
+    }
+
+    private void playWithQueue(){
+        System.out.println("Jugando con la cola...");
+        Queue<String> queue = new Queue<String>();
+
+        System.out.println("Añado 4 valores");
+        queue.put("a");
+        queue.put("b");
+        queue.put("c");
+        queue.put("d");
+                
+        queue.printQueue();
+        
+        System.out.println("elimino el primero: ");
+        System.out.println("get: {" + queue.get() + "}");
+        queue.printQueue();
+        System.out.println("elimino otro: ");
+        System.out.println("get: {" + queue.get() + "}");
+        queue.printQueue();
+        System.out.println("get: {" + queue.get() + "}");
+        queue.printQueue();
+        System.out.println("get: {" + queue.get() + "}");
+        queue.printQueue();
+        System.out.println("get: {" + queue.get() + "}");
+    }
+
 }
