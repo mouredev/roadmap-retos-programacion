@@ -68,21 +68,122 @@ class Queue<T> {
     }
 }
 
+class webBrowser {
+
+    private Stack<String> history = new Stack<String>();
+    private Stack<String> backHistory = new Stack<String>();
+
+    public void run() {
+
+        history.push("Home Page");
+        
+        String option = null;
+        do{
+            option = showMenu();
+            processOption(option.toLowerCase());
+
+        } while (!"0".equals(option));
+    }
+
+    private String showMenu() {
+
+        System.out.println("\n\n WEB BROWSER\n");
+        System.out.println("\n - curren page: "+ Worlion.GREEN+history.top()+ Worlion.ANSI_RESET);
+        System.out.println("\n Select an option or type the url you want to navigate to: \n");
+
+        System.out.println("\t 1.- "+option1());
+        System.out.println("\t 2.- "+option2());
+        System.out.println("\t 3.- Show history");
+        System.out.println(Worlion.RED_BACKGROUND+"\t 0.- Exit"+ Worlion.ANSI_RESET);
+        System.out.print("\n Choose an option (or type url):");
+
+        return Worlion.scanner.nextLine();
+    }
+
+    private void processOption(String option){
+        Worlion.clearScreen();
+        switch (option) {
+            case "1":
+            case "back":
+            case "go back":
+                if(history.size()==1) {
+                    System.out.println("\n"+Worlion.RED+"Invalid option:"+ Worlion.ANSI_RESET+" the history is empty (you are in the home page)");
+                }
+                else {
+                    System.out.println("going back...");
+                    backHistory.push(history.pop());
+                }
+                
+                break;
+
+            case "2":
+            case "ahead":
+            case "go ahead":
+                if(backHistory.isEmpty()) {
+                    System.out.println("\n"+Worlion.RED+"Invalid option:"+ Worlion.ANSI_RESET+" the forward history is empty");
+                }
+                else {
+                    System.out.println("going forward...");
+                    history.push(backHistory.pop());
+                }
+                break;
+
+            case "3":
+            case "show":
+            case "history":
+            case "show history":
+                System.out.println("\nShowing history:");
+                System.out.print(" - Back history: ");
+                history.printStack();
+                System.out.print(" - Forward history: ");
+                backHistory.printStack();
+                break;
+
+            case "0":
+            case "exit":
+                System.out.println("\nSee you soon...");
+                break;
+
+            default:
+                System.out.println("Browsing to '" + option + "'...");
+                history.push(option);
+                backHistory.clear();
+                break;
+        }
+    }
+
+    private String option1(){
+        String msg = "Go back";
+        if(history.size()==1){
+            return Worlion.RED + msg + Worlion.ANSI_RESET;
+        }
+        return Worlion.GREEN + msg + Worlion.ANSI_RESET;
+    }
+
+    private String option2(){
+        String msg = "Go ahead";
+        if(backHistory.size()==0){
+            return Worlion.RED + msg + Worlion.ANSI_RESET;
+        }
+        return Worlion.GREEN + msg + Worlion.ANSI_RESET;
+    }
+
+    
+}
 public class Worlion {
 
-    private static final String GREEN = "\u001B[32m";
-    private static final String RED = "\u001B[31m";
-    private static final String RED_BACKGROUND = "\u001B[41m";
-    private static final String ANSI_RESET = "\u001B[0m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String RED = "\u001B[31m";
+    public static final String RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_RESET = "\u001B[0m";
     
     public static void clearScreen() {
         System.out.print("\033\143");
     }
 
-    Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
 
-    Stack<String> history;
-    Stack<String> backHistory;
+
 
     public static void main(String[] args) {
         new Worlion().run();
@@ -91,8 +192,12 @@ public class Worlion {
     public void run() {
         playWithStack();
         playWithQueue();
+        /*
+        * DIFICULTAD EXTRA (opcional):
+        */
+        System.out.println(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
 
-        extra();
+        new webBrowser().run();
     }
 
     private void playWithStack(){
@@ -153,112 +258,4 @@ public class Worlion {
     }
 
 
-    private void extra() {
-        /*
-        * DIFICULTAD EXTRA (opcional):
-        * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
-        *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
-        *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
-        *   interpretan como nombres de documentos.
-        */
-
-        System.out.println(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
-
-        history = new Stack<String>();
-        backHistory = new Stack<String>();
-        
-        history.push("Home Page");
-        
-        String option = null;
-        do{
-            option = showMenu();
-            processOption(option.toLowerCase());
-
-        } while (!"0".equals(option));
-    }
-
-    private String showMenu() {
-
-        System.out.println("\n\n WEB BROWSER\n");
-        System.out.println("\n - curren page: "+GREEN+history.top()+ANSI_RESET);
-        System.out.println("\n Select an option or type the url you want to navigate to: \n");
-
-        System.out.println("\t 1.- "+option1());
-        System.out.println("\t 2.- "+option2());
-        System.out.println("\t 3.- Show history");
-        System.out.println(RED_BACKGROUND+"\t 0.- Exit"+ANSI_RESET);
-        System.out.print("\n Choose an option (or type url):");
-
-        return scanner.nextLine();
-    }
-
-    private void processOption(String option){
-        clearScreen();
-        switch (option) {
-            case "1":
-            case "back":
-            case "go back":
-                if(history.size()==1) {
-                    System.out.println("\n"+RED+"Invalid option:"+ ANSI_RESET+" the history is empty (you are in the home page)");
-                }
-                else {
-                    System.out.println("going back...");
-                    backHistory.push(history.pop());
-                }
-                
-                break;
-
-            case "2":
-            case "ahead":
-            case "go ahead":
-                if(backHistory.isEmpty()) {
-                    System.out.println("\n"+RED+"Invalid option:"+ ANSI_RESET+" the forward history is empty");
-                }
-                else {
-                    System.out.println("going forward...");
-                    history.push(backHistory.pop());
-                }
-                break;
-
-            case "3":
-            case "show":
-            case "history":
-            case "show history":
-                System.out.println("\nShowing history:");
-                System.out.print(" - Back history: ");
-                history.printStack();
-                System.out.print(" - Forward history: ");
-                backHistory.printStack();
-                break;
-
-            case "0":
-            case "exit":
-                System.out.println("\nSee you soon...");
-                break;
-
-            default:
-                System.out.println("Browsing to '" + option + "'...");
-                history.push(option);
-                backHistory.clear();
-                break;
-        }
-    }
-
-    private String option1(){
-        String msg = "Go back";
-        if(history.size()==1){
-            return RED + msg + ANSI_RESET;
-        }
-        return GREEN + msg + ANSI_RESET;
-    }
-
-    private String option2(){
-        String msg = "Go ahead";
-        if(backHistory.size()==0){
-            return RED + msg + ANSI_RESET;
-        }
-        return GREEN + msg + ANSI_RESET;
-    }
-
-    
 }
