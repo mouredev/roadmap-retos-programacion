@@ -8,7 +8,7 @@
 
 class Stack
 {
-    private $items;
+    private $pages;
     private $length;
 
     // Constructor
@@ -153,3 +153,198 @@ echo $qu->search(2) . "\n"; // 0
  *   The word "print" prints an element from the queue, the rest of the words are
  *   interpreted as document names.
  */
+
+class Printer
+{
+    private $documents;
+    private $position;
+    // Constructor
+    public function __construct()
+    {
+        $this->documents =  [];
+        $this->position = 0;
+    }
+
+    public function add_document($document)
+    {
+        $this->documents[] = $document;
+        $this->position = count($this->documents) - 1;
+    }
+
+    public function print_all()
+    {
+        if (empty($this->documents)) {
+            echo "Nothing to print. \n";
+            return;
+        }
+
+        $print_positioned_docs = array_reverse($this->documents);
+
+        foreach ($print_positioned_docs as $document) {
+            echo "Printing " . $document . ".pdf\n";
+        }
+        $this->position = 0;
+        $this->documents = [];
+    }
+
+    public function print_current()
+    {
+        if (empty($this->documents)) {
+            echo "Nothing to print. \n";
+            return;
+        }
+
+        $document = $this->documents[$this->position];
+
+        echo "Printing " . $document . ".pdf\n";
+        unset($this->documents[$this->position]);
+        $this->position = ($this->position > 0) ? $this->position - 1 : 0;
+    }
+
+    public function search_doc($doc_name)
+    {
+        $position =  array_search($doc_name, $this->documents);
+
+        if ($position !== false) {
+            
+            echo "The document is in position " . $position + 1 . ".\n";
+            return;
+        } else {
+            echo "No document named: " . $doc_name . ".pdf \n";
+            return;
+        }
+    }
+
+    public function next_document()
+    {
+        if (empty($this->documents)) {
+            echo "Printer is empty. \n";
+            return;
+        }
+
+        if ($this->position < count($this->documents) - 1) {
+            $this->position += 1;
+            echo "You are in position " . ($this->position + 1) . ": " . $this->documents[$this->position] . ".pdf \n";
+        } else {
+            echo " You are already in LAST possition with document " . $this->documents[$this->position] . ".pdf \n";
+            return;
+        }
+    }
+
+    public function back_document()
+    {
+        if (empty($this->documents)) {
+            echo "Printer is empty. \n";
+            return;
+        }
+
+        if ($this->position > 0) {
+            $this->position -= 1;
+            echo "You are in postition " . ($this->position + 1) . ": " .  $this->documents[$this->position] . ".pdf \n";
+        } else {
+            echo " You are already in the FIRST position with document " . $this->documents[$this->position] . ".pdf \n";
+            return;
+        }
+    }
+
+    public function clear_printer()
+    {
+        $this->position = 0;
+        $this->documents = [];
+
+        echo "Printer queue has been cleared.";
+    }
+};
+
+function printer()
+{
+
+    $printer = new Printer();
+
+    echo "\033c";
+    echo "
+    ===== PRINTER =====
+     1.- New Document 
+     2.- Print All
+     3.- Print Current
+     4.- Search Document
+     5.- Go Forward
+     6.- Go Back
+     7.- Clear Printer
+     8.- Exit
+    ==================
+     \n";
+
+    do {
+        $selection = readline("Select an option\n");
+        switch ($selection) {
+            case 1:
+                add_document($printer);
+                break;
+            case 2:
+                print_documents($printer);
+                break;
+            case 3:
+                print_document($printer);
+                break;
+            case 4:
+                search_document($printer);
+                break;
+            case 5:
+                forward($printer);
+                break;
+            case 6:
+                back($printer);
+                break;
+            case 7:
+                clear_printer($printer);
+                break;
+            case 8:
+                echo "\033c";
+                echo "Good bye 👋 🌐\n";
+                exit;
+            default:
+                echo "This option doesn't exist.\n";
+        }
+    } while (true);
+};
+
+function add_document($printer)
+{
+    $name = readline("Write the name of the document without extenstion (.pdf only):\n");
+    $printer->add_document($name);
+};
+
+function print_documents($printer)
+{
+    $printer->print_all();
+};
+
+function print_document($printer)
+{
+    $printer->print_current();
+};
+
+function search_document($printer)
+{
+    $document_name = readline("Write the name of the document without extenstion (.pdf only):\n");
+    $printer->search_doc($document_name);
+};
+
+function forward($printer)
+{
+    $printer->next_document();
+};
+
+function back($printer)
+{
+    $printer->back_document();
+};
+
+function clear_printer($printer)
+{
+    $printer->clear_printer();
+};
+
+
+printer();
