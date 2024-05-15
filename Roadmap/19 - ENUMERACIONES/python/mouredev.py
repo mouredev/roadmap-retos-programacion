@@ -53,7 +53,7 @@ class Order:
             self.status = OrderStatus.DELIVERED
             self.display_status()
         else:
-            print("El pedido necesita ser enviado antes de entragarse.")
+            print("El pedido necesita ser enviado antes de entregarse.")
 
     def cancel(self):
         if self.status != OrderStatus.DELIVERED:
