@@ -9,8 +9,8 @@
 este es mi comentario
 en varias lineas
 '''
-#nota: si bien entendí el concepto, no entiendo por qué el editor de codigo lo marca 
-#en rojo mi comentario en varias lineas. 
+#nota: si bien entendí el concepto, no entiendo por qué el editor de codigo marca 
+#en rojo mi comentario en varias lineas. es porque lo toma como cadena de texto?. gracias! 
 
 # 3- Crea una variable (y una constante si el lenguaje lo soporta).
 # esta es mi variable.
