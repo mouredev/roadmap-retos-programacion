@@ -7,10 +7,10 @@ from enum import Enum, auto
 class Weekday(Enum):
     LUNES = 1
     MARTES = 2
-    MIÉRCOLES = 3
+    MIARCOLES = 3
     JUEVES = 4
     VIERNES = 5
-    SÁBADO = 6
+    SABADO = 6
     DOMINGO = 7
 
 
