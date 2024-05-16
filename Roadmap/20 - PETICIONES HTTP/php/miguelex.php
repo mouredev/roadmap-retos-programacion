@@ -37,5 +37,43 @@ curl_close($ch);
 
 echo "\n\n DIFICULTAD EXTRA \n\n";
 
+function getPokemonData($pokemon) {
+    $data = file_get_contents("https://pokeapi.co/api/v2/pokemon/$pokemon");
+    $data = json_decode($data);
 
+    echo "Nombre: " . $data->name . "\n";
+    echo "ID: " . $data->id . "\n";
+    echo "Peso: " . $data->weight . "\n";
+    echo "Altura: " . $data->height . "\n";
+    echo "Tipos: ";
+    foreach ($data->types as $type) {
+        echo $type->type->name . " ";
+    }
+    echo "\n";
+
+    $speciesData = file_get_contents($data->species->url);
+    $speciesData = json_decode($speciesData);
+
+    echo "Cadena de evolución: " . $speciesData->evolution_chain->url . "\n";
+
+    echo "Juegos: ";
+    foreach ($data->game_indices as $game) {
+        echo $game->version->name . " ";
+    }
+    echo "\n";
+}
+
+try {
+    while (true) {
+        echo "Introduce el nombre o número del Pokémon (o 'salir' para terminar): ";
+        $pokemon = trim(fgets(STDIN));
+        if ($pokemon == 'salir') {
+            break;
+        }
+        getPokemonData($pokemon);
+    }
+} catch (Exception $e) {
+    echo "Ha ocurrido un error: " . $e->getMessage();
+}
+?>
 
