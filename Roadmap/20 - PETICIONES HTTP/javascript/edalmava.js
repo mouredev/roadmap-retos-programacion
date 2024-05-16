@@ -17,7 +17,7 @@ async function buscarPokemon(name) {
     const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon/' + name)
     if (respuesta.ok) {
       const datos = await respuesta.json()
-      //console.log(datos)
+      
       const nombre = datos.name
       const id = datos.id
       const peso = datos.weight
