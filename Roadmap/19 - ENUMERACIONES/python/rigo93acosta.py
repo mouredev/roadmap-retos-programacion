@@ -21,3 +21,69 @@
  * - Crea diferentes pedidos y muestra cómo se interactúa con ellos. 
 '''
 
+'''
+Ejercicio
+'''
+
+from enum import Enum
+
+class Weekday(Enum):
+    MONDAY = 1
+    TUESDAY = 2
+    WEDNESDAY = 3
+    THURSDAY = 4
+    FRIDAY = 5
+    SATURDAY = 6
+    SUNDAY = 7
+
+def get_day(number: int):
+
+    print(Weekday(number).name)
+
+get_day(1)
+
+'''
+Dificultad Extra
+'''
+class OrderStatus(Enum):
+    PENDIENTE = 1
+    ENVIADO = 2
+    ENTREGADO = 3
+    CANCELADO = 4
+
+class Order:
+    def __init__(self, id: int, status=OrderStatus.PENDIENTE):
+        self.id = id
+        self.status = status
+
+    def send(self):
+        if self.status == OrderStatus.PENDIENTE:
+            self.status = OrderStatus.ENVIADO
+            self.display_status()
+        else:
+            print(f"El Pedido: {self.id} se ha enviado o cancelado.")
+
+    def deliver(self):
+        if self.status == OrderStatus.ENVIADO:
+            self.status = OrderStatus.ENTREGADO
+            self.display_status()
+        else:
+            print(f"No se puede entregar el Pedido: {self.id} pues no ha sido enviado.")
+
+    def cancel(self):
+        if self.status != OrderStatus.ENTREGADO:
+            self.status = OrderStatus.CANCELADO
+            self.display_status()
+        else:
+            print(f"No se puede cancelar el Pedido: {self.id} pues ya ha sido entregado.")
+
+    def display_status(self):
+        print(f'Pedido: {self.id} Estado: {self.status.name}')
+
+
+order_1 = Order(1)
+order_1.deliver()
+order_1.send()
+order_1.deliver()
+order_1.cancel()
+
