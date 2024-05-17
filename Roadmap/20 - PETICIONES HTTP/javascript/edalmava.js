@@ -5,7 +5,7 @@ async function peticionHTTP() {
       const datos = await respuesta.text()
       console.log(datos)
     } else {
-      console.log("Respuesta de red OK pero respuesta HTTP no OK")
+      console.log("Respuesta de red OK pero respuesta HTTP no OK: ")
     }
   } catch(error) {
     console.log("Hubo un problema con la petición Fetch:" + error.message)
@@ -14,7 +14,7 @@ async function peticionHTTP() {
 
 async function buscarPokemon(name) {
   try {  
-    const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon/' + name)
+    const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     if (respuesta.ok) {
       const datos = await respuesta.json()
       
@@ -30,8 +30,19 @@ async function buscarPokemon(name) {
       console.log('Peso: ', peso)
       console.log('Altura: ', altura)
       console.log('Tipo(s): ', tipos)
-    } else {
-      console.log("Respuesta de red OK pero respuesta HTTP no OK")
+
+      const res_evolution_chain = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}/`)
+      if (res_evolution_chain.ok) {
+        const datos_chain = await res_evolution_chain.json()
+        console.log('Cadena de Evolución: ', datos_chain)
+      }
+    } else { 
+      console.log("Respuesta de red OK pero respuesta HTTP no OK: ")
+      if (respuesta.status === 404) {
+        console.log('Pokémon no encontrado')
+      } else {
+        console.log(respuesta.statusText)
+      }
     }
   } catch(error) {
     console.log("Hubo un problema con la petición Fetch:" + error.message)
