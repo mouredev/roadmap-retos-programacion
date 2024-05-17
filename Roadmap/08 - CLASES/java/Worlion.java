@@ -175,9 +175,5 @@ class Queue<T> {
         if(errorCount == 0) {
             System.out.println("Pila sin errores");
         }
-
-
-
-
     }
 }
