@@ -102,8 +102,9 @@ class GetPokemon:
         if "species" in current_evolution:
             print("\nCadena de evoluciones:")
             print("-", current_evolution["species"]["name"])
-            for evolution in current_evolution.get("evolves_to", []):
-                print("-", evolution["species"]["name"])
+            while current_evolution.get("evolves_to"):
+                current_evolution = current_evolution["evolves_to"][0]
+                print("- ", current_evolution["species"]["name"])
         else:
             print("Este Pokémon no tiene cadena de evolución.")
 
@@ -126,7 +127,7 @@ class GetPokemon:
         else:
             print("Error inesperado:", e)
 
-print("EJERCICIO #2:\n")
+print("\nEJERCICIO #2:\n")
 
 try:
     p1 = GetPokemon(1)
