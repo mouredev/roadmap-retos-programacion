@@ -44,7 +44,7 @@ class Pedido:
         else:
             print("El pedido no puede ser entregado en su estado actual")
 
-    def pedido_cancelado(self):
+    def cancelar_pedido(self):
         if self.status == EstadoPedido.PENDIENTE:
             self.status = EstadoPedido.CANCELADO
         else:
@@ -60,9 +60,9 @@ pedido1.enviar_pedido()
 print(pedido1.estado_actual())
 pedido1.pedido_entregado()
 print(pedido1.estado_actual())
-pedido1.pedido_cancelado()
+pedido1.cancelar_pedido()
 
 pedido2 = Pedido(EstadoPedido.PENDIENTE, 2)
 print(pedido2.estado_actual())
-pedido2.pedido_cancelado()
+pedido2.cancelar_pedido()
 print(pedido2.estado_actual())
