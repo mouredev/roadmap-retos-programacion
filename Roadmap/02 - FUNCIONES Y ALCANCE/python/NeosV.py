@@ -1,6 +1,5 @@
 # funcion con retorno
-
-""" def return_greet ():
+def return_greet ():
     return "Hola python"
 
 valor_return = return_greet()
@@ -179,7 +178,7 @@ funcion_local()
 
 def funcion_x():
 
-   variable_local  no sirve pues esta definida dentro de una funcion"""
+   """variable_local  no sirve pues esta definida dentro de una funcion"""
 
 
 # ejercicio dificultad extra 
