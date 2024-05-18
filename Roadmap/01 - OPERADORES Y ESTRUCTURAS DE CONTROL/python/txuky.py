@@ -19,7 +19,7 @@ de Comparacion
 print(5 == 5)
 print(5 != 3)
 print(5 > 1)
-print(2 < 4)
+print(2 < 5)
 print(1 >= 1)
 print(2 <= 5)
 
