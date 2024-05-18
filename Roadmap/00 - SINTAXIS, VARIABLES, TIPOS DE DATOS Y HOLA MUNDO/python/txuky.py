@@ -29,4 +29,4 @@ my_set = {3.45, 4.6, 5.75 } #set
 my_dict = {'Potencias' : 'kW', 'Consumos' : 'kW/h'} #dict
 
 print('Hola Python')
-
+# **
