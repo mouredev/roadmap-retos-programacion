@@ -48,3 +48,18 @@ print (f"my_number is my_new_number es {my_number is my_new_number}")
 print (f"my_number is not my_new_number es {my_number is not my_new_number}")
 
 #operadores de pertenecia 
+
+print (f" ' o ' in 'Simon' = {'o' in 'Simon'}")
+print (f" ' h ' not in 'Simon' = {'o' not in 'Simon'}")
+
+# operadores de bit
+
+a = 10 # 1010
+b = 3 # 0011
+print (f"AND: 10 & 3 = {10 & 3}")
+print (f"OR: 10 | 3 = {10 | 3}")
+print (f"XOR: 10 ^ 3 = {10 ^ 3}")
+print (f"NOT: 10 ~ 3 = {~10}")
+print (f"desplazamiento a la derecha : 10 >> 2 = {10 >> 2}")
+print (f"desplazamiento a la izquierda : 10 << 2 = {10 << 2}")
+
