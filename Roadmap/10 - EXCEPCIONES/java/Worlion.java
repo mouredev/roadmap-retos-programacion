@@ -17,6 +17,8 @@ public class Worlion {
         System.out.println("Resultado obtenido: "+div(7, 0));
 
         testArray();
+
+        testExtra();
         
     }
 /*
@@ -48,4 +50,56 @@ public class Worlion {
         System.out.println("Chimpun!");
     }
 
+/* DIFICULTAD EXTRA (opcional):
+ */
+
+        class myCustomException extends Exception {
+        public myCustomException(String errorMessage) {
+            super(errorMessage);
+        }
+    }
+
+    private boolean isVocal(char c){
+        return c == 'a' ||c == 'e' ||c == 'i' ||c == 'o' ||c == 'u';
+    }
+
+    private char exceptionsFunction(String s, int num) throws Exception {
+    
+
+        if(s.isEmpty()){
+            throw new myCustomException("The string must be not empty");
+        }
+        char c =  s.charAt(num);
+        if(isVocal(c)){
+            throw new Exception("Odio las vocales!!");
+        }
+        return s.charAt(num);
+    }
+
+    private void testExtra() {
+        System.out.println(" \n ---- 🌩 DIFICULTAD EXTRA 🌩 ----\n");
+
+        String[] strings = {"","patata", "carcamusa", "ascapatipucyuelaimepipedo", "choripan"};
+        int[] indexes = {2,-1,20, 11, 2};
+        int errorCount = 0;
+
+        for (int i = 0; i < strings.length; i++) {
+            try {
+                System.out.println("Word: " + strings[i] + " - Index: "+ indexes[i] + " - CharAt: "+exceptionsFunction(strings[i], indexes[i]));
+            }
+            catch (myCustomException e){
+                System.err.println(RED +"ERROR - MY CUSTOM EXCEPTION: "+ ANSI_RESET + e);
+                errorCount++;
+            } 
+            catch (StringIndexOutOfBoundsException e){
+                System.err.println(RED +"ERROR - NOS HEMOS SALIDO :(: "+ ANSI_RESET + e);
+                errorCount++;
+            } 
+            catch (Exception e) {
+                System.err.println(RED +"ERROR - OTRAS: "+ ANSI_RESET + e);
+                errorCount++;
+            }
+        }
+        System.out.println("Ejecución terminada. Se han producido (y recuperado) "+errorCount+" errores");
+    }
 }
