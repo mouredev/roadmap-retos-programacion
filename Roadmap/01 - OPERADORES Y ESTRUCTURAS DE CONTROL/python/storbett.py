@@ -63,3 +63,40 @@ print (f"NOT: 10 ~ 3 = {~10}")
 print (f"desplazamiento a la derecha : 10 >> 2 = {10 >> 2}")
 print (f"desplazamiento a la izquierda : 10 << 2 = {10 << 2}")
 
+
+#estructuras de control
+
+# Condicionales
+
+my_string = "simons"
+if my_string == "simons":
+   print ("my_string es 'simons'")
+elif my_string == "Brais":
+   print ("my_string es brais")
+else: 
+   print ("my_string no es 'simons' ni 'brais'")
+
+ # iterativas 
+
+for i in range(11):
+   print (i)
+
+i = 0
+while i <= 10:
+   print (i)
+   i+=1
+
+# manejo de exepciones
+try:
+ print (10/0)
+except:
+   print ("se ha prodcuido un error")
+finally:
+   print ("ha finalizado el manejo de exepciones")
+
+
+#extra
+
+for number in range(10, 56):
+   if number % 2 == 0 and number != 16 and number % 3 != 0:
+      print (number)
