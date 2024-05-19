@@ -1,1 +1,0 @@
-/config/learn/roadmap-retos-programacion/Roadmap/11\ -\ MANEJO\ DE\ FICHEROS/rust/gabrielmoris/target/debug/gabrielmoris: /config/learn/roadmap-retos-programacion/Roadmap/11\ -\ MANEJO\ DE\ FICHEROS/rust/gabrielmoris/src/main.rs
