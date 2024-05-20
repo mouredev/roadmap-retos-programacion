@@ -1,19 +1,3 @@
-/*
- * EJERCICIO:
- * Utilizando un mecanismo de peticiones HTTP de tu lenguaje, realiza
- * una petición a la web que tú quieras, verifica que dicha petición
- * fue exitosa y muestra por consola el contenido de la web.
- *
- * DIFICULTAD EXTRA (opcional):
- * Utilizando la PokéAPI (https://pokeapi.co), crea un programa por
- * terminal al que le puedas solicitar información de un Pokémon concreto
- * utilizando su nombre o número.
- * - Muestra el nombre, id, peso, altura y tipo(s) del Pokémon
- * - Muestra el nombre de su cadena de evoluciones
- * - Muestra los juegos en los que aparece
- * - Controla posibles errores
- */
-
 //EJERCICIO
 
 function getAbradolfLincler() {
@@ -24,15 +8,9 @@ function getAbradolfLincler() {
 			console.log(data);
 		})
 		.catch((error) => console.log(error));
-};
+}
 
 //EXTRA
-const readline = require('readline');
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
-
 async function getPokeData(id) {
 	let baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
 	let speciesUrl;
@@ -42,7 +20,7 @@ async function getPokeData(id) {
 		await fetch(`${baseUrl}/${id.toLowerCase()}`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(`Name: ${data.name}`);
+				console.log(`\nName: ${data.name}`);
 				console.log(`Id: ${data.id}`);
 				console.log(`Weight: ${data.weight}`);
 				console.log(`Height: ${data.height}`);
@@ -65,20 +43,27 @@ async function getPokeData(id) {
 		await fetch(chainUrl)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
+				let evolves = data.chain.evolves_to.map((name) => name.species.name);
+				console.log(`Evolves to: ${evolves}`);
 			});
 	} catch (err) {
-		console.log(`\nHa ocurrido un error: ${err.message}`);
+		console.log(`\nHa ocurrido un error: ${err}`);
 	}
 }
 
 function requestPokemon() {
+	const readline = require('readline');
+	const rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
+
 	rl.question(
-		'\nIngrese la ID o el nombre de su pokemon. Ingrese X para salir\n',
+		'\nIngrese la ID o el nombre de su pokemon. Enter para salir\n',
 		async (id) => {
-			switch (id.toLowerCase()) {
-				case 'x':
-					console.log('\nCerrando aplicacion...');
+			switch (id) {
+				case '':
+					console.log('Cerrando aplicación...');
 					rl.close();
 					break;
 				default:
@@ -91,3 +76,7 @@ function requestPokemon() {
 }
 
 requestPokemon();
+
+/*
+TODO: corregir los bugs al mostrar cadena de evoluciones
+*/
