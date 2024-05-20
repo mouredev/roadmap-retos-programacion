@@ -28,7 +28,8 @@ def is_there_evolutions(json): #busca las evoluciones de manera recursiva y las 
     evolutions = list()
     if len(json["evolves_to"])!= 0:
         evolutions.append(json["species"]["name"])
-        evolutions.extend(is_there_evolutions(json["evolves_to"][0]))
+        for index in range(0,(len(json["evolves_to"]))):
+            evolutions.extend(is_there_evolutions(json["evolves_to"][index]))
     else:
         evolutions.append(json["species"]["name"])
     return evolutions
