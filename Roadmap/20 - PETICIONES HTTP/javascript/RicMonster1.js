@@ -24,29 +24,50 @@ fetch(url)
 	})
 	.catch((error) => console.log(error));
 */
+const readline = require('readline');
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
 
 async function getPokeData(id) {
 	let baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
+	let speciesUrl;
+	let chainUrl;
+
 	await fetch(`${baseUrl}/${id}`)
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(`Nombre: ${data.name}`);
+			console.log(`Name: ${data.name}`);
 			console.log(`Id: ${data.id}`);
-			console.log(`Peso: ${data.weight}`);
-			console.log(`Altura: ${data.height}`);
-			console.log(`Tipo(s): ${data.types.map((type) => type.type.name)}`);
-			console.log(
-				`Juegos: ${data.game_indices.map((game) => game.version.name)}`
-			);
+			console.log(`Weight: ${data.weight}`);
+			console.log(`Height: ${data.height}`);
+			console.log(`Type: ${data.types.map((type) => type.type.name)}`);
+			console.log('Games: ');
+			data.game_indices
+				.map((game) => game.version.name)
+				.forEach((element) => {
+					console.log(` *${element}`);
+				});
+			speciesUrl = data.species.url;
 		})
 		.catch((error) => console.log(error));
 
-	// await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}`)
-	// 	.then((response) => response.json())
-	// 	.then((data) => {
-	// 		console.log(data);
-	// 	})
-	// 	.catch((error) => console.log(error));
+	await fetch(speciesUrl)
+		.then((response) => response.json())
+		.then((data) => {
+			chainUrl = data.evolution_chain.url;
+		})
+		.catch((error) => console.log(error));
+
+	await fetch(chainUrl)
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+		})
+		.catch((error) => console.log(error));
 }
 
-getPokeData(495);
+getPokeData('snivy');
+
+rl.close();
