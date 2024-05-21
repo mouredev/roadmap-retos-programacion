@@ -158,11 +158,12 @@ class Person
 
     public function toString()
     {
-        echo " ====== FROM " . $this->source . " ======\n";
+        echo "\n\n\n====== FROM " . $this->source . " ======\n";
         echo "Name: " . $this->name . "\n" . "Age: " . $this->age . "\n" . "Birthday: " . $this->birthDate . "\n" . "Programming Languages:\n";
         foreach ($this->programming_languages as $pm) {
             echo "  - " . $pm . "\n";
         }
+        echo "======================\n\n\n";
     }
 }
 
