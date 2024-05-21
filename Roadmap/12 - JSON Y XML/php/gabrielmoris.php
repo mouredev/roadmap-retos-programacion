@@ -30,10 +30,14 @@ function json_creator($array)
 function json_reader()
 {
     try {
-        $json_file = file_get_contents('gabrielmoris.json');
-
-        echo $json_file . "\n";
-        return $json_file;
+        if (file_exists('gabrielmoris.json')) {
+            $json_file = file_get_contents('gabrielmoris.json');
+            $data = json_decode($json_file, true);
+            echo $json_file . "\n";
+            return $data;
+        } else {
+            throw new Exception("The JSON file 'gabrielmoris.json' does not exist.");
+        }
     } catch (Exception $e) {
         echo "Error trying to read the JSON file " . $e . "\n";
     }
@@ -42,7 +46,6 @@ function json_reader()
 function json_deleter()
 {
     try {
-
         unlink('gabrielmoris.json');
         echo "JSON Deleted\n";
     } catch (Exception $e) {
@@ -83,14 +86,36 @@ function xml_creator($array)
 function xml_reader()
 {
     try {
-
-        $xml_file = file_get_contents('gabrielmoris.xml');
-
-        echo $xml_file . "\n";
-        return $xml_file;
+        if (file_exists('gabrielmoris.xml')) {
+            $xml_file = file_get_contents('gabrielmoris.xml');
+            $xml = simplexml_load_string($xml_file);
+            // This function (below) Will iterate over the XML and create an array.
+            $array = simpleXmlToArray($xml);
+            echo $xml_file . "\n";
+            return $array;
+        } else {
+            throw new Exception("The XML file 'gabrielmoris.xml' does not exist.");
+        }
     } catch (Exception $e) {
-        echo "Error trying to read the XML file: " . $e . "\n";
+        echo "Error trying to read the XML file: " . $e->getMessage() . "\n";
     }
+}
+
+function simpleXmlToArray($simpleXml)
+{
+    $array = [];
+    foreach ($simpleXml->children() as $child) {
+        $childName = $child->getName();
+        if ($child->count() > 0) { // Child is gonnna be a List and I have to iterate only if I find a key with a list of values
+            $array[$childName] = [];
+            foreach ($child->children() as $language) {
+                $array[$childName][] = (string) $language;
+            }
+        } else {
+            $array[$childName] = (string) $child;
+        }
+    }
+    return $array;
 }
 
 function xml_deleter()
@@ -103,16 +128,6 @@ function xml_deleter()
     }
 }
 
-
-$array = ["name" => "Gabrielcmoris", "age" => 34, "birthdate" => "15.12.1989", "programming_languages" => ["Javascript", "Typescript", "php", "rust"]];
-
-json_creator($array);
-json_reader();
-json_deleter();
-xml_creator($array);
-xml_reader();
-xml_deleter();
-
 /* EXTRA DIFFICULTY (optional):
 * Using the logic of creating the previous files, create a
 * program capable of reading and transforming into a custom class of your
@@ -120,9 +135,62 @@ xml_deleter();
 * Delete the files.
 */
 
-
-function class_creator()
+class Person
 {
+    public $name;
+    public $age;
+    public $birthDate;
+    public $programming_languages;
+    public $source;
+
+    public function __construct($data, $source)
+    {
+        $this->name = $data['name'];
+        $this->age = $data['age'];
+        $this->birthDate = $data['birthdate'];
+        $this->programming_languages = [];
+        $this->source = $source;
+
+        foreach ($data["programming_languages"] as $pm) {
+            $this->programming_languages[] = $pm;
+        }
+    }
+
+    public function toString()
+    {
+        echo " ====== FROM " . $this->source . " ======\n";
+        echo "Name: " . $this->name . "\n" . "Age: " . $this->age . "\n" . "Birthday: " . $this->birthDate . "\n" . "Programming Languages:\n";
+        foreach ($this->programming_languages as $pm) {
+            echo "  - " . $pm . "\n";
+        }
+    }
 }
 
-class_creator();
+function class_from_json_creator($array)
+{
+    json_creator($array);
+    $json = json_reader();
+    if ($json !== null) {
+        return new Person($json, "JSON");
+    }
+    json_deleter();
+    return null;
+}
+
+function class_from_xml_creator($array)
+{
+    xml_creator($array);
+    $xml = xml_reader();
+
+    if ($xml !== null) {
+        return new Person($xml, "XML");
+    }
+    xml_deleter();
+    return null;
+}
+
+$array = ["name" => "Gabrielcmoris", "age" => 34, "birthdate" => "15.12.1989", "programming_languages" => ["Javascript", "Typescript", "php", "rust"]];
+$json_person = class_from_json_creator($array);
+$json_person->toString();
+$xml_person = class_from_xml_creator($array);
+$xml_person->toString();
