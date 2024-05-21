@@ -68,51 +68,42 @@ class Estado(Enum):
 
 
 class Pedidos:
+
+    estado = Estado.Pendiente
+
     def __init__(self, id_pedido):
         self.id_pedido = id_pedido
-        self.estado = Estado.Pendiente
 
     def enviar(self):
         if self.estado == Estado.Pendiente:
             self.estado = Estado.Enviado
-            print(f"El pedido {self.id_pedido} se ha envidao.")
+            self.mostrar_estado()
         else:
-            print(f"El estado actual del pedido es: {self.estado.name}")
+            self.mostrar_estado()
+
+    def entregar(self):
+        if self.estado == Estado.Enviado:
+            self.estado = Estado.Entregado
+            self.mostrar_estado()
+        else:
+            self.mostrar_estado()
 
     def cancelar(self):
-        if self.estado == Estado.Pendiente or self.estado == Estado.Enviado:
+        if self.estado != Estado.Entregado:
             self.estado = Estado.Cancelado
-            print(f"El pedido {self.id_pedido} se canceló")
-        print(f"El estado actual del pedido es: {self.estado.name}")
-
-    def entregar(self):
-        if self.estado == Estado.Enviado:
-            self.estado = Estado.Entregado
-            print(f"El pedido {self.id_pedido} ha sido entregado")
+            self.mostrar_estado()
         else:
-            print(f"El estado actual del pedido es: {self.estado.name}")
-
-    def entregar(self):
-        if self.estado == Estado.Enviado:
-            self.estado = Estado.Entregado
-            print(f"El pedido {self.id_pedido} ha sido entregado.")
-        else:
-            print(f"El estado actual del pedido es: {self.estado.name}")
+            self.mostrar_estado()
 
     def mostrar_estado(self):
         print(
-            f" \nEl estado actual del pedido {self.id_pedido} es: {self.estado.name}")
+            f"El estado del paquete {self.id_pedido}  es: {self.estado.name}")
 
 
 print("\n==== Sistema de pedidos====\n")
 pedido1 = Pedidos('P01')
-pedido1.mostrar_estado()
-pedido1.enviar()
-pedido1.mostrar_estado()
+# pedido1.mostrar_estado()
 pedido1.entregar()
-pedido1.mostrar_estado()
+pedido1.enviar()
+pedido1.entregar()
 pedido1.cancelar()
-print('\n')
-pedido2 = Pedidos("P002")
-pedido2.cancelar()
-pedido2.mostrar_estado()
