@@ -11,7 +11,65 @@ console.log(fruits);
 
 // Extra
 
-let verduras = ["Papa", "Apio", "Ocumo"];
-let vegetales = ["Tomates", "Cebolla", "Zanahoria"];
-let verdurasYVegetales = verduras.concat(vegetales);
-console.log(verdurasYVegetales);
+/* Union: A U B */
+
+let arr1 = [1, 2, 3, 4];
+let arr2 = [3, 4, 5];
+
+function union(a, b) {
+  const result = [];
+
+  for (const item of a) {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  }
+  for (const item of b) {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  }
+  return result;
+}
+
+console.log(union(arr1, arr2));
+
+/* Intersección: A ∩ B */
+
+let arr3 = [1, 2, 3, 4, 5];
+let arr4 = [1, 6, 3, 7, 5];
+
+console.log(arr3.filter(data => arr4.includes(data)));
+
+/* Diferencia: A \ B */
+
+function diferencia(a, b) {
+  let result = [];
+  for (const item of a) {
+    if (!b.includes(item)) {
+      result.push(item);
+    }
+  }
+  return result;
+}
+
+console.log(diferencia(arr3, arr4));
+
+/* Diferencia asimétrica : A Δ B */
+
+function diferenciaAsimetrica(a, b) {
+  let result = [];
+  for (const item of a) {
+    if (!b.includes(item)) {
+      result.push(item);
+    }
+  }
+  for (const item of b) {
+    if (!a.includes(item)) {
+      result.push(item);
+    }
+  }
+  return result;
+}
+
+console.log(diferenciaAsimetrica(arr3, arr4));
