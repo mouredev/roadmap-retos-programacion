@@ -170,10 +170,11 @@ function class_from_json_creator($array)
 {
     json_creator($array);
     $json = json_reader();
+    json_deleter();
+
     if ($json !== null) {
         return new Person($json, "JSON");
     }
-    json_deleter();
     return null;
 }
 
@@ -181,11 +182,11 @@ function class_from_xml_creator($array)
 {
     xml_creator($array);
     $xml = xml_reader();
+    xml_deleter();
 
     if ($xml !== null) {
         return new Person($xml, "XML");
     }
-    xml_deleter();
     return null;
 }
 
