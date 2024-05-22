@@ -1,20 +1,3 @@
-/*
- * EJERCICIO:
- * Explora el concepto de callback en tu lenguaje creando un ejemplo
- * simple (a tu elección) que muestre su funcionamiento.
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea un simulador de pedidos de un restaurante utilizando callbacks.
- * Estará formado por una función que procesa pedidos.
- * Debe aceptar el nombre del plato, una callback de confirmación, una
- * de listo y otra de entrega.
- * - Debe imprimir un confirmación cuando empiece el procesamiento.
- * - Debe simular un tiempo aleatorio entre 1 a 10 segundos entre
- *   procesos.
- * - Debe invocar a cada callback siguiendo un orden de procesado.
- * - Debe notificar que el plato está listo o ha sido entregado.
- */
-
 //EJERCICIO
 function callbackFunction1(callback) {
 	callback();
@@ -35,3 +18,45 @@ callbackFunction2(() => {
 });
 
 //EXTRA
+function setRandomTime(callback) {
+	let randomNum = Math.floor(Math.random() * 11);
+
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			callback();
+			console.log(`Ejecutado en ${randomNum} segundo(s)`);
+			resolve();
+		}, randomNum * 1000);
+	});
+}
+
+async function orderDish(order, confirm, getReady, deliver) {
+	console.log(`\nProcesando pedido ${order}`);
+
+	await setRandomTime(() => {
+		confirm(order);
+	});
+
+	await setRandomTime(() => {
+		getReady(order);
+	});
+
+	await setRandomTime(() => {
+		deliver(order);
+	});
+}
+
+let myOrder = 'pizza con piña';
+
+orderDish(
+	myOrder,
+	(order) => {
+		console.log(`\nConfirma el pedido: ${order}`);
+	},
+	(order) => {
+		console.log(`\nEl pedido ${order} está listo!`);
+	},
+	(order) => {
+		console.log(`\nEl pedido ${order} ha sido entregado!`);
+	}
+);
