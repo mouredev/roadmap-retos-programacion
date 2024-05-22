@@ -30,7 +30,7 @@ def factorial(n):
 # print(factorial(5)) #120
 
 
-# Fibonacci
+# Fibonacci (2)
 def fibonacci(n):
     if n <= 0: return 0
     elif n == 1: return 1 
