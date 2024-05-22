@@ -10,8 +10,10 @@ from time import sleep
 
 url = "https://retosdeprogramacion.com"
 response = get(url)
-#print(response.content.decode("utf-8").replace(">",">\n")) se podría dar formato a los bytes que recoge la llamada
-print(response.content)
+if response.status_code == 200:
+    print(response.text.replace(">",">\n")) #doy formato a la respuesta
+else:
+    print(f"Error, código: {response.status_code}")
 
 """
 * DIFICULTAD EXTRA (opcional):
@@ -28,7 +30,8 @@ def is_there_evolutions(json): #busca las evoluciones de manera recursiva y las 
     evolutions = list()
     if len(json["evolves_to"])!= 0:
         evolutions.append(json["species"]["name"])
-        evolutions.extend(is_there_evolutions(json["evolves_to"][0]))
+        for index in range(0,(len(json["evolves_to"]))):
+            evolutions.extend(is_there_evolutions(json["evolves_to"][index]))
     else:
         evolutions.append(json["species"]["name"])
     return evolutions
