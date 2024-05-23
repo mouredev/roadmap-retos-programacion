@@ -4,21 +4,32 @@
 //  * La función imprime su nombre, cuándo empieza, el tiempo que durará
 //  * su ejecución y cuando finaliza.
 
-function temporizador (tiempo){
-    function saludar(){
-        console.log('hola buenas tardes')
-    }
+// ------------------------------No es asincrona
+// function temporizador (tiempo){
+//     function saludar( nombre ){
+//         console.log('hola buenas tardes ' + nombre)
+//     }
+//     console.log('aqui comienza settimeout')
+//     setTimeout(() => {
+//     saludar('David')
+//     console.log('finaliza settimeout')
+//     }, tiempo);
+// }
 
-    setTimeout(() => {
-    saludar()
-    }, tiempo);
-}
+// temporizador(3000)
 
-temporizador(3000)
+//async , await --------------------------------------------------------------
 
 
-//  *
-//  * DIFICULTAD EXTRA (opcional):
+  function promiseFunction( tarea, tiempo){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('la funcion ' + tarea + ' que dura ' + tiempo/1000 + 'segundos')
+        }, tiempo);
+    })
+  }
+
+  //  * DIFICULTAD EXTRA (opcional):
 //  * Utilizando el concepto de asincronía y la función anterior, crea
 //  * el siguiente programa que ejecuta en este orden:
 //  * - Una función C que dura 3 segundos.
@@ -29,3 +40,17 @@ temporizador(3000)
 //  * - La función D comienza su ejecución cuando las 3 anteriores han
 //  *   finalizado.
 //  */
+
+  async function CallAsync () {
+    console.log('llamando a mis tareas')
+    const llamadoa = await promiseFunction('A', 1000)
+    const llamadob = await promiseFunction('B', 2000)
+    const llamadoc = await promiseFunction('C', 3000)
+    const llamadod = await promiseFunction('D', 1000)
+    console.log( await Promise.all([llamadoc, llamadob, llamadoa]))
+    console.log(llamadod)
+  }
+
+  CallAsync()
+
+
