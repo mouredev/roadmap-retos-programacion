@@ -1,16 +1,21 @@
 //EJERCICIO
-
 function getAbradolfLincler() {
 	let url = 'https://rickandmortyapi.com/api/character/7';
 	fetch(url)
-		.then((response) => response.json())
-		.then((data) => {
-			console.log(data);
-		})
-		.catch((error) => console.log(error));
+	.then((response) => response.json())
+	.then((data) => {
+		console.log(data);
+	})
+	.catch((error) => console.log(error));
 }
 
 //EXTRA
+const readline = require('readline');
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
+
 async function getPokeData(id) {
 	let baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
 	let speciesUrl;
@@ -26,11 +31,10 @@ async function getPokeData(id) {
 				console.log(`Height: ${data.height}`);
 				console.log(`Type: ${data.types.map((type) => type.type.name)}`);
 				console.log('Games: ');
-				data.game_indices
-					.map((game) => game.version.name)
-					.forEach((element) => {
-						console.log(`* ${element}`);
-					});
+				let gamesArr = data.game_indices.map((game) => game.version.name);
+				gamesArr.forEach((element) => {
+					console.log(`* ${element}`);
+				});
 				speciesUrl = data.species.url;
 			});
 
@@ -43,8 +47,11 @@ async function getPokeData(id) {
 		await fetch(chainUrl)
 			.then((response) => response.json())
 			.then((data) => {
-				let evolves = data.chain.evolves_to.map((name) => name.species.name);
-				console.log(`Evolves to: ${evolves}`);
+				let evolves = data.chain.evolves_to;
+				let first = data.chain.species;
+				let second = evolves.map((name) => name.species.name);
+				let third = evolves[0].evolves_to.map((name) => name.species.name);
+				console.log(`Evolution chain:\n${first.name} => ${second} => ${third}`);
 			});
 	} catch (err) {
 		console.log(`\nHa ocurrido un error: ${err}`);
@@ -52,12 +59,6 @@ async function getPokeData(id) {
 }
 
 function requestPokemon() {
-	const readline = require('readline');
-	const rl = readline.createInterface({
-		input: process.stdin,
-		output: process.stdout,
-	});
-
 	rl.question(
 		'\nIngrese la ID o el nombre de su pokemon. Enter para salir\n',
 		async (id) => {
@@ -76,7 +77,3 @@ function requestPokemon() {
 }
 
 requestPokemon();
-
-/*
-TODO: corregir los bugs al mostrar cadena de evoluciones
-*/
