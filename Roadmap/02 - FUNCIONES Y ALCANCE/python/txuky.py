@@ -160,7 +160,7 @@ zip()
 
 __import__()
 '''
-# DIFICULTAD EXTRA
+# DIFICULTAD EXTRA ejercicio
 
 print ('-' * 20)
 
