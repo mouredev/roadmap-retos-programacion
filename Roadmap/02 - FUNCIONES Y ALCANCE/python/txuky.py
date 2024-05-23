@@ -37,29 +37,22 @@ def my_funcion_pares(primero, ultimo):
 
 my_funcion_pares(1,14)
 
-#intento de anidar funciones
-'''
-def division(dividendo, divisor):
-    cociente = (dividendo // divisor) 
-    return cociente
-    def cuadrado (cociente):
-            print(cociente ** 2)
+#funciones anidadas
 
-division(6, 2)
-'''
+def long_word(word):
+    ''' Cuenta los caracteres del argument entrado'''
+    print(len(str(word)))
 
-#intento de anidar funciones correccion
-def cuadrado (numerito):
-    print(numerito ** 2)
-def division(dividendo, divisor):
-    cociente = (dividendo // divisor) 
-    print(cociente)
-    if cociente != 0:
-        cuadrado(cociente)
+long_word('pedrito')
 
-division(6, 2)
 
-# ejemplos con funciones integradas
+def suma_valor(*nums):
+    '''suma los valores de un rango entre el mas peuqeño y el mayor de una lista de numeros'''
+    print(list(range(min(nums), max(nums))))
+    print(sum(range(min(nums), max(nums))))
+
+suma_valor(1, 4, 5)
+
 
 my_tipo = type(18)
 print(my_tipo)
@@ -73,8 +66,6 @@ print(len('Hola mundo'))
 print(locals())
 print(globals())
 
-my_lista = [2,32,8,14,15,58,34,5]
-print(max(my_lista))
 
 ''' funciones_integradas
 A
@@ -169,3 +160,34 @@ zip()
 
 __import__()
 '''
+# DIFICULTAD EXTRA
+
+print ('-' * 20)
+
+def dif_extr (param_a, param_b):
+    n = 1
+    a = 0
+    b = 0
+    while n <= 100:
+        
+        if (n % 3) == 0 and (n % 5) != 0:
+            print (param_a, end='/')
+            n += 1
+            a = a + 1
+
+        if (n % 5) == 0 and (n % 3) != 0:
+            print (param_b, end='/')
+            n += 1  
+            b = b + 1 
+        if (n % 3) == 0 and (n % 5) == 0:
+            print (f'{param_a} / {param_b}')
+            n += 1
+            a = a + 1
+            b = b + 1
+        if (n % 3) != 0 and (n % 5) != 0 and (n <= 100):
+            print(n, end='/')
+            n += 1
+    
+    print(f'\n{param_a} se escribio {a} veces y {param_b} se escribio {b} veces')
+
+dif_extr ('casa', 'perro')
