@@ -1,4 +1,4 @@
-# operadores Aritméticos
+# OPERADORES ARITMETICOS
 
 suma = 2 + 2
 print(suma)
@@ -21,7 +21,7 @@ print(modulo)
 exponencial = 5 ** 2
 print(exponencial)
 
-#operadores de comparación
+#OPERADORES DE COMPARACIÓN
 
 x = 5
 y = 10
@@ -49,3 +49,37 @@ print(x >= 4) #verdadero, es mayor
 #menor o igual
 print(x <= y) #verdadero, es menor
 print(x <= 4) #falso, es mayor
+
+#OPERADORES DE ASIGNACIÓN
+
+#asiganción
+n = 33 
+print(n)
+
+#asignacion suma
+n += 5 
+print(n) 
+
+#asignacion resta
+n -= 5
+print(n) 
+
+#asignacion multiplicacion
+n *= 5
+print(n)
+
+#asignacion division
+n /= 5
+print(n)
+
+#asignacion division entera
+n //= 5
+print(n)
+
+#asignacion exponencial
+n **= 5
+print(n)
+
+#asignacion modulo
+n %= 5
+print(n)
