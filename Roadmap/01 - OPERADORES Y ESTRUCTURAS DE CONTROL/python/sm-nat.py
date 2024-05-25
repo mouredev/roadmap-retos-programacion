@@ -21,3 +21,31 @@ print(modulo)
 exponencial = 5 ** 2
 print(exponencial)
 
+#operadores de comparación
+
+x = 5
+y = 10
+
+#igual
+print(x == y) #falso
+print(x == 5) #verdadero
+
+#distinto
+print(x != y) #verdadero
+print(x != 5) #falso
+
+#mayor que
+print(x > y) #falso
+print(x > 4) #verdadero
+
+#menor que
+print(x < y) #verdadero
+print(x < 4) #falso
+
+#mayor o igual que
+print(x >= y) #falso
+print(x >= 4) #verdadero, es mayor
+
+#menor o igual
+print(x <= y) #verdadero, es menor
+print(x <= 4) #falso, es mayor
