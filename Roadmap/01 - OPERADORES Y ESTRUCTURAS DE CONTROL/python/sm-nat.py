@@ -83,3 +83,18 @@ print(n)
 #asignacion modulo
 n %= 5
 print(n)
+
+#OPERADORES LÓGICOS
+
+#and
+print(True and True) #verdadero
+print(True and False) #falso
+
+#or
+print(True or True) #verdadero
+print(True or False) #verdadero
+
+# not
+print(not True) #falso
+print(not False) #verdadero
+
