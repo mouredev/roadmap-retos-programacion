@@ -249,5 +249,3 @@ fun prueba(texto1:String, texto2: String): Int {
     return (contadorNumberPrint)
 
 }
-
-
