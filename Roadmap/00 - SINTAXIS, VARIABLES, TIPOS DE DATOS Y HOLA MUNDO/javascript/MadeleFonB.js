@@ -70,5 +70,4 @@ var simbolo1;
 var simbolo2= Symbol('dos');
 var simbolo3 = Symbol('tres')
 //Imprimir por consola lenguaje seleccionado
-
 console.log('¡Hola,[JavaScript]')
