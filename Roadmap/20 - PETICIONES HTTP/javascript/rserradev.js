@@ -1,13 +1,13 @@
 // Ejercicio
 
-// url = "https://moure.dev";
+url = "https://moure.dev";
 
-// fetch(url)
-//   .then(response => response.text())
-//   .then(data => {
-//     console.log(data);
-//   })
-//   .catch(error => console.log(error));
+fetch(url)
+  .then(response => response.text())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => console.log(error));
 
 // Ejercicio extra
 
