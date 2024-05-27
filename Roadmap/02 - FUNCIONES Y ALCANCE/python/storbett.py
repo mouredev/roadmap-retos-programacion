@@ -61,7 +61,7 @@ variable_arg_saludo("python","simon","storbett")
 
 def variable_key_arg_saludo(**nombres):
     for key, valor in nombres.items():
-        print(f"hola, {valor} ({key})")
+        print(f"{valor} ({key})")
 
 variable_key_arg_saludo(
     lenguaje= "python",
@@ -70,5 +70,49 @@ variable_key_arg_saludo(
     edad = 33
 )
 
+# funcion dentro de una funcion
+
+def otra_funcion():
+    def inner_funcion():
+        print ("hola, python")
+    inner_funcion()
+
+otra_funcion()
+
+# funciones dentro del lemguaje
+
+print(len("storbett"))
+print(type("storbett"))
+print("storbett".upper())
 
 
+# variables locales y globales
+
+global_variable = "python"
+
+print(global_variable)
+
+def hello_python():
+ local_variable = "hola"
+ print(f"{local_variable}, {global_variable}")
+    
+hello_python()
+
+
+# extra
+
+def prueba (tex1, text2)-> int:
+    count = 0
+    for number in range(1, 101):
+         if number % 3 == 0 and number % 5 == 0:
+            print (tex1 + text2)
+         elif number % 3 == 0:
+            print(tex1)
+         elif number % 5 == 0:
+            print (text2)
+         else: 
+            print(number)
+            count += 1
+    return count
+
+print(prueba("fizz","buzz"))
