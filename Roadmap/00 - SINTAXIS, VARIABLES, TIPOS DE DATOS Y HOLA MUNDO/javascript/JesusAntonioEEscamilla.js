@@ -1,3 +1,4 @@
+/** #00 - JavaScript ->Jesus Antonio Escamilla */
 // Este es parte de la documentación del programa de lenguaje JavaScript https://developer.mozilla.org/es/docs/Web/JavaScript
 
 

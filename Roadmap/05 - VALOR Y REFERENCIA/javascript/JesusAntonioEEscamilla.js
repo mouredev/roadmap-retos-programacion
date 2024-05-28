@@ -1,3 +1,4 @@
+/** #05 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * Los tipos de datos primitivos en JavaScript,
     como números, cadenas, booleanos, null y undefined, se manejan por valor.
