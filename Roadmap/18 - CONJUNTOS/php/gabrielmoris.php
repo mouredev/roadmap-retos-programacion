@@ -41,3 +41,31 @@ var_dump($dataset);
 * Difference.
 * Symmetric difference.
 */
+/** @var object $set1 */
+$dataset1 = [["number" => "1", "letter" => "a"], ["number" => "2", "letter" => "b"]];
+$dataset2 = [["number" => "2", "letter" => "b"], ["number" => "3", "letter" => "c"], ["number" => "4", "letter" => "d"]];
+
+// 1. Union: combines the two datasets and removes duplicates.
+$union = array_merge($dataset1, $dataset2);
+$union = array_map("unserialize", array_unique(array_map("serialize", $union)));
+echo "Union: ";
+var_dump($union);
+
+// 2. Intestection: finds elements that are common to both datasets.
+$intersection = array_uintersect($dataset1, $dataset2, 'compare_deep_value');
+function compare_deep_value($val1, $val2)
+{
+    return strcmp(serialize($val1), serialize($val2));
+}
+echo "Intersection: ";
+var_dump($intersection);
+
+// 3. Difference: finds elements that are in the first dataset but not in the second.
+$difference = array_udiff($dataset1, $dataset2, 'compare_deep_value');
+echo "Difference: ";
+var_dump($difference);
+
+// 4. Symmetric difference:  operation finds elements that are in either of the datasets but not in both.ç
+$symmetricDifference = array_merge(array_udiff($dataset1, $dataset2, 'compare_deep_value'), array_udiff($dataset2, $dataset1, 'compare_deep_value'));
+echo "Symetric difference: ";
+var_dump($symmetricDifference);
