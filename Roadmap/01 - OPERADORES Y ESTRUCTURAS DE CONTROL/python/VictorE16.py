@@ -73,11 +73,11 @@ print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}\n") #10100
 print("*****ESTRUCTURAS DE CONTROL*****\n")
 #Estructuras condicionales
 print("*****Estructuras condicionales*****\n")
-condition = 10
+condition = 11
 
-if condition == 10:
+if condition == 11:
     print("Mi condicion se cumplio\n")
-elif condition > 10:
+elif condition > 11:
     print("Mi segunda condicion se cumplio")
 else:
     print("Ninguna de las condiciones se cumplio")
