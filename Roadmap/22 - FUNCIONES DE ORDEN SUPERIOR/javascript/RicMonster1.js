@@ -30,14 +30,20 @@ console.log(arr.customMap((n) => n * 2));
  */
 
 let myStudents = [];
+let bestStudents = [];
 
 class Student {
-	constructor(name, grades, date, month, year) {
+	constructor(name, grades, birthDate) {
 		this.name = name;
 		this.grades = grades;
-		let birthDateNoFormat = new Date(year, month - 1, date);
-		this.birthDate = birthDateNoFormat.toLocaleString();
+		this.birthDate = birthDate;
+		this.age = this.getAge();
+		this.average = this.getAverage();
 		myStudents.push(this);
+
+		if (this.getAverage() >= 9) {
+			bestStudents.push(this);
+		}
 	}
 
 	getAverage() {
@@ -45,15 +51,50 @@ class Student {
 		this.grades.forEach((element) => {
 			result = result + element;
 		});
-		return result / this.grades.length;
+		let average = result / this.grades.length;
+		return average;
+	}
+
+	getAge() {
+		let now = new Date();
+		let age = Math.floor(
+			(now.getTime() - this.birthDate.getTime()) / (365 * 24 * 60 * 60 * 1000)
+		);
+		return age;
 	}
 }
 
-new Student('Sophie', [8, 8, 7, 9], 12, 11, 2004);
-new Student('David', [7, 6, 9, 8], 23, 1, 2005);
-new Student('Eliezer', [4, 6, 7, 5], 21, 2, 2005);
-new Student('Rebeca', [8, 9, 10, 9], 16, 5, 2005);
+new Student('Sophie', [8, 8, 7, 9], new Date(2002, 8, 21));
+new Student('David', [7, 6, 9, 8], new Date(2003, 0, 15));
+new Student('Eliezer', [4, 6, 7, 5], new Date(2005, 1, 21));
+new Student('Rebeca', [8, 9, 10, 9], new Date(2001, 4, 16));
+new Student('Robert', [10, 10, 10, 9], new Date(2002, 0, 16));
 
-myStudents.forEach((element) => {
-	console.log(`\nEl promedio de ${element.name} es de ${element.getAverage()}`);
+function getHighestAverage() {
+	let result;
+	let average = 0;
+	bestStudents.forEach((element) => {
+		if (element.getAverage() > average) {
+			result = element;
+		}
+	});
+	return result;
+}
+
+let highestAverage = getHighestAverage();
+
+function sortByAge() {}
+
+console.log(
+	`\n${highestAverage.name} ha obtenido el mayor promedio de la clase: ${highestAverage.average}\n`
+);
+
+console.log(myStudents.find((element) => element.name === 'David'));
+
+myStudents.customMap((element) => {
+	console.log(`\nEl promedio de ${element.name} es de ${element.average}`);
+});
+
+myStudents.customMap((element) => {
+	console.log(`\nEl nacimiento de ${element.name} fue el ${element.birthDate}`);
 });
