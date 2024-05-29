@@ -66,3 +66,41 @@ print(f"XOR: num1 ^ num2: {num1 ^ num2}") #1111
 print(f"NOT: ~num1: {~num1}") #1010
 print(f"Desplazamiento hacia la izquierda: num1 << num2: {num1 << num2}")
 print(f"Desplazamiento hacia la derecha: num1 >> num2: {num1 >> num2}")
+
+#Estructuras de Datos
+
+#Condicionales
+
+if(num1 == num2):
+    print(f"{num1} y {num2} son iguales")
+elif(num1 == num2):
+    print(f"{num1} y {num3} son iguales")
+else:
+    print("ningun numero es igual")
+
+#Iteraciones
+
+for i in range(10):
+    print(i)
+
+i=0
+
+while i <= 10:
+    print(i)
+    i += 1
+
+#manejo de exepciones
+
+try:
+    print(25/0)
+except:
+    print("se ha producido un error")
+finally:
+    print("fin del manejo de exepciones")
+
+#Extra
+i=0
+
+for i in range(10,56):
+    if(i % 2 == 0 and i % 3 != 0 and i != 16):
+        print(i)
