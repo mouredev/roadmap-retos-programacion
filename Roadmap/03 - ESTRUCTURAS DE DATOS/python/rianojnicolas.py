@@ -240,7 +240,7 @@ def update_Contact(numberContact, nameContact, option):
 
         while not check_Input(newNumberContact):
             print("Ingresaste un valor erroneo, vuelvelo a intentar")
-            numberContact = input("Ingresalo nuevamente: ")
+            newNumberContact = input("Ingresalo nuevamente: ")
         
         print(f'Vas a actualizar {numberContact} por {newNumberContact}')
         update = input("¿ Estas segur@ de realizar esta operacion ? (Yes/No): ")
@@ -256,9 +256,11 @@ def update_Contact(numberContact, nameContact, option):
         
         for item in keys:
             print(f'Encontramos que para el contacto de {dirContacts.get(item)} se tiene el numero {item}')
-            update = input("Deseas actualizar el nombre Yes/No: ")
+            newNameContact = input("Ingresa el nuevo nombre que le pondras al contacto: ")
+            print(f'Vas a actualizar {nameContact} por {newNameContact}')
+            update = input("Deseas actualizar el nombre ¿ Yes/No ?: ")
             if (update == "Yes"):
-                dirContacts[numberContact] = nameContact
+                dirContacts[numberContact] = newNameContact
         
         printContacts(dirContacts)
 

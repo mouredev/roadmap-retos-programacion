@@ -40,48 +40,34 @@ disponible.
 """
 
 import asyncio
+import datetime
 
 """
 Ejercicio
 """
 
-async def hello_world():
-    print("Name: hello_world")
-    print("This function will last 3 seconds")
-    await asyncio.sleep(3)
-    return print("ends: Hello Wolrd!")
+"""
+Ejercicio
+"""
 
-asyncio.run(hello_world())
 
+async def task(name: str, duration: int):
+    print(
+        f"Tarea: {name}. Duración: {duration}s. Inicio: {datetime.datetime.now()}")
+    await asyncio.sleep(duration)
+    print(
+        f"Tarea: {name}. Fin: {datetime.datetime.now()}")
+
+
+asyncio.run(task("1", 2))
 
 """
 Extra
 """
 
-async def A():
-    await asyncio.sleep(1)
-    return print("Function A complete")
 
-async def B():
-    await asyncio.sleep(2)
-    return print("Function B complete")
+async def async_tasks():
+    await asyncio.gather(task("C", 3), task("B", 2), task("A", 1))
+    await task("D", 1)
 
-async def C():
-    await asyncio.sleep(3)
-    return print("Function C complete")
-
-async def D():
-    await asyncio.sleep(1)
-    return print("Function D complete")
-
-async def do_task():
-    funcC = asyncio.create_task(C())
-    funcB = asyncio.create_task(B())
-    funcA = asyncio.create_task(A())
-
-    resultados = await asyncio.gather(funcC, funcB, funcA,)
-
-    return resultados
-
-asyncio.run(do_task())
-asyncio.run(D())
+asyncio.run(async_tasks())
