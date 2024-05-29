@@ -1,7 +1,7 @@
 //EJERCICIO
 let arr = [1, 2, 3];
 
-//console.log(arr.map((n) => n * 2));
+console.log(arr.map((n) => n * 2));
 
 Array.prototype.customMap = function (callback) {
 	let result = [];
@@ -9,11 +9,10 @@ Array.prototype.customMap = function (callback) {
 		let element = callback(this[i]);
 		result.push(element);
 	}
-
 	return result;
 };
 
-//console.log(arr.customMap((n) => n * 2));
+console.log(arr.customMap((n) => n * 2));
 
 /*
  * DIFICULTAD EXTRA (opcional):
@@ -28,58 +27,33 @@ Array.prototype.customMap = function (callback) {
  * - Mayor calificación: Obtiene la calificación más alta de entre todas las
  *   de los alumnos.
  * - Una calificación debe estar comprendida entre 0 y 10 (admite decimales).
-
-let myStudents = [
-  {
-    name: 'Ric',
-    birthDate : new Date(2002, 8, 22),
-    grades: [6, 7, 9, 7, 8, 9]
-  },
-  {
-    name: 'Eric',
-    birthDate: new Date(2002, 5, 5),
-    grades: [9, 8, 9, 7, 9, 8],
-  },
-  {
-    name: 'Rebeca',
-    birthDate: new Date(2003, 0, 2),
-    grades: [8, 7, 9, 6, 9, 8],
-  }
-];
-*/
+ */
 
 let myStudents = [];
 
 class Student {
-	constructor(name) {
+	constructor(name, grades, date, month, year) {
 		this.name = name;
-		this.grades = [];
-	}
-
-	setBirthdate(date, month, year) {
+		this.grades = grades;
 		let birthDateNoFormat = new Date(year, month - 1, date);
 		this.birthDate = birthDateNoFormat.toLocaleString();
+		myStudents.push(this);
+	}
+
+	getAverage() {
+		let result = 0;
+		this.grades.forEach((element) => {
+			result = result + element;
+		});
+		return result / this.grades.length;
 	}
 }
 
-function createStudent(name, date, month, year) {
-	let student = new Student(name);
-	student.setBirthdate(date, month, year);
-	myStudents.push(student);
-}
+new Student('Sophie', [8, 8, 7, 9], 12, 11, 2004);
+new Student('David', [7, 6, 9, 8], 23, 1, 2005);
+new Student('Eliezer', [4, 6, 7, 5], 21, 2, 2005);
+new Student('Rebeca', [8, 9, 10, 9], 16, 5, 2005);
 
-Array.prototype.getAverage = function () {
-	let result = 0;
-	this.forEach((element) => {
-		result = result + element;
-	});
-	return result / this.length;
-};
-
-createStudent('Sophie', 12, 3, 2004);
-
-createStudent('David', 23, 5, 2005);
-
-let randomArr = [5, 4, 5, 6, 7];
-
-console.log(randomArr.getAverage());
+myStudents.forEach((element) => {
+	console.log(`\nEl promedio de ${element.name} es de ${element.getAverage()}`);
+});
