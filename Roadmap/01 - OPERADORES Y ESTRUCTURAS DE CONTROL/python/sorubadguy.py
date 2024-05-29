@@ -45,3 +45,24 @@ num3 //= num1
 print(f"num3 //= num1: {num3}")
 num3 %= num1
 print(f"num3 %= num1: {num3}")
+
+#Operadores de Identidad
+
+print(f"num1 is num3: {num1 is num3}")
+print(f"num1 is not num3: {num1 is not num3}")
+
+#Operadores de pertenencia
+
+print(f"'b' in 'sorubadguy': {'b' in 'sorubadguy'}")
+print(f"'b' not in 'sorubadguy': {'b' not in 'sorubadguy'}")
+
+#Operadores de bit
+
+num1 = 5  #0101
+num2 = 10 #1010
+print(f"AND: num1 & num2: {num1 & num2}") #0000
+print(f"OR: num1 | num2: {num1 | num2}") #1111
+print(f"XOR: num1 ^ num2: {num1 ^ num2}") #1111
+print(f"NOT: ~num1: {~num1}") #1010
+print(f"Desplazamiento hacia la izquierda: num1 << num2: {num1 << num2}")
+print(f"Desplazamiento hacia la derecha: num1 >> num2: {num1 >> num2}")
