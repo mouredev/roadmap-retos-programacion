@@ -27,3 +27,21 @@ print(f"AND: {num1} + {num2} = {num3} and {num2} ** {num1} == {num3} = {(num1 + 
 print(f"OR: {num1} + {num2} = {num3} or {num2} ** {num1} == {num3} = {(num1 + num2 == num3) or (num2 ** num1 == num3)}")
 print(f"NOT: not {num2} ** {num1} == {num3} = {not(num2 ** num1 == num3)}")
 
+#Operadores de Asignacion
+
+num3 = num1 + num2
+print(f"num3 = num1 + num2: {num3}")
+num3 += num1
+print(f"num3 += num1: {num3}")
+num3 -= num1
+print(f"num3 -= num1: {num3}")
+num3 *= num1
+print(f"num3 *= num1: {num3}")
+num3 /= num1
+print(f"num3 /= num1: {num3}")
+num3 **= num1
+print(f"num3 **= num1: {num3}")
+num3 //= num1
+print(f"num3 //= num1: {num3}")
+num3 %= num1
+print(f"num3 %= num1: {num3}")
