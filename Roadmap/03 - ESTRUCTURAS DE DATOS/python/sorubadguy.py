@@ -8,6 +8,7 @@ Estructuras
 
 lista_vacia = []
 frutas = ["manzana", "naranja", "mandarina", "durazno"]
+print(lista_vacia)
 print(type(frutas))
 print(frutas)
 
@@ -54,9 +55,28 @@ Tuplas
 tupla_vacia = ()
 animales = ("gato", "perro", "oso")
 print(type(animales))
+print(tupla_vacia)
 print(animales)
 print(animales[2]) #acceder
 
 #Ordenar
 animales = tuple(sorted(animales))
 print(animales)
+
+"""
+Set
+"""
+set_vacio = {}
+nombres = {"Lucas","Carlos","Alfredo","Ramon"}
+print(set_vacio)
+print(type(nombres))
+print(nombres)
+print(len(nombres))
+
+#Agrego elemento
+nombres.add("Alejandro")
+print(nombres)
+
+#Quito Elemento
+nombres.remove("Carlos")
+print(nombres)
