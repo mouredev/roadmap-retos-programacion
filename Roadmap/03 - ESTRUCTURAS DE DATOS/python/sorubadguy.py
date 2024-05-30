@@ -109,13 +109,39 @@ Extra
 """
 
 def agenda():
-    pass
+    op = 0
 
-def agregar_contacto():
+    while(op != 5):
+        print(f"Ingrese la opcion deseada")
+        print(f"1: Buscar contacto")
+        print(f"2: Agregar contacto")
+        print(f"3: Eliminar contacto")
+        print(f"4: Actualisar Contacto")
+        op = input("Ingrese la opcion deseada\n")
+
+        match op:
+            case 1:
+                pass
+            case 2:
+                pass
+            case 3:
+                pass
+            case 4:
+                pass
+            case 5:
+                pass
+            case _:
+                print("Opcion no encontrada")
+    
+
+def agregar_contacto(nombre, numero):
     pass
 
 def eliminar_contacto():
     pass
 
 def buscar_contacto():
+    pass
+
+def actualizar_contacto():
     pass
