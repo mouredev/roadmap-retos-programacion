@@ -104,3 +104,18 @@ print(diccionario)
 diccionario.clear() #Limpiar diccionario
 print(diccionario)
 
+"""
+Extra
+"""
+
+def agenda():
+    pass
+
+def agregar_contacto():
+    pass
+
+def eliminar_contacto():
+    pass
+
+def buscar_contacto():
+    pass
