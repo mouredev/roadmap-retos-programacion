@@ -15,8 +15,9 @@ Array.prototype.customMap = function (callback) {
 console.log(arr.customMap((n) => n * 2));
 
 //EXTRA
-let myStudents = [];
-let bestStudents = [];
+const myStudents = [];
+const bestStudents = [];
+const failedStudents = [];
 
 class Student {
 	constructor(name, grades, birthDate) {
@@ -30,6 +31,10 @@ class Student {
 
 		if (this.average >= 9) {
 			bestStudents.push(this);
+		}
+
+		if (this.average < 5) {
+			failedStudents.push(this);
 		}
 	}
 
@@ -50,44 +55,37 @@ class Student {
 	}
 }
 
-new Student('Sophie', [8, 8, 7, 9], new Date(2002, 8, 21));
+new Student('Sophie', [8, 8, 7, 9], new Date(2003, 8, 21));
 new Student('Rebeca', [8, 9, 10, 9], new Date(2001, 4, 16));
-new Student('David', [7, 6, 9, 8], new Date(2003, 0, 15));
+new Student('David', [7, 7, 9, 8], new Date(2003, 0, 15));
 new Student('Eliezer', [4, 6, 7, 5], new Date(2005, 1, 21));
 new Student('Robert', [10, 10, 10, 9], new Date(2002, 0, 16));
+new Student('Erika', [10, 6, 6, 9], new Date(2003, 0, 20));
+new Student('Tadeo', [4, 6, 3, 5], new Date(2004, 0, 2));
 
 function getHighestAverage() {
 	let result;
 	let average = 0;
-	bestStudents.forEach((element) => {
+	myStudents.forEach((element) => {
 		if (element.average > average) {
+			average = element.average;
 			result = element;
 		}
 	});
 	return result;
 }
+
 let highestAverage = getHighestAverage();
 
-//Pendiente por revisar
-function sortByAge() {
-	for (let i = 0; i < myStudents.length; i++) {
-		for (let j = i + 1; j < myStudents.length; j++) {
-			if (myStudents[i].age > myStudents[j].age) {
-				let change = myStudents[i];
-				myStudents[i] = myStudents[j];
-				myStudents[j] = change;
-			}
-		}
-	}
-
-	return myStudents;
-}
-
-let sortedByAge = sortByAge();
-
-let sortedByAverage = myStudents.sort(function (a, b) {
-	return a.average - b.average;
+let sortedByAverage = myStudents.toSorted((a, b) => {
+	return b.average - a.average;
 });
+
+let sortedByAge = myStudents.toSorted((a, b) => {
+	return a.getAge() - b.getAge();
+});
+
+console.log(`\nCANTIDAD DE ESTUDIANTES: ${myStudents.length}`);
 
 console.log('\nLISTA DE PROMEDIOS');
 
@@ -95,9 +93,14 @@ sortedByAverage.customMap((element) => {
 	console.log(`\n${element.name}: ${element.average}`);
 });
 
-console.log('\nMEJORES ESTUDIANTES');
+console.log(`\nMEJORES ESTUDIANTES: ${bestStudents.length}`);
 
 bestStudents.customMap((element) => {
+	console.log(`\n${element.name}: ${element.average}`);
+});
+
+console.log(`\nESTUDIANTES REPROBADOS: ${failedStudents.length}`);
+failedStudents.customMap((element) => {
 	console.log(`\n${element.name}: ${element.average}`);
 });
 
