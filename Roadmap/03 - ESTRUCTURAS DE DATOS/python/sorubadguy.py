@@ -8,49 +8,55 @@ Estructuras
 
 lista_vacia = []
 frutas = ["manzana", "naranja", "mandarina", "durazno"]
-
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(type(frutas))
+print(frutas)
 
 #Agregar un elemento al final
 
 frutas.append("melon")
 print("\nagrego melon")
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
 
 #Agregar un elemento en el lugar deseado
 print("\nagrego Anana")
 frutas.insert(2, "anana")
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
 
 #Eliminar elemento de la lista
 print("\nElimino naranja")
 frutas.remove("naranja")
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
 
 #Ordeno los items de la lista
 print("\nOrdeno los elementos de la lista")
 frutas.sort()
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
 
 #Invierto el orden de los elementos de la lista
 print("\nInvierto el orden de los elementos de la lista")
 frutas.reverse()
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
 
 #Actualizacion
 print("\nActualizo el segundo item")
 frutas[1] = "pera"
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
 
 #Eliminar todos los elementos de la lista
 print("\nVacio la lista")
 frutas.clear()
-for i in range(0, len(frutas)):
-    print(frutas[i])
+print(frutas)
+
+"""
+Tuplas
+"""
+
+tupla_vacia = ()
+animales = ("gato", "perro", "oso")
+print(type(animales))
+print(animales)
+print(animales[2]) #acceder
+
+#Ordenar
+animales = tuple(sorted(animales))
+print(animales)
