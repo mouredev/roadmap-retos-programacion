@@ -1,6 +1,6 @@
 /**
  * Solución del reto #00 SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO;
- * @author abel
+ * @author AbelADE
  */
 public class AbelADE {
 
