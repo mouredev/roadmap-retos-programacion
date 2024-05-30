@@ -16,7 +16,7 @@ public class AbelADE {
                 de varias líneas*/
         
         /**
-         * Comentario JavaDoc
+         * Comentario JavaDoc, para generar documentación oficial
          */
         
         // Crea una variable (y una constante si el lenguaje lo soporta).
