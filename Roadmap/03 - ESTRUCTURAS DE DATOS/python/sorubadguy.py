@@ -80,3 +80,27 @@ print(nombres)
 #Quito Elemento
 nombres.remove("Carlos")
 print(nombres)
+
+
+"""
+Diccionario
+"""
+
+diccionario = {
+    "nombre" : "Lucas",
+    "Apellido" : "Martinez",
+    "nick" : "Sorubadguy",
+    "edad" : "30"
+}
+
+print(f"Diccionario\n{diccionario}")
+print(diccionario["nombre"])#Acceso
+diccionario["edad"] = 31 #actualizacion
+print(diccionario)
+diccionario["idioma"] = "español" #Agregar item
+print(diccionario)
+diccionario.pop("edad") #Eliminar item
+print(diccionario)
+diccionario.clear() #Limpiar diccionario
+print(diccionario)
+
