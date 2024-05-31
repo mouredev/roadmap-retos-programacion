@@ -59,8 +59,6 @@ Resultado de la multip.: {r_multip}
 * - Una calificación debe estar comprendida entre 0 y 10 (admite decimales).
 """
 
-from datetime import datetime
-
 students_list = [
     {"name": "Ken", "dob": "2012-04-21", "grades": [9.5, 9.4, 9.3, 9.2]},
     {"name": "Ben", "dob": "2012-03-20", "grades": [8.5, 8.4, 8.3, 8.2]},
