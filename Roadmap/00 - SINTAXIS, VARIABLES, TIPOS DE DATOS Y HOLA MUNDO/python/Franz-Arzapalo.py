@@ -11,8 +11,11 @@ EJERCICIO #00 SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO:
 - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 """
 
+# 1. Crea un comentario en el código y coloca la URL del sitio web oficial del lenguaje de programación que has seleccionado.
+
 #Url: https://www.python.org
 
+# 2. Representa las diferentes sintaxis que existen de crear comentarios en el lenguaje (en una línea, varias...).
 
 """
 Para crear un comentario de una sola linea se puede hacer con (#) 
@@ -32,6 +35,8 @@ Ejemplo de comentario
 de mas de una linea.
 """
 
+# 3. Crea una variable (y una constante si el lenguaje lo soporta).
+
 """ 
 Para deifinir una varible en python solo tenemos que iniciar nombrando la variable y 
 definir su valor despues de un signo igual:
@@ -45,6 +50,8 @@ variable solo con mayusculas para establecer que no se debe modificar el valor d
 """
 
 CONSTANTE_EJEMPLO = 2
+
+# 4. Crea variables representando todos los tipos de datos primitivos del lenguaje (cadenas de texto, enteros, booleanos...).
 
 """
 Estos son los tipos de datos primitivos que se pueden manejar con python:
@@ -62,8 +69,12 @@ print(type(Boolanos))
 Strings = "Cadenas" # Strings son tipos de datos primitivos de valor alfabetico son cadenas de texto.
 print(type(Strings))
 
+# 5. Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
+
 """
-El comando print siver para imprimir un mensaje o valor en la terminal "Fin".
+El comando print sirve para imprimir un mensaje o valor en la terminal.
 """
 
 print("Hola, Python!")
+
+# Fin.
