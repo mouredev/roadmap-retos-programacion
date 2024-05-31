@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 13 de mayo de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/Z5u4TWcS?event=1234615617605075085)** por país y crea un **[recordatorio](https://discord.gg/Z5u4TWcS?event=1234615617605075085)**
+> #### Lunes 3 de junio de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/c2GeX9Kb?event=1242175162275725455)** por país y crea un **[recordatorio](https://discord.gg/c2GeX9Kb?event=1242175162275725455)**
 
 ## Roadmap
 
@@ -53,7 +53,10 @@
 |16|[EXPRESIONES REGULARES](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/ejercicio.md)|[📝](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/python/mouredev.py)|[▶️](https://youtu.be/0L7IfEF19ow)|[👥](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/)
 |17|[ITERACIONES](./Roadmap/17%20-%20ITERACIONES/ejercicio.md)|[📝](./Roadmap/17%20-%20ITERACIONES/python/mouredev.py)|[▶️](https://youtu.be/X1ROaPH_ci8)|[👥](./Roadmap/17%20-%20ITERACIONES/)
 |18|[CONJUNTOS](./Roadmap/18%20-%20CONJUNTOS/ejercicio.md)|[📝](./Roadmap/18%20-%20CONJUNTOS/python/mouredev.py)|[▶️](https://youtu.be/0auuM4GROVA)|[👥](./Roadmap/18%20-%20CONJUNTOS/)
-|19|[ENUMERACIONES](./Roadmap/19%20-%20ENUMERACIONES/ejercicio.md)|[🗓️ 13/05/24](https://discord.gg/Z5u4TWcS?event=1234615617605075085)||[👥](./Roadmap/19%20-%20ENUMERACIONES/)
+|19|[ENUMERACIONES](./Roadmap/19%20-%20ENUMERACIONES/ejercicio.md)|[📝](./Roadmap/19%20-%20ENUMERACIONES/python/mouredev.py)|[▶️](https://youtu.be/0auuM4GROVA)|[👥](./Roadmap/19%20-%20ENUMERACIONES/)
+|20|[PETICIONES HTTP](./Roadmap/20%20-%20PETICIONES%20HTTP/ejercicio.md)|[📝](./Roadmap/20%20-%20PETICIONES%20HTTP/python/mouredev.py)|[▶️](https://youtu.be/-pYMoPYSkgM)|[👥](./Roadmap/20%20-%20PETICIONES%20HTTP/)
+|21|[CALLBACKS](./Roadmap/21%20-%20CALLBACKS/ejercicio.md)|[📝](./Roadmap/21%20-%20CALLBACKS/python/mouredev.py)|[▶️](https://youtu.be/tqQo9SjJFlY)|[👥](./Roadmap/21%20-%20CALLBACKS/)
+|22|[FUNCIONES DE ORDEN SUPERIOR](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/ejercicio.md)|[🗓️ 03/06/24](https://discord.gg/c2GeX9Kb?event=1242175162275725455)||[👥](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/)
 
 ## Instrucciones
 
