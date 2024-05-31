@@ -125,9 +125,6 @@ def agregar_contacto(nombre, numero,telefonos):
 def eliminar_contacto(nombre,telefonos):
     telefonos.pop(nombre)
 
-def actualizar_contacto(nombre, telefono, telefonos):
-    telefonos["nombre"] = telefono
-
 def agenda():
     op = 0
     agenda_telefonica = {
