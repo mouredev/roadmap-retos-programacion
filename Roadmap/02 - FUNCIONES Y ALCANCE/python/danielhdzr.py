@@ -72,5 +72,16 @@ def main():
     print(name)
     print(greet)
     
+    def multiple_args(*args):
+        print(args)
+    
+    multiple_args("Hola", "Soy", "Daniel")
+
+    '''def extra_para_mi(*args):
+        for i in args:
+            print(i)
+    
+    lista = [1,2,3,4]
+    extra_para_mi(f",".join(map(str,lista)))'''
 if __name__=="__main__":
     main()
