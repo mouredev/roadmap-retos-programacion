@@ -25,20 +25,24 @@ import Foundation
  */
 
 let file = "pedroomar23.text"
-let fileUrl = FileManager.default.urls(from: .documentDirectory, in: .userDomainMask).appendingPathComponent(file)
+let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(file)
 let fileContent = """
-    nombre: Pedro Omar 
+    nombre: Pedro Omar
     edad: 25
-    lenguaje favorito: Swift 
+    lenguaje favorito: Swift
 """
 
-do {
-    try fileContent.write(to: fileUrl, atomically: true, encoding: .utf8)
-    let content = String(contentsOf: fileUrl, encoding: .utf8)
-    print(content)
-
-    try FileManager.default.removeItem(at: fileUrl)
-} catch {
-    print("Se encontraron varios errores \(error.localizedDescription)")
+func startFile() {
+    do {
+        try fileContent.write(to: fileUrl, atomically: true, encoding: .utf8)
+        let content = try? String(contentsOf: fileUrl, encoding: .utf8)
+        print(content ?? "Error al convertir el archivo txt a String" )
+        
+        try FileManager.default.removeItem(atPath: file)
+    } catch {
+        print("Se encontraron varios errores \(error.localizedDescription)")
+    }
 }
+
+
 
