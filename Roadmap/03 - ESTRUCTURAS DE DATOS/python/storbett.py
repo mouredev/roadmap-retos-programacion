@@ -84,7 +84,7 @@ def mi_agenda():
         option = input("\nSelecciona una opción: ")
 
         match option:
-            case "1":
+            case "2":
                 name = input("Introduce el nombre del contacto a buscar: ")
                 if name in agenda:
                     print(
