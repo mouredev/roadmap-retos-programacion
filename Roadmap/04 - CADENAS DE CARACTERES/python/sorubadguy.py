@@ -53,5 +53,33 @@ print("busca un valor especifico y devuleve en que posicion se encontro".index("
 print("TrueS1T0d0sLosCaracteresSonAlfanumericos".isalnum())
 print("TrueSiTodosLosCaracteresPertenecenAlAlfabeto".isalpha())
 print("True si todos l0s c4ract3res corresponden con los valores ascii".isascii())
-print("345".isdecimal())
-print("34.5".isdigit())
+print("345".isdecimal()) #solo permite numeros decimales, es decir del 0 al 9
+print("3\u00B2 ","\u00B2".isdigit()) #Permite decimales, aunque estos sean por ejemplo decimales
+print("True_si_es_un_identificado_valido".isidentifier()) #Se considera identificador si solo posee caracteres alfanumericos, es decir, (0-9) (a-z) o "_"
+print("true si todos los carecteres estan en minusculas".islower())
+print("2234567".isnumeric()) #devuelve true si todos sus caracteres son numeros
+print("true si la cadena es imprimible".isprintable())
+print("              ".isspace()) #True si todos los caracteres de la cadena son " " espacios
+print("True Si Corresponde Con La Norma De Titulos".istitle()) #todas las palabras deben comenzar con una mayuscula y seguir con minusculas
+print("TRUE SI TODAS LAS LETRAS DE LA CADENA SON MAYUSCULAS".isupper())
+lista_nombres = ("lucas", "pedro", "gaston")
+print("#".join(lista_nombres)) #concatena con el caracter indicado un elemento iterable
+print("ljust()".ljust(30), "devuelve una version justificada hacia la izquiera")
+print("CONVIERTE TODO EN MINUSCULAS".lower())
+print("quita los espacios","            que se encuentren              ".lstrip(), "a la izquierda")
+centrar = "Me van cambiar las letras \"a\" por letras \"T\""
+mapa = str.maketrans("a", "t") #genera un mapa de caracteres
+print(centrar.translate(mapa)) #translate intercambia la primera letra del mapa de caracteres por la segunda
+print("Retorna una tupla con 3 resultados:lo que esta antes de la cadena indicada, la cadena, y lo que esta despues".partition("indicada"))
+print("Reemplaza un caracter especifico por otro".replace("e","j"))
+print("devuelve la ultima posicion en la que se encontro el string dado".rfind("s"))
+print("devuelve la ultima posicion en la que se encontro el string dado".rindex("s")) #da error en caso de no encontrarlo
+print("justifica hacia la derecha".rjust(40))
+print("Realiza lo mismo que particion, salvo que usa la ultima ocurrencia en el string".rpartition("l"))
+print(cadena.rsplit(" ", 2))
+print("quita los espacio", "                  de               ".rstrip(), "la derecha")
+print(cadena3.splitlines()) #genera una lista a partir de las lineas de un strin
+print("True si el estring comienza con la cadena dada".startswith("Tr"))
+print("InViErTe MaYuScUlAs Y mInUsCuLaS".swapcase())
+print("convierte todas las primeras letras en mayusculas".title())
+print("rellena los strigns con 0 hasta que\n".zfill(10), "llegan a\n".zfill(10), " \"X\" caracteres".zfill(25))
