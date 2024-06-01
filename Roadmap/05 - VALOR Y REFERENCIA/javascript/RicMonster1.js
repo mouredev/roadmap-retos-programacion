@@ -1,11 +1,4 @@
-/* EJERCICIO:
- * - Muestra ejemplos de asignación de variables "por valor" y "por referencia", según
- *   su tipo de dato.
- * - Muestra ejemplos de funciones con variables que se les pasan "por valor" y
- *   "por referencia", y cómo se comportan en cada caso en el momento de ser modificadas.
- * (Entender estos conceptos es algo esencial en la gran mayoría de lenguajes)
- */
-
+//EJERCICIO
 //-Tipos de datos por valor-
 let miNumA = 20;
 let miNumB = miNumA;
@@ -25,10 +18,13 @@ console.log(arr2); //---> [1, 2, 3, 4]
 
 //-Funciones con datos por valor-
 const cambiaEsteNumA40 = (n) => {
-	console.log((n = 40));
+	n = 40;
+	return n;
 };
 
 let miNumC = 5;
+console.log(miNumC);
+
 cambiaEsteNumA40(miNumC);
 console.log(miNumC);
 
@@ -48,44 +44,50 @@ const cambiaEsteArr = (arr) => {
 cambiaEsteArr(arr3);
 console.log(arr3);
 
-/*
- * DIFICULTAD EXTRA (opcional):
- * Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
- * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
- *   Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
- *   se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
- *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
- *   Comprueba también que se ha conservado el valor original en las primeras.
- */
-
+//EXTRA
 //-Por valor-
-const intercambiaPorValor = (a, b) => {
-	let temp = a;
-	a = b;
-	b = temp;
-	return [a, b];
-};
-
-let miNumD = 45;
-let miNumF = 63;
-
-let [nuevoNumD, nuevoNumF] = intercambiaPorValor(miNumD, miNumF);
-
-console.log(miNumD + ' ' + miNumF);
-console.log(nuevoNumD + ' ' + nuevoNumF);
-
-//-Por referencia-
-const intercambiaPorReferencia = (a, b) => {
+function intercambiaLosValores(a, b) {
 	let temp = a;
 	a = b;
 	b = temp;
 	return [a, b];
 }
 
+let miNumD = 45;
+let miNumF = 63;
+
+let [nuevoNumD, nuevoNumF] = intercambiaLosValores(miNumD, miNumF);
+
+console.log(`\nValores originales: ${miNumD}, ${miNumF}`);
+console.log(
+	`\nValores luego de cambiarlos con la función: ${nuevoNumD}, ${nuevoNumF}`
+);
+
+//-Por referencia-
+//Funciona de la misma manera con los arrays
 let miArr1 = [10, 45, 20, 78];
 let miArr2 = [100, 200, 432, 590];
 
-let [nuevoArr1, nuevoArr2] = intercambiaPorReferencia(miArr1, miArr2);
+let [nuevoArr1, nuevoArr2] = intercambiaLosValores(miArr1, miArr2);
 
-console.log(miArr1 + '\n' + miArr2);
-console.log(nuevoArr1 + '\n' + nuevoArr2);
+console.log('\nArrays originales:');
+console.log(miArr1, miArr2);
+
+console.log('\nArrays luego de pasarlos por la función:');
+console.log(nuevoArr1, nuevoArr2);
+
+let miObj1 = {
+	a: 12,
+	b: 24,
+};
+
+let miObj2 = {
+	c: 45,
+	d: 68,
+};
+
+console.log('\nFunciona igual para los objetos:');
+
+console.log(miObj1, miObj2);
+let [nuevoObj1, nuevoObj2] = intercambiaLosValores(miObj1, miObj2);
+console.log(nuevoObj1, nuevoObj2);

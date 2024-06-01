@@ -74,7 +74,7 @@ num5 > 0 ? console.log('Numero positivo') : console.log('Numero negativo');
 //**ESTRUCTURAS DE CONTROL**
 
 //-Condicionales-
-//If, else, else if
+//if
 let totalPoints = 5003;
 
 console.log('Nivel completado!');
@@ -82,30 +82,20 @@ if (totalPoints > 5000) {
 	console.log('Logro desbloqueado: maestro espadachin');
 }
 
-let num6 = 7;
-
-const comprobNumPar = num6 % 2;
-if (comprobNumPar === 0) {
-	console.log(`${num6} es un numero par`);
-} else if (comprobNumPar > 0) {
-	console.log(`${num6} es un numero impar`);
-} else {
-	console.log('Valor invalido');
-}
-
-let num7 = 6;
-
-const comprobNumPar2 = num7 % 2;
-switch (true) {
-	case comprobNumPar2 === 0:
-		console.log(`${num7} es un numero par`);
-		break;
-	case comprobNumPar2 > 0:
-		console.log(`${num7} es un numero impar`);
-		break;
-	default:
+//if else
+function checkEvenNum(n) {
+	if (typeof n === 'number') {
+		if (n % 2 === 0) {
+			console.log(`${n} es par`);
+		} else {
+			console.log(`${n} no es par`);
+		}
+	} else {
 		console.log('Valor invalido');
+	}
 }
+
+checkEvenNum(7);
 
 //Switch
 let clima = 'nublado';
@@ -136,6 +126,14 @@ while (n < 10) {
 	console.log(n);
 	n++;
 }
+
+//Do/While
+let m = 10;
+
+do {
+	console.log(m);
+	m--;
+} while (m > 0);
 
 //EXTRA
 for (let i = 10; i <= 55; i++) {
