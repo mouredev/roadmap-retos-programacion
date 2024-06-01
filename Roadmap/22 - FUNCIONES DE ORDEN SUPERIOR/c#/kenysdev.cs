@@ -56,8 +56,9 @@ class Program {
         new() { {"name", "Zoe"}, {"dob", "2012-01-18"}, {"grades", new List<double> {9.0, 9.1, 9.0, 9.1} } }
     ];
 
-    static Action<List<Dictionary<string, object>>> HigherOrderFun(
-        string msg, Action<Dictionary<string, object>> printFn) {
+    delegate void PrintFunction(Dictionary<string, object> student);
+
+    static Action<List<Dictionary<string, object>>> HigherOrderFun(string msg, PrintFunction printFn) {
         void wrapper(List<Dictionary<string, object>> students) {
             Console.WriteLine($"\n----\n{msg}");
             foreach (var student in students) {
@@ -67,6 +68,7 @@ class Program {
 
         return wrapper;
     }
+
 
     static void PrintGradePointAverage(Dictionary<string, object> student) {
         var grades = (List<double>)student["grades"];
