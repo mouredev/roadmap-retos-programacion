@@ -3,9 +3,10 @@
 let frutasQueMeGustan = ['mango', 'fresa', 'pera', 'manzana', 'uva', 'durazno'];
 console.log(frutasQueMeGustan);
 
-for(let i = 0; i < frutasQueMeGustan.length; i++) { //iteracion de los elementos de un array
-    console.log(frutasQueMeGustan[i]);
-};
+for (let i = 0; i < frutasQueMeGustan.length; i++) {
+	//iteracion de los elementos de un array
+	console.log(frutasQueMeGustan[i]);
+}
 
 //-Insercion-
 frutasQueMeGustan.push('guanabana'); //inserta un elemento al final
@@ -48,13 +49,8 @@ console.log(nuevoArray2);
 nuevoArray2.sort((a, b) => b - a); //ordena los numeros de mayor a menor
 console.log(nuevoArray2);
 
-
 //***SETS***
-const animales = new Set([
-    'gallina',
-    'foca',
-    'lagarto'
-]);
+const animales = new Set(['gallina', 'foca', 'lagarto']);
 console.log(animales);
 
 //-Insercion-
@@ -79,9 +75,9 @@ console.log(arrayDelSet);
 
 //***MAPS***
 const miMap = new Map([
-    ['clave1', 'valor1'],
-    ['uno', 1],
-    ['dos', 2],
+	['clave1', 'valor1'],
+	['uno', 1],
+	['dos', 2],
 ]);
 console.log(miMap);
 
@@ -107,11 +103,11 @@ console.log(miMap.size); //nos indica la cantidad de claves-valor
 
 //***OBJETOS***
 const persona = {
-    nombre : 'Ricardo',
-    edad : 21,
-    sexo : 'masculino',
-    casado: false,
-    estatura: 159,
+	nombre: 'Ricardo',
+	edad: 21,
+	sexo: 'masculino',
+	casado: false,
+	estatura: 159,
 };
 console.log(persona);
 
@@ -138,3 +134,37 @@ console.log(persona);
  *   (o el número de dígitos que quieras)
  * - También se debe proponer una operación de finalización del programa.
  */
+
+console.clear();
+
+const readline = require('readline');
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
+
+const contactos = [];
+
+console.log(myStack);
+
+function buscaContacto() {}
+
+function insertaContacto() {}
+
+function actualizaContacto() {}
+
+function eliminaContato() {}
+
+function muestraOpciones() {
+	rl.question('\nElige una opcion. Presione enter para salir\n1.', (answer) => {
+		switch (answer.toLowerCase()) {
+			case '':
+				rl.close();
+				break;
+			default:
+				muestraOpciones();
+				break;
+		}
+	});
+}
+rl.close();
