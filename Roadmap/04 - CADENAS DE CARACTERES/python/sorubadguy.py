@@ -83,3 +83,42 @@ print("True si el estring comienza con la cadena dada".startswith("Tr"))
 print("InViErTe MaYuScUlAs Y mInUsCuLaS".swapcase())
 print("convierte todas las primeras letras en mayusculas".title())
 print("rellena los strigns con 0 hasta que\n".zfill(10), "llegan a\n".zfill(10), " \"X\" caracteres".zfill(25))
+
+"""
+Extra
+"""
+def palindromo(palabra1: str, palabra2: str):
+    
+    if(palabra1[:] == palabra2[::-1]):
+        print(f"{palabra1} y {palabra2} son palindromos entre si")
+    else:
+        print(f"{palabra1} y {palabra2} no son palindromos entre si")
+
+        if(palabra1[:] == palabra1[::-1]):
+            print(f"{palabra1} es palindromo")
+
+        if(palabra2[:] == palabra2[::-1]):
+            print(f"{palabra2} es palindromo")
+
+def anagrama(palabra1: str, palabra2: str):
+
+    palabra1 = palabra1.replace(" ", "")
+    palabra2 = palabra2.replace(" ", "")
+
+    if(len(palabra1) == len(palabra2)):
+        palabra1_ordenada = []
+        palabra2_ordenada = []
+        palabra1_ordenada = list(palabra1)
+        palabra2_ordenada = list(palabra2)
+        palabra1_ordenada.sort()
+        palabra2_ordenada.sort()
+        
+        if(palabra1_ordenada == palabra2_ordenada):
+            print(f"{palabra1} y {palabra2} son anagramas")
+        else:
+            print(f"{palabra1} y {palabra2} no son anagramas")
+    else:
+        print(f"{palabra1} y {palabra2} no son anagramas")
+
+palindromo("radar", "radare")
+anagrama("toledo", "el todo")
