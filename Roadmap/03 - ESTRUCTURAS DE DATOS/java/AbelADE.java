@@ -57,6 +57,50 @@ public class AbelADE {
      */
     Queue<Integer> cola = new LinkedList<>();
     
+    //Métodos a usar en el Ejercicio extra
+    
+    public static String getName(){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Dame el nombre: ");
+        return scan.nextLine();
+    }
+    
+    public static Long getPhone(){
+        Scanner scan;
+        boolean validTel = false;          
+        long tel = Long.MIN_VALUE;
+
+        do {       
+            scan = new Scanner(System.in);
+            try {
+                System.out.print("Dame el número de teléfono: ");
+
+                String telText = scan.nextLine();
+
+                tel = Long.parseLong(telText);
+
+                if (telText.length() > 11) {
+                   System.out.println("El teléfono debe tener menos de 11 dígitos");
+                   System.out.println();
+                }else{
+                   validTel = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Número de teléfono no válido");
+            }
+
+        } while (!validTel);
+        
+        return tel;
+    }
+    
+    public static void getResult(Long result, String success){
+        if (result!= null) {
+            System.out.println(success);
+        }else{
+            System.out.println("Operación fallida");
+        }
+    }
     
 
     /**
@@ -161,7 +205,65 @@ public class AbelADE {
             // No se puede Actualizar, pero podemos borrar
             // e insertar el nuevo valor.
             
-            // No existe un método nativo para Ordenar         
+            // No existe un método nativo para Ordenar     
+            
+            
+            
+         /**
+          * DIFICULTAD EXTRA: Crea una agenda de contactos por terminal
+          */   
+         Scanner scan = new Scanner(System.in);
+         boolean exit = false;
+         HashMap<String,Long> contacts = new HashMap<>();
+         
+         do {           
+             System.out.println("Bienvenido a la agenda de contactos");
+             System.out.println("¿Qué deseas hacer?");
+             System.out.println("1 - Crear un contacto");
+             System.out.println("2 - Buscar un contacto");
+             System.out.println("3 - Actualizar un contacto");
+             System.out.println("4 - Eliminar un contacto");
+             System.out.println("5 - Salir");
+             System.out.println();
+             
+             System.out.print("Elige una opción: ");
+             int option = scan.nextInt();
+             scan.nextLine();
+             
+             String name = "";
+             if (option != 5) {
+                name = getName();
+                 System.out.println();
+             }
+             
+             switch (option) {
+                 case 1:     
+                     getResult(contacts.put(name, getPhone()), "Contacto añadido");
+                     break;
+                 case 2:
+                     Long telUser = contacts.get(name);
+           
+                     getResult(telUser, "El teléfono de " + name + " es: " + telUser);                     
+                     break;
+                 case 3:
+                     getResult(contacts.replace(name, getPhone()), "Contacto actualizado");
+                     
+                     System.out.println("El nuevo teléfono de " + name + " es: " + contacts.get(name));
+                     break;
+                 case 4:
+                      getResult(contacts.remove(name), name + " se ha eliminado");
+                     break;
+                 case 5:
+                     exit = true;
+                     break;
+                 default:
+                     System.out.println("Opción no válida!");
+             }
+             
+             System.out.println();
+             
+        } while (!exit);
+            
     }
     
 }
