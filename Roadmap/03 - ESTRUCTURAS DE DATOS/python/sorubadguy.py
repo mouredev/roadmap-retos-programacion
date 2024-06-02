@@ -108,40 +108,59 @@ print(diccionario)
 Extra
 """
 
+def buscar_contacto(nombre, telefonos):
+    try:
+        print(f"nombre: {nombre}, telefono: {telefonos[nombre]}")
+    except:
+        print("El contacto deseado no existe")
+
+def agregar_contacto(nombre, numero,telefonos):
+    if(numero.isdigit() and len(numero) > 0 and len(numero) <= 11):
+        telefonos[nombre] = numero
+        print("La operacion se realizo correctamente")
+    else:
+        print("el formato del telefono no es compatible")
+
+
+def eliminar_contacto(nombre,telefonos):
+    telefonos.pop(nombre)
+
 def agenda():
     op = 0
-
+    agenda_telefonica = {
+        "carlos" : 1234556,
+        "pedro" : 2234
+    }
     while(op != 5):
         print(f"Ingrese la opcion deseada")
         print(f"1: Buscar contacto")
         print(f"2: Agregar contacto")
         print(f"3: Eliminar contacto")
         print(f"4: Actualisar Contacto")
-        op = input("Ingrese la opcion deseada\n")
+        op = input("Ingrese la opcion deseada: ")
 
         match op:
-            case 1:
-                pass
-            case 2:
-                pass
-            case 3:
-                pass
-            case 4:
-                pass
-            case 5:
-                pass
+            case "1":
+                nombre = input("Ingrese el nombre del contacto a buscar: ")
+                buscar_contacto(nombre, agenda_telefonica)
+            case "2":
+                nombre = input("Ingrese el nombre del contacto a ingresar: ")
+                numero = input("Ingrese el numero de telefono del contacto")
+                agregar_contacto(nombre, numero, agenda_telefonica)
+            case "3":
+                nombre = input("Ingrese el nombre del contacto a eliminar: ")
+                eliminar_contacto(nombre, agenda_telefonica)
+            case "4":
+                nombre = input("Ingrese el nombre del contacto a editar: ")
+                telefono = input("Ingrese el nuevo numero del contacto: ")
+                agregar_contacto(nombre, telefono, agenda_telefonica)
+            case "5":
+                print("Saliendo")
+                break
             case _:
                 print("Opcion no encontrada")
     
 
-def agregar_contacto(nombre, numero):
-    pass
 
-def eliminar_contacto():
-    pass
 
-def buscar_contacto():
-    pass
-
-def actualizar_contacto():
-    pass
+agenda()
