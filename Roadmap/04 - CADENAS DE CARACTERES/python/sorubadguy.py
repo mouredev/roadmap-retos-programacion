@@ -112,7 +112,7 @@ def anagrama(palabra1: str, palabra2: str):
         palabra2_ordenada = list(palabra2)
         palabra1_ordenada.sort()
         palabra2_ordenada.sort()
-        
+
         if(palabra1_ordenada == palabra2_ordenada):
             print(f"{palabra1} y {palabra2} son anagramas")
         else:
@@ -120,5 +120,34 @@ def anagrama(palabra1: str, palabra2: str):
     else:
         print(f"{palabra1} y {palabra2} no son anagramas")
 
-palindromo("radar", "radare")
-anagrama("toledo", "el todo")
+def isograma(palabra1: str, palabra2: str):
+    contador1 = {}
+    contador2 = {}
+    iso = False
+    for i in range(0,len(palabra1)):
+        if(palabra1[i] not in contador1):
+            contador1[palabra1[i]] = palabra1.count(palabra1[i])
+
+    for i in range(0,len(palabra2)):
+        if(palabra2[i] not in contador2):
+            contador2[palabra2[i]] = palabra2.count(palabra2[i])
+
+    if(len(contador1) == len(contador2)):
+        for i in contador1:
+            if(i in contador2 and contador1[i] == contador2[i]):
+                iso = True
+            else:
+                iso = False
+                break;
+    
+    if iso:
+        print(f"{palabra1} y {palabra2} son isogramas")
+    else:
+        print(f"{palabra1} y {palabra2} no son isogramas")
+
+def palabras(palabra1: str, palabra2: str):
+    isograma(palabra1, palabra2)
+    anagrama(palabra1, palabra2)
+    palindromo(palabra1, palabra2)
+
+palabras("cara", "arca")
