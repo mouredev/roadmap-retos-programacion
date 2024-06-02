@@ -152,7 +152,6 @@ internal class Program
         }
 
         // Ejercicio Extra:
-        Console.WriteLine("\nEjercicio Extra");
         ImprimirNumeros();
     }
 
