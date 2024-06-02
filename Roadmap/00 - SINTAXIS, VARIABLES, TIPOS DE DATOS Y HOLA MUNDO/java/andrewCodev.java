@@ -5,7 +5,7 @@
  * de
  varias lineas*/
 
-public class andrewCodev {
+public class AndrewCodev {
 	public static void main(String args[]) {
 		final String constante = "Mi primera constante";
 		String lenguaje = "Java";
