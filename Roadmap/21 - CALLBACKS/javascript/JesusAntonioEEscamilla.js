@@ -1,4 +1,4 @@
-/** #20 - JavaScript ->Jesus Antonio Escamilla */
+/** #21 - JavaScript ->Jesus Antonio Escamilla */
 
 /**
  * Una función de callback es una función que se pasa a otra función como un argumento, que luego 
@@ -44,6 +44,53 @@ sum(3,6,printSum);
 
 /**-----DIFICULTAD EXTRA-----*/
 
-//Pendientes
+//  Una función que represente los tiempo aleatorio
+function getRandomTime() {
+    return Math.floor(Math.random() * 10000) + 1000;
+}
+
+//  La función del Callback donde tiene los 3 segmentos de 
+function processOrder(namePlatillo, confirmCallback, readyCallback, deliveryCallback) {
+    console.log(`Procesando la orden: ${namePlatillo}\n`);
+
+    // Confirmación del pedido
+    setTimeout(() => {
+        console.log('Preparando orden');
+        confirmCallback(namePlatillo);
+
+        // Simula el tiempo de preparación del plato
+        setTimeout(() => {
+            console.log('Preparando orden para enviar');
+            readyCallback(namePlatillo);
+
+            // Simula el tiempo de entrega del plato
+            setTimeout(() => {
+                console.log('Preparando orden para entregar');
+                deliveryCallback(namePlatillo);
+
+            }, getRandomTime());
+        }, getRandomTime());
+    }, getRandomTime());
+}
+
+//  Callback de confirmación
+function orderConfirmed(namePlatillo) {
+    console.log(`Orden confirmado del pedido: ${namePlatillo}\n`);
+}
+
+//  Callback de plato listo
+function orderReady(namePlatillo) {
+    console.log(`Orden listo de: ${namePlatillo}\n`);
+}
+
+//  Callback de entrega
+function orderDelivered(namePlatillo) {
+    console.log(`Orden entregado: ${namePlatillo}\n`);
+}
+
+//  Ejemplo de uso de pedidos de restaurante
+processOrder('Pizza la Italiana', orderConfirmed, orderReady, orderDelivered);
+processOrder('Patas boloñesa', orderConfirmed, orderReady, orderDelivered);
+processOrder('Albóndigas con arroz', orderConfirmed, orderReady, orderDelivered);
 
 /**-----DIFICULTAD EXTRA-----*/
