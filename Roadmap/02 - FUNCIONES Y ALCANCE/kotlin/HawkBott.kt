@@ -1,7 +1,3 @@
-package com.example.practicas.mouredev_Roadmap
-
-
-
 fun main() {
 
     println("------------ APARTADO 1 ------------")
