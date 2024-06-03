@@ -9,7 +9,7 @@ def multiply_for_five(value:int):
 def multiply_for_two(value:int):
     return value*2
 
-def multiply_value(value,func):
+def multiply_value(value:int,func):
     return func(value)
 
 print(multiply_value(5,multiply_for_five))
@@ -26,6 +26,9 @@ def sum_five(): #una función que retorna una función
     def add(value:int):
         return value + 5
     return add
+
+add = sum_five()
+print(add(3))
 
 print(sum_five()(7))
 
@@ -69,36 +72,22 @@ students = [
 
 from functools import reduce
 from datetime import datetime
-from operator import itemgetter
 
 def average(students:list): #BUILT-IN FUNCTION: REDUCE + LAMBDA
-    result = []
-    for student in students:
-        qualifications_average = reduce(lambda x,y:x+y,student["qualifications"])/len(student["qualifications"])
-        result.append({"name":student["name"],"average":round(qualifications_average,2)})
-    return result
+    return list(map(lambda student: {"name": student["name"], 
+                                    "average": round(reduce(lambda x,y:x+y,student["qualifications"])/len(student["qualifications"]),2)},students))
 
 print(f"PROMEDIO DE CALIFICACIONES:\n{average(students)}")
 
 
 def best_students(students:list): #BUILT-IN FUNCTION: FILTER + LAMBDA
-    students_with_average = average(students)
-    bests = list(filter(lambda students_with_average: students_with_average["average"]>9,students_with_average))
-    for student in bests:
-        del(student["average"])
-    return bests
+    return list(map(lambda student: {"name":student["name"]},filter(lambda student: student["average"]>9,average(students))))
 
 print(f"\nMEJORES ALUMNOS:\n{best_students(students)}")
 
 def sort_youngest(students:list): #CLOSURE
     def youngest ():
-        sorted_students = list()
-        for student in students:
-            student["birthdate"] = datetime(day=int(student["birthdate"][0:2]),month=int(student["birthdate"][3:5]),year=int(student["birthdate"][6:])).timestamp()
-        sorted_students = sorted(students,key=itemgetter("birthdate"),reverse=True)
-        for student in sorted_students:
-            student["birthdate"] = datetime.fromtimestamp(student["birthdate"]).strftime("%d/%m/%Y")
-        return sorted_students
+        return sorted(students,key=lambda student:(datetime.strptime(student["birthdate"],"%d/%m/%Y"),students),reverse=True)
     return youngest
 
 
@@ -106,11 +95,7 @@ print(f"\nALUMNOS ORDENADOS DESDE EL MÁS JOVEN:\n{sort_youngest(students)()}")
 
 def find_best_student(students:list): #CLOSURE
     def best_qualifications():
-        students_best_qualifications = list()
-        for student in students:
-            student["qualifications"] = sorted(student["qualifications"],reverse=True)
-            students_best_qualifications.extend(student["qualifications"])
-        return sorted(students_best_qualifications,reverse=True)[0]
+        return max(list(map(lambda student: max(student["qualifications"]),students)))
     return best_qualifications
 
 print(f"\nLA MEJOR NOTA:\n{find_best_student(students)()}")
