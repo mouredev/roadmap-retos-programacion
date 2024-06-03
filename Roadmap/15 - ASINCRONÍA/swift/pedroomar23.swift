@@ -20,23 +20,28 @@ import Foundation
  *   finalizado.
  */
 
-func startProgram(_ name: String, duration: Double) async  {
-    let iniciar = Date()
-    let terminacion = Date()
+func starProgram(_ name: String, duration: Double) async {
+    let iniciarProgram = Date()
+    let finishPrgrom = Date()
+
     let formatter = DateFormatter()
     formatter.dateFormat = "HH:mm:ss"
-    
-    print("El programa dio comienzo a \(formatter.string(from: iniciar))")
-    
+
+    print("El programa tiene como nombre \(formatter.String(from: iniciarProgram))")
+
     do {
-        try await Task.sleep(for: .seconds(duration))
+        try await Task.slepp(from: .seconds(duration))
     } catch {
-        print("Se ha encontrado un error en la ejecucion \(error.localizedDescription)")
+        print("Ha ocurrido un error a la hora de obtener la duracion \(error.localizedDescription)")
     }
-    
-    print("El programa tuvo su conclusion \(formatter.string(from: terminacion))")
-    print("El programa tuvo una duracion de \(duration)")
+
+    print("El programa de nombre \(name) tuvo una duracion de \(duration)")
 }
+
+let newProgram = starProgram("Games", duration: 1)
+print(newProgram)
+
+
 
 
 
