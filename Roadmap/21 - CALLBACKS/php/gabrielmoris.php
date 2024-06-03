@@ -12,12 +12,12 @@ function return_callback($callback)
 
 function echo_sth()
 {
-    echo "I am in a calback";
+    echo "I am in a calback\n";
 }
 
 return_callback("echo_sth");
 
- /*
+/*
  * EXTRA DIFFICULTY (optional):
  * Create a restaurant order simulator using callbacks.
  * It will consist of a function that processes orders.
@@ -29,3 +29,35 @@ return_callback("echo_sth");
  * - It should invoke each callback following a processing order.
  * - It should notify when the dish is ready or has been delivered.
  */
+
+echo "============= CHALLENGE =============\n";
+
+function restaurantOrder($dishname, $confirmationCB, $readyCB, $deliveryCB)
+{
+    $orderID = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 10);
+    $confirmationCB($dishname);
+    echo "Your Processing order is $orderID\n";
+    sleep(rand(1, 10));
+    $readyCB($dishname);
+    echo "Your Processing order is $orderID\n";
+    sleep(rand(1, 10));
+    $deliveryCB($dishname);
+    echo "Your Processing order is $orderID\n";
+}
+
+function confirmation($dishname)
+{
+    echo "$dishname order confirmed.\n";
+}
+
+function ready($dishname)
+{
+    echo "$dishname is ready.\n";
+}
+
+function delivery($dishname)
+{
+    echo "$dishname has been delivered.\n";
+}
+
+restaurantOrder("Kartoffelpure", "confirmation", "ready", "delivery");
