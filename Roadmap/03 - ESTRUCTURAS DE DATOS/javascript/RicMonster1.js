@@ -145,26 +145,49 @@ const rl = readline.createInterface({
 
 const contactos = [];
 
-console.log(myStack);
+function insertaContacto() {
+	console.log('\nFuncion para insertar contacto');
+	muestraOpciones();
+}
 
-function buscaContacto() {}
+function buscaContacto() {
+	console.log('\nFuncion para buscar contacto');
+	muestraOpciones();
+}
 
-function insertaContacto() {}
+function actualizaContacto() {
+	console.log('\nFuncion para actualizar contacto');
+	muestraOpciones();
+}
 
-function actualizaContacto() {}
-
-function eliminaContato() {}
+function eliminaContato() {
+	console.log('\nFuncion para eliminar contacto');
+	muestraOpciones();
+}
 
 function muestraOpciones() {
-	rl.question('\nElige una opcion. Presione enter para salir\n1.', (answer) => {
-		switch (answer.toLowerCase()) {
-			case '':
+	rl.question(
+		'\nElige una opcion\n1.Insertar contacto\n2.Buscar contacto\n3.Actualiar contacto\n4.Eliminar contacto\n5.Salir\n',
+		(answer) => {
+			answer = answer.toLowerCase();
+
+			if (answer === '1' || answer === 'i' || answer === 'insertar') {
+				insertaContacto();
+			} else if (answer === '2' || answer === 'b' || answer === 'buscar') {
+				buscaContacto();
+			} else if (answer === '3' || answer === 'a' || answer === 'actualizar') {
+				actualizaContacto();
+			} else if (answer === '4' || answer === 'e' || answer === 'eliminar') {
+				eliminaContato();
+			} else if (answer === '5' || answer === 's' || answer === 'salir') {
+				console.log('\nSaliendo de la aplicación');
 				rl.close();
-				break;
-			default:
+			} else {
+				console.log('\nIngrese un valor válido');
 				muestraOpciones();
-				break;
+			}
 		}
-	});
+	);
 }
-rl.close();
+
+muestraOpciones();
