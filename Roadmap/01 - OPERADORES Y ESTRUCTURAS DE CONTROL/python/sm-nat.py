@@ -99,3 +99,32 @@ print(not True) #falso
 print(not False) #verdadero
 
 #OPERADORES DE BIT
+
+# Definición de variables
+a = 5  # 0101 en binario
+b = 3  # 0011 en binario
+
+# AND a nivel de bits
+resultado_and = a & b
+print("a & b =", resultado_and)  # 0101 & 0011 = 0001 (1 en decimal)
+
+# OR a nivel de bits
+resultado_or = a | b
+print("a | b =", resultado_or)  # 0101 | 0011 = 0111 (7 en decimal)
+
+# XOR a nivel de bits
+resultado_xor = a ^ b
+print("a ^ b =", resultado_xor)  # 0101 ^ 0011 = 0110 (6 en decimal)
+
+# NOT a nivel de bits
+resultado_not = ~a
+print("~a =", resultado_not)  # ~0101 = 1010 (en complemento a dos, esto representa -6)
+
+# Desplazamiento a la izquierda
+resultado_shift_left = a << 1
+print("a << 1 =", resultado_shift_left)  # 0101 << 1 = 1010 (10 en decimal)
+
+# Desplazamiento a la derecha
+resultado_shift_right = a >> 1
+print("a >> 1 =", resultado_shift_right)  # 0101 >> 1 = 0010 (2 en decimal)
+
