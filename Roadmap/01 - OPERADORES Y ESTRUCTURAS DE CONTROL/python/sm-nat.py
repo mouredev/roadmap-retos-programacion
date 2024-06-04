@@ -128,3 +128,17 @@ print("a << 1 =", resultado_shift_left)  # 0101 << 1 = 1010 (10 en decimal)
 resultado_shift_right = a >> 1
 print("a >> 1 =", resultado_shift_right)  # 0101 >> 1 = 0010 (2 en decimal)
 
+#OPERADORES DE IDENTIDAD
+
+# Definiendo variables
+a = [1, 2, 3]
+b = a
+c = [1, 2, 3]
+
+# Usando is
+print("a is b:", a is b)  # True, porque b es el mismo objeto que a
+print("a is c:", a is c)  # False, porque aunque a y c tienen el mismo contenido, son diferentes objetos
+
+# Usando is not
+print("a is not b:", a is not b)  # False, porque b es el mismo objeto que a
+print("a is not c:", a is not c)  # True, porque a y c no son el mismo objeto
