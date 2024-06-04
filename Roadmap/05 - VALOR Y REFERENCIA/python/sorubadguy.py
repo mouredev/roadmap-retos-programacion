@@ -46,8 +46,36 @@ print(lista1)
 """
 !Extra
 """
-def programa_valor(var1, var2):
-    pass
+#Valor
 
-def programa_referencia(var1, var2):
-    pass
+def programa_valor(varo1: int, varo2: int) -> tuple:
+    varo3 = varo1
+    varo1 = varo2
+    varo2 = varo3
+    return varo1, varo2
+
+
+valor1 = 10
+valor2 = 20
+
+valor3, valor4 = programa_valor(valor1, valor2)
+print(valor1, valor2)
+print(valor3, valor4)
+
+#Referencia
+
+def programa_referencia(ref1, ref2):
+    ref3 = ref1
+    ref1 = ref2
+    ref2 = ref3
+    return ref1, ref2
+
+referencia1 = [1,2,3,4,5]
+referencia2 = [7,8,9,0]
+referencia3 = []
+referencia4 = []
+
+referencia3, referencia4 = programa_referencia(referencia1, referencia2)
+
+print(referencia1, referencia2)
+print(referencia3, referencia4)
