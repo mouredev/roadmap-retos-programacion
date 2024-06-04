@@ -142,3 +142,15 @@ print("a is c:", a is c)  # False, porque aunque a y c tienen el mismo contenido
 # Usando is not
 print("a is not b:", a is not b)  # False, porque b es el mismo objeto que a
 print("a is not c:", a is not c)  # True, porque a y c no son el mismo objeto
+
+#OPERADORES DE PERTENENCIA
+
+cadena = "Hola, mundo!"
+
+# Usando in
+print("Hola" in cadena)  # Devuelve True
+print("adiós" in cadena)  # Devuelve False
+
+# Usando not in
+print("Hola" not in cadena)  # Devuelve False
+print("adiós" not in cadena)  # Devuelve True
