@@ -98,3 +98,4 @@ print(True or False) #verdadero
 print(not True) #falso
 print(not False) #verdadero
 
+#OPERADORES DE BIT
