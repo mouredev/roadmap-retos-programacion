@@ -4,8 +4,31 @@
  * Explore the concept of higher-order functions in your language
  * by creating simple examples (of your choice) that demonstrate their operation.
  */
+function sum($num1, $num2)
+{
+    return $num1 + $num2;
+}
 
- 
+function sum5($sumfn, $num)
+{
+    return $sumfn(5, $num);
+}
+
+echo sum5("sum", 5) . "\n";
+
+$arr = [1, 2, 3, 4, 5, "potato"];
+
+$filtered = array_map(function ($n) {
+    if (is_string($n)) {
+        return $n;
+    }
+}, $arr);
+
+$filtered = array_filter($filtered, function ($n) {
+    return !is_null($n);  // Check for non-null values
+});
+$filtered = array_values($filtered);
+var_dump($filtered);
 
  /*
  * EXTRA DIFFICULTY (optional):
