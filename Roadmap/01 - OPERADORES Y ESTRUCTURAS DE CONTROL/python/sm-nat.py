@@ -155,6 +155,55 @@ print("adiós" in cadena)  # Devuelve False
 print("Hola" not in cadena)  # Devuelve False
 print("adiós" not in cadena)  # Devuelve True
 
+#ESTRUCTURAS DE CONTROL
+
+#condicionales (if,elif.else)
+a = 10
+b = 20
+
+if a + b > 25:
+    print("La suma de a y b es mayor que 25")
+elif a + b == 25:
+    print("La suma de a y b es exactamente 25")
+else:
+    print("La suma de a y b es menor que 25")
+
+#bucles(for,while)
+numeros = [1, 2, 3, 4, 5]
+for num in numeros:
+    print(f"El número es: {num}")
+
+contador = 0
+while contador < 5:
+    print(f"Contador es: {contador}")
+    contador += 1
+
+#bucles con control de flujo(break,continue)
+for num in range(10):
+    if num == 5:
+        break
+    print(f"Número: {num}")
+
+for num in range(10):
+    if num % 2 == 0:
+        continue
+    print(f"Número impar: {num}")
+
+#manejo de exepciones(try,except,else,finally)
+try:
+    numero = int(input("Introduce un número: "))
+    resultado = 10 / numero
+except ZeroDivisionError:
+    print("No se puede dividir por cero")
+except ValueError:
+    print("Entrada no válida, se esperaba un número")
+else:
+    print(f"El resultado de la división es: {resultado}")
+finally:
+    print("Fin del bloque try-except")
+
+
+
 #EJERCICIO DE DIFICULTAD EXTRA
 """Crea un programa que imprima por consola todos los números comprendidos
 entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3."""
