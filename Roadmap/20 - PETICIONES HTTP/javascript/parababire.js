@@ -10,3 +10,15 @@ async function extraerCotizacion() {
 }
 
 extraerCotizacion();
+
+fetch('https://api.coindesk .com/v1/bpi/currentprice.json')
+  .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        console.log(error);
+      }
+    }
+  )
+  .then(data => console.log(`La cotización del bitcoin es: ${data.bpi.USD.rate_float}$`))
+  .catch(error=> console.log("Hay un error que no está entre 200 y 50x"));
