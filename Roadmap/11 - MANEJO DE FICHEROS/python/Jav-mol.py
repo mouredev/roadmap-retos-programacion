@@ -27,21 +27,39 @@ if os.path.exists(file):
 #    file.write(f'[Fideos], [20], [10]')
 
 
-with open('Jav-mol.txt', 'a+') as file1:
-    file1.seek(0)
-    texto = file1.read()
-    
-    product = input('Ingrese el producto: ')
-    
-    
-    inicio = texto.find(product) - 1
-    
-    print(inicio)
-    
-    
-    fin = inicio + len(product) + 14
-    
-    print(fin)
-    
-    lista = texto[inicio:fin] #.split(', ')
-    print(lista)
+
+list_to_str = lambda lista:f'{lista[0]}, {lista[1]}, {lista[2]}'
+
+def update_product(products, index, lista):
+        total = input('Ingrese la cantidad vendida: ')
+        products[1] = f'[{total}]'
+        price = input('Ingrese el precio: ')
+        products[2] = f'[${price}]'
+        
+        products_fin = list_to_str(products)
+        lista[index] = products_fin
+        
+        return lista 
+        
+def edit_product():    
+    with open('Jav-mol.txt', 'r') as file:
+        texto = file.read()
+        lista = texto.split('\n')
+        lista_final = None
+        product = input('Ingrese el producto: ')
+        
+        for a,i in enumerate(lista):
+            if product in i:
+                index = a
+                products = i.split(', ')
+
+                lista_final = update_product(products, index, lista)
+            
+        if not lista_final:
+            print('Producto no encontrado')
+        else:            
+            with open('Jav-mol.txt', 'w') as file:
+                for produc in lista_final:
+                    if produc == '':
+                        continue
+                    file.write(f'{produc}\n')
