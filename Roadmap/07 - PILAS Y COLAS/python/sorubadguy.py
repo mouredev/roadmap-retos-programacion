@@ -21,5 +21,21 @@ print(cola)
 !Extra
 """
 
-dir_web = ["www.twitch.tv","/mouredev","/videos","/2162695381"]
+dir_web = ["www.twitch.tv","www.twitch.tv/mouredev","www.twitch.tv/mouredev/videos","www.twitch.tv/mouredev/videos/2162695381"]
 
+def navegador(dir):
+    op = 1
+    while op != 0:
+        print("Ingrese la opcion deseada")
+        print("1: pagina siguiente")
+        print("1: Pagina anterior")
+        op = input("Opcion: ")
+
+def pagina_anterior():
+    pass
+
+def pagina_siguiente():
+    pass
+
+def pagina_nueva():
+    pass
