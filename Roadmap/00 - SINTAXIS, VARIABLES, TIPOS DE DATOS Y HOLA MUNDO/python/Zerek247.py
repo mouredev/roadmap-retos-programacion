@@ -1,6 +1,6 @@
 # https://www.python.org/
 
-# Esta es una forma para comentar una linea en python
+# Esta es una primera forma para comentar una linea en python
 
 # Esta es la primera línea comentada
 # Esta es la segunda línea comentada
