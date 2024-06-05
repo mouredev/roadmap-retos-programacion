@@ -16,9 +16,16 @@ let villain = new OverkillerCharacter('Jeff');
 console.log(villain.name);
 
 let anotherVillain = new OverkillerCharacter('Henry');
-console.log(anotherVillain.name); //Imprime Jeff, ya que esa es la única instancia que puede tener la clase OverkillerCharacter
+console.log(anotherVillain.name);
 
 //EXTRA
 class UserSession {
-	constructor() {}
+	constructor() {
+		if (typeof UserSession.instance === 'object') {
+			return UserSession.instance;
+		}
+
+		UserSession.instance = this;
+		return this;
+	}
 }

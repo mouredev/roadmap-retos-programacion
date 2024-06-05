@@ -1,12 +1,20 @@
 //EJERCICIO
-//***ARRAYS***
+//ARRAYS
 let frutasQueMeGustan = ['mango', 'fresa', 'pera', 'manzana', 'uva', 'durazno'];
 console.log(frutasQueMeGustan);
 
+//-Iteración de elementos-
 for (let i = 0; i < frutasQueMeGustan.length; i++) {
-	//iteracion de los elementos de un array
 	console.log(frutasQueMeGustan[i]);
 }
+
+frutasQueMeGustan.forEach((elemento) => {
+	console.log(elemento);
+});
+
+frutasQueMeGustan.map((elemento) => {
+	console.log(elemento);
+});
 
 //-Insercion-
 frutasQueMeGustan.push('guanabana'); //inserta un elemento al final
@@ -15,7 +23,7 @@ console.log(frutasQueMeGustan);
 frutasQueMeGustan.unshift('aguacate'); //inserta un elemento al incio
 console.log(frutasQueMeGustan);
 
-frutasQueMeGustan.splice(2, 1, 'papaya'); //inserta un elemento en una ubicacion especifica
+frutasQueMeGustan.splice(2, 1, 'papaya'); //inserta un elemento en una ubicación específica
 console.log(frutasQueMeGustan);
 
 //-Borrado-
@@ -25,17 +33,17 @@ console.log(frutasQueMeGustan);
 frutasQueMeGustan.shift(); //borra un elemento al incio
 console.log(frutasQueMeGustan);
 
-frutasQueMeGustan.splice(1, 1); //borra un elemento en una ubicacion especifica
+frutasQueMeGustan.splice(1, 1); //borra un elemento en una ubicación específica
 console.log(frutasQueMeGustan);
 
 //-Actualizacion-
-frutasQueMeGustan[2] = 'piña'; //reasigna el valor del elemento Arr[indice]
+frutasQueMeGustan[2] = 'piña'; //reasigna el valor del elemento array[índice]
 console.log(frutasQueMeGustan);
 
-frutasQueMeGustan.splice(1, 1, 'parchita'); //reasigna el valor en una ubicacion especifica
+frutasQueMeGustan.splice(1, 1, 'parchita'); //reasigna el valor en una ubicación específica
 console.log(frutasQueMeGustan);
 
-frutasQueMeGustan.fill('tamarindo', 2, 3); //reasigna el valor en una ubicacion especifica
+frutasQueMeGustan.fill('tamarindo', 2, 3); //reasigna el valor en una ubicación específica
 console.log(frutasQueMeGustan);
 
 //-Ordenado-
@@ -49,7 +57,9 @@ console.log(nuevoArray2);
 nuevoArray2.sort((a, b) => b - a); //ordena los numeros de mayor a menor
 console.log(nuevoArray2);
 
-//***SETS***
+console.log(frutasQueMeGustan.indexOf('parchita'));
+
+//SETS
 const animales = new Set(['gallina', 'foca', 'lagarto']);
 console.log(animales);
 
@@ -73,13 +83,24 @@ console.log(miNuevoSet);
 let arrayDelSet = Array.from(miNuevoSet).sort((a, b) => a - b);
 console.log(arrayDelSet);
 
-//***MAPS***
+//-Otros-
+console.log(animales.has('foca'));
+
+animales.clear();
+console.log(animales);
+
+//MAPS
 const miMap = new Map([
 	['clave1', 'valor1'],
 	['uno', 1],
 	['dos', 2],
 ]);
 console.log(miMap);
+
+//-Iteración de elementos-
+miMap.forEach((element) => {
+	console.log(element);
+});
 
 //-Insercion-
 miMap.set('nombre', 'Ric');
@@ -101,7 +122,7 @@ console.log(`Mi map contiene la clave 'dos': ${miMap.has('dos')}`); //verfica si
 
 console.log(miMap.size); //nos indica la cantidad de claves-valor
 
-//***OBJETOS***
+//OBJETOS
 const persona = {
 	nombre: 'Ricardo',
 	edad: 21,
@@ -117,11 +138,22 @@ console.log(persona);
 
 //-Borrado-
 delete persona.estatura;
-console.log(persona);
 
 //-Actualizacion-
 persona.pasatiempos[1] = 'escuchar musica';
+
+persona.edad = 22;
+
 console.log(persona);
+
+console.log(Object.keys(persona)); //devuelve un array con las claves del objeto
+
+console.log(Object.values(persona)); //devuelve un array con los valores del objeto
+
+const copiaDePersona = Object.assign({}, persona);
+copiaDePersona.nombre = 'Luis';
+
+console.log(copiaDePersona);
 
 /*
  * DIFICULTAD EXTRA (opcional):
@@ -135,8 +167,6 @@ console.log(persona);
  * - También se debe proponer una operación de finalización del programa.
  */
 
-console.clear();
-
 const readline = require('readline');
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -146,8 +176,22 @@ const rl = readline.createInterface({
 const contactos = [];
 
 function insertaContacto() {
-	console.log('\nFuncion para insertar contacto');
-	muestraOpciones();
+	/**
+	 * La funcion debe agregar el contaco al array y luego crear un map a partir de él para asegurar que no se repitan los contactos
+	 * Cada contacto será un objeto con las claves nombre y número
+	 * Se debe comprobar el formato del numero ingresado. Usar RegEx
+	 */
+
+	rl.question('\nIngrese el nombre del contacto\n', (answer) => {
+		contactos.push({ nombre: answer });
+		rl.question('\nIngrese el número del contacto\n', (answer) => {
+			contactos[contactos.length - 1].numeroTelefonico = answer;
+			contactos.sort((a, b) => {
+				a.nombre - b.nombre;
+			});
+			muestraOpciones();
+		});
+	});
 }
 
 function buscaContacto() {
@@ -156,18 +200,32 @@ function buscaContacto() {
 }
 
 function actualizaContacto() {
+	/**
+	 * Debe haber una manera e reutilizar la función de búsqueda para actualizar un contacto
+	 */
 	console.log('\nFuncion para actualizar contacto');
 	muestraOpciones();
 }
 
+function mostrarLista() {
+	console.log('\nLISTA DE CONTACTOS');
+	contactos.forEach((element) => {
+		console.log(`- ${element.nombre}: ${element.numeroTelefonico}`);
+	});
+	muestraOpciones();
+}
+
 function eliminaContato() {
+	/**
+	 * Lo mismo para esta función
+	 */
 	console.log('\nFuncion para eliminar contacto');
 	muestraOpciones();
 }
 
 function muestraOpciones() {
 	rl.question(
-		'\nElige una opcion\n1.Insertar contacto\n2.Buscar contacto\n3.Actualiar contacto\n4.Eliminar contacto\n5.Salir\n',
+		'\nElige una opcion:\n1.Insertar contacto (i)\n2.Buscar contacto (b)\n3.Actualiar contacto (a)\n4.Eliminar contacto (e)\n5. Mostrar lista de contactos (m)\n6.Salir (s)\n',
 		(answer) => {
 			answer = answer.toLowerCase();
 
@@ -179,7 +237,9 @@ function muestraOpciones() {
 				actualizaContacto();
 			} else if (answer === '4' || answer === 'e' || answer === 'eliminar') {
 				eliminaContato();
-			} else if (answer === '5' || answer === 's' || answer === 'salir') {
+			} else if (answer === '5' || answer === 'm' || answer === 'mostrar') {
+				mostrarLista();
+			} else if (answer === '6' || answer === 's' || answer === 'salir') {
 				console.log('\nSaliendo de la aplicación');
 				rl.close();
 			} else {
