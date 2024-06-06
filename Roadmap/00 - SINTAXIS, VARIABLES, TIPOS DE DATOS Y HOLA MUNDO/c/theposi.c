@@ -18,7 +18,7 @@
  Comentario
  de varias
  líneas
- */
+*/
 
 #include "stdio.h"
 
