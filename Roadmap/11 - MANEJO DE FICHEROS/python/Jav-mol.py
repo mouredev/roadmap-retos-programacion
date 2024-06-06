@@ -19,13 +19,31 @@ if os.path.exists(file):
         
 # --- Extra ---
 
-# Crear Fichero
-#with open('Jav-mol.txt', 'w') as file:
-#   
-#    file.write(f'[Jabon], [10], [23] \n')
-#    file.write(f'[Arroz], [20], [10] \n')
-#    file.write(f'[Fideos], [20], [10]')
+import os
+index = None
 
+def delete_file():
+    file = 'Jav-mol.txt'
+    if os.path.exists(file):
+        os.remove(file)
+
+    return True
+
+def add_product():
+    
+    with open('Jav-mol.txt', 'a+') as file:
+    
+        product = input('Ingrese el producto: ')
+        stock = input('Ingrese la cantidad: ')
+        precio = input('Ingrese el precio: ')
+        
+        file.write(f'[{product}], [{stock}], [${precio}]' + '\n')
+
+
+def listening_product():
+    with open('Jav-mol.txt', 'r') as file:
+        texto = file.read()
+        print(texto)
 
 
 list_to_str = lambda lista:f'{lista[0]}, {lista[1]}, {lista[2]}'
@@ -36,22 +54,22 @@ def update_product(products, index, lista):
         price = input('Ingrese el precio: ')
         products[2] = f'[${price}]'
         
-        products_fin = list_to_str(products)
-        lista[index] = products_fin
+        lista_products = list_to_str(products)
+        lista[index] = lista_products
         
         return lista 
         
 def edit_product():    
     with open('Jav-mol.txt', 'r') as file:
         texto = file.read()
-        lista = texto.split('\n')
+        text_list = texto.split('\n')
         lista_final = None
         product = input('Ingrese el producto: ')
         
-        for a,i in enumerate(lista):
-            if product in i:
-                index = a
-                products = i.split(', ')
+        for num, lista in enumerate(text_list):
+            if product in lista:
+                index = num
+                products = lista.split(', ')
 
                 lista_final = update_product(products, index, lista)
             
@@ -63,3 +81,76 @@ def edit_product():
                     if produc == '':
                         continue
                     file.write(f'{produc}\n')
+
+def delete_product():
+    with open('Jav-mol.txt', 'r') as file:
+        texto = file.read()
+        text_list = texto.split('\n')
+        product = input('Ingrese el producto: ')
+        
+        for num, lista in enumerate(text_list):
+            if product in lista:
+                index = num
+        
+        if index >= 0:
+            deleted = text_list.pop(index)
+            with open('Jav-mol.txt', 'w') as file:
+                for produc in text_list:
+                    if produc == '':
+                        continue
+                    file.write(f'{produc}\n')
+                    
+        else:
+            print('Producto no encontrado')
+
+
+def ventas_por_producto():    
+    with open('Jav-mol.txt', 'r') as file:
+        texto = file.read()
+        text_list = texto.split('\n')
+        product = input('Ingrese el producto: ')        
+        
+        for lista in text_list:
+            if product in lista:
+                products = lista.split(', ')
+
+                venta_total = int(products[1][1:3]) * int(products[2][2:4])
+        print(venta_total)
+
+def ventas_total():    
+    with open('Jav-mol.txt', 'r') as file:
+        texto = file.read()
+        text_list = texto.split('\n')
+        venta_total = 0
+        
+        for lista in text_list:
+            if lista:
+                products = lista.split(', ')
+
+                venta_total += int(products[1][1:3]) * int(products[2][2:4])
+        print(venta_total)
+
+menu = """1-Agregar Producto
+2-Listar Productos
+3-Actualizar Producto
+4-Eliminar Producto
+5-Venta por Producto
+6-Venta Total
+> """
+
+functions = {
+    '1':add_product,
+    '2':listening_product,
+    '3':update_product,
+    '4':delete_product,
+    '5':ventas_por_producto,
+    '6':ventas_total
+}
+
+while True:
+    options = input(menu)
+    
+    option = functions.get(options, delete_file)
+
+    if option():
+        break
