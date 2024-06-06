@@ -1,5 +1,5 @@
 //EJERCICIO
-//https://www.javascript.com/
+//https://developer.mozilla.org/es/docs/Web/JavaScript
 //comentario en una linea
 
 /*
