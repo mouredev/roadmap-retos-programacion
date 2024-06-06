@@ -8,12 +8,11 @@
 
 # Concepto de Recursividad:
 
-def cuenta_atras():
-    inicio = 100
-    while inicio != -1:
+def cuenta_atras(inicio):
+    if inicio != -1:
         print(inicio)
-        inicio -= 1
-cuenta_atras()
+        cuenta_atras(inicio - 1)
+cuenta_atras(100)
 
 """
      * DIFICULTAD EXTRA (opcional):
