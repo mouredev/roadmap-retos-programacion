@@ -1,3 +1,4 @@
+import time
 """
 *Clases
 """
@@ -6,20 +7,20 @@
 class Ejemplo:
 
     #?atributo de clase
-    numero = 32
-
+    
     #?Inicializador de la clase
     def __init__(self) -> None:
-        pass
+        self.hora = time.time_ns()
 
     #?Funcion propia de la clase
     def mostrar_ejemplo(self):
         print("Hola Soy una clase")
 
-print(Ejemplo.numero)
+    def mostrar_hora(self):
+        print(self.hora)
 
 #!Instancia de una clase
+#?Inicializo la instancia
 x = Ejemplo()
-x.mostrar_ejemplo()
-y = Ejemplo()
-x.mostrar_ejemplo()
+x.mostrar_hora()
+x.mostrar_ejemplo
