@@ -72,48 +72,35 @@ console.log(saludo_interpolado.includes(miNombre));//El método includes() es ca
 
 //Dificultad extra
 
-function esPalindromo(txt1) {
-  let str1 = txt1.split("").reverse().join("");
-  return (txt1 === str1);
-}
+function check(word1, word2) {
 
-console.log(esPalindromo("anilina"));
+  //Palindromo
+  console.log(`Es ${word1} un palindromo?: ${word1 === word1.split("").reverse().join("")}`);
+  console.log(`Es ${word2} un palindromo?: ${word2 === word2.split("").reverse().join("")}`);
+  
+  //Anagrama
+  console.log(`Es ${word2} un anagrama de ${word1}?: ${word1.split("").sort().join("") === word2.split("").sort().join("")}`);
 
-function esAnagrama(txt1, txt2) {
-  let word1 = txt1.split("").sort();
-  let word2 = txt2.split("").sort();
-  for (let i = 0; i < word1.length; i++) {
-    if (word1[i] !== word2[i]) {
-      return false;
+  //isograma
+  function isograma(word) {
+    let textoSinNumerosNiSignos = word.replace(/\d+\D/, "").toLowerCase();
+    let textoSinAcento = textoSinNumerosNiSignos.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    let objLetras = {};
+    for (const letras in textoSinAcento) {
+      objLetras[textoSinAcento[letras]] = (objLetras[textoSinAcento[letras]] || 0) + 1;
     }
-  }
-  return true;
-}
-
-console.log(esAnagrama("letras", "lastre"));
-
-function contarLetras(txt) {
-  let textoSinNumerosNiSignos = txt.replace(/\d+\D/, "").toLowerCase();
-  let textoSinAcento = textoSinNumerosNiSignos.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  let letras = {};
-  for (let i = 0; i < textoSinAcento.length; i++) {
-    letras[textoSinAcento[i]] = (letras[textoSinAcento[i]] || 0) + 1;
-  }
-  return letras;
-}
-
-function esIsograma(txt) {
-  let palabra = contarLetras(txt);
-  let contador = 0;
-  for (const key in palabra) {
-    if (contador === 0) {
-      contador = palabra[key];
+    let isograma = true;
+    let values = Object.values(objLetras);
+    let isogramaLen = values[0];
+    for (let wordCount of values) {
+      if (wordCount !== isogramaLen) {
+        isograma = false;
+      }
     }
-    if (contador !== palabra[key]) {
-      return false;
-    }
+    return isograma;
   }
-  return true;
+  console.log(`Es ${word1} un isograma?: ${isograma(word1)}`);
+  console.log(`Es ${word2} un isograma?: ${isograma(word2)}`);
 }
 
-console.log(esIsograma("murciélago"));
+check("caso", "saco");

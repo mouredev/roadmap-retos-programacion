@@ -70,6 +70,7 @@ print(anotherText.rstrip()) #returns a copy of the string with trailing characte
 print(replaced.split()) #breaks down a string into a list of substrings using a chosen separator.
 print(replaced.startswith("H")) #	checks if string starts with the specified string
 print("126".isnumeric()) #checks numeric characters
+print("126aa".isalnum()) #checks numeric and alphabet characters
 print(replaced.index("n")) #returns the index of a substring inside the string (if found). If the substring is not found, it raises an exception.
 
 #Escape Sequences
@@ -103,6 +104,9 @@ surname = "Analisais"
 sorted = sorted(surname)
 print(sorted)
 
+#Count currents
+print(surname.lower().count("a"))
+
 
 print()
 print()
@@ -122,7 +126,7 @@ def cleanWords(word: str)-> str:
 def checkPalindromes(word1: str, word2: str) -> bool:
   """function to detect if 2 words are palindromes ( is a word, number, phrase, or other sequence of symbols that reads the same backwards as forwards, such as madam or racecar)"""
   #Check palindrome
-  if cleanWords(word1) != cleanWords(word2):
+  if cleanWords(word1) != cleanWords(word2)[::-1]:
     return False
   else:
     return True
@@ -151,7 +155,25 @@ def checkIsograms(word: str) -> bool:
       return False
     else:
       return True
+
+def checkIsogramsMoure(word: str) -> bool:
+  """function to detect if 2 words are isograms (A word or phrase in which each letter occurs the same number of times.)"""
+  listOfWord = cleanWords(word)
   
+  wordDict = dict()
+  for character in listOfWord:
+    wordDict[character] = wordDict.get(character,0) + 1
+
+  isogram = True
+  values = list(wordDict.values())
+  isogramLen = values[0]
+  for wordCount in values:
+    if wordCount != isogramLen:
+      isogram = False
+      break
+  
+  return isogram
+
 
 def checkWords(word1: str, word2: str) -> str:
   """check 2 words if they are: palindromes, anagrams or/and isograms"""
