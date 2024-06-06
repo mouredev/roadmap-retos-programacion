@@ -19,7 +19,8 @@ En Python, una de las bibliotecas más utilizadas para realizar pruebas
 unitarias es unittest. Esta biblioteca proporciona una serie de clases
 y métodos que permiten crear y ejecutar tests de forma sencilla.
 """
-import unittest 
+import unittest
+from datetime import datetime, date
 
 """
 /*
@@ -80,7 +81,7 @@ class TestSumar(unittest.TestCase):
 datos_personales = {
     "name": "Jairo",
     "age": 24,
-    "birth_date": "1993-04-01",
+    "birth_date": datetime.strptime("01-03-93", "%d-%m-%y").date(),
     "programming_languages": ["Python", "Java", "C++"],
 }
 
@@ -102,6 +103,7 @@ class TestDatosPersonales(unittest.TestCase):
         """
         self.assertIsInstance(datos_personales["name"], str)
         self.assertIsInstance(datos_personales["age"], int)
+        self.assertIsInstance(datos_personales["birth_date"], date)
         self.assertIsInstance(datos_personales["programming_languages"], list)
         for language in datos_personales["programming_languages"]:
             self.assertIsInstance(language, str)

@@ -28,7 +28,8 @@ print(birthdayDatef)
 
 diffYears = today - birthdayDate
 
-print(diffYears.days/365)
+print(f"Diff of dates: {int((diffYears.days/365))} years.")
+
 
 #EXTRA
 print("EXTRA, more formats:")
