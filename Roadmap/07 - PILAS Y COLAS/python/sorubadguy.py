@@ -37,9 +37,9 @@ def navegador(dir):
         op = input("Opcion: ")
         match op:
             case "1":
-                pagina_siguiente(dir, pagina)
+                pagina = pagina_siguiente(dir, pagina)
             case "2":
-                pagina_anterior(dir, pagina)
+                pagina = pagina_anterior(dir, pagina)
             case "0":
                 print("El navegador se cerrara")
                 break
@@ -49,11 +49,13 @@ def navegador(dir):
 def pagina_anterior(dir: list, pag: int):
     if(pag != 0):
         pag -= 1
+        print(dir[pag])
         return pag
     else:
         print(f"Usted se encuentra en: {dir[pag]}, no quedan paginas anteriores")
 
 def pagina_siguiente(dir: list, pag: int):
+    print(dir, pag)
     if(pag == len(dir)-1):
         op_sitio = input("este es el ultimo sitio visitado, desea visitar otro? s/n:\n")
         if (op_sitio == "s"):
@@ -61,31 +63,9 @@ def pagina_siguiente(dir: list, pag: int):
             pag += 1
             print(dir[pag])
             return pag
-        else:
-            pag += 1
-            print(dir[pag])
-            return pag
+    else:
+        pag += 1
+        print(dir[pag])
+        return pag
             
-#navegador(dir_web)
-var = 0
-inicio = time.time()
-
-for i in range(0,100000001):
-    var = var
-
-time.sleep(1)
-fin = time.time()
-
-print(fin - inicio)
-
-inicio = time.time()
-
-i = 0
-
-while i < 100000001:
-    var = var
-    i += 1
-
-time.sleep(1)
-fin = time.time()
-print(fin - inicio)
+navegador(dir_web)
