@@ -166,6 +166,7 @@ console.log(copiaDePersona);
  *   (o el número de dígitos que quieras)
  * - También se debe proponer una operación de finalización del programa.
  */
+console.clear();
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -186,9 +187,6 @@ function insertaContacto() {
 		contactos.push({ nombre: answer });
 		rl.question('\nIngrese el número del contacto\n', (answer) => {
 			contactos[contactos.length - 1].numeroTelefonico = answer;
-			contactos.sort((a, b) => {
-				a.nombre - b.nombre;
-			});
 			muestraOpciones();
 		});
 	});
@@ -209,6 +207,11 @@ function actualizaContacto() {
 
 function mostrarLista() {
 	console.log('\nLISTA DE CONTACTOS');
+
+	contactos.sort((a, b) => {
+		a.nombre - b.nombre;
+	});
+
 	contactos.forEach((element) => {
 		console.log(`- ${element.nombre}: ${element.numeroTelefonico}`);
 	});
