@@ -42,10 +42,11 @@ public class AndrewCodev {
 		if (factorial > 0) {
 			System.out.println("\nEl factorial de: " + numero1 + " es: " + factorial);
 		}
+        
 		// Posicion en la serie de Fibonacci
 		int posicion = 9;
 		if (posicion < 0) {
-			System.out.println("\nEl número no es valido para realizar la función factorial");
+			System.out.println("\nEl número no es valido para realizar la función Fibonacci");
 		} else {
 			int elemento = posicionFibonacci(posicion);
 			System.out.println("\nLa posición: " + posicion + " en la serie de Fibonacci " + "corresponde al elemento: "
