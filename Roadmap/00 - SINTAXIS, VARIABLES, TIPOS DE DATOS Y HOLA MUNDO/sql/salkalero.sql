@@ -18,7 +18,7 @@ DECLARE @NombreVariable INT,/*en una instrucción se puede añadir
 
 SET     @NombreVariable = 25/*en una instrucción se puede añadir 
                             más de un valor.*/
-        @NombreVariable2 = María de O 
+        @NombreVariable2 = María de la O 
 
 /*SQL no soporta constantes de forma nativa pero puedes usar una 
 variable para simular una constante*/
