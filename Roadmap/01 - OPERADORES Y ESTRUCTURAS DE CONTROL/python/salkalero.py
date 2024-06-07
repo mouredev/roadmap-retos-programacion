@@ -179,4 +179,3 @@ print("\n"*0)
 for x in range(10, 55):
    if  x % 3 != 0 and x % 2 == 0 and x != 16 :
       print(x)
-       
