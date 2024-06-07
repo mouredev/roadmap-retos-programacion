@@ -12,40 +12,40 @@ se utiliza /*....*/ */
 (Sintaxis SET: "Instrucción", "Nombre de la variable DECLARE 
 a la que hace referencia", "=", "Valor")*/
 
-DECLARE @NombreVariable INT,/*en una instrucción se puede añadir 
+DECLARE @NombreVariable INT ;/*en una instrucción se puede añadir 
                             más de una variable.*/
-        @NombreVariable2 VARCHAR(50)
+        @NombreVariable2 VARCHAR(50) ;
 
-SET     @NombreVariable = 25/*en una instrucción se puede añadir 
+SET     @NombreVariable = 25 ;/*en una instrucción se puede añadir 
                             más de un valor.*/
-        @NombreVariable2 = María de la O 
+        @NombreVariable2 = María de la O ;
 
 /*SQL no soporta constantes de forma nativa pero puedes usar una 
 variable para simular una constante*/
- DECLARE @NombreConstante INT
+ DECLARE @NombreConstante INT ;
 
- SET    @NombreConstante = 50 /*Sólo hay que evitar cambiar este 
+ SET    @NombreConstante = 50 ;/*Sólo hay que evitar cambiar este 
                                 valor y declararlo en un comentario.*/
 
 
 --Variables y sus tipos de datos nativos (algunos)
 
-DECLARE @char CHAR(50)
-        @binary BINARY 
-        @bool BOOLEAN
-        @int INT
-        @float FLOAT 
-        @date DATE
+DECLARE @char CHAR(50) ;
+        @binary BINARY ;
+        @bool BOOLEAN ;
+        @int INT ;
+        @float FLOAT ;
+        @date DATE ;
         
-SET     @char = Pepe
-        @binary = 1 
-        @bool = true
-        @int = 2
-        @float = 2.5 
-        @date = 2025/12/13
+SET     @char = Pepe ;
+        @binary = 1 ;
+        @bool = true ;
+        @int = 2 ; 
+        @float = 2.5 ; 
+        @date = 2025/12/13 ;
 
 
-PRINT ("Hola,SQL")
+PRINT ("Hola,SQL") ;
 
 
 
