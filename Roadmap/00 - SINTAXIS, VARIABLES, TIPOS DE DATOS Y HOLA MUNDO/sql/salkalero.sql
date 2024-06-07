@@ -5,7 +5,7 @@ que sí es de confianza. https://www.w3schools.com/sql/ */
 -- Para los comentarios en una sola línea se usa "--...."
 
 /* Para los comentarios en varias líneas
-se utiliza /*....*/ */
+se utiliza /*....*/ */ 
 
 /*La variable se forma de dos instrucciones: "DECLARE" y "SET" 
 (Sintaxis DECLARE: "Instrucción", "NombreVariable", "Tipo de Datos")
