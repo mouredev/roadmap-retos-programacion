@@ -87,6 +87,8 @@ def validar_numtlfno( num ):
 #Dificultad Extra
 my_contact = {}
 while True:
+    print("AllContacts")
+    print(my_contact)
     print("Introducir la opcion seleccionada:")
     print("1- Añadir Contacto")
     print("2- Consultar Contacto")
@@ -103,7 +105,43 @@ while True:
             if validar_numtlfno:
                 my_contact[num_tlfno] = nombre
         case "2":
+            print("Que desea realizar:")
+            print("1-Buscar por numero de telefono")
+            print("2-Buscar por nombre de contacto")
+            find_option = input("Seleccione la opcion:")
+            match find_option:
+                case "1":
+                    find_num_tlfno = input("Introduce el número de telefono a buscar:")
+                    if my_contact.get(find_num_tlfno):
+                        print(f"***Telefono:{find_num_tlfno} Nombre:{my_contact.get(find_num_tlfno)}")
+                    else:
+                        print("Ningun contacto encontrado")
+                case "2":
+                    find_contact = input("Introduce el nombre del contacto:")
+                    cont = 0
+                    for elem in my_contact.items():
+                        if elem[1] == find_contact:
+                            cont += 1
+                            print(f"***Telefono:{elem[0]} Nombre:{elem[1]}")
             
+                    print(f"Telefonos encontrados: {cont}")
+        case "3":
+            find_num_tlfno = input("Introduce el número de telefono a modificar:")
+            if my_contact.get(find_num_tlfno):
+                new_contact = input("Introduce nuevo nombre de contacto")
+                my_contact[find_num_tlfno] = new_contact
+            else:
+                print("Ningun contacto encontrado para modificar")
+        case "4":
+            find_num_tlfno = input("Introduce el número de telefono a borrar:")
+            if my_contact.get(find_num_tlfno):
+                 my_contact.pop(find_num_tlfno)
+            else:
+                print("Ningun contacto encontrado para borrar")
+
+
+
+
 
 
 
