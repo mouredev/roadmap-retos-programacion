@@ -87,7 +87,7 @@ class Pila {
 
 	contar() {
 		if (this.pila.length > 0) {
-      return this.pila.length;
+			return this.pila.length;
 		} else {
 			return '\nPila vacía';
 		}
@@ -98,7 +98,9 @@ class Pila {
 	}
 }
 
-console.log('\n*Ya hecha la clase y sus métodos, creamos una nueva pila y le apilamos elementos, cuya cantidad y contenido podemos mostrar en consola:');
+console.log(
+	'\n*Ya hecha la clase y sus métodos, creamos una nueva pila y le apilamos elementos, cuya cantidad y contenido podemos mostrar en consola:'
+);
 
 let myStack = new Pila();
 
@@ -112,7 +114,9 @@ console.log(`\nCantidad de elementos de la pila: ${myStack.contar()}`);
 
 myStack.mostrar();
 
-console.log('\n*Probamos desapilar elementos y volvemos a mostrar la cantidad y contenido:');
+console.log(
+	'\n*Probamos desapilar elementos y volvemos a mostrar la cantidad y contenido:'
+);
 
 myStack.desapilar();
 
@@ -120,7 +124,9 @@ console.log(`\nCantidad de elementos de la pila: ${myStack.contar()}`);
 
 myStack.mostrar();
 
-console.log('\n*Creamos una nueva pila para que nos muestre este mensaje cuando esté vacía:');
+console.log(
+	'\n*Creamos una nueva pila para que nos muestre este mensaje cuando esté vacía:'
+);
 
 let myStack2 = new Pila();
 
@@ -147,7 +153,7 @@ class Cola {
 
 	contar() {
 		if (this.cola.length > 0) {
-      return this.cola.length;
+			return this.cola.length;
 		} else {
 			return '\nCola vacía';
 		}
@@ -158,7 +164,9 @@ class Cola {
 	}
 }
 
-console.log('\n*Ya hecha la clase y sus métodos, creamos una nueva cola y encolamos elementos, cuya cantidad y contenido podemos mostrar en consola:');
+console.log(
+	'\n*Ya hecha la clase y sus métodos, creamos una nueva cola y encolamos elementos, cuya cantidad y contenido podemos mostrar en consola:'
+);
 
 let myQueue = new Cola();
 
@@ -172,7 +180,9 @@ console.log(`\nCantidad de elementos de la cola: ${myQueue.contar()}`);
 
 myQueue.mostrar();
 
-console.log('\n*Probamos desencolar elementos y volvemos a mostrar la cantidad y contenido:');
+console.log(
+	'\n*Probamos desencolar elementos y volvemos a mostrar la cantidad y contenido:'
+);
 
 myQueue.desencolar();
 

@@ -82,7 +82,7 @@ let sortedByAverage = myStudents.toSorted((a, b) => {
 });
 
 let sortedByAge = myStudents.toSorted((a, b) => {
-	return a.getAge() - b.getAge();
+	return a.age - b.age;
 });
 
 console.log(`\nCANTIDAD DE ESTUDIANTES: ${myStudents.length}`);

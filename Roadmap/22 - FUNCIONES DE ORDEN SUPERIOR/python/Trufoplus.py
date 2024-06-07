@@ -25,8 +25,8 @@ high_order_function(greeting, 'Dani')
 
 # DATOS:
 names = ['Dani', 'Moure', 'Juanito', 'Conchita']
-birthdates = ['1989', '1986', '1990', '1970']
-grades = [9, 10, 4, 7]
+birthdates = [1989, 1986, 1990, 1970]
+grades = [9,10,4,7]
 students_list = list(zip(names, birthdates, grades))
 
 
@@ -41,7 +41,7 @@ def sort_by_grades(students_list):
     """
     Ordena a los estudiantes por calificaicon mas alta a la mas baja
     """
-    students_list.sort(key = lambda x: x[2], reverse=True)
+    students_list = sorted(students_list, key = lambda x: x[2])
     print('\nLista de estudiantes ordenada por notas:')
     show_list(students_list)
 
@@ -59,7 +59,7 @@ def sort_by_age(students_list):
     """
     Ordena a los estudiantes por edad de menor a mayor
     """
-    students_list.sort(key=lambda x: x[1], reverse=True)
+    students_list = sorted(students_list, key=lambda x: x[1], reverse=True)
     print('\nLista Estudiantes ordenados por edad de menor a mayor: ')
     show_list(students_list)
 
@@ -68,9 +68,9 @@ def best_grade(students_list):
     """
     Muestra la calificacion mas alta
     """
-    students_list.sort(key = lambda x: x[2], reverse=True)
+    students_list = max(students_list, key=lambda x: x[2])
     print('\nEl mejor estudiante es: ')
-    print(students_list[0])
+    print(students_list)
 
 
 def show_list(students_list):
