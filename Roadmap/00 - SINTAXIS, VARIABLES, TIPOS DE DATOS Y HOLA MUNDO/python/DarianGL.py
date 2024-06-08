@@ -23,4 +23,3 @@ my_string = "para crear cadenas de texto"
 my_other_string = 'Tambien se puede utilizando comillas simples'
 
 print("¡Hola, Python!") # Esto sirve para imprimir por computadora
-
