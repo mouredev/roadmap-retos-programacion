@@ -1,10 +1,4 @@
-/*
- * EJERCICIO:
- * Implementa los mecanismos de introducción y recuperación de elementos propios de las
- * pilas (stacks - LIFO) y las colas (queue - FIFO) utilizando una estructura de pilaay
- * o lista (dependiendo de las posibilidades de tu lenguaje).
- */
-
+//EJERCICIO
 //LIFO. Last in first out: el ultimo en entrar es el primero en salir
 let miStack = [1, 2, 3, 4];
 console.log("\n---PILAS (STACKS - LIFO)---");
