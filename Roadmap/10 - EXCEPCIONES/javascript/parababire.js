@@ -5,6 +5,8 @@ try {
   console.lg("Hello World");
 } catch (error) {
   console.log(error = 'Error de tipeado: console.lg("Hello World") no es una función.');
+} finally {
+  console.log("La ejecución ha finalizado");
 }
 
 //Error personalizado
@@ -28,7 +30,6 @@ function evaluarNumero(num) {
       }
       console.log(num + num);
       console.log("Ningún error encontrado");
-      console.log("La ejecución ha finalizado");
     }
   } catch (err) {
     if (err instanceof Error_Personalizado) {
@@ -38,6 +39,8 @@ function evaluarNumero(num) {
     } else {
       console.log(err);
     }
+  } finally {
+    console.log("La ejecución ha finalizado");
   }
 }
 evaluarNumero("Hola");
