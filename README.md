@@ -56,7 +56,7 @@
 |19|[ENUMERACIONES](./Roadmap/19%20-%20ENUMERACIONES/ejercicio.md)|[📝](./Roadmap/19%20-%20ENUMERACIONES/python/mouredev.py)|[▶️](https://youtu.be/0auuM4GROVA)|[👥](./Roadmap/19%20-%20ENUMERACIONES/)
 |20|[PETICIONES HTTP](./Roadmap/20%20-%20PETICIONES%20HTTP/ejercicio.md)|[📝](./Roadmap/20%20-%20PETICIONES%20HTTP/python/mouredev.py)|[▶️](https://youtu.be/-pYMoPYSkgM)|[👥](./Roadmap/20%20-%20PETICIONES%20HTTP/)
 |21|[CALLBACKS](./Roadmap/21%20-%20CALLBACKS/ejercicio.md)|[📝](./Roadmap/21%20-%20CALLBACKS/python/mouredev.py)|[▶️](https://youtu.be/tqQo9SjJFlY)|[👥](./Roadmap/21%20-%20CALLBACKS/)
-|22|[FUNCIONES DE ORDEN SUPERIOR](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/ejercicio.md)|[📝](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/python/mouredev.py)||[👥](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/)
+|22|[FUNCIONES DE ORDEN SUPERIOR](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/ejercicio.md)|[📝](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/python/mouredev.py)|[▶️](https://youtu.be/ABniGtbqAXk)|[👥](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/)
 |23|[SINGLETON](./Roadmap/23%20-%20SINGLETON/ejercicio.md)|[🗓️ 10/06/24](https://discord.gg/JP8xRGvR?event=1244742186696970351)||[👥](./Roadmap/23%20-%20SINGLETON/)
 
 ## Instrucciones
