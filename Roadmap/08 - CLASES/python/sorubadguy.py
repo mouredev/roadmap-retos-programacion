@@ -29,7 +29,7 @@ print(f"{perro2.nombre} puede hacer los siguientes trucos: {perro2.trucos}")
 
 #?Herencia, raza tiene las mismas caracteristicas de perro, ademas de las suyas propias
 
-class Raza(Perro):
+class Raza(Perro):#!Las clases pueden heredar tambien 2 o mas clases base
 
     def __init__(self, nombre: str, color_pelo: str, tipo_pelo: str, altura: float, raza = "puro perro"):
         super().__init__(nombre)
@@ -45,3 +45,81 @@ perro3 = Raza("pancho", "marron", "corto", 1.2)
 perro3.agregar_truco("Hacerce el muertito")
 perro3.mostrar_raza()
 print(perro3.trucos) #?caracteristica de la clase perro, heredada por raza
+
+"""
+!Extra
+"""
+"""
+*Clase Pila
+"""
+class Pila:
+
+    def __init__(self, pila = []) -> None:
+        self.pila = []
+        if len(pila) == 0:
+            self.pila = []
+        else:
+            for i in range(0, len(pila)):
+                self.pila.append(pila[i])
+
+
+    def tamano_pila(self):
+        print(f"La pila posee {len(self.pila)} elementos")
+
+    def anadir_elemento(self):
+        self.pila.append(input("Ingrese el valor a agregar: "))
+    
+    def quitar_elemento(self):
+        self.pila.pop()
+    
+    def mostrar_contenido(self):
+        elemento = self.pila.pop()
+        print(elemento)
+        if(len(self.pila) > 0):
+            self.mostrar_contenido()
+        self.pila.append(elemento)
+
+
+pila = Pila([1,2,3,4,5,6,7,8,9])
+pila.tamano_pila()
+pila.mostrar_contenido()
+#pila.anadir_elemento()
+pila.tamano_pila()
+pila.mostrar_contenido()
+pila.quitar_elemento()
+pila.mostrar_contenido()
+
+"""
+*Clase Cola
+"""
+
+class Cola:
+
+    def __init__(self, cola = []) -> None:
+        self.cola = []
+        if len(cola) == 0:
+            self.cola = []
+        else:
+            for i in range(0, len(cola)):
+                self.cola.append(cola[i])
+
+    def tamano_cola(self):
+        print(f"La cola posee {len(self.cola)} elementos")
+
+    def anadir_elento(self):
+        self.cola.append(input("Ingrese el valor a agregar: "))
+
+    def quitar_elemento(self):
+        self.cola.pop(0)
+
+    def mostrar_contenido(self):
+        for i in range(0, len(self.cola)):
+            print(self.cola[i])
+
+
+cola = Cola([1,2,3,4,5,6,7,8,9])
+cola.anadir_elento()
+cola.tamano_cola()
+cola.quitar_elemento()
+cola.tamano_cola()
+cola.mostrar_contenido()
