@@ -80,11 +80,17 @@ print(my_dict)
 my_dict.pop("k5") #Devuelve el valor
 print(my_dict)
 
+#Dificultad Extra
+import re
+
 
 def validar_numtlfno( num ):
-    return True
+    if re.search("^[0-9]{1,11}$",num):
+        return True
+    else:
+        return False
 
-#Dificultad Extra
+
 my_contact = {}
 while True:
     print("AllContacts")
@@ -101,9 +107,11 @@ while True:
             break
         case "1":
             num_tlfno = input("Introducir numero de telefono:")
-            nombre = input("Introducir nombre:")
-            if validar_numtlfno:
+            if validar_numtlfno(num_tlfno):
+                nombre = input("Introducir nombre:")
                 my_contact[num_tlfno] = nombre
+            else:
+                print("Formato incorrecto. El numero de telefono tiene que ser un numero de 1 a 11 digitos")
         case "2":
             print("Que desea realizar:")
             print("1-Buscar por numero de telefono")
