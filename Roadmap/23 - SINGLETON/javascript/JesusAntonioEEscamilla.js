@@ -40,10 +40,53 @@ desconectarSingleton.someMethod();
 desconectarSingleton.someProperty = 'newSomeValue';
 console.log(desconectarSingleton.someProperty);
 
+// Comprobando si existe
+console.log(conectarSingleton === desconectarSingleton);
 
 
 /**-----DIFICULTAD EXTRA-----*/
 
-//  Pendiente
+//  Creo la clase para la sesión de usuario
+class userLogin {
+    constructor(){
+        if (!!userLogin.instance) {   // Aquí compruebo si existe la instancia
+            return userLogin.instance;
+        }
+
+        this.user = null;   // Aun no se agrega nada entonces los dejo vació
+        userLogin.instance = this;  // Instanciando la clase si tiene datos
+
+        return this;
+    }
+
+    //  Guardo los datos este método
+    setUser(id, username, name, email){
+        this.user = { id, username, name, email }
+    }
+
+    //  Este método retorno los que se guardo
+    getUser(){
+        return this.user;
+    }
+
+    //  Limpio todo de la instancia
+    clearUser(){
+        this.user = null;
+    }
+}
+
+//  Ejemplo de las instancia de sesión de usuario
+session1 = new userLogin();
+session1.setUser(1,"JesusA", "Jesus Antonio", "jesus@hola.com");
+console.log(session1.getUser());
+
+session2 = new userLogin();
+console.log(session2.getUser());
+
+//  Lo limpio y compruebo si existe algún dato
+session2.clearUser();
+console.log(session1.getUser());
+console.log(session2.getUser());
+
 
 /**-----DIFICULTAD EXTRA-----*/
