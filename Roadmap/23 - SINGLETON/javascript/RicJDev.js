@@ -22,9 +22,7 @@ console.log(anotherVillain.name);
 class UserSession {
 	app = 'Ric-JS-Sandbox';
 
-	user = {
-		instances: 0,
-	};
+	user = null;
 
 	constructor() {
 		if (typeof UserSession.instance === 'object') {
@@ -36,12 +34,14 @@ class UserSession {
 	}
 
 	init(name, username, userID, email) {
-		if (this.user.instances === 0) {
-			this.user.name = name;
-			this.user.username = username;
-			this.user.userID = userID;
-			this.user.email = email;
-			this.user.instances++;
+		if (this.user === null) {
+			this.user = {
+				name: name,
+				username: username,
+				userID: userID,
+				email: email,
+			};
+
 			return this.user;
 		}
 	}
@@ -51,9 +51,7 @@ class UserSession {
 	}
 
 	close() {
-		return (this.user = {
-			instances: 0,
-		});
+		this.user = null;
 	}
 }
 
@@ -73,7 +71,7 @@ console.log(session);
 session.getData();
 
 console.log(
-	'\nIngresamos al usuario. Cuando ya existe un instancia de este no es posible ingresar otro usuario a menos que se cierre la instancia'
+	'\nIngresamos a otro usuario. Como ya existe un instancia de este no es posible ingresar uno nuevo, a menos que se cierre la instancia'
 );
 session.init('Fred', 'CrazyFred4564', 7880003, 'crazyfred@gmail.com');
 session.getData();
