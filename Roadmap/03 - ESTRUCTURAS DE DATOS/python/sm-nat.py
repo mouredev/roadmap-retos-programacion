@@ -117,4 +117,6 @@ def mi_agenda():
             else:
                 print("Opción no válida. Por favor, elige una opción del 1 al 6.")
 
+    main()
+
 mi_agenda()
