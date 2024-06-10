@@ -18,7 +18,7 @@ s1 = Singleton()
 print(f"First instance: {s1}")
 s2 = Singleton()
 print(f"Second instance: {s2}")
-print(f"s1 is s2: {s1 is s2}")
+print(f"s1 is s2?: {s1 is s2}")
 
 
 """
@@ -46,7 +46,7 @@ class User:
         return cls._instance
     
 
-    # These are instance attributes. If __init__ exist, it will overwrite class attributes
+    # These are instance attributes. If __init__ exist, get_user() method will point to these instance attributes istead the class attributes.
     """
     def __init__(self, id: str, username: str, name: str, email: str):
         print("Inside init")
