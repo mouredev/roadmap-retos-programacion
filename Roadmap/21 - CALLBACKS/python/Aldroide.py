@@ -5,18 +5,19 @@
 
 import random
 import time
+import threading
 
 
-def saludar(nombre):
-    print(f"Hola {nombre}")
-
-
-def EntradaUsuario(callback):
-    nombre = input("Ingresa tu nombre: ")
+def saludar(nombre, callback):
+    print("Ejecutando saludo...")
     callback(nombre)
 
 
-EntradaUsuario(saludar)
+def EntradaUsuario(nombre):
+    print(f"Hola, {nombre}!")
+
+
+saludar("aldo", EntradaUsuario)
 
 """DIFICULTAD EXTRA (opcional):
     Crea un simulador de pedidos de un restaurante utilizando callbacks.
@@ -30,36 +31,34 @@ EntradaUsuario(saludar)
 
 
 # Definir las funciones callback
+def order_process(dish, confirm_callback, ready_callback, delivered_callback):
+    def process():
+        confirm_callback(dish)
+        # Simula el tiempo de preparación
+        prep_time = random.randint(1, 10)
+        time.sleep(prep_time)
+        ready_callback(dish)
+        # Simula el tiempo de entrega
+        delivery_time = random.randint(1, 10)
+        time.sleep(delivery_time)
+        delivered_callback(dish)
+    threading.Thread(target=process).start()
 
-def confirm(dish):
+
+def confirm(dish: str):
     print(f"Pedido confirmado: {dish}")
 
 
-def ready(dish):
+def ready(dish: str):
     print(f"Plato listo: {dish}")
 
 
-def deliver(dish):
+def delivered(dish: str):
     print(f"Pedido entregado: {dish}")
 
 # Función que procesa los pedidos
 
 
-def process(dish, confirm, ready, deliver):
-    # Confirmar el pedido
-    confirm(dish)
-
-    # Simula el tiempo de preparación
-    prep_time = random.randint(1, 10)
-    time.sleep(prep_time)
-    ready(dish)
-
-    # Simula el tiempo de entrega
-    delivery_time = random.randint(1, 10)
-    time.sleep(delivery_time)
-    deliver(dish)
-
-
 # Simular el procesamiento de un pedido
 dish = input("¿Que desea ordenar? ")
-process(dish, confirm, ready, deliver)
+order_process("Limon", confirm, ready, delivered)
