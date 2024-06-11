@@ -63,3 +63,57 @@ print("simon torbett @storbett".find("torbett"))
 
 print(s3.lower().count("t"))
 
+#formateo
+print ("saludo: {}, lenguaje: {}!".format(s1, s2))
+
+# interpolacion
+
+print (f"saludo: {s1}, lenguaje: {s2}!")
+
+# transformacion en lista de caracteres
+
+print (list(s3))
+       
+# transformacion en lista en cadena 
+l1 = [s1, ", ", s2, "!"]
+print ("".join(l1))     
+
+#transformacion numerica
+
+s4 = "1234"
+s4 = int(s4)
+print (s4)
+
+s5 = "1234.123"
+s5 = float(s5)
+print (s5)
+
+#comparaciones varias
+s4 = 1234
+print (s1.isalnum())
+print (s1.isalpha())
+
+
+# extra
+
+
+def check(palabra1: str, palabra2: str):
+
+#palindromos
+
+     print (f"{palabra1} es un palindromo?: {palabra1 == palabra1[::-1]}") 
+     print (f"{palabra2} es un palindromo?: {palabra2 == palabra2[::-1]}") 
+
+# Anagramas
+
+     print (f"{palabra1} es un anagrama de {palabra2}?: {sorted(palabra1) == sorted(palabra2)}") 
+
+# Isogramas 
+
+
+check( "radar", "python")
+check( "amor", "roma")
+
+
+
+
