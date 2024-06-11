@@ -228,7 +228,7 @@ function eliminaContato() {
 
 function muestraOpciones() {
 	rl.question(
-		'\nElige una opcion:\n1.Insertar contacto (i)\n2.Buscar contacto (b)\n3.Actualiar contacto (a)\n4.Eliminar contacto (e)\n5. Mostrar lista de contactos (m)\n6.Salir (s)\n',
+		'\nElige una opcion:\n1.Insertar contacto (i)\n2.Buscar contacto (b)\n3.Actualiar contacto (a)\n4.Eliminar contacto (e)\n5.Mostrar lista de contactos (m)\n6.Salir (s)\n',
 		(answer) => {
 			answer = answer.toLowerCase();
 
