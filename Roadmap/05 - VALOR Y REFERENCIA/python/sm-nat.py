@@ -50,3 +50,15 @@ Estos parámetros los intercambia entre ellos en su interior, los retorna, y su 
 se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
 variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
 Comprueba también que se ha conservado el valor original en las primeras."""
+
+#por valor
+def intercambio_por_valor(a,b):
+    c = a
+    a = b
+    b = c
+    return a,b
+x = 1
+y = 3
+nuevo_x, nuevo_y = intercambio_por_valor(x,y)
+print(f"originales: x = {x}, y = {y}")
+print(f"intercambiados: nuevo x = {nuevo_x}, nuevo y = {nuevo_y}")
