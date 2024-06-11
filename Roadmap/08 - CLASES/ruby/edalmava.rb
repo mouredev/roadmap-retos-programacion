@@ -33,11 +33,11 @@ if __FILE__ == $0
     ma.decir_hola
     ma.decir_adios
 
-    ma.nombres = 'Edwin'
+    ma.nombres = 'Edward'
     ma.decir_hola
     ma.decir_adios
 
-    ma.nombres = ['Alberto', 'Martinez', 'Vanegas']
+    ma.nombres = ['Alexis', 'Maldonado', 'Vargas']
     ma.decir_hola
     ma.decir_adios
 
