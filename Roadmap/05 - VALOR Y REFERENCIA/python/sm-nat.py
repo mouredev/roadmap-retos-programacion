@@ -62,3 +62,15 @@ y = 3
 nuevo_x, nuevo_y = intercambio_por_valor(x,y)
 print(f"originales: x = {x}, y = {y}")
 print(f"intercambiados: nuevo x = {nuevo_x}, nuevo y = {nuevo_y}")
+
+#Por referencia
+def intercambio_por_referencia(lista_a,lista_b):
+    temp = lista_a[:]
+    lista_a[:] = lista_b[:]
+    lista_b[:] = temp
+    return lista_a,lista_b
+lista_1 = [1,2,3,]
+lista_2 = [4,5,6]
+nueva_lista_1,nueva_lista_2 = intercambio_por_referencia(lista_1,lista_2)
+print(f"original: lista_1 = {lista_1}, lista_2 = {nueva_lista_2}")
+print(f"cambiadas: lista_1 = {nueva_lista_1}, lista_2 = {nueva_lista_2}")
