@@ -99,20 +99,35 @@ print (s1.isalpha())
 
 def check(palabra1: str, palabra2: str):
 
-#palindromos
+    #palindromos
+    print (f"{palabra1} es un palindromo?: {palabra1 == palabra1[::-1]}") 
+    print (f"{palabra2} es un palindromo?: {palabra2 == palabra2[::-1]}") 
 
-     print (f"{palabra1} es un palindromo?: {palabra1 == palabra1[::-1]}") 
-     print (f"{palabra2} es un palindromo?: {palabra2 == palabra2[::-1]}") 
+    # Anagramas
 
-# Anagramas
+    print (f"{palabra1} es un anagrama de {palabra2}?: {sorted(palabra1) == sorted(palabra2)}") 
 
-     print (f"{palabra1} es un anagrama de {palabra2}?: {sorted(palabra1) == sorted(palabra2)}") 
+    # Isogramas 
+    print (f"{palabra1} es un isograma?: {len(palabra1) == len(set(palabra1))}") 
+    print (f"{palabra2} es un isograma?: {len(palabra2) == len(set(palabra2))}") 
 
-# Isogramas 
+    palabra_dict = dict()
+    for palabra in palabra1:
+        palabra_dict[palabra] = palabra_dict.get(palabra, 0) + 1
 
+        isograma = True
+        values = list(palabra_dict.values())
+        isograma_len = values[0]
+        for palabra_conteo in palabra_dict:
+            if len(palabra_conteo) != isograma_len:
+                isograma = False
+                break
+
+    print (isograma)
+    print (palabra_dict)
 
 check( "radar", "python")
-check( "amor", "roma")
+# check( "amor", "roma")
 
 
 
