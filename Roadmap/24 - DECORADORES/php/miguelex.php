@@ -32,19 +32,62 @@
     // Vamos a usar el patron decorador para definir ahora un tipo especial de coche que sol otien 2 puertas
     class Coupe extends VehicleDecorator {
         public function doors() {
-            return ;
+            return 2;
         }
     }
 
     $car = new Car();
     $bike = new Bike();
-    $car->wheels();
-    $bike->wheels();
+    echo "Un coche tiene ".$car->wheels()." ruedas\n";
+    echo "Una bicicleta tiene ".$bike->wheels(). " ruedas\n";
     $carWithDoors = new Coupe($car);
-    $carWithDoors->doors();
-    $carWithDoors->wheels();
+    echo "Prueba de uso de decorador\n";    
+    echo "Un coche modelo Coupe tiene ".$carWithDoors->wheels(). " ruedas pero solo tiene ".$carWithDoors->doors()." puertas\n";
 
+    // Ejercicio extra
 
+    echo "\n\nEjercicio extra\n";
+    
+
+    interface Funcion {
+        public function ejecutar();
+    }
+
+    class Suma implements Funcion {
+        private $a;
+        private $b;
+
+        public function __construct($a, $b) {
+            $this->a = $a;
+            $this->b = $b;
+        }
+
+        public function ejecutar() {
+            return $this->a + $this->b;
+        }
+    }
+
+    class ContadorDeLlamadas implements Funcion {
+        private $funcion;
+        private static $contador = 0;
+
+        public function __construct(Funcion $funcion) {
+            $this->funcion = $funcion;
+        }
+
+        public function ejecutar() {
+            self::$contador++;
+            echo "La función ha sido llamada " . self::$contador . " veces.\n";
+            return $this->funcion->ejecutar();
+        }
+    }
+
+    $suma = new Suma(2, 2);
+    $sumaContada = new ContadorDeLlamadas($suma);
+
+    echo $sumaContada->ejecutar() . "\n";
+    echo $sumaContada->ejecutar() . "\n";
+    echo $sumaContada->ejecutar() . "\n";
 
 
 
