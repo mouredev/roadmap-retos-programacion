@@ -43,6 +43,7 @@ $arrayAsociativo = [
     "Nacionalidad" => "VZLA",
 ];
 
+
 //Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 echo "¡Hola, {$variableString}!\n";
 echo "Esto es una segunda forma de concatenar en " . $variableString;
