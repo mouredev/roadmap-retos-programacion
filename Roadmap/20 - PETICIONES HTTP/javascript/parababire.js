@@ -1,3 +1,4 @@
+const prompt = require('prompt-sync')();
 //Ejecicio
 
 const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
@@ -19,12 +20,14 @@ async function showResponse() {
 
 //Extra
 
-const pokeApiUrl = 'https://pokeapi.co/api/v2/pokemon/ditto';
+let pokemon = prompt('Nombre del pokemon: ', '').toLowerCase();
+
+const pokeApiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemon}/`;
 let pokemonName;
 fetch(pokeApiUrl)
 .then(response => {
   if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
+    throw new Error(`HTTP error, pokemon no encontrado! Status: ${response.status}`);
   }
   return response.json();
   }
@@ -33,6 +36,15 @@ fetch(pokeApiUrl)
   pokemonName = data;
 })
 .then(() => {
-  console.log(pokemonName.species.name);
+  console.log(`Nombre: ${pokemonName.species.name}, \nId: ${pokemonName.id}, \nPeso: ${pokemonName.weight}, \nAltura: ${pokemonName.height}, \nCadena de evoluciones: ${pokemonName}`);
+})
+.then(() => {
+  console.log('Tipo(s):');
+  for (const key in pokemonName.types) {
+    if (Object.hasOwnProperty.call(pokemonName.types, key)) {
+      console.log(`${pokemonName.types[key].type.name}`);
+      
+    }
+  }
 })
 .catch(error=> console.log(error))
