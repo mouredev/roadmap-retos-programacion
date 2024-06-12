@@ -93,9 +93,6 @@ console.log("Cumple con alguna condición para algo:", esEstudiante || tieneTrab
 // Combinación de operadores
 console.log("Cumple con alguna de las condiciones combinadas:", (edad >= 18 && tieneLicencia) || esEstudiante); //  Cumple con alguna de las condiciones combinadas: true
 
-
-// Operadores unarios en JavaScript
-
 // Definimos algunas variables para ejemplificar
 edad = 25;
 tieneLicencia = true;
