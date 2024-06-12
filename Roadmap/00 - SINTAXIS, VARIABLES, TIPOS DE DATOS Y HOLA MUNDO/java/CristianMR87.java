@@ -12,7 +12,7 @@ public class CristianMR87 {
          */
 
         //Crear una variable:
-        int miVariable = 123;
+        int miVariable = 1234;
         final int constante = 1;
 
         //Variables con tipos de datos primitivos
