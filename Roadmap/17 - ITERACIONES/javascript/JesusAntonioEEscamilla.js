@@ -43,4 +43,19 @@ for (const item of iterable) {
     console.log(`El numero es : ${item}`);
 }
 
+//  FUNCIÓN RECESIVA
+function contar(i) {
+    if (i <= 10) {
+        console.log(`Se cuenta a ${i}`);
+        contar(i + 1);
+    }
+}
+contar(1);
+
+//  FOR...IN
+const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for (const key in number) {
+    console.log(`Se muestra el indice: ${number[key]}`);
+}
+
 /**-----DIFICULTAD EXTRA-----*/
