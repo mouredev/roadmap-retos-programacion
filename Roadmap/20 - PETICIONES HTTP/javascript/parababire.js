@@ -1,4 +1,5 @@
 const prompt = require('prompt-sync')();
+
 //Ejecicio
 
 const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
@@ -16,7 +17,7 @@ async function showResponse() {
   .catch(error=> console.log(error));
 }
 
-//showResponse();
+showResponse();
 
 //Extra
 
@@ -36,15 +37,53 @@ fetch(pokeApiUrl)
   pokemonName = data;
 })
 .then(() => {
-  console.log(`Nombre: ${pokemonName.species.name}, \nId: ${pokemonName.id}, \nPeso: ${pokemonName.weight}, \nAltura: ${pokemonName.height}, \nCadena de evoluciones: ${pokemonName}`);
+  console.log(`Nombre: ${pokemonName.species.name}, \nId: ${pokemonName.id}, \nPeso: ${pokemonName.weight}, \nAltura: ${pokemonName.height}`);
 })
 .then(() => {
   console.log('Tipo(s):');
   for (const key in pokemonName.types) {
     if (Object.hasOwnProperty.call(pokemonName.types, key)) {
       console.log(`${pokemonName.types[key].type.name}`);
-      
     }
   }
+})
+.then(() => {
+  const pokeApiUrlEvolutionChain = `https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`;
+  let pokemonEvolutionChainUrl;
+  fetch(pokeApiUrlEvolutionChain)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error, Status: ${response.status} obteniendo evoluciones`);
+    }
+    return response.json();
+    }
+  )
+  .then(data => {
+    pokemonEvolutionChainUrl = data['evolution_chain']['url'];
+  })
+  .then(() => {
+    fetch(pokemonEvolutionChainUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status} en busqueda de cadena de evolución`);
+      }
+      return response.json();
+      }
+    )
+    .then(data => {
+      console.log('Cadena de evolución:');
+      let getEvolves = data => {
+        console.log(data['species']['name']);
+        if (data.hasOwnProperty('evolves_to')) {
+          for (const iterator of data['evolves_to']) {
+            getEvolves(iterator);
+          }
+        }
+      }
+      getEvolves(data['chain']);
+    })
+    .catch(error=> console.log(error))
+  })
+  .catch(error=> console.log(error))
 })
 .catch(error=> console.log(error))
