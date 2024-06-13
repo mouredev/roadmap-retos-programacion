@@ -3,22 +3,22 @@ Ejercicio
 """
 
 
-class Sigleton:
+class Singleton:
 
     _instance = None
 
     def __new__(cls):
         if not cls._instance:
-            cls._instance = super(Sigleton, cls).__new__(cls)
+            cls._instance = super(Singleton, cls).__new__(cls)
         return cls._instance
 
 
-sigleton1 = Sigleton()
-print(sigleton1)
-sigleton2 = Sigleton()
-print(sigleton2)
+singleton1 = Singleton()
+print(singleton1)
+singleton2 = Singleton()
+print(singleton2)
 
-print(sigleton1 is sigleton2)
+print(singleton1 is singleton2)
 
 """
 Extra
