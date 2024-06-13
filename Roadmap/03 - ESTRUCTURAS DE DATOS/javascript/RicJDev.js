@@ -1,7 +1,6 @@
 //EJERCICIO
 //ARRAYS
 let frutasQueMeGustan = ['mango', 'fresa', 'pera', 'manzana', 'uva', 'durazno'];
-console.log(frutasQueMeGustan);
 
 //-Iteración de elementos-
 for (let i = 0; i < frutasQueMeGustan.length; i++) {
@@ -193,6 +192,7 @@ copiaDePersona.nombre = 'Luis';
 console.log(copiaDePersona);
 
 //EXTRA
+//Se ejecuta en Node js
 console.log('\nAGENDA DE CONTACTOS');
 
 const { resolve } = require('path');
@@ -231,7 +231,7 @@ function funcionDeBusqueda(nombre) {
 	return result;
 }
 
-let telefonoRegEx = /(\d{4})\-(\d{7})/g;
+let telefonoRegEx = /(\d{4})\-(\d{7})/;
 
 function insertaContacto() {
 	let nuevoContacto = {
@@ -242,14 +242,14 @@ function insertaContacto() {
 	rl.question('\nIngrese el nombre del contacto: ', (nombre) => {
 		nuevoContacto.nombre = nombre;
 
-		rl.question(`\nIngrese el número de telefono de ${nombre}: `, (telefono) => {
+		rl.question('\nIngrese el número de telefono del contacto: ', (telefono) => {
 			if (telefonoRegEx.test(telefono)) {
 				nuevoContacto.telefono = telefono;
 				contactos.push(nuevoContacto);
 
 				console.log('\nContacto agregado con exito!');
 			} else {
-				console.log('\nFormato inválido. Por favor seguir el formato 0000-1234567');
+				console.log('\nFormato inválido. Por favor seguir el formato 0000-0000000');
 			}
 
 			agendaDeContactos();
@@ -287,13 +287,13 @@ function actualizaContacto() {
 				agendaDeContactos();
 			}
 
-			rl.question(`\nIngrese el nuevo número de teléfono de ${nombre}: `, (nuevoTelefono) => {
+			rl.question('\nIngrese el nuevo número de teléfono del contacto: ', (nuevoTelefono) => {
 				if (telefonoRegEx.test(nuevoTelefono)) {
 					contacto.telefono = nuevoTelefono;
 
 					console.log('\nEl contacto ha sido actualizado!');
 				} else {
-					console.log('\nFormato inválido. Por favor seguir el formato 0000-1234567');
+					console.log('\nFormato inválido. Por favor seguir el formato 0000-0000000');
 				}
 
 				agendaDeContactos();
