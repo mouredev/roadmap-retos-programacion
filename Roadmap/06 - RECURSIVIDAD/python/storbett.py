@@ -1,13 +1,13 @@
 # ejericio
 
 
-# def contador(number: int):
+def contador(number: int):
     
-#     if number >= 0:
-#         print (number)
-#         contador(number - 1)
+    if number >= 0:
+        print (number)
+        contador(number - 1)
 
-# contador(100)
+contador(100)
 
 
 """
