@@ -51,6 +51,30 @@ const user = { name: "Jesus", email: "JesusAEE@outlook.com" };
 
 /**-----DIFICULTAD EXTRA-----*/
 
-// Pendiente
+/*Decorador Contabilizar */
+//  Decorador
+function contadorLlamadas(func) {
+    let count = 0;
+
+    function decorador(...args) {
+        count++;
+        console.log(`La función ${func.name} ha sido llamada ${count} veces`);
+        return func(...args);
+    }
+    return decorador;
+}
+
+//  Función de suma
+function suma(a, b) {
+    return a + b;
+}
+
+//  Aplicamos el decorador
+const sumaDecorador = contadorLlamadas(suma);
+
+//  Probamos la función decorador
+console.log(sumaDecorador(2, 4));
+console.log(sumaDecorador(7, 1));
+console.log(sumaDecorador(5, 6));
 
 /**-----DIFICULTAD EXTRA-----*/
