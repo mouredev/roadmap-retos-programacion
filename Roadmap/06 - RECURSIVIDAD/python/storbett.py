@@ -37,4 +37,23 @@ def fibonacci( number: int ) -> int:
     else:
         return fibonacci (number - 1) + fibonacci (number - 2)
 
-print (fibonacci (7))
+print (fibonacci (-7))
+
+
+def hanoi(n, origen, destino, auxiliar):
+    # Paso base: si solo hay un disco, se mueve directamente al destino
+    if n == 1:
+        print(f"Mover disco 1 de {origen} a {destino}")
+        return
+    
+    # Paso 1: Mover n-1 discos del origen al auxiliar, usando destino como auxiliar
+    hanoi(n - 1, origen, auxiliar, destino)
+    
+    # Paso 2: Mover el disco n del origen al destino
+    print(f"Mover disco {n} de {origen} a {destino}")
+    
+    # Paso 3: Mover n-1 discos del auxiliar al destino, usando origen como auxiliar
+    hanoi(n - 1, auxiliar, destino, origen)
+
+# Llamada a la función con 3 discos
+hanoi(5, 'A', 'C', 'B')
