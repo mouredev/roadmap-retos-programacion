@@ -77,7 +77,7 @@ class Gerente_Proyecto(Empleado):
         salir = False
         while(not salir):
             print("Seleccione el proyecto finalizado")
-            for i in range(len(self.proyecto)):
+            for i in range(0, len(self.proyecto)):
                 print(f"{i}: {self.proyecto[i]}")
             
             try:
@@ -86,6 +86,10 @@ class Gerente_Proyecto(Empleado):
                 print("Opcion incorrecta")
             finally:
                 salir = True
+
+    def mostrar_proyectos(self):
+        for i in range(0, len(self.proyecto)):
+            print(self.proyecto[i])
 
 
 class Programador(Empleado):
