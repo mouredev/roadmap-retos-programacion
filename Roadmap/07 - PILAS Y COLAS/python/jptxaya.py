@@ -25,8 +25,11 @@ print(my_list)
 
 
 print("DIFICULTAD EXTRA")
+print("#######Navegacion########")
 def navegador_web():
-    my_navegacion = []
+    my_navigation = []
+    my_back_urls=[]
+    
     while True:
        print("Selecciona la opcion:")
        print("1-Navegar a url")
@@ -38,15 +41,20 @@ def navegador_web():
            case "4":
                break
            case "1":
-               doc = input("Introduce la url:")
-               my_navegacion.append(doc)
+               url_actual = input("Introduce la url:")
+               my_navigation.append(url_actual)
            case "2":
-               if len(my_prints) > 0:
-                   print(f"Imprimiendo documento.... {my_prints.pop(0)}")
-                   print("Documento impreso")
-               else:
-                   print("No existen documentos para imprimir")
-
+               if len(my_back_urls) > 0:
+                   my_navigation.append(my_back_urls.pop())
+           case "3":
+                if len(my_navigation) > 0:
+                    my_back_urls.append(my_navigation.pop())
+       if len(my_navigation) > 0:
+           print(f"URL actual: {my_navigation[len(my_navigation)-1]}") 
+       else:
+           print(f"URL actual: None")
+               
+navegador_web()
 
 print("#######Impresion########")
 def impresion():
