@@ -67,21 +67,6 @@ class Gerente_Proyecto(Empleado):
     def agregar_proyecto(self, proyecto: list):
         self.proyecto = []
         self.proyecto.append(proyecto)
-    
-    def quitar_proyecto(self):
-
-        salir = False
-        while(not salir):
-            print("Seleccione el proyecto finalizado")
-            for i in range(0, len(self.proyecto)):
-                print(f"{i}: {self.proyecto[i]}")
-            
-            try:
-                self.proyecto.pop(int(input("Ingrese el proyecto finalizado: ")))
-            except:
-                print("Opcion incorrecta")
-            finally:
-                salir = True
 
     def mostrar_proyectos(self):
         for i in range(0, len(self.proyecto)):
@@ -89,7 +74,9 @@ class Gerente_Proyecto(Empleado):
 
 
 class Programador(Empleado):
-    pass
+
+    def estoy_programando(self):
+        print(f"{self.nombre} esta programando")
 
 empleado1 = Empleado(4, 35.5, 1, "Pedrito")
 empleado1.mostrar_datos_base()
@@ -99,8 +86,9 @@ gerente1.mostrar_datos_base()
 gerente1.imprimir_tarea()
 
 gerente2 = Gerente_Proyecto(10, 15.4, 3, "Pablo")
-gerente2.agregar_proyecto("web organizacion", "pagos")
+gerente2.agregar_proyecto(["web organizacion", "pagos"])
 gerente2.mostrar_datos_base()
 gerente2.mostrar_proyectos()
-gerente2.quitar_proyecto()
-gerente2.mostrar_proyectos()
+
+programador1 = Programador(5, 8, 4, "Fede")
+programador1.estoy_programando()
