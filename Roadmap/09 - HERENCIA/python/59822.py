@@ -29,7 +29,7 @@ perro = Perro("cafe", "guau", "labrador")
 perro.hacer_sonido()
 
 
-''' Ejercicio '''
+''' Ejercicios de Herencia'''
 
 class Empresa:
     
