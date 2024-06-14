@@ -24,4 +24,4 @@ print("Cola después de los enqueue:", cola)
 primer_elemento = cola.pop(0)
 
 print("Elemento eliminado (dequeue):", primer_elemento)  
-print("Cola después del dequeue:", cola)  
+print("Cola después del dequeue:", cola)
