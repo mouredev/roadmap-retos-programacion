@@ -19,7 +19,7 @@ mi_variable = str
 
 mi_constante = "me llamo sunjamer"
 
-mi_var_int = 1 
+mi_var_int = 26 
 mi_var_float = 3.14
 mi_bool = True
 mi_var_str = "un string"
