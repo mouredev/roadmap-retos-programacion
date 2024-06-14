@@ -53,15 +53,11 @@ class Empleado():
         self.paga = paga
         self.nombre = nombre
         self.id = id
-    pass
+    
+    def mostrar_datos_base(self):
+        print(f"id: {self.id}\nnombre: {self.nombre}\ncarga horaria: {self.carga_horaria} horas\npaga: {self.paga}")
 
 class Gerente(Empleado):
-
-    def imprimir_gerente(self):
-        print(self.id)
-        print(self.nombre)
-        print(self.paga)
-        print(self.horario)
 
     def imprimir_tarea(self):
         print(f"{self.nombre} es gerente general")
@@ -94,3 +90,17 @@ class Gerente_Proyecto(Empleado):
 
 class Programador(Empleado):
     pass
+
+empleado1 = Empleado(4, 35.5, 1, "Pedrito")
+empleado1.mostrar_datos_base()
+
+gerente1 = Gerente(8, 20, 2, "pancho")
+gerente1.mostrar_datos_base()
+gerente1.imprimir_tarea()
+
+gerente2 = Gerente_Proyecto(10, 15.4, 3, "Pablo")
+gerente2.agregar_proyecto("web organizacion", "pagos")
+gerente2.mostrar_datos_base()
+gerente2.mostrar_proyectos()
+gerente2.quitar_proyecto()
+gerente2.mostrar_proyectos()
