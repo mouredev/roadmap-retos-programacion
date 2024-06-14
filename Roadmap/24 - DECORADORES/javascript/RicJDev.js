@@ -1,50 +1,48 @@
 //EJERCICIO
-class BasicPizza {
-	constructor(size) {
-		this.price = this.pricesList[size];
-	}
-
-	toppings = ['salsa', 'mozzarella', 'pepperoni'];
-
-	//Precios en dólares, jajs
-	pricesList = {
-		small: '$5.00',
-		medium: '$9.00',
-		large: '$12.00',
-		extralarge: '$16.00',
-	};
-
-	getPrice() {
-		console.log(this.price);
-	}
-}
-
-class HawaianPizza extends BasicPizza {
-	constructor(size) {
-		super(size);
-		this.toppings.push('jamón', 'piña');
-		this.price = this.pricesList[size];
-	}
-
-	pricesList = {
-		small: '$6.70',
-		medium: '$10.50',
-		large: '$13.50',
-		extralarge: '$16.30',
+function steveDecorator(fun) {
+	return function (...arg) {
+		let result = fun(...arg);
+		console.log('Soy Steve, el decorador');
+		return result;
 	};
 }
 
-class PizzaDecorator extends BasicPizza {
-	constructor(pizza) {
-		super(pizza.size, pizza.toppings);
-		this.pizza = pizza;
-	}
-
-	getPrice() {
-		this.pizza.getPrice();
-	}
+function greeting(name) {
+	console.log(`\nHola, ${name}`);
 }
 
-let pizza1 = new HawaianPizza('small');
+greeting('Jeff');
 
-pizza1.getPrice();
+greeting = steveDecorator(greeting);
+
+greeting('Gerard');
+
+//EXTRA
+function counterDecorator(fun) {
+	let count = 0;
+
+	return function (...arg) {
+		count++;
+		result = fun(...arg);
+		console.log(`Conteo de llamadas de ${fun.name}(): ${count}`);
+		return result;
+	};
+}
+
+function addTwoNumbers(a, b) {
+	console.log(`\nEl resultado de sumar ${a} y ${b} es ${a + b}`);
+}
+
+addTwoNumbers = counterDecorator(addTwoNumbers);
+
+addTwoNumbers(10, 23);
+addTwoNumbers(14, 3);
+
+function square(a) {
+	console.log(`\nEl cuadrado de ${a} es igual a ${a * a}`);
+}
+
+square = counterDecorator(square);
+
+square(9);
+square(5);
