@@ -198,3 +198,13 @@ try {
   } finally {
     console.log('Operación finalizada')
   }
+
+
+// -3- Dificultad extra
+
+for (var ejercicioExtra = 10; ejercicioExtra <= 55; ejercicioExtra++) {
+    if (ejercicioExtra % 2 || ejercicioExtra == 16 || !(ejercicioExtra % 3)) {
+        continue;
+    }
+    console.log(ejercicioExtra)
+}
