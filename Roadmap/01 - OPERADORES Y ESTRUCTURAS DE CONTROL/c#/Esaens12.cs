@@ -1,98 +1,157 @@
-﻿namespace _00_SINTAXIS__VARIABLES__TIPOS_DE_DATOS_Y_HOLA_MUNDO
+﻿using System.Threading.Channels;
+
+namespace _01_OPERADORES_Y_ESTRUCTURAS_DE_CONTROL
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            /* EJERCICIO:
-* - Crea un comentario en el código y coloca la URL del sitio web oficial del
-*   lenguaje de programación que has seleccionado.
-* - Representa las diferentes sintaxis que existen de crear comentarios
-*   en el lenguaje (en una línea, varias...).
-* - Crea una variable (y una constante si el lenguaje lo soporta).
-* - Crea variables representando todos los tipos de datos primitivos
-*   del lenguaje (cadenas de texto, enteros, booleanos...).
-* - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!" */
+            /*
+   * EJERCICIO:
+   * - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
+   *   Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits...
+   *   (Ten en cuenta que cada lenguaje puede poseer unos diferentes)
+   * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
+   *   que representen todos los tipos de estructuras de control que existan
+   *   en tu lenguaje:
+   *   Condicionales, iterativas, excepciones...
+   * - Debes hacer print por consola del resultado de todos los ejemplos.
+   *
+   * DIFICULTAD EXTRA (opcional):
+   * Crea un programa que imprima por consola todos los números comprendidos
+   * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+   *
+   * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
+   */
 
-            //https://dotnet.microsoft.com/es-es/languages/csharp SITIO OFICIAL DE C#
+            // Operadores aritméticos
+            int a = 10;
+            int b = 3;
+            Console.WriteLine("Operadores aritméticos:");
+            Console.WriteLine($"Suma: {a + b}");
+            Console.WriteLine($"Resta: {a - b}");
+            Console.WriteLine($"Multiplicación: {a * b}");
+            Console.WriteLine($"División: {a / b}");
+            Console.WriteLine($"Módulo: {a % b}");
 
-            // COMENTARIO EN UNA SOLA LINEA
+            // Operadores lógicos
+            bool verdad = true;
+            bool falso = false;
+            Console.WriteLine("\nOperadores lógicos:");
+            Console.WriteLine($"AND: {verdad && falso}");
+            Console.WriteLine($"OR: {verdad || falso}");
+            Console.WriteLine($"NOT: {!verdad}");
 
-            /* COMENTARIO
-             * EN 
-             * VARIAS
-             * LINEAS */
+            // Operadores de comparación
+            Console.WriteLine("\nOperadores de comparación:");
+            Console.WriteLine($"Igual a: {a == b}");
+            Console.WriteLine($"Distinto de: {a != b}");
+            Console.WriteLine($"Mayor que: {a > b}");
+            Console.WriteLine($"Menor que: {a < b}");
+            Console.WriteLine($"Mayor o igual que: {a >= b}");
+            Console.WriteLine($"Menor o igual que: {a <= b}");
 
-            string variable; // variable de tipo string
+            // Operadores de asignación
+            int c = 5;
+            Console.WriteLine("\nOperadores de asignación:");
+            c += 3;
+            Console.WriteLine($"c += 3: {c}");
+            c -= 2;
+            Console.WriteLine($"c -= 2: {c}");
+            c *= 2;
+            Console.WriteLine($"c *= 2: {c}");
+            c /= 4;
+            Console.WriteLine($"c /= 4: {c}");
+            c %= 3;
+            Console.WriteLine($"c %= 3: {c}");
 
-            const double pi = 3.1416; // esto es una variable constante
+            // Operadores de identidad
+            object x = new object();
+            object y = x;
+            object z = new object();
+            Console.WriteLine("\nOperadores de identidad:");
+            Console.WriteLine($"x es y: {ReferenceEquals(x, y)}");
+            Console.WriteLine($"x es z: {ReferenceEquals(x, z)}");
 
-            // Tipos Enteros
+            // Operadores de pertenencia
+            int[] array = { 1, 2, 3, 4, 5 };
+            Console.WriteLine("\nOperadores de pertenencia:");
+            Console.WriteLine($"3 en array: {Array.Exists(array, element => element == 3)}");
+            Console.WriteLine($"6 en array: {Array.Exists(array, element => element == 6)}");
 
-            // byte: Almacena un número entero sin signo de 8 bits (0 a 255)
-            byte byteVar = 255;
+            // Operadores de bits
+            int bit1 = 6; // 110 en binario
+            int bit2 = 3; // 011 en binario
+            Console.WriteLine("\nOperadores de bits:");
+            Console.WriteLine($"AND bit a bit: {bit1 & bit2}"); // 010
+            Console.WriteLine($"OR bit a bit: {bit1 | bit2}");  // 111
+            Console.WriteLine($"XOR bit a bit: {bit1 ^ bit2}"); // 101
+            Console.WriteLine($"NOT bit a bit: {~bit1}");       // 001...1010
+            Console.WriteLine($"Desplazamiento a la izquierda: {bit1 << 1}"); // 1100
+            Console.WriteLine($"Desplazamiento a la derecha: {bit1 >> 1}");   // 11
 
-            // sbyte: Almacena un número entero con signo de 8 bits (-128 a 127)
-            sbyte sbyteVar = -128;
+            // Estructuras de control: Condicional
+            Console.WriteLine("\nEstructuras de control: Condicional");
+            if (a > b)
+            {
+                Console.WriteLine("a es mayor que b");
+            }
+            else
+            {
+                Console.WriteLine("a no es mayor que b");
+            }
 
-            // short: Almacena un número entero con signo de 16 bits (-32768 a 32767)
-            short shortVar = -32768;
+            // Estructuras de control: Iterativa (for)
+            Console.WriteLine("\nEstructuras de control: Iterativa (for)");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"Iteración for: {i}");
+            }
 
-            // ushort: Almacena un número entero sin signo de 16 bits (0 a 65535)
-            ushort ushortVar = 65535;
+            // Estructuras de control: Iterativa (while)
+            Console.WriteLine("\nEstructuras de control: Iterativa (while)");
+            int j = 0;
+            while (j < 5)
+            {
+                Console.WriteLine($"Iteración while: {j}");
+                j++;
+            }
 
-            // int: Almacena un número entero con signo de 32 bits (-2,147483648 a 2147483647)
-            int intVar = -2147483648;
+            // Estructuras de control: Iterativa (do-while)
+            Console.WriteLine("\nEstructuras de control: Iterativa (do-while)");
+            int k = 0;
+            do
+            {
+                Console.WriteLine($"Iteración do-while: {k}");
+                k++;
+            } while (k < 5);
 
-            // uint: Almacena un número entero sin signo de 32 bits (0 a 4294967295)
-            uint uintVar = 4294967295;
+            // Estructuras de control: Manejo de excepciones
+            Console.WriteLine("\nEstructuras de control: Manejo de excepciones");
+            try
+            {
+                int divisionPorCero = a / 0;
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine($"Excepción atrapada: {e.Message}");
+            }
 
-            // long: Almacena un número entero con signo de 64 bits (-9223372036854775808 a 9223372036854775807)
-            long longVar = -9223372036854775808;
+            Console.WriteLine("\nCiclo FOR para dificultad extra");  // Ciclo for para pasar por una lista ENTRE 10 Y 55 (INCLUIDOS) con diferentes condiciones (PAR, DIFERENTE A 16 Y MULTIPLOS DE 3) 
 
-            // ulong: Almacena un número entero sin signo de 64 bits (0 a 18446744073709551615)
-            ulong ulongVar = 18446744073709551615;
-
-            // Tipos de Coma Flotante
-
-            // float: Almacena un número de punto flotante de precisión simple de 32 bits (±1.5e-45 a ±3.4e38), con 7 dígitos de precisión
-            float floatVar = 3.14f;
-
-            // double: Almacena un número de punto flotante de precisión doble de 64 bits (±5.0e-324 a ±1.7e308), con 15-16 dígitos de precisión
-            double doubleVar = 3.141592653589793;
-
-            // Tipo Decimal
-
-            // decimal: Almacena un número de punto flotante decimal de 128 bits (±1.0e-28 a ±7.9e28), con 28-29 dígitos de precisión. Ideal para cálculos financieros
-            decimal decimalVar = 3.1415926535897932384626433832m;
-
-            // Tipo Booleano
-
-            // bool: Almacena un valor booleano que puede ser true o false
-            bool boolVar = true;
-
-            // Tipo de Carácter
-
-            // char: Almacena un carácter Unicode de 16 bits. Puede almacenar cualquier carácter Unicode
-            char charVar = 'A';
-
-            // Tipo de Cadena
-
-            // string: Almacena una secuencia de caracteres. Es un tipo de referencia
-            string stringVar = "Hola, mundo!";
-
-            // Tipo de Puntero Nulo
-
-            // object: El tipo base de todos los tipos en C#. Puede almacenar cualquier tipo de dato
-            object objectVar = "Esto es un objeto";
-            object objectVar2 = 35.6743;
-            object objectVar3 = 'a';
-            object objectVar4 = true;
-            object objectVar5 = 456;
-
-            string lenguaje = "C#";
-
-            Console.WriteLine($" HOLA {lenguaje}");
+            for(int i = 10; i <= 55; i++)
+            {
+                if(i % 2 == 0)
+                {
+                    if(i != 16)
+                    {
+                        if(i % 3 != 0)
+                        {
+                            Console.WriteLine(i);
+                        }
+                    }
+                }
+            }
         }
     }
 }
