@@ -1,3 +1,7 @@
+import random
+from time import sleep
+
+
 def main():
     print("===== MAIN =====")
 
@@ -20,5 +24,42 @@ def main():
     print("main() ejecutado con éxito")
 
 
+def extra():
+    print("===== EXTRA =====")
+
+    def confirm_base(dish: str) -> None:
+        print(f"Pedido '{dish}' confirmado!")
+
+    def confirm_premium(dish: str) -> None:
+        print(f"Su excelencia, su pedido '{dish}' ha sido confirmado.")
+
+    def ready_base(dish: str) -> None:
+        print(f"Pedido '{dish}' listo!")
+
+    def ready_premium(dish: str) -> None:
+        print(f"Vuecencia, su pedido '{dish}' está ya listo.")
+
+    def delivered_base(dish: str) -> None:
+        print(f"Pedido '{dish}' entregado!")
+
+    def delivered_premium(dish: str) -> None:
+        print(f"Alteza, su pedido '{dish}' ha sido ya entregado.")
+
+    def process_dish(dish: str, user_credit: int) -> None:
+        confirm, ready, delivered = confirm_base, ready_base, delivered_base
+        if user_credit > 1000:
+            confirm, ready, delivered = confirm_premium, ready_premium, delivered_premium
+
+        confirm(dish)
+        sleep(random.randrange(1, 10))
+        ready(dish)
+        sleep(random.randrange(1, 10))
+        delivered(dish)
+
+    process_dish("Ostras rellenas de caviar", user_credit=5000)
+    process_dish("Bocata de fuagrás", user_credit=5)
+
+
 if __name__ == "__main__":
     main()
+    extra()
