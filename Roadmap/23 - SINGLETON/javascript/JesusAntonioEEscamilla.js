@@ -76,17 +76,18 @@ class userLogin {
 }
 
 //  Ejemplo de las instancia de sesión de usuario
+//  Creo la instancia por primera vez
 session1 = new userLogin();
 session1.setUser(1,"JesusA", "Jesus Antonio", "jesus@hola.com");
 console.log(session1.getUser());
 
+//  Se vuelve a crear la instancia pero ya existe
 session2 = new userLogin();
 console.log(session2.getUser());
 
-//  Lo limpio y compruebo si existe algún dato
-session2.clearUser();
-console.log(session1.getUser());
-console.log(session2.getUser());
+//  Limpiando la instancia
+session3 = new userLogin();
+session3.clearUser();
 
 
 /**-----DIFICULTAD EXTRA-----*/
