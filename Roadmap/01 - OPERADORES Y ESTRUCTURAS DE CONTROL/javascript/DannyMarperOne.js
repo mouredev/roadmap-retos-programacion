@@ -190,7 +190,7 @@ Crea un programa que imprima por consola todos los números comprendidos
 
 let i = 10;
 for (i; i <= 55; i++) {
-    if (i % 3 !== 0 && i !== 16) {
+    if (i % 2 === 0 && i % 3 !== 0 && i !== 16) {
         console.log(`${i}`);
     }
 }
