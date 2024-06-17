@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 17 de junio de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/JTkmHgY6?event=1247249059278749716)** por país y crea un **[recordatorio](https://discord.gg/JTkmHgY6?event=1247249059278749716)**
+> #### Lunes 24 de junio de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/EWMJPcUq?event=1249918242370355262)** por país y crea un **[recordatorio](https://discord.gg/EWMJPcUq?event=1249918242370355262)**
 
 ## Roadmap
 
@@ -58,7 +58,8 @@
 |21|[CALLBACKS](./Roadmap/21%20-%20CALLBACKS/ejercicio.md)|[📝](./Roadmap/21%20-%20CALLBACKS/python/mouredev.py)|[▶️](https://youtu.be/tqQo9SjJFlY)|[👥](./Roadmap/21%20-%20CALLBACKS/)
 |22|[FUNCIONES DE ORDEN SUPERIOR](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/ejercicio.md)|[📝](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/python/mouredev.py)|[▶️](https://youtu.be/ABniGtbqAXk)|[👥](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/)
 |23|[SINGLETON](./Roadmap/23%20-%20SINGLETON/ejercicio.md)|[📝](./Roadmap/23%20-%20SINGLETON/python/mouredev.py)|[▶️](https://youtu.be/cOIcFo_w9hA)|[👥](./Roadmap/23%20-%20SINGLETON/)
-|24|[DECORADORES](./Roadmap/24%20-%20DECORADORES/ejercicio.md)|[🗓️ 17/06/24](https://discord.gg/JTkmHgY6?event=1247249059278749716)||[👥](./Roadmap/24%20-%20DECORADORES/)
+|24|[DECORADORES](./Roadmap/24%20-%20DECORADORES/ejercicio.md)|[📝](./Roadmap/24%20-%20DECORADORES/python/mouredev.py)||[👥](./Roadmap/24%20-%20DECORADORES/)
+|25|[LOGS](./Roadmap/25%20-%20LOGS/ejercicio.md)|[🗓️ 24/06/24](https://discord.gg/EWMJPcUq?event=1249918242370355262)||[👥](./Roadmap/25%20-%20LOGS/)
 
 ## Instrucciones
 
