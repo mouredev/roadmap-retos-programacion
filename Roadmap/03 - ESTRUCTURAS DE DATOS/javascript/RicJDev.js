@@ -1,7 +1,6 @@
 //EJERCICIO
 //ARRAYS
 let frutasQueMeGustan = ['mango', 'fresa', 'pera', 'manzana', 'uva', 'durazno'];
-console.log(frutasQueMeGustan);
 
 //-Iteración de elementos-
 for (let i = 0; i < frutasQueMeGustan.length; i++) {
@@ -17,47 +16,84 @@ frutasQueMeGustan.map((elemento) => {
 });
 
 //-Insercion-
-frutasQueMeGustan.push('guanabana'); //inserta un elemento al final
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.push('guanabana');
 
-frutasQueMeGustan.unshift('aguacate'); //inserta un elemento al incio
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.unshift('aguacate');
 
-frutasQueMeGustan.splice(2, 1, 'papaya'); //inserta un elemento en una ubicación específica
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.splice(2, 1, 'papaya');
 
 //-Borrado-
-frutasQueMeGustan.pop(); //borra un elemento al final
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.pop();
 
-frutasQueMeGustan.shift(); //borra un elemento al incio
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.shift();
 
-frutasQueMeGustan.splice(1, 1); //borra un elemento en una ubicación específica
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.splice(1, 1);
 
 //-Actualizacion-
-frutasQueMeGustan[2] = 'piña'; //reasigna el valor del elemento array[índice]
-console.log(frutasQueMeGustan);
+frutasQueMeGustan[2] = 'piña';
 
-frutasQueMeGustan.splice(1, 1, 'parchita'); //reasigna el valor en una ubicación específica
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.splice(1, 1, 'parchita');
 
-frutasQueMeGustan.fill('tamarindo', 2, 3); //reasigna el valor en una ubicación específica
-console.log(frutasQueMeGustan);
+frutasQueMeGustan.fill('tamarindo', 2, 3);
+
+//-Búsqueda-
+console.log(frutasQueMeGustan.indexOf('parchita'));
+
+frutasQueMeGustan.push('parchita');
+console.log(frutasQueMeGustan.lastIndexOf('parchita'));
+
+console.log(frutasQueMeGustan.includes('parchita'));
+console.log(frutasQueMeGustan.includes('naranja'));
+
+console.log(
+	frutasQueMeGustan.find((valor) => {
+		return valor === 'tamarindo';
+	})
+);
+
+console.log(
+	frutasQueMeGustan.findIndex((valor) => {
+		return valor === 'parchita';
+	})
+);
+
+console.log(
+	frutasQueMeGustan.findLast((valor) => {
+		return valor === 'parchita';
+	})
+);
+
+console.log(
+	frutasQueMeGustan.findLastIndex((valor) => {
+		return valor === 'parchita';
+	})
+);
 
 //-Ordenado-
 let nuevoArray = [12, 10, 34, 25, 82];
 console.log(nuevoArray);
-nuevoArray.sort((a, b) => a - b); //ordena los numeros de menor a mayor
+nuevoArray.sort((a, b) => a - b);
 console.log(nuevoArray);
 
 let nuevoArray2 = [12, 10, 34, 25, 82];
 console.log(nuevoArray2);
-nuevoArray2.sort((a, b) => b - a); //ordena los numeros de mayor a menor
+nuevoArray2.sort((a, b) => b - a);
 console.log(nuevoArray2);
 
-console.log(frutasQueMeGustan.indexOf('parchita'));
+//-Concatenación-
+console.log(nuevoArray.concat(nuevoArray2));
+
+//-Otros-
+console.log(frutasQueMeGustan.join(' '));
+
+let nuevoArray3 = [
+	[1, 3],
+	[23, 43],
+	[21, 67],
+	[12, 23],
+];
+
+console.log(nuevoArray3.flat());
 
 //SETS
 const animales = new Set(['gallina', 'foca', 'lagarto']);
@@ -155,102 +191,179 @@ copiaDePersona.nombre = 'Luis';
 
 console.log(copiaDePersona);
 
-/*
- * DIFICULTAD EXTRA (opcional):
- * Crea una agenda de contactos por terminal.
- * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
- * - Cada contacto debe tener un nombre y un número de teléfono.
- * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
- *   los datos necesarios para llevarla a cabo.
- * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
- *   (o el número de dígitos que quieras)
- * - También se debe proponer una operación de finalización del programa.
- */
-console.clear();
+//EXTRA
+//Se ejecuta en Node js
+console.log('\nAGENDA DE CONTACTOS');
 
+const { resolve } = require('path');
 const readline = require('readline');
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
 
-const contactos = [];
+const contactos = [
+	/*
+	{
+		nombre: 'Pedro',
+		telefono: '0412-5248215',
+	},
+	{
+		nombre: 'Julia',
+		telefono: '0424-3333333',
+	},
+	{
+		nombre: 'Juan',
+		telefono: '0212-3434345',
+	},
+	*/
+];
+
+function funcionDeBusqueda(nombre) {
+	let result = undefined;
+
+	contactos.find((contacto) => {
+		if (contacto.nombre === nombre) {
+			result = contacto;
+		}
+	});
+
+	return result;
+}
+
+let telefonoRegEx = /(\d{4})\-(\d{7})/;
 
 function insertaContacto() {
-	/**
-	 * La funcion debe agregar el contaco al array y luego crear un map a partir de él para asegurar que no se repitan los contactos
-	 * Cada contacto será un objeto con las claves nombre y número
-	 * Se debe comprobar el formato del numero ingresado. Usar RegEx
-	 */
+	let nuevoContacto = {
+		nombre: '',
+		telefono: '',
+	};
 
-	rl.question('\nIngrese el nombre del contacto\n', (answer) => {
-		contactos.push({ nombre: answer });
-		rl.question('\nIngrese el número del contacto\n', (answer) => {
-			contactos[contactos.length - 1].numeroTelefonico = answer;
-			muestraOpciones();
+	rl.question('\nIngrese el nombre del contacto: ', (nombre) => {
+		nuevoContacto.nombre = nombre;
+
+		rl.question('\nIngrese el número de telefono del contacto: ', (telefono) => {
+			if (telefonoRegEx.test(telefono)) {
+				nuevoContacto.telefono = telefono;
+				contactos.push(nuevoContacto);
+
+				console.log('\nContacto agregado con exito!');
+			} else {
+				console.log('\nFormato inválido. Por favor seguir el formato 0000-0000000');
+			}
+
+			agendaDeContactos();
 		});
 	});
 }
 
 function buscaContacto() {
-	console.log('\nFuncion para buscar contacto');
-	muestraOpciones();
+	if (contactos.length > 0) {
+		rl.question('\nIngrese el nombre del contacto: ', (nombre) => {
+			let contacto = funcionDeBusqueda(nombre);
+
+			if (contacto === undefined) {
+				console.log('\nNo existe');
+			} else {
+				console.log(`\n${contacto.nombre}: ${contacto.telefono}`);
+			}
+
+			agendaDeContactos();
+		});
+	} else {
+		console.log('\nNo hay registros');
+		agendaDeContactos();
+	}
 }
 
 function actualizaContacto() {
-	/**
-	 * Debe haber una manera e reutilizar la función de búsqueda para actualizar un contacto
-	 */
-	console.log('\nFuncion para actualizar contacto');
-	muestraOpciones();
+	if (contactos.length > 0) {
+		rl.question('\nIngrese el nombre del contacto: ', (nombre) => {
+			let contacto = funcionDeBusqueda(nombre);
+
+			if (contacto === undefined) {
+				console.log('\nNo existe');
+
+				agendaDeContactos();
+			}
+
+			rl.question('\nIngrese el nuevo número de teléfono del contacto: ', (nuevoTelefono) => {
+				if (telefonoRegEx.test(nuevoTelefono)) {
+					contacto.telefono = nuevoTelefono;
+
+					console.log('\nEl contacto ha sido actualizado!');
+				} else {
+					console.log('\nFormato inválido. Por favor seguir el formato 0000-0000000');
+				}
+
+				agendaDeContactos();
+			});
+		});
+	} else {
+		console.log('\nNo hay registros');
+		agendaDeContactos();
+	}
+}
+
+function eliminaContacto() {
+	if (contactos.length > 0) {
+		rl.question('\nIngrese el nombre del contacto: ', (nombre) => {
+			let contacto = funcionDeBusqueda(nombre);
+
+			if (contacto === undefined) {
+				console.log('\nNo existe');
+			} else {
+				contactos.splice(contactos.indexOf(contacto), 1);
+
+				console.log('\nContacto eliminado exitosamente!');
+			}
+
+			agendaDeContactos();
+		});
+	} else {
+		console.log('\nNo hay registros');
+		agendaDeContactos();
+	}
 }
 
 function mostrarLista() {
-	console.log('\nLISTA DE CONTACTOS');
+	if (contactos.length > 0) {
+		console.log('\nLISTA DE CONTACTOS\n');
 
-	contactos.sort((a, b) => {
-		a.nombre - b.nombre;
-	});
+		contactos.forEach((elemento) => {
+			console.log(`- ${elemento.nombre}: ${elemento.telefono}`);
+		});
+	} else {
+		console.log('\nNo hay registros');
+	}
 
-	contactos.forEach((element) => {
-		console.log(`- ${element.nombre}: ${element.numeroTelefonico}`);
-	});
-	muestraOpciones();
+	agendaDeContactos();
 }
 
-function eliminaContato() {
-	/**
-	 * Lo mismo para esta función
-	 */
-	console.log('\nFuncion para eliminar contacto');
-	muestraOpciones();
-}
-
-function muestraOpciones() {
-	rl.question(
-		'\nElige una opcion:\n1.Insertar contacto (i)\n2.Buscar contacto (b)\n3.Actualiar contacto (a)\n4.Eliminar contacto (e)\n5.Mostrar lista de contactos (m)\n6.Salir (s)\n',
-		(answer) => {
-			answer = answer.toLowerCase();
-
-			if (answer === '1' || answer === 'i' || answer === 'insertar') {
-				insertaContacto();
-			} else if (answer === '2' || answer === 'b' || answer === 'buscar') {
-				buscaContacto();
-			} else if (answer === '3' || answer === 'a' || answer === 'actualizar') {
-				actualizaContacto();
-			} else if (answer === '4' || answer === 'e' || answer === 'eliminar') {
-				eliminaContato();
-			} else if (answer === '5' || answer === 'm' || answer === 'mostrar') {
-				mostrarLista();
-			} else if (answer === '6' || answer === 's' || answer === 'salir') {
-				console.log('\nSaliendo de la aplicación');
-				rl.close();
-			} else {
-				console.log('\nIngrese un valor válido');
-				muestraOpciones();
-			}
-		}
+function agendaDeContactos() {
+	console.log(
+		'\n1. Insertar contacto\n2. Buscar contacto\n3. Actualizar contacto\n4. Eliminar contacto\n5. Mostrar lista de contactos\n6. Salir'
 	);
+
+	rl.question('\nSeleccione una opción: ', (opcion) => {
+		if (opcion === '1') {
+			insertaContacto();
+		} else if (opcion === '2') {
+			buscaContacto();
+		} else if (opcion === '3') {
+			actualizaContacto();
+		} else if (opcion === '4') {
+			eliminaContacto();
+		} else if (opcion === '5') {
+			mostrarLista();
+		} else if (opcion === '6') {
+			console.log('\nSaliendo de la aplicación...');
+			rl.close();
+		} else {
+			console.log('\nOpción inválida. Introduzca un número del 1 al 6 para ejecutar una acción');
+			agendaDeContactos();
+		}
+	});
 }
 
-muestraOpciones();
+agendaDeContactos();
