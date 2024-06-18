@@ -36,6 +36,7 @@ public class juanca2805 {
         System.out.println("OR(||): " + (a || b));
         // Operador NOT
         System.out.println("NOT(!): " + (!b));
+      
         //operador ternario 
         int edad = 18;
         String mensaje = (edad >= 18) ? "Eres mayor de edad" : "Eres menor de edad";
@@ -101,6 +102,8 @@ public class juanca2805 {
             }
         }
     }
+
+    
     
 
     }
