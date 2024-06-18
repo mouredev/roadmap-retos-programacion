@@ -1,17 +1,22 @@
-# #24 PATRONES DE DISEÑO: DECORADORES
-> #### Dificultad: Fácil | Publicación: 10/06/24 | Corrección: 17/06/24
+# #25 LOGS
+> #### Dificultad: Fácil | Publicación: 17/06/24 | Corrección: 24/06/24
 
 ## Ejercicio
 
 ```
 /*
  * EJERCICIO:
- * Explora el concepto de "decorador" y muestra cómo crearlo
- * con un ejemplo genérico.
+ * Explora el concepto de "logging" en tu lenguaje. Configúralo y muestra
+ * un ejemplo con cada nivel de "severidad" disponible.
  *
  * DIFICULTAD EXTRA (opcional):
- * Crea un decorador que sea capaz de contabilizar cuántas veces
- * se ha llamado a una función y aplícalo a una función de tu elección.
+ * Crea un programa ficticio de gestión de tareas que permita añadir, eliminar
+ * y listar dichas tareas.
+ * - Añadir: recibe nombre y descripción.
+ * - Eliminar: por nombre de la tarea.
+ * Implementa diferentes mensajes de log que muestren información según la 
+ * tarea ejecutada (a tu elección).
+ * Utiliza el log para visualizar el tiempo de ejecución de cada tarea. 
  */
 ```
 #### Tienes toda la información extendida sobre el roadmap de retos de programación en **[retosdeprogramacion.com/roadmap](https://retosdeprogramacion.com/roadmap)**.
