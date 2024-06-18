@@ -10,8 +10,8 @@ setTimeout(myFunction, 3000);
 
 //Extra
 
-async function orderProcess(dishName, confirmCallbak, readyCallback, deliveredCallback) {
-  await confirmCallbak(dishName).then(orderHandle);
+async function orderProcess(dishName, confirmCallback, readyCallback, deliveredCallback) {
+  await confirmCallback(dishName).then(orderHandle);
   await readyCallback(dishName).then(orderHandle);
   await deliveredCallback(dishName).then(orderHandle);
 }
