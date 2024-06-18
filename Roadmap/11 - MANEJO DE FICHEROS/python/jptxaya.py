@@ -98,6 +98,20 @@ while True:
                     list_to_fich(lista_total)
             except Exception as excp:
                 print(f"Exception {excp}")
+        case "5":
+            try:
+                lista_total = fich_lines_to_list()
+                my_dict = {}
+                for elem in lista_total:
+                    my_dict[elem[0]] = my_dict.get(elem[0],0) + (int(elem[1]) * int(elem[2]))
+                venta_total = 0
+                for elem in my_dict.keys():
+                    print(f"Producto {elem} Ventas:{my_dict[elem]}")
+                    venta_total += int(my_dict[elem])
+                print(f"Ventas Totales:{venta_total}")
+            except Exception as excp:
+                print(f"Exception {excp}")
+
 
 
 
