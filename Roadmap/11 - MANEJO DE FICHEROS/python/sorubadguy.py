@@ -32,11 +32,22 @@ except:
 finally:
     archivo.close()
 
+def levantar_datos_archivo(nombre_archivo):
+    productos = {}
+    archivo = open(nombre_archivo, "r")
+    prod = archivo.readlines()
+    for i in prod:
+        j = i.split(",")
+        productos[j[0]] = [float(j[1]), float(j[2])]
+    archivo.close()
+    return productos
+
 def ventas(nombre_archivo):
+    
 
     op = 1
     while op != "0":
-        os.system("cls")
+        #os.system("cls")
         print("Ingrese la opcion deseada:")
         print("1: Añadir Producto")
         print("2: Consultar Producto")
@@ -59,9 +70,30 @@ def ventas(nombre_archivo):
                         archivo.write(producto[i]+",")
                 archivo.close()
             case "2":
-                pass
+                productos = levantar_datos_archivo(nombre_archivo)
+                print("Productos: ")
+                for i in productos.keys():
+                    print(i)
+                producto_mostrar = input("Que producto desea consultar?: ")
+                os.system("cls")
+                print(f"{producto_mostrar}: \n se han vendido {productos[producto_mostrar][0]} unidades a ${productos[producto_mostrar][1]}\n ganancia: {productos[producto_mostrar][0] * productos[producto_mostrar][1]}")
             case "3":
-                pass
+                productos = levantar_datos_archivo(nombre_archivo)
+                print("Actualizar")
+                if productos != {}:
+                    for i in productos:
+                        print(i)
+                    producot_actualizar = input("Ingrese el producto a actualizar")
+                    productos[producot_actualizar][0] += float(input("Ingrese nueva cantidad vendida"))
+                    productos[producot_actualizar][1] += float(input("Ingrese nuevo precio del producto"))
+                    productos[producot_actualizar][0] = str(productos[producot_actualizar][0])
+                    productos[producot_actualizar][1] = str(productos[producot_actualizar][1])
+                    archivo = open(nombre_archivo, "w")
+                    for i in productos:
+                        print(i)
+                    archivo.close()
+                else:
+                    print("No hay productos")
             case "4":
                 pass
             case "0":
