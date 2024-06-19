@@ -72,7 +72,7 @@ public class marce1084 {
 
         //Excepciones
         try {
-            System.out.println(10 / 0);
+            System.out.println(10/0);
         } catch (ArithmeticException e) {
             System.out.println("Se produjo error por la división");
         } finally {
