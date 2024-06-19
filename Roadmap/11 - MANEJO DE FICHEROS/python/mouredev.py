@@ -44,7 +44,7 @@ while True:
             file.write(f"{name}, {quantity}, {price}\n")
     elif option == "2":
         name = input("Nombre: ")
-        with open(file_name, "a") as file:
+        with open(file_name, "r") as file:
             for line in file.readlines():
                 if line.split(", ")[0] == name:
                     print(line)
