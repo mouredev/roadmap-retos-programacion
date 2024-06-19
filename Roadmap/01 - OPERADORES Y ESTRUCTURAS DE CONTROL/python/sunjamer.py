@@ -69,12 +69,12 @@ my_age = 46
 my_weight = 70.3
 my_complex_variable = 5j+1
 
-print("Entra la base")
+print("Entra la base del triangulo")
 base = int(input ())
-print("Entra la altura")
+print("Entra la altura del triangulo")
 height = int(input())
 area = 0.5*base*height
-print(f"El area es {area}")
+print(f"El area del triangulo es {area}")
 
 
 
