@@ -52,4 +52,15 @@ print(bin(my_variable))
 my_variable|=0b0101
 print(bin(my_variable))
 
+# operadores de comparación
+
+my_variable = 7
+print (7 > 5)
+print (7 >= 5)
+print (7 < 5)
+print (7 > 5)
+print (7 <= 5)
+print (7 == 5)
+print (7 != 5)
+
 
