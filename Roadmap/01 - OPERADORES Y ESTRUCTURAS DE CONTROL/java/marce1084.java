@@ -70,7 +70,7 @@ public class marce1084 {
             i--;
         }
 
-        //Exception
+        //Excepciones
         try {
             System.out.println(10 / 0);
         } catch (ArithmeticException e) {
