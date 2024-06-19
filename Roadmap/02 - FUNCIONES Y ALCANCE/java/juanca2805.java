@@ -44,8 +44,8 @@ public class juanca2805 {
 
       public static void Extra(){
         for(int i = 1; i < 101; i++){
-            String Texto1 = "Texto 1";
-            String Texto2 = "Texto 2";
+            String Texto1 = "fizz";
+            String Texto2 = "buzz";
             if (i %3 == 0 && i %5 == 0) {
                 System.out.println(Texto1 + Texto2);
             } 
@@ -55,7 +55,10 @@ public class juanca2805 {
             else if(i %4 == 0){
                 System.out.println(Texto2 );
             }
-            System.out.println(i);
+            else {
+                System.out.println(i);
+               
+            }
         }
       }
     }
