@@ -63,4 +63,20 @@ print (7 <= 5)
 print (7 == 5)
 print (7 != 5)
 
+# ejercicios
+
+my_age = 46
+my_weight = 70.3
+my_complex_variable = 5j+1
+
+print("Entra la base")
+base = int(input ())
+print("Entra la altura")
+height = int(input())
+area = 0.5*base*height
+print(f"El area es {area}")
+
+
+
+
 
