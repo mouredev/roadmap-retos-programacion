@@ -22,6 +22,34 @@ print(f"es 14 >= 5 {14 >= 5}")
 print(f"es 14 <= 5 {14 <= 5}")
 
 
+# operadores logicos
+
+print(f"AND es 7 + 5 = 12 and 9 - 6 == 3 {7 + 5 == 12 and 9 - 6 == 3}")
+print(f"OR es 7 + 5 = 12 OR 9 - 6 == 4 {7 + 5 == 12 or 9 - 6 == 4}")
+print(f"NOT 7 + 5 = 12 or 9 - 6 == 3 {not (9 + 6 == 3 or 7 + 5 == 12)}")
+
 # operadores de asignación
 
-print(f"")
+my_variable = 33   # asignación de valor a variable
+print(my_variable)
+my_variable+=3
+print(my_variable)
+my_variable-=8
+print(my_variable)
+my_variable*=3
+print(my_variable)
+my_variable/=2
+print(my_variable)
+my_variable%=2
+print(my_variable)
+my_variable//=1
+print(my_variable)
+my_variable=0b01000
+my_variable&=0b10101
+print(bin(my_variable))
+my_variable|=0b01100
+print(bin(my_variable))
+my_variable|=0b0101
+print(bin(my_variable))
+
+
