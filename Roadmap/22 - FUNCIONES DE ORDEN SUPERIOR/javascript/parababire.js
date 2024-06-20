@@ -47,21 +47,37 @@ calculate('SUBTRACT')(13, 8);
 //Extra
 
 const students = [
-  {'name': 'Ángel', 'birthdate': '16-09-1979', 'grades': [7, 7.2, 6.5, 9]},
+  {'name': 'Ángel', 'birthdate': '16-09-1979', 'grades': [7, 7.2, 6.5, 9.5]},
   {'name': 'María', 'birthdate': '06-10-1980', 'grades': [5, 7.2, 6.5, 8]},
-  {'name': 'Rosa', 'birthdate': '23-01-1985', 'grades': [7.1, 7.2, 6, 8.5]}
+  {'name': 'Rosa', 'birthdate': '23-01-1985', 'grades': [7.1, 7.2, 10, 8.5]}
 ];
+
+//Promedio
 
 function average(grades) {
   let initialValue = 0;
-  return grades.reduce(
+  return (grades.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     initialValue,
-  )/grades.length;
+  )/grades.length).toFixed(2);
 }
 
 function nameAndAverage(n) {
-  return {'name': n['name'], 'grades': n['grades']};
+  return {'name': n['name'], 'average': average(n['grades']) };
 }
 
 console.log(students.map(nameAndAverage));
+
+//Honores
+/* Falta pulir */
+function bestGrades(average) {
+  return average.filter(grade => {
+    grade >= 9;
+  });
+}
+
+function nameAndBest(n) {
+  return {'name': n['name'], 'best': bestGrades(n['average']) };
+}
+
+console.log(students.map(nameAndAverage).filter(nameAndBest));
