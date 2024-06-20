@@ -1,4 +1,5 @@
-import os
+from os import remove
+from os import system
 """
 *Ficheros
 """
@@ -17,7 +18,7 @@ archivo.close()
 archivo = open("sorubadguy.txt","r")
 print(archivo.read())
 archivo.close()
-os.remove("sorubadguy.txt")
+remove("sorubadguy.txt")
 
 input("pulse Enter para continuar")
 """
@@ -51,8 +52,9 @@ def ventas(nombre_archivo):
         print("Ingrese la opcion deseada:")
         print("1: Añadir Producto")
         print("2: Consultar Producto")
-        print("3: Actualizar Producto")
-        print("4: Eliminar Producto")
+        print("3: Consultar Venta Total")
+        print("4: Actualizar Producto")
+        print("5: Eliminar Producto")
         print("0: Salir")
         op = input("Opcion: ")
         match op:
@@ -79,24 +81,38 @@ def ventas(nombre_archivo):
                 print(f"{producto_mostrar}: \n se han vendido {productos[producto_mostrar][0]} unidades a ${productos[producto_mostrar][1]}\n ganancia: {productos[producto_mostrar][0] * productos[producto_mostrar][1]}")
             case "3":
                 productos = levantar_datos_archivo(nombre_archivo)
+                ventas_totales = 0
+                for i in productos:
+                    ventas_totales += productos[i][0]*productos[i][1]
+                print(f"Las ventas totales dan un valor de: ${ventas_totales}")
+            case "4":
+                productos = levantar_datos_archivo(nombre_archivo)
                 print("Actualizar")
                 if productos != {}:
                     for i in productos:
                         print(i)
                     producot_actualizar = input("Ingrese el producto a actualizar")
-                    productos[producot_actualizar][0] += float(input("Ingrese nueva cantidad vendida"))
-                    productos[producot_actualizar][1] += float(input("Ingrese nuevo precio del producto"))
-                    productos[producot_actualizar][0] = str(productos[producot_actualizar][0])
-                    productos[producot_actualizar][1] = str(productos[producot_actualizar][1])
+                    productos[producot_actualizar][0] += float(input("Ingrese nueva cantidad vendida: "))
+                    productos[producot_actualizar][1] = float(input("Ingrese nuevo precio del producto: "))
                     archivo = open(nombre_archivo, "w")
                     for i in productos:
-                        print(i)
+                        archivo.write(f"{i},{str(productos[i][0])},{str(productos[i][1])}\n")
                     archivo.close()
                 else:
                     print("No hay productos")
             case "4":
-                pass
+                productos = levantar_datos_archivo(nombre_archivo)
+                print("Eliminar")
+                if productos != {}:
+                    for i in productos:
+                        print(i)
+                    productos.pop(input("Ingrese el elemento a eliminar: "))
+                    archivo = open(nombre_archivo, "w")
+                    for i in productos:
+                        archivo.write(f"{i},{str(productos[i][0])},{str(productos[i][1])}\n")
+                    archivo.close()                    
             case "0":
+                remove(nombre_archivo)
                 print("El programa se cerrara, Adios")
             case "_":
                 print("Opcion incorrecta")
