@@ -17,7 +17,7 @@ async function showResponse() {
   .catch(error=> console.log(error));
 }
 
-showResponse();
+//showResponse();
 
 //Extra
 
@@ -85,5 +85,13 @@ fetch(pokeApiUrl)
     .catch(error=> console.log(error))
   })
   .catch(error=> console.log(error))
+})
+.then(() => {
+  console.log('Juegos:');
+  for (const key in pokemonName.game_indices) {
+    if (Object.hasOwnProperty.call(pokemonName.game_indices, key)) {
+      console.log(`${pokemonName.game_indices[key].version.name}`);
+    }
+  }
 })
 .catch(error=> console.log(error))
