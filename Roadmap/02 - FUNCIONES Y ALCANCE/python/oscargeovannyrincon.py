@@ -134,6 +134,6 @@ def tic_tac(texto_1,texto_2):
           else:
                print(num)
                rep += 1
-     return f'\n El numero de veces que se imprimio el numero fue {rep}'
+     return f'\n El numero de veces que se imprimio el numero fue  {rep}'
 
 print(tic_tac('tic','tac'))
