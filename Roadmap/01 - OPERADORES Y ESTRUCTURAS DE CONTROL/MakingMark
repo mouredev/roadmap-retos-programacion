@@ -1,0 +1,241 @@
+operadores = ["1. Operadores aritméticos", "2. Operadores relacionales", "3. Operadores Bit a Bit", "4. Operadores de asignación", "5. Operadores lógicos", "6. Operadores de pertenencia", "7. Operadores de identidad" , "8. Operadores de control", "9. Reto extra"]
+a = 5
+b = 7
+i = 0 #se inicializa un contador para el ciclo for
+print("Hola, este es el segundo reto de Roadmap | Operadores y estructuras de Control\n\n")
+print("Selecciona el operador que deseas ver introduciendo el numero asignado\n")
+for n in operadores:
+    print(operadores[i])
+    i += 1
+seleccion = int(input("\nintroduce el numero: "))
+
+print("\nTrabajaremos con estos valores: \n""operando1 = ", a, "\noperando2 = ", b, "\n")
+
+
+
+#imprimimos los valores de los operandos
+
+
+
+def operador_arigmetico():
+    """Operadores Aritméticos
+Un operador aritmético toma dos operandos como entrada, realiza un cálculo y devuelve el resultado.
+"""
+    print("------Operadores arigmeticos------")
+    #operador + realiza adicion entre operandos
+    print (a + b, " -- Esto es un operador de adicion")
+    #operador - realiza una sustraccion entre los operandos
+    print(a - b, " -- Esto es un operador de sustraccion")
+    #Operador * realzia una multipicacion entre operandos
+    print(a * b, " -- Esto es un operador de multiplicacion")
+    #Operador / realiza divison entre los operandos
+    print(a / b, "-- Esto es un operador de division")
+    #Operador % realiaza un modulo entre los operando
+    print(a % b, "-- Esto es un operador de modulo")
+    #Operador ** realiza la potencia entre los operando
+    print(a ** b, "-- Esto es un operador de potencia")
+    #Operador // realiza la division con resultado de numero entero
+    print(a // b, "-- Esto es un operador de dision con resultado entero\n\n")
+
+
+def operadores_relacionales():
+    """
+Operadores Relacionales
+Un operador relacional se emplea para comparar y establecer la relación entre ellos. Devuelve un valor booleano (true o false) basado en la condición.
+"""
+    print("-----Operadores relacionales-----")
+    # > Devuelve True si el operador de la izquierda es mayor que el operador de la derecha
+    print(f"Operador > | {a} es mayor a {b}? | ", a > b)
+    # < Devuelve True si el operador de la derecha es mayor que el operador de la izquierda	
+    print(f"Operador < | {a} es menor a {b}? | ", a < b)
+    # == Devuelve True si ambos operandos son iguales
+    print(f"Operador == | {a} es igual a {b}? | ", a == b)
+    # >= Devuelve True si el operador de la izquierda es mayor o igual que el operador de la derecha	
+    print(f"Operador >= | {a} es mayor o igual a {b}? | ", a >= b)
+    # <= Devuelve True si el operador de la derecha es mayor o igual que el operador de la izquierda	
+    print(f"Operador <= | {a} es menor o igual a {b}? | ", a <= b)
+    # != Devuelve True si ambos operandos no son iguales
+    print(f"Operador != | {a} es diferente a {b}? | ", a != b)
+
+def operador_bit ():
+    #Un operador bit a bit realiza operaciones en los operandos bit a bit.
+    print("\n\n-----Operadores de Bit a Bit-----")
+    # & Realiza bit a bit la operación AND en los operandos	(Evalua si ambos son True y devuelve True si es cierto)
+    print(f"Operador & | {a} y {b} son True? | {a & b} |  Binario: {bin(a & b)}")
+    # | Realiza bit a bit la operación OR en los operandos (Devuelve True si al menos una de las expresiones es True)
+    print(f"Operador | | {a} y {b} Duelve True si alguno lo es! | {a | b} |  Binario: {bin(a | b)}")
+    # ^ Realiza bit a bit la operación XOR en los operandos	(devuelve True si exactamente una de las expresiones es verdadera, pero no ambas)
+    print(f"Operador ^ | {a} y {b} Duelve True si alguno lo es pero no ambas! | {a ^ b} |  Binario: {bin(a ^ b)}")
+    # ~ Realiza bit a bit la operación NOT bit a bit. Invierte cada bit en el operando	
+    print(f"Operador ~ | {b} Devuelve el valor contrario al resultado de la operacion! | {~ b} |  Binario: {bin(~ b)}")
+    # >> Realiza un desplazamiento a la derecha bit a bit. Desplaza los bits del operador de la izquierda a la derecha tantos bits como indica el operador de la derecha	
+    print(f"Operador >> | {a} y {b} Desplaza los bits del operador de la izquierda a la derecha tantos bits como indica el operador de la derecha | {a >> b} |  Binario: {bin(a >> b)}")
+    # << Desplaza los bits del operando de la izquierda a la izquierda tantos bits como especifique el operador de la derecha
+    print(f"Operador << | {a} y {b} Desplaza los bits del operando de la izquierda a la izquierda tantos bits como especifique el operador de la derecha | {a << b} |  Binario: {bin(a << b)}")
+
+def operadores_asignacion():
+    # Operadores de Asignación
+    """Se utiliza un operador de asignación para asignar valores a una variable.
+    Esto generalmente se combina con otros operadores (como aritmética, bit a bit) donde la operación se realiza en los operandos
+    y el resultado se asigna al operando izquierdo."""
+    print("\n\n----Operadores de Asignación-----")
+
+
+    # = asigna valor a una variable
+    print(f"creo una variable a = 5 y da como resultado: {a}")
+    # += es lo mismo que decir a = a + un valor
+    a += 5
+    print(f"uso += para añadir un valor sobre la varibale a, a += 5: {a}")
+    # -= es lo mismo que decir a = a - un valor
+    a -= 5
+    print(f"uso -= restar un valor sobre la varibale a, a -= 5: {a}")
+    # *= es lo mismo que decir a = a * un valor
+    a *= 3
+    print(f"uso *= para multiplicar un valor sobre el valor de la variable, a *= 5: {a}")
+    # /= es lo mismo que decir a = a / un valor
+    a /= 5
+    print(f"uso /= para dividir un valor sobre el valor de la variable, a /= 5: {a}")
+    # %= es lo mismo que decir a = a % un valor
+    a %= 5
+    print(f"uso %= para sacar el modulo de una division sobre el valor de la variable, a %= 5: {a}")
+    # **= es lo mismo que decir a = a ** un valor
+    a **= 4
+    print(f"uso **= para calcular la potencia de la variable sobre un valor, a **= 5: {a}")
+    # //= es lo mismo que decir a = a // un valor
+    a //= 4
+    print(f"uso //= para calcular la divicion entera de la variable sobre un valor, a //= 5: {a}")
+    # &= es lo mismo que decir a = a & un valor
+    b &=  5
+    print(f"uso &= para evaluar si ambos son True y devuelve True si lo son, b &= 5: {b}")
+    # \= es lo mismo que decir a = a | un valor
+    b |= 3
+    print(f"uso |= Devuelve True si alguno lo es, b |= 3: {b}")
+    # ^= es lo mismo que decir a = a ^ un valor
+    b ^= 6
+    print(f"uso ^= Devuelve True si alguno lo es pero no ambos, b ^= 6: {b}")
+    # >> es lo mismo que decir a = a >> un valor
+    b >>= 8
+    print(f"uso >>= Desplaza los bit del operando de la izquierda a la derecha, b >>= 8: {b}")
+    # <<= es lo mismo que decir a = a << un valor
+    b <<= 19
+    print(f"uso <<= Desplaza los bit del operando de la izquierda a izquierda, b <<= 8: {b}")
+
+def operadores_logicos():
+    """Operadores logicos
+    Se utiliza un operador lógico
+    para tomar una decisión basada en múltiples condiciones"""
+
+    print("\n\n-----Operadores logicos-----")
+
+    # and devuelve True si ambos son True
+    print(f"and devuelve True si ambos los son | True and False | {True and False}")
+    # or devuelve True si alguno de lo operadores es True
+    print(f"or devuelve True si alguno lo es | True or False | {True or False}")
+    # not devuelve True si alguno de los dos es Falce
+    print(f"not devuelve el valor contrario al de la varaiable | not False | ", {not False})
+
+def operadores_pertenecia():
+    """
+    Operadores de Pertenencia, Un operador de pertenencia se emplea para identificar
+    pertenencia en alguna secuencia(listas, strings, tuplas).
+    """
+    print("\n\n-----Operadores de Pertenencia-----")
+    #in devuelve True si el valor especificado se encuentra en la secuencia. En caso contrario devuelve False.
+    lista = [1,2,4,5,6]
+    print(f"Esta es a lista: {lista}")
+    print("in devuelve True si el valor esta en la lista | Esta 4 en la lista?: ", 4 in lista)
+    print("not in devuelve True si el valor no esta en la lista | Esta 3 en la lista?: ", 3 not in lista)
+    print("Nota: distingue mayúsculas y minúsculas")
+
+def operadores_identidad():
+    """
+    Operadores de identidad, Un operador de identidad se emplea para comprobar si dos variables
+    emplean la misma ubicación en memoria.
+    """
+    print("\n\n-----Operadores de indentidad-----")
+    a = 3
+    b = 6
+    c = 3
+    print(f"valores de ejemplo a = {a} | b = {b} | c = {c}")
+    print(f"is devuelve True si los operandos se refieren al mismo objeto | a es igual a c? |  {a is c}")
+    print(f"is not devuelve True si los operandos no se refieren al mismo objeto. | a es diferente de b? | {a is not b}")
+
+def estructuras_de_control():
+    """
+    En un lenguaje de programación, las estructuras de control permiten modificar el flujo de la ejecución
+    de un conjunto de instrucciones. Se pueden distinguir tres tipos básicos de control de flujo
+    """
+    print("\n\n------Estructuras de Control-----")
+    # El condicional if-elif-else es una estructura de control de selección que sirve para tomar decisiones
+    print("-----if-elif-else-----")
+    # Creamos una sentencia Try-Except para evitar que aparezca un error en el codigo por introducir una letra en vez de un numero
+    try:
+        numero = int(input("Escribe un numero del 1 al 3 y ve si logras ganar algo\n: "))
+        if numero == 1 or numero == 3:
+            print(f"Escogiste {numero} no has ganado nada :(")
+        elif numero == 2:
+            print(f"Escogiste {numero} haz gando un beso :*")
+        else:
+            print("No haz escrito ningun numero entre 1 y 3 X_X")
+    except ValueError:
+        print("\nError no haz introducido un numero...")
+        
+
+    #El bucle for es una estructura de control de repetición, en la cual se conocen a priori el número de iteraciones a realizar.
+    lista_for = [[2,5], [4,6], [1,5]]
+    #Ciclo anidado
+    print("-----Cliclo for anidado-----\n")
+    for n in lista_for: #n toma el valor de la lista ejemplo lista = [1,2,3] la primera iteracion n sera igual a 1 y asi sucesivamente
+        for valor in n:
+            print(valor)
+    #for para desempaquetar
+    print("-----Ciclo for usado para desempaquetar-----")
+    for x,y in lista_for:
+        print(f"x = {x} | y + {y}")
+        
+    #El ciclo while ejecuta un bloque de instrucciones mientras haya una condición que se cumpla.
+    print("-----Esto es un ciclo While-----")
+    nombre = input("Escribe tu nombre: ")
+    veces = int(input("escribe las veces que quieres que se repita: "))
+    #inicializamos la variable que servira como contador
+    i = 1
+    while i <= veces: #el ciclo se repetira hasta alcanzar el valor de veces
+        print(nombre)
+        i += 1
+
+def extra():
+    print("\n\n-----Reto extra-----")
+    print("Crea un programa que imprima por consola todos los números comprendidos * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.\n\n")
+    i = 0
+    rango = range(10,55,2) #se crea una variale que tenga una lista con los numeros del 10 al 55 ignorando los impares
+    multiplo_de_tres = 0 #se inicializa la variable para gruadar los multiplos de 3
+    for x in rango:
+        multiplo_de_tres = rango[i] % 3
+        if multiplo_de_tres != 0 and rango[i] != 16: #usamos el operador logico and para que valide que se cumplan las dos condiciones
+            print (rango[i]) 
+        i += 1
+
+#condicionales para llamado a las funciones
+if seleccion == 1:
+    operador_arigmetico()
+elif seleccion == 2:
+    operadores_relacionales()
+elif seleccion == 3:
+    operador_bit ()
+elif seleccion == 4:
+    operadores_asignacion()
+elif seleccion == 5:
+    operadores_logicos()
+elif seleccion == 6:
+    operadores_pertenecia()
+elif seleccion == 7:
+    operadores_identidad()
+elif seleccion == 8:
+    estructuras_de_control()
+elif  seleccion == 9:
+    extra()
+else:
+    print("Tu seleccion no es valida")
+
+
+
