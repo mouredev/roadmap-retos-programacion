@@ -47,9 +47,9 @@ calculate('SUBTRACT')(13, 8);
 //Extra
 
 const students = [
-  {'name': 'Ángel', 'birthdate': '16-09-1979', 'grades': [7, 7.2, 6.5, 9.5]},
+  {'name': 'Ángel', 'birthdate': '09-16-1979', 'grades': [7, 7.2, 6.5, 9.5]},
   {'name': 'María', 'birthdate': '06-10-1980', 'grades': [5, 7.2, 6.5, 8]},
-  {'name': 'Rosa', 'birthdate': '23-01-1985', 'grades': [7.1, 7.2, 10, 8.5]},
+  {'name': 'Rosa', 'birthdate': '01-23-1985', 'grades': [7.1, 7.2, 10, 8.5]},
   {'name': 'José', 'birthdate': '02-03-1987', 'grades': [9.1, 9.2, 10, 8.5]}
 ];
 
@@ -76,3 +76,10 @@ function bestAverage(student) {
 }
 
 console.log(students.map(nameAndAverage).filter(bestAverage).map(student => student.name));
+
+//Mas joven
+/* Falta pulir */
+function nameAndBirth(n) {
+  return {'name': n['name'], 'birth': new Date(n['birthdate']).toLocaleDateString('es-es', {day: 'numeric', month: 'numeric', year: 'numeric'})};
+}
+console.log(students.map(nameAndBirth).sort());
