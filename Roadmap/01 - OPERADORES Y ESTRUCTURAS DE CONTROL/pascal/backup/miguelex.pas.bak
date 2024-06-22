@@ -132,7 +132,5 @@ begin
     if (a mod 2 = 0) and (a <> 16) and (a mod 3 <> 0) then
       writeln(a);
   end;
-  // Logicos
-  B := A > B;
-  Writeln ('Es mayor A que B '+BoolToStr(B,'Verdad','Falso');
+    
 end.
