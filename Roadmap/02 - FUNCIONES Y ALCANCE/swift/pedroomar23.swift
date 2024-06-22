@@ -88,7 +88,27 @@ func GlobalVar(numeros: Int) {
 GlobalVar(numeros: numeros)
 
 
+// Extra 
+func extra(a: String, b: String) -> Int {
+    var count = 0
 
+    for number in 1...100 {
+        if number % 3 == 0 {
+            count += 1
+            print(a)
+        } else if number % 5 == 0 {
+            count += 1
+            print(b)
+        } else if number % 3 == 0 && number % 5 == 0 {
+            count += 1
+            print(a, b)
+        } 
+    }
+    return count 
+}
+
+let new = extra(a: "Juan", b: "Carlos")
+print("Los nombres se han imprimido en la consola \(new) veces")
 
 
 
