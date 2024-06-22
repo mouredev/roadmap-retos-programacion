@@ -19,6 +19,11 @@ Var
 
 begin
   Writeln ('!Hola, '+MiConstante+'¡');
+  {
+   Espera un tecla.
+   En windows, si se lanza el programa desde Lazarus, la ventana se cierra
+   al terminar sin dejar ver el resultado
+  }
   Readln();
 end.
 
