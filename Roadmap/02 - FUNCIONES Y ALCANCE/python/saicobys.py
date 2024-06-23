@@ -55,3 +55,24 @@ def funcion_ejemplo():
 funcion_ejemplo()
 print("Fuera de la función:", variable_global)
 # print("Fuera de la función:", variable_local)  # Error: variable_local no está definida fuera de la función
+
+
+def fizzbuzz(texto_multiplo_3, texto_multiplo_5):
+    """Imprime los números del 1 al 100 con reglas especiales y retorna el número de veces que se imprime un número en lugar de texto."""
+    contador_numeros = 0
+
+    for numero in range(1, 101):
+        if numero % 15 == 0:  # Múltiplo de 3 y 5
+            print(texto_multiplo_3 + texto_multiplo_5)
+        elif numero % 3 == 0:  # Múltiplo de 3
+            print(texto_multiplo_3)
+        elif numero % 5 == 0:  # Múltiplo de 5
+            print(texto_multiplo_5)
+        else:  # No es múltiplo de 3 ni de 5
+            print(numero)
+            contador_numeros += 1  # Incrementa el contador si se imprime un número
+
+    return contador_numeros
+
+resultado = fizzbuzz("Fizz", "Buzz")
+print(f"Número de veces que se imprimió un número: {resultado}")
