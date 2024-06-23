@@ -10,3 +10,16 @@ de
 varias
 lineas
 */
+
+let nombre = "Matias";
+const apellido = "Nuñez";
+
+let string = "Cadena de texto"; // cadena de texto
+let numero = 10; // entero
+let booleano = true; // booleano
+let flotante = 10.5; // flotante
+let nulo = null; // nulo
+let indefinido; // udefined
+
+console.log("Hola, Javascript!");
+
