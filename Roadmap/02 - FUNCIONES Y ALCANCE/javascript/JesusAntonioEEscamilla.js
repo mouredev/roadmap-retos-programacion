@@ -91,7 +91,7 @@ function saludar() {
     console.log(mensaje);
 }
 saludar(); // Imprime "Hola, mundo!"
-console.log(mensaje); // Error: mensaje is not defined
+// console.log(mensaje); // Error: mensaje is not defined
 
 
 
@@ -99,18 +99,18 @@ console.log(mensaje); // Error: mensaje is not defined
 function extra(param1 , param2) {
     let cont = 0;
     for (let i = 1; i <= 100; i++) {
-        if (i % 3 == 0) {
+        if (i % 3 == 0 && i % 5 == 0) {
             console.log(param1);
-        }else if(i % 5 == 0) {
+        }else if(i % 3 == 0) {
             console.log(param2);
-        }else if(i % 3 == 0 && i % 5 == 0){
+        }else if(i % 5 == 0){
             console.log(param1 + param2);
         } else{
             cont ++;
             console.log(i);
         }
     }
-    return cont
+    return console.log('Son las veces que aparece', cont);
 }
 console.log(extra("FIZZ","BUZZ"));
 /**-----DIFICULTAD EXTRA-----*/
