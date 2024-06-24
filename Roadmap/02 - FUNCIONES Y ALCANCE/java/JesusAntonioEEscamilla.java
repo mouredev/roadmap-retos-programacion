@@ -19,6 +19,9 @@ public class JesusAntonioEEscamilla {
         System.out.println("La resta es " + resultados[0] + " y la division es " + resultados[1]);
         //  Variables Global y Local
         my_Function();
+
+        //EXTRA
+        EXTRA("FIZZ", "BUZZ");
     }
 
     // Función Básica
@@ -63,7 +66,22 @@ public class JesusAntonioEEscamilla {
 
     /**-----DIFICULTAD EXTRA-----*/
 
-    // Pendiente
+    public static int EXTRA(String text1, String text2){
+        int cont = 0;
+        for(int number = 1; number <= 100; number++){
+            if (number % 3 == 0 && number % 5 == 0) {
+                System.out.println(text1 + text2);
+            } else if(number % 3 == 0){
+                System.out.println(text1);
+            } else if(number % 5 == 0){
+                System.out.println(text2);
+            } else {
+                System.out.println(number);
+            }
+            cont++;
+        }
+        return cont;
+    }
 
     /**-----DIFICULTAD EXTRA-----*/
 }
