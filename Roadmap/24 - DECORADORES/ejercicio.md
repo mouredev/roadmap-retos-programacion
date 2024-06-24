@@ -1,4 +1,4 @@
-# #24 DECORADORES
+# #24 PATRONES DE DISEÑO: DECORADORES
 > #### Dificultad: Fácil | Publicación: 10/06/24 | Corrección: 17/06/24
 
 ## Ejercicio
