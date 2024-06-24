@@ -52,3 +52,18 @@ my_function()
 """
 EXTRA
 """
+def extra(text1, text2) -> int:
+    cont = 0
+    for number in range(1, 101):
+        if number % 3 == 0 and number % 5 == 0:
+            print(text1)
+        elif number % 3 == 0:
+            print(text2)
+        elif number % 5 == 0:
+            print(text1 + text2)
+        else:
+            print(number)
+            cont +=1
+    return print(f"Las veces que aparece las letras {cont}")
+
+extra("FIZZ","BUZZ")
