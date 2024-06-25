@@ -36,6 +36,11 @@ console.log('Nombre: Antonio');
 console.log('Edad: 24');
 console.groupEnd();
 
+// El Tiempo de ejecución
+console.time('Se ejecuto el programa');
+//  COGIDO DE LLENO
+console.timeEnd('Se ejecuto el programa');
+
 
 
 /**-----DIFICULTAD EXTRA-----*/
@@ -49,9 +54,14 @@ class TaskManager{
     //  Agregar Tarea
     addTask(nombre, descripción){
         console.time(`Tiempo de Ejecución - Añadir tarea: ${nombre}`);
-        const task = {nombre, descripción};
-        this.tasks.push(task);
-        console.log(`Tarea añadida: "${nombre}" - "${descripción}"`);
+        const nameTasks = this.tasks.find(tasks => tasks.nombre === nombre);
+        if (nameTasks) {
+            console.error(`La Tarea "${nombre}" ya existe`);
+        } else {
+            const task = {nombre, descripción};
+            this.tasks.push(task);
+            console.log(`Tarea añadida: "${nombre}" - "${descripción}"`);
+        }
         console.timeEnd(`Tiempo de Ejecución - Añadir tarea: ${nombre}`);
         return
     }
