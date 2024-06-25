@@ -55,7 +55,7 @@ func main() {
 	}
 
 	fmt.Printf("Price of veggeMania with tomato and cheese topping is %d\n", pizzaWithCheeseAndTomato.getPrice())
-	fmt.Println("-------------------------------------- RETO --------------------------------------------------------")
+	fmt.Println("-------------------------------------- RETO ------------------------------------------------")
 	// Aplicamos el decorador CountCalls a nuestra función de ejemplo ExampleFunction
 	DecoratedFunction := CountCalls(ExampleFunction)
 

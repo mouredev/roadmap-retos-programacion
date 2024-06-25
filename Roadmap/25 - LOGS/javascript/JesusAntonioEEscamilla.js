@@ -40,6 +40,49 @@ console.groupEnd();
 
 /**-----DIFICULTAD EXTRA-----*/
 
-// Pendiente
+//Clase de Tareas
+class TaskManager{
+    constructor(){
+        this.tasks = [];
+    }
+
+    //  Agregar Tarea
+    addTask(nombre, descripción){
+        console.time(`Tiempo de Ejecución - Añadir tarea: ${nombre}`);
+        const task = {nombre, descripción};
+        this.tasks.push(task);
+        console.log(`Tarea añadida: "${nombre}" - "${descripción}"`);
+        console.timeEnd(`Tiempo de Ejecución - Añadir tarea: ${nombre}`);
+        return
+    }
+
+    //  Borrar Tarea
+    removeTask(nombre){
+        console.time(`Tiempo de Ejecución - Eliminar tarea: ${nombre}`);
+        const initialLength = this.tasks.length;
+        this.tasks = this.tasks.filter(task => task.nombre !== nombre);
+        if (this.tasks.length === initialLength) {
+            console.error(`No se encontró la tarea con el nombre "${nombre}"`);
+        } else {
+            console.log(`Tarea eliminada: ${nombre}`);
+        }
+        console.timeEnd(`Tiempo de Ejecución - Eliminar tarea: ${nombre}`);
+    }
+
+    //  Listar las Tareas
+    listTasks(){
+        console.log('Listado de tareas:');
+        console.table(this.tasks);
+    }
+}
+
+//  Ejemplo de las Tareas
+const tasksManager = new TaskManager();
+tasksManager.addTask('Caminar', 'Caminar todos los días para bajar de peso');
+tasksManager.addTask('Leer un libro', 'Leer por 10 minutos un libro');
+tasksManager.addTask('Leer un libro', 'Leer por 10 minutos un libro');
+tasksManager.listTasks();
+tasksManager.removeTask('Caminar');
+tasksManager.listTasks();
 
 /**-----DIFICULTAD EXTRA-----*/
