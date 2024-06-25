@@ -41,10 +41,10 @@ class TaskManager:
         start_time = time.time()
         if name in self.tasks:
             del self.tasks[name]
-            logging.info(f"Se la eliminado la tarea: {name}.")
+            logging.info(f"Se ha eliminado la tarea: {name}.")
         else:
             logging.error(
-                f"Se ha intentado eliminar una tarea que no exsite: {name}.")
+                f"Se ha intentado eliminar una tarea que no existe: {name}.")
         logging.debug(f"Número de tareas: {len(self.tasks)}")
         end_time = time.time()
         self._print_time(start_time, end_time)
@@ -56,7 +56,7 @@ class TaskManager:
             for name, description in self.tasks.items():
                 print(f"{name} - {description}")
         else:
-            logging.info("No hay tareas para mostar.")
+            logging.info("No hay tareas para mostrar.")
         end_time = time.time()
         self._print_time(start_time, end_time)
 
