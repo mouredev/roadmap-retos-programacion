@@ -1,3 +1,4 @@
+/** #13 - JavaScript ->Jesus Antonio Escamilla */
 //---EJERCIÓ---
 
 // Función de suma
