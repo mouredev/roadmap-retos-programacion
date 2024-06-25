@@ -10,6 +10,7 @@
 # Mas info: https://medium.com/@sachinsoni600517/logging-in-python-a-step-by-step-tutorial-086a617f4eaa
 
 import logging
+import time
 
 """
  * EJERCICIO #1:
@@ -48,11 +49,22 @@ class Program():
     def __init__(self):
         self.tasks: dict = {}
         logging.debug('Se inició instancia de la clase.')
+    
+    def _show_time(func: object):
+        def wraper(*args):
+            start_time: float = time.time()
+            func(*args)
+            end_time: float = time.time()
+            logging.debug(f"Tiempo de ejecución: {(end_time - start_time):.21f} segundos.")
 
+        return wraper
+
+    @_show_time
     def add(self, name: str, description: str):
         self.tasks[name] = description
         logging.info('Se agregó una tarea.')
 
+    @_show_time
     def delete(self, name: str):
         if name in self.tasks:
             del self.tasks[name]
@@ -61,6 +73,7 @@ class Program():
             print()
             logging.warning(f"No se encontró la tarea '{name}'.")
 
+    @_show_time
     def show_list(self):
         logging.info('Lista de tareas')
         for task, des in self.tasks.items():
@@ -76,4 +89,6 @@ tasks.add("c", "3")
 
 tasks.delete("a")
 tasks.show_list()
+
+tasks.delete("a")
 
