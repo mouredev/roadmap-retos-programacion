@@ -78,8 +78,9 @@ function bestAverage(student) {
 console.log(students.map(nameAndAverage).filter(bestAverage).map(student => student.name));
 
 //Mas joven
-/* Falta pulir */
+
 function nameAndBirth(n) {
-  return {'name': n['name'], 'birth': new Date(n['birthdate']).toLocaleDateString('es-es', {day: 'numeric', month: 'numeric', year: 'numeric'})};
+  return {'name': n['name'], 'birth': new Date(n['birthdate'])};
 }
-console.log(students.map(nameAndBirth).sort());
+console.log(students.map(nameAndBirth).sort(function(a, b){return b.birth - a.birth}));
+/* Falta pulir fecha del output */
