@@ -1,4 +1,4 @@
-program blueicaro;
+program jorgeturiel;
  //https://www.lazarus-ide.org/
 {
  Lazarus es un entorno para programar Free Pascal.
