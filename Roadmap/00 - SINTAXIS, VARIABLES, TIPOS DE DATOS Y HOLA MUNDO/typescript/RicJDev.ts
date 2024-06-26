@@ -18,6 +18,10 @@ myLetVariable = 10;
 var myVarVariable: string = 'Hola';
 myVarVariable = 'Mundo';
 
+let a: number = 10,
+	b: number = 20,
+	c: number = 30;
+
 //Numbers
 let integer: number = 12;
 let float: number = 32.12;
