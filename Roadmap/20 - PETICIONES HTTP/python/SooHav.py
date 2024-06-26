@@ -1,5 +1,3 @@
-# 20 - PETICIONES HTTP
-
 import requests
 
 # Ejercicio
@@ -13,7 +11,6 @@ else:
 
 
 # Dificultad Extra
-
 
 def info_pokemon(id=None, name=None):
     if id is not None:
