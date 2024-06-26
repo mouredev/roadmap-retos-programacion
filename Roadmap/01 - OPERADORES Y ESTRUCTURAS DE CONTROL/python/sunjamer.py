@@ -122,6 +122,16 @@ for index in range(15):
     print (index)
 print ("salimos del tercer for")
 
+#manejo de excepciones
+
+try:
+    print (34 / 4)
+except:
+    print ("hay un error")
+finally:
+    print ("acaba el manejo de excepciones")
+
+
 # extra
 
 for index in range (10,56):
