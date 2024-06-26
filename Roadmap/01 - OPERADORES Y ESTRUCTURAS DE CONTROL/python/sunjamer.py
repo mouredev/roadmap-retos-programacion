@@ -62,7 +62,7 @@ var_b = 4 # 0100
 print(f"AND: 12 & 4 = {12 & 4}")
 print(f"OR: 12 & 4 = {12 | 4}")
 print(f"XOR: 12 ^ 4 = {12 ^ 4}")
-print(f"NOT: 12 ~ 4 = {12 ~ 4}")
+print(f"NOT: 12 = {~ 12}")
 print(f"Deslazamiento a la derecha 12 >> 4 = {12 >> 4}")
 print(f"Deslazamiento a la izquierda 12 << 4 = {12 << 4}")
 
@@ -70,21 +70,21 @@ print(f"Deslazamiento a la izquierda 12 << 4 = {12 << 4}")
 
 my_variable = 25
 
-my_new_varialble = my_variable
-printf(f"my_variable is my_new_variable es {my_variable is my_new_variable}")
-printf(f"my_variable is not my_new_variable es {my_variable is not my_new_variable}")
+my_new_variable = my_variable
+print(f"my_variable is my_new_variable es {my_variable is my_new_variable}")
+print(f"my_variable is not my_new_variable es {my_variable is not my_new_variable}")
 
 # operadores de pertenencia
-
-printf(f"'p' en pedro = {'p' in pedro}")
-printf(f"'p' no en pedro = {'p' not in pedro}")
+pedro = 'pedro'
+print(f"'p' en pedro = {'p' in pedro}")
+print(f"'p' no en pedro = {'p' not in pedro}")
 
 # estructuras de control
 
 mi_cadena = "sunjamer"
 if mi_cadena == "sunjamer":
   print("mi_cadena és 'sunjamer'")
-else:
+
   
 
 
@@ -116,6 +116,17 @@ for letra in lenguaje:
     print (letra)
 print ("salimos del segundo for")
 
+
+for index in range(15):
+    print (index)
+print ("salimos del tercer for")
+
+# extra
+
+for index in range (10,56):
+    if index % 2 == 0 and index != 16 and index % 3 != 0: 
+        print (index)
+print ("fin del extra")
 
 
 
