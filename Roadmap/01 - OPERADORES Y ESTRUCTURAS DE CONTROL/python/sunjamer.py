@@ -81,9 +81,13 @@ print(f"'p' no en pedro = {'p' not in pedro}")
 
 # estructuras de control
 
-mi_cadena = "sunjamer"
+mi_cadena = "patata"
 if mi_cadena == "sunjamer":
-  print("mi_cadena és 'sunjamer'")
+    print("mi_cadena és 'sunjamer'")
+elif mi_cadena == 'pedro':
+    print("my cadena no es 'sunjamer' pero si es 'pedro'")
+else:
+    print("mi cadena no es pedro ni sunjamer")
 
   
 
@@ -99,9 +103,6 @@ while index <= 10:
         continue
     print (index)
     index+=1
-
-
-
 
 # for
 
