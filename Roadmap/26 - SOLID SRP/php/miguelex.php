@@ -78,4 +78,257 @@
 
     // Extra
 
-   
+   class Library {
+    private $books = [];
+    private $users = [];
+    private $loans = [];
+
+    public function addBook ($title, $author, $copies){
+        $this->books[] = ['title' => $title, 'author' => $author, 'copies' => $copies];
+    }
+
+    public function addUser ($name, $id, $email){
+        $this->users[] = ['name' => $name, 'id' => $id, 'email' => $email];
+    }
+
+    public function loanBook($userId, $bookTitle) {
+        foreach ($this->books as &$book) {
+            if ($book['title'] === $bookTitle && $book['copies'] > 0) {
+                $this->loans[] = [
+                    'userId' => $userId,
+                    'bookTitle' => $bookTitle,
+                    'date' => date('Y-m-d H:i:s')
+                ];
+                $book['copies']--;
+                return "El libro ha sido prestado.";
+            }
+        }
+        return "El libro no está disponible.";
+    }
+
+    public function returnBook($userId, $bookTitle) {
+        foreach ($this->loans as $key => $loan) {
+            if ($loan['userId'] === $userId && $loan['bookTitle'] === $bookTitle) {
+                unset($this->loans[$key]);
+                foreach ($this->books as &$book) {
+                    if ($book['title'] === $bookTitle) {
+                        $book['copies']++;
+                        return "El libro ha sido devuelto.";
+                    }
+                }
+            }
+        }
+        return "No se encontró el préstamo.";
+   }
+
+   public function getBooks(){
+        return $this->books;
+   }
+
+   public function getUsers(){
+        return $this->users;
+   }
+
+    public function getLoans(){
+          return $this->loans;
+    }
+}
+
+$myLibrary = new Library();
+
+do {
+    echo "\n\nVamos a mostrar un ejemplo de una clase que no cumple el SRP. En este caso es una clase que gestiona una biblioteca\n\n";
+    echo "";
+    echo "1. Añadir libro\n";
+    echo "2. Añadir usuario\n";
+    echo "3. Prestar libro\n";
+    echo "4. Devolver libro\n";
+    echo "5. Mostrar libros\n";
+    echo "6. Mostrar usuarios\n";
+    echo "7. Mostrar préstamos\n";
+    echo "8. Salir\n";
+    echo "";
+    echo "Elija una opción: ";
+
+    $option = readline();
+    echo "";
+    
+    switch ($option) {
+        case 1:
+            echo "Título: ";
+            $title = readline();
+            echo "Autor: ";
+            $author = readline();
+            echo "Copias: ";
+            $copies = readline();
+            $myLibrary->addBook($title, $author, $copies);
+            break;
+        case 2:
+            echo "Nombre: ";
+            $name = readline();
+            echo "ID: ";
+            $id = readline();
+            echo "Email: ";
+            $email = readline();
+            $myLibrary->addUser($name, $id, $email);
+            break;
+        case 3:
+            echo "ID del usuario: ";
+            $userId = readline();
+            echo "Título del libro: ";
+            $bookTitle = readline();
+            echo $myLibrary->loanBook($userId, $bookTitle) . "\n";
+            break;
+        case 4:
+            echo "ID del usuario: ";
+            $userId = readline();
+            echo "Título del libro: ";
+            $bookTitle = readline();
+            echo $myLibrary->returnBook($userId, $bookTitle) . "\n";
+            break;
+        case 5:
+            print_r($myLibrary->getBooks());
+            break;
+        case 6:
+            print_r($myLibrary->getUsers());
+            break;
+        case 7:
+            print_r($myLibrary->getLoans());
+            break;
+    }
+    
+} while (($option != 8));
+
+
+// Vamos ahora a refactorizar para aplicar el SRP. Ahora tnedremos una clase para los libros, otra para los autores y otra para los prestamos, asi como sus respectivos managers
+
+class Books {
+    private $title;
+    private $author;
+    private $copies;
+
+    public function __construct($title, $author, $copies){
+        $this->title = $title;
+        $this->author = $author;
+        $this->copies = $copies;
+    }
+
+    public function getTitle(){
+        return $this->title;
+    }
+
+    public function getAuthor(){
+        return $this->author;
+    }
+
+    public function getCopies(){
+        return $this->copies;
+    }
+
+    public function loanBook(){
+        $this->copies--;
+    }
+
+    public function returnBook(){
+        $this->copies++;
+    }
+}
+
+class UsersLibrary {
+    private $name;
+    private $id;
+    private $email;
+
+    public function __construct($name, $id, $email){
+        $this->name = $name;
+        $this->id = $id;
+        $this->email = $email;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
+}
+
+class Loan {
+    private $userId;
+    private $bookTitle;
+    private $date;
+
+    public function __construct($userId, $bookTitle){
+        $this->userId = $userId;
+        $this->bookTitle = $bookTitle;
+        $this->date = date('Y-m-d H:i:s');
+    }
+
+    public function getUserId(){
+        return $this->userId;
+    }
+
+    public function getBookTitle(){
+        return $this->bookTitle;
+    }
+
+    public function getDate(){
+        return $this->date;
+    }
+}
+
+class BookManager {
+    private $books = [];
+
+    public function addBook(Books $book){
+        $this->books[] = $book;
+    }
+
+    public function getBooks(){
+        return $this->books;
+    }
+}
+
+class UserManager{
+    private $users = [];
+
+    public function addUser(UsersLibrary $user){
+        $this->users[] = $user;
+    }
+
+    public function getUsers(){
+        return $this->users;
+    }
+}
+
+class LoanManager{
+    private $loans = [];
+
+    public function loanBook(UsersLibrary $user, Books $book){
+        $book->loanBook();
+        $this->loans[] = new Loan($user->getId(), $book->getTitle());
+    }
+
+    public function returnBook(UsersLibrary $user, Books $book){
+        $book->returnBook();
+        foreach ($this->loans as $key => $loan) {
+            if ($loan->getUserId() === $user->getId() && $loan->getBookTitle() === $book->getTitle()) {
+                unset($this->loans[$key]);
+            }
+        }
+    }
+
+    public function getLoans(){
+        return $this->loans;
+    }
+}
+
+$myBookManager = new BookManager();
+$myUserManager = new UserManager();
+$myLoanManager = new LoanManager();
