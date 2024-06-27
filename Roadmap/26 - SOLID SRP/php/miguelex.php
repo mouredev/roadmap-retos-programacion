@@ -136,8 +136,10 @@
 
 $myLibrary = new Library();
 
+echo "\n\nVamos a mostrar un ejemplo de una clase que no cumple el SRP. En este caso es una clase que gestiona una biblioteca\n\n";
+
 do {
-    echo "\n\nVamos a mostrar un ejemplo de una clase que no cumple el SRP. En este caso es una clase que gestiona una biblioteca\n\n";
+    echo "\n\nMENÚ\n\n";
     echo "";
     echo "1. Añadir libro\n";
     echo "2. Añadir usuario\n";
@@ -226,7 +228,12 @@ class Books {
     }
 
     public function loanBook(){
-        $this->copies--;
+        if ($this->copies > 0) {
+            $this->copies--;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function returnBook(){
@@ -329,18 +336,23 @@ class LoanManager{
     private $loans = [];
 
     public function loanBook(UsersLibrary $user, Books $book){
-        $book->loanBook();
-        $this->loans[] = new Loan($user->getId(), $book->getTitle());
+        if ($book->loanBook()) {
+            $this->loans[] = new Loan($user->getId(), $book->getTitle());
+        } else {
+            echo "No hay copias disponibles para el libro: " . $book->getTitle() . "\n";
+        }
     }
 
     public function returnBook(UsersLibrary $user, Books $book){
-        $book->returnBook();
         foreach ($this->loans as $key => $loan) {
             if ($loan->getUserId() === $user->getId() && $loan->getBookTitle() === $book->getTitle()) {
+                $book->returnBook();
                 unset($this->loans[$key]);
-                break;  
+                echo "Libro devuelto correctamente.\n";
+                return;
             }
         }
+        echo "No se encontró el préstamo del libro para el usuario especificado.\n";
     }
 
     public function getLoans(){
@@ -352,8 +364,10 @@ $myBookManager = new BookManager();
 $myUserManager = new UserManager();
 $myLoanManager = new LoanManager();
 
+echo "\n\nVamos a mostrar un ejemplo que si cumple SRP. En este caso es una clase que gestiona una biblioteca\n\n";
+
 do {
-    echo "\n\nVamos a mostrar un ejemplo de una clase que no cumple el SRP. En este caso es una clase que gestiona una biblioteca\n\n";
+    echo "\n\nMENÚ\n\n";
     echo "";
     echo "1. Añadir libro\n";
     echo "2. Añadir usuario\n";
@@ -426,4 +440,3 @@ do {
     }
     
 } while (($option != 8));
-
