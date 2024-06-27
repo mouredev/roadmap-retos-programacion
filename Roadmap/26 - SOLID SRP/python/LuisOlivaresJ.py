@@ -1,8 +1,11 @@
+# ---------------------------------------------
 # Ejemplo de Principio de responsabilidad única
-# """
+# ---------------------------------------------
 
 # El siguiente ejemplo muestra un código que viola el principio de responsabilidad única.
-# La clase ImageManager tiene dos responsabilidades: obtener estadísticas de una imagen y graficarla.
+# La clase ImageManager tiene dos responsabilidades: 
+#   1.- Obtener estadísticas de una imagen
+#   2.- Graficar una imagen
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -47,10 +50,13 @@ class ImagePlotter:
         plt.show()
 
 
-
-
+# ---------------------------------------------
 # Dificultad extra
 # Sistema de gestion para una bibioteca
+#
+# FORMA INCORRECTA
+#
+# ---------------------------------------------
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
 
@@ -130,6 +136,8 @@ class Library:
 
 
 # Testing the class
+print("\n"*3)
+print("### Testing: Dificultad extra (FORMA INCORRECTA)\n")
 my_library = Library()
 my_library.add_user("Alice", 1, "alice@dev")
 my_library.add_user("Bob", 2, "bob@dev")
@@ -151,6 +159,16 @@ my_library.return_book("The Hobbit", "Alice")
 my_library.print_books()
 my_library.print_users()
 
+
+# ---------------------------------------------
+# Dificultad extra
+# Sistema de gestion para una bibioteca
+#
+# Forma CORRECTA
+# 
+# Se crean dos clases diferentes, BooksManager y UsersManager, para manejar los libros y a los usuarios.
+# Se crea una clase que maneja la biblioteca y delega las responsabilidades a las clases BooksManeger y UsersManager.
+# ---------------------------------------------
 
 class BooksManeger:
     def __init__(self):
@@ -248,9 +266,10 @@ class Library_v2:
         self.books_m.return_book(title)
         self.users_m.return_book(title, name)
 
-print("\n"*3)
-print("### Testing: Dificultad extra\n")
+
 # Testing the classes
+print("\n"*3)
+print("### Testing: Dificultad extra (FORMA CORRECTA)\n")
 
 my_library_v2 = Library_v2()
 my_library_v2.add_user("Alice", 1, "alice@dev")
