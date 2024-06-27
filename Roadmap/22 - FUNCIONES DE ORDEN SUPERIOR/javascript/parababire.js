@@ -80,7 +80,13 @@ console.log(students.map(nameAndAverage).filter(bestAverage).map(student => stud
 //Mas joven
 
 function nameAndBirth(n) {
-  return {'name': n['name'], 'birth': new Date(n['birthdate'])};
+  return {'name': n['name'], 'birth': new Date(n['birthdate']), 'grades': n['grades']};
 }
-console.log(students.map(nameAndBirth).sort(function(a, b){return b.birth - a.birth}));
-/* Falta pulir fecha del output */
+
+function dateFormat(a, b) {
+  let c = b.birth - a.birth;
+  return c;
+}
+console.log(students.map(nameAndBirth).sort(dateFormat).map((n) => {
+  return {'name': n['name'], 'birth': n['birth'].toLocaleDateString('es-es', {day: 'numeric', month: 'numeric', year: 'numeric'}), 'grades': n['grades']};
+}));
