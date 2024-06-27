@@ -1,5 +1,19 @@
 import os
 
+nombre_archivo = "NeosV.txt"
+
+with open(nombre_archivo, "w") as file:
+     file.write("Andres\n")
+     file.write("22\n")
+     file.write("Python\n")
+     
+     
+with open(nombre_archivo, "r") as file:
+     print(file.read())
+
+
+os.remove(nombre_archivo)     
+
 nombre_tienda = "Negocio.txt"
 
 open(nombre_tienda, "a")
