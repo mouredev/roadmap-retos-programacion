@@ -293,6 +293,15 @@ class BookManager {
     public function getBooks(){
         return $this->books;
     }
+
+    public function findBookByTitle($title){
+        foreach ($this->books as $book) {
+            if ($book->getTitle() === $title) {
+                return $book;
+            }
+        }
+        return null;
+    }
 }
 
 class UserManager{
@@ -304,6 +313,15 @@ class UserManager{
 
     public function getUsers(){
         return $this->users;
+    }
+
+    public function findUserById($id){
+        foreach ($this->users as $user) {
+            if ($user->getId() === $id) {
+                return $user;
+            }
+        }
+        return null;
     }
 }
 
@@ -320,6 +338,7 @@ class LoanManager{
         foreach ($this->loans as $key => $loan) {
             if ($loan->getUserId() === $user->getId() && $loan->getBookTitle() === $book->getTitle()) {
                 unset($this->loans[$key]);
+                break;  
             }
         }
     }
@@ -332,3 +351,79 @@ class LoanManager{
 $myBookManager = new BookManager();
 $myUserManager = new UserManager();
 $myLoanManager = new LoanManager();
+
+do {
+    echo "\n\nVamos a mostrar un ejemplo de una clase que no cumple el SRP. En este caso es una clase que gestiona una biblioteca\n\n";
+    echo "";
+    echo "1. Añadir libro\n";
+    echo "2. Añadir usuario\n";
+    echo "3. Prestar libro\n";
+    echo "4. Devolver libro\n";
+    echo "5. Mostrar libros\n";
+    echo "6. Mostrar usuarios\n";
+    echo "7. Mostrar préstamos\n";
+    echo "8. Salir\n";
+    echo "";
+    echo "Elija una opción: ";
+
+    $option = readline();
+    echo "";
+    
+    switch ($option) {
+        case 1:
+            echo "Título: ";
+            $title = readline();
+            echo "Autor: ";
+            $author = readline();
+            echo "Copias: ";
+            $copies = readline();
+            $myBookManager->addBook(new Books($title, $author, $copies));
+            break;
+        case 2:
+            echo "Nombre: ";
+            $name = readline();
+            echo "ID: ";
+            $id = readline();
+            echo "Email: ";
+            $email = readline();
+            $myUserManager->addUser(new UsersLibrary($name, $id, $email));
+            break;
+        case 3:
+            echo "ID del usuario: ";
+            $userId = readline();
+            echo "Título del libro: ";
+            $bookTitle = readline();
+            $user = $myUserManager->findUserById($userId);
+            $book = $myBookManager->findBookByTitle($bookTitle);
+            if ($user && $book) {
+                $myLoanManager->loanBook($user, $book);
+            } else {
+                echo "Usuario o libro no encontrado.\n";
+            }
+            break;
+        case 4:
+            echo "ID del usuario: ";
+            $userId = readline();
+            echo "Título del libro: ";
+            $bookTitle = readline();
+            $user = $myUserManager->findUserById($userId);
+            $book = $myBookManager->findBookByTitle($bookTitle);
+            if ($user && $book) {
+                $myLoanManager->returnBook($user, $book);
+            } else {
+                echo "Usuario o libro no encontrado.\n";
+            }
+            break;
+        case 5:
+            print_r($myBookManager->getBooks());
+            break;
+        case 6:
+            print_r($myUserManager->getUsers());
+            break;
+        case 7:
+            print_r($myLoanManager->getLoans());
+            break;
+    }
+    
+} while (($option != 8));
+
