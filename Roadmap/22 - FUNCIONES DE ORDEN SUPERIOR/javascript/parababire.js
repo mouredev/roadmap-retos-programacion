@@ -90,3 +90,10 @@ function dateFormat(a, b) {
 console.log(students.map(nameAndBirth).sort(dateFormat).map((n) => {
   return {'name': n['name'], 'birth': n['birth'].toLocaleDateString('es-es', {day: 'numeric', month: 'numeric', year: 'numeric'}), 'grades': n['grades']};
 }));
+
+// Mayor calificación
+
+console.log(students.map((n) => {
+  return {'grades': Math.max(...n['grades'])};
+}));
+/* Pulir output */
