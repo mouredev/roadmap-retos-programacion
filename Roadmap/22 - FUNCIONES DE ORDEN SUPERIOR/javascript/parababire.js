@@ -93,7 +93,6 @@ console.log(students.map(nameAndBirth).sort(dateFormat).map((n) => {
 
 // Mayor calificación
 
-console.log(students.map((n) => {
-  return {'grades': Math.max(...n['grades'])};
-}));
-/* Pulir output */
+console.log(Math.max(...students.map((n) => {
+  return Math.max(...n['grades']);
+})));
