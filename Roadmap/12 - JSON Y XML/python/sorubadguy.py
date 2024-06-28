@@ -62,3 +62,5 @@ class Datos:
         self.cumpleanios = cumpleanios
         self.progra_len = progra_leng
 
+with open("clase.xml", "w") as clase:
+    persona = xml.
