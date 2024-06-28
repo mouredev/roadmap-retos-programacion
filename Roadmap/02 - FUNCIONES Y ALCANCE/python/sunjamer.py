@@ -64,6 +64,29 @@ def multiplicar_numeros(*numeros):
 print(multiplicar_numeros(3, 5, 10, 2, 24))
 
 
+# extra
+
+def funcion_extra (cadena1, cadena2):
+    contador = 0
+    for num in range(1,101):
+        if num % 3 == 0 and num % 5 == 0:
+            print (cadena1 + ' y ' + cadena2)
+        elif num % 3 == 0:
+            print(cadena1)
+        elif num % 5 == 0:
+            print (cadena2)
+        else:
+            print (num)
+            contador += 1
+    return contador
+
+veces = funcion_extra("multiplo de 3","multiplo de 5")
+print(veces)
+    
+
+
+
+
 
 
 
