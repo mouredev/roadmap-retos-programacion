@@ -67,3 +67,34 @@ cola.imprimir()
 print("Elemento eliminado:", cola.eliminar()) 
 cola.imprimir() 
 print("Tamaño de la cola:", cola.tamaño())  
+
+class Pila:
+    def __init__(self):
+        self.items = []
+    
+    def empty(self):
+        return len(self.items) == 0
+    
+    def push(self, item):
+        self.items.append(item)
+    
+    def borrar(self):
+        if not self.empty():
+            return self.items.pop()
+        else:
+            return None
+        
+    def imprimir(self):
+        print("Contenido de la pila:", self.items)
+
+pila = Pila()
+pila.push(1)    
+pila.push(2)
+pila.push(3)
+pila.imprimir()
+print("Elemento eliminado:", pila.borrar())
+pila.imprimir()
+print("Tamaño de la pila:", pila.empty())
+
+
+
