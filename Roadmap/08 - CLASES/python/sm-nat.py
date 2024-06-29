@@ -36,3 +36,34 @@ print(Libro.categoria)
  * - Deben poder inicializarse y disponer de operaciones para añadir, eliminar,
  *   retornar el número de elementos e imprimir todo su contenido."""
 
+class Cola:
+    def __init__(self):
+        self.items = []
+
+    def vacia(self):
+        return len(self.items) == 0
+
+    def añadir(self, item):
+        self.items.append(item)
+
+    def eliminar(self):
+        if not self.vacia():
+            return self.items.pop(0)
+        else:
+            return None
+
+    def tamaño(self):
+        return len(self.items)
+
+    def imprimir(self):
+        print("Contenido de la cola:", self.items)
+
+
+cola = Cola()
+cola.añadir(1)
+cola.añadir(2)
+cola.añadir(3)
+cola.imprimir() 
+print("Elemento eliminado:", cola.eliminar()) 
+cola.imprimir() 
+print("Tamaño de la cola:", cola.tamaño())  
