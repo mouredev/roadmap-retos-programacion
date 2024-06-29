@@ -64,9 +64,17 @@ def multiplicar_numeros(*numeros):
 print(multiplicar_numeros(3, 5, 10, 2, 24))
 
 
-# extra
 
-def funcion_extra (cadena1, cadena2):
+
+
+
+
+"""
+extra
+"""
+
+
+def funcion_extra (cadena1, cadena2) -> int:
     contador = 0
     for num in range(1,101):
         if num % 3 == 0 and num % 5 == 0:
@@ -84,7 +92,15 @@ veces = funcion_extra("multiplo de 3","multiplo de 5")
 print(veces)
     
 
+# funcion dentro de función
 
+def suma_numeros (num1, num2, num3):
+    def suma_num1_num2 (num1, num2):
+        return num1 + num2
+    suma_parcial = suma_num1_num2(num1, num2)
+    return num3 + suma_parcial
+
+print(suma_numeros (20, 400, 80))
 
 
 
