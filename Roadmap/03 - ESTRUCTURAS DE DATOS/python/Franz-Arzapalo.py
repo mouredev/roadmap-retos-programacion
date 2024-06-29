@@ -238,3 +238,80 @@ for ss in s0:
 
 # Se asemeja bastante a la iteracion a las listas.
 
+# Elemento len().
+
+len(s0) # 5
+
+# El elemento len() retorna la cantidad de datos iterablescen este caso 5.
+
+# Operador de pertenencia in.
+
+if 2 in s0:
+    print("EL numero 2 esta en el set s0.")
+else:
+    print("El numero 2 no esta en el set s0")
+
+# Como vimos en un reto anterior el operador in nos siver para saber si un dato esta dentro de otro.
+
+# Union o | es una forma de unir sets pero recordar que si se repite el mismo valor se eleminara hasta que solo
+# quede uno.
+
+print(s | s0) # {1, 2, 3, 4, 5, 'Franz', 20, 'Python'}
+
+# Practicamente solo une los datos y los podemos asiganar a un nuevo set.
+
+# AL igual que append() en las listas en los sets tenemos add().
+# Con el que podemos agregar un dato a un set.
+
+s.add(6)
+print(s) # {1, 2, 3, 4, 5, 6}
+
+# Agregara al set el dato que se ponga en el parentesis pero recordar que no se pueden anidar listas dentro de los sets.
+
+# Y de la misma forma que con las listas en elemento remove pude eliminar un dato de un set.
+
+s.remove(6)
+print(s) # {1, 2, 3, 4, 5}
+
+# Como vimos eliminar el dato que se ponga entre los parentesis y de no encontrarlos devolvera un error key.
+
+# Elemento discard().
+
+s.discard(5)
+print(s) # {1, 2, 3, 4}
+
+# Hace la misma funcion que el elemento remove() solo que si no encuentra el dato no devolvera ningun error.
+
+# Elemento pop().
+
+s.pop()
+print(s) # {2, 3, 4}
+
+# Como los sets no censervan el orden con el que se definen cuando el pop elimina un dato lo hace de forma pseudoaleatoria.
+
+# Elemento clear().
+
+s.clear()
+print(s) # set()
+
+# El elemento clear elimina todos los datos que esten dentro del set().
+
+# Otras operaciones interesantes:
+# Como obseravaremos estos funcionan poniendo un punto y el elemneto para por ultimo poner el parametro.
+# EJemplos para las operaciones.
+
+s1 = {1, 2, 3, 4, 5}
+s2 = {4, 5, 6, 7, 8}
+s3 = {7, 8, 9, 10, 11}
+
+# Union:
+
+print(s1.union(s2)) # {1, 2, 3, 4, 5, 6, 7, 8}
+print(s1.union(s2,s3)) # {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+
+# Intersection:
+
+print(s1.intersection(s2)) # {4, 5}
+print(s1.intersection(s2,s3))  # set()
+
+# 
