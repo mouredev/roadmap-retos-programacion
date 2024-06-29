@@ -135,19 +135,19 @@ class Library {
 	}
 
 	lendBook(userID, bookID) {
-		let userLender = this.search(this.userDataBase, userID);
+		let pendingLender = this.search(this.userDataBase, userID);
 		let bookToLend = this.search(this.bookDataBase, bookID);
 
-		if (userLender) {
+		if (pendingLender) {
 			if (bookToLend) {
 				if (bookToLend.avalaibleCopies > 0) {
 					console.log(
-						`Se le ha prestado el libro \"${bookToLend.title}\" de ${bookToLend.author} a ${userLender.name}`
+						`Se le ha prestado el libro \"${bookToLend.title}\", de ${bookToLend.author}, a ${pendingLender.name}`
 					);
 
 					bookToLend.avalaibleCopies--;
 
-					this.pendingLenders.push(userLender);
+					this.pendingLenders.push(pendingLender);
 				} else {
 					console.log('No hay copias disponibles');
 				}
@@ -160,17 +160,15 @@ class Library {
 	}
 
 	receiveBook(userID, bookID) {
-		let userLender = this.search(this.pendingLenders, userID);
+		let pendingLender = this.search(this.pendingLenders, userID);
 		let bookReceived = this.search(this.bookDataBase, bookID);
 
-		if (userLender) {
-			console.log(
-				`${userLender.name} ha regresado el libro \"${bookReceived.title}\" de ${bookReceived.author}`
-			);
+		if (pendingLender) {
+			console.log(`${pendingLender.name} ha regresado el libro \"${bookReceived.title}\"`);
 
 			bookReceived.avalaibleCopies++;
 
-			this.pendingLenders.splice(this.pendingLenders.indexOf(userLender), 1);
+			this.pendingLenders.splice(this.pendingLenders.indexOf(pendingLender), 1);
 		} else {
 			console.log('Ese préstamo no está en el registro');
 		}
@@ -212,23 +210,53 @@ class LibraryUser {
 }
 
 //3. Sistema de gestión de préstamos
+class PendingLender {
+	constructor(user, bookID, dataBase = myLibraryDataBase) {
+		this.userID = user.userID;
+		this.name = user.name;
+		this.emailAddress = user.emailAddress;
+		this.bookID = bookID;
+	}
+}
+
+function search(arr, item) {
+	let result;
+
+	arr.forEach((arrObject) => {
+		Object.keys(arrObject).forEach((element) => {
+			if (arrObject[element] === item) {
+				result = arrObject;
+			}
+		});
+	});
+
+	return result;
+}
+
+class LibraryDataBase {
+	books = [];
+	users = [];
+	pendingLenders = [];
+}
+
 class LendingManager {
 	constructor(dataBase = myLibraryDataBase) {
 		this.dataBase = dataBase;
 	}
 
-	lendBook(bookID, userID) {
-		let userLender = this.dataBase.search(this.dataBase.users, userID);
-		let bookToLend = this.dataBase.search(this.dataBase.books, bookID);
+	lendBook(userID, bookID) {
+		let pendingLender = search(this.dataBase.users, userID);
+		let bookToLend = search(this.dataBase.books, bookID);
 
-		if (userLender) {
+		if (pendingLender) {
 			if (bookToLend) {
 				if (bookToLend.avalaibleCopies > 0) {
 					console.log(
-						`Se le ha prestado el libro \"${bookToLend.title}\" de ${bookToLend.author} a ${userLender.name}`
+						`Se le ha prestado el libro \"${bookToLend.title}\", de ${bookToLend.author}, a ${pendingLender.name}`
 					);
 					bookToLend.avalaibleCopies--;
-					this.dataBase.pendingLenders.push(userLender);
+
+					this.dataBase.pendingLenders.push(new PendingLender(pendingLender, bookToLend.bookID));
 				} else {
 					console.log('No hay copias disponibles');
 				}
@@ -240,53 +268,29 @@ class LendingManager {
 		}
 	}
 
-	receiveBook(bookID, userID) {
-		let bookReceived = this.dataBase.search(this.dataBase.books, bookID);
-		let userLender = this.dataBase.search(this.dataBase.pendingLenders, userID);
+	receiveBook(userID, bookID) {
+		let pendingLender = search(this.dataBase.pendingLenders, userID);
+		let book = search(this.dataBase.books, bookID);
 
-		if (userLender) {
-			console.log(
-				`${userLender.name} ha regresado el libro \"${bookReceived.title}\" de ${bookReceived.author}`
-			);
+		if (pendingLender) {
+			console.log(`${pendingLender.name} ha regresado el libro \"${book.title}\"`);
 
-			bookReceived.avalaibleCopies++;
-
-			this.dataBase.pendingLenders.splice(this.dataBase.pendingLenders.indexOf(userLender), 1);
+			book.avalaibleCopies++;
+			this.dataBase.pendingLenders.splice(this.dataBase.pendingLenders.indexOf(pendingLender), 1);
 		} else {
 			console.log('Ese préstamo no está en el registro');
 		}
 	}
 }
 
-class LibraryDataBase {
-	books = [];
-	users = [];
-	pendingLenders = [];
-
-	search(arr, item) {
-		let result;
-
-		arr.forEach((arrObject) => {
-			Object.keys(arrObject).forEach((element) => {
-				if (arrObject[element] === item) {
-					result = arrObject;
-				}
-			});
-		});
-
-		return result;
-	}
-}
-
 const myLibraryDataBase = new LibraryDataBase();
+const myLendingManager = new LendingManager();
 
-let book1 = new Book('Christine', 'Stephen King', 5);
-let book2 = new Book("El Misterio de Salem's Lot", 'Stephen King', 3);
-let user1 = new LibraryUser('Ana', 'anitalahuerfanita2233@gmail.com');
-let user2 = new LibraryUser('Julia', 'soyjuliaparasiempre@gmail.com');
+new Book('Christine', 'Stephen King', 5);
+new Book("El Misterio de Salem's Lot", 'Stephen King', 3);
+new LibraryUser('Ana', 'anitalahuerfanita2233@gmail.com');
+new LibraryUser('Julia', 'soyjuliaparasiempre@gmail.com');
 
-const myLendingManager = new LendingManager(myLibraryDataBase);
-
-myLendingManager.lendBook(book1.title, user1.name);
-myLendingManager.lendBook(book2.title, user1.name);
-myLendingManager.receiveBook(book1.title, user1.name);
+myLendingManager.lendBook('Ana', 1);
+myLendingManager.receiveBook('Ana', 1);
+myLendingManager.lendBook('Julia', 'Libro inexistente');
