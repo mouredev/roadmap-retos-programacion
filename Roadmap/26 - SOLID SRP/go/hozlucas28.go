@@ -96,5 +96,4 @@ func main() {
 		"\nbecause each class ('GoodUser', 'EmailService', and 'DatabaseService') has only",
 		"\none responsability (user creation, notifications service, and data persistance).",
 	)
-
 }
