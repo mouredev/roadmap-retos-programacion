@@ -127,5 +127,5 @@ def numbers_printer(text_1: str, text_2: str) -> int:
     
     return number_count
 
-# num_count = numbers_printer("FIZZ","BUZZ")
-# print(f"Cantidad de veces que salen numeros: {num_count}")
+num_count = numbers_printer("FIZZ","BUZZ")
+print(f"Cantidad de veces que salen numeros: {num_count}")
