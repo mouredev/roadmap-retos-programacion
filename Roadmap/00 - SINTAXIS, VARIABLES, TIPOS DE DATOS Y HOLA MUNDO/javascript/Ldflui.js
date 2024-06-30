@@ -44,3 +44,4 @@ let simbolo = Symbol;
 console.log("!Hola, JavaScript¡");
 console.log(num,nombre,boleano,numeroEnteroGrande,decimal,nulo,vacio,simbolo); 
 console.log(decimal);
+console.log(nulo);
