@@ -51,3 +51,4 @@ sesion1.cargar_usuario(1, "gringoam","Diego", "diego@gemil.com")
 sesion1.obter_datos_usuario()
 sesion1.cerrar_sesion()
 sesion1.obter_datos_usuario()
+
