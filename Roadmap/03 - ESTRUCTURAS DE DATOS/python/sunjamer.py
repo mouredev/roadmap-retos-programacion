@@ -95,7 +95,8 @@ def mi_agenda():
         print("2. Insertar contacto")
         print("3. Actualizar contacto")
         print("4. Eliminar contacto")
-        print("5. Salir")
+        print("5. Listar agenda")
+        print("6. Salir")
 
         opcion = input("\nSelecciona una opción: ")
 
@@ -110,24 +111,44 @@ def mi_agenda():
             case "2":
                 nombre = input("entra el nombre del contacto: ")
                 telefono = input("entra el teléfono del contacto: ")
-                if telefono.isdigit() and len(telefono) > 0 and len(telefono) <= 11:
-                    agenda[nombre] = telefono
+                if nombre not in agenda:  # comprobar que contacto no existe para no duplicar
+                    if telefono.isdigit() and len(telefono) > 0 and len(telefono) <= 11:
+                        agenda[nombre] = telefono
+                    else:
+                        print ("debes introducir un número de 11 digitos como máximo")
                 else:
-                    print ("debes introducir un número de 11 digitos como máximo")
+                    print(f"el contacto {nombre} ya existe en la agenda")
             case "3":
-                pass
+                nombre = input("entra el nombre del contacto a actualizar: ")
+                telefono = input("entra el teléfono del contacto a actualizar: ")
+                if nombre in agenda:
+                    if telefono.isdigit() and len(telefono) > 0 and len(telefono) <= 11:
+                        agenda[nombre] = telefono
+                        print(f"el contacto {nombre} se ha actualizado")
+                    else:
+                        print ("debes introducir un número de 11 digitos como máximo")
+                else:
+                    print("el nombre no existe en la agenda")
             case "4":
                 nombre = input("entra el nombre del contacto a eliminar: ")
                 if nombre in agenda:
                     del agenda[nombre]
                     print(f"el contacto {nombre} se ha eliminado")
                 else:
-                    print("el nombre no existe en la agenda")
+                    print(f"el nombre {nombre} no existe en la agenda")
             case "5":
+                if len(agenda) != 0:
+                    print("\nListado de la agenda")
+                    for nombre in agenda:
+                        print(f"\nEl contacto {nombre} tiene el teléfono {agenda[nombre]}")
+                    print("\nFin de la agenda")
+                else:
+                    print("\nLa agenda está vacía")
+            case "6":
                 print ("saliendo del programa Agenda")
                 break
             case _:
-                print("Opción no válida. Escoge una opción del 1 al 5.")
+                print("Opción no válida. Escoge una opción del 1 al 6.")
     
 
 
