@@ -133,9 +133,9 @@ def mi_agenda():
                 nombre = input("entra el nombre del contacto a eliminar: ")
                 if nombre in agenda:
                     del agenda[nombre]
-                    print(f"el contacto {nombre} se ha eliminado")
+                    print(f"El contacto {nombre} se ha eliminado")
                 else:
-                    print(f"el nombre {nombre} no existe en la agenda")
+                    print(f"El nombre {nombre} no existe en la agenda")
             case "5":
                 if len(agenda) != 0:
                     print("\nListado de la agenda")
