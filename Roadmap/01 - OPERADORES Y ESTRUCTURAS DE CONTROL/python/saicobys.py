@@ -78,3 +78,11 @@ else: # Se ejecuta si no hubo excepciones
     print("El resultado es:", resultado)
 finally: # Se ejecuta siempre, haya o no excepciones
     print("Fin del programa")
+
+# Ejercicio
+
+for numero in range(10, 56):  # Iteramos sobre los números del 10 al 55 (incluyendo el 55).
+    if numero % 2 == 0:       # Verificamos si el número es par (residuo 0 al dividir por 2).
+        if numero != 16 and numero % 3 != 0:  # Comprobamos que no sea 16 ni múltiplo de 3.
+            print(numero)    # Si cumple todas las condiciones, lo imprimimos.
+
