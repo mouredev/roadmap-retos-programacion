@@ -145,7 +145,7 @@ def mi_agenda():
                 else:
                     print("\nLa agenda está vacía")
             case "6":
-                print ("saliendo del programa Agenda")
+                print ("Saliendo del programa Agenda")
                 break
             case _:
                 print("Opción no válida. Escoge una opción del 1 al 6.")
