@@ -50,10 +50,23 @@ print(mi_nombre.split("d"))
 print(mi_nombre_completo)
 print (mi_nombre_completo.split(espacio))
 
+# mayusculas, minusculas, letras mayusculas
+print(mi_apellido.upper())
+print(mi_apellido.lower())
+print("pedro".capitalize())
+print("pedro perez gracia".title())
 
+# eliminar espacios al principio y al final
+print(" esto es un texto con espacios ".strip())
 
+# buscar al principio y al final
+print(mi_nombre_completo.startswith("Pe"))
+print(mi_nombre_completo.startswith("Dro"))
+print(mi_nombre_completo.lower().find("z"))
+print(mi_nombre_completo.lower().find("i"))
 
-
-
-
+# buscar ocurrencias (cuantas veces se repite)
+print(mi_nombre_completo.lower().count("p"))
+print(mi_nombre_completo.lower().count("r"))
+print(mi_nombre_completo.lower().count("e"))
 
