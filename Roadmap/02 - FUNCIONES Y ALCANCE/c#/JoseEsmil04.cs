@@ -22,7 +22,7 @@ namespace _02_Funciones_Alcance
             int suma = ConRetorno(5, 10);
             Console.WriteLine($"La suma es: {suma}");
 
-            // función ya creada en el lenguaje
+            // Funcion ya creada en el lenguaje
             Console.WriteLine("Esto es una Funcion ya creada en el lenguaje.");
 
             // Variables locales
