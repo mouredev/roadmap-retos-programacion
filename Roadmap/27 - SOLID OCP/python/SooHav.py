@@ -111,7 +111,7 @@ class Dialogo(ABC):
 
 
 class DialogoHistorieta(Dialogo):
-    """Clase concreta para el diálogo en formato historieta"""
+    """Clase para el diálogo en formato historieta"""
 
     def conversacion(self, pato1: Pato, pato2: Pato, mensaje1: str, mensaje2: str):
         frase1 = f"{pato1.nombre}: {pato1.dice()}, {mensaje1}"
@@ -123,7 +123,7 @@ class DialogoHistorieta(Dialogo):
 
 
 class DialogoFormal(Dialogo):
-    """Clase concreta para el diálogo en un formato más formal"""
+    """Clase para el diálogo en un formato más formal"""
 
     def conversacion(self, pato1: Pato, pato2: Pato, mensaje1: str, mensaje2: str):
         frase1 = f"{pato1.nombre}: Buen día, {pato2.nombre}. {mensaje1}"
