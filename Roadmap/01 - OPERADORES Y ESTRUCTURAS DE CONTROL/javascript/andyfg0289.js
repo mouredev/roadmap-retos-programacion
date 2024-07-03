@@ -21,31 +21,46 @@
 //Operadores Aritmeticos
 
 let adicion = 6 + 4;
+console.log(adicion);
 let sustraccion = 9 - 3;
+console.log(sustraccion);
 let multiplicacion = 7 * 3;
+console.log(multiplicacion);
 let division = 4 / 2;
+console.log(division);
 let modulo = 10 % 3;
+console.log(modulo);
 let incremento = 10;
 incremento++;
+console.log(incremento);
 let decremento = 10;
 decremento--;
+console.log(decremento);
 let exponenciacion = 3 ** 4;
+console.log(exponenciacion);
 
 //Operadores de asignacion 
 
 let asignacion = 12;
+console.log(asignacion);
 let adicionAsignacion = 30;
 adicionAsignacion += 5;
+console.log(adicionAsignacion);
 let sustraccionAsignacion = 20;
 sustraccionAsignacion -= 5;
+console.log(sustraccionAsignacion);
 let multiplicacionAsignacion = 2;
 multiplicacionAsignacion *= 2;
+console.log(multiplicacionAsignacion);
 let divisionAsignacion = 10;
 divisionAsignacion /= 2;
+console.log(divisionAsignacion);
 let moduloAsignacion = 15;
 moduloAsignacion %= 3;
+console.log(moduloAsignacion);
 let expAsignacion = 2;
 expAsignacion **= 8;
+console.log(expAsignacion);
 
 
 //Operadores de comparacion 
