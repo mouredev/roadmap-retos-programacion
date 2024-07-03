@@ -168,6 +168,7 @@ Esto facilita la adición de nuevas funcionalidades sin modificar el código exi
 """
 
 # Extra
+
 # Configurar Logger
 logging.basicConfig(level=logging.WARNING,
                     format='%(asctime)s - %(levelname)s - %(message)s')
