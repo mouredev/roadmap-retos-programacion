@@ -1,8 +1,7 @@
 # 26 SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA (SRP)
-
+import logging
 # Ejercicio
 # Ejemplo Pato sin PRS
-import logging
 
 
 class Pato:
@@ -35,7 +34,7 @@ print("\n")
 # Ejemplo Pato con PRS
 
 
-class Pato:
+class Pato():
     """Clase que define los patos"""
 
     def __init__(self, nombre):
@@ -51,7 +50,7 @@ class Pato:
         return "Quack"
 
 
-class Dialogo:
+class Dialogo():
     """Clase que define la comunicacion entre patos"""
 
     def __init__(self, formato):
@@ -81,7 +80,7 @@ formato1.conversacion(pato1, pato2)
 # Programa sin SR
 
 
-class GestorBiblioteca:
+class GestorBiblioteca():
     """
     Clase que gestiona una biblioteca.
     """
@@ -136,15 +135,13 @@ class GestorBiblioteca:
         for id, nuevo_registro in self.registro.items():
             if nuevo_registro["titulo"] == titulo:
                 libro_prestado = nuevo_registro
-                # Actualizar la variable local
                 cantidad_actual = nuevo_registro["cantidad_copias"]
                 max_prestamo = nuevo_registro["max_prestamo"]
                 break
 
         if libro_prestado:
             if cantidad_actual > 0 and cantidad_actual <= max_prestamo:
-                cantidad_actual -= 1  # Restar a la variable local
-                # Actualizar el registro
+                cantidad_actual -= 1
                 libro_prestado["cantidad_copias"] = cantidad_actual
                 print(f"Libro '{titulo}' prestado con éxito a {nombre}.")
             else:
@@ -234,7 +231,6 @@ gestor.devolucion_libro("Cien años de Soledad", "Sofia")
 gestor.listar_libros()
 
 # Gestor de Biblioteca con PSR
-
 # Configurar Logger
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.WARNING)
@@ -249,7 +245,7 @@ class RegistroError(Exception):
     pass
 
 
-class RegistroBiblioteca:
+class RegistroBiblioteca():
     def __init__(self):
         self.biblioteca = {}
         self.usuarios = {}
@@ -291,7 +287,7 @@ class RegistroBiblioteca:
         return False
 
 
-class TransaccionBiblioteca:
+class TransaccionBiblioteca():
     """
     Clase que gestiona las transacciones de prestamo y devolucion de una biblioteca.
     """
@@ -348,7 +344,7 @@ class TransaccionBiblioteca:
             print(e)
 
 
-class Existencias:
+class Existencias():
     def __init__(self, registro_biblioteca):
         self.registro_biblioteca = registro_biblioteca
 
