@@ -1,7 +1,7 @@
 # 26 SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA (SRP)
 import logging
 # Ejercicio
-# Ejemplo Pato sin PRS
+# Ejemplo Pato sin SRP
 
 
 class Pato:
@@ -23,7 +23,7 @@ class Pato:
 
 
 # Uso
-print("Sin PRS")
+print("Sin SRP")
 pato1 = Pato(nombre="Daisy")
 pato2 = Pato(nombre="Donald")
 pato1.vuela()
@@ -31,7 +31,7 @@ pato1.nada()
 pato1.saluda(pato2)
 print("\n")
 
-# Ejemplo Pato con PRS
+# Ejemplo Pato con SRP
 
 
 class Pato():
@@ -68,7 +68,7 @@ class Dialogo():
 
 
 # Uso
-print("Con PRS")
+print("Con SRP")
 pato1 = Pato(nombre="Donald")
 pato2 = Pato(nombre="Daisy")
 pato1.vuela()
@@ -77,7 +77,7 @@ formato1 = Dialogo(formato="historieta")
 formato1.conversacion(pato1, pato2)
 
 # Extra
-# Programa sin SR
+# Programa sin SRP
 
 
 class GestorBiblioteca():
@@ -230,7 +230,7 @@ gestor.devolucion_libro("Cien años de Soledad", "Sofia")
 # Lista
 gestor.listar_libros()
 
-# Gestor de Biblioteca con PSR
+# Gestor de Biblioteca con SRP
 # Configurar Logger
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.WARNING)
