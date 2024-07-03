@@ -37,9 +37,17 @@ print(mi_nombre[3:5])
 print(mi_nombre[1:])
 print(mi_nombre[:3])
 
+# invertir string i slicing
+mi_nombre = "Pamplona"
+print ("reverse de Pamplona")
+print(mi_nombre[::-1])
+print(mi_nombre[4::-1])   # la cadena se invierte y se recorre de derecha a izq
+
 # busqueda
 print("p" in mi_nombre)
 print("P" in mi_nombre)
+print(mi_nombre.startswith("P"))
+print(mi_apellido.endswith("z"))
 
 # reemplazo
 print(mi_nombre.replace("P", "X"))
@@ -70,3 +78,49 @@ print(mi_nombre_completo.lower().count("p"))
 print(mi_nombre_completo.lower().count("r"))
 print(mi_nombre_completo.lower().count("e"))
 
+# transformaciones numéricas
+num1 = "12345"
+num2 = "67890"
+print(num1)
+print(num2)
+print (num1 + num2)
+num1 = int(num1)
+num2 = int(num2)
+print(num1 + num2)
+
+num3 = "666.66"
+print(num3 + "cadena")
+num3 = float(num3)
+print(num3 + 9.99)
+
+# comprobaciones varias
+num4 = "abc012"
+num5 = "abc"
+num6 = "012"
+print(num4.isalnum())
+print(num5.isalpha())
+print(num6.isnumeric())
+print(num5.isnumeric())
+
+"""
+Extra
+"""
+
+# palindroms
+palabra1 = "patata"
+palabra2 = "remer"
+
+print(f"La paraula {palabra2} és palindrom: {palabra2 == palabra2[::-1]}")
+print(f"La paraula {palabra1} és palindrom: {palabra1 == palabra1[::-1]}")
+
+# anagrama: 2 palabras tienen las mismas letras
+palabra1 = "cosas"
+palabra2 = "casus"
+
+palabra1_ord = sorted(palabra1)
+print(palabra1_ord)
+palabra2_ord = sorted(palabra2)
+print(palabra2_ord)
+print(f"La palabra {palabra1} es anagrama de {palabra2}: {palabra1_ord == palabra2_ord}")
+
+# isogramas
