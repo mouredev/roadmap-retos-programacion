@@ -9,8 +9,7 @@
 '''
 Este es,
 por convención,
-un comentario
-multilínea.
+un comentario multilínea.
 '''
 
 # 3. VARIABLES
