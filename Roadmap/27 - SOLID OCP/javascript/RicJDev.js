@@ -1,65 +1,192 @@
-/*
- * EJERCICIO:
- * Explora el "Principio SOLID Abierto-Cerrado (Open-Close Principle, OCP)"
- * y crea un ejemplo simple donde se muestre su funcionamiento
- * de forma correcta e incorrecta.
- *
- * DIFICULTAD EXTRA (opcional):
- * Desarrolla una calculadora que necesita realizar diversas operaciones matemáticas.
- * Requisitos:
- * - Debes diseñar un sistema que permita agregar nuevas operaciones utilizando el OCP.
- * Instrucciones:
- * 1. Implementa las operaciones de suma, resta, multiplicación y división.
- * 2. Comprueba que el sistema funciona.
- * 3. Agrega una quinta operación para calcular potencias.
- * 4. Comprueba que se cumple el OCP.
- */
-
 //EJERCICIO
 /*
-PRINCIPIO ABIERTO-CERRADO:
+Incorrecto ❎
 
-"Las entidades de software (clases, módulos, funciones, etc.) deben estar abiertas para su extensión, pero cerradas para su modificación"
+Dado a que no se ha diseñado siguiendo el principio, habría que modificar clases para que el sistema de cálculo de áreas pueda soportar otras figuras geométricas. En un caso más complejo este sería un problema, ya que dificulta el agregar funcionalidades o realizar cambios.
 
 */
+console.log('\nSin OCP');
+class RectangleNoOCP {
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+}
+class AreaCalculatorNoOCP {
+	calculateArea(rectangle) {
+		let area = rectangle.height * rectangle.width;
+
+		return area;
+	}
+}
+
+class AppNoOCP {
+	rectangle = new RectangleNoOCP(12, 20.33);
+	square = new RectangleNoOCP(21, 21);
+
+	areaCalc = new AreaCalculatorNoOCP();
+
+	displayAreas() {
+		console.log('Rectangulo:', this.areaCalc.calculateArea(this.rectangle));
+		console.log('Cuadrado:', this.areaCalc.calculateArea(this.square));
+	}
+}
+
+const appNoOCP = new AppNoOCP();
+appNoOCP.displayAreas();
+
+/*
+Correcto ✅
+
+"Las entidades de software (clases, módulos, funciones, etc) deben de estar abierta para su extensión, pero cerradas para su modificación."
+
+Diseñado de esta manera resulta más fácil añadir figuras geométricas al sistema de cálculo de áreas. Este ejemplo abstrae el método getArea y lo hace común para cada figura, pero cada una cuenta con su propio método concreto para calcular el área.
+
+*/
+console.log('\nCon OCP');
+
+class GeometricShape {
+	constructor() {
+		this.area = this.getArea();
+	}
+
+	getArea() {
+		return false;
+	}
+}
+
+class Rectangle extends GeometricShape {
+	constructor(height, width) {
+		super();
+		this.height = height;
+		this.width = width;
+	}
+
+	getArea() {
+		return this.height * this.width;
+	}
+}
+
+class Square extends GeometricShape {
+	constructor(height) {
+		super();
+		this.height = height;
+	}
+
+	getArea() {
+		return this.height ** 2;
+	}
+}
+
+class Circle extends GeometricShape {
+	constructor(radius) {
+		super();
+		this.radius = radius;
+	}
+
+	getArea() {
+		return this.radius * 2 * Math.PI;
+	}
+}
+
+class AreaCalculator {
+	calculateArea(shape) {
+		return shape.getArea(); //puede usarse shape.area también
+	}
+}
+
+class App {
+	rectangle = new Rectangle(12, 20);
+	square = new Square(20);
+	circle = new Circle(5);
+
+	areaCalc = new AreaCalculator();
+
+	displayAreas() {
+		console.log('Rectangulo:', this.areaCalc.calculateArea(this.rectangle));
+		console.log('Cuadrado:', this.areaCalc.calculateArea(this.square));
+		console.log('Circulo:', this.areaCalc.calculateArea(this.circle));
+	}
+}
+
+const app = new App();
+
+app.displayAreas();
 
 //EXTRA
+console.log('\nCalculadora');
+class Operation {
+	constructor(name) {
+		this.name = name;
+	}
+
+	calculate(a, b) {
+		return 'Operación no soportada';
+	}
+}
+
+class Add extends Operation {
+	calculate(a, b) {
+		return a + b;
+	}
+}
+
+class Susbtrac extends Operation {
+	calculate(a, b) {
+		return a - b;
+	}
+}
+
+class Multiply extends Operation {
+	calculate(a, b) {
+		return a * b;
+	}
+}
+
+class Divide extends Operation {
+	calculate(a, b) {
+		return a / b;
+	}
+}
+
 class Calculator {
-	display(operation, a, b) {
-		const operationOptions = {
-			add: this.add,
-			susbtrac: this.susbtrac,
-			multiplicate: this.multiplicate,
-			divide: this.divide,
-		};
+	#operations = [];
 
-		function defaultfun() {
-			console.log('Operacion no soportada o inexistente');
-		}
-
-		const fun = operationOptions[operation] || defaultfun;
-
-		fun(a, b);
+	addOperation(operation) {
+		this.#operations.push(operation);
 	}
 
-	add(a, b) {
-		console.log(a + b);
-	}
+	calculate(operation, a, b) {
+		let fun = new Operation().calculate;
 
-	susbtrac(a, b) {
-		console.log(a - b);
-	}
+		this.#operations.forEach((op) => {
+			if (op.name === operation) {
+				fun = op.calculate;
+			}
+		});
 
-	multiplicate(a, b) {
-		console.log(a * b);
-	}
-
-	divide(a, b) {
-		console.log(a / b);
+		return fun(a, b);
 	}
 }
 
 const calculator = new Calculator();
 
-calculator.display('add', 12, 10);
-calculator.display('potencia', 12, 10);
+calculator.addOperation(new Add('Suma'));
+calculator.addOperation(new Susbtrac('Resta'));
+calculator.addOperation(new Multiply('Multiplicación'));
+calculator.addOperation(new Divide('División'));
+
+console.log('Suma:', calculator.calculate('Suma', 10, 1));
+console.log('Resta:', calculator.calculate('Resta', 10, 1));
+console.log('Multiplicación:', calculator.calculate('Multiplicación', 4, 2));
+console.log('División:', calculator.calculate('División', 10, 2));
+console.log('Potencia:', calculator.calculate('Potencia', 3, 2));
+
+class Exponent extends Operation {
+	calculate(a, b) {
+		return a ** b;
+	}
+}
+
+calculator.addOperation(new Exponent('Potencia'));
+console.log('Potencia:', calculator.calculate('Potencia', 3, 2));
