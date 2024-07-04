@@ -123,4 +123,56 @@ palabra2_ord = sorted(palabra2)
 print(palabra2_ord)
 print(f"La palabra {palabra1} es anagrama de {palabra2}: {palabra1_ord == palabra2_ord}")
 
-# isogramas
+# isogramas   usamos set() para ver si alguna letra de la palabra se repite
+
+palabra1 = "copla"
+palabra2 = "camino"
+palabra3 = "caramelo"
+
+print (palabra1)
+print (set(palabra1))
+print (f"La palabra {palabra1} es isograma? {len(palabra1) == len(set(palabra1))} ")
+
+print (palabra2)
+print (set(palabra2))
+print (f"La palabra {palabra2} es isograma? {len(palabra2) == len(set(palabra2))} ")
+
+print (palabra3)
+print (set(palabra3))
+print (f"La palabra {palabra3} es isograma? {len(palabra3) == len(set(palabra3))} ")
+
+# isogramas con listas
+
+palabra1 = "primavera"
+dicc_palabra = dict()
+print (f" --> {dicc_palabra}")
+for word in palabra1:
+    print(word) 
+    print(palabra1)
+    dicc_palabra[word] = dicc_palabra.get(word,0) + 1
+print(dicc_palabra)
+Is_isograma = True
+ 
+valores_palabra = list(dicc_palabra.values())   # necesito una lista con los values del diccionario
+print(valores_palabra)
+
+primer_valor_palabra = valores_palabra[0]  # me guardo cuantas veces se repite la primera letra
+print(primer_valor_palabra)
+for value_letra in valores_palabra:  # recorro la lista de cuantas veces se repite cada letra  y voy comparando con el primer valor
+    if valores_palabra[value_letra] != primer_valor_palabra: # cuando encuentro un valor de repeticiones que es diferente al primero ya veo que no es isograma y salgo
+        Is_isograma = False
+        break
+
+print(f"Es {palabra1} un isograma? {Is_isograma}")
+
+# print(dicc_palabra)
+# print(word)
+# print(dicc_palabra[word])
+
+
+
+
+
+
+
+# dicc_palabra1 = dict(palabra1[0])
