@@ -6,14 +6,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class JesusAntonioEEscamilla {
+    private static final int MAX_DIGITS = 11;
     public static void main(String[] args) {
     //---EJERCIÓ---
         array();
         list();
         map();
         set();
+        EXTRA();
     }
 
     public static void array(){
@@ -152,7 +156,117 @@ public class JesusAntonioEEscamilla {
 
     /**-----DIFICULTAD EXTRA-----*/
 
-    //Pendiente
+    public static void EXTRA(){
+        Map<String, String> agenda = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            mostrarMenu();
+            String option = scanner.nextLine();
+
+            switch (option) {
+                case "1":
+                    insertarContacto(agenda, scanner);
+                    break;
+                case "2":
+                    buscarContacto(agenda, scanner);
+                    break;
+                case "3":
+                    actualizarContacto(agenda, scanner);
+                    break;
+                case "4":
+                    eliminarContacto(agenda, scanner);
+                    break;
+                case "5":
+                    mostrarTodosContactos(agenda);
+                    break;
+                case "6":
+                    System.out.println("Saliendo del programa.....");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opción ni valida. Intente de nuevo");
+                    break;
+            }
+        }
+    }
+
+    private static void mostrarMenu() {
+        System.out.println("\nAgenda de Contactos");
+        System.out.println("1. Insertar Contacto");
+        System.out.println("2. Buscar Contacto");
+        System.out.println("3. Actualizar Contacto");
+        System.out.println("4. Eliminar Contacto");
+        System.out.println("5. Mostrar todos los Contacto");
+        System.out.println("6. Salir");
+        System.out.print("Seleccione una option: ");
+    }
+
+    private static boolean validarTelefono(String telefono){
+        return telefono.matches("\\d+") && telefono.length() <= MAX_DIGITS;
+    }
+
+    private static void insertarContacto(Map<String, String> agenda, Scanner scanner) {
+        System.out.print("Ingrese el Nombre del contacto: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingrese el Teléfono del contacto: ");
+        String telefono = scanner.nextLine();
+
+        if (validarTelefono(telefono)) {
+            agenda.put(nombre, telefono);
+            System.out.println("Contacto " + nombre + " añadido con éxito");
+        } else {
+            System.out.println("Numero de Teléfono no valido. Debe ser numérico y tener un máximo de " + (MAX_DIGITS - 1) + " dígitos");
+        }
+    }
+
+    private static void buscarContacto(Map<String, String> agenda, Scanner scanner) {
+        System.out.print("Ingrese el Nombre del contacto al buscar: ");
+        String nombre = scanner.nextLine();
+        if (agenda.containsKey(nombre)) {
+            System.out.println("Nombre: " + nombre + ", Teléfono: " + agenda.get(nombre));
+        } else {
+            System.out.println("Contacto no encontrado");
+        }
+    }
+
+    private static void actualizarContacto(Map<String, String> agenda, Scanner scanner) {
+        System.out.print("Ingrese el Nombre del contacto al actualizar: ");
+        String nombre = scanner.nextLine();
+        if (agenda.containsKey(nombre)) {
+            System.out.print("Ingrese el nuevo numero de telefono: ");
+            String nuevoTelefono = scanner.nextLine();
+            if (validarTelefono(nuevoTelefono)) {
+                agenda.put(nombre, nuevoTelefono);
+                System.out.println("Contacto " + nombre + " actualizado con éxito");
+            } else {
+                System.out.println("Numero de Teléfono no valido. Debe ser numérico y tener un máximo de " + (MAX_DIGITS - 1) + " dígitos");
+            }
+        } else {
+            System.out.println("Contacto no encontrado");
+        }
+    }
+
+    private static void eliminarContacto(Map<String, String> agenda, Scanner scanner) {
+        System.out.print("Ingrese el Nombre del contacto a eliminar: ");
+        String nombre = scanner.nextLine();
+        if (agenda.containsKey(nombre)) {
+            agenda.remove(nombre);
+            System.out.println("Contacto " + nombre + " eliminado con éxito");
+        } else {
+            System.out.println("Contacto no encontrado");
+        }
+    }
+
+    private static void mostrarTodosContactos(Map<String, String> agenda) {
+        if (agenda.isEmpty()) {
+            System.out.println("No hay contactos en la agenda");
+        } else {
+            for (Map.Entry<String, String> entry : agenda.entrySet()) {
+                System.out.println("Nombre: " + entry.getKey() + ", Telefono: " + entry.getValue());
+            }
+        }
+    }
 
     /**-----DIFICULTAD EXTRA-----*/
 }
