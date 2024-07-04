@@ -91,7 +91,7 @@ class Circle extends GeometricShape {
 
 class AreaCalculator {
 	calculateArea(shape) {
-		return shape.getArea(); //puede usarse shape.area también
+		return shape.getArea();
 	}
 }
 
@@ -103,9 +103,9 @@ class App {
 	areaCalc = new AreaCalculator();
 
 	displayAreas() {
-		console.log('Rectangulo:', this.areaCalc.calculateArea(this.rectangle));
+		console.log('Rectángulo:', this.areaCalc.calculateArea(this.rectangle));
 		console.log('Cuadrado:', this.areaCalc.calculateArea(this.square));
-		console.log('Circulo:', this.areaCalc.calculateArea(this.circle));
+		console.log('Círculo:', this.areaCalc.calculateArea(this.circle));
 	}
 }
 
@@ -116,12 +116,8 @@ app.displayAreas();
 //EXTRA
 console.log('\nCalculadora');
 class Operation {
-	constructor(name) {
-		this.name = name;
-	}
-
 	calculate(a, b) {
-		return 'Operación no soportada';
+		throw new Error('operación no soportada');
 	}
 }
 
@@ -131,7 +127,7 @@ class Add extends Operation {
 	}
 }
 
-class Susbtrac extends Operation {
+class Susbtract extends Operation {
 	calculate(a, b) {
 		return a - b;
 	}
@@ -150,37 +146,41 @@ class Divide extends Operation {
 }
 
 class Calculator {
-	#operations = [];
+	operations = {
+		add: new Add(),
+		substract: new Susbtract(),
+		multiply: new Multiply(),
+		divide: new Divide(),
+	};
 
-	addOperation(operation) {
-		this.#operations.push(operation);
-	}
+	calculate(operationType, a, b) {
+		let operation = this.operations[operationType] || new Operation();
 
-	calculate(operation, a, b) {
-		let fun = new Operation().calculate;
-
-		this.#operations.forEach((op) => {
-			if (op.name === operation) {
-				fun = op.calculate;
-			}
-		});
-
-		return fun(a, b);
+		try {
+			return operation.calculate(a, b);
+		} catch (error) {
+			console.log(`Se produjo un error: ${error.message}`);
+			return NaN;
+		}
 	}
 }
 
 const calculator = new Calculator();
 
-calculator.addOperation(new Add('Suma'));
-calculator.addOperation(new Susbtrac('Resta'));
-calculator.addOperation(new Multiply('Multiplicación'));
-calculator.addOperation(new Divide('División'));
+let result = calculator.calculate('add', 12, 10);
+console.log('Suma:', result);
 
-console.log('Suma:', calculator.calculate('Suma', 10, 1));
-console.log('Resta:', calculator.calculate('Resta', 10, 1));
-console.log('Multiplicación:', calculator.calculate('Multiplicación', 4, 2));
-console.log('División:', calculator.calculate('División', 10, 2));
-console.log('Potencia:', calculator.calculate('Potencia', 3, 2));
+result = calculator.calculate('substract', 10, 2);
+console.log('Resta:', result);
+
+result = calculator.calculate('multiply', 10, 2);
+console.log('Multiplicación:', result);
+
+result = calculator.calculate('divide', 10, 2);
+console.log('División:', result);
+
+result = calculator.calculate('exponent', 10, 2);
+console.log('Potencia:', result);
 
 class Exponent extends Operation {
 	calculate(a, b) {
@@ -188,5 +188,7 @@ class Exponent extends Operation {
 	}
 }
 
-calculator.addOperation(new Exponent('Potencia'));
-console.log('Potencia:', calculator.calculate('Potencia', 3, 2));
+calculator.operations.exponent = new Exponent();
+
+result = calculator.calculate('exponent', 10, 2);
+console.log('Potencia:', result);
