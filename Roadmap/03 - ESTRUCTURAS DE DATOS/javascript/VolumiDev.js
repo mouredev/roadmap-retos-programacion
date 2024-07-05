@@ -58,4 +58,13 @@ console.log(mapa.get(true))
   console.log(conjunto)
 
 
-  
+  // Dificultad extra AGENDA
+  function menuAgenda(){
+    console.log('Elige una de las opciones\n1. Busqueda\n2. Inserción')
+    
+  }
+
+  // do {
+  //   var opcion = menuAgenda
+  // } while (condition);
+  var dato = prompt('introduce')
