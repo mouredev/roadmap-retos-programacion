@@ -11,7 +11,7 @@ const logger = winston.createLogger({
 	format: winston.format.combine(
 		winston.format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
 		winston.format.printf(({ timestamp, level, message }) => {
-			return `${timestamp} - [${level.toUpperCase()}]: ${message}`;
+			return `[${level.toUpperCase()}] - ${timestamp} : ${message}`;
 		})
 	),
 	transports: [new winston.transports.Console()],
@@ -50,58 +50,86 @@ customLevelsLogger.log('Alerta amarilla', 'se muestra en amarillo');
 customLevelsLogger.log('Alerta verde', 'se muestra en verde');
 
 //EXTRA
-const taskManagerLogger = winston.createLogger({
+const taskManagerLogs = winston.createLogger({
 	level: 'debug',
 	format: winston.format.combine(
 		winston.format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
 		winston.format.printf(({ timestamp, level, message }) => {
-			return `${timestamp} - [${level.toUpperCase()}]: ${message}`;
+			return `[${level.toUpperCase()}] - ${timestamp} : ${message}`;
 		})
 	),
-	transports: [new winston.transports.File({ filename: 'RicJDev.txt' })],
+	transports: [new winston.transports.Console()],
 });
 
-function addToTaskManagerLogger(fun, level, message) {
-	taskManagerLogger.log(level, message);
+function timeLog(fun, log) {
 	return function (...arg) {
-		return fun.apply(this, arg);
+		const start = new Date();
+		const execute = fun.apply(this, arg);
+		const end = new Date();
+
+		log.debug(
+			`tiempo de ejecución de ${fun.name}: ${end.getTime() - start.getTime()} milisegundos`
+		);
+
+		return execute;
 	};
 }
-
 class TaskManager {
-	taskList = new Map();
+	#taskList = new Map();
 
 	addTask(task, description) {
-		this.taskList.set(task, description);
+		if (this.#taskList.has(task)) {
+			taskManagerLogs.warn(`se esta intentando agregar una tarea existente: ${task}`);
+			taskManagerLogs.debug(`cantidad de tareas ${this.#taskList.size}`);
+		} else {
+			this.#taskList.set(task, description);
+
+			taskManagerLogs.info(`se ha agregado una tarea a la lista: ${task}`);
+			taskManagerLogs.debug(`cantidad de tareas ${this.#taskList.size}`);
+		}
 	}
 
 	deleteTask(task) {
-		if (this.taskList.has(task)) {
-			this.taskList.delete(task);
+		if (this.#taskList.has(task)) {
+			this.#taskList.delete(task);
+
+			taskManagerLogs.info(`se ha eliminado una tarea de la lista: ${task}`);
+			taskManagerLogs.debug(`cantidad de tareas ${this.#taskList.size}`);
+		} else {
+			taskManagerLogs.error(`se esta intentando eliminar una tarea que no existe: ${task}`);
+			taskManagerLogs.debug(`cantidad de tareas ${this.#taskList.size}`);
 		}
 	}
 
 	listTasks() {
-		if (this.taskList.size > 0) {
-			this.taskList.forEach((description, task) => {
+		if (this.#taskList.size > 0) {
+			console.log('\n---- LISTA DE TAREAS ----');
+			this.#taskList.forEach((description, task) => {
 				console.log(`- ${task}: ${description}`);
 			});
+			console.log('-------------------------\n');
+
+			taskManagerLogs.info('se ha mostrado la lista de tareas al usuario');
+			taskManagerLogs.debug(`cantidad de tareas ${this.#taskList.size}`);
 		} else {
-			console.log('No hay tareas registradas');
+			taskManagerLogs.info('no hay tareas para mostrar');
+			taskManagerLogs.debug(`cantidad de tareas ${this.#taskList.size}`);
 		}
 	}
 }
 
-TaskManager.prototype.addTask = addToTaskManagerLogger(
-	TaskManager.prototype.addTask,
-	'info',
-	'se ha añadido una tarea a la lista'
-);
+TaskManager.prototype.addTask = timeLog(TaskManager.prototype.addTask, taskManagerLogs);
+TaskManager.prototype.deleteTask = timeLog(TaskManager.prototype.deleteTask, taskManagerLogs);
+TaskManager.prototype.listTasks = timeLog(TaskManager.prototype.listTasks, taskManagerLogs);
 
-let myTaskManager = new TaskManager();
+const myTaskManager = new TaskManager();
 
 myTaskManager.addTask('Juan', 'felicitar a Juan por su cumpleaños');
 myTaskManager.addTask('Pan', 'ir a comprar pan');
+myTaskManager.addTask('Pan', 'ir a comprar pan');
 myTaskManager.listTasks();
 myTaskManager.deleteTask('Juan');
+myTaskManager.listTasks();
+myTaskManager.deleteTask('Juan');
+myTaskManager.deleteTask('Pan');
 myTaskManager.listTasks();
