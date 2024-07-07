@@ -20,7 +20,6 @@ logging.critical('Esto es un mensaje de CRITICAL')
 '''
 
 class TaskManager:
-
   def __init__(self) -> None:
     self.tasks = {}
 
