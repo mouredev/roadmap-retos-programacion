@@ -10,14 +10,14 @@ import java.util.Scanner;
 /*
  * EJERCICIO:
  * Muestra ejemplos de todas las operaciones que puedes realizar con cadenas de caracteres
- * en tu lenguaje. Algunas de esas operaciones podr韆n ser (busca todas las que puedas):
- * - Acceso a caracteres espec韋icos, subcadenas, longitud, concatenaci髇, repetici髇, recorrido,
- *   conversi髇 a may鷖culas y min鷖culas, reemplazo, divisi髇, uni髇, interpolaci髇, verificaci髇...
+ * en tu lenguaje. Algunas de esas operaciones podr铆an ser (busca todas las que puedas):
+ * - Acceso a caracteres espec铆ficos, subcadenas, longitud, concatenaci贸n, repetici贸n, recorrido,
+ *   conversi贸n a may煤sculas y min煤sculas, reemplazo, divisi贸n, uni贸n, interpolaci贸n, verificaci贸n...
  *
  * DIFICULTAD EXTRA (opcional):
  * Crea un programa que analice dos palabras diferentes y realice comprobaciones
  * para descubrir si son:
- * - Pal韓dromos
+ * - Pal铆ndromos
  * - Anagramas
  * - Isogramas
  */
@@ -42,16 +42,16 @@ public class deathwing696 {
         isograma2 = EsIsograma(palabra2);
         
         if (palindromo1 && isograma1)
-            System.out.println("La palabra " + palabra1 + " es pal韓dromo e isograma");
+            System.out.println("La palabra " + palabra1 + " es pal铆ndromo e isograma");
         else if (palindromo1)
-            System.out.println("La palabra " + palabra1 + " es pal韓dromo");
+            System.out.println("La palabra " + palabra1 + " es pal铆ndromo");
         else if (isograma2)
             System.out.println("La palabra " + palabra1 + " es un isograma");
         
         if (palindromo2 && isograma2)
-            System.out.println("La palabra " + palabra2 + " es pal韓dromo e isograma");
+            System.out.println("La palabra " + palabra2 + " es pal铆ndromo e isograma");
         else if (palindromo2)
-            System.out.println("La palabra " + palabra2 + " es pal韓dromo");
+            System.out.println("La palabra " + palabra2 + " es pal铆ndromo");
         else if (isograma2)
             System.out.println("La palabra " + palabra2 + " es un isograma");
         
