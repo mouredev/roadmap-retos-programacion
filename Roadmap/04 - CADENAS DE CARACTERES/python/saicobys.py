@@ -48,3 +48,30 @@ nombre = "Carlos"
 edad = 30
 mensaje = f"Hola, me llamo {nombre} y tengo {edad} años."
 print(mensaje)        # Hola, me llamo Carlos y tengo 30 años.
+
+# Analizador de Palabras
+
+def es_palindromo(palabra):
+    """Verifica si una palabra es un palíndromo (se lee igual de derecha a izquierda)."""
+    palabra = palabra.lower().replace(" ", "")  # Normalización
+    return palabra == palabra[::-1]  # Compara la palabra con su reverso
+
+def es_anagrama(palabra1, palabra2):
+    """Verifica si dos palabras son anagramas (tienen las mismas letras en diferente orden)."""
+    palabra1 = palabra1.lower().replace(" ", "")
+    palabra2 = palabra2.lower().replace(" ", "")
+    return sorted(palabra1) == sorted(palabra2)  # Compara las palabras ordenadas
+
+def es_isograma(palabra):
+    """Verifica si una palabra es un isograma (no tiene letras repetidas)."""
+    palabra = palabra.lower().replace(" ", "")
+    return len(palabra) == len(set(palabra))  # Compara la longitud original con la del conjunto (sin duplicados)
+
+# Ejemplo de uso
+palabra1 = "Anita lava la tina"
+palabra2 = "Amor a Roma"
+palabra3 = "Python"
+
+print(f"'{palabra1}' es palíndromo: {es_palindromo(palabra1)}")
+print(f"'{palabra1}' y '{palabra2}' son anagramas: {es_anagrama(palabra1, palabra2)}")
+print(f"'{palabra3}' es isograma: {es_isograma(palabra3)}")
