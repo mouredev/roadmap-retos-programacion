@@ -48,16 +48,6 @@ def intercambiar_por_valor(x, y):
 def intercambiar_por_referencia(lista):
     lista[0], lista[1] = lista[1], lista[0]
 
-# Programa 1: Intercambio por valor (no funciona)
-def intercambiar_por_valor(x, y):
-    temp = x
-    x = y
-    y = temp
-
-# Programa 2: Intercambio por referencia (funciona)
-def intercambiar_por_referencia(lista):
-    lista[0], lista[1] = lista[1], lista[0]
-
 # Ejemplo de uso
 a = 1
 b = 2
