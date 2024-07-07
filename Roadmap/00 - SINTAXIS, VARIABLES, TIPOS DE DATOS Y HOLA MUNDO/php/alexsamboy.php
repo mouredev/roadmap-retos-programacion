@@ -27,4 +27,4 @@ $var_objeto = {
     'visible': false
 };    // Objeto
 
-echo("¡Hola, PHP!");
+print("¡Hola, PHP!");
