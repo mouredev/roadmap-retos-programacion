@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public interface diegosilval {
+
     static void main(String... args) {
         System.out.println("** Usando una clase para todo **");
         var libraryUtil = new LibraryUtil();
@@ -18,6 +19,10 @@ public interface diegosilval {
         libraryUtil.bookBorrow("1984", "01").ifPresentOrElse(showBorrowSuccess, showBorrowFail);
         libraryUtil.bookBorrow("To Kill a Mockingbird", "02").ifPresentOrElse(showBorrowSuccess, showBorrowFail);
         libraryUtil.bookBorrow("1984", "03").ifPresentOrElse(showBorrowSuccess, showBorrowFail);
+
+        libraryUtil.returnBookAndShowResult("1984", "01");
+        libraryUtil.returnBookAndShowResult("To Kill a Mockingbird", "02");
+        libraryUtil.returnBookAndShowResult("1984", "03");
 
         // Usando SRP
         System.out.println("** Usando una clase por cada responsabilidad");
@@ -36,6 +41,9 @@ public interface diegosilval {
         srpLibraryUtil.bookBorrow("To Kill a Mockingbird", "02").ifPresentOrElse(showBorrowSuccess, showBorrowFail);
         srpLibraryUtil.bookBorrow("1984", "03").ifPresentOrElse(showBorrowSuccess, showBorrowFail);
 
+        srpLibraryUtil.returnBookAndShowResult("1984", "01", showResult);
+        srpLibraryUtil.returnBookAndShowResult("To Kill a Mockingbird", "02", showResult);
+        srpLibraryUtil.returnBookAndShowResult("1984", "03", showResult);
     }
 
     static Consumer<BookLoan> showBorrowSuccess = (bookLoan) -> {
@@ -44,6 +52,15 @@ public interface diegosilval {
     };
     static Runnable showBorrowFail = () -> System.err.println(
             "El usuario no existe, el nombre del libro no existe, o no existen libros disponibles para prestar");
+    static ShowResult showResult = (returnBookStatus, title, userId) -> {
+        if (returnBookStatus)
+            System.out.println(String.format("%s  retornó el libro \"%s\" correctamente", userId, title));
+        else
+            System.err.println(String.format(
+                    "No se encontró el libro \"%s\", no se encontró el usuario %s o el libro no se encuentra prestado al usuario",
+                    title, userId));
+
+    };
 
 }
 
@@ -96,6 +113,31 @@ class Book {
         this.available -= delta;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Book other = (Book) obj;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        return true;
+    }
+
 }
 
 /**
@@ -139,6 +181,31 @@ class User {
         this.email = email;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
 }
 
 class BookLoan {
@@ -156,6 +223,37 @@ class BookLoan {
 
     public User getUser() {
         return user;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((book == null) ? 0 : book.hashCode());
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BookLoan other = (BookLoan) obj;
+        if (book == null) {
+            if (other.book != null)
+                return false;
+        } else if (!book.equals(other.book))
+            return false;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
+            return false;
+        return true;
     }
 
 }
@@ -185,6 +283,48 @@ class LibraryUtil {
         bookLoans.add(bookLoan);
         return Optional.of(bookLoan);
     }
+
+    /**
+     * Ejecuta la devolución del libro, y muestra el resultado
+     * 
+     * @param title  título del libro
+     * @param userId id del usuario
+     */
+    public void returnBookAndShowResult(String title, String userId) {
+        var status = returnBook(title, userId);
+        if (status)
+            System.out.println(String.format("%s  retornó el libro \"%s\" correctamente", userId, title));
+        else
+            System.err.println(String.format(
+                    "No se encontró el libro \"%s\", no se encontró el usuario %s o el libro no se encuentra prestado al usuario",
+                    title, userId));
+    }
+
+    /**
+     * 
+     * @param title
+     * @param userId
+     * @return false is not found user, book or bookLoan. Should be better handled
+     *         with exceptions, but would be far from the scope of the problem
+     */
+    public boolean returnBook(String title, String userId) {
+        var user = users.stream().filter(aUser -> aUser.getId().equals(userId)).findFirst();
+        if (user.isEmpty())
+            return false;
+        var book = books.stream().filter(aBook -> aBook.getTitle().equalsIgnoreCase(title)).findFirst();
+        if (book.isEmpty())
+            return false;
+        var loan = bookLoans.stream()
+                .filter(bookLoan -> bookLoan.getBook().equals(book.get()) && bookLoan.getUser().equals(user.get()))
+                .findFirst();
+        loan.ifPresent(bookLoan -> {
+
+            var removed = bookLoans.removeIf(aBookLoan -> aBookLoan.equals(bookLoan));
+            if (removed)
+                book.get().addAvailable(1);
+        });
+        return loan.isPresent();
+    }
 }
 
 /**
@@ -211,6 +351,44 @@ class SrpLibraryUtil {
         return Optional.of(bookLoan);
     }
 
+    /**
+     * 
+     * @param title
+     * @param userId
+     * @return false is not found user, book or bookLoan. Should be better handled
+     *         with exceptions, but would be far from the scope of the problem
+     */
+    public boolean returnBook(String title, String userId) {
+        var user = usersRepository.findById(userId);
+        if (user.isEmpty())
+            return false;
+        var book = booksRepository.findByTitle(title);
+        if (book.isEmpty())
+            return false;
+        var loan = bookLoans.stream()
+                .filter(bookLoan -> bookLoan.getBook().equals(book.get()) && bookLoan.getUser().equals(user.get()))
+                .findFirst();
+        loan.ifPresent(bookLoan -> {
+
+            var removed = bookLoans.removeIf(aBookLoan -> aBookLoan.equals(bookLoan));
+            if (removed)
+                book.get().addAvailable(1);
+        });
+        return loan.isPresent();
+    }
+
+    /**
+     * Realiza la devolución del libro, y muestra el resultado.
+     * La responsalidad de mostrar el resultado está en otra clase
+     * 
+     * @param title      Título del libro
+     * @param userId     ID del usuario
+     * @param showResult Instancia que muestra el resultado de la devolución del
+     *                   libro
+     */
+    public void returnBookAndShowResult(String title, String userId, ShowResult showResult) {
+        showResult.showResult(returnBook(title, userId), title, userId);
+    }
 }
 
 /**
@@ -239,4 +417,10 @@ class BooksRepository {
         return books.stream().filter(aBook -> aBook.getTitle().equalsIgnoreCase(title) && aBook.getAvailable() > 0)
                 .findFirst();
     }
+}
+
+@FunctionalInterface
+interface ShowResult {
+
+    void showResult(boolean returnBookStatus, String title, String userId);
 }
