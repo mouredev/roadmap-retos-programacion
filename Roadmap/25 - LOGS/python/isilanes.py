@@ -1,5 +1,7 @@
 import logging
-
+import os
+import re
+from datetime import datetime
 
 LOGFILE = "isilanes.log"
 
@@ -40,7 +42,7 @@ def get_logger_extra(filename: str) -> logging.Logger:
 
     logger.setLevel(logging.DEBUG)
     handler = logging.FileHandler(filename=filename)
-    formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
+    formatter = logging.Formatter('%(asctime)s|%(name)s|%(levelname)s|%(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
@@ -90,6 +92,54 @@ class TaskManager:
         idea usar algún tipo de log estructurado.
         """
         tasks = {}
+        if not os.path.exists(self.log_filename):
+            self.log.info("No hay log disponible.")
+            return
+
+        with open(self.log_filename, "r", encoding="utf-8") as f:
+            for line in f:
+                fields = line.split("|")
+                if len(fields) != 4:
+                    continue
+
+                ts = fields[0]
+                try:
+                    t = datetime.strptime(ts, "%Y-%m-%d %H:%M:%S,%f")
+                except ValueError:
+                    continue
+
+                msg = fields[-1]
+                patt = re.compile(r"'(?P<task>\w+)'")
+                match = patt.search(msg)
+
+                if not match:
+                    continue
+
+                task = match.group("task")
+
+                if task not in tasks:
+                    tasks[task] = {"start": None, "end": None}
+
+                if "fue añadida" in line:
+                    tasks[task]["start"] = t
+                elif "fue eliminada" in line:
+                    tasks[task]["end"] = t
+                else:
+                    continue
+
+        now = datetime.now()
+        for i, (task, data) in enumerate(tasks.items()):
+            start: datetime = data.get("start")
+            if not start:
+                continue
+
+            end = data.get("end")
+            if end:
+                dt_ms = (end - start).total_seconds() * 1000  # noqa
+                print(f" {i:2d} - {task}: ha durado {dt_ms:.2f} ms.")
+            else:
+                dt_ms = (now - start).total_seconds() * 1000  # noqa
+                print(f" {i:2d} - {task}: aún no ha terminado. Lleva {dt_ms:.2f} ms desde que se añadió.")
 
 
 def main():
@@ -156,6 +206,10 @@ def extra():
     tm.remove(name="bailar")
     print('>>> tm.list()')
     tm.list()
+
+    print("\nImprimimos un resumen de las tareas añadidas:")
+    print('>>> tm.summary()')
+    tm.summary()
 
 
 if __name__ == "__main__":
