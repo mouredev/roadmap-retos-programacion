@@ -24,4 +24,4 @@ let varSymbol = Symbol('Symbol');
 let varObject = new Object();
 
 //Imprimir en consola
-console.log("¡Hola, Javascript!")
+console.log("¡Hola, Javascript!");
