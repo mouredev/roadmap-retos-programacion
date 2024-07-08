@@ -1,50 +1,110 @@
-[
-  {
-    "name": "N0HagoNada.c",
-    "path": "Roadmap/04 - CADENAS DE CARACTERES/c/N0HagoNada.c",
-    "sha": "80db387f54da50ac421b40d1dabf66f7e8d276e2",
-    "size": 3853,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/N0HagoNada.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/N0HagoNada.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/80db387f54da50ac421b40d1dabf66f7e8d276e2",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/N0HagoNada.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/N0HagoNada.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/80db387f54da50ac421b40d1dabf66f7e8d276e2",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/N0HagoNada.c"
+public class vasilealexandru02
+{
+
+    static void Main(string[] args)
+    {
+
+
+        /*
+         * EJERCICIO:
+         * Muestra ejemplos de todas las operaciones que puedes realizar con cadenas de caracteres
+         * en tu lenguaje. Algunas de esas operaciones podrían ser (busca todas las que puedas):
+         * - Acceso a caracteres específicos, subcadenas, longitud, concatenación, repetición, recorrido,
+         *   conversión a mayúsculas y minúsculas, reemplazo, división, unión, interpolación, verificación...
+         */
+
+
+        string miCadena = "Hola";
+        string miCadena2 = " Mundo";
+        string holaMundo = miCadena + miCadena2;
+        Console.WriteLine("Cadena concatenada: " + holaMundo);
+        string subcadena = holaMundo.Substring(miCadena.Length);
+        Console.WriteLine("Subcadena: " + subcadena);
+
+        char miCaracterEspecifico = subcadena[1];
+
+        Console.WriteLine("Carácter específico: " + miCaracterEspecifico);
+        string largoCadenaInterpolacion = $"El largo de mi cadena: {holaMundo}, es de {holaMundo.Length} caracteres ";
+        Console.WriteLine(largoCadenaInterpolacion);
+
+        Console.WriteLine($" Mi texto en mayúsculas: {largoCadenaInterpolacion.ToUpper()}");
+        Console.WriteLine($" Mi texto en minúsculas: {largoCadenaInterpolacion.ToLower()}");
+
+        Console.WriteLine($"Estas dos cadenas son iguales: {miCadena.Equals(miCadena2)}");
+
+        var cadenaComoLista = holaMundo.ToList();
+
+        cadenaComoLista.ForEach(letra =>
+        {
+            Console.WriteLine($"Letra {letra}");
+        });
+
+        Console.WriteLine("Mi cadena: " + holaMundo + ", contiene la subcadena" + miCadena2 + ": " + holaMundo.Contains(miCadena2));
+
+
+        var caracteres = holaMundo.ToCharArray();
+        string cadenaSeparadaPorComas = String.Join(",", caracteres);
+
+        Console.WriteLine("Letras separadas por un caracter: " + cadenaSeparadaPorComas); ;
+
+        string holaMundoI = holaMundo.Replace('o', 'i');
+
+        Console.WriteLine("Intercambiando caracteres: " + holaMundoI);
+
+        //compararPalabras("amor", "ana"); --> test palabras palíndromas
+        //compararPalabras("lacteo", "coleta"); --> test palabras anagramas
+        compararPalabras("fotolitografia", "litofotografia"); //--> test palabras anagramas
+        //compararPalabras("murciélago", "mewing"); --> test palabras isogramas
+
+        /*
+        * DIFICULTAD EXTRA (opcional):
+        * Crea un programa que analice dos palabras diferentes y realice comprobaciones
+        * para descubrir si son:
+        * - Palíndromos
+        * - Anagramas
+        * - Isogramas
+        */
+
+        void compararPalabras(string palabra, string palabraDos)
+        {
+            // Comprobar si las palabras son palíndromas
+
+            string palabraInversa = String.Join("", palabra.Reverse());
+            Console.WriteLine($"La palabra {palabra} es palíndroma: {palabraInversa.Equals(palabra)}");
+
+            string palabraDosInversa = String.Join("", palabraDos.Reverse());
+            Console.WriteLine($"La palabra {palabraDos} es palíndroma: {palabraDosInversa.Equals(palabraDos)}");
+            var test2 = palabraDos.Reverse();
+
+            bool anagrama = false;
+            List<bool> checks = new List<bool>();
+            // Comprobar si las palabras son anagramas
+            if (palabra.Length == palabraDos.Length && !palabra.Equals(palabraDos))
+            {
+
+                var palabraArray = palabra.ToList();
+                palabraArray.ForEach(c =>
+                {
+                    checks.Add(palabraDos.Contains(c));
+                });
+                anagrama = !checks.Contains(false);
+            }
+
+
+            Console.WriteLine($"Las palabras: {palabra} y {palabraDos} son anagramas: {anagrama}");
+            // Comprobar si las palabras son isogramas
+
+            HashSet<char> caracteres = new HashSet<char>();
+
+            palabra.ToList().ForEach(c => caracteres.Add(c));
+            Console.WriteLine($"La palabra {palabra} es isograma: {palabra.Length == caracteres.Count}");
+
+            caracteres.Clear();
+
+            palabraDos.ToList().ForEach(c => caracteres.Add(c));
+
+            Console.WriteLine($"La palabra {palabraDos} es isograma: {palabraDos.Length == caracteres.Count}");
+
+        }
     }
-  },
-  {
-    "name": "jchavescaceres.c",
-    "path": "Roadmap/04 - CADENAS DE CARACTERES/c/jchavescaceres.c",
-    "sha": "95ba00bb246124e70a929e7eb6cd0f277782450f",
-    "size": 9118,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/jchavescaceres.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/jchavescaceres.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/95ba00bb246124e70a929e7eb6cd0f277782450f",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/jchavescaceres.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/jchavescaceres.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/95ba00bb246124e70a929e7eb6cd0f277782450f",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/jchavescaceres.c"
-    }
-  },
-  {
-    "name": "srvariable.c",
-    "path": "Roadmap/04 - CADENAS DE CARACTERES/c/srvariable.c",
-    "sha": "7c6d215e70ceeac7791c872715d8d71b9c4b9085",
-    "size": 16211,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/srvariable.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/srvariable.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/7c6d215e70ceeac7791c872715d8d71b9c4b9085",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/srvariable.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/srvariable.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/7c6d215e70ceeac7791c872715d8d71b9c4b9085",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/c/srvariable.c"
-    }
-  }
-]
+}

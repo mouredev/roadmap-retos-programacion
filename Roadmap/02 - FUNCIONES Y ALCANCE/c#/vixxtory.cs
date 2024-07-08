@@ -1,162 +1,214 @@
-[
-  {
-    "name": "Aldroide.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/Aldroide.c",
-    "sha": "1ede8374c7170536d5b59ee2423fb1be64f94ffa",
-    "size": 2337,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/Aldroide.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/Aldroide.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/1ede8374c7170536d5b59ee2423fb1be64f94ffa",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/Aldroide.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/Aldroide.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/1ede8374c7170536d5b59ee2423fb1be64f94ffa",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/Aldroide.c"
+using System;
+public class Program
+{
+
+    /** FUNCIONES SEGUN VISIBILIDAD **/
+
+    //01.Funcion static: pertenece a una clase en lugar de a una instancia específica de esa clase. Son útiles con tareas que no dependen de ningún estado específico de un objeto.
+    public class ConversorTemperatura
+    {
+        public static double CelsiusToFahrenheit(double celsius)
+        {
+            return (celsius * 9 / 5) + 32;
+        }
     }
-  },
-  {
-    "name": "DjSurgeon.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/DjSurgeon.c",
-    "sha": "66189abcd8a4796f344c7a5cf69105e9b6424c95",
-    "size": 3957,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/DjSurgeon.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/DjSurgeon.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/66189abcd8a4796f344c7a5cf69105e9b6424c95",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/DjSurgeon.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/DjSurgeon.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/66189abcd8a4796f344c7a5cf69105e9b6424c95",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/DjSurgeon.c"
+
+    //02.Funcion public: puede ser accedida desde cualquier parte del código, ya sea desde la misma clase, desde clases derivadas, o desde cualquier otra clase en el mismo ensamblado. 
+    public class Circulo
+    {
+        public double Radio { get; set; }
+
+        public Circulo(double radio)
+        {
+            Radio = radio;
+        }
+
+        public double CalcularArea()
+        {
+            return Math.PI * Radio * Radio;
+        }
     }
-  },
-  {
-    "name": "FullOvellas.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/FullOvellas.c",
-    "sha": "b7cc2c20049f888d10b9529eda5430c4c838d505",
-    "size": 2072,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/FullOvellas.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/FullOvellas.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/b7cc2c20049f888d10b9529eda5430c4c838d505",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/FullOvellas.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/FullOvellas.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/b7cc2c20049f888d10b9529eda5430c4c838d505",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/FullOvellas.c"
+
+    //03. Metodo private: solo son accesibles dentro de la misma clase donde están definidos.
+    //04. Metodos protegidos:  similares a los privados, pero también son accesibles desde clases derivadas (subclases) de la clase donde están definidos.
+    public class MiClase
+    {
+        private void MetodoPrivado()
+        {
+            Console.WriteLine("Este es un método privado.");
+        }
+
+        protected void MetodoProtegido()
+        {
+            Console.WriteLine("Este es un método protegido.");
+        }
     }
-  },
-  {
-    "name": "N0HagoNada.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/N0HagoNada.c",
-    "sha": "07e3546afd092a655b600c1c54163af8bfaa355b",
-    "size": 2548,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/N0HagoNada.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/N0HagoNada.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/07e3546afd092a655b600c1c54163af8bfaa355b",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/N0HagoNada.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/N0HagoNada.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/07e3546afd092a655b600c1c54163af8bfaa355b",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/N0HagoNada.c"
+    public class OtraClase : MiClase
+    {
+        public void AccesoDesdeClaseDerivada()
+        {
+            // No se puede llamar a MetodoPrivado desde aquí, ya que es privado.
+            MetodoProtegido(); // Pero se puede llamar a MetodoProtegido, ya que es protegido.
+        }
     }
-  },
-  {
-    "name": "aggranadoss.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/aggranadoss.c",
-    "sha": "44ed30fd56095b781edd4a8ebfb95ac453e6c787",
-    "size": 5418,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/aggranadoss.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/aggranadoss.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/44ed30fd56095b781edd4a8ebfb95ac453e6c787",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/aggranadoss.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/aggranadoss.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/44ed30fd56095b781edd4a8ebfb95ac453e6c787",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/aggranadoss.c"
+
+    /** FUNCIONES SEGUN TIPO DE RETORNO **
+     * Estos pueden ser tipos de datos primitivos, tipos de datos personalizados (como clases), tipos anulables (Nullable<T>), enumeraciones, matrices, interfaces, delegados, entre otros.**/
+
+    //01. Tipos de datos primitivos: int, float, double, bool, char, etc.
+    public int ObtenerEntero()
+    {
+        return 42;
     }
-  },
-  {
-    "name": "barbafebles.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/barbafebles.c",
-    "sha": "a4af83283bfb9c3ece989ff844ed27241364960c",
-    "size": 1720,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/barbafebles.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/barbafebles.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/a4af83283bfb9c3ece989ff844ed27241364960c",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/barbafebles.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/barbafebles.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/a4af83283bfb9c3ece989ff844ed27241364960c",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/barbafebles.c"
+
+    //02. Clases y estructuras: Una función puede devolver una instancia de una clase o una estructura.
+    public MiClase ObtenerInstancia()
+    {
+        return new MiClase();
     }
-  },
-  {
-    "name": "heliercamejo.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/heliercamejo.c",
-    "sha": "86ed2b9625debc0e1cb4246bc89054cac172c277",
-    "size": 1556,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/heliercamejo.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/heliercamejo.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/86ed2b9625debc0e1cb4246bc89054cac172c277",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/heliercamejo.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/heliercamejo.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/86ed2b9625debc0e1cb4246bc89054cac172c277",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/heliercamejo.c"
+
+    //03. Tipos anulables (Nullable<T>): Permiten que un tipo de valor tenga un valor nulo además de sus valores normales.
+    public int? ObtenerEnteroNullable()
+    {
+        int? resultado = null;
+        return resultado;
     }
-  },
-  {
-    "name": "jchavescaceres.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/jchavescaceres.c",
-    "sha": "2db7d0742a307618d5ff5ae24e27155331e34c5b",
-    "size": 6716,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/jchavescaceres.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/jchavescaceres.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/2db7d0742a307618d5ff5ae24e27155331e34c5b",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/jchavescaceres.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/jchavescaceres.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/2db7d0742a307618d5ff5ae24e27155331e34c5b",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/jchavescaceres.c"
+
+    //04. Matrices: Una función puede devolver una matriz de cualquier tipo.
+    public int[] ObtenerArreglo()
+    {
+        return new int[] { 1, 2, 3, 4, 5 };
     }
-  },
-  {
-    "name": "miguelex.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/miguelex.c",
-    "sha": "054ae2618ef444241f92f79a23b8f11e8e894900",
-    "size": 931,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/miguelex.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/miguelex.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/054ae2618ef444241f92f79a23b8f11e8e894900",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/miguelex.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/miguelex.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/054ae2618ef444241f92f79a23b8f11e8e894900",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/miguelex.c"
+
+    //05. Delegados: Una función puede devolver un delegado que apunte a otra función.
+    public Func<int, int> ObtenerFuncion()
+    {
+        return x => x * x;
     }
-  },
-  {
-    "name": "srvariable.c",
-    "path": "Roadmap/02 - FUNCIONES Y ALCANCE/c/srvariable.c",
-    "sha": "adb2796a13dbd31c0a81c60eb12862b4cd702586",
-    "size": 8064,
-    "url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/srvariable.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-    "html_url": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/srvariable.c",
-    "git_url": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/adb2796a13dbd31c0a81c60eb12862b4cd702586",
-    "download_url": "https://raw.githubusercontent.com/alexsamboy/roadmap-retos-programacion/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/srvariable.c",
-    "type": "file",
-    "_links": {
-      "self": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/contents/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/srvariable.c?ref=ca177b16bd708408b98745a0498e4c8649263686",
-      "git": "https://api.github.com/repos/alexsamboy/roadmap-retos-programacion/git/blobs/adb2796a13dbd31c0a81c60eb12862b4cd702586",
-      "html": "https://github.com/alexsamboy/roadmap-retos-programacion/blob/ca177b16bd708408b98745a0498e4c8649263686/Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/c/srvariable.c"
+
+    /** FUNCIONES SEGUN TIPO DE PARAMETRO QUE RECIBE */
+
+    //01. Funciones sin parámetros: Realizan una tarea específica basada únicamente en su lógica interna y no requieren datos de entrada externos.
+    public void Saludar()
+    {
+        Console.WriteLine("¡Hola!");
     }
-  }
-]
+
+    //02. Funciones con parámetros: Reciben uno o más parámetros que se utilizan para proporcionar datos de entrada a la función.
+    public void Sumar(int a, int b)
+    {
+        int resultado = a + b;
+        Console.WriteLine("La suma de {0} y {1} es {2}", a, b, resultado);
+    }
+
+    //03. Funciones con parámetros opcionales: Se definen parámetros con un valor predeterminado, lo que los convierte en opcionales. Esto significa que puedes llamar a la función sin proporcionar valores para esos parámetros, y se utilizará el valor predeterminado en su lugar.
+    public void Saludar(string nombre = "Mundo")
+    {
+        Console.WriteLine("¡Hola, {0}!", nombre);
+    }
+
+    //04. Funciones con parámetros de salida (out): Pueden devolver más de un valor como resultado. Los parámetros de salida se declaran con la palabra clave out y deben ser inicializados dentro de la función antes de que ésta retorne.
+    public void Dividir(int dividendo, int divisor, out int cociente, out int residuo)
+    {
+        cociente = dividendo / divisor;
+        residuo = dividendo % divisor;
+    }
+
+    //05. Funciones con parámetros de referencia (ref): Similar a los parámetros de salida, pero los parámetros de referencia (ref) permiten que los valores se pasen a la función y se modifiquen dentro de ella, y esos cambios se reflejan fuera de la función.
+    public void Incrementar(ref int numero)
+    {
+        numero++;
+    }
+
+    /** No es posible definir funciones dentro funciones como en JavaScript. Sin embargo, puedes lograr un comportamiento similar utilizando clases internas o delegados anidados.**/
+
+    //02. Delegados anidados: Se puede usar delegados anidados para definir funciones dentro de otras funciones, pero estas funciones estarían limitadas a ser métodos dentro de una clase.
+    public class Clase
+    {
+        public delegate void Metodo();
+
+        public void MetodoExterno()
+        {
+            Console.WriteLine("Método externo");
+
+            Metodo metodoInterno = () =>
+            {
+                Console.WriteLine("Método interno");
+            };
+
+            metodoInterno();
+        }
+    }
+
+    /** ALGUNOS EJEMPLOS DE FUNCIONES PREDETERMINADAS */
+
+    //01. Console.ReadLine(): Lee una línea de texto desde la entrada estándar (generalmente la consola) y la devuelve como una cadena
+    string entrada = Console.ReadLine();
+
+    //02. string.Format(): Esta función estática de la clase string formatea una cadena de texto utilizando un patrón y una lista de argumentos.
+    private static string nombre = "Juan";
+    private static int edad = 30;
+    string mensaje = string.Format("Hola, me llamo {0} y tengo {1} años.", nombre, edad);
+    
+    
+    /** VARIABLE LOCAL Y GLOBAL */
+
+    //Variable local: Se declara dentro de un bloque de código, como una función o un bloque { } y solo puede ser utilizada dentro de ese bloque
+    public void MiFuncion()
+    {
+        int x = 10; // Variable local
+        Console.WriteLine(x); // Se puede acceder dentro de la función
+    }
+
+    // Console.WriteLine(x); // Esto causaría un error, ya que x no es visible aquí
+
+    //Variable global: Es aquella que se declara fuera de cualquier función o bloque, generalmente al comienzo del programa y  puede ser accedida y modificada desde cualquier parte del código.
+    // (Se recomienda utilizar variables locales siempre que sea posible y limitar el uso de variables globales a casos donde sean realmente necesarias.)
+
+    /** DIFICULTAD EXTRA */
+    public static int ImprimirNumeros(string texto1, string texto2)
+    {
+        int contador = 0;
+        for (int i = 1; i <= 100; i++)
+        {
+            if (i % 3 == 0 && i % 5 == 0)
+            {
+                Console.WriteLine(texto1 + texto2);
+            }
+            else if (i % 3 == 0)
+            {
+                Console.WriteLine(texto1);
+            }
+            else if (i % 5 == 0)
+            {
+                Console.WriteLine(texto2);
+            }
+            else
+            {
+                Console.WriteLine(i);
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+
+    public static void Main(string[] args)
+    {
+        /** //01
+        double temperaturaCelsius = 20;
+        double temperaturaFahrenheit = ConversorTemperatura.CelsiusToFahrenheit(temperaturaCelsius);
+        Console.WriteLine("{0} grados Celsius son {1} grados Fahrenheit", temperaturaCelsius, temperaturaFahrenheit);
+
+        //02
+        Circulo circulo = new Circulo(5);
+        double area = circulo.CalcularArea();
+        Console.WriteLine("El área del círculo es: {0}", area); */
+
+        //DIFICULTAD EXTRA
+        string texto1 = "Fizz";
+        string texto2 = "Buzz";
+        int vecesImpreso = ImprimirNumeros(texto1, texto2);
+        Console.WriteLine("El número de veces que se imprimió un número en lugar de los textos es: " + vecesImpreso);
+    }
+}
