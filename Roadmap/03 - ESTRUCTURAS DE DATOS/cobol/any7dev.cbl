@@ -1,17 +1,17 @@
      /*
       * EJERCICIO:
-      * - Muestra ejemplos de creaci髇 de todas las estructuras soportadas por defecto en tu lenguaje.
-      * - Utiliza operaciones de inserci髇, borrado, actualizaci髇 y ordenaci髇.
+      * - Muestra ejemplos de creaci贸n de todas las estructuras soportadas por defecto en tu lenguaje.
+      * - Utiliza operaciones de inserci贸n, borrado, actualizaci贸n y ordenaci贸n.
       *
       * DIFICULTAD EXTRA (opcional):
       * Crea una agenda de contactos por terminal.
-      * - Debes implementar funcionalidades de b鷖queda, inserci髇, actualizaci髇 y eliminaci髇 de contactos.
-      * - Cada contacto debe tener un nombre y un n鷐ero de tel閒ono.
-      * - El programa solicita en primer lugar cu醠 es la operaci髇 que se quiere realizar, y a continuaci髇
+      * - Debes implementar funcionalidades de b煤squeda, inserci贸n, actualizaci贸n y eliminaci贸n de contactos.
+      * - Cada contacto debe tener un nombre y un n煤mero de tel茅fono.
+      * - El programa solicita en primer lugar cu谩l es la operaci贸n que se quiere realizar, y a continuaci贸n
       *   los datos necesarios para llevarla a cabo.
-      * - El programa no puede dejar introducir n鷐eros de tel閒ono no n鷐ericos y con m醩 de 11 d韌itos.
-      *   (o el n鷐ero de d韌itos que quieras)
-      * - Tambi閚 se debe proponer una operaci髇 de finalizaci髇 del programa.
+      * - El programa no puede dejar introducir n煤meros de tel茅fono no n煤mericos y con m谩s de 11 d铆gitos.
+      *   (o el n煤mero de d铆gitos que quieras)
+      * - Tambi茅n se debe proponer una operaci贸n de finalizaci贸n del programa.
       */
        IDENTIFICATION DIVISION.
        PROGRAM-ID. RETO-03.
@@ -53,7 +53,7 @@
        MENU.
             DISPLAY SPACES
             DISPLAY "-----MENU-----"
-            DISPLAY "1 - A馻dir"
+            DISPLAY "1 - A帽adir"
             DISPLAY "2 - Modificar"
             DISPLAY "3 - Eliminar"
             DISPLAY "4 - Mostrar agenda"
@@ -74,7 +74,7 @@
                    ELSE
                        MOVE CONTADOR-AUX TO CONTADOR
                    END-IF
-                   PERFORM A袮DIR
+                   PERFORM A脩ADIR
 
                  WHEN ACTUALIZAR
                   IF CONTADOR = 0
@@ -117,17 +117,17 @@
              END-EVALUATE.
 
       *INSERCCION
-       A袮DIR.
+       A脩ADIR.
            IF CONTADOR < 25
                DISPLAY "Introduce el nombre:"
                ACCEPT NOMBRE(CONTADOR)
                DISPLAY "Introduce su numero:"
                ACCEPT NUMERO(CONTADOR)
                DISPLAY SPACES
-               DISPLAY "Contacto a馻dido"
+               DISPLAY "Contacto a帽adido"
                ADD 1 TO CONTADOR-AUX
            ELSE
-               DISPLAY "No se puede a馻dir contacto, agenda llena"
+               DISPLAY "No se puede a帽adir contacto, agenda llena"
            END-IF
            PERFORM VOLVER-MENU.
 
@@ -198,7 +198,7 @@
                AT END DISPLAY "Contacto no encontrado"
                       PERFORM VOLVER-MENU
                WHEN NOMBRE(INDICE) = NOMBRE-AUX
-      *En COBOL no se eliminan los datos, se mueven los datos m醩 bajos de la tabla de ASCII
+      *En COBOL no se eliminan los datos, se mueven los datos m谩s bajos de la tabla de ASCII
                     MOVE LOW-VALUES TO AGENDA(INDICE)
                     DISPLAY "Contacto borrado"
                     PERFORM VOLVER-MENU
