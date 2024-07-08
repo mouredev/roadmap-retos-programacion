@@ -11,18 +11,18 @@ import java.util.regex.Pattern;
 
 /*
  * EJERCICIO:
- * - Muestra ejemplos de creaciÃ³n de todas las estructuras soportadas por defecto en tu lenguaje.
- * - Utiliza operaciones de inserciÃ³n, borrado, actualizaciÃ³n y ordenaciÃ³n.
+ * - Muestra ejemplos de creación de todas las estructuras soportadas por defecto en tu lenguaje.
+ * - Utiliza operaciones de inserción, borrado, actualización y ordenación.
  *
  * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
- * - Debes implementar funcionalidades de bÃºsqueda, inserciÃ³n, actualizaciÃ³n y eliminaciÃ³n de contactos.
- * - Cada contacto debe tener un nombre y un nÃºmero de telÃ©fono.
- * - El programa solicita en primer lugar cuÃ¡l es la operaciÃ³n que se quiere realizar, y a continuaciÃ³n
+ * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+ * - Cada contacto debe tener un nombre y un número de teléfono.
+ * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
  *   los datos necesarios para llevarla a cabo.
- * - El programa no puede dejar introducir nÃºmeros de telÃ©fono no nÃºmericos y con mÃ¡s de 11 dÃ­gitos.
- *   (o el nÃºmero de dÃ­gitos que quieras)
- * - TambiÃ©n se debe proponer una operaciÃ³n de finalizaciÃ³n del programa.
+ * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+ *   (o el número de dígitos que quieras)
+ * - También se debe proponer una operación de finalización del programa.
  */
 
 /**
@@ -53,9 +53,9 @@ public class deathwing696 {
                     contacto = Buscar_contacto(listin, null);
                     
                     if (contacto != null)
-                        System.out.println("Nombre: " + contacto[0] + " TelÃ©fono: " + contacto[1]);
+                        System.out.println("Nombre: " + contacto[0] + " Teléfono: " + contacto[1]);
                     else
-                        System.out.println("El contacto buscado no se encuentra en el listÃ­n");
+                        System.out.println("El contacto buscado no se encuentra en el listín");
                 }
                 case 3 -> 
                 {
@@ -67,7 +67,7 @@ public class deathwing696 {
                     if (Eliminar_contacto(listin))
                         System.out.println("Contacto eliminado correctamente");
                     else
-                        System.out.println("El contacto buscado no se encuentra en el listÃ­n");
+                        System.out.println("El contacto buscado no se encuentra en el listín");
                 }
                     
                 case 5 -> Mostrar_listin(listin);
@@ -89,11 +89,11 @@ public class deathwing696 {
         System.out.println("** 2. Buscar contacto               **");
         System.out.println("** 3. Actualizar contacto           **");
         System.out.println("** 4. Eliminar contacto             **");
-        System.out.println("** 5. Mostrar listÃ­n                **");
+        System.out.println("** 5. Mostrar listín                **");
         System.out.println("** 0. Salir                         **");
         System.out.println("**************************************");
         
-        System.out.print("Introduce una opciÃ³n:");
+        System.out.print("Introduce una opción:");
         
         try
         {
@@ -101,7 +101,7 @@ public class deathwing696 {
         }
         catch(Exception e)
         {
-            System.out.println("OpciÃ³n incorrecta, por favor introduzca una opciÃ³n del 0 al 5"); 
+            System.out.println("Opción incorrecta, por favor introduzca una opción del 0 al 5"); 
             lectura.nextLine();
             opcion = 9;
         }
@@ -121,12 +121,12 @@ public class deathwing696 {
         
         do
         {            
-            System.out.print("Introduce el nÃºmero de telÃ©fono:");                        
+            System.out.print("Introduce el número de teléfono:");                        
             cadena = lectura.nextLine();                        
             matcher = pattern.matcher(String.valueOf(cadena));
             ok = matcher.find();
             if (!ok)            
-                System.out.println("Formato del telÃ©fono incorrecto, introduzca una secuencia de nÃºmeros de 11 dÃ­gitos");
+                System.out.println("Formato del teléfono incorrecto, introduzca una secuencia de números de 11 dígitos");
             
         }while(!ok);
         
@@ -154,7 +154,7 @@ public class deathwing696 {
         
         if (key == null)
         {
-            System.out.print("CuÃ¡l es el nombre del usuario que desea buscar?");
+            System.out.print("Cuál es el nombre del usuario que desea buscar?");
             key = lectura.nextLine();            
         }
         
@@ -183,7 +183,7 @@ public class deathwing696 {
             
             do
             {
-                System.out.print("QuÃ© deseas modificar? (0 para nombre, 1 para telÃ©fono)");                
+                System.out.print("Qué deseas modificar? (0 para nombre, 1 para teléfono)");                
                 try
                 {
                     opcion = lectura.nextInt();
@@ -191,7 +191,7 @@ public class deathwing696 {
                 }
                 catch(Exception e)
                 {
-                    System.out.println("OpciÃ³n invÃ¡lida, por favor introduzca una opciÃ³n entre 0 y 1");
+                    System.out.println("Opción inválida, por favor introduzca una opción entre 0 y 1");
                     lectura.nextLine();
                     opcion = 9;
                 }
@@ -218,7 +218,7 @@ public class deathwing696 {
         }
         else
         {
-            System.out.println("El contacto buscado no se encuentra en el listÃ­n");
+            System.out.println("El contacto buscado no se encuentra en el listín");
             ok = false;
         }
         
@@ -248,8 +248,8 @@ public class deathwing696 {
     static private void Mostrar_listin(HashMap<String,Long> listin)
     {
         if (!listin.isEmpty())
-            listin.forEach((k,v) -> System.out.println("Nombre: " + k + " TelÃ©fono: " + v));
+            listin.forEach((k,v) -> System.out.println("Nombre: " + k + " Teléfono: " + v));
         else
-            System.out.println("No hay contactos actualmente en el listÃ­n, por favor, introduzca alguno con la opciÃ³n 1 del menÃº");
+            System.out.println("No hay contactos actualmente en el listín, por favor, introduzca alguno con la opción 1 del menú");
     }
 }
