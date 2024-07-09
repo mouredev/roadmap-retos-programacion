@@ -9,3 +9,21 @@ def imprimir_descendente(n):
 
 # Llamada inicial a la función
 imprimir_descendente(100)
+
+# Ejercicio
+def factorial(n):
+    """Calcula el factorial de un número n (n!)."""
+    if n == 0:  # Caso base: 0! = 1
+        return 1
+    else:
+        return n * factorial(n - 1)  # Llamada recursiva
+
+def fibonacci(n):
+    """Calcula el n-ésimo número de la sucesión de Fibonacci."""
+    if n <= 1:  # Casos base: fib(0) = 0, fib(1) = 1
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)  # Llamada recursiva
+
+print("Factorial de 5:", factorial(5))  # 120
+print("El 10º número de Fibonacci:", fibonacci(10))  # 55
