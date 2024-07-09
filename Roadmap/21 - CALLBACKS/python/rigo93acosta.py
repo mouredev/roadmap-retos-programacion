@@ -17,3 +17,15 @@
  */
 '''
 
+## Programación Asíncrona principal saludo.
+
+def greeting_process(name: str, callback):
+    print('Ejecutando el proceso de saludo...')
+    callback(name)
+
+def greet_callback(names: str):
+    print(f'Hola, {names}!')
+
+greeting_process('Rigo', greet_callback)
+
+
