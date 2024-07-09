@@ -244,19 +244,10 @@ class Book():
         self.name:str = name
         self.author:str = author
         self.copies:int = copies
-    
-    def get_name(self):
-        return self.name
-    
-    def get_copies(self):
-        return self.copies
-    
-    def set_copies(self,number:int):
-        self.copies += number
-        return self
 
     def show_data(self):
         print(f"- Título: {self.name}\n- Author: {self.author}\n- Copias Disponibles: {self.copies}")
+        print("\n")
 
 class User():
     def __init__(self,name,id_number,email) -> None:
@@ -264,12 +255,9 @@ class User():
         self.id_number:int = id_number
         self.email:str = email
 
-    def get_id(self):
-        return self.id_number
-
     def show_data(self):
         print(f"- Nombre: {self.name}\n- ID: {self.id_number}\n- Email: {self.email}")
-
+        print("\n")
 
 class Library():
     def __init__(self) -> None:
@@ -278,7 +266,7 @@ class Library():
 
     def __find_user(self,id):
         for element in self.users:
-            if element.get_id() == id:
+            if element.id_number == id:
                 return True
         else:
             return False
@@ -294,15 +282,15 @@ class Library():
             if self.__find_user(id):
                 book_name = input("Introduce por favor el título del libro que quieres sacar de préstamo: ")
                 for element in self.books:
-                    if element.get_name() == book_name:
+                    if element.name == book_name:
                         logging.debug("Libro encontrado")
-                        if element.get_copies() == 0:
+                        if element.copies == 0:
                             logging.warning(f"No hay unidades de {book_name}")
                             print(f"No hay libros disponnibles del título {book_name}")
                             break
                         else:
                             print(f"Entendido sacarás de préstamo el libro {book_name}")
-                            element.set_copies(-1)
+                            element.copies -= 1
                             break
                 else:
                     logging.warning("Título no disponible")
@@ -328,9 +316,9 @@ class Library():
             if self.__find_user(id):
                 book_name = input("Introduce por favor el título del libro a devolver: ")
                 for element in self.books:
-                    if element.get_name() == book_name:
+                    if element.name == book_name:
                         logging.debug("Libro encontrado")
-                        element.set_copies(1)
+                        element.copies += 1
                         break
                 else:
                     logging.warning("El título no pertenece a esta biblioteca")
@@ -368,7 +356,7 @@ class Register_Book():
     def register_book(self):
         name = input("Introduce el nombre del libro: ")
         for element in self.library.books:
-            if element.get_name() == name:
+            if element.name == name:
                 logging.warning("Ya existe un libro almacenado con este título") #posibilidad de pedirle al usuario que añada las unidades?
                 break
         else:
@@ -385,7 +373,7 @@ class Register_User():
     def register_user(self):
         name = input("Introduce el nombre del usuario a agregar: ")
         for element in self.library.users:
-            if element.get_id() == name:
+            if element.name == name:
                 logging.warning("El usuario ya existe en el sistema")
                 break
         else:
@@ -413,7 +401,7 @@ while True:
     elif option == "A":
         my_srp_library.show_users()
     elif option == "S":
-        print("Gracias por usar el sistema de la Biblioteca NO-SRP")
+        print("Gracias por usar el sistema de la Biblioteca SI-SRP")
         break
     else:
         logging.warning("Opción no válida")
