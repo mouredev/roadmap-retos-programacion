@@ -374,7 +374,6 @@ class Register_User():
 
     @users_number_decorator
     def register_user(self):
-        logging.info(f"Tipo de self: {type(self.library)}")
         name = input("Introduce el nombre del usuario a agregar: ")
         if type(self.library) == Library: #si el tipo del dato es "library"
             for element in self.library.users:
