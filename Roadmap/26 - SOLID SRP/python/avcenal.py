@@ -355,7 +355,7 @@ class Register_Book():
     def __init__(self,library:Library) -> None:
         self.library = library
 
-    #@books_number_decorator
+    @books_number_decorator
     def register_book(self):
         name = input("Introduce el nombre del libro: ")
         for element in self.library.books:
@@ -372,7 +372,7 @@ class Register_User():
     def __init__(self,library) -> None:
         self.library = library
 
-    #@users_number_decorator
+    @users_number_decorator
     def register_user(self):
         logging.info(f"Tipo de self: {type(self.library)}")
         name = input("Introduce el nombre del usuario a agregar: ")
