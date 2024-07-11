@@ -20,6 +20,9 @@
  */
 '''
 
+from functools import reduce
+from datetime import datetime
+
 """
 Ejercicio
 """
@@ -61,7 +64,7 @@ print(sorted(numbers, reverse=True))
 print(sorted(numbers, key=lambda x: -x))
 
 # reduce 
-from functools import reduce
+
 def sum(x, y):
     return x + y
 
@@ -71,3 +74,38 @@ print(reduce(sum, numbers))
 Extra
 """
 
+students = [
+    {"name": "Rigo", "birthdate": "25-05-1993", "grades": [10, 9, 10, 7, 10]},
+    {"name": "Mary", "birthdate": "24-08-1988", "grades": [9, 9, 5, 7, 6]},
+    {"name": "Robe", "birthdate": "06-05-1986", "grades": [8, 8, 8, 7, 6]}
+]
+
+def average(grades):
+    return sum(grades)/len(grades)
+
+# Promedio calificaciones
+print(
+    list(map(lambda student: 
+             {"name": student["name"], 
+              "average": average(student["grades"])}, students))
+)
+
+# Mejores estudiantes
+print(
+    list(
+        map(lambda student: 
+             student["name"], 
+              filter(lambda student: average(student["grades"]) >= 9, students))
+    )
+)
+
+# Nacimiento
+print(
+    list(
+        sorted(students, key=lambda student: datetime.strptime(student["birthdate"], "%d-%m-%Y"), reverse=True)
+    )
+)
+
+# Mayor calificacion
+
+print(max(map(lambda student: max(student["grades"]), students)))
