@@ -48,19 +48,3 @@ crear_xml(persona)
 with open("persona.xml", "r") as datos_xml:
     print(datos_xml.read())
 remove("persona.xml")
-
-
-"""
-!Extra
-"""
-
-class Datos:
-    
-    def __init__(self, nombre, edad, cumpleanios, progra_leng) -> None:
-        self.nombre = nombre
-        self.edad = edad
-        self.cumpleanios = cumpleanios
-        self.progra_len = progra_leng
-
-with open("clase.xml", "w") as clase:
-    persona = xml.
