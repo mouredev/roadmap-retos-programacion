@@ -1,115 +1,129 @@
-/* Función saludar */
+/*
+ * EJERCICIO:
+ * - Crea ejemplos de funciones básicas que representen las diferentes
+ *   posibilidades del lenguaje:
+ *   Sin parámetros ni retorno, con uno o varios parámetros, con retorno...
+ * - Comprueba si puedes crear funciones dentro de funciones.
+ * - Utiliza algún ejemplo de funciones ya creadas en el lenguaje.
+ * - Pon a prueba el concepto de variable LOCAL y GLOBAL.
+ * - Debes hacer print por consola del resultado de todos los ejemplos.
+ *   (y tener en cuenta que cada lenguaje puede poseer más o menos posibilidades)
+ *
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
+ * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
+ *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
+ *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
+ *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+ *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
+ *
+ * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
+ * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
+ */
+
+// Funciones
+
+// Función sin parámetros
+console.log("Función sin parámetros:");
+
+function holaMundo() {
+  return "Hola Mundo!";
+}
+
+let hello = holaMundo(); // Devuelve "Hola Mundo!"
+console.log(hello);
+
+// Función con un parámetro
+console.log("Función con un parámetro:");
 
 function saludar(name) {
-    console.log(`¡Hola ${name}!`);
+  return "Hola " + name + "!";
 }
 
-saludar("Marcos") // Imprime en consola: "Hola Marcos"
+let saludo = saludar("Marcos"); // Devuelve "Hola Marcos!"
+console.log(saludo);
+let saludo2 = saludar(); // Devuelve "Hola undefined!"
+console.log(saludo2);
 
+// Función con dos parámetros
+console.log("Función con dos parámetros:");
 
-
-/* Función suma */
-
-function sumar(a,b) {
-    let resultado = a + b;
-    console.log(resultado);
+function suma(a, b) {
+  return a + b;
 }
 
-sumar(4,5) // Imprime en consola: 9
-sumar(35,77) // Imprime en consola: 112
-sumar(1,45) // Imprime en consola: 46
-sumar(123,100) // Imprime en consola: 223
-sumar(4,7) // Imprime en consola: 11
-sumar(-8,-9) // Imprime en consola: -17
+let resultado = suma(5, 9); // Devuelve 14
+console.log(resultado);
 
+// Función con parámetros por defecto
+console.log("Parámetros por defecto:");
 
-
-/* Función para determinar si un número es primo */
-
-function esPrimo(num) {
-    if (num % 2 === 0) {
-        console.log(`El número ${num} es primo`);
-    } else console.log(`El número ${num} no es primo`);
+function nuevoSaludo(tipo, nombre) {
+  var tipo = tipo || "Hola";
+  var nombre = nombre || "JavaScript";
+  return tipo + " " + nombre + "!";
 }
 
-esPrimo(45) // Imprime en consola: "El número 45 no es primo"
-esPrimo(222) // Imprime en consola: "El número 222 es primo"
-esPrimo(1658) // Imprime en consola: "El número 1658 es primo"
-esPrimo(11) // Imprime en consola: "El número 11 no es primo"
-esPrimo(732) // Imprime en consola: "El número 732 es primo"
-esPrimo(12) // Imprime en consola: "El número 12 es primo"
+let bienvenida = nuevoSaludo(); // Devuelve "Hola JavaScript!"
+let despedida = nuevoSaludo("Adiós"); // Devuelve "Adiós JavaScript!"
+let hola = nuevoSaludo("Hola", "Marcos"); // Devuelve "Hola Marcos!"
+console.log(bienvenida);
+console.log(despedida);
+console.log(hola);
 
+// Ámbitos de una función
+console.log("Ámbito de una función:");
 
+let valor = "global";
 
-/* Función para convertir la cadena de texto en mayúscula */
-
-function cadenaDeTexto(string) {
-    console.log(string.toUpperCase());
+function funcionLocal() {
+  let valor = "local";
+  return valor;
 }
 
-cadenaDeTexto("¿Hola que tal?") // Imprime en consola: ¿HOLA QUE TAL?
-cadenaDeTexto("otorrinolaringología") // Imprime en consola: OTORRINOLARINGOLOGÍA
-cadenaDeTexto("aBcDeFg") // Imprime en consola: ABCDEFG
+console.log(valor); // "global"
+console.log(funcionLocal()); // "local"
+console.log(valor); // "global"
 
+// Funciones anidadas
+console.log("Función anidada:");
 
+let a = "Hola, ";
 
-/* Función para encontrar el máximo en un array */
+function global() {
+  let b = "Qué ";
 
-function maximoValor(arr) {
+  function local() {
+    let c = "tal?";
+    return a + b + c;
+  }
 
-    let max = 0;
+  return local();
+}
 
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
+global();
+
+let saludando = global(); // Devuelve "Hola, Qué tal?"
+console.log(saludando);
+
+// Dificultad extra
+
+function extra(string1, string2) {
+  let contador = 0;
+
+  for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log(string1 + string2);
+      contador++;
+    } else if (i % 3 === 0) {
+      console.log(string1);
+      contador++;
+    } else if (i % 5 === 0) {
+      console.log(string2);
+      contador++;
     }
-
-    console.log(`El valor máximo es ${max}`);
-
+  }
+  return contador;
 }
 
-maximoValor([95, 77, 45, 6, 333, 200]) // Imprime en consola "El valor máximo es 333"
-maximoValor([100, 99, 88, 45, 54]) // Imprime en consola "El valor máximo es 100"
-maximoValor([9, 8, 7, 6, 0, 7, 6]) // Imprime en consola "El valor máximo es 9"
-maximoValor([0, 0, 0, 1, 1, 0]) // Imprime en consola "El valor máximo es 1"
-
-
-
-/* Función dentro de otra función */
-
-function funcionExterna() {
-    function funcionInterna () {
-        console.log("Esta es una función dentro de otra función");
-    }
-
-    funcionInterna()
-
-}
-
-funcionExterna() // Imprime en consola "Esta es una función dentro de otra función"
-
-
-/* Dificultad extra */
-
-function texto(string1, string2) {
-
-    let contador = 0;
-
-    for (let i = 1; i <= 100; i++) {
-        if (i % 3 === 0 && i % 5 === 0) {
-            console.log(string1 + string2);
-            contador++;
-        } else if (i % 3 === 0) {
-            console.log(string1);
-            contador++;
-        } else if (i % 5 === 0) {
-            console.log(string2)
-            contador++;
-        } else console.log(i);
-    }
-
-    return `La cantidad de veces que se imprimió un número es: ${contador}`;
-}
-
-console.log(texto("Soda","Stereo"));
+console.log(extra("Cielo", "Razzo"));
