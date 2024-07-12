@@ -1,23 +1,78 @@
 //EJERCICIO
 //Acceso a caracteres específicos
-//Subcadenas
+const myAlphabet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+console.log(myAlphabet[17] + myAlphabet[8] + myAlphabet[2])
+
+const nameChart1: string = myAlphabet.charAt(17)
+const nameChart2: string = myAlphabet.charAt(8)
+const nameChart3: string = myAlphabet.charAt(2)
+
+console.log(nameChart1, nameChart2, nameChart3)
+
+const rPosition: number = myAlphabet.indexOf('R')
+
+console.log(`La letra R es la número ${rPosition + 1} de nuestro alfabeto`)
+
 //Longitud
+const phrase: string = 'Me encantan las papas fritas'
+
+console.log(`\"${phrase}\" tiene ${phrase.length} caracteres`)
+
+//Subcadenas
+const phraseSlice: string = phrase.slice(16)
+
+console.log(phraseSlice)
+
+const heroes: string = 'Batman le gana a Superman'
+const Batman: string = heroes.substring(0, 6)
+const Superman: string = heroes.substring(17)
+
+console.log(Batman)
+console.log(Superman)
+
 //Concatenación
-let myString1: string = 'Hola, '
-let myString2: string = 'TypeScript'
+let action: string = ' está peleando con '
 
-let message: string = myString1.concat(myString2)
-
-console.log(message)
+console.log(Batman.concat(action, Superman))
+console.log(Batman + action + Superman)
 
 //Repetición
+let ric: string = 'Ric '
+
+console.log(ric.repeat(3))
+
 //Recorrido
+for (let i = 0; i < myAlphabet.length; i++) {
+	console.log(myAlphabet[i])
+}
+
 //Conversión a mayúsculas y minúsculas
+const fruits: string[] = ['fresa', 'PARCHITA', 'LiMÓn', 'Mango']
+
+fruits.forEach((fruit) => {
+	console.log(fruit.toUpperCase())
+})
+
+fruits.forEach((fruit) => {
+	console.log(fruit.toLowerCase())
+})
+
 //Reemplazo
+let musicPlayer = 'Music Player current song: The Pretender - Foo Fighters'
+
+console.log(musicPlayer)
+console.log(musicPlayer.replace('The Pretender - Foo Fighters', 'Monster - Skillet'))
+
 //División
+
 //Unión
+
 //Interpolación
+console.log(`\n\"TypeScript es JavaScript premium\" \n\n\t\t\t${ric.toUpperCase()}`)
+
 //Verificación
+
 //Otros
 
 //EXTRA
@@ -63,5 +118,5 @@ function analyzeTheseWords(word1: string, word2: string) {
 	isogram(word2)
 }
 
-analyzeTheseWords('Roma', 'Amor')
-analyzeTheseWords('Radar', 'Paloma')
+// analyzeTheseWords('Roma', 'Amor')
+// analyzeTheseWords('Radar', 'Paloma')
