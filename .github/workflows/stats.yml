@@ -1,33 +1,31 @@
 name: Stats
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches: [main]
 
 jobs:
   build:
-    if: github.repository == 'mouredev/roadmap-retos-programacion' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
+    # To allow the action to write back to the repo.
     permissions:
       contents: write
-
+    
     steps:
-      - name: Checkout repo
+      - name: Repo checkout
         uses: actions/checkout@v4
-
-      - name: Setup Python
+      
+      - name: Seting up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
+          
       - name: Run script
         run: python ./Roadmap/stats.py
 
-      - name: Commit and Push changes
+      # A GitHub Action to detect changed files during a Workflow run and to commit and push them back to the GitHub repository.
+      - name: Commit & push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Update stats
-          commit_user_name: Brais Moure [GitHub Actions]
-          commit_user_email: mouredev@gmail.com
-          commit_author: mouredev <mouredev@gmail.com>
+          commit_message: Updated stats.py
+          commit_user_author: fbolanos31 [Github Actions]
