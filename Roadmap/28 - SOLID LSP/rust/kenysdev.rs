@@ -154,7 +154,7 @@ impl Vehicle for Truck {
 }
 
 // ___________________________________________
-fn test_subclass(vehicle: &dyn Vehicle) {
+fn test_impls(vehicle: &dyn Vehicle) {
     println!("\nPropiedades:");
     println!("{} - {}", vehicle.brand(), vehicle.model());
 
@@ -173,12 +173,12 @@ fn main() {
     // _______________________________________________
     // EXS
     let car = Car::new("Honda", "Civic");
-    test_subclass(&car);
+    test_impls(&car);
 
     let motorcycle = Motorcycle::new("Kawasaki", "Ninja");
-    test_subclass(&motorcycle);
+    test_impls(&motorcycle);
 
     let truck = Truck::new("Ford", "Raptor");
-    test_subclass(&truck);
+    test_impls(&truck);
 
 }
