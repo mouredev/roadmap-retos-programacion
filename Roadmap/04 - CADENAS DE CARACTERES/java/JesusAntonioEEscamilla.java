@@ -1,6 +1,8 @@
 /** #04 - Java -> Jesus Antonio Escamilla */
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class JesusAntonioEEscamilla {
     public static void main(String[] args) {
@@ -73,12 +75,55 @@ public class JesusAntonioEEscamilla {
         boolean contains = str.contains("Mundo");
         System.out.println("Verificación-Contiene (Hola Mundo = Hola-Mundo) -> " + contains);
 
-        // EXTRA()
+        EXTRA("radar", "roma");
     }
 
     /**-----DIFICULTAD EXTRA-----*/
 
-    //Pendiente
+    public static void EXTRA(String palabra1, String palabra2) {
+        palabra1 = palabra1.toLowerCase();
+        palabra2 = palabra2.toLowerCase();
+        System.out.println("Palíndromo");
+        System.out.println(palabra1 + " es un Palíndromo: " + esPalíndromo(palabra1));
+        System.out.println(palabra2 + " es un Palíndromo: " + esPalíndromo(palabra2));
+        
+        System.out.println("Anagrama");
+        System.out.println(palabra1 + " y " + palabra2 + " son Anagramas: " + sonAnagramas(palabra1, palabra2));
+        
+        System.out.println("Isograma");
+        System.out.println(palabra1 + " es un Isograma: " + esIsograma(palabra1));
+        System.out.println(palabra2 + " es un Isograma: " + esIsograma(palabra2));
+    }
+
+    public static boolean esPalíndromo(String word){
+        word = word.toLowerCase();
+        String invert = new StringBuilder(word).reverse().toString();
+        return word.equals(invert);
+    }
+
+    public static boolean sonAnagramas(String word1, String word2){
+        word1 = word1.toLowerCase();
+        word2 = word2.toLowerCase();
+        if(word1.length() != word2.length()){
+            return false;
+        }
+        char[] array1 = word1.toCharArray();
+        char[] array2 = word2.toCharArray();
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+        return Arrays.equals(array1, array2);
+    }
+
+    public static boolean esIsograma(String word){
+        Set<Character> character = new HashSet<>();
+        for (char c : word.toCharArray()) {
+            if (character.contains(c)) {
+                return false;
+            }
+            character.add(c);
+        }
+        return true;
+    }
 
     /**-----DIFICULTAD EXTRA-----*/
 }
