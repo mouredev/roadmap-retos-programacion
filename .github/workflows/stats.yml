@@ -28,4 +28,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Updated stats.py
-          commit_user_author: fbolanos31 [Github Actions]
+          commit_author: fbolanos31 [Github Actions]
