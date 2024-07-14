@@ -1,3 +1,5 @@
+// Ejercicio #18 - Conjuntos
+
 function mostrarConjunto(set) {
     const ordenar = [...set].sort((a, b) => a - b)
     return `{${ordenar.join(',')}}`
