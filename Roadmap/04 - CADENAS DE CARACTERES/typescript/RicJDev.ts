@@ -60,20 +60,39 @@ fruits.forEach((fruit) => {
 
 //Reemplazo
 let musicPlayer = 'Music Player current song: The Pretender - Foo Fighters'
-
 console.log(musicPlayer)
-console.log(musicPlayer.replace('The Pretender - Foo Fighters', 'Monster - Skillet'))
+
+musicPlayer = musicPlayer.replace('The Pretender - Foo Fighters', 'Monster - Skillet')
+console.log(musicPlayer)
 
 //División
+const companiesString: string = 'Google, Apple, Telegram, Facebook'
+const companiesArr = companiesString.split(', ')
+
+console.log(companiesArr)
 
 //Unión
+const colorsArray = ['blue', 'red', 'yellow', 'white']
+const colorsString = colorsArray.join(', ')
+
+console.log(colorsString)
 
 //Interpolación
-console.log(`\n\"TypeScript es JavaScript premium\" \n\n\t\t\t${ric.toUpperCase()}`)
+console.log(`\n\"TypeScript es JavaScript premium\" \n\n\t\t\t${ric.toUpperCase()}\n`)
 
 //Verificación
+const fiveInSpanish: string = 'Cinco'
+const fiveCharsRegex = /\b[A-Za-z]{5}\b/g
+
+console.log('Tiene cinco caracteres la palabra "cinco"?', fiveCharsRegex.test(fiveInSpanish))
 
 //Otros
+const randomPhrase = 'Pedro estaba bebiendo un jugo de manzana'
+const jRegex = /\b[Jj]{1}[A-Za-z]{3}\b/g
+
+let result = randomPhrase.match(jRegex)
+
+console.log(result)
 
 //EXTRA
 function analyzeTheseWords(word1: string, word2: string) {
@@ -118,5 +137,5 @@ function analyzeTheseWords(word1: string, word2: string) {
 	isogram(word2)
 }
 
-// analyzeTheseWords('Roma', 'Amor')
-// analyzeTheseWords('Radar', 'Paloma')
+analyzeTheseWords('Roma', 'Amor')
+analyzeTheseWords('Radar', 'Paloma')
