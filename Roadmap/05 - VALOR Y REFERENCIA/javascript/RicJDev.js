@@ -17,15 +17,15 @@ console.log(arr1); //---> [1, 2, 3, 4]
 console.log(arr2); //---> [1, 2, 3, 4]
 
 //-Funciones con datos por valor-
-const cambiaEsteNumA40 = (n) => {
-	n = 40;
-	return n;
+let miNumC = 5;
+
+const cambia5a40 = () => {
+	miNumC = 40;
 };
 
-let miNumC = 5;
 console.log(miNumC);
 
-cambiaEsteNumA40(miNumC);
+cambia5a40(miNumC);
 console.log(miNumC);
 
 //-Funciones con datos por referencia-
