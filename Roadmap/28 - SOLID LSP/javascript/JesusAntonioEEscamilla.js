@@ -35,7 +35,7 @@ const eagle_ = new Eagle_();
 const penguin_ = new Penguin_();
 
 makeBirdFly_(eagle_);
-makeBirdFly_(penguin_);
+// makeBirdFly_(penguin_);
 
 
 //CORRECTO
@@ -77,6 +77,66 @@ makeBirdMove(penguin);
 
 /**-----DIFICULTAD EXTRA-----*/
 
-// Pendiente
+// Creando la clase
+class Vehículos{
+   acelerar(){
+      throw new Error("Método 'acelerar' debe ser implementado");
+   }
+
+   frenar(){
+      throw new Error("Método 'frenar' debe ser implementado");
+   }
+}
+
+// Sub-clases la clase principal
+class Coche extends Vehículos{
+   acelerar(){
+      console.log("El coche esta acelerando");
+   }
+
+   frenar(){
+      console.log("El coche esta frenando");
+   }
+}
+
+class Trailer extends Vehículos{
+   acelerar(){
+      console.log("El trailer esta acelerando");
+   }
+   
+   frenar(){
+      console.log("El trailer esta frenando");
+   }
+}
+
+class Moto extends Vehículos{
+   acelerar(){
+      console.log("La moto esta acelerando");
+   }
+
+   frenar(){
+      console.log("La moto esta frenando");
+   }
+}
+
+// Comprobación del LSP
+function pruebaLSP(vehículo) {
+   vehículo.acelerar();
+   vehículo.frenar();
+}
+
+// Ejemplo LSP
+const coche = new Coche();
+const trailer = new Trailer();
+const moto = new Moto();
+
+console.log("Prueba con Coche:");
+pruebaLSP(coche);
+
+console.log("Prueba con Trailer:");
+pruebaLSP(trailer);
+
+console.log("Prueba con Moto:");
+pruebaLSP(moto);
 
 /**-----DIFICULTAD EXTRA-----*/
