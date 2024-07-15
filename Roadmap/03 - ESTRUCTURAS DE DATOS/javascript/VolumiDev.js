@@ -74,6 +74,7 @@ console.log(mapa.get(true))
   
   function inicio() {
     rl.question('¿Que operacion desea realizar? insertar, buscar, actualizar, eliminar, salir:\n', (resp) => {
+      resp.toLowerCase()
       if (resp === 'insertar'){
         rl.question('Introduce el nombre que deseas almacenar:\n', (nom) => {
           rl.question('Introduce el numero de telefono:\n', (tel) => {
