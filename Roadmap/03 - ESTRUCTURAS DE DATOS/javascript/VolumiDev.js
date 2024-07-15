@@ -57,14 +57,78 @@ console.log(mapa.get(true))
   conjunto.delete('Laura')
   console.log(conjunto)
 
-
   // Dificultad extra AGENDA
-  function menuAgenda(){
-    console.log('Elige una de las opciones\n1. Busqueda\n2. Inserción')
-    
-  }
+  
+  
+  //  **  EJECUCION  **
+  //IMPLEMENTAMOS EL ELEMENTO CON EL QUE VAMOS A HACER  LA LECTURA DEL TECLADO
+  const readline = require('readline')
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
 
-  // do {
-  //   var opcion = menuAgenda
-  // } while (condition);
-  var dato = prompt('introduce')
+  // DEFINIMOS EL MAP QUE ALMACENARA LA INFO
+  const agenda = new Map();
+  let telregEx = /\d{9}/
+  
+  function inicio() {
+    rl.question('¿Que operacion desea realizar? insertar, buscar, actualizar, eliminar, salir:\n', (resp) => {
+      if (resp === 'insertar'){
+        rl.question('Introduce el nombre que deseas almacenar:\n', (nom) => {
+          rl.question('Introduce el numero de telefono:\n', (tel) => {
+            if(telregEx.test(tel)){
+              agenda.set(nom, tel)
+              console.log('Contacto insertado')
+              inicio()
+            }else {
+              console.log('El formato del telefono no es correcto')
+              inicio()
+            }
+          })
+        })
+      } else if (resp === 'buscar'){
+        rl.question('Introduce el nombre que deseas buscar:\n', (nom) => {
+          if(agenda.has(nom)){
+            console.log(`Nombre: ${nom} Telefono: ${agenda.get(nom)}`)
+            inicio()
+          }else {
+            console.log('El nombre que has introducido no esta almacenado')
+            inicio()
+          }
+        })
+      } else if(resp === 'salir'){
+        console.log('Saliendo....')
+        process.exit(0)
+      }else if(resp === 'actualizar'){
+        rl.question('Introduce el nombre que deseas actualizar\n', (nom) => {
+          if(agenda.has(nom)){
+            rl.question('Actualiza el numero de telefono\n', (tel) => {
+              if(telregEx.test(tel)){
+                agenda.set(nom, tel)
+                console.log('Contacto actualizado')
+                inicio()
+              }else {
+                console.log('El formato del telefono no es correcto')
+                inicio()
+              }
+            })
+          }
+        })
+      }else if(resp === 'eliminar'){
+        rl.question('Introduce el nombre que deseas borrar:\n', (nom) => {
+          if(agenda.has(nom)){
+            agenda.delete(nom)
+            console.log('Contacto borrado')
+            inicio()
+          }else{
+            console.log('El nombre introducido no existe en el registro')
+            inicio()
+          }
+        })
+      }
+    })
+  }
+  
+  console.log('**** AGENDA ****')
+  inicio()
