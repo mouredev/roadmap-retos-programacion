@@ -1,45 +1,73 @@
-/*
- * EJERCICIO:
- * - Muestra ejemplos de asignación de variables "por valor" y "por referencia", según
- *   su tipo de dato.
- * - Muestra ejemplos de funciones con variables que se les pasan "por valor" y
- *   "por referencia", y cómo se comportan en cada caso en el momento de ser modificadas.
- * (Entender estos conceptos es algo esencial en la gran mayoría de lenguajes)
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
- * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
- *   Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
- *   se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
- *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
- *   Comprueba también que se ha conservado el valor original en las primeras.
- */
+//Tipos de datos por valor
+let number1: number = 10
+let number2: number = number1
 
-//Variables por valor
-let numA: number = 10
-let numB: number = numA
+console.log(number2)
 
-console.log(numB)
+number1 += 20
 
-numA = 20
-
-console.log(numA)
-console.log(numB)
+console.log(number1)
+console.log(number2)
 
 //Función con variables por valor
-let numC: number = 5
+let number3: number = 5
 
-function change5To40() {
-	numC = 40
+function add40(num: number) {
+	return num + 40
 }
 
-console.log(numC)
+console.log(number3)
 
-change5To40()
-console.log(numC)
+add40(number3)
+console.log(number3)
+
+//Tipos de datos por referencia
+let array1: number[] = [12, 30, 12]
+let array2: number[] = array1
+
+console.log(array1)
+
+array2.push(10)
+
+console.log(array1)
+console.log(array2)
+
+//Función con variables por referencia
+let array3: number[] = [10, 20, 30]
+
+function customPop(arr: any[]) {
+	return (arr.length -= 1)
+}
+
+console.log(array3)
+
+customPop(array3)
+console.log(array3)
+
+//EXTRA
+function changeValues(a: any, b: any) {
+	let change = a
+
+	a = b
+	b = change
+
+	return [a, b]
+}
+
+//Variables por valor
+let number4 = 20
+let number5 = 50
+
+let [newNumber4, newNumber5] = changeValues(number4, number5)
+
+console.log('Valores originales:', number4, number5)
+console.log('Valores cambiados:', newNumber4, newNumber5)
 
 //Variables por referencia
-//Función con variables por referencia
-//EXTRA
-function changeValues(var1, var2) {}
-function changeReferences(var1, var2) {}
+let array5 = [12, 10, 14]
+let array6 = [20, 22, 25]
+
+let [newArray5, newArray6] = changeValues(array5, array6)
+
+console.log('Valores originales:', array5, array6)
+console.log('Valores cambiados:', newArray5, newArray6)
