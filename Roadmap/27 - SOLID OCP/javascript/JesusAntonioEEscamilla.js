@@ -90,6 +90,86 @@ console.log(contractorEmployee.calculatePay());
 
 /**-----DIFICULTAD EXTRA-----*/
 
-// Pendiente
+// Interface para la operaciones
+class Operation{
+   execute(a, b){
+      throw new Error('Método no implementado')
+   }
+}
+
+// Suma
+class Addition extends Operation{
+   execute(a, b){
+      return a + b;
+   }
+}
+
+// Resta
+class Subtraction extends Operation{
+   execute(a, b){
+      return a - b;
+   }
+}
+
+// Multiplicación
+class Multiplication extends Operation{
+   execute(a, b){
+      return a * b;
+   }
+}
+
+// Division
+class Division extends Operation{
+   execute(a, b){
+      if (b === 0) {
+         throw new Error('Nose puede dividir entre 0');
+      }
+      return a / b;
+   }
+}
+
+
+// Clase Calculadora
+class Calculator{
+   constructor() {
+      this.operations = {};
+   }
+
+   addOperation(nombre, operación){
+      this.operations[nombre] = operación;
+   }
+
+   calculate(nombre, a, b){
+      if (!this.operations[nombre]) {
+         throw new Error(`Operación ${nombre} no es valida`);
+      }
+      return this.operations[nombre].execute(a, b);
+   }
+}
+
+
+//Creando la instancia de la calculadora
+const calculator = new Calculator();
+calculator.addOperation('add', new Addition());
+calculator.addOperation('subtract', new Subtraction());
+calculator.addOperation('multiply', new Multiplication());
+calculator.addOperation('divide', new Division());
+
+// Test de opresiones básicas
+console.log('Suma', calculator.calculate('add', 5, 4));
+console.log('Resta', calculator.calculate('subtract', 9, 6));
+console.log('Multiplicación', calculator.calculate('multiply', 3, 7));
+console.log('Division', calculator.calculate('divide', 8, 2));
+
+// Agregamos la potencia
+class Power extends Operation{
+   execute(a, b){
+      return a ** b;
+   }
+}
+
+// Agregamos la operación de potencia
+calculator.addOperation('power', new Power());
+console.log('Potencia', calculator.calculate('power', 2, 5));
 
 /**-----DIFICULTAD EXTRA-----*/
