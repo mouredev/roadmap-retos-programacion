@@ -52,4 +52,41 @@ print(lista1)
 """
 EXTRA
 """
-#Pendiente
+print("Extra Valor")
+# Funciones para intercambiar valores
+def intercambiar_valor(a, b):
+    a, b = b, a
+    return a, b
+
+# Variables Originales
+x = 5
+y = 10
+
+# Asignamos a nuevas variables
+nuevoX, nuevoY = intercambiar_valor(x, y)
+
+# Imprimir los resultado en la consola
+print(f"Originales: x = {x}, y = {y}")
+print(f"Nuevas: nuevo_X = {nuevoX}, nuevo_Y = {nuevoY}")
+
+
+print("Extra Referencia")
+# Función para intercambiar valores en lista
+def intercambio_lista(lista1, lista2):
+    lista1[:], lista2[:] = lista2[:], lista1[:]
+    return lista1, lista2
+
+# Variables Originales
+lista_a = [1, 2, 3]
+lista_b = [4, 5, 6]
+
+# Creamos copias de las listas
+lista_a_original = lista_a[:]
+lista_b_original = lista_b[:]
+
+# Asignación a nuevas variables
+nueva_lista_a, nueva_lista_b = intercambio_lista(lista_a, lista_b)
+
+# Imprimir los resultado en la consola
+print(f"Originales: lista_a = {lista_a_original}, lista_b = {lista_b_original}")
+print(f"Nuevas: nueva_lista_a = {nueva_lista_a}, nueva_lista_b = {nueva_lista_b}")
