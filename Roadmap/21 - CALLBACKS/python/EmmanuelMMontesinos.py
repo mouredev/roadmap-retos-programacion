@@ -34,18 +34,20 @@ ping(20,mi_callback)
 """
 from time import sleep
 from random import randint
+import threading
+
 def proceso_pedido(plato,confirmacion,listo,entregado):
+    def proceso():
+        confirmacion(plato)
 
-    confirmacion(plato)
+        tiempo_listo = randint(1,10)
+        sleep(tiempo_listo)
+        listo(plato,tiempo_listo)
 
-    tiempo_listo = randint(1,10)
-    sleep(tiempo_listo)
-    listo(plato,tiempo_listo)
-
-    tiempo_entregado = randint(1,10)
-    sleep(tiempo_entregado)
-    entregado(plato,tiempo_entregado)
-
+        tiempo_entregado = randint(1,10)
+        sleep(tiempo_entregado)
+        entregado(plato,tiempo_entregado)
+    threading.Thread(target=proceso).start()
 def confirmacion(plato):
     print(f"{plato} ha sido confirmado, pronto estara listo.")
 
