@@ -43,7 +43,7 @@ float f = 0.0f; //Variable tipo float (decimales)(4 bytes)(presicion 6 a 9 digit
 double d = 0.0; //Variable tipo double (decimales)(8 bytes)(presicion 15 a 17 digitos aprox.)
 decimal m = 0.0m; //Variable tipo decimal (decimales)(16 bytes)(presicion 28 a 29 digitos aprox.)
 //********Tipo bool************
-bool b1 = true; //Represetnacion true en bool
+bool b1 = true; //Representacion true en bool
 bool b2 = false; //Representacion false en bool
 //********Tipo caracteres************
 char c = 'a'; //Variable tipo char (16 bits)
