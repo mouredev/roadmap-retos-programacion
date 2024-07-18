@@ -3,23 +3,28 @@
     crea un ejemplo siemple donde se muestre su funcionamiento de forma correcta e incorrecta.
 """
 
+
 class Bird:
     def volar(self):
         raise NotImplementedError("Este metodo permite al ave volar")
+
 
 class Duck(Bird):
     def volar(self):
         print("El pato sabe volar")
 
+
 class Penguin(Bird):
     def volar(self):
         print("El pinguino no sabe volar")
 
+
 def hacer_volar(ave: Bird):
     ave.volar()
 
-pato=Duck()
-pinguino= Penguin()
+
+pato = Duck()
+pinguino = Penguin()
 hacer_volar(pato)
 hacer_volar(pinguino)
 
@@ -34,45 +39,61 @@ hacer_volar(pinguino)
     4.- Desarrolla un codigo que compruebe que se cumple el LSP
 """
 
+
 class Vehicle():
-    def speed_up(self):
-        raise NotImplementedError ("Permite al vehículo acelerar")
-    
-    def brake(self):
-        raise NotImplementedError ("Permite al vehículo frenar")
+    def __init__(self, speed=0):
+        self.speed = speed
+
+    def speed_up(self, increment):
+        self.speed += increment
+        print(f"Velocidad: {self.speed} km\h")
+
+    def brake(self, decrement):
+        self.speed -= decrement
+        if self.speed <= 0:
+            self.speed = 0
+        print(f"Velocidad: {self.speed} km\h")
+
 
 class Truck(Vehicle):
-    def speed_up(self):
+    def speed_up(self, increment):
         print("El camion esta acelerando")
-    
-    def brake(self):
+        super().speed_up(increment)
+
+    def brake(self, decrement):
         print("El camion esta frenando")
+        super().brake(decrement)
+
 
 class Motorcycle(Vehicle):
-    def speed_up(self):
+    def speed_up(self, increment):
         print("La motocicleta esta acelerando")
-    def brake(self):
+        super().speed_up(increment)
+
+    def brake(self, decrement):
         print("La motocicleta esta frenando")
+        super().brake(decrement)
+
 
 class Airplane(Vehicle):
-    def speed_up(self):
+    def speed_up(self, increment):
         print("El avion esta acelerando")
-    def brake(self):
+        super().speed_up(increment)
+
+    def brake(self, decrement):
         print("El avion esta frenando")
+        super().brake(decrement)
 
-def braking(vehiculo: Vehicle):
-    vehiculo.brake()
 
-def speeding_up(vehiculo: Vehicle):
-    vehiculo.speed_up()
+def test_vehicle(vehicle):
+    vehicle.speed_up(2)
+    vehicle.brake(1)
+
 
 camion = Truck()
 moto = Motorcycle()
 avion = Airplane()
 
-braking(camion)
-braking(moto)
-braking(avion)
-speeding_up(camion)
-speeding_up(moto)
-speeding_up(avion)
+test_vehicle(camion)
+test_vehicle(moto)
+test_vehicle(avion)
