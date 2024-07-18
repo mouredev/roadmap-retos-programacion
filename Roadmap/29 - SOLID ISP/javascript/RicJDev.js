@@ -5,7 +5,7 @@ Incorrecto ❎
 Se le está dando a la clase DogNoISP un método que no tiene sentido que tenga, lo que en un caso más complejo afectaría a la implementación de las clases
 
 */
-class AnimalNoISP {
+class Animal {
 	constructor(name) {
 		this.name = name
 	}
@@ -19,7 +19,7 @@ class AnimalNoISP {
 	}
 }
 
-class DogNoISP extends AnimalNoISP {
+class DogNoISP extends Animal {
 	constructor(name) {
 		super(name)
 	}
