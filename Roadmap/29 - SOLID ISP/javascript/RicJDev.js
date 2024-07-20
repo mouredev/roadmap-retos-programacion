@@ -1,78 +1,58 @@
 //EJERCICIO
-/*
-Incorrecto ❎
-
-Se le está dando a la clase DogNoISP un método que no tiene sentido que tenga, lo que en un caso más complejo afectaría a la implementación de las clases
-
-*/
-class Animal {
-	constructor(name) {
-		this.name = name
+//Incorrecto ❎
+class BookNoISP {
+	constructor(title, author, price) {
+		this.title = title
+		this.author = author
+		this.price = price
 	}
 
-	speak() {
-		console.log(`${this.name} emite un sonido`)
+	getPrice() {
+		//Le muestra el precio del libro al cliente
 	}
 
-	fly() {
-		console.log(`${this.name} vuela`)
+	getReviews() {
+		//Muestra los comentarios acerca del libro
 	}
 }
 
-class DogNoISP extends Animal {
-	constructor(name) {
-		super(name)
+class FreeBookNoISP extends BookNoISP {
+	constructor(title, author) {
+		super(title, author)
+		this.price = 0
 	}
 
-	speak() {
-		console.log(`${this.name} ladra`)
+	//Hereda el método para mostrar el precio, lo cual no tendría sentido para un libro gratuito
+}
+
+//Correcto ✅
+class Book {
+	constructor(title, author) {
+		this.title = title
+		this.author = author
+	}
+
+	getReviews() {
+		//Muestra los comentarios acerca del libro
 	}
 }
 
-const pepe = new DogNoISP('Pepe')
-
-pepe.speak()
-pepe.fly()
-
-/*
-Correcto ✅
-
-"Las interfaces deben ser específicas y enfocarse en los requerimientos de los clientes que las utilizan."
-
-*/
-class CanFly {
-	constructor(name) {
-		this.name = name
+class PurchasableBook extends Book {
+	constructor(title, author, price) {
+		super(author, title)
+		this.price = price
 	}
 
-	fly() {
-		console.log(`${this.name} vuela`)
+	getPrice() {
+		//Le muestra el precio del libro al cliente
 	}
 }
 
-class CanSpeak {
-	constructor(name) {
-		this.name = name
-	}
-
-	speak() {
-		console.log(`${this.name} emite un sonido`)
+class FreeBook extends Book {
+	constructor(title, author) {
+		super(title, author)
 	}
 }
-
-class Dog extends CanSpeak {
-	constructor(name) {
-		super(name)
-	}
-
-	speak() {
-		console.log(`${this.name} ladra`)
-	}
-}
-
-const firulais = new Dog('Firulais')
-
-firulais.speak()
 
 //EXTRA
 class Printer {
@@ -106,3 +86,19 @@ class MultifuntionalPrinter extends Printer {
 		console.log(`Se ha enviado ${document} por medio de fax`)
 	}
 }
+
+const printer = new Printer()
+const colorPrinter = new ColorPrinter()
+const blackAndWhitePrinter = new BlackAndWhitePrinter()
+const multifuntionalPrinter = new MultifuntionalPrinter()
+
+let doc = 'document.docx'
+
+printer.print(doc)
+colorPrinter.print(doc)
+blackAndWhitePrinter.print(doc)
+
+multifuntionalPrinter.print(doc)
+multifuntionalPrinter.scan(doc)
+multifuntionalPrinter.sendFax(doc)
+
