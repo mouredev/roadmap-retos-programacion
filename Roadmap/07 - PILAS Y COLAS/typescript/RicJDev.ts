@@ -26,7 +26,7 @@ queue.shift()
 console.log('Después de eliminar un elemento:', queue)
 
 //EXTRA
-import * as readline from 'node:readline/promises'
+import * as readline from 'readline'
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -45,18 +45,58 @@ function browser(): void {
 		}
 
 		rl.question(
-			'Elige una opcion\n1. Avanzar\n2. Retroceder\n3. Salir del navegador\nIr a otra pagina '
-		).then((answer) => {
+			'Elige una opcion\n1. Avanzar\n2. Retroceder\n3. Salir del navegador ',
+			(answer) => {
+				if (answer === '1') {
+					menu()
+				} else if (answer === '2') {
+					pagesStack.pop()
+					menu()
+				} else if (answer === '3') {
+					console.log('\nSaliendo del navegador...')
+					printer()
+				} else {
+					pagesStack.push(answer)
+					menu()
+				}
+			}
+		)
+	}
+
+	menu()
+}
+
+//Impresora compartida
+function printer(): void {
+	const printerQueue: string[] = []
+
+	function menu(): void {
+		if (printerQueue.length > 0) {
+			console.log('\nDocumentos pendientes')
+
+			printerQueue.forEach((doc) => {
+				console.log(`- ${doc}`)
+			})
+		} else {
+			console.log('\nNo hay documentos pendientes')
+		}
+
+		function printDoc() {
+			if (printerQueue.length > 0) {
+				console.log(`\nImprimiendo ${printerQueue[0]}...`)
+				printerQueue.shift()
+			}
+		}
+
+		rl.question('Elige una opcion\n1. Imprimir\n2. Salir ', (answer) => {
 			if (answer === '1') {
+				printDoc()
 				menu()
 			} else if (answer === '2') {
-				pagesStack.pop()
-				menu()
-			} else if (answer === '3') {
-				console.log('\nSaliendo del navegador...')
-				printer()
+				console.log('\nCerrando impresora...')
+				rl.close()
 			} else {
-				pagesStack.push(answer)
+				printerQueue.push(answer)
 				menu()
 			}
 		})
@@ -66,13 +106,3 @@ function browser(): void {
 }
 
 browser()
-
-//Impresora compartida
-function printer(): void {
-	const queue = []
-
-	console.log('Hola')
-	rl.close()
-
-	function menu() {}
-}
