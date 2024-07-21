@@ -52,13 +52,13 @@ class Developer__ extends IWorker{
 }
 
 // Uso Incorrecto de ISP
-const basicPrinter__ = new Manager__();
-basicPrinter__.work();
-basicPrinter__.attendMeeting();
+const manager__ = new Manager__();
+manager__.work();
+manager__.attendMeeting();
 
-const advancedPrinter = new Developer__();
-advancedPrinter.work();
-advancedPrinter.writeCode();
+const developer__ = new Developer__();
+developer__.work();
+developer__.writeCode();
 
 
 // CORRECTO
@@ -123,6 +123,104 @@ developerCoding.writeCode();
 
 /**-----DIFICULTAD EXTRA-----*/
 
-// Pendiente
+// Interfaces
+class IPrinterBlackAndWhite{
+   printBlackAndWhite(){
+      throw new Error('Method not implement');
+   }
+}
+
+class IPrinterColor{
+   printColor(){
+      throw new Error('Method not implement');
+   }
+}
+
+class IScan{
+   scan(){
+      throw new Error('Method not implement');
+   }
+}
+
+class IFax{
+   sendFax(){
+      throw new Error('Method not implement');
+   }
+}
+
+// Implementado las Impresoras
+class EpsonBlackAndWhiter extends IPrinterBlackAndWhite{
+   printBlackAndWhite(){
+      console.log('Epson => Imprimiendo documento a blanco y negro....');
+   }
+}
+
+class CanonColor extends IPrinterBlackAndWhite{
+   printColor(){
+      console.log('Canon => Imprimiendo documento a color.....')
+   }
+}
+
+class BrotherBlackAndWhiter extends IPrinterBlackAndWhite{
+   printBlackAndWhite(){
+      console.log('Brother => Imprimiendo documento a blanco y negro....');
+   }
+}
+
+class BrotherColor extends IPrinterColor{
+   printColor(){
+      console.log('Brother => Imprimiendo documento a color....');
+   }
+}
+
+class BrotherScan extends IScan{
+   scan(){
+      console.log('Brother => Escaneando el documento....');
+   }
+}
+
+class BrotherFax extends IFax{
+   sendFax(){
+      console.log('Brother => Enviando el documento....');
+   }
+}
+
+class MultiFunctionBrother{
+   constructor() {
+      this.black_white = new BrotherBlackAndWhiter();
+      this.color = new BrotherColor();
+      this.scan = new BrotherScan();
+      this.fax = new BrotherFax();
+   }
+
+   printBlack_White(){
+      this.black_white.printBlackAndWhite();
+   }
+   
+   printColor(){
+      this.color.printColor();
+   }
+
+   scanSend(){
+      this.scan.scan();
+   }
+
+   faxSend(){
+      this.fax.sendFax();
+   }
+}
+
+
+// Comprobando que se cumpla ISP y correctamente
+const Epson = new EpsonBlackAndWhiter();
+const Cannon = new CanonColor();
+const Brother = new MultiFunctionBrother();
+
+Epson.printBlackAndWhite();
+Cannon.printColor();
+Brother.printBlack_White();
+Brother.printColor();
+Brother.scanSend();
+Brother.faxSend();
 
 /**-----DIFICULTAD EXTRA-----*/
