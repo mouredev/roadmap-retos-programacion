@@ -4,8 +4,6 @@ Ejercicio
 
 from abc import ABC, abstractmethod
 
-from sympy import re
-
 # Sin ISP
 
 
