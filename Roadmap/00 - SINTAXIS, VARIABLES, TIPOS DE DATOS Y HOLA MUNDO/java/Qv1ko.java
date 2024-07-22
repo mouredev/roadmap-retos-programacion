@@ -16,9 +16,10 @@ public class Qv1ko {
         final int VAR2 = 2;
 
         String str1 = "Java";
-        int var3 = 3;
-        float var4 = 4.4f;
-        double var5 = 5.5;
+        char var3 = 'c';
+        int var4 = 4;
+        float var5 = 5.5f;
+        double var6 = 6.6;
         boolean bool = true;
 
         System.out.println("¡Hola, " + str1 + "!");
