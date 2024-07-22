@@ -77,16 +77,6 @@ my_robot.work()
  * 2. Aplica el ISP a la implementación.
  * 3. Desarrolla un código que compruebe que se cumple el principio.
 """
-
-"""class Printer(ABC):
-    @abstractmethod
-    def __init__(self,type):
-        self.type = type
-
-    @abstractmethod
-    def printer(self,document):
-        print(f"Imprimiento en {self.type} el documento:\n{document}")"""
-
 class Printer(ABC):
     @abstractmethod
     def printer(self,document):
