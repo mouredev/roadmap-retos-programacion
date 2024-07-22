@@ -1,4 +1,4 @@
-package ejercicio29;
+package  roadmap_python.ejercicio29;
 
 
 /*
@@ -37,7 +37,7 @@ public class JesusWay69 {
         if (object instanceof OstrichISP) {
             feathers = ((OstrichISP) object).haveFeathersISP();
             name = ((OstrichISP) object).birdName();
-            run = ((OstrichISP) object).run();
+            run = ((OstrichISP) object).runISP();
         } else if (object instanceof SwiftISP) {
             feathers = ((SwiftISP) object).haveFeathersISP();
             name = ((SwiftISP) object).birdName();
@@ -78,9 +78,10 @@ public class JesusWay69 {
             color = ((MultiPrinter) printer).printColor();
             scan = ((MultiPrinter) printer).scanner();
             fax = ((MultiPrinter) printer).fax();
-        } else if (printer instanceof Scanner) {
+        } else if (printer instanceof Scanner scanner) {
             device = ((Scanner) printer).printerModel();
             scan = ((Scanner) printer).scanner();
+        }
         }
         System.out.println("\nTipo de dispositivo: " + device
                 + "\n¿puede imprimir?: " + canPrint
@@ -217,13 +218,13 @@ interface SwimmingBirdISP {
 
 interface RunnerBirdISP {
 
-    boolean run();
+    boolean runISP();
 }
 
 class OstrichISP implements BirdISP, RunnerBirdISP {
 
     @Override
-    public boolean run() {
+    public boolean runISP() {
         return CHARACTERISTICISP;
     }
 
@@ -252,7 +253,7 @@ class PenguinISP implements BirdISP, SwimmingBirdISP, RunnerBirdISP {
     }
 
     @Override
-    public boolean run() {
+    public boolean runISP() {
         return CHARACTERISTICISP;
     }
 
