@@ -19,7 +19,7 @@
  * 1. Crea la interfaz o clase abstracta.
  * 2. Desarrolla las implementaciones específicas.
  * 3. Crea el sistema de notificaciones usando el DIP.
- * 3. Desarrolla un código que compruebe que se cumple el principio.
+ * 4. Desarrolla un código que compruebe que se cumple el principio.
  */
 ```
 #### Tienes toda la información extendida sobre el roadmap de retos de programación en **[retosdeprogramacion.com/roadmap](https://retosdeprogramacion.com/roadmap)**.
