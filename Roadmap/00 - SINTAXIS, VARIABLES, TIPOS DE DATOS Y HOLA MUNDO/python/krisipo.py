@@ -26,7 +26,7 @@ CTE = 3.14
 
 # Representación de datos primitivos mediante variables 
 # -----------------------------------------------------
-int_entero = 666 # Número enteros
+int_entero = 66 # Número enteros
 float_decimal = 3.14
 str_texto = "Hola Mouredev"
 bool_booleano = True # Se le pueden asignar dos valores True o False
