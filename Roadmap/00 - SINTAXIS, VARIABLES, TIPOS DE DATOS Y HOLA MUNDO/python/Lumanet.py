@@ -20,7 +20,7 @@ CONSTANTE = "Valor de la constante"
 
 cadena = "Cadena de texto"
 entero = 7
-boleano = True
+booleano = True
 float = 7.77
 
 print("¡Hola, Python!")
