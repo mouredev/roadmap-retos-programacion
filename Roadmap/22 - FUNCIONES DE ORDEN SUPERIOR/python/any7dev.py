@@ -128,5 +128,5 @@ def ordenar_fechas(lista):
 estudiantes.sort(key=ordenar_fechas, reverse=True)
 print(f"Estudiantes ordenados por el más joven: {estudiantes}\n")
 
-mayor_nota = list(map(lambda estudiante: max(estudiante[1]), estudiantes))[0]
+mayor_nota = max(list(map(lambda estudiante: max(estudiante[1]), estudiantes)))
 print(f"Mayor calificación: {mayor_nota}\n")
