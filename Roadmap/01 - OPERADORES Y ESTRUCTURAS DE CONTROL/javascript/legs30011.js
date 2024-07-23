@@ -63,3 +63,14 @@ let bitwiseShiftRight = 5 >> 1; // 2 (0101 >> 1 = 0010)
 let bitwiseShiftRightZeroFill = 5 >>> 1; // 2 (0101 >>> 1 = 0010)
 
 console.log(bitwiseAnd, bitwiseOr, bitwiseXor, bitwiseNot, bitwiseShiftLeft, bitwiseShiftRight, bitwiseShiftRightZeroFill);
+
+for(i=10;i<=55;i++){
+    if(i % 2 === 0 && i !== 16 && i % 3 !== 0 )
+    console.log(i);
+};
+let v = 2;
+let g = 7;
+console.log(v%=g);
+
+
+//Residuo (%)	Operador binario. Devuelve el resto entero de dividir los dos operandos.	12 % 5 devuelve 2.
