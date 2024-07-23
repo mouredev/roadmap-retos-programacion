@@ -84,3 +84,43 @@ function padre(a, b) {
 }
 
 console.log(padre('fizz', 'buzz'));
+//par o impar
+function test(a, b) {
+    let contador = 0;
+    for (let i = 1; i <= 100; i++) {
+        if (i % 2 === 0) {
+            console.log(a);
+            contador++;
+        } else {
+            console.log(b);
+        }
+    }
+    console.log("Número de veces que se imprimió 'a':", contador);
+    return contador;
+}
+
+console.log(test('papu', 'tefy'));
+//compuesto o primo
+function esPrimo(num){
+    if(num <= 1)return false;
+    for(let i=2;i<=Math.sqrt(num);i++){
+        if(num % i === 0)return false;
+    }
+    return false;
+}
+
+function test2(a,b){
+    let contador = 0;
+    for(let i=1;i<=100;i++){
+        if (esPrimo(i)) {
+            console.log(a);
+        } else {
+            console.log(b);
+            contador++;
+        }
+    }
+    return contador;
+}
+// Llamada a la función con ejemplos de cadenas
+let contador = test2('Primo', 'Compuesto');
+console.log('Número de veces que se imprimió compuesto:', contador);
