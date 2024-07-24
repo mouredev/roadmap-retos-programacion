@@ -73,36 +73,48 @@ print(f"c << 1 : {c << 2}") # Desplazamiento a la izquierda
 print(f"c >> 1 : {c >> 1}") # Desplazamiento a la derecha
 
 
+"""
+Estructuras de control
+"""
+
 # Condicionales
+
 print("\nCondicionales:")
-if a > b:
-    print(f"{a} es mayor que {b}")
-elif a == b:
-    print(f"{a} es igual a {b}")
+
+my_string = "joandevpyy"
+
+if my_string == "joandevpy":
+    print("my_string es joandevpy")
+elif my_string == "Joan":
+   print("my_string es Joan")
 else:
-    print(f"{a} es menor que {b}")
+    print("my_string no es joandevpy ni Joan")
 
-# Bucles for
-print("\nBucles for:")
-for i in range(5):
-    print(f"Iteración {i} del bucle for")
+# Bucles for o Iterativas
+print("\nBucles for o iterativas:")
+for i in range(11): # el ultimo numero no se imprime seria hasta el 10
+    print(i)
 
-# Bucles while
+# Bucles while siempre se ejecuta mientras sea True (Bucle Infinito)
 print("\nBucles while:")
-contador = 0
-while contador < 5:
-    print(f"Contador en {contador}")
-    contador += 1
+i = 0
+while i < 5:
+    print(f"Contador en {i}")
+    i += 1
 
 # Excepciones
 print("\nExcepciones:")
 try:
     resultado = 10 / 0
+    print(f"El resultados es: {resultado}")
 except ZeroDivisionError:
     print("Error: División por cero")
+finally:
+    print("Ha finalizado el manejo de excepciones")    
+
 
 # Dificultad extra
 print("\nNúmeros entre 10 y 55, pares, que no son ni el 16 ni múltiplos de 3:")
-for num in range(10, 56):
-    if num % 2 == 0 and num != 16 and num % 3 != 0:
-        print(num)
+for number in range(10, 56):
+    if number % 2 == 0 and number != 16 and number % 3 != 0:
+        print(number)
