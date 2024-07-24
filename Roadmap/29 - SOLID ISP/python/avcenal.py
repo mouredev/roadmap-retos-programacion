@@ -10,7 +10,6 @@ from abc import ABC, abstractmethod
 class Worker():
     def work(self):
         print("Estoy trabajando")
-
     def eat(self):
         print("Estoy comiendo")
 
@@ -78,15 +77,15 @@ my_robot.work()
  * 2. Aplica el ISP a la implementación.
  * 3. Desarrolla un código que compruebe que se cumple el principio.
 """
-
 class Printer(ABC):
     @abstractmethod
-    def __init__(self,type):
-        self.type = type
-
-    @abstractmethod
     def printer(self,document):
-        print(f"Imprimiento en {self.type} el documento:\n{document}")
+        print(f"Imprimiento en Blanco y Negro el documento:\n{document}")
+
+class Color(ABC):
+    @abstractmethod
+    def print_color(self,document):
+        print(f"Imprimiento en Color el documento:\n{document}")
 
 class Scanner(ABC):
     @abstractmethod
@@ -98,39 +97,35 @@ class Fax(ABC):
     def send_fax(self,document):
         print(f"Enviando por fax el documento: {document}")
         
-class Regular_Printer(Printer):
-    def __init__(self):
-        self.type = "Blanco y Negro"
+class RegularPrinter(Printer):
+    def printer(self, document):
+        return super().printer(document)
+
+class ColorPrinter(Color):
+    def print_color(self, document):
+        return super().print_color(document)
+
+class MultifunctionPrinter(Printer,ColorPrinter,Scanner,Fax):
 
     def printer(self,document):
-        print(f"Imprimiendo en {self.type} el documento:\n{document}\n")
+        return super().printer(document)
 
-class Color_Printer(Printer):
-    def __init__(self):
-        self.type = "Color"
+    def print_color(self, document):
+        return super().print_color(document)
 
-    def printer(self,document):
-        print(f"Imprimiendo en {self.type} el documento:\n{document}\n")
+    def scan(self, document):
+        return super().scan(document)
 
-class Multifunction_Printer(Printer,Scanner,Fax):
-    def __init__(self):
-        self.type = "Color"
+    def send_fax(self, document):
+        return super().send_fax(document)
 
-    def printer(self,document):
-        print(f"Imprimiendo en {self.type} el documento:\n{document}\n")
-
-    def scan (self,document):
-        print(f"Escaneando documento {document}")
-
-    def send_fax(self,document):
-        print(f"Enviando el documento {document} por fax")    
-
-my_regular_printer = Regular_Printer()
-my_color_printer = Color_Printer()
-my_multifunction_printer = Multifunction_Printer()
+my_regular_printer = RegularPrinter()
+my_color_printer = ColorPrinter()
+my_multifunction_printer = MultifunctionPrinter()
 
 my_regular_printer.printer("Me llamo Alex")
-my_color_printer.printer("Me llamo Alex")
+my_color_printer.print_color("Me llamo Alex")
 my_multifunction_printer.printer("Me llamo Alex")
+my_multifunction_printer.print_color("Me llamo Alex")
 my_multifunction_printer.scan("DNI de Alex")
 my_multifunction_printer.send_fax("Nómina de Alex")
