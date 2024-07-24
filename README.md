@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 15 de julio de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/ssrS9zeS?event=1257395660962005113)** por país y crea un **[recordatorio](https://discord.gg/ssrS9zeS?event=1257395660962005113)**
+> #### Lunes 29 de julio de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/wZn6cmdR?event=1262532223417057411)** por país y crea un **[recordatorio](https://discord.gg/wZn6cmdR?event=1262532223417057411)**
 
 ## Roadmap
 
@@ -63,7 +63,21 @@
 |26|[SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA](./Roadmap/26%20-%20SOLID%20SRP/ejercicio.md)|[📝](./Roadmap/26%20-%20SOLID%20SRP/python/mouredev.py)|[▶️](https://youtu.be/7NM8FK9G91M)|[👥](./Roadmap/26%20-%20SOLID%20SRP)
 |27|[SOLID: PRINCIPIO ABIERTO-CERRADO](./Roadmap/27%20-%20SOLID%20OCP/ejercicio.md)|[📝](./Roadmap/27%20-%20SOLID%20OCP/python/mouredev.py)|[▶️](https://youtu.be/o0lSVzu4ur4)|[👥](./Roadmap/27%20-%20SOLID%20OCP/)
 |28|[SOLID: PRINCIPIO DE SUSTITUCIÓN DE LISKOV](./Roadmap/28%20-%20SOLID%20LSP/ejercicio.md)|[📝](./Roadmap/28%20-%20SOLID%20LSP/python/mouredev.py)|[▶️](https://youtu.be/SgHoiF1KLTo)|[👥](./Roadmap/28%20-%20SOLID%20LSP/)
-|29|[SOLID: PRINCIPIO DE SEGREGACIÓN DE INTERFACES](./Roadmap/29%20-%20SOLID%20ISP/ejercicio.md)|[🗓️ 22/07/24](https://discord.gg/ssrS9zeS?event=1259973757150167120)||[👥](./Roadmap/29%20-%20SOLID%20ISP/)
+|29|[SOLID: PRINCIPIO DE SEGREGACIÓN DE INTERFACES](./Roadmap/29%20-%20SOLID%20ISP/ejercicio.md)|[📝](./Roadmap/29%20-%20SOLID%20ISP/python/mouredev.py)|[▶️](https://youtu.be/0zTmCTHJ_lg)|[👥](./Roadmap/29%20-%20SOLID%20ISP/)
+|30|[SOLID: PRINCIPIO DE INVERSIÓN DE DEPENDENCIAS](./Roadmap/30%20-%20SOLID%20DIP/ejercicio.md)|[🗓️ 29/07/24](https://discord.gg/wZn6cmdR?event=1262532223417057411)||[👥](./Roadmap/30%20-%20SOLID%20DIP/)
+
+## Cursos en YouTube
+
+A media que avanzamos en el roadmap estoy creando cursos que agrupan las clases.
+
+<div style="display: flex;">
+  <div style="flex: 1;">
+    <a href="https://youtu.be/TdITcVD64zI"><img src="http://i3.ytimg.com/vi/TdITcVD64zI/maxresdefault.jpg"/></a>
+  </div>
+  <div style="flex: 1;">
+    <a href="https://youtu.be/b-kk1WQo-YA"><img src="http://i3.ytimg.com/vi/b-kk1WQo-YA/maxresdefault.jpg"/></a>
+  </div>
+</div>
 
 ## Instrucciones
 
