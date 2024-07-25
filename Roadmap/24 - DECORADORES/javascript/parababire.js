@@ -18,11 +18,13 @@ function example_2() {
 function example_3() {
 }
 
-/* decorator(example)
+decorator(example)
 decorator(example_2)
-decorator(example_3) */
+decorator(example_3)
 
-/* Extra */
+// Extra
+
+/* Aun JS no soporta decoradores, el código funciona con Typescript */
 
 function Log(target, {kind, name}) {
   function counter_function(...args) {
