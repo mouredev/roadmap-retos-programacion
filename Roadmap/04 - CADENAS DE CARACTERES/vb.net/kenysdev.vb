@@ -10,7 +10,7 @@ Imports System.Text
 
 Module Program
 
-    Sub Main(args As String())
+    Sub Main2(args As String())
         ' ________________________________________
         ' Declaración e inicialización
         Dim msg As String

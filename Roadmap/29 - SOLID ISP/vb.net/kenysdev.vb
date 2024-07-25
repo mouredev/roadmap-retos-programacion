@@ -113,7 +113,7 @@ End Class
 
 ' ____________________________________________________
 Public Module Program
-    Public Sub Main()
+    Public Sub Main2()
         ' Exs 1
         Dim phone As New Phone()
         phone.Play()

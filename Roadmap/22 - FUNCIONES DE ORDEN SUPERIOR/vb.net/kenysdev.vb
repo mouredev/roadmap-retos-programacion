@@ -87,7 +87,7 @@ Module Program
         Console.WriteLine($"{student("name")} {maxGrade}")
     End Sub
 
-    Sub Main()
+    Sub Main2()
         Console.WriteLine("EJERCICIO #1")
         Dim addFunc = ArithmeticOp(AddressOf Add)
         Dim subtractFunc = ArithmeticOp(AddressOf Subtract)

@@ -22,7 +22,7 @@
  */
 
  // Funciones definidas por el usuario
- object Main {
+ object Main2 {
   // Variable GLOBAL
   val variableGlobal: String = "Soy global"
 

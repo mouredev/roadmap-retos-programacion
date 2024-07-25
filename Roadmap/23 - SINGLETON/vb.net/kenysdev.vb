@@ -68,7 +68,7 @@ End Class
 '-----------------------------------------------
 Module Program
 
-    Sub Main()
+    Sub Main2()
         Console.WriteLine("EJERCICIO #1")
         Dim singleton1 As Singleton = Singleton.Instance
         ' singleton2 accede a la misma instancia que singleton1.

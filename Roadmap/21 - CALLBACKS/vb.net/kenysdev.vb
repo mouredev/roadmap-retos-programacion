@@ -79,7 +79,7 @@ Module Program
         Await Order("Enchiladas")
     End Function
 
-    Sub Main()
+    Sub Main2()
         Console.WriteLine("EJERCICIO #1")
         SumNumbers(6, 6, AddressOf MyCallback)
         SumNumbers(5, 2, AddressOf MyCallback)

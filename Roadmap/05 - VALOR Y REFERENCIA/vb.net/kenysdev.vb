@@ -7,7 +7,7 @@
 ' # VALOR Y REFERENCIA
 ' --------------------
 Module Program
-    Sub Main(args As String())
+    Sub Main2(args As String())
         ' Asignación de variables "por valor"
         ' - se asigna el valor real de la variable a otra variable.
         ' - los cambios en una variable no afectarán a la otra.

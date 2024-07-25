@@ -109,7 +109,7 @@ End Class
 
 '-----------------------------------------------
 Module Program
-    Sub Main()
+    Sub Main2()
         Console.WriteLine("EJERCICIO #1")
 
         Dim helloSpeaker As ISayHello = New HelloSpeaker()

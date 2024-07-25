@@ -9,7 +9,7 @@
 '- Representan una forma de controlar el comportamiento de un programa
 'cuando se produce un error.
 Module Program
-    Sub Main()
+    Sub Main2()
         Dim a As Integer = 7
         Dim b As Integer = 0
 

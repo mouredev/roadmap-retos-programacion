@@ -1,4 +1,4 @@
-public class Main {
+public class asjordi {
 
     public static void main(String[] args) {
         operadoresAritmeticos();

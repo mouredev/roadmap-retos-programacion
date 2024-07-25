@@ -16,7 +16,7 @@ Module Program
     '* Escribe el mayor número de mecanismos que posea tu lenguaje
     '* para iterar valores. ¿Eres capaz de utilizar 5? ¿Y 10?
 
-    Sub Main()
+    Sub Main2()
         '_____________________________
         Console.WriteLine("(1). for")
         For n As Integer = 1 To 10

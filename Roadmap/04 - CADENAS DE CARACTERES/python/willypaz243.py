@@ -291,7 +291,7 @@ def are_isograms(string_1: str, string_2: str):
 
 
 def main():
-    """The Main Function"""
+    """The Main2 Function"""
 
     if not len(sys.argv) > 1:
         raise Exception("Debe proporcionar algun argumento de string para la función.")

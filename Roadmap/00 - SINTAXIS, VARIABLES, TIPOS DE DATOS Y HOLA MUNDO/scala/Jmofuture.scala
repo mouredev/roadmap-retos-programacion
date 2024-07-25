@@ -1,4 +1,4 @@
-object Main {
+object Main2 {
     def main(args: Array[String]): Unit = {
 
         // URL https://scala-lang.org/

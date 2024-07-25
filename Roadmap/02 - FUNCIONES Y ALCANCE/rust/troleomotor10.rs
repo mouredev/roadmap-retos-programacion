@@ -21,7 +21,7 @@
  * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
 
-// Main function
+// Main2 function
 fn main(){
     hello_world();
 

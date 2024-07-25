@@ -10,7 +10,7 @@ Imports System.Formats
 
 Module Program
 
-    Sub Main(args As String())
+    Sub Main2(args As String())
         '_______________________________________________________
         ' Arrays(Arreglos):
         ' - Colección de elementos del mismo tipo almacenados en posiciones contiguas de memoria.

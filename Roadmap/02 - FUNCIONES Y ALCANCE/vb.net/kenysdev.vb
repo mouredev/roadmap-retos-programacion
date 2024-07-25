@@ -62,7 +62,7 @@ Module Program
         Return nVeces
     End Function
 
-    Sub Main(args As String())
+    Sub Main2(args As String())
         ' Función estática sin retorno
         print("Estática")
 

@@ -48,7 +48,7 @@ Module Program
         Console.WriteLine(text)
     End Sub
 
-    Sub Main()
+    Sub Main2()
         Print("GetNumbers")
         GetNumbers("abcdsfs1s(*&#}2. a3// 45sdf67")
         GetNumbers("45sdf67")

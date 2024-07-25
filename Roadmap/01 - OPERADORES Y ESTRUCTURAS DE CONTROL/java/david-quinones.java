@@ -1,13 +1,13 @@
 import java.sql.SQLException;
 
-public class david-quinones {
+class david {
 
     public static void main(String[] args) {
-        david-quinones lopez = new david-quinones();
+        david lopez = new david();
         lopez.operadores();
     }   
 
-    public void operadores() {
+    public void operadores(){
         arithmetic();
         assignment();
         comparison();
@@ -20,7 +20,7 @@ public class david-quinones {
         // excepcionesTrows();
         jumpStructure();
         additionalExercice();
-    }
+    };
 
     public void arithmetic() {
         System.out.println("Suma 20 + 3: " + (20 + 3));
@@ -37,7 +37,7 @@ public class david-quinones {
         System.out.println("Mostrar variable incrementada i2 --> 21: " + i2);
         System.out.println("Assignar i decremntar variable i2 --> 21: " + i2--);
         System.out.println("Mostrar variable decrementada i2 --> 20: " + i2);
-    }
+    };
 
     public void assignment() {
         int i = 10; // asignacion
@@ -54,7 +54,7 @@ public class david-quinones {
         System.out.println(i);
         i ^= 2; // potencia y asignacion
         System.out.println(i);
-    }
+    };
 
     public void comparison() {
         System.out.println("Igualdad 10 = 5? " + (10 == 5));
@@ -252,3 +252,4 @@ public class david-quinones {
 
 
 }
+

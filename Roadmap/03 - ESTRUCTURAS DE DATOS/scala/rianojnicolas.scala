@@ -2,7 +2,7 @@ import scala.util.matching.Regex
 import collection.immutable.SortedMap 
 import scala.collection.immutable.SortedSet
 
-object Main {
+object Main2 {
     def main(args: Array[String]): Unit = {
 
         // 1. Estrucutras de datos

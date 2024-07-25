@@ -9,7 +9,7 @@
 Imports System.Globalization
 
 Module Program
-    Sub Main(args As String())
+    Sub Main2(args As String())
         '* EJERCICIO 1
         '* Crea dos variables utilizando los objetos fecha (date, o semejante) de tu lenguaje:
         '* - Una primera que represente la fecha (día, mes, año, hora, minuto, segundo) actual.

@@ -195,7 +195,7 @@ min_digits = 1
 max_digits = 11
 
 
-# Main Menu
+# Main2 Menu
 
 def main_program():
      print("\n--> Welcome to the contacts book v3 <--")

@@ -125,7 +125,7 @@ Module Program
     End Class
 
     ''____________________________________________________
-    Sub Main()
+    Sub Main2()
         Dim dog As New Dog("Max")
         Dim cat As New Cat("Milo")
         dog.MakeSound()

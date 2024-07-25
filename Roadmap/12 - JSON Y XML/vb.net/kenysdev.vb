@@ -14,7 +14,7 @@ Imports System.Xml
 Imports System.Xml.Linq
 
 Module Program
-    Sub Main()
+    Sub Main2()
         Dim userDic As New Dictionary(Of String, Object) From {
             {"name", "Ken"},
             {"age", 121},

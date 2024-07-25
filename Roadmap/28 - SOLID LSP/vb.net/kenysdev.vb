@@ -118,7 +118,7 @@ End Class
 
 ' ____________________________________________________
 Public Module Program
-    Public Sub Main()
+    Public Sub Main2()
         ' Exs 1
 
         Dim TrySubClass1 As ClassBase = New SubClass1

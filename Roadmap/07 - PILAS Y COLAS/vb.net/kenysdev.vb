@@ -7,7 +7,7 @@
 ' # PILAS Y COLAS
 ' ---------------
 Module Program
-    Sub Main(args As String())
+    Sub Main2(args As String())
         '' Pilas(stack - LIFO):
         '- Sigue el principio LIFO (last in, first out), significa que
         '  el último elemento añadido, es el primero en ser retirado. */

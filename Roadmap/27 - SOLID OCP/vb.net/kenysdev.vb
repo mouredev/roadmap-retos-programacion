@@ -166,7 +166,7 @@ Public Module Program
         Console.WriteLine($"Producto: {product.Name}, Precio final: {product.FinalPrice()}")
     End Sub
 
-    Public Sub Main()
+    Public Sub Main2()
         Dim laptop As New ElectronicsProduct("Laptop", 700)
         Dim pants As New ClothingProduct("Pants", 55D)
 

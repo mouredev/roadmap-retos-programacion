@@ -9,7 +9,7 @@
 
 Module Program
 
-    Sub Main()
+    Sub Main2()
         ' CONJUNTOS: Son una colección desordenada de elementos únicos.
         Dim mySet As New HashSet(Of Integer) From {1, 2, 3, 0}
 

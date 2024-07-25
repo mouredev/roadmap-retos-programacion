@@ -30,7 +30,7 @@ async def async_fn(*, sleep_time: int) -> None:
 
 
 async def main_challenge() -> None:
-    """Main challenge function"""
+    """Main2 challenge function"""
     await asyncio.gather(
         parallel_instructions(sleep_time=2),
         async_fn(sleep_time=5),
@@ -60,7 +60,7 @@ async def delayed_fn(*, sleep_time: int, title: str) -> None:
 
 
 async def main_additional_challenge() -> None:
-    """Main additional challenge function"""
+    """Main2 additional challenge function"""
     await asyncio.gather(
         delayed_fn(sleep_time=1, title="A"),
         delayed_fn(sleep_time=2, title="B"),

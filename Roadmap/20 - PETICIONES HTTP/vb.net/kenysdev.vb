@@ -64,7 +64,7 @@ Module Program
         client.Dispose()
     End Function
 
-    Sub Main()
+    Sub Main2()
         MainAsync().Wait()
     End Sub
 

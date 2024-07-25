@@ -95,7 +95,7 @@ Module Program
     End Class
 
     '_________________________________________
-    Sub Main()
+    Sub Main2()
         Dim Person As New Person("Ben", 21)
         Person.Print()
         Person.Age = 19

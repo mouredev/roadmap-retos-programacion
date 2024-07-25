@@ -9,7 +9,7 @@
 
 Imports System
 Module Program
-    Sub Main(args As String())
+    Sub Main2(args As String())
 
         ' 2. Sintaxis para comentarios:
         ' *****************************

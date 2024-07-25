@@ -1,6 +1,6 @@
 import scala.util.Random
 
-object Main {
+object Main2 {
     def main(args: Array[String]): Unit = {
         // Variable Global
         var varGlobal = "Muchos Exitos, y que tenas un buen día"

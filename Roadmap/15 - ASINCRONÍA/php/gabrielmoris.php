@@ -33,7 +33,7 @@ function async($name, $sleep)
 // echo async('Function second', 2);
 // echo async('Function third', 3);
 echo "======================\n";
-echo "Main process continues\n";
+echo "Main2 process continues\n";
 
 /*
  * EXTRA DIFFICULTY (optional):
@@ -66,7 +66,7 @@ function executeAsyncFunctions()
     foreach ($childPids as $childPid) {
         pcntl_waitpid($childPid, $status);
     }
-    echo "Main process Finished\n";
+    echo "Main2 process Finished\n";
     exit(0);
 }
 

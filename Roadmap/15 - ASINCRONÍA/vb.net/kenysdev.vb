@@ -49,7 +49,7 @@ Module Program
         Await Process("D", 1)
     End Function
 
-    Sub Main()
+    Sub Main2()
         Test().Wait()
         InParallel().Wait()
     End Sub

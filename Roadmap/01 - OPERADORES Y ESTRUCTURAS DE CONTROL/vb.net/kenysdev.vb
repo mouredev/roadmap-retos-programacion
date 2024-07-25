@@ -6,7 +6,7 @@
 Imports System
 
 Module Program
-    Sub Main(args As String())
+    Sub Main2(args As String())
 
         ' 1. Imprimir ejemplos utilizando todos los tipos 
         '    de operadores de tu lenguaje: 

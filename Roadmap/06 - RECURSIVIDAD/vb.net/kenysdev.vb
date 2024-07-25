@@ -9,7 +9,7 @@
 ' - La recursividad es la capacidad de una función para llamarse a sí misma,ya sea 
 '   de forma directa o indirecta, con el propósito de resolver un problema. 
 Module Program
-    Sub Main(args As String())
+    Sub Main2(args As String())
         '- imprimiendo números del 100 al 0.
         '  Ejemplo con recursividad directa
         '  ocurre cuando una función se llama a sí misma. */

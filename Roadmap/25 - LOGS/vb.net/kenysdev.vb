@@ -16,7 +16,7 @@ Module Program
 
     Private Logger As Logger = LogManager.GetCurrentClassLogger()
 
-    Sub Main()
+    Sub Main2()
         '* EJERCICIO #1:
         '* Explora el concepto de "logging" en tu lenguaje. Configúralo y muestra
         '* un ejemplo con cada nivel de "severidad" disponible.

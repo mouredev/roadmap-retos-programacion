@@ -202,7 +202,7 @@ Module Program
         Console.WriteLine(vbLf & $"Monto total: ${total:0.00}")
     End Sub
 
-    Sub Main()
+    Sub Main2()
         Dim user As New FileMg("kenysdev.txt")
         user.CreateFile()
         Dim lines As New List(Of String) From {"Ken", "121"}

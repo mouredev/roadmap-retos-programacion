@@ -114,7 +114,7 @@ Module Program
 
     End Class
 
-    Sub Main()
+    Sub Main2()
         ' _____________________________________
         Console.WriteLine(GetDay(7))
         Console.WriteLine(GetDay(3))
