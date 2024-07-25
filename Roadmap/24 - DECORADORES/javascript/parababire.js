@@ -1,92 +1,57 @@
 // Ejecicio
 
-class Burger {
-  constructor() {
-    this._description = undefined;
-    this._price = undefined;
-  }
-  /**
-   * @param {number} price
-   */
-  set price(price) {
-    this._price = price;
-  }
+// El decorador es una función que modifica la funcionalidad de otra función sin alterar su código.
+// Un decorador implementa una función 'print_call()' que ejecute la lógica.
 
-  get price() {
-    return this._price;
+function decorator(func) {
+  function print_call() {
+    console.log(`La función ${func.name} ha sido llamada.`)
+    return func;
   }
+  return print_call();
+}
 
-  set description(burger) {
-    this._description = burger;
+function example() {
+}
+function example_2() {
+}
+function example_3() {
+}
+
+/* decorator(example)
+decorator(example_2)
+decorator(example_3) */
+
+/* Extra */
+
+function Log(target, {kind, name}) {
+  function counter_function(...args) {
+    counter_function.call_count += 1
+    console.log(`inside ${name}, ${kind} log, se ha llamado ${counter_function.call_count} vez/veces`)
+    return target(args)
   }
+  counter_function.call_count = 0
+  return counter_function
+}
 
-  get description() {
-    return this._description;
+class MyClass {
+
+  @Log
+  mymethod(arg) {
+    console.log('arg', arg)
   }
-
-  getBurger() {
-    return `Tu orden es: ${this.description} precio a pagar ${this.price}`;
+  @Log
+  othermethod() {
+    console.log('Hola España');
   }
 }
 
-// Subclase
-/* Se pueden tener tantas subclases como tipos de burgers tenga el menu */
+let x
 
-class CheeseBurger extends Burger {
-  constructor() {
-    super();
-    this.description = 'Cheeseburger';
-    this.price = 100;
-  }
-}
-
-/* Decorador */
-
-class BurgerDecorator extends Burger {
-  constructor(burger) {
-    super();
-    this.burger = burger;
-  }
-}
-
-// Decoradores
-/* Podemos tener tantos decoradores como extras se quieran agregar en el menu */
-
-class ExtraMeatDecorator extends BurgerDecorator {
-  constructor(burger) {
-    super(burger);
-  }
-
-  get description() {
-    return `${this.burger.description} con extra carne`;
-  }
-
-  get price() {
-    return this.burger.price + 20;
-  }
-}
-
-const cheeseBurger = new CheeseBurger();
-const cheeseBurgerWithExtraMeat = new ExtraMeatDecorator(cheeseBurger);
-console.log(cheeseBurger.getBurger());
-console.log(cheeseBurgerWithExtraMeat.getBurger());
-
-// Extra
-/* Falta pulir */
-class Person {
-  static count = 0; // Creando un contador para que el decorador muestre
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-    this.instance = Person.count++;
-  }
-}
-
-class CountDecorator extends Person {
-  constructor() {
-    super();
-  }
-  get instance() {
-    return Person.count;
-  }
-}
+x = new MyClass()
+x.mymethod(true)
+x.mymethod(false)
+x.mymethod(44)
+x.othermethod()
+x.mymethod('Ángel')
+x.othermethod()
