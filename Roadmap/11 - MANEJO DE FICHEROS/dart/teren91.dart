@@ -60,7 +60,9 @@ void salesManagment() async {
   ProductList productList = new ProductList(file);
   await productList.createProductsFile(file);
 
-  UserUI ui = new UserUI(productList);
+  SalesCalculator salesCalculator = new SalesCalculator();
+
+  UserUI ui = new UserUI(productList, salesCalculator);
 
   try {
     do {
@@ -76,8 +78,9 @@ void salesManagment() async {
 
 class UserUI {
   final ProductList productList;
+  final SalesCalculator salesCalculator;
 
-  UserUI(this.productList);
+  UserUI(this.productList, this.salesCalculator);
 
   void showMenu() {
     print('''
@@ -195,9 +198,7 @@ class UserUI {
   {
     final products = await productList.getAllProducts();
 
-    SalesCalculator salesCalculator = new SalesCalculator(products);
-
-    print(salesCalculator.totalSales());
+    print(salesCalculator.totalSales(products));
 
   }
 
@@ -206,12 +207,12 @@ class UserUI {
     print('Introduzca el nombre del producto');
     final productName = stdin.readLineSync()!;
 
-    final product = await productList.searchProduct(productName);
-     final products = await productList.getAllProducts();
+    final products = await productList.getAllProducts().then((products) => products);
 
-    SalesCalculator salesCalculator = new SalesCalculator(products);
+    final sales = salesCalculator.productTotalSales(products, productName);
+    
 
-    print(salesCalculator.productTotalSales(product));
+    print(sales);
 
   }
 
@@ -336,11 +337,8 @@ class ProductList {
 }
 
 class SalesCalculator{
-  final productList;
-
-  SalesCalculator(this.productList);
-
-  double totalSales()
+  
+  double totalSales(List<Product> productList)
   {
     double total = 0;
 
@@ -360,21 +358,19 @@ class SalesCalculator{
     return total;
   }
 
-  double productTotalSales(Product product)
+  double productTotalSales(List<Product> productList, String productName)
   {
-    double total = 0;
     try {
 
-      for(final e in productList)
-      {
-        if(e.productName == product.productName)
-          total += product.price * product.saleAmount;
-      }
-      
+      final product = productList.firstWhere((element) => element.productName == productName);
+
+       return product.saleAmount * product.price;
     } catch (e) {
       print(e);
     }
 
-    return total;
+      return 0;
+
+   
   }
 }

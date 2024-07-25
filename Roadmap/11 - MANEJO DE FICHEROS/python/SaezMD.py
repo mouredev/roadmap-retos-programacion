@@ -46,9 +46,9 @@ os.remove(nameOfFile + extension)
 
 #EXTRA
 
-file = open("shopFileRecords.txt",'w')
-file.write("nails" + ", " + "12.33" + ", " + "6\n")
-file.write("polish" + ", " + "22.55" + ", " + "10\n")
+file = open("shopFileRecords.txt",'a')
+file.write("nails" + ", " + "12" + ", " + "6.55\n")
+file.write("polish" + ", " + "22" + ", " + "10.6\n")
 file.close()
 
 file = open("shopFileRecords.txt",'r')
@@ -56,9 +56,8 @@ fileData = file.read().split('\n')
 file.close()
 print(fileData)
 
-
 while True:
-    inputUser = input("Select an option [add, search, update, delete, exit]: ").lower()
+    inputUser = input("Select an option [add, showall, search, update, delete, total, psale, exit]: ").lower()
     if inputUser == "exit":
         file.close()
         os.remove("shopFileRecords.txt")
@@ -75,15 +74,22 @@ while True:
         else: 
             inputAddPrice = input("New price: ")
             inputAddQty = input("New quantity: ")
-            file = open("shopFileRecords.txt",'a')
+            file = open("shopFileRecords.txt",'a') # append
             file.write( inputAdd + ", " + inputAddPrice + ", " + inputAddQty + "\n")
    
         file.close()
 
-    elif inputUser == "search":
-        with open("shopFileRecords.txt") as file:
+    elif inputUser == "showall":
+        with open("shopFileRecords.txt","r") as file:
             for line in file:
                 print(line.rstrip())
+
+    elif inputUser == "search":
+        inputSearch = input("Search item: ").lower()
+        with open("shopFileRecords.txt","r") as file:
+            for line in file.readlines():
+                if line.split(", ")[0] == inputSearch:
+                    print(line.rstrip())
 
     elif inputUser == "delete":
         inputDelete = input("Delete item: ").lower()
@@ -135,12 +141,12 @@ while True:
             totalAmount = 0
             for line in lines:
                 list = line.split(",")
-                units = list[2].split('\n')[0]
+                price = list[2].split('\n')[0]
                 listClean = []
                 listClean.append(list[1].strip())
-                listClean.append(units.strip())
+                listClean.append(price.strip())
                 #print(listClean)
-                totalAmount += ((float(listClean[0].strip())) * int(listClean[1].strip()))
+                totalAmount += ((int(listClean[0].strip())) * float(listClean[1].strip()))
     
         print(f"Total of sales: {totalAmount}")
 
@@ -154,11 +160,11 @@ while True:
                     pass
                 else:
                     list = line.split(",")
-                    units = list[2].split('\n')[0]
+                    price = list[2].split('\n')[0]
                     listClean = []
                     listClean.append(list[1].strip())
-                    listClean.append(units.strip())
-                    productAmount =((float(listClean[0].strip())) * int(listClean[1].strip()))                    
+                    listClean.append(price.strip())
+                    productAmount =((int(listClean[0].strip())) * float(listClean[1].strip()))                    
                     print(f"Total for: {inputProductSale} is: {productAmount}")
 
 
