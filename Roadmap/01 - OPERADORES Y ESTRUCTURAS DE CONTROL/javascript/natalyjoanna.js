@@ -50,10 +50,10 @@ console.log("el valor de x es menor o igual a el valor de y", menorigual)
 
 // incremento
 let incremento = x++
-console.log("incremento: ", incremento)
+console.log("Incremento: ", incremento)
 // decremento
 let decremento = x--
-console.log("decremento: ", decremento)
+console.log("Decremento: ", decremento)
 
 // Operadores logicos 
 
