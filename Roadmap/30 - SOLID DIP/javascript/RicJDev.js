@@ -1,7 +1,7 @@
 /*
  * EJERCICIO:
  * Explora el "Principio SOLID de Inversión de Dependencias (Dependency Inversion
- * Principle, DIP)" y crea un ejemplo simple donde se muestre su funcionamiento 
+ * Principle, DIP)" y crea un ejemplo simple donde se muestre su funcionamiento
  * de forma correcta e incorrecta.
  *
  * DIFICULTAD EXTRA (opcional):
@@ -15,3 +15,47 @@
  * 3. Crea el sistema de notificaciones usando el DIP.
  * 4. Desarrolla un código que compruebe que se cumple el principio.
  */
+
+//EJERCICIO
+class UserRepository {
+  getUserByID(userID) {
+    //...
+  }
+
+  saveUser(user) {
+    //...
+  }
+}
+
+class DatabaseUserRepository {
+  changeUsername(user, name) {
+    user.name = name
+  }
+
+  getAge(user) {
+    return user.age
+  }
+}
+
+//EXTRA
+class NotificationEmail {
+	send() {
+		console.log('Hola')
+	}
+}
+
+class NotificationPush {
+	send() {
+		console.log('Hola')
+	}
+}
+
+class NotificationSMS {
+	send() {
+		console.log('Hola')
+	}
+}
+
+class NotificationFactory {
+
+}
