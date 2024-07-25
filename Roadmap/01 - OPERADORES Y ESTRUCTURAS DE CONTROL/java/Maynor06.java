@@ -1,4 +1,4 @@
-public class Maynor {
+public class Maynor06 {
 
     public static void main(String[] args) {
         //operadores aritmeticas

@@ -1,4 +1,4 @@
-public class Maynor {
+public class Maynor06 {
 
     //function that salute
     public void hola (){
@@ -50,7 +50,7 @@ public class Maynor {
         int num1 = 10;
         int num2 = 20;
 
-        Maynor ejemplo = new Maynor();
+        Maynor06 ejemplo = new Maynor06();
         ejemplo.hola();
         ejemplo.suma(num1, num2);
 
@@ -64,7 +64,7 @@ public class Maynor {
         int resultado = casteo + ejemplo.numGlobal1  + ejemplo.numGlobal2;
         System.out.println("la suma del casteo mas las variables globales es: " +  resultado);
 
-        Maynor ejemplo1 = new Maynor();
+        Maynor06 ejemplo1 = new Maynor06();
         ejemplo1.extra("  este es el primer parametro", "  este es el segundo parametro");
 
     }
