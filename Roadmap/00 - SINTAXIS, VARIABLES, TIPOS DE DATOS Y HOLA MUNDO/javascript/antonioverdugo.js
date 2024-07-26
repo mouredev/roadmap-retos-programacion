@@ -28,3 +28,6 @@ let simbolo = Symbol("hola"); //Tipo primitivo Symbol
 let indefinido = undefined; //Tipo de dato undefined
 let nulo = null; //Tipo de dato null
 
+//Imprimir por pantalla
+console.log("¡Hola, javascript!");
+
