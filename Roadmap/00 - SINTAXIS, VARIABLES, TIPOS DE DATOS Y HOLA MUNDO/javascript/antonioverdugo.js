@@ -4,8 +4,7 @@
 //Comentario en una linea
 
 /*
-Comentario
-en varias
+Comentario en varias
 lineas
 */
 
