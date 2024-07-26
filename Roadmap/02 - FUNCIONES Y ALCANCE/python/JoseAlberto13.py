@@ -58,3 +58,5 @@ def args_return(saludo, persona):
       return f"{saludo}, {persona}"
 
 print(args_return(default_arg_saludo(),arg_saludo("José A.")))
+
+# Funciones dentro de una Funcion
