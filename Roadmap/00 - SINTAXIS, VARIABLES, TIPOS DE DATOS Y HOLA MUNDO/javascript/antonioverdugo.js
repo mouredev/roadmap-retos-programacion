@@ -19,7 +19,7 @@ const constante = "Antonio";
 
 //Tipos de datos primitivos
 
-let string = "Esto es una cadena"; //Tipo primitivo String
+let cadena = "Esto es una cadena"; //Tipo primitivo String
 let numero = 23.5; //Tipo primitivo Number pueden ser enteros o decimales
 let bigint = 123456789905660n; //Tipo de dato Bigint
 let booleano = true; //Tipo primitivo Boolean
