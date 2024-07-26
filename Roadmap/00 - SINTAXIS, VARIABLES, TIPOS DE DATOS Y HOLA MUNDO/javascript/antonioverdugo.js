@@ -19,3 +19,12 @@ var variable2 = "hola mundo desde var"; //var es menos recomendable la diferenci
 const constante = "Antonio"; 
 
 //Tipos de datos primitivos
+
+let string = "Esto es una cadena"; //Tipo primitivo String
+let numero = 23.5; //Tipo primitivo Number pueden ser enteros o decimales
+let bigint = 123456789905660n; //Tipo de dato Bigint
+let booleano = true; //Tipo primitivo Boolean
+let simbolo = Symbol("hola"); //Tipo primitivo Symbol
+let indefinido = undefined; //Tipo de dato undefined
+let nulo = null; //Tipo de dato null
+
