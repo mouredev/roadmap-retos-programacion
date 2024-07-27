@@ -1,6 +1,8 @@
 """
-16
+16 - EXPRESIONES REGULARES
+
 Autor de la solución: Oriaj3	
+
 Teoría:	
 Las expresiones regulares son patrones utilizados para encontrar una determinada
 secuencia de caracteres dentro de una cadena de texto. Son una herramienta
