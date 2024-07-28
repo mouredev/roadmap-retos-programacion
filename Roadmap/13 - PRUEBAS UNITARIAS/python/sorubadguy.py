@@ -9,7 +9,7 @@ def suma(num1: int, num2: int)-> int:
 
 print(suma(3, 2.5))
 
-"""class Test_suma(unittest.TestCase):
+class TestSuma(unittest.TestCase):
     def test_suma(self):
         self.assertEqual(suma(2, 3), 5)
         self.assertEqual(suma(-2, 3), 1)
@@ -28,7 +28,7 @@ print(suma(3, 2.5))
         with self.assertRaises(ValueError):
             suma("a","b")
         with self.assertRaises(ValueError):
-            suma(None,5)  """      
+            suma(None,5)  
  
 #!Extra
 
@@ -40,7 +40,7 @@ persona = {
 }
 print(type(persona["age"]))
 
-class Test_persona(unittest.TestCase):
+class TestPersona(unittest.TestCase):
     
     def persona_existe(self):
         self.assertEquals(persona.keys, "name")
@@ -50,5 +50,9 @@ class Test_persona(unittest.TestCase):
         
     def persona_datos(self):
         self.assertEquals(type(persona["age"]), str)
+        self.assertEquals(type(persona["name"]), str)
+        self.assertEquals(type(persona["birth_date"]), str)
+        self.assertEquals(type(persona["programming_languages"]), str)
+        
         
 unittest.main()
