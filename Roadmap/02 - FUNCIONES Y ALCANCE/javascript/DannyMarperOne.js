@@ -99,25 +99,25 @@ let piloto = "Lewis Hamilton";
 console.log(piloto.substring(6, undefined));
 // console.log(piloto.substring(6,9));
 
-// Variable local
+// Variable Global
 let team = "Liverpool";
 
 function futbol() {
-    function ligaMx() {
-        let team = "Monterrey";
-        console.log(team);
-    }
-    ligaMx(); //imprime el valor de la variable local : Monterrey
+    console.log(`Hola ${team}`);
 }
-futbol(); //No imprime nada en consola
+futbol();
+console.log(team);
 
-// Variable Global
+// Variable Local
 let escuderia = "Mclaren";
 
 function escuderiaF1() {
-    console.log(`Lando Norris corre para la escudería ${escuderia}`);
+    let piloto = "Lando Norris";
+    console.log(`${piloto} corre para la escudería ${escuderia}`);
 }
 escuderiaF1();
+console.log(escuderia); //Si se puede imprimir porque es una variable global
+console.log(piloto); //No es posible acceder a la variable piloto porque es una variable local de la función
 
 
 // DIFUCULTAD EXRA

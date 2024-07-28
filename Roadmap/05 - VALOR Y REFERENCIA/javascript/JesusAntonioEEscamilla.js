@@ -119,4 +119,38 @@ console.log(miArreglo); // Imprime todos los valores incluyendo el 5 ya que el e
 
 /**-----DIFICULTAD EXTRA-----*/
 
+// Por Valor
+function swapByValue(x, y) {
+    let temp = x;
+    x = y;
+    y = temp;
+    return [x, y];
+}
+
+let a = 5;
+let b = 10;
+
+let [newA, newB] = swapByValue(a, b);
+
+console.log("Valores originales: a =", a, ", b =", b); // a = 5, b = 10
+console.log("Valores intercambiados: newA =", newA, ", newB =", newB); // newA = 10, newB = 5
+
+
+// Por Referencia
+function swapByReference(arr1, arr2) {
+    let temp = arr1[0];
+    arr1[0] = arr2[0];
+    arr2[0] = temp;
+    return [arr1, arr2];
+}
+
+let array1 = [5];
+let array2 = [10];
+
+let [newArray1, newArray2] = swapByReference(array1, array2);
+
+console.log("Valores originales: array1 =", array1[0], ", array2 =", array2[0]); // array1 = 10, array2 = 5
+console.log("Valores intercambiados: newArray1 =", newArray1[0], ", newArray2 =", newArray2[0]); // newArray1 = 10, newArray2 = 5
+
+
 /**-----DIFICULTAD EXTRA-----*/

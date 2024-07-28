@@ -1,4 +1,4 @@
-/** #20 - JavaScript ->Jesus Antonio Escamilla */
+/** #21 - JavaScript ->Jesus Antonio Escamilla */
 
 /**
  * Una función de callback es una función que se pasa a otra función como un argumento, que luego 
@@ -23,7 +23,7 @@ function fetchData(name ,callback) {
 }
 
 // Aquí solo llamamos el CALLBACK
-// fetchData('Jesus Antonio', saludar);
+fetchData('Jesus Antonio', saludar);
 
 
 // También podemos crear primero el Callback con una suma de números
@@ -38,7 +38,7 @@ function printSum(resultado) {
 }
 
 // Aquí solo llamamos el CALLBACK
-// sum(3,6,printSum);
+sum(3,6,printSum);
 
 
 

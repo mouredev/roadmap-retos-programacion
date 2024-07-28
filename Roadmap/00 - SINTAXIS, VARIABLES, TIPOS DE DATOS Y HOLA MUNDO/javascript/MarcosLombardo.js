@@ -1,25 +1,22 @@
-// La URL del sitio web de JavaScript es: https://developer.mozilla.org/es/docs/Web/JavaScript
+// El url del sitio web oficial de JavaScript: https://developer.mozilla.org/es/docs/Web/JavaScript
 
-// Este es un comentario en una sola línea.
+// Comentario en linea
 
 /*
-
-Este
-es
-un
-comentario
-de
+Comentario
+en
 varias
 lineas
-
 */
 
-let lenguaje = "JavaScript";
+var miNombre = "Marcos";
+let miSegundoNombre = "Pedro";
+const miApellido = "Lombardo";
 
-let string = "Esta es una cadena de texto.";
+let string = "JavaScript";
 let number = 8;
 let boolean = true;
+let indefinido = undefined;
 let nulo = null;
-let indef = undefined;
 
-console.log(`¡Hola, ${lenguaje}!`);
+console.log(`¡Hola, ${string}!`);

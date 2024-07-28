@@ -247,3 +247,14 @@ do {
 } catch {
     print("Si hay errores para corregir")
 }
+
+// Extra 
+func program() {
+    for numeros in 10...55 {
+        if numeros % 6 == 0 && 3 != 0 && 16 != 0 {
+            print(numeros)
+        }
+    }
+}
+
+program()
