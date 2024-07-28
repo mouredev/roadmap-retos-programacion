@@ -45,7 +45,7 @@ class Qv1ko {
         System.out.println("b--\t Number B: " + b);
 
         if (a == b) {
-            System.out.println();
+            System.out.println("Number A equals number B");
         }
 
         if (a == b) {
