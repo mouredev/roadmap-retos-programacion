@@ -61,3 +61,18 @@ print(mi_lista)
 
 
 # Tuplas
+mi_tupla = ("José", "Figueroa", "@JoseAlberto13", "26")
+print(type(mi_tupla))
+print(mi_tupla)
+
+
+# Inserción
+
+# mi_tupla "Intenta hacer una inserción con las tuplas"
+
+
+# Ordenación
+
+mi_tupla = tuple(sorted(mi_tupla))
+print(type(mi_tupla))
+print(mi_tupla)
