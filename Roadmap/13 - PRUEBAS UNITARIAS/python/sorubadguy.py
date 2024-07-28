@@ -49,10 +49,10 @@ class TestPersona(unittest.TestCase):
         self.assertEquals(persona.keys, "programming_languages")
         
     def persona_datos(self):
-        self.assertEquals(type(persona["age"]), str)
+        self.assertEquals(type(persona["age"]), int)
         self.assertEquals(type(persona["name"]), str)
-        self.assertEquals(type(persona["birth_date"]), str)
-        self.assertEquals(type(persona["programming_languages"]), str)
+        self.assertEquals(type(persona["birth_date"]), datetime.date)
+        self.assertEquals(type(persona["programming_languages"]), list)
         
         
 unittest.main()
