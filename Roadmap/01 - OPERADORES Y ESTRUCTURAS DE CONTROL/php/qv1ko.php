@@ -127,7 +127,7 @@
     function program() {
         echo "\nProgram:\n";
         for ($i = 10; $i <= 55; $i++) {
-            if ($i != 16 && $i % 3 != 0) {
+            if ($i % 2 == 0 && $i != 16 && $i % 3 != 0) {
                 echo $i . "\t";
             }
         }
