@@ -30,10 +30,10 @@ stack = Stack()
 stack.push(10)
 stack.push(20)
 stack.push(30)
-print(stack.show())
-print(stack.pop())
-print(stack.peek())
-print(stack.show())
+print(f"Mostrando las pilas: {stack.show()}")
+print(f"Eliminando un elemento de la pila: {stack.pop()}")
+print(f"Ultimo elemento de la pila: {stack.peek()}")
+print(f"Mostrando las pilas: {stack.show()}")
 
 
 class Queue:
@@ -63,10 +63,10 @@ queue = Queue()
 queue.enqueue(40)
 queue.enqueue(50)
 queue.enqueue(60)
-print(queue.show())
-print(queue.dequeue())
-print(queue.front())
-print(queue.show())
+print(f"Mostrando las cola: {queue.show()}")
+print(f"Eliminando un elemento de la cola: {queue.dequeue()}")
+print(f"Primer elemento de la cola: {queue.front()}")
+print(f"Mostrando las cola: {queue.show()}")
 
 
 
