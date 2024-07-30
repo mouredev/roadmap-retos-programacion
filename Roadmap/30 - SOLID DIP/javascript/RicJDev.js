@@ -1,61 +1,121 @@
-/*
- * EJERCICIO:
- * Explora el "Principio SOLID de Inversión de Dependencias (Dependency Inversion
- * Principle, DIP)" y crea un ejemplo simple donde se muestre su funcionamiento
- * de forma correcta e incorrecta.
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea un sistema de notificaciones.
- * Requisitos:
- * 1. El sistema puede enviar Email, PUSH y SMS (implementaciones específicas).
- * 2. El sistema de notificaciones no puede depender de las implementaciones específicas.
- * Instrucciones:
- * 1. Crea la interfaz o clase abstracta.
- * 2. Desarrolla las implementaciones específicas.
- * 3. Crea el sistema de notificaciones usando el DIP.
- * 4. Desarrolla un código que compruebe que se cumple el principio.
- */
-
 //EJERCICIO
-class UserRepository {
-  getUserByID(userID) {
-    //...
-  }
+//Incorrecto ❎
+class ButtonNoDPI {
+	turnOn() {
+		console.log('Lamp is on!')
+	}
 
-  saveUser(user) {
-    //...
-  }
+	turnOff() {
+		console.log('Lamp is off!')
+	}
 }
 
-class DatabaseUserRepository {
-  changeUsername(user, name) {
-    user.name = name
-  }
+class LampNoDPI {
+	constructor() {
+		this.button = new ButtonNoDPI()
+	}
 
-  getAge(user) {
-    return user.age
-  }
+	operate(command) {
+		if (command === 'on') {
+			this.button.turnOn()
+		} else if (command === 'off') {
+			this.button.turnOff()
+		}
+	}
+}
+
+const lamp1 = new LampNoDPI()
+lamp1.operate('on')
+lamp1.operate('off')
+
+//Correcto ✅
+class ButtonInterface {
+	constructor() {
+		if (new.target === ButtonInterface) {
+			throw new TypeError('Unable to instantiate interface "ButtonInterface"')
+		}
+	}
+
+	turnOn() {
+		throw new Error('The method "turnOn()" must be implemented')
+	}
+
+	turnOff() {
+		throw new Error('The method "turnOff()" must be implemented')
+	}
+}
+
+class LampButton extends ButtonInterface {
+	turnOn() {
+		console.log('Lamp is on!')
+	}
+
+	turnOff() {
+		console.log('Lamp is off!')
+	}
+}
+
+class Lamp {
+	constructor(button) {
+		this.button = button
+	}
+
+	operate(command) {
+		if (command === 'on') {
+			this.button.turnOn()
+		} else {
+			this.button.turnOff()
+		}
+	}
 }
 
 //EXTRA
-class NotificationEmail {
-	send() {
-		console.log('Hola')
+class NotifierInterface {
+	constructor() {
+		if (new.target === NotifierInterface) {
+			throw new TypeError('Unable to instantiate interface "NotifierInterface"')
+		}
+	}
+
+	send(message) {
+		throw new Error('The method "send()" must be implemented')
 	}
 }
 
-class NotificationPush {
-	send() {
-		console.log('Hola')
+class EmailNotifier extends NotifierInterface {
+	send(message) {
+		console.log(`Sending by email: ${message}`)
 	}
 }
 
-class NotificationSMS {
-	send() {
-		console.log('Hola')
+class PushNotifier extends NotifierInterface {
+	send(message) {
+		console.log(`Sending by push: ${message}`)
 	}
 }
 
-class NotificationFactory {
-
+class SMSNotifier extends NotifierInterface {
+	send(message) {
+		console.log(`Sending by SMS: ${message}`)
+	}
 }
+
+class NotificationService {
+	constructor(notifier) {
+		this.notifier = notifier
+	}
+
+	notify(message) {
+		this.notifier.send(message)
+	}
+}
+
+const pushService = new NotificationService(new PushNotifier())
+const SMSService = new NotificationService(new SMSNotifier())
+const emailService = new NotificationService(new EmailNotifier())
+
+let message = 'Hello, notifier!'
+
+pushService.notify(message)
+SMSService.notify(message)
+emailService.notify(message)
