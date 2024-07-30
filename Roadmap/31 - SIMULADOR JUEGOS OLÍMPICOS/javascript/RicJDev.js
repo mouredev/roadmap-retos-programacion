@@ -20,13 +20,29 @@
  * 5. Salir del programa.
  */
 
+//Se ejecuta en Node.js importando el módulo ReadLine
 const readline = require('readline')
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 })
-
 //EJERCICIO
+//Modelado de eventos
+const events = []
+
+class Event {
+	constructor(discipline) {
+		this.discipline = discipline
+		this.participants = []
+
+		events.push(this)
+	}
+
+	addParticipant(participant) {
+		this.participants.push(participant)
+	}
+}
+
 //Modelado de participantes
 class Participant {
 	constructor(name, country) {
@@ -35,31 +51,90 @@ class Participant {
 	}
 }
 
-//Modelado de eventos
-class Event {
-	constructor(discipline) {
-		this.discipline = discipline
-	}
+//Funciones del menu
+function searchEvent(discipline) {
+	const result = events.find((event) => event.discipline === discipline)
 
-	participants = []
+	return result
+}
 
-	addParticipant(participant) {
-		this.participants.push(participant)
-	}
+function registerParticipant() {
+	rl.question('Indique el evento para registrar el participante ', (discipline) => {
+		const event = searchEvent(discipline)
+
+		rl.question('Indique el nombre del participante ', (name) => {
+			rl.question('Indique el pais del participante ', (country) => {
+				const participant = new Participant(name, country)
+				event.addParticipant(participant)
+
+				main()
+			})
+		})
+	})
+}
+
+function createEvent() {
+	rl.question('Indique la disciplina del evento a registrar ', (discipline) => {
+		new Event(discipline)
+
+		main()
+	})
+}
+
+function simulateEvent() {
+	rl.question('Indique el evento a simular ', (discipline) => {
+		const event = searchEvent(discipline)
+
+		if (event.participants.length > 3) {
+			//...
+		} else {
+			console.log('No hay suficientes participantes para la simulacion')
+		}
+
+		main()
+	})
+}
+
+function generateInform() {
+	main()
+}
+
+function exit() {
+	console.log('\nSaliendo del programa...')
+	rl.close()
+}
+
+function display() {
+	console.log('\n\nOpcion para mostrar listados solo para el desa')
+
+	events.forEach((element) => {
+		console.log(element.discipline)
+		console.log(element.participants)
+	})
+
+	main()
 }
 
 //Menu de opciones
 function main() {
 	console.log('\nSIMULADOR DE JUEGOS OLIMPICOS')
+
+	const actions = new Map([
+		['1', createEvent],
+		['2', registerParticipant],
+		['3', simulateEvent],
+		['4', generateInform],
+		['5', exit],
+		['d', display],
+	])
+
 	console.log(
 		'1. Registrar evento\n2. Registrar participantes\n3. Simular evento\n4. Generar informes\n5. Salir del programa'
 	)
-	rl.question('Seleccione una opcion ', (answer) => {
-		if (answer == '5') {
-			rl.close()
-		} else {
-			main()
-		}
+
+	rl.question('Seleccione una opcion (1 - 5) ', (option) => {
+		const method = actions.get(option) || main
+		method()
 	})
 }
 
