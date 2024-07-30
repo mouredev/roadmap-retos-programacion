@@ -2,16 +2,6 @@
  * EJERCICIO:
  * - Muestra ejemplos de creación de todas las estructuras soportadas por defecto en tu lenguaje.
  * - Utiliza operaciones de inserción, borrado, actualización y ordenación.
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea una agenda de contactos por terminal.
- * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
- * - Cada contacto debe tener un nombre y un número de teléfono.
- * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
- *   los datos necesarios para llevarla a cabo.
- * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
- *   (o el número de dígitos que quieras)
- * - También se debe proponer una operación de finalización del programa.
 """
 
 # Metodos para estructuras de datos 
@@ -143,3 +133,69 @@ print(type(mi_diccionario))
 mi_diccionario = dict(sorted(mi_diccionario.items()))
 print(mi_diccionario)
 print(type(mi_diccionario))
+
+"""
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una agenda de contactos por terminal.
+ * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+ * - Cada contacto debe tener un nombre y un número de teléfono.
+ * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+ *   los datos necesarios para llevarla a cabo.
+ * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+ *   (o el número de dígitos que quieras)
+ * - También se debe proponer una operación de finalización del programa.
+"""
+    
+def agenda():
+
+    contacto = {}
+
+    def agregar_contacto():
+        celular = (input("Celular: "))
+        if celular.isdigit() and len(celular) > 0 and len(celular)<=11:
+            contacto[nombre] = celular
+        else:
+            print("Debes introducir número de teléfono de un máximo de 11 dígitos")
+    
+    is_on = True
+
+    while is_on:
+        print("\n1. Buscar Contacto")
+        print("2. Agregar Conctacto")
+        print("3. Actualizar Contacto")
+        print("4. Eliminar Contacto")
+        print("5. Salir")
+
+        opcion = input("\nSelecciona una opción: ")
+
+        match opcion:
+            case "1":
+                nombre = input("Introduce el nombre del contacto a buscar: ")
+                if nombre in contacto:
+                    print(f"El número de teléfono de {nombre} es {contacto[nombre]}.")
+                else:
+                    print(f"El contacto {nombre} no existe.")
+            case "2":
+                nombre = input("Nombre: ")
+                contacto[nombre] = nombre
+                agregar_contacto()
+            case "3":
+                nombre = input("Introduce el nombre del contacto a actualizar: ")
+                if nombre in contacto:
+                    print(f"El número de teléfono de {nombre} es {contacto[nombre]}.")
+                    agregar_contacto()
+                else:
+                    print(f"El contacto {nombre} no existe.")
+    
+            case "4":
+                nombre = input("Introduce el nombre del contacto a eliminar: ")
+                if nombre in contacto:
+                    del contacto[nombre]
+                else:
+                    print(f"El contacto {nombre} no existe.")
+            case "5":
+                print("Saliendo de la agenda")
+                break
+            case _:
+                print("Operacion no válida. Elige una opción del 1 al 5.")
+agenda()
