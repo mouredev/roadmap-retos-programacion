@@ -45,7 +45,7 @@ class Qv1ko {
         System.out.println("b--\t Number B: " + b);
 
         if (a == b) {
-            System.out.println();
+            System.out.println("Number A equals number B");
         }
 
         if (a == b) {
@@ -123,7 +123,7 @@ class Qv1ko {
     private static void program() {
         System.out.println("\nProgram:\n");
         for (int i = 10; i <= 55; i++) {
-            if (i != 16 && i % 3 != 0) {
+            if (i % 2 == 0 && i != 16 && i % 3 != 0) {
                 System.out.println(i);
             }
         }
