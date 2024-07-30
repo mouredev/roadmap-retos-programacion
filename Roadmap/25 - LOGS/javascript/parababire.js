@@ -8,7 +8,7 @@
   */
 
 /* Métodos del objeto console comunmente usados. Consejo: Darle contexto a las salidas por consola  */
-/* Los métodos .group, .groupEnd, .table; así como, el uso de especificadores de formato, nos permiten configurar nuestros loggings */
+/* Los métodos .group, .groupEnd, .table; así como, el uso de especificadores de formato, nos permiten configurar nuestros loggings, los niveles de severidad */
 
 let gretting = 'Hola Javascript'
 
@@ -54,33 +54,47 @@ console.log(
 
 class TaskManager {
   constructor() {
-    this.task = {},
-    this.frontIndex = 0,
-    this.backIndex = 0
+    this.tasks = {}
   }
-  /* enqueue */
-  add_task(name) {
-    this.task[this.backIndex] = name
-    this.backIndex++
-    return name
+
+  add_task(name, description) {
+    console.time('test1')
+    if (!this.tasks.hasOwnProperty(name)) {
+      this.tasks[name] = description
+      console.info(`Tarea añadida: ${name}`)
+      let length = Object.entries(this.tasks).length
+      console.debug('DEBUG:', `Número de tareas: ${length}`)
+      this.tasks
+    } else {
+      console.warn(`Se ha intentado ingresar una tarea que ya existe: ${name}`)
+    }
+    console.timeEnd('test1')
   }
-  /* dequeue */ 
-  delete_task() {
-    const task = this.task[this.frontIndex]
-    delete this.task[this.frontIndex]
-    this.frontIndex++
-    return task
+
+  delete_task(name) {
+    console.time('test2')
+    if (this.tasks.hasOwnProperty(name)) {
+      delete this.tasks[name]
+      console.info(`Tarea eliminada: ${name}`)
+      let length = Object.entries(this.tasks).length
+      console.debug('DEBUG:', `Número de tareas: ${length}`)
+    } else {
+      console.error(`Se está intentado eliminar una tarea que no existe: ${name}`)
+    }
+    console.timeEnd('test2')
   }
 
   get list_task() {
-    return this.task
-  } 
+    console.time('time3')
+    Object.entries(this.tasks).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`)
+    })
+    console.timeEnd('time3')
+  }
 }
-
-let newTask = new TaskManager()
-newTask.add_task('Comprar Pan')
-newTask.add_task('Comprar Té')
-let str = newTask.list_task
-console.log(str)
-newTask.delete_task()
-console.log(newTask.list_task);
+let taskList = new TaskManager()
+taskList.add_task('Comprar Pan', 'Compra 5 panes')
+taskList.add_task('Comprar sixpack', 'Compra 2 sixpack')
+taskList.list_task
+taskList.delete_task('Comprar sixpack')
+taskList.list_task
