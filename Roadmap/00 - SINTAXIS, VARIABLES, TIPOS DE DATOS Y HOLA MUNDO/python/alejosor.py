@@ -37,4 +37,4 @@ decimal = 25.67 # Tipo de dato: Float
 booleano = True # Tipo de dato: Boolean
 
 # - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
-print("¡Hola, Python!")
+print("¡Hola , Python!")
