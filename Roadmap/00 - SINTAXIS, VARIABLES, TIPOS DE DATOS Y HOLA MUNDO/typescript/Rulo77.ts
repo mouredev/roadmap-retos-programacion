@@ -8,8 +8,10 @@
     de codigo
 */
 
+//maneras de declarar una variable
 var variable = 4;
 let variable2 = 1.2;
+//manera de declarar una constante
 const constante = 'Hola';
 
 // primitives types
