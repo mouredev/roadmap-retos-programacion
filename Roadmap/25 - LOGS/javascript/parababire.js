@@ -7,12 +7,14 @@
     .- Errors: console.error()
   */
 
-/* Métodos del objeto console comunmente usados. Consejo: Darle contexto a las salidas por consola  */
-/* Los métodos .group, .groupEnd, .table; así como, el uso de especificadores de formato, nos permiten configurar nuestros loggings, los niveles de severidad */
+/* Filtrar cuales logs aparecen en consola, dependiendo de la severidad, solo puede ser seteado en el devtool del browser */
+
+/* Métodos del objeto console comunmente usados. Los métodos .group, .groupEnd, .table; así como, el uso de especificadores de formato, nos permiten configurar nuestros loggings */
 
 let gretting = 'Hola Javascript'
 
 console.group('Inicio logging')
+// Consejo: Darle contexto a las salidas por consola. 
 console.debug('Esto es un console.debug():','Message debug process')
 console.log('Esto es un console.log():', 'Hola Javascript')
 console.log({gretting}) // Mejora el contexto de la salida por consola
