@@ -61,18 +61,85 @@ print(mi_lista)
 
 
 # Tuplas
+
 mi_tupla = ("José", "Figueroa", "@JoseAlberto13", "26")
 print(type(mi_tupla))
 print(mi_tupla)
 
-
 # Inserción
 
-# mi_tupla "Intenta hacer una inserción con las tuplas"
+insertar_tupla = "Venezuela"
+mi_nueva_tupla = mi_tupla + (insertar_tupla,) #Para evitar errores se debe incluir una coma antes o despues del elemento a añadir
+print(type(mi_nueva_tupla))
+print(mi_nueva_tupla)
 
+"""
+Las tuplas son inmutables, solo podemos acceder a ellas, mas no modificar su contendio después de su creación.
+Para hacer una "inserción" se debe crear nueva tupla, igualandola a la tupla original y sumando la variable o el dato que deseemos agregar . 
+"""
 
 # Ordenación
 
-mi_tupla = tuple(sorted(mi_tupla))
-print(type(mi_tupla))
-print(mi_tupla)
+mi_nueva_tupla = tuple(sorted(mi_nueva_tupla)) #Necesario volver a definir el arreglo como tupla, ya que sorted nos devuelve una LISTA
+print(type(mi_nueva_tupla))
+print(mi_nueva_tupla)
+
+
+# Sets
+
+mi_set = {"Alberto", "Lucena", "@JoseAlberto13", "26"}
+print(type(mi_set))
+print(mi_set)
+
+# Inserción
+
+mi_set.add("Chile")
+print(mi_set)
+
+# Borrado
+
+mi_set.remove("Alberto")
+print(mi_set)
+
+"""
+Set estructura desordenada, no se puede ordenar, la ventaja es que los datos dentro de ella no se pueden duplicar.
+Y para actualizar sus datos, la mejor manera es eliminar el dato que querramos reemplazar y añadir el nuevo elemento.
+"""
+
+
+# Diccionario
+
+mi_diccionario: dict = {
+    "nombre" : "José",
+    "apellido": "Figueroa",
+    "edad": "26",
+    "nacionalidad":"Venezuela"
+}
+print(type(mi_diccionario))
+print(mi_diccionario)
+print(mi_diccionario["nacionalidad"])
+
+# Inserción
+
+mi_diccionario["usuario"] = "JoseAlberto13"
+print(mi_diccionario)
+print(type(mi_diccionario))
+
+# Borrado
+
+del mi_diccionario["apellido"]
+print(mi_diccionario)
+print(type(mi_diccionario))
+
+
+# Actualización
+
+mi_diccionario["edad"] = "27"
+print(mi_diccionario)
+print(type(mi_diccionario))
+
+# Ordenación
+
+mi_diccionario = dict(sorted(mi_diccionario.items()))
+print(mi_diccionario)
+print(type(mi_diccionario))
