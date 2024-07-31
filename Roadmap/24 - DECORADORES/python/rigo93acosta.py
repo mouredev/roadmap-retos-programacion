@@ -13,15 +13,29 @@
 
 ## Ejercicio
 
+def print_call(func):
+    def print_function():
+        print(f"La funcion '{func.__name__}' ha sido llamada")
+        return func    
+    return print_function
+
+@print_call
 def example_function():
+    # print("La funcion 'example_function' ha sido llamada")
     pass
 
+@print_call
 def example_function_2():
+    # print("La funcion 'example_function_2' ha sido llamada")
     pass
 
+@print_call
 def example_function_3():
+    # print("La funcion 'example_function_3' ha sido llamada")
     pass
 
 example_function()
 example_function_2()
 example_function_3()
+
+## Dificultad extra
