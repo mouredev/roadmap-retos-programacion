@@ -39,3 +39,29 @@ example_function_2()
 example_function_3()
 
 ## Dificultad extra
+
+def call_counter(func):
+    
+    def counter_function():
+        counter_function.call_counter += 1
+        if counter_function.call_counter == 1:
+            print(f"La funcion '{func.__name__}' ha sido llamada {counter_function.call_counter} vez")
+        else:
+            print(f"La funcion '{func.__name__}' ha sido llamada {counter_function.call_counter} veces")
+        return func
+    
+    counter_function.call_counter = 0
+    return counter_function
+
+@call_counter
+def example_function_4():
+    pass
+
+@call_counter
+def example_function_5():
+    pass
+
+example_function_4()
+example_function_4()
+example_function_5()
+example_function_4()
