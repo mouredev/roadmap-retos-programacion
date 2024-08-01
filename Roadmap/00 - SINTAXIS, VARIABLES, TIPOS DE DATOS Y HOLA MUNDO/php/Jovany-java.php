@@ -11,7 +11,8 @@ echo "Comentarios de una sola linea"; //Soy un comentario de una linea
 
 echo "Comentario de una sola linea"; #Soy un comentario de una linea al estilo consola de Unix 
 
-//Declaración de una constante
+//Declaración de una variable y una constante
+$nameDeVariable = "Variable pueden ser cualquier tipo de dato";
 define('nameDeLaConstante', 'valor de la constante');
 define('PI', 3.1416); 
 echo "El valor de pi es:".PI;
