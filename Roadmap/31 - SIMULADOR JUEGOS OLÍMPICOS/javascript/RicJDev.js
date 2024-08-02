@@ -8,6 +8,7 @@
 
 */
 
+//Jugadores y simulador de juegos
 class Player {
   constructor(name, country) {
     this.name = name
@@ -28,15 +29,22 @@ class GameSimulator {
     if (this.players.length >= 3) {
       this.players.sort(() => Math.random() - 0.5)
 
-      this.players[0].medal = 'gold'
-      this.players[1].medal = 'silver'
-      this.players[2].medal = 'bronze'
+      const winners = [
+        { gold: this.players[0] },
+        { silver: this.players[1] },
+        { bronze: this.players[2] },
+      ]
 
-      return this.players
+      this.players.length = 0
+
+      return winners
+    } else {
+      return undefined
     }
   }
 }
 
+//Registro de eventos deportivos
 class Event {
   constructor(discipline) {
     this.discipline = discipline
@@ -45,42 +53,22 @@ class Event {
 }
 
 class EventRegister {
-  events = []
+  constructor() {
+    this.events = []
+  }
 
   search(discipline) {
-    let result = this.events.find((event) => event.discipline == discipline)
-
-    return result
+    return this.events.find((event) => event.discipline == discipline)
   }
 
   add(event) {
-    event.status = 'unfinished'
     this.events.push(event)
-  }
-
-  finish(event) {
-    let result = this.search(event)
-    result.status = 'finished'
-  }
-}
-
-class InformService {
-  constructor() {
-    this.data = []
-  }
-
-  add(data) {
-    this.data.push(data)
-  }
-
-  display() {
-    console.log(this.data)
   }
 }
 
 /*
 
-* PARTE II: implementacion de la parte I en la terminal
+* PARTE II: implementacion en terminal
 
 	- Se ha importado el modulo Readline para tener input en terminal
 	- Se ha instalado Picocolors, una libreria para colorear el texto de la terminal
@@ -96,9 +84,8 @@ const rl = readline.createInterface({
 const pc = require('picocolors')
 
 const eventRegister = new EventRegister()
-const informService = new InformService()
 
-//Funciones del menu
+//1. Registrar evento
 function createEvent() {
   rl.question(pc.blue('\nIndique la disciplina del evento a registrar: '), (discipline) => {
     eventRegister.add(new Event(discipline))
@@ -107,6 +94,7 @@ function createEvent() {
   })
 }
 
+//2. Registrar participantes
 function registerParticipant() {
   rl.question(pc.blue('\nIndique el evento para registrar el participante: '), (discipline) => {
     const event = eventRegister.search(discipline)
@@ -127,13 +115,19 @@ function registerParticipant() {
   })
 }
 
+//3. Simular evento
 function simulateEvent() {
   rl.question(pc.blue('\nIndique el evento a simular: '), (discipline) => {
     const event = eventRegister.search(discipline)
 
     if (event) {
       let results = event.simulator.play()
-      informService.add(results)
+
+      if (results) {
+        console.log(results)
+      } else {
+        console.log(pc.red('No hay suficientes participantes'))
+      }
     } else {
       console.log(pc.red('Evento no registrado'))
     }
@@ -142,11 +136,13 @@ function simulateEvent() {
   })
 }
 
+//TODO: 4. Generar un informe
 function generateInform() {
-  informService.display()
+  //...
   main()
 }
 
+//5. Salir del programa
 function exit() {
   console.log(pc.red('\nSaliendo del programa...'))
 
@@ -156,7 +152,7 @@ function exit() {
   }, 300)
 }
 
-//Menu de opciones
+//Menu principal
 function main() {
   console.log(pc.underline('\nSIMULADOR DE JUEGOS OLIMPICOS'))
 
