@@ -55,50 +55,71 @@ class FreeBook extends Book {
 }
 
 //EXTRA
-class Printer {
+//Interfaces
+class PrinterInterface {
 	print(document) {
-		console.log(`Se ha imprimido ${document}`)
+		console.log(`Imprimiendo ${document} en blanco y negro`)
 	}
 }
 
-class ColorPrinter extends Printer {
+class ColorPrinterInterface {
 	print(document) {
-		console.log(`Se ha imprimido ${document} a color`)
+		console.log(`Imprimiendo ${document} a color`)
 	}
 }
 
-class BlackAndWhitePrinter extends Printer {
-	print(document) {
-		console.log(`Se ha imprimido ${document} en blanco y negro`)
+class ScanInterface {
+	scan(document) {
+		console.log(`Se ha escaneado el documento ${document}`)
+	}
+}
+class FaxInterface {
+	send(document) {
+		console.log(`Se ha enviado el documento ${document} via fax`)
 	}
 }
 
-class MultifuntionalPrinter extends Printer {
+//Implementacion
+class Printer extends PrinterInterface {}
+
+class ColorPrinter extends ColorPrinterInterface {}
+
+class MultiFunction {
+	constructor() {
+		this.blackAndWhite = new Printer()
+		this.color = new ColorPrinter()
+		this.scanner = new ScanInterface()
+		this.fax = new FaxInterface()
+	}
+
 	print(document) {
-		console.log(`Se ha imprimido ${document} en multifunción`)
+		this.blackAndWhite.print(document)
+	}
+
+	printColor(document) {
+		this.color.print(document)
 	}
 
 	scan(document) {
-		console.log(`Se ha escaneado ${document}`)
+		this.scanner.scan(document)
 	}
 
 	sendFax(document) {
-		console.log(`Se ha enviado ${document} por medio de fax`)
+		this.fax.send(document)
 	}
 }
 
+//Probando ISP
+let doc = 'miDocumento.docx'
+
 const printer = new Printer()
 const colorPrinter = new ColorPrinter()
-const blackAndWhitePrinter = new BlackAndWhitePrinter()
-const multifuntionalPrinter = new MultifuntionalPrinter()
-
-let doc = 'document.docx'
+const multiFunction = new MultiFunction()
 
 printer.print(doc)
 colorPrinter.print(doc)
-blackAndWhitePrinter.print(doc)
 
-multifuntionalPrinter.print(doc)
-multifuntionalPrinter.scan(doc)
-multifuntionalPrinter.sendFax(doc)
-
+multiFunction.print(doc)
+multiFunction.printColor(doc)
+multiFunction.scan(doc)
+multiFunction.sendFax(doc)
