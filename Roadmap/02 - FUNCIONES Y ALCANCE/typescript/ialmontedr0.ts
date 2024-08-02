@@ -94,3 +94,4 @@ ejemploFuncionMathRandom();
 ejemploFuncionConVariableGlobal();
 ejemploFuncionConVariableLocal("Variable local");
 ejercicioExtra("Texto 1", "Texto 2");
+ejercicioExtra("Texto 1", "Texto 2");
