@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
 /**
  * Solución al ejercicio #03 ESTRUCTURAS DE DATOS.
  * 
