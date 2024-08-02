@@ -60,7 +60,7 @@ function primerFucion(): void {
   }
   
   /**
-   * Ejercicio extra: Funcion que imprime numeros y concatena cadenas
+   * Ejercicio extra Funcion que imprime numeros y concatena cadenas
    */
   function ejercicioExtra(primerTexto: string, segundoTexto: string): void {
     let numeroImpresiones: number = 0;
