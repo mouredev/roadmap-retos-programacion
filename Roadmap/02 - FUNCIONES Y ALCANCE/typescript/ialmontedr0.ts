@@ -51,7 +51,7 @@ let variableGlobal: string = "Variable global";
 // Funcion con variable global
 
 function ejemploFuncionConVariableGlobal(): void {
-  console.log(`Ejemplo con variable global: ${this.variableGlobal}`);
+  console.log(`Ejemplo con variable global: ${variableGlobal}`);
 }
 
 // Funcion con variable local
@@ -62,7 +62,7 @@ function ejemploFuncionConVariableLocal(variableLocal: string): void {
 /**
  * Ejercicio extra: Funcion que imprime numeros y concatena cadenas
  */
-function ejercicioExtra(primerTexto: string, segundoTexto: string): number {
+function ejercicioExtra(primerTexto: string, segundoTexto: string): void {
   let numeroImpresiones: number = 0;
   for (let i = 1; i <= 100; i++) {
     if (i % 3 === 0 && i % 5 === 0) {
@@ -93,4 +93,5 @@ funcionConFuncionInterna();
 ejemploFuncionMathRandom();
 ejemploFuncionConVariableGlobal();
 ejemploFuncionConVariableLocal("Variable local");
+ejercicioExtra("Texto 1", "Texto 2");
 ejercicioExtra("Texto 1", "Texto 2");
