@@ -1,15 +1,22 @@
 // https://www.javascript.com/
-/*https://www.javascript.com/*/
+
+// Comentario de una línea
+
+/*
+Comentario 
+de varias 
+líneas
+*/
 
 const MI_NOMBRE = "Francisco Cumini";
 let edad = 23;
 
-let MyString = "Francisco";
-let MyNumber = 1;
-let MyBoolean = true;
-let MyNull = null;
-let MyUndefined = undefined;
-let MySymbol = Symbol();
-let MyBigInt = BigInt(32);
+let myString = "Francisco";
+let myNumber = 1;
+let myBoolean = true;
+let myNull = null;
+let myUndefined = undefined;
+let mySymbol = Symbol();
+let myBigInt = BigInt(32);
 
 console.log("¡Hola, JavaScript!");
