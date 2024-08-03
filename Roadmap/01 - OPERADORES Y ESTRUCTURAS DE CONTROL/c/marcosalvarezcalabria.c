@@ -19,6 +19,7 @@
 int main (void){
     int num1 = 1;
     int num2 = 2;
+    int num3 = 3;
    
 //Operadores aritmeticos :
 
@@ -88,6 +89,50 @@ printf("Resultado de !num1  %d\n", result_not);
 
 //=
 int result = num1;
+printf("Resultado de result = num1 : %d\n", result);
+
+//+=
+num3 += num1;
+printf("Resultado de num3 += num1 : %d\n", num3);
+
+//-=
+num3 -= num1;
+printf("Resultado de num3 -= num1 : %d\n", num3);
+
+//=
+num3 /= num1;
+printf("Resultado de num3 /= num1 : %d\n", num3);
+//*=
+num3 *= num1;
+printf("Resultado de num3 *= num1 : %d\n", num3);
+
+//%=
+num3 %= num1;
+printf("Resultado de num3 modulo num1 : %d\n", num3);
+
+//&=
+num3 &= num1;
+printf("Resultado de num3 &= num1 : %d\n", num3);
+
+//>>=
+num3 >>= num1;
+printf("Resultado de num3 >>= num1 : %d\n", num3);//esto desplaza los binarios hacia la drcha las veces de num1
+
+//<<=
+num3 <<= num1;
+printf("Resultado de num3 >>= num1 : %d\n", num3);//esto desplaza los binarios hacia la izquda las veces de num1
+
+//^=  asignacion Xor bit a bit 
+num3 ^= num1;
+printf("Resultado de num3 ^= num1 :%d\n", num3);//Combina los bits de los operandos, poniendo un 1 en el resultado si cualquiera de los bits correspondientes es 1 ej: 1100 ^ 0101 = 1001 (en decimal: 12 ^ 5 = 9)
+
+//&=  asignacion & bit a bit 
+num3 &= num1;
+printf("Resultado de num3 &= num1 :%d\n", num3);//compara si ambos son 1 resultado 1 en cualquier otro caso 0;
+
+//|= asignacion or bit a bit 
+num3 |= num1;
+printf("Resultado de num3 |= num1 :%d\n", num3);//Combina los bits de los operandos, poniendo un 1 en el resultado solo si los bits correspondientes son diferentes.ej: 1100 | 0101 = 1101 (en decimal: 12 | 5 = 13)
 
 return 0;
 }
