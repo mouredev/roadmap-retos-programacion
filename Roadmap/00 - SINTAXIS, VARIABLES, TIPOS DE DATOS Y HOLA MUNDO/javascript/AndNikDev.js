@@ -18,6 +18,9 @@ let string = "Hola, soy Nikolayk!";
 let bool = true;
 let array = [10, 'Bob', true, 10.10];
 let object = {};
+let nulo = null;
+let indefinido = undefined;
+let symbol = Symbol('symbol');
 
 const funcionClg = () => {
     console.log("¡Hola, JavaScript!");
