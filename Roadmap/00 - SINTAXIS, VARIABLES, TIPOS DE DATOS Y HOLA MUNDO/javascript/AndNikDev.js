@@ -19,6 +19,8 @@ let bool = true;
 let array = [10, 'Bob', true, 10.10];
 let object = {};
 
-const funcion = () => {
+const funcionClg = () => {
     console.log("¡Hola, JavaScript!");
 }
+
+funcionClg();
