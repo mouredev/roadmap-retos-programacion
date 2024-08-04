@@ -60,23 +60,91 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 
-function palindromo(p1, p2){
-  
+function palindromo(p1){
+  let palflag = true
+  let arrayP1 = p1.split('')
+  let array_sin_espacios = [];
+  for(let i=0 ; i < arrayP1.length ; i++){
+    if(arrayP1[i] != ' '){
+      array_sin_espacios.push(arrayP1[i])
+    }
+  }
+
+  for (let i = 0; i < arrayP1.length && palflag == true; i++) {
+    if(array_sin_espacios[i] != array_sin_espacios.reverse()[i]){
+      palflag = false
+    }
+  }
+  if(palflag == true){
+    console.log(`${p1}\ Es palindromo`)
+  }else{
+    console.log(`${p1}\ No es palindromo`)
+  }
+}
+
+function anagrama(p1 ,p2){
+  let ana_p1 = p1.replace(/\s+/g,'').toLowerCase()
+  let ana_p2 = p2.replace(/\s+/g,'').toLowerCase()
+  ana_p1 = ana_p1.split('').sort()
+  ana_p2 = ana_p2.split('').sort()
+  if(ana_p1.length != ana_p2.length){
+    console.log('No son anagrama')
+  }else{
+    ana_p1 = ana_p1.join('')
+    ana_p2 = ana_p2.join('')
+    if(ana_p1 === ana_p2){
+      console.log('Son anagrama')
+    }
+  }
+}
+
+function isograma(p1){
+  let iso_flag = true
+  let isoP1 = p1.replace(/\s+/g,'').toLowerCase()
+  isoP1 = isoP1.split('').sort()
+  for(let i=1 ; i<isoP1.length && iso_flag == true; i++){
+    if(isoP1[i] == isoP1[i-1]){
+      iso_flag = false
+    }
+  }
+  if(iso_flag){
+    console.log(`${p1} es un isograma`)
+  }else{
+    console.log(`${p1} no es un isograma`)
+  }
 }
 
 
 function inicio(){
-  rl.question('Introduce una palabra\n', (p1) => {
-    rl.question('Introduce la segunda palabra\n', (p2) => {
-      p1.toLowerCase()
-      p2.toLowerCase()
+  rl.question('Introduce una cadena de caracteres\n', (p1) => {
+    rl.question('Introduce la segunda cadena\n', (p2) => {
+      p1 = p1.toLowerCase()
+      p2 = p2.toLowerCase()
       if (p1 == p2){
+        console.log('Ambas palabras tiene que se distintas')
         inicio()
       }else{
+        console.log('Palabra 1 =', p1)
+        console.log('Palabra 2 =', p2)
+        palindromo(p1)
+        palindromo(p2)
+        anagrama(p1, p2)
+        isograma(p1)
+        isograma(p2)
 
+        rl.question('Desea cerrar el programa? S/N\n', (resp) => {
+          resp = resp.toUpperCase()
+          if(resp == 'S'){
+            console.log('Saliendo....')
+            process.exit(0)
+          }else{
+            inicio()
+          }
+        })
       }
     })
   })
+  
 }
 
-inicio()
+  inicio()
