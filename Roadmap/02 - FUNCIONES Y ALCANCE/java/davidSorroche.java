@@ -14,7 +14,7 @@ public class Funciones {
     
     // Devuelve el texto de la constante "textoFunciones".
     public void funcionSinParametrosSinRetorno() {
-        System.out.println("Reto de Programación #02 FUNCIONES Y ALCANCE - Java");
+        System.out.println(textoFunciones);
     }
     
     // Devuelve un mensaje de error junto al texto pasado por parámetro.
