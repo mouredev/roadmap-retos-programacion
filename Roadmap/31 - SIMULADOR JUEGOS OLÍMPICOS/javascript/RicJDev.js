@@ -8,61 +8,103 @@
 
 */
 
-//Jugadores y simulador de juegos
-class Player {
-  constructor(name, country) {
-    this.name = name
-    this.country = country
+//Registro de eventos
+class OlympicRegistry {
+  constructor() {
+    if (OlympicRegistry.instance) {
+      return OlympicRegistry.instance
+    }
+
+    this.events = []
+    this.participants = {}
+
+    OlympicRegistry.instance = this
+  }
+
+  addEvent(event) {
+    this.events.push(event)
+  }
+
+  registerParticipant(eventName, participant) {
+    if (!this.participants[eventName]) {
+      this.participants[eventName] = []
+    }
+
+    this.participants[eventName].push(participant)
+  }
+
+  getParticipants(eventName) {
+    return this.participants[eventName] || []
   }
 }
 
-class GameSimulator {
-  constructor() {
-    this.players = []
+//Modelado de eventos
+class Event {
+  constructor(name) {
+    this.name = name
+    this.medals = []
   }
 
-  add(player) {
-    this.players.push(player)
-  }
+  assignMedals() {
+    const participants = OlympicRegistry.instance.getParticipants(this.name)
 
-  play() {
-    if (this.players.length >= 3) {
-      this.players.sort(() => Math.random() - 0.5)
+    if (participants.length < 3) {
+      console.log('Se requieren al menos tres participantes')
 
-      const winners = [
-        { gold: this.players[0] },
-        { silver: this.players[1] },
-        { bronze: this.players[2] },
-      ]
+      return
+    }
 
-      this.players.length = 0
+    const medalTypes = ['Gold', 'Silver', 'Bronze']
 
-      return winners
-    } else {
-      return undefined
+    for (let i = 0; i < 3; i++) {
+      const randomIndex = Math.floor(Math.random() * participants.length)
+
+      this.medals.push({
+        participant: participants[randomIndex],
+        medal: medalTypes[i],
+      })
+
+      participants.splice(randomIndex, 1)
     }
   }
 }
 
-//Registro de eventos deportivos
-class Event {
-  constructor(discipline) {
-    this.discipline = discipline
-    this.simulator = new GameSimulator()
+//Ranking de medallas
+class MedalRanking {
+  constructor() {
+    this.rankings = {}
+  }
+
+  addMedal(country, medal) {
+    if (!this.rankings[country]) {
+      this.rankings[country] = {
+        Gold: 0,
+        Silver: 0,
+        Bronze: 0,
+      }
+
+      this.rankings[country][medal]++
+    }
+  }
+
+  displayRankings() {
+    console.log('Medallas por pais')
+
+    for (const country in this.rankings) {
+      console.log(' ')
+      console.log(country.toUpperCase())
+      console.log(`Gold: ${this.rankings[country].Gold}`)
+      console.log(`Silver: ${this.rankings[country].Silver}`)
+      console.log(`Bronze: ${this.rankings[country].Bronze}`)
+    }
   }
 }
 
-class EventRegister {
-  constructor() {
-    this.events = []
-  }
-
-  search(discipline) {
-    return this.events.find((event) => event.discipline == discipline)
-  }
-
-  add(event) {
-    this.events.push(event)
+//Modelado de jugadores
+class Participant {
+  constructor(name, country) {
+    this.name = name
+    this.country = country
   }
 }
 
@@ -83,12 +125,13 @@ const rl = readline.createInterface({
 
 const pc = require('picocolors')
 
-const eventRegister = new EventRegister()
+const registry = new OlympicRegistry()
+const ranking = new MedalRanking()
 
 //1. Registrar evento
 function createEvent() {
-  rl.question(pc.blue('\nIndique la disciplina del evento a registrar: '), (discipline) => {
-    eventRegister.add(new Event(discipline))
+  rl.question(pc.blue('\nIndique la disciplina del evento a registrar: '), (eventName) => {
+    registry.addEvent(new Event(eventName))
 
     main()
   })
@@ -96,49 +139,35 @@ function createEvent() {
 
 //2. Registrar participantes
 function registerParticipant() {
-  rl.question(pc.blue('\nIndique el evento para registrar el participante: '), (discipline) => {
-    const event = eventRegister.search(discipline)
+  rl.question(pc.blue('\nIndique el evento para registrar el participante: '), (eventName) => {
+    rl.question(pc.green('Indique el nombre del participante: '), (name) => {
+      rl.question(pc.magenta('Indique el pais del participante: '), (country) => {
+        registry.registerParticipant(eventName, new Participant(name, country))
 
-    if (event) {
-      rl.question(pc.green('Indique el nombre del participante: '), (name) => {
-        rl.question(pc.magenta('Indique el pais del participante: '), (country) => {
-          event.simulator.add(new Player(name, country))
-
-          main()
-        })
+        main()
       })
-    } else {
-      console.log(pc.red('Evento no registrado'))
-
-      main()
-    }
+    })
   })
 }
 
 //3. Simular evento
 function simulateEvent() {
-  rl.question(pc.blue('\nIndique el evento a simular: '), (discipline) => {
-    const event = eventRegister.search(discipline)
+  rl.question(pc.blue('\nIndique el evento a simular: '), (eventName) => {
+    const event = registry.events.find((event) => event.name === eventName)
 
-    if (event) {
-      let results = event.simulator.play()
+    event.assignMedals()
 
-      if (results) {
-        console.log(results)
-      } else {
-        console.log(pc.red('No hay suficientes participantes'))
-      }
-    } else {
-      console.log(pc.red('Evento no registrado'))
-    }
+    event.medals.forEach(({ participant, medal }) => {
+      ranking.addMedal(participant.country, medal)
+    })
 
     main()
   })
 }
 
-//TODO: 4. Generar un informe
+//Mostrar medallas
 function generateInform() {
-  //...
+  ranking.displayRankings()
   main()
 }
 
