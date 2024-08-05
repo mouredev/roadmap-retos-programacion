@@ -1,4 +1,4 @@
-#El enfoque para implementar este programa ha sido tratando de seguir los principios SOLID
+#El enfoque para implementar este programa es seguir los principios SOLID
 #MEJORAS POSIBLES A IMPLEMENTAR:
 # - Regex en todos los inputs
 # - Uso de archivos externos para guardar información y generar informes
@@ -16,7 +16,6 @@ class AbstractEvent(ABC):
 
 class AbstractParticipant(ABC):
     @abstractmethod
-    #def __init__(self,name:str,age:int,country:str):
     def __init__(self,name:str,country:str):
         pass
 
@@ -141,7 +140,6 @@ class EventRegister(AbstractEventRegister):
         if not event_found:
             event_list.add_event(event)
             print("Disciplina registrada\n")
-            return event_list
         else:
             print("Disciplina anteriormente registrada, prueba de nuevo\n")
 
@@ -153,7 +151,6 @@ class ParticipantRegister(AbstractParticipantRegister):
                 participant_found = True
         if not participant_found:
             event.add_participant(participant)
-            return event
         else:
             print("Participante anteriormente registrado.\n")
 
@@ -177,7 +174,6 @@ class EventSimulator(AbstractEventSimulator):
                         event.participant_list[index].medals["bronze"] += 1
                     event.event_winners.append(event.participant_list[index])
                     win_count += 1
-            return event
     
     def show_event_winners(self,event:AbstractEvent): #muestra el detalle de los ganadores y qué medalla han ganado. Si no hay ganadores, muestra un mensaje de que el evento no se ha celebrado
         if len(event.event_winners) != 0:
@@ -287,12 +283,11 @@ class MainFunctions():
                 print("\n")
 
     def inform_generator(self,list_of_events:AbstractListOfEvents):
-        generator = InformsGenerator()
-        generator.generate_country_informs(list_of_events)
-        generator.generate_winner_informs(list_of_events)
+        self.generate_informs.generate_country_informs(list_of_events)
+        self.generate_informs.generate_winner_informs(list_of_events)
         self.print_informs.show_all_events(list_of_events)
-        self.print_informs.show_country_ranking(generator)
-        self.print_informs.show_winners_ranking(generator)
+        self.print_informs.show_country_ranking(self.generate_informs)
+        self.print_informs.show_winners_ranking(self.generate_informs)
 
 #PROGRAMA PRINCIPAL
 list_of_events = Events()
