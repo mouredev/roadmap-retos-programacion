@@ -96,7 +96,7 @@ public class rocha30 {
           int i; 
           boolean t = true; 
 
-          System.out.println("\nOperadores de asignación: para darle un valor a una variable:");
+          System.out.println("Operadores de asignación: para darle un valor a una variable:");
           System.out.println("Se le da un valor a la variable i = " + (i=1));
           System.out.println("Sumar y asignar: " + (i+=2));
           System.out.println(("Resta y asignar: " + (i-=2)));
