@@ -1,4 +1,4 @@
-#El enfoque para implementar este programa es seguir los principios SOLID
+#El enfoque para implementar este programa ha sido tratando de seguir los principios SOLID
 #MEJORAS POSIBLES A IMPLEMENTAR:
 # - Regex en todos los inputs
 # - Uso de archivos externos para guardar información y generar informes
