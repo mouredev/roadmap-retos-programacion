@@ -10,6 +10,19 @@ def quita_numeros(text: str):
         
     print(text)
 
-quita_numeros("lucasmartinez33@gmail.com")
+quita_numeros("1 persona con 3 perros")
 
 #!Extra
+
+mail = "lucasmartinez33gmail.comar"
+
+def validar_mail(mail: str):
+    
+    reEmail = r""
+    validar = re.search(reEmail, mail)
+    if(validar.end() == len(mail)):
+        print(f"tu email: {mail}, es valido")
+    else:
+        print(f"tu email: {mail}, no es valido")
+        
+validar_mail(mail)
