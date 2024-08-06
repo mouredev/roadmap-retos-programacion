@@ -13,7 +13,7 @@ public class Maldo2324 {
 
     //Crea una variable y una constante
         int variable = 1;
-        final int constante= 2;
+        final int constante = 2;
 
     //Crea una variable representando todos los tipos de datos primitivos
         byte maxByte = 127;
