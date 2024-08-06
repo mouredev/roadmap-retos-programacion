@@ -8,23 +8,26 @@
     Esto es un comnentario con varias lineas,
     en python podemos hacerlo englobando el texto 
     entre tres comillas. 
-    Con confundir con docstrings.
+    No confundir con docstrings.
 '''
 variable = 1    # Asignamos el valor 1 a la variable
 
-#   En python no existen constantes
+CONSTANTE = 3.141592    #  python no soporta variables como tal pero con mayus
+                        #  podemos por convención usarlas.
 
 # A continuación se crean variables primitivas de python
 
-entero = 10     #  Variable tipo integer
+entero = 10                 # Variable tipo integer
 
-decimal = 44.5    # Variable tipo float
+decimal = 44.5              # Variable tipo float
 
-complejo = e = 1 +2j    # Varibale tipo complex
+complejo = e = 1 + 2j       # Varibale tipo complex
 
-cadena = "Hola que tal" # Variable tipo cadena de texto
+cadena = "Hola que tal"     # Variable tipo string
 
-booleana = True #   Variable tipo booleana
+booleana = True             # Variable tipo booleana con valor True 
 
-#   Imprimir el mensaje indicado
+booleana_dos = False        # Variable booleana con valor False
+
+# Imprimir el mensaje indicado
 print("¡Hola, Python!")
