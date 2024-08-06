@@ -23,7 +23,7 @@ public class Maldo2324 {
         float puntoFlotante = 10.5F;
         double decimales = 12.5;
         char unCaracter = 'x';
-        boolean soloDosValores = true; // o False
+        boolean soloDosValores = true; // or False
 
         System.out.println("¡Hola, Java!");
         
