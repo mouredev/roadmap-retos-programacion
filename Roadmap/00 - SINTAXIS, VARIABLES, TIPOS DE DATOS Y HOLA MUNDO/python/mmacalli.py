@@ -28,6 +28,3 @@ my_string = "Cadena de texto"
 my_other_sting = 'otro tipo de cadena de texto'
 
 print("Hola, Python")
-
-
-
