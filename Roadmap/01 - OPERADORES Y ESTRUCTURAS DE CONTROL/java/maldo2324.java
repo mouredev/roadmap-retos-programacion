@@ -124,7 +124,7 @@ public class maldo2324 {
             case 7:
                 System.out.println("Domingo");
             case 8:
-                System.out.println("Ninguno, ponte a programar");
+                System.out.println("Ninguno, ponte a programar!");
                 break;
             default:
                 System.out.println("opcion no valida");
