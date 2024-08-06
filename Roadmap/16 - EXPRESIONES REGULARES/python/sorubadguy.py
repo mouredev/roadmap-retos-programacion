@@ -11,6 +11,7 @@ print(obtener_numeros("Hoy es 05/08/2024 y esta nublado desde las 3PM"))
 
 mail = "lucas_martinez33@hotmail.com.ar"
 telefono = "+54 9 2234 537643"
+url = "https://github.com/sorubadguy"
 
 def validar_mail(mail: str):
     
@@ -26,3 +27,9 @@ def validar_telefono(telefono: str):
 
 print(validar_telefono(telefono))
 
+def validar_url(url: str):
+    
+    reUrl = r"^http[s]?://\w+\.{1}\w+\.?\w*\.?\w*[/\w]*[\.\w]*"
+    return bool(re.fullmatch(reUrl, url))
+
+print(validar_url(url))
