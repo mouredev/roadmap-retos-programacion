@@ -26,6 +26,7 @@
  */
 """
 from random import randint,choice
+import time
 
 # Descripciones de los ataques
 DESCRIPTION_DAMAGE_DEADPOOL = ["Puñetazo en la cara",
@@ -98,6 +99,7 @@ class Combate:
         if self.wolverine.vida > 0:
             self.wolverine.ataque(self.deadpool)
         print(f"Fin del Turno nº {self.n_turno}\n")
+        time.sleep(1)
         if self.deadpool.vida <= 0 or self.wolverine.vida <= 0:
             if self.deadpool.vida == 0:
                 self.ganador = self.wolverine.nombre.title()
