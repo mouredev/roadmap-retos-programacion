@@ -15,7 +15,7 @@ public class Maldo2324 {
         int variable = 1;
         final int constante = 2;
 
-    //Crea una variable representando todos los tipos de datos primitivos
+    //Crea variables representando todos los tipos de datos primitivos
         byte maxByte = 127;
         short maxShort = 32767;
         int maxInt = 2147483647;
