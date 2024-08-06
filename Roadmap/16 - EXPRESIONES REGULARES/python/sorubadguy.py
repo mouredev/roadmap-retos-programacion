@@ -1,28 +1,23 @@
 import re
 
-def quita_numeros(text: str):
-
-    quitar = re.search("[0-9]", text)
+def obtener_numeros(text: str):
     
-    while (quitar):
-        text = text.replace(text[quitar.start()],"")
-        quitar = re.search("[0-9]", text)
-        
-    print(text)
+    numeros = re.findall("\d", text)
+    return numeros   
 
-quita_numeros("1 persona con 3 perros")
+print(obtener_numeros("Hoy es 05/08/2024 y esta nublado desde las 3PM"))
 
 #!Extra
 
-mail = "lucasmartinez33gmail.comar"
+mail = "lucas_martinez33.hotmail.com.ar"
 
 def validar_mail(mail: str):
     
-    reEmail = r""
-    validar = re.search(reEmail, mail)
-    if(validar.end() == len(mail)):
-        print(f"tu email: {mail}, es valido")
-    else:
-        print(f"tu email: {mail}, no es valido")
-        
-validar_mail(mail)
+    reEmail = r"^[\w]+@[\w]+\.{1}[\w]+\.?[\w]*"
+    return bool(re.fullmatch(reEmail, mail))
+    
+print(validar_mail(mail))
+
+def validar_telefono(telefono: int):
+    
+    reTel = r""
