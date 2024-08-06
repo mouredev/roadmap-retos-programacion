@@ -1,14 +1,5 @@
 //@RicJDev
 //EJERCICIO
-/*
-
-* PARTE I: modelado de jugadores, simulacion de los juegos y sistema de registro de eventos
-
-	- Se ejecuta en Node.js
-
-*/
-
-//Registro de eventos
 class OlympicRegistry {
   constructor() {
     if (OlympicRegistry.instance) {
@@ -21,16 +12,24 @@ class OlympicRegistry {
     OlympicRegistry.instance = this
   }
 
-  addEvent(event) {
-    this.events.push(event)
+  addEvent(eventName) {
+    this.events.push(eventName)
+
+    console.log(`${eventName} ha sido registrado!`)
   }
 
   registerParticipant(eventName, participant) {
-    if (!this.participants[eventName]) {
-      this.participants[eventName] = []
-    }
+    if (this.events.includes(eventName)) {
+      if (!this.participants[eventName]) {
+        this.participants[eventName] = []
+      }
 
-    this.participants[eventName].push(participant)
+      this.participants[eventName].push(participant)
+
+      console.log(`Participante registrado en el evento ${eventName}!`)
+    } else {
+      console.log('Evento no registrado')
+    }
   }
 
   getParticipants(eventName) {
@@ -38,7 +37,6 @@ class OlympicRegistry {
   }
 }
 
-//Modelado de eventos
 class Event {
   constructor(name) {
     this.name = name
@@ -69,7 +67,6 @@ class Event {
   }
 }
 
-//Ranking de medallas
 class MedalRanking {
   constructor() {
     this.rankings = {}
@@ -88,8 +85,6 @@ class MedalRanking {
   }
 
   displayRankings() {
-    console.log('Medallas por pais')
-
     for (const country in this.rankings) {
       console.log(' ')
       console.log(country.toUpperCase())
@@ -100,7 +95,6 @@ class MedalRanking {
   }
 }
 
-//Modelado de jugadores
 class Participant {
   constructor(name, country) {
     this.name = name
@@ -110,10 +104,11 @@ class Participant {
 
 /*
 
-* PARTE II: implementacion en terminal
+  * IMPLEMENTACION EN LA TERMINAL
 
+	- Se ejecuta en Node.js
 	- Se ha importado el modulo Readline para tener input en terminal
-	- Se ha instalado Picocolors, una libreria para colorear el texto de la terminal
+  - Se ha instalado Picocolors, una libreria para colorear el texto en la terminal
 
 */
 
@@ -129,9 +124,9 @@ const registry = new OlympicRegistry()
 const ranking = new MedalRanking()
 
 //1. Registrar evento
-function createEvent() {
-  rl.question(pc.blue('\nIndique la disciplina del evento a registrar: '), (eventName) => {
-    registry.addEvent(new Event(eventName))
+function registerEvent() {
+  rl.question('\nIndique el nnombre del evento a registrar: ', (eventName) => {
+    registry.addEvent(eventName)
 
     main()
   })
@@ -139,30 +134,64 @@ function createEvent() {
 
 //2. Registrar participantes
 function registerParticipant() {
-  rl.question(pc.blue('\nIndique el evento para registrar el participante: '), (eventName) => {
-    rl.question(pc.green('Indique el nombre del participante: '), (name) => {
-      rl.question(pc.magenta('Indique el pais del participante: '), (country) => {
-        registry.registerParticipant(eventName, new Participant(name, country))
+  rl.question('\nIndique el nombre del participante: ', (name) => {
+    rl.question('Indique el pais del participante: ', (country) => {
+      if (registry.events.length > 0) {
+        console.log('\nEstos son los eventos displibles: ')
 
+        for (let i = 0; i < registry.events.length; i++) {
+          console.log(`${i + 1}. ${registry.events[i]}`)
+        }
+
+        rl.question('\nElija un evento para registrar al participante: ', (eventIndex) => {
+          const index = parseInt(eventIndex) - 1
+
+          if (registry.events[index]) {
+            registry.registerParticipant(registry.events[index], new Participant(name, country))
+          } else {
+            console.log(pc.red('Elija una opcion valida'))
+          }
+
+          main()
+        })
+      } else {
+        console.log(pc.red('Debe registrar al menos un evento'))
         main()
-      })
+      }
     })
   })
 }
 
 //3. Simular evento
 function simulateEvent() {
-  rl.question(pc.blue('\nIndique el evento a simular: '), (eventName) => {
-    const event = registry.events.find((event) => event.name === eventName)
+  if (registry.events.length > 0) {
+    console.log('\nEstos son los eventos displibles: ')
 
-    event.assignMedals()
+    for (let i = 0; i < registry.events.length; i++) {
+      console.log(`${i + 1}. ${registry.events[i]}`)
+    }
 
-    event.medals.forEach(({ participant, medal }) => {
-      ranking.addMedal(participant.country, medal)
+    rl.question('\nIndique el evento a simular: ', (eventIndex) => {
+      const index = parseInt(eventIndex) - 1
+
+      if (registry.events[index]) {
+        const event = new Event(registry.events[index])
+
+        event.assignMedals()
+
+        for (const element of event.medals) {
+          ranking.addMedal(element.participant.country, element.medal)
+        }
+      } else {
+        console.log(pc.red('\nEvento no registrado'))
+      }
+
+      main()
     })
-
+  } else {
+    console.log(pc.red('Debe registrar al menos un evento'))
     main()
-  })
+  }
 }
 
 //Mostrar medallas
@@ -186,24 +215,22 @@ function main() {
   console.log(pc.underline('\nSIMULADOR DE JUEGOS OLIMPICOS'))
 
   console.log(
-    pc.yellow(
-      '\n1. Registrar evento\n2. Registrar participantes\n3. Simular evento\n4. Generar informes\n5. Salir del programa'
-    )
+    '\n1. Registrar evento\n2. Registrar participantes\n3. Simular evento\n4. Generar informes\n5. Salir del programa'
   )
 
   const actions = new Map([
-    ['1', createEvent],
+    ['1', registerEvent],
     ['2', registerParticipant],
     ['3', simulateEvent],
     ['4', generateInform],
     ['5', exit],
   ])
 
-  rl.question(pc.green('\nSeleccione una opcion (1 - 5) '), (option) => {
+  rl.question('\nSeleccione una opcion (1 - 5) ', (option) => {
     const action =
       actions.get(option) ||
       function () {
-        console.log(pc.red('Opcion no valida'))
+        console.log('Opcion no valida')
         main()
       }
 
