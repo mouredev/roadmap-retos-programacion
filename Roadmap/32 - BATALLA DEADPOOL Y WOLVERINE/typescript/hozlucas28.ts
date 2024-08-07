@@ -1,8 +1,8 @@
+import {setTimeout} from 'timers/promises'
+
 /* -------------------------------------------------------------------------- */
 /*                     SUPERHEROREGENERATINGERROR (ERROR)                     */
 /* -------------------------------------------------------------------------- */
-
-import {setTimeout} from 'timers/promises'
 
 class SuperheroRegeneratingError extends Error {
     public constructor(superhero: ISuperhero) {
@@ -199,7 +199,6 @@ class SuperheroFight implements ISuperheroFight {
 
     public executeTurn(): Readonly<ExecutedTurn> | never {
         const {attacker, number, victim} = this.getTurn()
-
         victim.setRegenerating(false)
 
         this.turn = {
@@ -210,12 +209,19 @@ class SuperheroFight implements ISuperheroFight {
 
         try {
             const damageProducedByAttacker = attacker.produceDamage()
+            const attackerAttackDamage: Readonly<[number, number]> =
+                attacker.getAttackDamage()
+
             const victimAvoidAttack = victim.evadeAttack()
 
-            if (!victimAvoidAttack)
+            if (!victimAvoidAttack) {
                 victim.receiveDamage(damageProducedByAttacker)
+                victim.setRegenerating(
+                    damageProducedByAttacker === attackerAttackDamage[1]
+                )
 
-            if (victim.getLifePoints() <= 0) this.winner = attacker
+                if (victim.getLifePoints() <= 0) this.winner = attacker
+            }
 
             return {
                 attacker,
@@ -253,8 +259,6 @@ class SuperheroFight implements ISuperheroFight {
         try {
             const executedTurn: Readonly<ExecutedTurn> =
                 superheroFight.executeTurn()
-            const attackerAttackDamage: Readonly<[number, number]> =
-                executedTurn.attacker.getAttackDamage()
 
             if (executedTurn.victimAvoidAttack) {
                 console.log(
@@ -265,11 +269,6 @@ class SuperheroFight implements ISuperheroFight {
 
                 continue
             }
-
-            currentTurn.victim.setRegenerating(
-                executedTurn.damageProducedByAttacker ===
-                    attackerAttackDamage[1]
-            )
 
             console.log(
                 `\n> Turn N°${
