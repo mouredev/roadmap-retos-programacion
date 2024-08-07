@@ -8,6 +8,12 @@
 #### [https://retosdeprogramacion.com/roadmap](https://retosdeprogramacion.com/roadmap)
 [![Retos programación web](https://img.shields.io/github/stars/mouredev/retos-programacion-web?label=Web%20Retos%20Programación&style=social)](https://github.com/mouredev/retos-programacion-web)
 
+## Ranking de lenguajes y usuarios
+
+#### ¿Estás participando en los retos? Ahora puedes consultar el ranking de usuarios y lenguajes según su número de contribuciones.
+
+#### [https://retosdeprogramacion.com/roadmap/ranking](https://retosdeprogramacion.com/roadmap/ranking)
+
 ## Información importante
 
 * Cada semana se publica un nuevo reto y se corrige en directo desde **[Twitch](https://twitch.tv/mouredev)** el ejercicio de la semana pasada.
@@ -21,16 +27,59 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 8 de Enero de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/mouredev?event=1191684000465567774)** por país y crea un **[recordatorio](https://discord.gg/mouredev?event=1191684000465567774)**
+> #### Lunes 12 de agosto de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/ZZ98qNuV?event=1267573202209472594)** por país y crea un **[recordatorio](https://discord.gg/ZZ98qNuV?event=1267573202209472594)**
 
 ## Roadmap
 
 | # | Ejercicio | Corrección | Vídeo | Comunidad |
 |---|-----------|------------|-------|-----------|
-|00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[📝](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/python/mouredev.py)||[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
-|01|[OPERADORES Y ESTRUCTURAS DE CONTROL](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/ejercicio.md)|[🗓️ 08/01/24](https://discord.gg/mouredev?event=1191684000465567774)||[👥](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/)
+|00|[SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/ejercicio.md)|[📝](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/python/mouredev.py)|[▶️](https://youtu.be/gEIBJ7rmLa0)|[👥](./Roadmap/00%20-%20SINTAXIS,%20VARIABLES,%20TIPOS%20DE%20DATOS%20Y%20HOLA%20MUNDO/)
+|01|[OPERADORES Y ESTRUCTURAS DE CONTROL](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/ejercicio.md)|[📝](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/python/mouredev.py)|[▶️](https://youtu.be/DLSGCh9jdes)|[👥](./Roadmap/01%20-%20OPERADORES%20Y%20ESTRUCTURAS%20DE%20CONTROL/)
+|02|[FUNCIONES Y ALCANCE](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/ejercicio.md)|[📝](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/python/mouredev.py)|[▶️](https://youtu.be/auxClgiX6UM)|[👥](./Roadmap/02%20-%20FUNCIONES%20Y%20ALCANCE/)
+|03|[ESTRUCTURAS DE DATOS](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/ejercicio.md)|[📝](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/python/mouredev.py)|[▶️](https://youtu.be/brxtPtUbU7M)|[👥](./Roadmap/03%20-%20ESTRUCTURAS%20DE%20DATOS/)
+|04|[CADENAS DE CARACTERES](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/ejercicio.md)|[📝](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/python/mouredev.py)|[▶️](https://youtu.be/CKzY7nHwulA)|[👥](./Roadmap/04%20-%20CADENAS%20DE%20CARACTERES/)
+|05|[VALOR Y REFERENCIA](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/ejercicio.md)|[📝](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/python/mouredev.py)|[▶️](https://youtu.be/P2OQDT9Wrb0)|[👥](./Roadmap/05%20-%20VALOR%20Y%20REFERENCIA/)
+|06|[RECURSIVIDAD](./Roadmap/06%20-%20RECURSIVIDAD/ejercicio.md)|[📝](./Roadmap/06%20-%20RECURSIVIDAD/python/mouredev.py)|[▶️](https://youtu.be/nTfDkLRrYiM)|[👥](./Roadmap/06%20-%20RECURSIVIDAD/)
+|07|[PILAS Y COLAS](./Roadmap/07%20-%20PILAS%20Y%20COLAS/ejercicio.md)|[📝](./Roadmap/07%20-%20PILAS%20Y%20COLAS/python/mouredev.py)|[▶️](https://youtu.be/cBeRWS2X0CA)|[👥](./Roadmap/07%20-%20PILAS%20Y%20COLAS/)
+|08|[CLASES](./Roadmap/08%20-%20CLASES/ejercicio.md)|[📝](./Roadmap/08%20-%20CLASES/python/mouredev.py)|[▶️](https://youtu.be/W4tv8WUbum4)|[👥](./Roadmap/08%20-%20CLASES/)
+|09|[HERENCIA Y POLIMORFISMO](./Roadmap/09%20-%20HERENCIA/ejercicio.md)|[📝](./Roadmap/09%20-%20HERENCIA/python/mouredev.py)|[▶️](https://youtu.be/PVBs5PWjedA)|[👥](./Roadmap/09%20-%20HERENCIA/)
+|10|[EXCEPCIONES](./Roadmap/10%20-%20EXCEPCIONES/ejercicio.md)|[📝](./Roadmap/10%20-%20EXCEPCIONES/python/mouredev.py)|[▶️](https://youtu.be/mfOzfj-BrQo)|[👥](./Roadmap/10%20-%20EXCEPCIONES/)
+|11|[MANEJO DE FICHEROS](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/ejercicio.md)|[📝](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/python/mouredev.py)|[▶️](https://youtu.be/Bsiay2nax4Y)|[👥](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/)
+|12|[JSON Y XML](./Roadmap/12%20-%20JSON%20Y%20XML/ejercicio.md)|[📝](./Roadmap/12%20-%20JSON%20Y%20XML/python/mouredev.py)|[▶️](https://youtu.be/OwStihBItEg)|[👥](./Roadmap/12%20-%20JSON%20Y%20XML/)
+|13|[PRUEBAS UNITARIAS](./Roadmap/13%20-%20PRUEBAS%20UNITARIAS/ejercicio.md)|[📝](./Roadmap/13%20-%20PRUEBAS%20UNITARIAS/python/mouredev.py)|[▶️](https://youtu.be/3WFQ2grp0h0)|[👥](./Roadmap/13%20-%20PRUEBAS%20UNITARIAS/)
+|14|[FECHAS](./Roadmap/14%20-%20FECHAS/ejercicio.md)|[📝](./Roadmap/14%20-%20FECHAS/python/mouredev.py)|[▶️](https://youtu.be/EQIAhF7NNMI)|[👥](./Roadmap/14%20-%20FECHAS/)
+|15|[ASINCRONÍA](./Roadmap/15%20-%20ASINCRONÍA/ejercicio.md)|[📝](./Roadmap/15%20-%20ASINCRONÍA/python/mouredev.py)|[▶️](https://youtu.be/YA8Ssd3AUwA)|[👥](./Roadmap/15%20-%20ASINCRONÍA/)
+|16|[EXPRESIONES REGULARES](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/ejercicio.md)|[📝](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/python/mouredev.py)|[▶️](https://youtu.be/0L7IfEF19ow)|[👥](./Roadmap/16%20-%20EXPRESIONES%20REGULARES/)
+|17|[ITERACIONES](./Roadmap/17%20-%20ITERACIONES/ejercicio.md)|[📝](./Roadmap/17%20-%20ITERACIONES/python/mouredev.py)|[▶️](https://youtu.be/X1ROaPH_ci8)|[👥](./Roadmap/17%20-%20ITERACIONES/)
+|18|[CONJUNTOS](./Roadmap/18%20-%20CONJUNTOS/ejercicio.md)|[📝](./Roadmap/18%20-%20CONJUNTOS/python/mouredev.py)|[▶️](https://youtu.be/0auuM4GROVA)|[👥](./Roadmap/18%20-%20CONJUNTOS/)
+|19|[ENUMERACIONES](./Roadmap/19%20-%20ENUMERACIONES/ejercicio.md)|[📝](./Roadmap/19%20-%20ENUMERACIONES/python/mouredev.py)|[▶️](https://youtu.be/0auuM4GROVA)|[👥](./Roadmap/19%20-%20ENUMERACIONES/)
+|20|[PETICIONES HTTP](./Roadmap/20%20-%20PETICIONES%20HTTP/ejercicio.md)|[📝](./Roadmap/20%20-%20PETICIONES%20HTTP/python/mouredev.py)|[▶️](https://youtu.be/-pYMoPYSkgM)|[👥](./Roadmap/20%20-%20PETICIONES%20HTTP/)
+|21|[CALLBACKS](./Roadmap/21%20-%20CALLBACKS/ejercicio.md)|[📝](./Roadmap/21%20-%20CALLBACKS/python/mouredev.py)|[▶️](https://youtu.be/tqQo9SjJFlY)|[👥](./Roadmap/21%20-%20CALLBACKS/)
+|22|[FUNCIONES DE ORDEN SUPERIOR](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/ejercicio.md)|[📝](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/python/mouredev.py)|[▶️](https://youtu.be/ABniGtbqAXk)|[👥](./Roadmap/22%20-%20FUNCIONES%20DE%20ORDEN%20SUPERIOR/)
+|23|[SINGLETON](./Roadmap/23%20-%20SINGLETON/ejercicio.md)|[📝](./Roadmap/23%20-%20SINGLETON/python/mouredev.py)|[▶️](https://youtu.be/cOIcFo_w9hA)|[👥](./Roadmap/23%20-%20SINGLETON/)
+|24|[DECORADORES](./Roadmap/24%20-%20DECORADORES/ejercicio.md)|[📝](./Roadmap/24%20-%20DECORADORES/python/mouredev.py)|[▶️](https://youtu.be/jxJOjg7gPG4)|[👥](./Roadmap/24%20-%20DECORADORES/)
+|25|[LOGS](./Roadmap/25%20-%20LOGS/ejercicio.md)|[📝](./Roadmap/25%20-%20LOGS/python/mouredev.py)|[▶️](https://youtu.be/y2O6L1r_skc)|[👥](./Roadmap/25%20-%20LOGS/)
+|26|[SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA](./Roadmap/26%20-%20SOLID%20SRP/ejercicio.md)|[📝](./Roadmap/26%20-%20SOLID%20SRP/python/mouredev.py)|[▶️](https://youtu.be/7NM8FK9G91M)|[👥](./Roadmap/26%20-%20SOLID%20SRP)
+|27|[SOLID: PRINCIPIO ABIERTO-CERRADO](./Roadmap/27%20-%20SOLID%20OCP/ejercicio.md)|[📝](./Roadmap/27%20-%20SOLID%20OCP/python/mouredev.py)|[▶️](https://youtu.be/o0lSVzu4ur4)|[👥](./Roadmap/27%20-%20SOLID%20OCP/)
+|28|[SOLID: PRINCIPIO DE SUSTITUCIÓN DE LISKOV](./Roadmap/28%20-%20SOLID%20LSP/ejercicio.md)|[📝](./Roadmap/28%20-%20SOLID%20LSP/python/mouredev.py)|[▶️](https://youtu.be/SgHoiF1KLTo)|[👥](./Roadmap/28%20-%20SOLID%20LSP/)
+|29|[SOLID: PRINCIPIO DE SEGREGACIÓN DE INTERFACES](./Roadmap/29%20-%20SOLID%20ISP/ejercicio.md)|[📝](./Roadmap/29%20-%20SOLID%20ISP/python/mouredev.py)|[▶️](https://youtu.be/0zTmCTHJ_lg)|[👥](./Roadmap/29%20-%20SOLID%20ISP/)
+|30|[SOLID: PRINCIPIO DE INVERSIÓN DE DEPENDENCIAS](./Roadmap/30%20-%20SOLID%20DIP/ejercicio.md)|[📝](./Roadmap/30%20-%20SOLID%20DIP/python/mouredev.py)|[▶️](https://youtu.be/wxIj6Rs8rAU)|[👥](./Roadmap/30%20-%20SOLID%20DIP/)
+|31|[SIMULADOR JUEGOS OLÍMPICOS](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/ejercicio.md)|[📝](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/python/mouredev.py)|[▶️](https://youtu.be/JN656lQ9WBo)|[👥](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/)
+|32|[BATALLA DEADPOOL Y WOLVERINE](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/ejercicio.md)|[🗓️ 12/08/24](https://discord.gg/ZZ98qNuV?event=1267573202209472594)||[👥](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/)
 
+## Cursos en YouTube
+
+A media que avanzamos en el roadmap estoy creando cursos que agrupan las clases.
+
+<div style="display: flex;">
+  <div style="flex: 1;">
+    <a href="https://youtu.be/TdITcVD64zI"><img src="http://i3.ytimg.com/vi/TdITcVD64zI/maxresdefault.jpg"/></a>
+  </div>
+  <div style="flex: 1;">
+    <a href="https://youtu.be/b-kk1WQo-YA"><img src="http://i3.ytimg.com/vi/b-kk1WQo-YA/maxresdefault.jpg"/></a>
+  </div>
+</div>
 
 ## Instrucciones
 
@@ -57,10 +106,10 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 
 1. Realiza un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del repositorio de retos semanales desde GitHub.
 2. CLONA ese repositorio a tu máquina local `git clone [TU-REPOSITORIO]`.
-3. Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
+3. (Opcional) Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
 4. Añade el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`.
 5. Haz COMMIT con el mensaje de la solución `git commit -m "#[NÚMERO-RETO] - [LENGUAJE-UTILIZADO]"`.
-6. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]`
+6. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]` (puede ser la "main" o la que creaste en el paso 3)
 7. En el repositorio principal debes ir a la rama y hacer [PULL REQUEST](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 8. CONTRIBUTE.
 9. CREATE PULL REQUEST (cubre la plantilla que te aparecerá).
@@ -92,7 +141,7 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 ![GitHub Followers](https://img.shields.io/github/followers/mouredev?style=social)
 ![GitHub Stars](https://img.shields.io/github/stars/mouredev?style=social)
 
-Soy ingeniero de software desde 2010. Desde 2018 años combino mi trabajo desarrollando Apps con la creación de contenido formativo sobre programación y tecnología en diferentes redes sociales como **[@mouredev](https://moure.dev)**.
+Soy ingeniero de software desde 2010. Desde 2018 combino mi trabajo desarrollando Apps con la creación de contenido formativo sobre programación y tecnología en diferentes redes sociales como **[@mouredev](https://moure.dev)**.
 
 ### En mi perfil de GitHub tienes más información
 

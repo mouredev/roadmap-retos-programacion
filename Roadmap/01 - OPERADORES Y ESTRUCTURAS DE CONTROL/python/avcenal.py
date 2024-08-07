@@ -125,7 +125,73 @@ for element in my_list:
 else:
     print (f"He recorrido hasta el número {index} del rango (0,10)")
 
+#Excepciones
+print("\n")
+print ("Excepciones")
+value_one = 3
+value_two = "5"
+#try - except
+print ("TRY - EXCEPT")
+try:
+    print(f"La suma de los valores es {value_one + value_two}")
+    print("No he ha producino ningún error")
+except:
+    print("Se ha producido un error")
+
+#try - except - else     
+print("\n")
+print ("TRY - EXCEPT - ELSE")
+value_two = 5
+try:
+    print(f"La suma de los valores es {value_one + value_two}")
+    print("No se ha producino ningún error")
+except:
+    print("Se ha producido un error")
+else:
+    print("La ejecución sigue sin errores")
+
+#try - except - else - finally
+print("\n")
+print ("TRY - EXCEPT - ELSE - FINALLY")
+value_two = "5"
+try:
+    print(f"La suma de los valores es {value_one + value_two}")
+    print("No se ha producino ningún error")
+except:
+    print("Se ha producido un error")
+else:
+    print("La ejecución sigue sin errores")
+finally:
+    print("La ejecución del manejo de excepciones ha finalizado")
+
+#Captura de excepciones por tipo
+print("\n")
+print ("Captura de excepciones por tipo")
+try:
+    print(f"La suma de los valores es {value_one + value_two}")
+    print("No se ha producino ningún error")
+except TypeError:
+    print("Se ha producido un TypeError")
+except ValueError:
+    print("Se ha producido un ValueError")
+except IndexError:
+    print("Se ha producido un IndexError")
+
+#Captura de la información de la excepción
+print("\n")
+print ("Captura de la información de la excepción")
+try:
+    print(f"La suma de los valores es {value_one + value_two}")
+    print("No se ha producino ningún error")
+except ValueError:
+    print("Se ha producido un ValueError")
+except Exception as error:
+    print(error)
+
 # DIFICULTAD ADICIONAL o BONUS TRACK =)
+print("\n")
+print ("DIFICULTAD ADICIONAL o BONUS TRACK =)")
+
 def roadmap_01():
     min_range = 10
     max_range = 55

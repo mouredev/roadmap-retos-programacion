@@ -124,6 +124,83 @@ console.log(true || false); // true
 console.log(false || true); // true
 console.log(false || false); // false
 
+/* ********************************* */
+
+// 📌 EJEMPLOS ESTRUCTURAS DE CONTROL (IF - ELSE, SWITCH, FOR, WHILE, DO WHILE, BREAK, CONTINUE)
+
+// IF ELSE
+let edad: number = 23;
+if (edad < 18) {
+  console.log(`Tienes ${edad} años, eres menor de edad`);
+} else if (edad >= 18) {
+  console.log(`Tienes ${edad} años, eres mayor de edad`);
+} else {
+  console.log("Por favor ingrese una edad");
+}
+
+// Switch
+let diasSemana: Date = new Date();
+switch (diasSemana.getDay()) {
+  case 0:
+    console.log("Domingo");
+    break;
+  case 1:
+    console.log("Lunes");
+    break;
+  case 2:
+    console.log("Martes");
+    break;
+  case 3:
+    console.log("Miercoles");
+    break;
+  case 4:
+    console.log("Jueves");
+    break;
+  case 5:
+    console.log("Viernes");
+    break;
+  case 6:
+    console.log("Sabado");
+    break;
+}
+
+// FOR
+for (let i = 1; i <= 10; i++) {
+  console.log(i);
+}
+
+// WHILE
+let contar: number = 1;
+while (contar <= 10) {
+  console.log(contar);
+  contar++;
+}
+
+// DO WHILE
+let i: number = 1;
+do {
+  console.log(i);
+  i++;
+} while (i <= 10);
+
+// Break (Solo se puede usar en FOR, WHILE y DO WHILE)
+let productos: object[] = [
+  { nombre: "Telefono", precio: 700 },
+  { nombre: "Tablet", precio: 900 },
+  { nombre: "Computadora", precio: 2500 },
+];
+for (let i = 0; i <= productos.length; i++) {
+  if (productos[i]["precio"] === 900) break;
+  console.log(productos[i]);
+}
+
+// Continue (Solo se puede usar en FOR, WHILE y DO WHILE)
+
+for (let i = 0; i <= 10; i++) {
+  if (i % 2 !== 0) continue;
+  console.log(i);
+}
+
 /*
   DIFICULTAD EXTRA (opcional):
  Crea un programa que imprima por consola todos los números comprendidos
