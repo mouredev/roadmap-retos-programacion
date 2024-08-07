@@ -1,4 +1,8 @@
 //@RicJDev
+
+//Se ha instalado Picocolors, una librería para colorear el texto en la terminal
+const pc = require('picocolors')
+
 //EJERCICIO
 class OlympicRegistry {
   constructor() {
@@ -14,8 +18,6 @@ class OlympicRegistry {
 
   addEvent(eventName) {
     this.events.push(eventName)
-
-    console.log(`${eventName} ha sido registrado!`)
   }
 
   registerParticipant(eventName, participant) {
@@ -25,10 +27,8 @@ class OlympicRegistry {
       }
 
       this.participants[eventName].push(participant)
-
-      console.log(`Participante registrado en el evento ${eventName}!`)
     } else {
-      console.log('Evento no registrado')
+      console.log(pc.red('Evento no registrado'))
     }
   }
 
@@ -47,7 +47,7 @@ class Event {
     const participants = OlympicRegistry.instance.getParticipants(this.name)
 
     if (participants.length < 3) {
-      console.log('Se requieren al menos tres participantes')
+      console.log(pc.red('Se requieren al menos tres participantes'))
 
       return
     }
@@ -85,12 +85,16 @@ class MedalRanking {
   }
 
   displayRankings() {
-    for (const country in this.rankings) {
-      console.log(' ')
-      console.log(country.toUpperCase())
-      console.log(`Gold: ${this.rankings[country].Gold}`)
-      console.log(`Silver: ${this.rankings[country].Silver}`)
-      console.log(`Bronze: ${this.rankings[country].Bronze}`)
+    if (Object.keys(this.rankings).length > 0) {
+      for (const country in this.rankings) {
+        console.log(' ')
+        console.log(country.toUpperCase())
+        console.log(`Gold: ${this.rankings[country].Gold}`)
+        console.log(`Silver: ${this.rankings[country].Silver}`)
+        console.log(`Bronze: ${this.rankings[country].Bronze}`)
+      }
+    } else {
+      console.log(pc.red('No se ha asignado medallas a ningún país'))
     }
   }
 }
@@ -104,11 +108,8 @@ class Participant {
 
 /*
 
-  * IMPLEMENTACION EN LA TERMINAL
-
 	- Se ejecuta en Node.js
 	- Se ha importado el modulo Readline para tener input en terminal
-  - Se ha instalado Picocolors, una libreria para colorear el texto en la terminal
 
 */
 
@@ -118,15 +119,15 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
-const pc = require('picocolors')
-
 const registry = new OlympicRegistry()
 const ranking = new MedalRanking()
 
 //1. Registrar evento
 function registerEvent() {
-  rl.question('\nIndique el nnombre del evento a registrar: ', (eventName) => {
+  rl.question(pc.blue('\nIndique el nombre del evento a registrar: '), (eventName) => {
     registry.addEvent(eventName)
+
+    console.log(`${pc.green(eventName)} ha sido registrado!`)
 
     main()
   })
@@ -135,21 +136,25 @@ function registerEvent() {
 //2. Registrar participantes
 function registerParticipant() {
   rl.question('\nIndique el nombre del participante: ', (name) => {
-    rl.question('Indique el pais del participante: ', (country) => {
+    rl.question('Indique el país del participante: ', (country) => {
       if (registry.events.length > 0) {
-        console.log('\nEstos son los eventos displibles: ')
+        console.log('\nEstos son los eventos registrados: ')
 
         for (let i = 0; i < registry.events.length; i++) {
           console.log(`${i + 1}. ${registry.events[i]}`)
         }
 
-        rl.question('\nElija un evento para registrar al participante: ', (eventIndex) => {
+        rl.question(pc.blue('\nElija un evento para registrar al participante: '), (eventIndex) => {
           const index = parseInt(eventIndex) - 1
 
           if (registry.events[index]) {
             registry.registerParticipant(registry.events[index], new Participant(name, country))
+
+            console.log(
+              `${pc.green(name)} ha sido registrado en ${pc.green(registry.events[index])}!`
+            )
           } else {
-            console.log(pc.red('Elija una opcion valida'))
+            console.log(pc.red('Elija una opción válida'))
           }
 
           main()
@@ -165,13 +170,13 @@ function registerParticipant() {
 //3. Simular evento
 function simulateEvent() {
   if (registry.events.length > 0) {
-    console.log('\nEstos son los eventos displibles: ')
+    console.log('\nEstos son los eventos disponibles: ')
 
     for (let i = 0; i < registry.events.length; i++) {
       console.log(`${i + 1}. ${registry.events[i]}`)
     }
 
-    rl.question('\nIndique el evento a simular: ', (eventIndex) => {
+    rl.question(pc.blue('\nIndique el evento a simular: '), (eventIndex) => {
       const index = parseInt(eventIndex) - 1
 
       if (registry.events[index]) {
@@ -226,11 +231,11 @@ function main() {
     ['5', exit],
   ])
 
-  rl.question('\nSeleccione una opcion (1 - 5) ', (option) => {
+  rl.question(pc.yellow('\nSeleccione una opción (1 - 5) '), (option) => {
     const action =
       actions.get(option) ||
       function () {
-        console.log('Opcion no valida')
+        console.log(pc.red('Elija una opción válida'))
         main()
       }
 
