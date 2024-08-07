@@ -64,3 +64,6 @@ while opcion_elegida != '5':
             print("Opción no válida.")
 
     opcion_elegida = input("Elige una opción: ")
+
+
+# LIFO - Last In First Out

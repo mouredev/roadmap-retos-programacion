@@ -96,127 +96,84 @@ print(tv.estado())                     # invocamos un metodo
 
 
 
-class Pila:
-    """ Clase pila, para almacenar objetos """
+"""
+Extra
+"""
 
-    def __init__(self) -> None:
-        """ Constructor """
-        self.pila = []          # Atributo con valor por defecto
-
-
-    def __del__(self):
-        """ Destructor """
-        del self.pila 
-        print("Destruyendo la pila")
-
-    def almacenar(self, *args):
-        """ Almacena un objeto en la pila  """
-        self.pila.append(args)
-        mensaje = f"Almacenando {args}"
-        return mensaje
+# LIFO
 
 
-    def extraer(self):
-        """ Extrae el ultimo elemento almacenado en la pila """
-        lste = self.pila.pop() 
-        mensaje = f"Extrayendo el elemento: {lste}"
-        return mensaje
+class Stack:
 
-    def estado(self):
-        """ Muestra en pantalla el estado de la pila """
-        mensaje = f"numero de elementos : {len(self.pila)}"
-        if len(self.pila) > 0:
-            mensaje += ' almacenados en la pila'
-        else:
-            mensaje += ' la pila esta vacia'
-        return mensaje
-    
-    def contenido(self):
-        "Muestra el contenido de la pila"
-        if len(self.pila) == 0:
-            print('La pila esta vacia')
-        else:
-            print(self.pila)
-    
+    def __init__(self):
+        self.stack = []
 
-pila = Pila()                              # creamos el objeto
+    def push(self, item):
+        self.stack.append(item)
 
-print(pila.pila)                           # accedemos a un atributo
+    def pop(self):
+        if self.count() == 0:
+            return None
+        return self.stack.pop()
 
-print(pila.almacenar(1))                   # invocamos un metodo
+    def count(self):
+        return len(self.stack)
 
-print(pila.almacenar(1))                   # invocamos un metodo
+    def print(self):
+        for item in reversed(self.stack):
+            print(item)
 
-print(pila.almacenar(3))                   # invocamos un metodo
 
-print(pila.almacenar(2))                   # invocamos un metodo
+my_stack = Stack()
+my_stack.push("A")
+my_stack.push("B")
+my_stack.push("C")
+print(my_stack.count())
+my_stack.print()
+my_stack.pop()
+print(my_stack.count())
+print(my_stack.pop())
+print(my_stack.pop())
+print(my_stack.pop())
+print(my_stack.pop())
+print(my_stack.pop())
+print(my_stack.count())
 
-print(pila.estado())                       # invocamos un metodo
+# FIFO
 
-print(pila.extraer())                      # accedemos al atributo
 
-print(pila.estado())                       # invocamos un metodo
+class Queue:
 
-print(pila.contenido())                    # invocamos un metodos
-            
-
-class Cola:
-    """ Clase cola """
-
-    def __init__(self) -> None:
-        """ Constructor """
+    def __init__(self):
         self.queue = []
 
-    def __del__(self):
-        """ Destructor """
-        del self.queue 
-        print("Destruyendo la cola")
+    def enqueue(self, item):
+        self.queue.append(item)
 
-    def anadir(self, *args):
-        """ Agrega un documento a la cola """
-        self.queue.append(args)
-        mensaje = f"Aniadiendo {args}"
-        return mensaje
+    def dequeue(self):
+        if self.count() == 0:
+            return None
+        return self.queue.pop(0)
 
-    def extraer(self,):
-        """ Extrae el ultimo documento de la cola """
-        elemento = self.queue.pop(0)
-        mensaje = f"Extrayendo el elemento: {elemento}"
-        return mensaje
+    def count(self):
+        return len(self.queue)
 
-    def estado(self):
-        """ Muestra en pantalla el estado de cola """
-        mensaje = f"numero de elementos : {len(self.queue)}"
-        if len(self.queue) > 0:
-            mensaje += ' almacenados en la cola'
-        else:
-            mensaje += ' la cola esta vacia'
-        return mensaje
-    
-    def contenido(self):
-        "Muestra el contenido de la pila"
-        if len(self.queue) == 0:
-            print('La cola esta vacia')
-        else:
-            print(self.queue)
+    def print(self):
+        for item in self.queue:
+            print(item)
 
 
-cola = Cola()                              # creamos el objeto
-
-print(cola.queue)                           # accedemos a un atributo
-
-print(cola.anadir(1))                   # invocamos un metodo
-
-print(cola.anadir(2))                   # invocamos un metodo
-
-print(cola.anadir(1))                   # invocamos un metodo
-
-print(cola.anadir(3))                   # invocamos un metodo
-
-print(cola.estado())                       # invocamos un metodo
-
-print(cola.extraer())                      # accedemos al atributo
-
-print(cola.estado())                       # invocamos un metodo
-
-print(cola.contenido())                    # invocamos un metodos
+my_queue = Queue()
+my_queue.enqueue("A")
+my_queue.enqueue("B")
+my_queue.enqueue("C")
+print(my_queue.count())
+my_queue.print()
+my_queue.dequeue()
+print(my_queue.count())
+print(my_queue.dequeue())
+print(my_queue.dequeue())
+print(my_queue.dequeue())
+print(my_queue.dequeue())
+print(my_queue.dequeue())
+print(my_queue.count())

@@ -25,38 +25,50 @@ decreaseFactorial(100)
 #factorial from a given number
 def factorialRecursive(number: int) -> int:
 
-    if number == 1:
+    if number == 1 or number == 0:
         return 1
+    elif number < 0 :
+        print("Negative numbers are not allowed.")
+        return 0
     else:
         return number * factorialRecursive(number-1)
 
 print(factorialRecursive(7))
+print(factorialRecursive(0))
+print(factorialRecursive(-10))
 
 #calc the value in a Fibonacci list by the given position
 
 def fiboList(position: int = 51) -> list:
     """this functions returns the value of a position in a Fibonacci list"""
     listFibo = [0,1]
-    for i in range(2, position+1):
+    for i in range(2, position):
         listFibo.append(listFibo[i-2]+listFibo[i-1]) 
         #print(i)
         #print(i," - ", x)
-    return print(listFibo[position])
+    return print(listFibo[position-1])
     
 fiboList(10)
+fiboList(5)
 
 # recursive Fibonacci
 
 def fiboPositionRecursive(position: int)-> int:
     """function to return the value of a position in a Fibnonacci list"""
 
-    if position == 0:
+    if position <= 0:
+        print("Position must be greater than 0.")
         return 0
     elif position == 1:
+        return 0
+    elif position == 2:
         return 1
     else:
-        return(fiboPositionRecursive(position-1)+ fiboPositionRecursive(position-2))
+        return(fiboPositionRecursive(position-1) + fiboPositionRecursive(position-2))
 
 
 print(fiboPositionRecursive(10))
+print(fiboPositionRecursive(5))
+print(fiboPositionRecursive(0))
+
 
