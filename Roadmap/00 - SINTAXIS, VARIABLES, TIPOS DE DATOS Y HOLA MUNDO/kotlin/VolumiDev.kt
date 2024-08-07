@@ -14,29 +14,29 @@ var language = "kotlin"
 val pi = 3.14
 
 // ✅ Tipos de datos primitivos de tipo Integer (Byte, Short, Int, Long)
-var exm_byte : Byte = 6 // tiene un rango entre 0-8 
+var exm_byte : Byte = 6
 println("Ejemplo de byte: $exm_byte")
 
-var exm_short : Short = 5555 // tiene un rango entre 0 - 65535
+var exm_short : Short = 5555
 println("Ejemplo de short: $exm_short")
 
-var exm_int : Int = 429496 // tiene un rango entre 0 y 4294967295
+var exm_int : Int = 429496
 println("Ejemplo de int: $exm_int")
 
-var exm_long : Long = 999999999999234 // tiene un rango entre 0 y 18446744073709551615
+var exm_long : Long = 999999999999234 
 println("Ejemplo de long: $exm_long")
 
 // ✅ Tipos de datos primitivos de tipo Unsigned Integers (UByte, UShort, UInt, ULong)
 var exm_Ubyte : UByte = 6u // tiene un rango entre 0-8 
 println("Ejemplo de Ubyte: $exm_Ubyte")
 
-var exm_Ushort : UShort = 5555u // tiene un rango entre 0 - 65535
+var exm_Ushort : UShort = 5555u 
 println("Ejemplo de Ushort: $exm_Ushort")
 
-var exm_Uint : UInt = 429496u // tiene un rango entre 0 y 4294967295
+var exm_Uint : UInt = 429496u 
 println("Ejemplo de Uint: $exm_Uint")
 
-var exm_Ulong : ULong = 999999999999234u // tiene un rango entre 0 y 18446744073709551615
+var exm_Ulong : ULong = 999999999999234u
 println("Ejemplo de Ulong: $exm_Ulong")
 
 // ✅ Tipos de datos primitivos de tipo Floating point  (Float, Double)
