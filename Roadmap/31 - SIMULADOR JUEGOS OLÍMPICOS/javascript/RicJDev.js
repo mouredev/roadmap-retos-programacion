@@ -1,6 +1,6 @@
 //@RicJDev
 
-//Se ha instalado Picocolors, una librería para colorear el texto en la terminal
+//Se ha instalado Picocolors, un libreria para colorear texto en terminal (https://www.npmjs.com/package/picocolors)
 import pc from 'picocolors'
 
 //EJERCICIO
@@ -108,8 +108,7 @@ class Participant {
 
 /*
 
-	- Se ejecuta en Node.js
-	- Se ha importado el modulo Readline para tener input en terminal
+  - Se ejecuta en Node.js, importando el modulo Readline (https://nodejs.org/api/readline.html)
 
 */
 
