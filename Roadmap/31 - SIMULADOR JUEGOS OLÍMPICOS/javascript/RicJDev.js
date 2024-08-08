@@ -1,7 +1,7 @@
 //@RicJDev
 
 //Se ha instalado Picocolors, una librería para colorear el texto en la terminal
-const pc = require('picocolors')
+import pc from 'picocolors'
 
 //EJERCICIO
 class OlympicRegistry {
@@ -113,7 +113,8 @@ class Participant {
 
 */
 
-const readline = require('readline')
+import * as readline from 'node:readline'
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
