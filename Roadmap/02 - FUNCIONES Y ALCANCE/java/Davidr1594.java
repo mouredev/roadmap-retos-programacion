@@ -38,7 +38,7 @@ public class Davidr1594 {
         //Llamando a una funcion desde otra funcion
         mostrarEnPantalla();
         //Ejercicio Extra
-        ejercicioExtra("","");
+        System.out.println(ejercicioExtra("Texto1","Texto2"));
 
     
 
@@ -46,25 +46,24 @@ public class Davidr1594 {
 
     private static int ejercicioExtra(String cadena1, String cadena2) {
         int contador = 0;
-        for (int i = 0; i <= 100; i++) {
-            if(i%3 != 0){
+        for (int i = 1; i <= 100; i++) {
+            if(i%3 == 0){
                 System.out.println(cadena1);
-                contador ++;
-            }else if(i%5 != 0){
+                contador +=1;
+            }else if(i%5 == 0){
                 System.out.println(cadena2);
-                contador ++;
-            }else if((i%3 != 0) && (i%5 != 0)){
-                System.out.println(cadena1.concat(" "+ cadena2));
-                contador ++;
+                contador +=1;
+            }else if((i%3 == 0) && (i%5 == 0)){
+                System.out.print(cadena1.concat(" "+ cadena2));
+                contador += 1;
             }
-            
-        }
 
+        }
     return contador;
     }
 
     private static void mostrarEnPantalla() {
-        int a = 0,b =0;
+        int a = 5 ,b =5;
 
         System.out.println(suma(a,b));
     }
