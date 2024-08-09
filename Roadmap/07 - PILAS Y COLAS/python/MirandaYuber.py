@@ -77,6 +77,7 @@ EXTRA
 
 def navegador():
     paginas = []
+    ultima_pagina = ''
 
     while True:
         accion = input(
@@ -86,9 +87,10 @@ def navegador():
         match accion:
             case 'atras':
                 if len(paginas) > 0:
-                    paginas.pop()
+                    ultima_pagina = paginas.pop()
             case 'adelante':
-                pass
+                if ultima_pagina != '':
+                    paginas.append(ultima_pagina)
             case 'salir':
                 break
             case _:
