@@ -27,6 +27,107 @@ import Clases.*;
  * 4. Muestra la vida en cada turno.
  * 5. Muestra el resultado final.
  */
+public abstract class Personajes {
+	protected int vida;
+
+    public Personajes() {
+        this.setVida(100); 
+    }
+
+    public abstract int atacar();
+
+    public abstract int defenderse();
+    
+    public abstract int regenerarse();
+
+	public int getVida() {
+		return vida;
+	}
+
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+}
+public class Wolverine extends Personajes {
+	private boolean estaRegenerandose;
+	public Wolverine() {
+		 super();
+		 this.estaRegenerandose = false;
+	}
+
+	@Override
+	 public int atacar() {
+        Random rand = new Random();
+        return rand.nextInt((120 - 10) + 1) + 10;
+    }
+
+	@Override
+	public int defenderse() {
+		Random rand = new Random();
+        int probabilidad = rand.nextInt(100);
+        if (probabilidad < 20) {
+            return 1; // Defensa exitosa
+        } else {
+            return 0; // Defensa fallida
+        }
+	}
+
+	@Override
+	public int regenerarse() {
+        // Se regenera si recibe daño crítico, lo que le impide atacar
+        if (this.vida <= 20) {
+            this.estaRegenerandose = true;
+            this.vida += 20; // Aumenta la vida en 20 puntos
+        }
+        return this.vida;
+    }
+	
+	 public boolean estaRegenerandose() {
+	        return this.estaRegenerandose;
+	 }
+
+}
+public class Deadpool extends Personajes {
+    private boolean estaRegenerandose;
+
+    public Deadpool() {
+        super(); // Llama al constructor de la clase padre para inicializar la vida
+        this.estaRegenerandose = false; // Inicializa la variable de regeneración
+    }
+
+    @Override
+    public int atacar() {
+        Random rand = new Random();
+        return rand.nextInt((100 - 10) + 1) + 10;
+    }
+
+    @Override
+    public int defenderse() {
+        // Tiene una probabilidad de defenderse del 25%
+        Random rand = new Random();
+        int probabilidad = rand.nextInt(100);
+        if (probabilidad < 25) {
+            return 1; // Defensa exitosa
+        } else {
+            return 0; // Defensa fallida
+        }
+    }
+    @Override
+    public int regenerarse() {
+        // Se regenera si recibe daño crítico, lo que le impide atacar
+        if (this.vida <= 20) {
+            this.estaRegenerandose = true;
+            this.vida += 20; // Aumenta la vida en 20 puntos
+        }
+        return this.vida;
+    }
+
+    public boolean estaRegenerandose() {
+        return this.estaRegenerandose;
+    }
+}
+
+
 public class Principal {
 
 	public static void main(String[] args) throws InterruptedException{
