@@ -49,19 +49,16 @@ print(stack)
 
 
 """ * DIFICULTAD EXTRA (opcional):
- * - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
+ *   Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
  *   de un navegador web. Crea un programa en el que puedas navegar a una página o indicarle
  *   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
  *   Las palabras "adelante", "atrás" desencadenan esta acción, el resto se interpreta como
- *   el nombre de una nueva web.
- * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
- *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
- *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
- *   interpretan como nombres de documentos."""
+ *   el nombre de una nueva web."""
+
 
 def web_navegation():
-    web = []
-
+    web = ["home"]
+    restaurarWeb = []
     while True:
         action = input("Añade una url o interactua con palabras adelante/atrás/salir: ")
         match action: 
@@ -69,11 +66,39 @@ def web_navegation():
                 print("Cerraste el navegador.")
                 break
             case "atrás":
-                print("algo de atrás")
+                if len(web) > 1:
+                    restaurarWeb.append(web.pop()) # Quitando el elemento de la web y guardandola en otra lista
+                else:
+                    print("Se encuentra en el inicio: ")
             case "adelante":
-                print("algo de adelante")
+                if len(restaurarWeb) > 0:
+                    web.append(restaurarWeb.pop()) # Devolviendo el elemento eliminado de la web
             case _:
-                web.append(action)
+                web.append(action) # "Navegando"
         print(web)
-
 web_navegation()
+
+
+""" *   Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
+    *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
+    *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
+    *   interpretan como nombres de documentos."""
+
+def printer_actions():
+    documents = []
+    while True:
+        action = input("Añade un documento / ingresa (imprimir) ó (salir)")
+        match action: 
+            case "salir":
+                print("Saliste de la impresora.")
+                break
+            case "imprimir":
+                if len(documents) > 0:
+                    print(f"Imprimiendo Documento: {documents.pop(0)}") # Quitando el elemento de la lista de documents
+                else:
+                    print("No tiene documentos en la cola de impresión")
+            case _:
+                documents.append(action) # "añadienod documento"
+        print(f"Cola de impresión: {documents}")
+
+printer_actions()
