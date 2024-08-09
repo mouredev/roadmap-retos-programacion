@@ -2,67 +2,72 @@
 Pilas y colas
 """
 
-
-class Pila:
-    def __init__(self):
-        self.items = []
-
-    def aplilar(self, item):
-        self.items.append(item)
-
-    def desapilar(self):
-        try:
-            return self.items.pop()
-        except IndexError:
-            raise ValueError('La pila esta vacia')
-
-    def es_vacia(self):
-        return len(self.items) == 0
-
-    def tamaño_pila(self):
-        return len(self.items)
+# Pila/Stack (LIFO/Ultimo en entrar, primero en salir)
+items_pila = []
 
 
-pila = Pila()
-pila.aplilar(1)
-pila.aplilar(2)
-pila.aplilar(2)
-pila.desapilar()
-print(f'Items de la pila: {pila.items}')
-print(f'La pila esta vacia: {pila.es_vacia()}')
-print(f'Tamaño de la pila: {pila.tamaño_pila()}')
+def apilar(item):
+    items_pila.append(item)
+
+
+def desapilar():
+    if len(items_pila) > 0:
+        items_pila.pop()
+    else:
+        print('La pila esta vacia.')
+
+
+def pila_vacia():
+    return len(items_pila) == 0
+
+
+def tamaño_pila():
+    return len(items_pila)
+
+
+apilar(1)
+apilar(2)
+apilar(3)
+print(f'Items de la pila al apilar: {items_pila}')
+desapilar()
+print(f'Items de la pila al desapilar: {items_pila}')
+print(f'La pila esta vacia: {pila_vacia()}')
+print(f'Tamaño de la pila: {tamaño_pila()}')
 print()
 
 
-class Cola:
-    def __init__(self):
-        self.items = []
-
-    def poner_en_cola(self, item):
-        self.items.insert(0, item)
-
-    def quitar_de_la_cola(self):
-        try:
-            return self.items.pop()
-        except IndexError:
-            raise ValueError('La cola esta vacia')
-
-    def es_vacia(self):
-        return len(self.items) == 0
-
-    def tamaño_cola(self):
-        return len(self.items)
+# Cola/Queue (FIFO/Primero en entrar, primero en salir)
+items_cola = []
 
 
-cola = Cola()
-cola.poner_en_cola(1)
-cola.poner_en_cola(2)
-cola.poner_en_cola(3)
-cola.poner_en_cola(4)
-cola.quitar_de_la_cola()
-print(f'Items de la cola: : {cola.items}')
-print(f'La cola esta vacia: {cola.es_vacia()}')
-print(f'Tamaño de la cola: : {cola.tamaño_cola()}')
+def agregar_a_la_cola(item):
+    items_cola.insert(0, item)
+
+
+def quitar_de_la_cola():
+    if len(items_cola) > 0:
+        items_cola.pop()
+    else:
+        print('La cola esta vacia.')
+
+
+def cola_vacia():
+    return len(items_cola) == 0
+
+
+def tamaño_cola():
+    return len(items_cola)
+
+
+agregar_a_la_cola(1)
+agregar_a_la_cola(2)
+agregar_a_la_cola(3)
+print(f'Items de la cola despues de agregar a la cola: : {items_cola}')
+quitar_de_la_cola()
+print(f'Items de la cola despues de quitar de la cola: : {items_cola}')
+print(f'Items de la cola: : {items_cola}')
+print(f'La cola esta vacia: {cola_vacia()}')
+print(f'Tamaño de la cola: : {tamaño_cola()}')
 print()
 
 """
