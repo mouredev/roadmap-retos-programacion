@@ -1,16 +1,16 @@
 /*
  * EJERCICIO:
- * ¡Deadpool y Wolverine se enfrentan en una batalla épica!
+ * Â¡Deadpool y Wolverine se enfrentan en una batalla Ã©pica!
  * Crea un programa que simule la pelea y determine un ganador.
  * El programa simula un combate por turnos, donde cada protagonista posee unos
- * puntos de vida iniciales, un daño de ataque variable y diferentes cualidades
- * de regeneración y evasión de ataques.
+ * puntos de vida iniciales, un daÃ±o de ataque variable y diferentes cualidades
+ * de regeneraciÃ³n y evasiÃ³n de ataques.
  * Requisitos:
  * 1. El usuario debe determinar la vida inicial de cada protagonista.
- * 2. Cada personaje puede impartir un daño aleatorio:
+ * 2. Cada personaje puede impartir un daÃ±o aleatorio:
  *    - Deadpool: Entre 10 y 100.
  *    - Wolverine: Entre 10 y 120.
- * 3. Si el daño es el máximo, el personaje que lo recibe no ataca en el
+ * 3. Si el daÃ±o es el mÃ¡ximo, el personaje que lo recibe no ataca en el
  * siguiente turno, ya que tiene que regenerarse (pero no aumenta vida).
  * 4. Cada personaje puede evitar el ataque contrario:
  *    - Deadpool: 25% de posibilidades.
@@ -18,8 +18,8 @@
  * 5. Un personaje pierde si sus puntos de vida llegan a cero o menos.
  * Acciones:
  * 1. Simula una batalla.
- * 2. Muestra el número del turno (pausa de 1 segundo entre turnos).
- * 3. Muestra qué pasa en cada turno.
+ * 2. Muestra el nÃºmero del turno (pausa de 1 segundo entre turnos).
+ * 3. Muestra quÃ© pasa en cada turno.
  * 4. Muestra la vida en cada turno.
  * 5. Muestra el resultado final.
  */
@@ -163,11 +163,11 @@ namespace deathwing696
             while(true)
             {
                 Console.WriteLine("1.Simula una batalla.");
-                Console.WriteLine("2.Muestra el número del turno(pausa de 1 segundo entre turnos).");
-                Console.WriteLine("3.Muestra qué pasa en cada turno.");
+                Console.WriteLine("2.Muestra el nÃºmero del turno(pausa de 1 segundo entre turnos).");
+                Console.WriteLine("3.Muestra quÃ© pasa en cada turno.");
                 Console.WriteLine("4.Muestra la vida en cada turno.");
                 Console.WriteLine("5.Muestra el resultado final.");                
-                Console.Write("Introduce una opción:");
+                Console.Write("Introduce una opciÃ³n:");
 
                 int option = Int16.Parse(Console.ReadLine());
 
@@ -229,7 +229,7 @@ namespace deathwing696
                         Console.ReadKey();
                         return;                        
                     default:
-                        Console.WriteLine("Opción inválida");
+                        Console.WriteLine("OpciÃ³n invÃ¡lida");
                         break;
                 }
             }            
@@ -251,7 +251,7 @@ namespace deathwing696
                     if (!deadpool.Dodge())
                     {
                         deadpool.RecievesDamage(wolverineAttack);
-                        description += $"Wolverine ataca a Deadpool y le hace {wolverineAttack} puntos de daño dejando a Deadpool con {deadpool.HP} puntos de vida\n";
+                        description += $"Wolverine ataca a Deadpool y le hace {wolverineAttack} puntos de daÃ±o dejando a Deadpool con {deadpool.HP} puntos de vida\n";
                     }
                     else
                     {
@@ -266,7 +266,7 @@ namespace deathwing696
                     if (!wolverine.Dodge())
                     {
                         wolverine.RecievesDamage(deadpoolAttack);
-                        description += $"Deadpool ataca a Wolverine y le hace {deadpoolAttack} puntos de daño dejando a Wolverine con {wolverine.HP} puntos de vida\n";
+                        description += $"Deadpool ataca a Wolverine y le hace {deadpoolAttack} puntos de daÃ±o dejando a Wolverine con {wolverine.HP} puntos de vida\n";
                     }
                     else 
                     {
