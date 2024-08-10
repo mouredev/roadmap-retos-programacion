@@ -108,7 +108,7 @@ function simulateAtack(playerA, playerB) {
 
 let turn = true
 
-function simulateTurn(playerA, playerB) {
+function alternateTurn(playerA, playerB) {
   display(playerA, playerB)
 
   if (turn) {
@@ -127,7 +127,7 @@ function simulateBattle(playerA, playerB) {
     console.clear()
     console.log(pc.underline('\nBATALLA EN CURSO!'))
 
-    simulateTurn(playerA, playerB)
+    alternateTurn(playerA, playerB)
 
     if (playerA.hp === 0 || playerB.hp === 0) {
       clearInterval(battle)
