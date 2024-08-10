@@ -57,7 +57,7 @@ class Character {
 
   get lifeBar() {
     if (this.hp === 0) {
-      return pc.gray('-')
+      return '💀'
     }
 
     return pc.green('|'.repeat(Math.floor(this.hp / 25)))
