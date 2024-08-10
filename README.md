@@ -72,14 +72,11 @@
 
 A media que avanzamos en el roadmap estoy creando cursos que agrupan las clases.
 
-<div style="display: flex;">
-  <div style="flex: 1;">
-    <a href="https://youtu.be/TdITcVD64zI"><img src="http://i3.ytimg.com/vi/TdITcVD64zI/maxresdefault.jpg"/></a>
-  </div>
-  <div style="flex: 1;">
-    <a href="https://youtu.be/b-kk1WQo-YA"><img src="http://i3.ytimg.com/vi/b-kk1WQo-YA/maxresdefault.jpg"/></a>
-  </div>
-</div>
+[![Lógica 1](http://i3.ytimg.com/vi/TdITcVD64zI/maxresdefault.jpg)](https://youtu.be/TdITcVD64zI)
+
+[![Lógica 2](http://i3.ytimg.com/vi/b-kk1WQo-YA/maxresdefault.jpg)](https://youtu.be/b-kk1WQo-YA)
+
+[![Lógica 3 SOLID](http://i3.ytimg.com/vi/ASBC5drF-QU/maxresdefault.jpg)](https://youtu.be/ASBC5drF-QU)
 
 ## Instrucciones
 
