@@ -121,7 +121,7 @@ namespace reto31
 
         public class Olimpiadas
         {
-            private static readonly Olimpiadas instance;
+            private static Olimpiadas instance;
             private List<Evento> events;
             private Dictionary<string, int> countryRanking;
 
@@ -139,9 +139,9 @@ namespace reto31
                 get
                 {
                     if (instance == null)
-                        return new Olimpiadas();
-                    else
-                        return instance;
+                        instance = new Olimpiadas();
+                    
+                    return instance;
                 }
             }
 
