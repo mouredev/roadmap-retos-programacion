@@ -15,7 +15,7 @@ def dividir():
         except:
             print("¡ERROR! No se puede dividir entre 0")
 
-print(dividir())
+# print(dividir())
 
 
 """ Clase de Brais Moure """
@@ -23,8 +23,6 @@ try:
     print([1,2,3,4][4])
 except Exception as error:          # investigar más sobre el manejo de errores
     print(f"Se ha producido un error: {error} ({type(error).__name__})")
-
-
 
 
 """ DIFICULTAD EXTRA (opcional):
@@ -36,3 +34,45 @@ except Exception as error:          # investigar más sobre el manejo de errores
  * - Imprime el tipo de error.
  * - Imprime si no se ha producido ningún error.
  * - Imprime que la ejecución ha finalizado. """
+
+class strTypeError(Exception):
+    pass
+
+def process_params(paramteros: list):
+
+    if len(paramteros) < 2:
+        raise IndexError()
+    elif paramteros[1] == 0:
+        raise ZeroDivisionError()
+    elif type(paramteros[2]) == str:
+        raise strTypeError("El tercer elemento de la lista no debe ser una cadena de texto")
+
+    
+    print(paramteros[1])
+    print(paramteros[0]/paramteros[1])
+    print(paramteros[0]/paramteros[2])
+    
+# Manejo de Errores 
+
+try:
+    process_params([2, 4, 6, 8])
+except IndexError as error:
+    print(f"El número de parámetros deben ser más de dos ({type(error).__name__})")
+except ZeroDivisionError as error:
+    print(f"El segundo parámetro no debe ser igual a cero ({type(error).__name__})")
+except strTypeError as error:
+    print(f"{error}")
+except Exception as error:
+    print(f"Se ha producido un error inesperado: ({error})")
+else:
+    print("El programa se ha ejecutado correctamente")
+finally:
+    print("El programa finaliza")
+
+
+
+
+
+
+
+
