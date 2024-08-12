@@ -26,58 +26,60 @@ public class Alextc35 {
 
         // 1
         
-        funcionVoidNoParams(); // No tiene parámetros y no retorna nada.
+        funcionVoidNoParams(); // No tiene parámetros y no retorna nada
 
-        funcionVoidSiParams("cat"); // Tiene un parámetro y no retorna nada.
+        funcionVoidSiParams("cat"); // Tiene un parámetro y no retorna nada
 
-        funcionVoidTwoParams(13, 22); // Tiene dos parámetros y no retorna nada.
+        funcionVoidTwoParams(13, 22); // Tiene dos parámetros y no retorna nada
 
-        System.out.println("La suma de 21 + 196 es = " + funcionIntTwoParams(21, 196)); // Tiene dos parámetros y retorna un número.
+        System.out.println("La suma de 21 + 196 es = " + funcionIntTwoParams(21, 196)); // Tiene dos parámetros y retorna un número
 
-        System.out.println("Mi nombre es: " + funcionStringSiParams("Alejandro")); // Tiene un parámetro y retorna una cadena de caracteres.
+        System.out.println("Mi nombre es: " + funcionStringSiParams("Alejandro")); // Tiene un parámetro y retorna una cadena de caracteres
 
         // 2
 
-        funcionDos(); // funcionUno dentro de la funcionDos.
+        funcionDos(); // funcionUno dentro de la funcionDos
 
         // 3
 
-        System.out.println(numPar(8)); // Ejemplo de función ya existente. Si el número del parámetro es par dará 'True'.
+        Integer a = 217;
+        Integer b = 217;
+        // Ejemplo de función ya existente. Si los números son iguales dará 'true'
+        System.out.println("a: " + a 
+            + "\nb: " + b 
+            + "\n¿Son iguales?: " + a.equals(b));
 
         // 4
 
-        int variable = 777; // Variable global que también está en la función 'variable', pero no son las mismas.
+        int variable = 777; // Variable global que también está en la función 'variable', pero no son las mismas
+        int variableLocal = variable(); // Obtenemos la variable local y la almacenamos, siendo ahora una variable global
+        System.out.println("Variable global: " + variable + "\nVariable local: " + variableLocal); // No son iguales a pesar de haber compartido el nombre de la variable
 
-        int variableLocal = variable(); // Obtenemos la variable local y la almacenamos, siendo ahora una variable global.
+        // Opcional
 
-        System.out.println("Variable global: " + variable + "\nVariable local: " + variableLocal); // No son iguales a pesar de haber compartido el nombre de la variable.
-
-        // OPCIONAL
-
-        System.out.println(funcionOpcional("Alejandro", "Tellez")); // Mostrará las cadenas un total de 47 veces, por ende nos debe retornar 53
-        
+        System.out.println(funcionOpcional("Alejandro", "Tellez")); // 53
     }
     
     // 1
 
-    public static void funcionVoidNoParams (){ // Sin parámetros.
+    public static void funcionVoidNoParams () { // Sin parámetros.
         System.out.println("Función que no tiene parámetros y no retorna nada.");
     } // No retorna nada.
 
-    public static void funcionVoidSiParams (String word){ // Un parámetro de tipo cadena de texto.
+    public static void funcionVoidSiParams (String word) { // Un parámetro de tipo cadena de texto.
         System.out.println("La palabra es " + word + ".");
     } // No retorna nada.
 
-    public static void funcionVoidTwoParams (int number1, int number2){ // Dos parámetros, ambos de tipo númerico.
+    public static void funcionVoidTwoParams (int number1, int number2) { // Dos parámetros, ambos de tipo númerico.
         System.out.println("La suma de " + number1 + " + " + number2 + " es = " + (number1+number2));
     } // No retorna nada.
 
-    public static int funcionIntTwoParams (int number1, int number2){ // Dos parámetros, ambos de tipo númerico.
+    public static int funcionIntTwoParams (int number1, int number2) { // Dos parámetros, ambos de tipo númerico.
         int suma = number1 + number2;
         return suma; // Retorna la suma de los parámetros.
     }
 
-    public static String funcionStringSiParams (String name){ // Un parámetro de tipo cadena de texto.
+    public static String funcionStringSiParams (String name) { // Un parámetro de tipo cadena de texto.
         String myName = name;
         return myName; // Retorna la cadena de texto.
     }
@@ -93,40 +95,32 @@ public class Alextc35 {
         System.out.println("Soy la función dos!");
     }
 
-    // 3
-
-    public static boolean numPar(int number){
-        if (number % 2 == 0) { // Comprueba que el resto de dividir el número entre 2 es 0.
-            return true; // En caso afirmativo, el número será par.
-        }
-        return false; // Si no, será impar.
-    }
-
     // 4
 
-    public static int variable(){
+    public static int variable() {
         int variable = 666; // Esta es la variable local, que no afecta a nuestra variable global.
         return variable;
     }
 
-    // OPCIONAL
+    // Opcional
 
-    public static int funcionOpcional(String cadena1, String cadena2){
+    public static int funcionOpcional(String cadena1, String cadena2) {
         int num = 0;
 
         // Hacemos un bucle del 1 al 100.
-        for (int i = 1; i <= 100; i++){
+        for (int i = 1; i <= 100; i++) {
             // Comprobamos si es divisible entre 3
-            if (i % 3 == 0) {
+            if ((i % 3 == 0) && (i % 5 == 0)) {
                 System.out.println(cadena1);
+            // Comprobamos si es divisible entre 3 y 5
+            } else if (i % 3 == 0) {
+                System.out.println(cadena1 + cadena2);
             // Comprobamos si es divisible entre 5
             } else if (i % 5 == 0) {
                 System.out.println(cadena2);
-            // Comprobamos si es divisible entre 3 y 5
-            } else if (i % 3 == 0 && i % 5 == 0){
-                System.out.println(cadena1 + cadena2);
             } else {
-            // Si no se cumple ninguna, sumamos una unidad a nuestra variable.
+                System.out.println(i);
+                // Si no se cumple ninguna, sumamos una unidad a nuestra variable.
                 num++;
             }
         }
