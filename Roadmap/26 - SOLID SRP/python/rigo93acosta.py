@@ -24,3 +24,44 @@
  */
 '''
 
+'''
+ Basico
+'''
+
+# Incorrecto
+
+class Usuario:
+    
+    def __init__(self, name, email) -> None:
+        self.name = name
+        self.email = email
+
+    def save_to_database(self):
+        ...
+
+    def send_email(self):
+        ...
+
+
+# Correcto
+class Usuario:
+    
+    def __init__(self, name, email) -> None:
+        self.name = name
+        self.email = email
+
+class UserService:
+    
+    def save_to_database(self, user):
+        ...
+
+class EmailService:
+
+    def send_email(self, user):
+        ...
+
+
+'''
+Extra
+'''
+
