@@ -61,12 +61,12 @@ function attack(atack, defend) {
       console.log(
         `${attacker.name} ha hecho un golpe crítico: ${attackerDamage}`
       )
-      attacker.critic === true
+      attacker.critic = true
     } else {
       console.log(
         `El ataque de ${attacker.name} tiene un valor de ${attackerDamage}`
       )
-      attacker.critic === false
+      attacker.critic = false
     }
 
     //comprobamos si el defensor evade el ataque
@@ -103,13 +103,13 @@ function attack(atack, defend) {
 
     console.log(`Turno: ${turn}`)
 
-    let DEADPOOL_HEALTH = attack("Deadpool", "Wolverine")
+    DEADPOOL_HEALTH = attack("Deadpool", "Wolverine")
 
     if (DEADPOOL_HEALTH <= 0) {
       break
     }
 
-    let WOLVERINE_HEALTH = attack("Wolverine", "Deadpool")
+    WOLVERINE_HEALTH = attack("Wolverine", "Deadpool")
 
     if (WOLVERINE_HEALTH <= 0) {
       break
