@@ -81,6 +81,66 @@ htmlReportGenerator.generateReport("Weekly Financial Report")
 
 /**-----DIFICULTAD EXTRA-----*/
 
-// Pendiente
+// Interfaz
+class INotificacionService{
+   sendNotificacion(user, message){
+      throw new Error("Method 'sendNotificacion()' must be implemented");
+   }
+}
+
+// Implementación Especifica
+class EmailService extends INotificacionService{
+   sendNotificacion(user, message){
+      console.log(`Sending Email to ${user.email}: ${message}`);
+   }
+}
+
+class PushService extends INotificacionService{
+   sendNotificacion(user, message){
+      console.log(`Sending Email to ${user.deviceId}: ${message}`);
+   }
+}
+
+class SmsService extends INotificacionService{
+   sendNotificacion(user, message){
+      console.log(`Sending Email to ${user.phoneNumber}: ${message}`);
+   }
+}
+
+// Sistema de Notificacion
+class NotificationSystem{
+   constructor(notificationService){
+      if (!(notificationService instanceof INotificacionService)) {
+         throw new Error("Invalid notification service");
+      }
+      this.notificationService = notificationService;
+   }
+
+   notify(user, message){
+      this.notificationService.sendNotificacion(user, message);
+   }
+}
+
+// Creando un usuario
+const user = {
+   email: "jesus@example.com",
+   deviceId: "antonio123",
+   phoneNumber: "1234567890"
+}
+
+// Instanciando servicios
+const emailService = new EmailService();
+const pushService = new PushService();
+const smsService = new SmsService();
+
+// Creando sistema de notificaciones
+const emailNotificationSystem = new NotificationSystem(emailService);
+const pushNotificationSystem = new NotificationSystem(pushService);
+const smsNotificationSystem = new NotificationSystem(smsService);
+
+// Usando el sistema
+emailNotificationSystem.notify(user, "Welcome via Email!");
+pushNotificationSystem.notify(user, "Welcome via PUSH notificacion!");
+smsNotificationSystem.notify(user, "Welcome via SMS!");
 
 /**-----DIFICULTAD EXTRA-----*/
