@@ -107,7 +107,7 @@
         //El bucle Do-While primero ejecuta la orden y luego comprueba la condición, por ello siempre se ejecutará, al menos, 1 vez.
         //------EXTRA-------
         for (int x = 10; x <= 55; x++) {
-            if (!(x==16) && !(x%3 ==0)){
+            if ((x%2==0) && !(x==16) && !(x%3 ==0)){
             System.out.println(x);
         }
         }
