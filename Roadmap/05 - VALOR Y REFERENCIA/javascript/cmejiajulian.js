@@ -117,28 +117,39 @@ const rl = readline.createInterface({
 // PRIMER PROGRAMA Pregunta al usuario por el elemento 
 rl.question('¿ingresa el elemento numero 1 por valor ? ', (valor1) => {
     rl.question('¿ingresa el elemento numero 2 por valor ? ', (valor2) => {
-     
-    if ( (!isNaN(valor1) && !isNaN(valor2))  ){
-     let x = parseFloat (valor1) ; 
-     let y = x
-     
-     y = parseFloat(valor2)
 
-     
-           console.log('Valor numero 1: ', x);
-           console.log('Valor numero 2: ', y);
-        }
-        else{
-            let x = (valor1) ; 
-            let y = x
-     
-            y = (valor2)
 
-     
-           console.log('Valor numero 1: ', x);
-           console.log('Valor numero 2: ', y);
+      var intercambioDeValor = (valor1,valor2) => {
+
+          if(!isNaN(parseFloat(valor1)) && !isNaN(parseFloat(valor2))) { 
+             let inter = parseFloat(valor1);
+             (valor1) = parseFloat(valor2);
+             (valor2)= inter;
+             return[valor1,valor2];
+
+          } else {
+               let inter = valor1;
+               valor1 = valor2;
+               valor2 = inter;
+               return[valor1,valor2];
+              
+            }
+      }
+      let x = valor1;
+      let y = valor2;
        
-        }
+
+      let [nuevoValor1,nuevoValor2] = intercambioDeValor(x,y);
+x
+
+   
+
+      console.log(`Valor Original 1 : ${x}, Valor Original 2: ${y}`);
+      console.log(`Nuevo Valor Original 1: ${nuevoValor1}, Nuevo Valor Original 2: ${nuevoValor2}`);
+      
+
+    
+   
     // Cierra la interfaz de readline
    
 // SEGUNDO PROGRAMA  Pregunta al usuario por el valor por referencia 
@@ -147,14 +158,19 @@ rl.question('¿ingresa el elemento numero 1 por valor ? ', (valor1) => {
     rl.question('¿Ingresa el elemento número 1 por Referencia: ', (referencia1) => {
         rl.question('Ingresa el elemento número 2 por Referencia',(referencia2 )=>{
             
-        let codigo = [referencia1]
-        let llave = codigo 
+          let intercambioPorReferencia = (ref) => {
+            let inter = ref[0];
+            ref[0] = ref[1];
+            ref[1] = inter;
+        }
 
-        llave.push(referencia2);
+        let variableR = [referencia1, referencia2];
+        let variableRO = [...variableR]; // Crea una copia de variableR
 
-        console.log(codigo);
-        console.log(llave)
+        intercambioPorReferencia(variableRO);
 
+        console.log(`Variable original 1: ${variableR[0]}, Variable original 2: ${variableR[1]}`);
+        console.log(`Nuevo valor 1: ${variableRO[0]}, Nuevo valor 2: ${variableRO[1]}`);
       // Cierra la interfaz de readline
       rl.close();
       })
