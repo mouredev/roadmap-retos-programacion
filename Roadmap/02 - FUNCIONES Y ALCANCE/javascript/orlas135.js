@@ -43,7 +43,7 @@ const factorial = function fac(n) {
 
 console.log(factorial(7));
 
-/*Las funciones pueden recibir también pueden servir como argumento para otras funciones previamente definidas */
+/*Las funciones pueden también servir como argumento para otras funciones previamente definidas */
 
 /*Las funciones también pueden ser vistas como métodos de un objeto, por ejemplo: */
 
