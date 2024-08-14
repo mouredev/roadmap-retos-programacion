@@ -20,3 +20,25 @@
 Basic
 '''
 
+class Form:
+
+    def draw(self):
+        ...
+
+class Square(Form):
+    def draw(self):
+        print("Square")
+
+class Circle(Form):
+    def draw(self):
+        print("Circle")
+
+class Triangle(Form):
+    def draw(self):
+        print("Triangle")
+
+
+'''
+Extra
+'''
+
