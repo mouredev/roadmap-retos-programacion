@@ -24,6 +24,12 @@ public class TofeDev {
         String concatenacion = texto + " y " + texto2;
         System.out.println(concatenacion);
 
+        //División
+        String[] division = "rojo, amarillo, azul, morado".split(", ");
+        for (int i = 0; i <division.length; i++) {
+            System.out.println(division[i]);
+        }
+
         //Conversión mayúsculas
         String mayuscula = texto.toUpperCase();
         System.out.println(mayuscula);
