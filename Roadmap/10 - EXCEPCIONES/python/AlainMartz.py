@@ -142,14 +142,7 @@ class Partexc(Exception):
         self.mensaje = mensaje
 
 def sinceros(a, b):
-    """
-    Calcula la suma de a**(1/3) + b**(1/2), su división y multiplicación, 
-    lanzando excepciones si ocurren condiciones específicas.
-    """
-    # Verifica que ambos parámetros sean enteros
-    if not isinstance(a, int) or not isinstance(b, int):
-        raise TypeError("Los números deben ser valores enteros")
-    
+ 
     # Calcula la suma de las raíces
     add = a**(1/3) + b**(1/2)
     if add == 0:
@@ -167,31 +160,24 @@ def sinceros(a, b):
     
     # Retorna los resultados formateados
     return (
-        f"Suma de {a}**(1/3) + {b}**(1/2): {round(add, 2)}\n"
+        f"Suma de {a}^(1/3) + {b}^(1/2): {round(add, 2)}\n"
         f"División de: (({round(add, 2)} + {a})/{b}): {round(div, 2)}\n"
         f"Multiplicación de: {round(add, 2)} * {round(div, 2)}: {round(mult, 2)}"
     )
 
 # Manejo de excepciones
 try:
-    params = sinceros(
-        int(input("Ingrese un número: ")), 
-        int(input("Ingrese el siguiente número: "))
-    )
-except TypeError as te:
-    print(f"Error de tipo de datos: {te}")
-except ValueError as ve:
-    print(f"Error de valor: {ve}")
-except ZeroDivisionError as zde:
-    print(f"Error División por Cero: {zde}")
-except Partexc as pe:
-    print(f"Error personalizado: {pe}")
+    a = int(input("Ingrese un número: "))
+    b = int(input("Ingrese el siguiente número: "))
+    params = sinceros(a, b)
+except (ValueError, ZeroDivisionError, Partexc) as e:
+    print(f"Error: {e}")
 except Exception as e:
-    print(f"Error general: {e}")
+    print(f"Error inesperado: {e}")
 else:
     print(params)
 finally:
-    print("Ejecución finalizada")
+    print("Ejecución finalizada.")
 
 
 # from collections import Counter
