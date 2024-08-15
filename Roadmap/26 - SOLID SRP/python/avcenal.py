@@ -260,20 +260,39 @@ class User():
         print("\n")
 
 class Library():
-    def __init__(self) -> None:
+    def __init__(self):
         self.books = list()
         self.users = list()
 
+    def show_books(self):
+        if len(self.books) == 0:
+            logging.warning("No hay libros en la biblioteca")
+            print("No hay ningún libro almacenado en la biblioteca")
+        else:
+            for element in self.books:
+                element.show_data()
+    
+    def show_users(self):
+        if len(self.users) == 0:
+            logging.warning("No hay usuarios registrados")
+            print("No hay usuarios registrados en la biblioteca")
+        else:
+            for element in self.users:
+                element.show_data()
+
+class Loan():
+    def __init__(self,library:Library):
+        self.library = library
+
     def __find_user(self,id):
-        for element in self.users:
+        for element in self.library.users:
             if element.id_number == id:
                 return True
         else:
             return False
-
-    @books_number_decorator
+    
     def pick_book(self):
-        if len(self.users) == 0:
+        if len(self.library.users) == 0:
             logging.warning("No hay usuarios en el sistema")
             print("No es posible sacar préstamos porque no hay usuarios registrados en el sistema")
         else:
@@ -281,7 +300,7 @@ class Library():
             logging.debug(f"El usuario existe: {self.__find_user(id)}")
             if self.__find_user(id):
                 book_name = input("Introduce por favor el título del libro que quieres sacar de préstamo: ")
-                for element in self.books:
+                for element in self.library.books:
                     if element.name == book_name:
                         logging.debug("Libro encontrado")
                         if element.copies == 0:
@@ -305,9 +324,8 @@ class Library():
                 else:
                     print("Entendido")
 
-    @books_number_decorator
     def return_book(self):
-        if len(self.users) == 0:
+        if len(self.library.users) == 0:
             logging.warning("No hay usuarios en el sistema")
             print("No es posible devolver ningún libro porque no hay usuarios registrados en el sistema")
         else:
@@ -315,7 +333,7 @@ class Library():
             logging.debug(f"El usuario existe: {self.__find_user(id)}")
             if self.__find_user(id):
                 book_name = input("Introduce por favor el título del libro a devolver: ")
-                for element in self.books:
+                for element in self.library.books:
                     if element.name == book_name:
                         logging.debug("Libro encontrado")
                         element.copies += 1
@@ -332,21 +350,6 @@ class Library():
             else:
                 print("Parece que no hay ningún usuario dado de alta con ese id, por tanto no es posible devolver ningún libro.")
     
-    def show_books(self):
-        if len(self.books) == 0:
-            logging.warning("No hay libros en la biblioteca")
-            print("No hay ningún libro almacenado en la biblioteca")
-        else:
-            for element in self.books:
-                element.show_data()
-
-    def show_users(self):
-        if len(self.users) == 0:
-            logging.warning("No hay usuarios registrados")
-            print("No hay usuarios registrados en la biblioteca")
-        else:
-            for element in self.users:
-                element.show_data()
 
 class Register_Book():
     def __init__(self,library:Library) -> None:
@@ -372,19 +375,31 @@ class Register_User():
     @users_number_decorator
     def register_user(self):
         name = input("Introduce el nombre del usuario a agregar: ")
-        for element in self.library.users:
-            if element.name == name:
-                logging.warning("El usuario ya existe en el sistema")
-                break
+        if type(self.library) == Library: #si el tipo del dato es "library"
+            for element in self.library.users:
+                if element.name == name:
+                    logging.warning("El usuario ya existe en el sistema")
+                    break
+            else:  #si el tipo del dato es "loan", esto solo pasa si el usuario se registra desde la clase Loan()
+                id_number = int(input("Introduce ahora el número de identificación: "))
+                email = input("Y para acabar el email: ")
+                user = User(name,id_number,email)
+                self.library.users.append(user)
         else:
-            id_number = int(input("Introduce ahora el número de identificación: "))
-            email = input("Y para acabar el email: ")
-            user = User(name,id_number,email)
-            self.library.users.append(user)
+            for element in self.library.library.users:
+                if element.name == name:
+                    logging.warning("El usuario ya existe en el sistema")
+                    break
+            else:
+                id_number = int(input("Introduce ahora el número de identificación: "))
+                email = input("Y para acabar el email: ")
+                user = User(name,id_number,email)
+                self.library.library.users.append(user)
 
 my_srp_library = Library()
 register_book = Register_Book(my_srp_library)
 register_user = Register_User(my_srp_library)
+my_loan = Loan(my_srp_library)
 print("------- Te doy la bievnenida al sistema de la Biblioteca SI-SRP -------")
 while True:
     option = input("¿Que deseas hacer?:\n- Registrar un nuevo libro(L)\n- Registrar un nuevo usuario/a(U)\n- Sacar un préstamo(P)\n- Devolver un préstamo(D)\n- Mostrar todos los libros(M)\n- Mostrar todos los usuarios/as(A)\n- Salir(S)\n-----> ").upper()
@@ -393,9 +408,9 @@ while True:
     elif option == "U":
         register_user.register_user()
     elif option == "P":
-        my_srp_library.pick_book()
+        my_loan.pick_book()
     elif option == "D":
-        my_srp_library.return_book()
+        my_loan.return_book()
     elif option == "M":
         my_srp_library.show_books()
     elif option == "A":
