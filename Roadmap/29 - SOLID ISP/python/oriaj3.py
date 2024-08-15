@@ -57,7 +57,53 @@ class PrinterScanner(PrinterInterface):
 
 # Ejemplo correcto
 
-class Im
+class PrinterInterface(ABC):
+    
+    @abstractmethod
+    def print(self):
+        pass
+    
+class ScannerInterface(ABC):
+    
+    @abstractmethod
+    def scan(self):
+        pass
+
+class FaxInterfaceando(ABC):
+    
+    @abstractmethod
+    def fax(self):
+        pass
+    
+#Implemento clases para cada interfaz
+class PrinterWithScanner(PrinterInterface, ScannerInterface):
+    def print(self):
+        print("Imprimiendo1")
+        
+    def scan(self):
+        print("Scan1")
+    
+class PrinterScannerFax(PrinterInterface, ScannerInterface, FaxInterfaceando):
+    def print(self):
+        print("Imprimiendo2")
+        
+    def scan(self):
+        print("Scan2")
+    
+    def fax(self):
+        print("Fax2")
+        
+#Creo objetos de las clases
+printer1 = PrinterWithScanner()
+printer1.print()
+printer1.scan()
+
+printer2 = PrinterScannerFax()
+printer2.print()
+printer2.scan()
+printer2.fax()
+
+
 
 """
  * DIFICULTAD EXTRA (opcional):
@@ -72,4 +118,74 @@ class Im
  * 3. Desarrolla un código que compruebe que se cumple el principio.
  */
 """
+#Implemento las interfaces
+class PrinterInterface(ABC):
+    
+    @abstractmethod
+    def print(self, document):
+        pass
 
+class ColorPrinterInterface(ABC):
+
+    @abstractmethod
+    def print_color(self, document: str):
+        pass
+    
+class ScanInterface(ABC):
+    
+    @abstractmethod
+    def scan(self, str) -> str:
+        pass
+    
+class FaxInterface(ABC):
+    
+    @abstractmethod
+    def fax(self, document):
+        pass
+    
+#Implemento las clases
+class Printer(PrinterInterface):
+    def print(self, document: str):
+        print(f"Imprimiendo en blanco y negro el documento {document}.")
+
+class Scanner(ScannerInterface):
+    def scan(self, document: str)-> str:
+        print(f"Escaneando el documento {document}.")
+        return f"Documento {document} escaneado."
+
+class ColorPrinter(ColorPrinterInterface):
+    def print_color(self, document: str):
+        print(f"Imprimiendo en color el documento {document}.")
+        
+class MultiPrinter(PrinterInterface, ColorPrinterInterface, ScanInterface, FaxInterface):
+    def print(self, document: str):
+        print(f"Imprimiendo en blanco y negro el documento {document}.")
+    
+    def print_color(self, document: str):
+        print(f"Imprimiendo en color el documento {document}.")
+    
+    def scan(self, document: str)-> str:
+        print(f"Escaneando el documento {document}.")
+        return f"Documento {document} escaneado."
+    
+    def fax(self, document: str):
+        print(f"Enviando por fax el documento {document}.")
+
+#Función que crea los distintos objetos y prueba su función
+def test_devices():
+    printer = Printer()
+    scanner = Scanner()
+    color_printer = ColorPrinter()
+    multiprinter = MultiPrinter()
+    
+    printer.print("Doc1.pdf")
+    color_printer.print_color("DocColor2.pdf")
+    scanner.scan("doc_scan.pdf")
+    
+    multiprinter.print("Doc2.pdf")
+    multiprinter.print_color("DocColor2.pdf")
+    multiprinter.scan("Doc_Scan2.pdf")
+    multiprinter.fax("DocFax.pdf")
+    
+test_devices()
+    
