@@ -28,27 +28,34 @@ def nombre_de_la_funcion (parametros):
     return valor_de_retorno
 
 """
-
+#Este menú (funcion) sirve para imprimir por consola las funciones que he usado como ejemplo y retornar la eleccion del usuario
 def menu_inicio ():
-    print("calculadora_propinas\t---> 1")
-    print("funcion_2\t---> 2")
-    print("funcion_3\t---> 3")
-    print("funcion_4\t---> 4")
+    print("CALCULADORA PROPINAS\t---> 1")
+    print("BANNER\t\t\t---> 2")
+    print("DIFICULTAD EXTRA\t---> 3")
+    
 
     return(input("elije una opcion: "))
 
+#funcione dentro de funciones 
 def calculadora_propinas ():
+    #Declaro las variables que se tendrán en cuenta para el calculo de la propina y en el total a pagar por persona 
     total_cuenta= float(input("Ingresa el total de la cuenta: \n $"))
     porcentaje_propina= float(input("Ingrese el porcentaje de la propina: \n ")) 
     numero_personas = float(input("Ingrese el numero de personas a dividir las cuenta: \n"))
 
     def calculo(total_cuenta, porcentaje_propina, numero_personas = 1 ):
+        #Esta funcion solo se encarga de calcular la propina y en total a pagar por persona 
         return (total_cuenta + (total_cuenta * ( porcentaje_propina / 100 ))) / numero_personas
     
+    #uso es return de la funcion interna asignadolo a la variable de total a pagar 
     total_pagar = calculo(total_cuenta , porcentaje_propina , numero_personas)
     return total_pagar
 
+
+
 def impresora_banner ():
+    #esta funcion solo imprime un banner, sin parametros ni retornos usando la funcion interna PRINT
     print("""
      _______     _  _          _______             _     _           _       
 (_______)   | |(_)        (_______)           (_)   | |         | |      
@@ -66,7 +73,29 @@ def impresora_banner ():
                                                                          
     """)
 
+def dificultad_extra ():
+    texto_1 = str (input("ingrese el primer texto \t---> "))
+    texto_2 = str (input("ingrese el segundo texto \t---> "))
+    contador = 1
+    
+    for numero in range(1, 101):
+        if (numero % 3) == 0:
+            print(texto_1)
+        elif (numero % 5) == 0:
+            print(texto_2)
+        elif (numero % 3) == 0 and (numero % 5) == 0:
+            print(texto_1 + texto_2)
+        else:
+            print(numero)
+            contador += 1
+
+    print(f"El numero se ha impreso {contador} veces.")
+
+
+
+
 def main ():
+    #esta funcion utiliza el retorno de la funcion menu_inicio y dependiendo de la respuesta llama alguna de las funciones creada
     opcion =menu_inicio()
     if opcion == "1":
         total = calculadora_propinas()
@@ -74,9 +103,8 @@ def main ():
     elif opcion == "2":
         impresora_banner()
     elif opcion == "3":
-        print("Funcion no disponible")
-    elif opcion == "4":
-        print("Funcion no disponible")
+        dificultad_extra()
+
 
 
 if __name__ == "__main__":
