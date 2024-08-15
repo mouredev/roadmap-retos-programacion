@@ -194,7 +194,7 @@ const listContacts = () => {
   if (contacts.length === 0) {
     console.log("No contacts yet");
   } else {
-    console.log("Contacts:");
+    console.log("Contacts: ");
     contacts.forEach((contact, index) => {
       console.log(
         `${index + 1}. Name: ${contact.name} - Phone: ${contact.phone}`
