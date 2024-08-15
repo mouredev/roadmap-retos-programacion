@@ -166,7 +166,7 @@ const updateContact = () => {
           mainMenu();
         } else {
           contacts[index].phone = phone;
-          console.log("Contact updated.");
+          console.log("Contact updated");
           mainMenu();
         }
       });
