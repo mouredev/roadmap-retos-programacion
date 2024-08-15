@@ -4,15 +4,15 @@
  * números del 100 al 0.
  */
 
-// let recursividad = (numero) =>{
+let recursividad = (numero) =>{
 
-//     if (numero>=0){
-//         console.log(numero)
-//         recursividad(numero-1)
-//     }
-// }
+    if (numero>=0){
+        console.log(numero)
+        recursividad(numero-1)
+    }
+}
 
-// recursividad(100);
+recursividad(100);
 
 /*
 
@@ -23,32 +23,32 @@
  *   sucesión de Fibonacci (la función recibe la posición).
  */
 
-// let factorial =(n)=>{
+let factorial =(n)=>{
 
-//     if(n===0){
-//          return 1
-//     } 
-//     else {
-//          return n*factorial(n-1)}
-//     }
-
-
-// console.log(factorial(1));
+    if(n===0){
+         return 1
+    } 
+    else {
+         return n*factorial(n-1)}
+    }
 
 
-let fib = (n) =>{
-    if (n<=0){
+console.log(factorial(1));
+
+
+let fib = (number) =>{
+    if (number<=0){
         console.log('Los numeros negativos no son validos');
         return 0
     }
-    else if (n==1){
+    else if (number==1){
         return 0
     }
-    else if (n==2) {
+    else if (number==2) {
         return 1
     }
     else {
-        return fib(n-1)+fib(n-2)
+        return fib(number-1)+fib(number-2)
     }
 }
 
