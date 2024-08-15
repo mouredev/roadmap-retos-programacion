@@ -30,6 +30,7 @@ console.log(5 / 7);
 console.log(5 % 7);
 //Exponentiation: **
 console.log(5 ** 7);
+//Increment and decrement operators are used to increase or decrease the value of a variable by 1.
 //Increment ++ the second sign can be replaced by a number, this number will be the increment
 console.log(++myVariable);
 console.log(++myVariable);
@@ -42,8 +43,10 @@ console.log(myVariable +5);
 
 console.log(myVariable -5);
 
+//Extra
+
 for(i=10; i<=55; i++){
-    if(i === 16 || i % 3 === 0){
+    if(i === 16 || i % 3 === 0 || i % 2 != 0){
         continue
     }
     console.log(i);
