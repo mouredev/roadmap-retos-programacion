@@ -4,49 +4,10 @@ import java.util.Scanner;
 public class simonguzman {
     static int validarParImpar = 2;
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        /*
-        * EJERCICIO:
-        * - Crea ejemplos de funciones básicas que representen las diferentes
-        *   posibilidades del lenguaje:
-        *   Sin parámetros ni retorno, con uno o varios parámetros, con retorno...
-        * - Comprueba si puedes crear funciones dentro de funciones.
-        * - Utiliza algún ejemplo de funciones ya creadas en el lenguaje.
-        * - Pon a prueba el concepto de variable LOCAL y GLOBAL.
-        * - Debes hacer print por consola del resultado de todos los ejemplos.
-        *   (y tener en cuenta que cada lenguaje puede poseer más o menos posibilidades)
-        *
-        * DIFICULTAD EXTRA (opcional):
-        * Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
-        * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
-        *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
-        *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
-        *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
-        *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
-        *
-        * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
-        * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
-        */
-        //presentation();
-        //menu();
         
-        /*double sum = suma(1.2, 2.4);
-        System.out.println("Suma = "+sum);
-        double div = division(3, 2);
-        System.out.println("Division = "+div);
-        //int fact = factorial(4);
-        //System.out.println("Factorial = "+fact);
-        //numeroPrimo(11);
-        //double pot = potenciacion(2, 3);
-        //System.out.println(pot);
-        //double raiz = raizCuadrada(10);
-        //System.out.println(raiz);
-        //numParImpar(3);
-        double div = division(125, 5);
-        System.out.println("Division = "+div);
-        double mod = modulo(125, 5);
-        System.out.println(mod);*/
-        iniciarCalculadora();
+        int numImpreso = ejercicioExtra("multiplo de 3", "multiplo de 5");
+        System.out.println("Numero de veces que se ha impreso numero en lugar de las cadenas de texto: " + numImpreso);
+        //iniciarCalculadora();
     }
 
     public static void presentation(){
@@ -242,5 +203,23 @@ public class simonguzman {
         menuCompleto(scanner);
         scanner.close();
     }
+
+    public static int ejercicioExtra(String text1, String text2){
+        int count = 0;
+        for(int i=0; i<=100; i++){
+            if(i % 3 == 0){
+                System.out.println(text1);
+            }else if (i % 5 == 0) {
+                System.out.println(text2);
+            }else if(i % 3 == 0 && i % 5 ==0){
+                System.out.println(text1 + " y " + text2);
+            }else{
+                System.out.println(i);
+                count++;
+            }
+        }
+        return count;
+    }
+
 }
 
