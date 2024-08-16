@@ -26,39 +26,45 @@ Autor de la solución: oriaj3
 import random
 
 class Pais:
-    def __init__(self, name: str):
+    name: str
+    medallas: dict[str, int]
+
+    def __init__(self, name: str)-> None:
         self.name = name
         self.medallas = {"Oro": 0, "Plata": 0, "Bronce": 0}
     
-    def __hash__(self):
+    def __hash__(self)-> int:
         return hash(self.name)
     
-    def __eq__(self, other):
+    def __eq__(self, other: "Pais"):
         return self.name == other.name
     
     def get_total_medallas(self)-> int:
         total = self.medallas["Oro"] + self.medallas["Plata"] + self.medallas["Bronce"]
         return total
     
-    def __str__(self):
+    def __str__(self)-> str:
         return f"{self.name} - O: {self.medallas['Oro']} P: {self.medallas['Plata']} B: {self.medallas['Bronce']}"
     
-
 class Participante:
-    
-    def __init__(self, name: str, country: Pais):
+    name: str
+    country: Pais
+
+    def __init__(self, name: str, country: Pais)-> None:
         self.name = name
         self.country = country
     
-    def __hash__(self):
+    def __hash__(self)-> int:
         # Genera un valor hash basado en el nombre del participante + el country
         return hash(self.name + self.country.name)
     
-    def __eq__(self, other):
+    def __eq__(self, other)-> bool:
         # Compara dos participantes basándose en su nombre y país
         return self.name == other.name and self.country == other.country
     
 class Evento: 
+    name: str
+    resultados: dict[Participante, int]
     
     def __init__(self, name: str, participantes: list[Participante]):
         self.name=name
@@ -70,7 +76,7 @@ class Evento:
         else:
             raise ("Los eventos deben tener mínimo 3 participantes")
     
-    def simular(self):
+    def simular(self)-> None:
         set_resultados = set()
         for participante in self.participantes:
             resultado = random.randint(0, 100)
@@ -90,36 +96,53 @@ class Evento:
             
                         
 
-    def ranking(self):
+    def ranking(self)-> None:
         posicion=0
         for resultado in self.resultados:
             print(f"{posicion+1} - {resultado[0].name} ({resultado[0].country.name}): {resultado[1]}")
             posicion+=1
         
-    def get_ganadores(self):
+    def get_ganadores(self)-> list[tuple[Participante, int]]:
         return self.resultados[:3]
 
 class Olimpiadas:
-    def __init__(self):
+    eventos: list[Evento]
+    paises: list[Pais]
+    participantes: list[Participante]
+
+    def __init__(self)-> None:
         self.eventos = []
         self.paises = []
         self.participantes = []
     
-    def registrar_pais(self, name: str):
-        self.paises.append(Pais(name))
+    def registrar_pais(self, name: str)-> None:
+        if name not in [pais.name for pais in self.paises]:
+            self.paises.append(Pais(name))
     
-    def registrar_participante(self, name: str, country: Pais):
-        self.participantes.append(Participante(name, country.name))
+    def registrar_participante(self, name: str, country: Pais)-> None:
+        if country not in self.paises:
+            raise ValueError("El país no está registrado")
+        elif name not in [participante.name for participante in self.participantes]:
+            for pais in self.paises:
+                if pais.name == country.name:
+                    self.participantes.append(Participante(name, pais))
+        else:
+            raise ValueError("El participante ya está registrado")
         
-    def registrar_evento(self, name: str, participantes: list[Participante]):
-        self.eventos.append(Evento(name, participantes))
-    
-    def ordenar_paises_por_medallas(self):
+    def registrar_evento(self, name: str, participantes: list[Participante])-> None:
+        if len(participantes) < 3:
+            raise ValueError("Los eventos deben tener mínimo 3 participantes")
+        elif name not in [evento.name for evento in self.eventos]:
+            self.eventos.append(Evento(name, participantes))
+        else:
+            raise ValueError("El evento ya está registrado")   
+        
+    def ordenar_paises_por_medallas(self)-> list[Pais]:
         # Ordena los países utilizando una clave que considera primero el oro, luego la plata, y finalmente el bronce
         paises_ordenados = sorted(self.paises, key=lambda pais: (pais.medallas["Oro"], pais.medallas["Plata"], pais.medallas["Bronce"]), reverse=True)
         return paises_ordenados
     
-    def iniciar_olimpiadas(self):
+    def iniciar_olimpiadas(self)-> None:
         self.paises.append(Pais("Jamaica")) #0
         self.paises.append(Pais("USA"))     #1
         self.paises.append(Pais("España"))  #2
@@ -195,7 +218,6 @@ class Olimpiadas:
         for pais in self.paises:
             print(f"{pais.name}: Oro {pais.medallas['Oro']}, Plata {pais.medallas['Plata']}, Bronce {pais.medallas['Bronce']}")
 
-
 #Creo una instancia de las olimpiadas y las inicio
 olimpiadas = Olimpiadas()
 olimpiadas.iniciar_olimpiadas()
@@ -207,91 +229,117 @@ import os
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-#Creo un menu 
+#Funciones auxiliares para mostrar el menú y sus opciones
+from enum import Enum
+
+class MenuOpciones(Enum):
+    REGISTRAR_PAIS = 1
+    REGISTRAR_PARTICIPANTE = 2
+    REGISTRAR_EVENTO = 3
+    SIMULAR_EVENTOS = 4
+    MOSTRAR_RANKING_PAISES = 5
+    MOSTRAR_RESULTADO_EVENTO = 7
+    SALIR = 9
+
+def mostrar_menu()-> None:
+    for opcion in MenuOpciones:
+        print(f"{opcion.value}. {opcion.name.replace('_', ' ').capitalize()}")
+    print("")
+
+def mostrar_participantes(participantes: list[Participante])-> None:
+    clear_screen()
+    print("Participantes disponibles:")
+    for i, participante in enumerate(participantes, 1):
+        print(f"{i}. {participante.name} ({participante.country.name})")
+
+def seleccionar_participantes(olimpiadas: Olimpiadas, num_participantes:int =3) -> list[Participante]:
+    participantes_seleccionados = []
+    while len(participantes_seleccionados) < num_participantes:
+        mostrar_participantes(olimpiadas.participantes)
+        try:
+            indice = int(input(f"Seleccione el participante {len(participantes_seleccionados) + 1} (número): ")) - 1
+            if 0 <= indice < len(olimpiadas.participantes):
+                participante = olimpiadas.participantes[indice]
+                if participante not in participantes_seleccionados:
+                    participantes_seleccionados.append(participante)
+                    print(f"Seleccionado: {participante.name}")
+                else:
+                    print("Este participante ya ha sido seleccionado. Por favor, elija otro.")
+            else:
+                print("Número de participante no válido. Intente de nuevo.")
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
+    
+    return participantes_seleccionados
+
+
 while(True):
     #Borro la pantalla
     clear_screen()
-    print("Menú de opciones:")
-    print("1. Registrar país")
-    print("2. Registrar participante")
-    print("3. Registrar evento")
-    print("4. Simular eventos")
-    print("5. Mostrar ranking de países")
-    print("7. Mostrar Resultado de evento")
-    print("9. Salir")
+    mostrar_menu()
     
     #Pido la opción
-    opcion = input("Seleccione una opción: ")
+    try:
+        opcion = MenuOpciones(int(input("Seleccione una opción: ")))
+    except ValueError:
+        print("Opción no válida. Por favor, intente de nuevo.")
+        input("Presione Enter para continuar...")
+        continue
     
-    if opcion == "1":
-        nombre_pais = input("Ingrese el nombre del país: ")
-        olimpiadas.registrar_pais(nombre_pais)
-    elif opcion == "2":
-        nombre_participante = input("Ingrese el nombre del participante: ")
-        nombre_pais = input("Ingrese el nombre del país: ")
-        pais = Pais(nombre_pais)
-        olimpiadas.registrar_participante(nombre_participante, pais)
-    elif opcion == "3":
-        nombre_evento = input("Ingrese el nombre del evento: ")
-        print("Participantes:")
-        for participante in olimpiadas.participantes:
-            print(participante.name)
-        participantes = []
-        #Selecciona 3 participantes por rapidez, se puede mejorar
-        for i in range(3):
-            nombre_participante = input(f"Ingrese el nombre del participante {i+1}: ")
-            for participante in olimpiadas.participantes:
-                if participante.name == nombre_participante:
-                    participantes.append(participante)
-        olimpiadas.registrar_evento(nombre_evento, participantes)
-    elif opcion == "4":
-        print("\nSimulación de eventos:")
-        for evento in olimpiadas.eventos:
-            print(f"\n{evento.name}")
-        evento_sel = input("Seleccione el evento a simular: ")
-        for evento in olimpiadas.eventos:
-            if evento.name == evento_sel:
+    match opcion:
+        case MenuOpciones.REGISTRAR_PAIS:
+            try:
+                nombre_pais = input("Ingrese el nombre del país: ")
+                olimpiadas.registrar_pais(nombre_pais)
+            except ValueError as e:
+                print(e)
+        case MenuOpciones.REGISTRAR_PARTICIPANTE:
+            try:
+                nombre_participante = input("Ingrese el nombre del participante: ")
+                nombre_pais = input("Ingrese el nombre del país: ")
+                pais = Pais(nombre_pais)
+                olimpiadas.registrar_participante(nombre_participante, pais)
+            except ValueError as e:
+                print(e)
+        case MenuOpciones.REGISTRAR_EVENTO:
+            try:
+                nombre_evento = input("Ingrese el nombre del evento: ")
+                participantes = seleccionar_participantes(olimpiadas)
+                olimpiadas.registrar_evento(nombre_evento, participantes)
+                print(f"Evento '{nombre_evento}' registrado con éxito con los siguientes participantes:")
+                for p in participantes:
+                    print(f"- {p.name} ({p.country.name})")
+            except ValueError as e:
+                print(f"Error al registrar el evento: {e}")
+            input("Presione Enter para continuar...")
+        case MenuOpciones.SIMULAR_EVENTOS:
+            print("\nSimulación de eventos:")
+            for evento in olimpiadas.eventos:
                 print(f"\n{evento.name}")
-                evento.simular()
-                evento.ranking()
-                input("Presiona una tecla para continuar...")
-    elif opcion == "5":
-        print("\nRanking de países:")
-        olimpiadas.paises = olimpiadas.ordenar_paises_por_medallas()
-        for pais in olimpiadas.paises:
-            print(f"{pais.name}: Oro {pais.medallas['Oro']}, Plata {pais.medallas['Plata']}, Bronce {pais.medallas['Bronce']}")
-    elif opcion == "7":
-        print("\nResultados de eventos:")
-        for evento in olimpiadas.eventos:
-            print(f"\n{evento.name}")
+            evento_sel = input("Seleccione el evento a simular: ")
+            for evento in olimpiadas.eventos:
+                if evento.name == evento_sel:
+                    print(f"\n{evento.name}")
+                    evento.simular()
+                    evento.ranking()
+                    input("Presiona una tecla para continuar...")
+        case MenuOpciones.MOSTRAR_RANKING_PAISES:
+            print("\nRanking de países:")
+            olimpiadas.paises = olimpiadas.ordenar_paises_por_medallas()
+            for pais in olimpiadas.paises:
+                print(f"{pais.name}: Oro {pais.medallas['Oro']}, Plata {pais.medallas['Plata']}, Bronce {pais.medallas['Bronce']}")
+            input("Presiona una tecla para continuar...")
+        case MenuOpciones.MOSTRAR_RESULTADO_EVENTO:
+            print("\nResultados de eventos:")
+            for evento in olimpiadas.eventos:
+                print(f"\n{evento.name}")
+            
+            evento_sel = input("Seleccione el evento a mostrar:")   
+            for evento in olimpiadas.eventos:
+                if evento.name == evento_sel:
+                    print(f"\n{evento.name}")
+                    evento.ranking()
+            input("Presiona una tecla para continuar...")
         
-        evento_sel = input("Seleccione el evento a mostrar:")   
-        for evento in olimpiadas.eventos:
-            if evento.name == evento_sel:
-                print(f"\n{evento.name}")
-                evento.ranking()
-        input("Presiona una tecla para continuar...")
-    
-    elif opcion == "9":
-        break
-    
-"""
-SUGERENCIAS DE MEJORA:
-
-1 Utiliza la clase Enum para representar tipos de medallas y opciones del menú.
-
-2 Implementa un mejor manejo de errores para entradas inválidas del usuario.
-
-3 Añade más validaciones, como verificar si un país ya existe antes de registrarlo.
-
-4 Implementa un sistema para guardar y cargar datos, por ejemplo, usando JSON o una base de datos simple.
-
-5Mejora la interfaz de usuario:
-Usa una biblioteca como rich para mejorar la presentación en la terminal.
-Usa type hints de manera consistente:
-Aplica anotaciones de tipo en todos los métodos y funciones.
-Usa métodos de clase y estáticos:
-Para operaciones que no necesitan acceder a atributos de instancia.
-Mejora la selección de participantes para eventos:
-Implementa un sistema más robusto para seleccionar participantes al crear eventos.
-"""
+        case MenuOpciones.SALIR:
+            break
