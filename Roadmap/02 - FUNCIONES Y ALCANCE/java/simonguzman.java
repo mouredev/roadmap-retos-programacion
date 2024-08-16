@@ -1,9 +1,10 @@
 import java.math.*;
+import java.util.Scanner;
 
 public class simonguzman {
-
     static int validarParImpar = 2;
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         /*
         * EJERCICIO:
         * - Crea ejemplos de funciones básicas que representen las diferentes
@@ -32,7 +33,7 @@ public class simonguzman {
         /*double sum = suma(1.2, 2.4);
         System.out.println("Suma = "+sum);
         double div = division(3, 2);
-        System.out.println("Division = "+div);*/
+        System.out.println("Division = "+div);
         //int fact = factorial(4);
         //System.out.println("Factorial = "+fact);
         //numeroPrimo(11);
@@ -40,7 +41,12 @@ public class simonguzman {
         //System.out.println(pot);
         //double raiz = raizCuadrada(10);
         //System.out.println(raiz);
-        numParImpar(3);
+        //numParImpar(3);
+        double div = division(125, 5);
+        System.out.println("Division = "+div);
+        double mod = modulo(125, 5);
+        System.out.println(mod);*/
+        iniciarCalculadora();
     }
 
     public static void presentation(){
@@ -61,6 +67,7 @@ public class simonguzman {
         System.out.println("8. Raiz cuadrada");
         System.out.println("9. Potenciacion");
         System.out.println("10. Numero primo");
+        System.out.println("11. Salir");
     }
 
     public static double suma(double num1, double num2){
@@ -143,5 +150,97 @@ public class simonguzman {
         }else{
             System.out.println("El numero "+num+" es impar");
         }
-    }   
+    } 
+    
+    public static void menuOperaciones(int opcion, Scanner scanner){
+        switch (opcion) {
+            case 1:
+                System.out.println("Ingrese el primer sumando: ");
+                double sumando1 = scanner.nextDouble();
+                System.out.println("Ingrese el segundo sumando: ");
+                double sumando2 = scanner.nextDouble();
+                System.out.println("Resultado: "+suma(sumando1, sumando2)); 
+                break;
+            case 2:
+                System.out.println("Ingrese el primer valor: ");
+                double minuendo = scanner.nextDouble();
+                System.out.println("Ingrese el segundo valor: ");
+                double sustraendo = scanner.nextDouble();
+                System.out.println("Diferencia: "+resta(minuendo, sustraendo));
+                break;
+            case 3:
+                System.out.println("Ingrese el primer valor: ");
+                double multiplicando = scanner.nextDouble();
+                System.out.println("Ingrese el segundo valor: ");
+                double multiplicador = scanner.nextDouble();
+                System.out.println("Producto: "+multiplicacion(multiplicando, multiplicador));
+                break;
+            case 4:
+                System.out.println("Ingrese el primer valor: ");
+                double dividendo = scanner.nextDouble();
+                System.out.println("Ingrese el segundo valor: ");
+                double divisor = scanner.nextDouble();
+                System.out.println("cociente: "+division(dividendo, divisor));
+                break;
+            case 5:
+                System.out.println("Ingrese el primer valor: ");
+                double dividendoModulo = scanner.nextDouble();
+                System.out.println("Ingrese el segundo valor: ");
+                double divisorModulo = scanner.nextDouble();
+                System.out.println("Resto: "+modulo(dividendoModulo, divisorModulo));
+                break;
+            case 6:
+                System.out.println("Ingrese el valor: ");
+                int numFactorial = scanner.nextInt();
+                System.out.println("Factorial: "+factorial(numFactorial));
+                break;
+            case 7:
+                System.out.println("Ingrese el valor: ");
+                int numParImpar = scanner.nextInt();
+                numParImpar(numParImpar);
+                break;
+            case 8:
+                System.out.println("Ingrese el valor: ");
+                int numeroRaiz = scanner.nextInt();
+                System.out.println("Raiz: "+raizCuadrada(numeroRaiz));
+                break;
+            case 9:
+                System.out.println("Ingrese el valor de la base: ");
+                int base = scanner.nextInt();
+                System.out.println("Ingrese el valor del exponente: ");
+                int exponente = scanner.nextInt();
+                System.out.println("Potencia: "+potenciacion(base, exponente));
+                break;
+            case 10:
+                System.out.println("Ingrese el valor: ");
+                int numeroPrimo = scanner.nextInt();
+                numeroPrimo(numeroPrimo);
+                break;
+            case 11:
+                System.out.println("Saliendo de la calculadora...");
+                break;
+            default:
+                System.out.println("ERROR: opcion no valida, ingrese un valor correcto" );
+                break;
+        }
+    }
+
+    public static void menuCompleto(Scanner scanner){
+        int opcion = 0;
+        do{
+            presentation();
+            menu();
+            System.out.println("Elija una opcion: ");
+            opcion = scanner.nextInt();
+
+            menuOperaciones(opcion, scanner);
+        }while(opcion != 11);
+    }
+
+    public static void iniciarCalculadora(){
+        Scanner scanner = new Scanner(System.in);
+        menuCompleto(scanner);
+        scanner.close();
+    }
 }
+
