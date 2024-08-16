@@ -1,8 +1,16 @@
+/*
+  EJERCICIO:
+
+- Se ejecuta en Node.js, importando el módulo 'Readline/promises' (https://nodejs.org/api/readline.html)
+
+  @RicJDev
+*/
+
 const maze = [
-  [1, 0, 1, 1, 2, 1],
-  [0, 0, 0, 1, 0, 1],
-  [1, 1, 0, 0, 0, 0],
-  [1, 0, 1, 0, 1, 0],
+  [0, 1, 1, 1, 0, 1],
+  [0, 1, 0, 1, 0, 1],
+  [0, 1, 0, 0, 0, 0],
+  [0, 0, 1, 0, 1, 0],
   [1, 0, 0, 0, 1, 0],
   [1, 1, 0, 1, 1, 1],
 ]
@@ -12,21 +20,27 @@ const mickey = {
   x: 2,
 }
 
+const door = {
+  y: 0,
+  x: 4,
+}
+
 function drawMaze() {
+  maze[door.y][door.x] = 5
+  maze[mickey.y][mickey.x] = 6
+
   const items = new Map([
     [0, '⬛️'],
     [1, '⬜️'],
-    [2, '🚪'],
-    [5, '🐭'],
+    [5, '🚪'],
+    [6, '🐭'],
   ])
 
-  maze[mickey.y][mickey.x] = 5
-
-  maze.map((row) => {
+  maze.forEach((row) => {
     let item
     let rowString = ''
 
-    row.map((cell) => {
+    row.forEach((cell) => {
       item = items.get(cell) || items.get(0)
       rowString += item
     })
@@ -35,33 +49,15 @@ function drawMaze() {
   })
 }
 
-function canMove(newY, newX) {
-  return maze[newY] && maze[newY][newX] !== 1
-}
+function moveMickey(y, x) {
+  let newY = mickey.y + y
+  let newX = mickey.x + x
 
-function moveUp() {
-  if (canMove(mickey.y - 1, mickey.x)) {
-    maze[mickey.y][mickey.x] = 0
-    mickey.y--
-  }
-}
-function moveDown() {
-  if (canMove(mickey.y + 1, mickey.x)) {
-    maze[mickey.y][mickey.x] = 0
-    mickey.y++
-  }
-}
-function moveLeft() {
-  if (canMove(mickey.y, mickey.x - 1)) {
-    maze[mickey.y][mickey.x] = 0
-    mickey.x--
-  }
-}
-function moveRight() {
-  if (canMove(mickey.y, mickey.x + 1)) {
+  if (maze[newY] && maze[newY][newX] !== 1 && maze[newY][newX] !== undefined) {
     maze[mickey.y][mickey.x] = 0
 
-    mickey.x++
+    mickey.y = newY
+    mickey.x = newX
   }
 }
 
@@ -71,22 +67,38 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
+let invalid = false
+let message = '\nMueve a Mickey! '
+
 while (true) {
   console.clear()
   console.log('\nAYUDA A MICKEY A ESCAPAR!\n')
 
   drawMaze()
 
+  if (mickey.y === door.y && mickey.x === door.x) {
+    console.log('\nHas liberado a Mickey! Prepárate para una demanda por copyright!\n')
+
+    rl.close()
+    break
+  }
+
+  if (invalid) {
+    message = '\nOpcion no valida. '
+    invalid = false
+  }
+
   const actions = new Map([
-    ['1', moveUp],
-    ['2', moveDown],
-    ['3', moveLeft],
-    ['4', moveRight],
+    ['1', () => moveMickey(-1, 0)],
+    ['2', () => moveMickey(1, 0)],
+    ['3', () => moveMickey(0, -1)],
+    ['4', () => moveMickey(0, 1)],
   ])
 
   console.log('\n(1) Arriba. (2) Abajo. (3) Izquierda. (4) Derecha.\n(x) Salir')
+  let answer = await rl.question(message)
 
-  let answer = await rl.question('\nMueve a Mickey! ')
+  message = '\nMueve a Mickey! '
 
   if (answer === 'x') {
     console.log('\nSaliendo del programa...')
@@ -96,9 +108,9 @@ while (true) {
   }
 
   const action =
-    actions.get(answer.toLowerCase()) ||
+    actions.get(answer) ||
     function () {
-      console.log('Opcion no valida')
+      invalid = true
     }
 
   action()
