@@ -243,4 +243,172 @@ let rightZeroFillShift = a >>> b; /* Desplaza a en representación binaria b bit
 
 /////////////////////////////////////
 
-// -- 5 OPERADORS LOGICOS --
+// -- 5 OPERADORES LOGICOS --
+
+// AND Lógico (&&)
+let a1 = true && true; // t && t devuelve true
+let a2 = true && false; // t && f devuelve false
+let a3 = false && true; // f && t devuelve false
+let a4 = false && 3 == 4; // f && f devuelve false
+let a5 = "Cat" && "Dog"; // t && t devuelve Dog
+let a6 = false && "Cat"; // f && t devuelve false
+let a7 = "Cat" && false; // t && f devuelve false
+
+// OR Lógico (||)
+let o1 = true || true; // t || t devuelve true
+let o2 = false || true; // f || t devuelve true
+let o3 = true || false; // t || f devuelve true
+let o4 = false || 3 == 4; // f || f devuelve false
+let o5 = "Cat" || "Dog"; // t || t devuelve Cat
+let o6 = false || "Cat"; // f || t devuelve Cat
+let o7 = "Cat" || false; // t || f devuelve Cat
+
+// NOT Lógico (!)
+let n1 = !true; // !t devuelve false
+let n2 = !false; // !f devuelve true
+let n3 = !"Cat"; // !t devuelve false
+
+// -- 6 OPERADORES DE CADENA (STRING) --
+/*
+    Además de los operadores de comparación, que se pueden usar en valores de cadena, 
+    el operador de concatenación (+) concatena dos valores de cadena, 
+    devolviendo otra cadena que es la unión de los dos operandos de cadena.
+*/
+
+console.log("mi " + "cadena"); // la consola registra la cadena "mi cadena".
+
+var mystring = "alpha";
+mystring += "bet"; // se evalúa como "alphabet" y asigna este valor a mystring.
+
+// -- 7 OPERADOR CONDICIONAL (TERNARIO) --
+/*
+    El operador condicional es el único operador de JavaScript que toma tres operandos. 
+    El operador puede tener uno de dos valores según una condición. 
+    La sintaxis es:
+*/
+condition ? val1 : val2
+
+let status = age >= 18 ? "adult" : "minor";
+
+// -- 8 OPERADOR COMA --
+let x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let a = [x, x, x, x, x];
+
+for (var i = 0, j = 9; i <= j; i++, j--)
+  //                              ^
+  console.log("a[" + i + "][" + j + "]= " + a[i][j]);
+
+  // -- 9 OPERADORES UNARIOS --
+  // Una operación unaria es una operación con un solo operando.
+
+delete object.property;
+delete object[propertyKey];
+delete objectName[index];
+delete property; // legal solo dentro de una declaración with
+
+// -- 10  OPERACIONES RELACIONALES --
+// Un operador relacional compara sus operandos y devuelve un valor Boolean basado en si la comparación es verdadera.
+propNameOrNumber in objectName;
+// -----------------------------
+
+// Arreglos (Arrays)
+var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
+0 in trees;        // devuelve true
+3 in trees;        // devuelve true
+6 in trees;        // devuelve false
+'bay' in trees;    // devuelve false (debes especificar el número del índice,
+                   // no el valor en ese índice)
+'length' in trees; // devuelve true (la longitud es una propiedad de Array)
+
+// objetos integrados
+'PI' in Math;          // devuelve true
+var myString = new String('coral');
+'length' in myString;  // devuelve true
+
+// Objetos personalizados
+var mycar = { make: 'Honda', model: 'Accord', year: 1998 };
+'make' in mycar;  // devuelve true
+'model' in mycar; // devuelve true
+
+// instanceof
+// El operador instanceof devuelve true si el objeto especificado es del tipo de objeto especificado.
+//La sintaxis es:
+objectName instanceof objectType
+
+var theDay = new Date(1995, 12, 17);
+if (theDay instanceof Date) {
+  // instrucciones a ejecutar
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+// -- ESTRUCTURAS DE CONTROL --
+/*
+    ‌Las estructuras de control de flujo,
+    son intrucciones que nos permiten evaluar si se puede cumplir una condición o no,
+    incluso nos puede ayudar a evaluarla n cantidad de veces.
+*/
+
+// --  CONDICIONALES  --
+
+const mayorEdad = 18;
+if (mayorEdad >= 18) {
+    HTMLFormControlsCollection.log ("Es mayor de edad");
+}else{
+    console.log ("Es menor de edad");
+} 
+
+const mayorEdad = 18;
+if (mayorEdad >= 18) {
+    HTMLFormControlsCollection.log ("Es mayor de edad");
+}else if (mayorEdad > 18 && mayorEdad < 25){
+    console.log ("Es joven adulto.");
+}else{
+    console.log ("Es menor de edad");
+} 
+
+// --  CICLOS, BUCLES O LOOPS  --
+/*
+    Se le pueden llamar, ciclos, bucles o loops, en ellos se evalua una condición n veces hasta que esta se cumpla.
+    En estos podemos encontrar los for, while, entre otros.‌
+*/
+
+// for
+const pasos = 5;
+for(let paso = 0; paso <= pasos; paso++){
+    console.log("Estoy dando el siguiente paso: " + paso);
+}
+
+// while
+const contador = 0;
+while(contador < 3) {
+    contador++;
+}
+console.log("Contador es igual a: ", contador);
+
+// switch
+switch(tipoFrutas) {
+    case "Naranjas":
+        console.log("Las naranjas cuestan 4€");
+        break;
+    case "Manzanas":
+        console.log("Las manzanas cuestan 2€");
+        break;
+    case "Cerezas":
+        console.log("Las cerezas cuestan 7€");
+        break;
+    case "default":
+        console.log("Las tenemos", tipoFruta);
+        break;
+}
+
+
+///////////////////////////////////////////////////////////////
+// DIFICULTAD EXTRA:
+let i = 10;
+while (i >= 10 && i <=55 && i) {
+    if (i % 2 == 0 && i % 3 != 0 && i != 16) {
+        console.log(i, "Es par, no es multiplo de 3 y no es 16");
+    }
+    i++;
+}
