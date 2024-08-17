@@ -97,3 +97,77 @@ class Robot(WorkInterface):
 Extra
 '''
 
+# Interfaces
+class PrinterInterface(ABC):
+
+    @abstractmethod
+    def print(self, document: str):
+        ...
+
+class ColorPrinterInterface(ABC):
+
+    @abstractmethod
+    def print_color(self, document: str):
+        ...
+
+class ScannerInterface(ABC):
+    
+    @abstractmethod
+    def scan(self, document: str) -> str:
+        ...
+
+class FaxInterface(ABC):
+    
+    @abstractmethod
+    def fax(self, document: str):
+        ...
+
+# Clases Especificas
+
+class Printer(PrinterInterface):
+    def print(self, document: str):
+        print(
+f"Imprimiendo en blanco y negro el docuemento {document}"
+)
+        
+class ColorPrinter(ColorPrinterInterface):
+
+    def print_color(self, document: str):
+        print(
+f"Imprimiendo en color el docuemento {document}"
+)
+
+class MultiFunctionPrinter(PrinterInterface, ColorPrinterInterface,
+                           ScannerInterface, FaxInterface):
+
+    def print_color(self, document: str):
+        print(
+f"Imprimiendo en color el docuemento {document}"
+)
+
+    def print(self, document: str):
+        print(
+f"Imprimiendo en blanco y negro el docuemento {document}"
+)
+
+    def scan(self, document: str) -> str:
+        print(f"Escaneando el documento {document}")
+        return f"Documento {document} escaneado"     
+
+    def fax(self, document: str):
+        print(f"Enviando por fax el documento {document}")
+
+def test_printers():
+    printer = Printer()
+    printer.print("Rigo.docx")
+
+    printer_color = ColorPrinter()
+    printer_color.print_color("Rigo.docx")
+
+    multi_printer = MultiFunctionPrinter()
+    multi_printer.print("Rigo.docx")
+    multi_printer.print_color("Rigo.docx")
+    print(multi_printer.scan(("Rigo.docx")))
+    multi_printer.fax(("Rigo.docx"))
+
+test_printers()
