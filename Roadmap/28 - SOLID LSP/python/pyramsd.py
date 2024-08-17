@@ -116,4 +116,3 @@ print("Bicicleta")
 test_vehiculo(bicicleta) # Bicicleta debe cumplir con el comportamiento esperado
 print("Avion")
 test_vehiculo(avion) # Avion debe cumplir con el comportamiento esperado
-
