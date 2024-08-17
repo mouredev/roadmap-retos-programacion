@@ -38,7 +38,6 @@ function funcion_externa()
     funcion_interna()  
 end
 
-
 # Uso de funciones ya creadas en el lenguaje
 function longitud_arreglo(arr::Vector)::Int
     # La función `length` nos devuelve la longitud de un array
