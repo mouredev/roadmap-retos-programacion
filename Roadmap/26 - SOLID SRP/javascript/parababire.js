@@ -116,7 +116,7 @@ class User {
     this.mail = mail
   }
 }
-
+// Gestión de prestamos
 class Loans {
   constructor() {
     this.loans = []
@@ -150,7 +150,7 @@ class Library {
   constructor() {
     this.books = []
     this.users = []
-    this.loans = Loans()
+    this.loans_service = new Loans()
   }
   add_book (book) {
     return this.books.push(book)
@@ -158,33 +158,32 @@ class Library {
   add_user (user) {
     return this.users.push(user)
   }
-  loan_book (user_id, book_title) { // Pulir
-    for (const book of this.books) {
-      if (book.Title == book_title && book.Copies > 0) {
-        book.Copies -= 1
-        this.loans.push({
-          User_Id: user_id,
-          Book_Title: book_title
-        })
-        return true
-      }
-      return false
+  loan_book (user_id, book_title) {
+    let user = this.users.find((user) => user.id == user_id)
+    let book = this.books.find((book) => book.title == book_title)
+    if (user && book) {
+      return this.loans_service.loan_book(user, book)
     }
+    return false
   }
+
   return_book (user_id, book_title) {
-    for (const loan of this.loans) {
-      if (loan.User_Id == user_id && loan.Book_Title == book_title) {
-        this.loans = this.loans.filter(function (el) {
-          return el.User_Id != user_id
-        })
-        for (const book of this.books) {
-          if (book.Title == book_title) {
-            book.Copies += 1
-          }
-        }
-        return true
-      }
-      return false
+    let user = this.users.find((user) => user.id == user_id)
+    let book = this.books.find((book) => book.title == book_title)
+    if (user && book) {
+      return this.loans_service.return_book(user, book)
     }
+    return false
   }
 }
+
+let someBook = new Book('100 Años de Soledad', 'Gabo', 10)
+let principalLibrary = new Library()
+principalLibrary.add_book(someBook)
+
+let someUser = new User('Ángel', 15154142, 'anarvamon@gmail.com')
+principalLibrary.add_user(someUser)
+
+principalLibrary.loan_book(15154142, '100 Años de Soledad')
+console.log(principalLibrary)
+console.log(principalLibrary.loans_service)
