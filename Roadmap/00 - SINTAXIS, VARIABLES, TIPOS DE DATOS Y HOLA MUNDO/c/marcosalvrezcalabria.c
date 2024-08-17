@@ -1,3 +1,4 @@
+#include <stdbool.h>
 // URL del sitio web oficial de C: https://en.cppreference.com/w/c
 
 // Comentario en una línea
@@ -17,7 +18,7 @@ char cadena_texto[] = "Hola, mundo";  // Tipo char[] (cadena de caracteres)
 int entero = 10;                      // Tipo int (entero)
 float flotante = 3.14f;               // Tipo float (número de coma flotante)
 double doble = 2.71828;               // Tipo double (número de coma flotante de doble precisión)
-bool booleano = true;                 // Tipo _Bool (booleano, requiere incluir stdbool.h)
+bool booleano = 0;                 // Tipo _Bool (booleano, requiere incluir stdbool.h)
 char caracter = 'A';                  // Tipo char (carácter individual)
 
 // Para usar booleanos en C, es necesario incluir el header stdbool.h
