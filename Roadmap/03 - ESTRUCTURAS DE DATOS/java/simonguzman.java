@@ -210,7 +210,7 @@ public class simonguzman {
         do{
             menuPresentacion();
             opcion = scanner.nextInt();
-            opcionMenu(contactos, scanner);
+            opcionMenu(opcion, contactos, scanner);
         }while( opcion !=5 );
         scanner.close();
     }
@@ -231,8 +231,7 @@ public class simonguzman {
         System.out.println("Ingrese una opcion: ");
     }
 
-    public static void opcionMenu(HashMap<String,Integer> contactos ,Scanner scanner){
-        int opcion = scanner.nextInt();
+    public static void opcionMenu(int opcion, HashMap<String,Integer> contactos ,Scanner scanner){
         switch (opcion) {
             case 1:
                     buscarContacto(contactos, scanner);
@@ -270,9 +269,7 @@ public class simonguzman {
     }
 
     public static void buscarContacto(HashMap<String, Integer> contactos, Scanner scanner){
-        if(contactos.isEmpty()){
-            System.out.println("No hay contactos");
-        }else{
+        if(validarVacios(contactos)){
             System.out.println("Ingrese el nombre del contacto: ");
             String nombre = scanner.next();
             Integer telefono = contactos.get(nombre);
@@ -285,29 +282,33 @@ public class simonguzman {
     }
 
     public static void actualizarContacto(HashMap<String,Integer> contactos, Scanner scanner){
-        System.out.println("Ingrese el nombre del contacto: ");
-        String nombre = scanner.next();
-        if(contactos.containsKey(nombre)){
-            System.out.println("Ingrese el numero de telefono nuevo: ");
-            int telefono = scanner.nextInt();
-            if(validacionCompleta(telefono)){
-                contactos.put(nombre, telefono);
-                System.out.println("Contacto actualizado con exito");
+        if(validarVacios(contactos)){
+            System.out.println("Ingrese el nombre del contacto: ");
+            String nombre = scanner.next();
+            if(contactos.containsKey(nombre)){
+                System.out.println("Ingrese el numero de telefono nuevo: ");
+                int telefono = scanner.nextInt();
+                if(validacionCompleta(telefono)){
+                    contactos.put(nombre, telefono);
+                    System.out.println("Contacto actualizado con exito");
+                }else{
+                    System.out.println("ERROR: El número de teléfono debe ser numérico y tener un máximo de 11 dígitos.");
+                }
             }else{
-                System.out.println("ERROR: El número de teléfono debe ser numérico y tener un máximo de 11 dígitos.");
+                System.out.println("El contacto no fue encontrado o no existe");
             }
-        }else{
-            System.out.println("El contacto no fue encontrado o no existe");
         }
     }
 
     public static void eliminarContacto(HashMap<String,Integer> contactos, Scanner scanner){
-        System.out.println("Ingrese el nombre del contacto: ");
-        String nombre = scanner.next();
-        if(contactos.remove(nombre)!=null) {
-            System.out.println("Contacto eliminado con exito");
-        }else{
-            System.out.println("El contacto no ha sido encontrado");
+        if(validarVacios(contactos)){
+            System.out.println("Ingrese el nombre del contacto: ");
+            String nombre = scanner.next();
+            if(contactos.remove(nombre)!=null) {
+                System.out.println("Contacto eliminado con exito");
+            }else{
+                System.out.println("El contacto no ha sido encontrado");
+            }
         }
     }
 
@@ -335,9 +336,18 @@ public class simonguzman {
 
     public static boolean validacionCompleta(int numPhone){
         boolean valPhone = validarTelefono(numPhone);
-        boolean valNotNumeric = validarTelefono(numPhone);
+        boolean valNotNumeric = validarNoNumericos(numPhone);
 
         return valPhone && valNotNumeric;
+    }
+
+    public static boolean validarVacios(HashMap<String, Integer> contactos){
+        if(contactos.isEmpty()){
+            System.out.println("No hay contactos");
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
