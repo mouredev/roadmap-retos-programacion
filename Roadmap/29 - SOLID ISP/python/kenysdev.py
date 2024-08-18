@@ -14,64 +14,46 @@ from abc import ABC, abstractmethod
 from decimal import Decimal
 
 # NOTA: Este ejemplo muestra el uso CORRECTO. Para suponer un ejemplo que viole el principio, sería 
-#       imajinar todos los métodos Y propiedades siguientes, en una sola clase.
+#       Imaginar todos los métodos siguientes, en una sola abstracción, entonces algunos dispositivos
+#       implementarían abstracciones que no necesitan.
 
-class Employe(ABC):
-    def __init__(self, name: str) -> None:
-        self._name = name
+#______________________
+# Abstracciones
 
-    def get_name(self) -> str:
-        return self._name
-    
+class AbsPlayable(ABC):
     @abstractmethod
-    def calculate_payment(self) -> Decimal:
+    def play(self):
         pass
 
-class FullTime(Employe, ABC):
-    def __init__(self, name: str) -> None:
-        super().__init__(name)
-
+class AbsDisplayable(ABC):
     @abstractmethod
-    def assign_bonus(self) -> Decimal:
-        #return Decimal('100.00')
+    def display(self):
         pass
 
-class Hourly(Employe, ABC):
-    def __init__(self, name: str, hours: float) -> None:
-        super().__init__(name)
-        self._hours = hours
+#______________________
+# Implementar abstracciones
 
-    def set_hours(self, hours: float):
-        self._hours += hours
+class Speaker(AbsPlayable):
+    def play(self):
+        print("El altavoz está reproduciendo música.")
 
-class Intern(Employe, ABC):
-    def __init__(self, name: str, total_tickets: int, ticket_price: Decimal):
-        super().__init__(name)
-        self._total_tickets = total_tickets
-        self._ticket_price = ticket_price
+class Phone(AbsPlayable, AbsDisplayable):
+    def play(self):
+        print("El teléfono está reproduciendo música.")
 
-# _______________________________________
-# ejmp de uso 1
-class SellerIntern(Intern):    
-    def calculate_payment(self) -> Decimal:
-        return self._total_tickets * Decimal(self._ticket_price)
+    def display(self):
+        print("El teléfono está mostrando la pantalla de reproducción.")
 
-seller_intern = SellerIntern("Zoe", 40, Decimal('5.10'))
-print(seller_intern.get_name())
-print(seller_intern.calculate_payment())
+#______________________
+# Utilización
+print("Ejercicio #1")
 
-#________________________________________
-# ejmp de uso 2
-class SellerFullTime(FullTime):
-    def assign_bonus(self) -> Decimal:
-        return Decimal('50.00')
+speaker = Speaker()
+speaker.play()
 
-    def calculate_payment(self) -> Decimal:
-        return Decimal('1500.00') + self.assign_bonus()
-
-seller = SellerFullTime("Ben")
-print(seller.get_name())
-print(seller.calculate_payment())
+phone = Phone()
+phone.play()
+phone.display()
 
 """
  * EJERCICIO:
@@ -86,36 +68,56 @@ print(seller.calculate_payment())
  * 3. Desarrolla un código que compruebe que se cumple el principio.
 """
 
-class Printer(ABC):    
+#______________________
+# Abstracciones
+
+class AbsPrinter(ABC):    
     @abstractmethod
     def print_file(self, file: str) -> None:
         pass
 
-class Scanner:
+class AbsScanner(ABC):
+    @abstractmethod
     def to_scan(self, path_save: str) -> None:
-        print("\nEscaneo realizado, Guardado en:", path_save)
+        pass
 
-class Fax:
+class AbcFax(ABC):
+    @abstractmethod
     def send_file(self, file: str,  phone_number: int) -> None:
-        print("\n-", file, "Fue enviado a:", phone_number)
-    
-class MonoPrinter(Printer):
+        pass
+
+#______________________
+# Implementar abstracciones
+
+class MonoPrinter(AbsPrinter):
     def print_file(self, file: str) -> None:
         print("\nImpresora blanco y negro:")
         print(file, " se imprimió.")
 
-class ColorPrinter(Printer):
+class ColorPrinter(AbsPrinter):
     def print_file(self, file: str) -> None:
         print("\nImpresora a color:")
         print(file, " se imprimió.")
 
+class Scanner(AbsScanner):
+    def to_scan(self, path_save: str) -> None:
+        print("\nEscaneo realizado, Guardado en:", path_save)
+
+class Fax(AbcFax):
+    def send_file(self, file: str,  phone_number: int) -> None:
+        print("\n-", file, "Fue enviado a:", phone_number)
+
 
 class MultiFunctionPrinter:
     def __init__(self):
-        self.mono_printer = MonoPrinter()
-        self.color_printer = ColorPrinter()
-        self.scanner = Scanner()
-        self.fax = Fax()
+        self.mono_printer: AbsPrinter = MonoPrinter()
+        self.color_printer: AbsPrinter = ColorPrinter()
+        self.scanner: AbsScanner = Scanner()
+        self.fax: AbcFax = Fax()
+
+#______________________
+# Utilización
+print("\nEjercicio #2")
 
 #___________
 # blanco y negro.
