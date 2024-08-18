@@ -86,4 +86,40 @@ lamp.operate("off")
 DIFICULTAD EXTRA
 '''
 
+from abc import ABC, abstractmethod
+
+class Notifier(ABC):
+        
+    @abstractmethod
+    def send(self, message: str):
+        pass
+
+class EmailNotifier(Notifier):
+    def send(self, message: str):
+        print(f"Email: {message}")
+
+class PushNotifier(Notifier):
+    def send(self, message: str):
+        print(f"Push: {message}")
+
+class SMSNotifier(Notifier):
+    def send(self, message: str):
+        print(f"SMS: {message}")
+
+class NotificationService():
+        
+    def __init__(self, notifier: Notifier) -> None:
+        self.notifier = notifier
+
+    def notify(self, message):
+        self.notifier.send(message)
+
+notification_system = NotificationService(EmailNotifier())
+notification_system.notify("Hello, World!")
+
+notification_system = NotificationService(PushNotifier())
+notification_system.notify("Hello, World!")
+
+notification_system = NotificationService(SMSNotifier())
+notification_system.notify("Hello, World!")
 
