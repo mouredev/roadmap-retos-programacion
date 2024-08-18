@@ -1,13 +1,12 @@
 import java.lang.reflect.Array;
 import java.util.*;
-import java.util.PriorityQueue;
 
 public class simonguzman {
     public enum Dias{
         Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo
     }
     public static void main(String[] args) {
-        
+        Scanner scanner = new Scanner(System.in);
         /*//*********************Arrays*********************
         int [] numbers = {1,2,3,4,5}; 
         int newLength = 8;
@@ -168,7 +167,7 @@ public class simonguzman {
         //Show HashSet
         for(String name : names){
             System.out.println(name);
-        }*/
+        }
 
         //*********************Enum*********************
         Dias dia = Dias.Lunes;
@@ -198,6 +197,147 @@ public class simonguzman {
             default:
                 System.out.println("El dia no existe");
                 break;
+        }*/
+        agendaContactos();
+        //******************************Ejercicio adicional******************************/
+
+    }
+
+    public static void agendaContactos(){
+        HashMap<String, Integer> contactos = new HashMap();
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        do{
+            menuPresentacion();
+            opcion = scanner.nextInt();
+            opcionMenu(contactos, scanner);
+        }while( opcion !=5 );
+        scanner.close();
+    }
+
+    public static void presentacion(){
+        System.out.println("*******************************");
+        System.out.println("Bienvenido al sistema");
+        System.out.println("*******************************");
+    }
+
+    public static void menuPresentacion(){
+        presentacion();
+        System.out.println("1. Busqueda");
+        System.out.println("2. Insercion");
+        System.out.println("3. Actualizacion");
+        System.out.println("4. Eliminar");
+        System.out.println("5. Salir");
+        System.out.println("Ingrese una opcion: ");
+    }
+
+    public static void opcionMenu(HashMap<String,Integer> contactos ,Scanner scanner){
+        int opcion = scanner.nextInt();
+        switch (opcion) {
+            case 1:
+                    buscarContacto(contactos, scanner);
+                break;
+            case 2:
+                    insertarContacto(contactos, scanner);
+                break;
+            case 3:
+                    actualizarContacto(contactos, scanner);
+                break;
+            case 4:
+                    eliminarContacto(contactos, scanner);
+                break;
+            case 5:
+                    System.out.println("Saliendo del programa....");
+                break;
+        
+            default:
+                System.out.println("ERROR: Ingrese una opcion validad");
+                break;
         }
     }
+
+    public static void insertarContacto(HashMap<String, Integer> contactos ,Scanner scanner){
+        System.out.println("Ingrese el nombre del contacto: ");
+        String name = scanner.next();
+        System.out.println("Ingrese el numero de telefono:"); 
+        int numPhone = scanner.nextInt();
+        if(validacionCompleta(numPhone)){
+            contactos.put(name, numPhone);
+            System.out.println("Contacto ingresado con exito");
+        }else{
+            System.out.println("ERROR: El número de teléfono debe ser numérico y tener un máximo de 11 dígitos.");
+        }
+    }
+
+    public static void buscarContacto(HashMap<String, Integer> contactos, Scanner scanner){
+        if(contactos.isEmpty()){
+            System.out.println("No hay contactos");
+        }else{
+            System.out.println("Ingrese el nombre del contacto: ");
+            String nombre = scanner.next();
+            Integer telefono = contactos.get(nombre);
+            if(telefono != null){
+                System.out.println("Nombre del contacto: "+ nombre + "Telefono : "+ telefono); 
+            }else{
+                System.out.println("El contacto no existe");
+            }
+        }
+    }
+
+    public static void actualizarContacto(HashMap<String,Integer> contactos, Scanner scanner){
+        System.out.println("Ingrese el nombre del contacto: ");
+        String nombre = scanner.next();
+        if(contactos.containsKey(nombre)){
+            System.out.println("Ingrese el numero de telefono nuevo: ");
+            int telefono = scanner.nextInt();
+            if(validacionCompleta(telefono)){
+                contactos.put(nombre, telefono);
+                System.out.println("Contacto actualizado con exito");
+            }else{
+                System.out.println("ERROR: El número de teléfono debe ser numérico y tener un máximo de 11 dígitos.");
+            }
+        }else{
+            System.out.println("El contacto no fue encontrado o no existe");
+        }
+    }
+
+    public static void eliminarContacto(HashMap<String,Integer> contactos, Scanner scanner){
+        System.out.println("Ingrese el nombre del contacto: ");
+        String nombre = scanner.next();
+        if(contactos.remove(nombre)!=null) {
+            System.out.println("Contacto eliminado con exito");
+        }else{
+            System.out.println("El contacto no ha sido encontrado");
+        }
+    }
+
+    public static boolean validarTelefono(int numPhone){
+        String numPhoneString = String.valueOf(numPhone);
+        if(numPhoneString.length() > 11){
+            System.out.println("Error: El número de teléfono no puede tener más de 11 dígitos.");
+            return false;
+        }
+        return true;
+    }
+
+
+    public static boolean validarNoNumericos(int numPhone){
+        String numPhoneString = String.valueOf(numPhone);
+        for (int i = 0; i < numPhoneString.length(); i++){
+            char c = numPhoneString.charAt(i);
+            if(!Character.isDigit(c)){
+                System.out.println("Error: el numero de telefono solo puede tener digitos");
+                return false;
+            }
+        }
+        return true;        
+    }
+
+    public static boolean validacionCompleta(int numPhone){
+        boolean valPhone = validarTelefono(numPhone);
+        boolean valNotNumeric = validarTelefono(numPhone);
+
+        return valPhone && valNotNumeric;
+    }
+
 }
