@@ -39,7 +39,7 @@ public class Marianoemir {
         float decimal = 39f;
         
         //double Tamaño: 64 bits Rango: Aproximadamente ±1.79769313486231570E+308 (15 dígitos decimales) Uso: Números en punto flotante de precisión doble.
-        double dou = 439.99;
+        double dou = 439.99D;
         //char Tamaño: 16 bits Rango: 0 a 65,535 (representa un solo carácter Unicode) Uso: Almacena caracteres individuales.
         char caracter = '#'; //Puede representar un simbolo unicode una letra en minuscula o mayuscula ejemplo 'a' o 'A'
         char simbolo = '\u0024'; // '\u0024' es el código Unicode para '$'
