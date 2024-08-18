@@ -29,18 +29,17 @@
  * 5. Salir del programa.
 */
 
-// NOTA: Solo es un intento de practicar la aplicación de los principios SOLID. XD
+// NOTA: Solo es un intento de practicar los principios SOLID. XD
 
 // ________________________________________________
 use std::io::{self, Write};
 use std::sync::{Arc, Mutex};
+use std::collections::HashMap;
 
 // [dependencies]
 // rand = "0.8.5"
 // https://crates.io/crates/rand
 use rand::prelude::*;
-
-// _____________________
 
 // ________________________________________________
 // INTERFACES
@@ -60,40 +59,37 @@ trait IDataTable<T> {
 /// Contrato para implementar diferentes formas de almacenamiento de datos.
 trait IData {
     fn events_table(&mut self) -> &mut dyn IDataTable<String>;
-    fn participants_table(&mut self) -> &mut dyn IDataTable<(String, String)>;
-    fn simulation_table(
-        &mut self,
-    ) -> &mut dyn IDataTable<Vec<(String, Vec<(String, String, i32, String)>)>>;
+    fn participants_table(&mut self) -> &mut dyn IDataTable<(String, String, i32)>; // name, country, event_id 
+    fn simulation_table( &mut self, //event_name, name, country, event_id, score, medal
+    ) -> &mut dyn IDataTable<Vec<(String, Vec<(String, String, i32, i32, String)>)>>; 
 }
 
 /// Contrato sobre la entra de datos.
 trait IInput {
     fn get(&self, msg: &str) -> String;
+    fn get_int(&self, msg: &str) -> i32;
 }
 
 // ________________________________________________
 // CONTRATOS sobre la comunicación entre la interacción del usuario y la capa de datos.
-trait IEvents {
-    fn add(&self);
-}
+trait IEvents { fn add(&self); }
 
 trait IParticipants {
+    fn get_event_id(&self) -> i32;
     fn add(&self);
 }
-trait ISimulations {
-    fn start(&self);
-}
 
-trait IReports {
-    fn generate(&self);
-}
+trait ISimulations { fn start(&self); }
+
+trait IReports { fn generate(&self); }
 
 // ________________________________________________
 // IMPLEMENTAR CONTRATOS
 struct GlobalConfig;
+
 impl IGlobalConfig for GlobalConfig {
     fn medals(&self) -> [&'static str; 3] {
-        static MEDALS: [&'static str; 3] = ["Oro", "Plata", "Bronce"];
+        static MEDALS: [&'static str; 3] = ["🥇 Oro", "🥈 Plata", "🥉 Bronce"];
         MEDALS
     }
 
@@ -135,7 +131,7 @@ impl IDataTable<String> for EventsTable {
 
 // _____________________
 struct ParticipantsTable {
-    dt: Vec<(String, String)>,
+    dt: Vec<(String, String, i32)>,
 }
 
 impl ParticipantsTable {
@@ -144,8 +140,8 @@ impl ParticipantsTable {
     }
 }
 
-impl IDataTable<(String, String)> for ParticipantsTable {
-    fn add(&mut self, participant: (String, String)) {
+impl IDataTable<(String, String, i32)> for ParticipantsTable {
+    fn add(&mut self, participant: (String, String, i32)) {
         self.dt.push(participant);
     }
 
@@ -153,14 +149,14 @@ impl IDataTable<(String, String)> for ParticipantsTable {
         self.dt.len()
     }
 
-    fn get_list(&self) -> Vec<(String, String)> {
+    fn get_list(&self) -> Vec<(String, String, i32)> {
         self.dt.clone()
     }
 }
 
 // _____________________
-struct SimulationTable {
-    dt: Vec<Vec<(String, Vec<(String, String, i32, String)>)>>,
+struct SimulationTable { // event_name, name, country, event_id, score, medal
+    dt: Vec<Vec<(String, Vec<(String, String, i32, i32, String)>)>>,
 }
 
 impl SimulationTable {
@@ -169,8 +165,8 @@ impl SimulationTable {
     }
 }
 
-impl IDataTable<Vec<(String, Vec<(String, String, i32, String)>)>> for SimulationTable {
-    fn add(&mut self, simulation: Vec<(String, Vec<(String, String, i32, String)>)>) {
+impl IDataTable<Vec<(String, Vec<(String, String, i32, i32, String)>)>> for SimulationTable {
+    fn add(&mut self, simulation: Vec<(String, Vec<(String, String, i32, i32, String)>)>) {
         self.dt.push(simulation);
     }
 
@@ -178,7 +174,7 @@ impl IDataTable<Vec<(String, Vec<(String, String, i32, String)>)>> for Simulatio
         self.dt.len()
     }
 
-    fn get_list(&self) -> Vec<Vec<(String, Vec<(String, String, i32, String)>)>> {
+    fn get_list(&self) -> Vec<Vec<(String, Vec<(String, String, i32, i32, String)>)>> {
         self.dt.clone()
     }
 }
@@ -187,8 +183,8 @@ impl IDataTable<Vec<(String, Vec<(String, String, i32, String)>)>> for Simulatio
 /// Aplicando interfaz para Datos en memoria.
 struct DataInMemory {
     events_table: Box<dyn IDataTable<String>>,
-    participants_table: Box<dyn IDataTable<(String, String)>>,
-    simulation_table: Box<dyn IDataTable<Vec<(String, Vec<(String, String, i32, String)>)>>>,
+    participants_table: Box<dyn IDataTable<(String, String, i32)>>,
+    simulation_table: Box<dyn IDataTable<Vec<(String, Vec<(String, String, i32, i32, String)>)>>>,
 }
 
 impl DataInMemory {
@@ -206,13 +202,13 @@ impl IData for DataInMemory {
         &mut *self.events_table
     }
 
-    fn participants_table(&mut self) -> &mut dyn IDataTable<(String, String)> {
+    fn participants_table(&mut self) -> &mut dyn IDataTable<(String, String, i32)> {
         &mut *self.participants_table
     }
 
     fn simulation_table(
         &mut self,
-    ) -> &mut dyn IDataTable<Vec<(String, Vec<(String, String, i32, String)>)>> {
+    ) -> &mut dyn IDataTable<Vec<(String, Vec<(String, String, i32, i32, String)>)>> {
         &mut *self.simulation_table
     }
 }
@@ -241,6 +237,21 @@ impl IInput for ConsoleInput {
             println!("La entrada no puede estar vacía.");
         }
     }
+    
+    fn get_int(&self, msg: &str) -> i32 {
+        loop {
+            let input: String = self.get(msg);
+            
+            match input.trim().parse::<i32>() {
+                Ok(number) => {
+                    return number
+                },
+                Err(_) => {
+                    println!("Se requiere un número entero.");
+                }
+            }
+        }
+    }
 }
 
 // ________________________________________________
@@ -256,13 +267,7 @@ impl Events {
         data: Arc<Mutex<Box<dyn IData>>>,
         input: Arc<dyn IInput>,
         constants: Arc<dyn IGlobalConfig>,
-    ) -> Self {
-        Events {
-            data,
-            input,
-            constants,
-        }
-    }
+    ) -> Self { Events { data, input, constants, } }
 }
 
 impl IEvents for Events {
@@ -289,24 +294,49 @@ impl Participants {
         data: Arc<Mutex<Box<dyn IData>>>,
         input: Arc<dyn IInput>,
         constants: Arc<dyn IGlobalConfig>,
-    ) -> Self {
-        Participants {
-            data,
-            input,
-            constants,
-        }
-    }
+    ) -> Self { Participants { data, input, constants, } }
 }
 
 impl IParticipants for Participants {
+    fn get_event_id(&self) -> i32 {
+        println!("Seleccionar el evento donde participará:");
+        let mut data = self.data.lock().unwrap();
+        let events = data.events_table().get_list();
+        
+        for i in 0..events.len() {
+            println!("{}: {}", i, events[i]);
+        }
+
+        loop {
+            let index: i32 = self.input.get_int("d de evento: ");
+            if index < 0 || index >= events.len().try_into().unwrap() {
+                println!("Id no encontrada.");
+            } else {
+                return index;
+            }
+        }
+    }
+
     fn add(&self) {
         println!("AGREGAR PARTICIPANTE:");
+        let mut data = self.data.lock().unwrap();
+        let events = data.events_table().get_list();
+                
+        if !(events.len() > 0) {
+            println!("No existe evento en cuál participar.");
+            return;
+        }
+
+        drop(data);
+        let event_id: i32 = self.get_event_id();
         let name = self.input.get("Nombre: ");
         let country = self.input.get("País: ");
+
         let mut data = self.data.lock().unwrap();
         data.participants_table()
-            .add((name.clone(), country.clone()));
+            .add((name.clone(), country.clone(), event_id));
         println!("\n{} fue agregado", name);
+
         println!("{}", self.constants.menu());
     }
 }
@@ -323,7 +353,7 @@ impl Simulation {
         Simulation { data, constants }
     }
 
-    fn qualify_participants(&self) -> Vec<(String, String, i32, String)> {
+    fn qualify_participants(&self, event_id: i32) -> Vec<(String, String, i32, i32, String)> {
         let mut rng = rand::thread_rng();
         let medals = self.constants.medals();
 
@@ -332,21 +362,26 @@ impl Simulation {
             data.participants_table().get_list()
         };
 
-        let mut participants: Vec<_> = participants_list
+        // Seleccionar solo los participantes que tienen el ID del evento.
+        let participants_of_event: Vec<_> = participants_list
+        .iter()
+        .filter(|p| p.2 == event_id)
+        .collect();
+
+        let mut participants: Vec<_> = participants_of_event
             .iter()
-            .map(|(name, country)| (name.clone(), country.clone(), rng.gen_range(1..=100)))
+            .map(|(name, country, event_id)| (
+                name.clone(), country.clone(), event_id.clone(), rng.gen_range(1..=100)))
             .collect();
 
-        println!("data, participants");
-
-        participants.sort_by(|a, b| b.2.cmp(&a.2));
-        println!("participants");
+        participants.sort_by(|a, b| b.3.cmp(&a.3));
 
         participants
             .into_iter()
             .take(3)
             .enumerate()
-            .map(|(i, (name, country, score))| (name, country, score, medals[i].to_string()))
+            .map(|(i, (name, country, event_id, score))| (
+                name, country, event_id, score, medals[i].to_string()))
             .collect()
     }
 
@@ -354,10 +389,13 @@ impl Simulation {
         let mut data = self.data.lock().unwrap();
         let events = data.events_table().get_list();
         drop(data);
-
+         
         let simulation: Vec<_> = events
             .into_iter()
-            .map(|event| (event, self.qualify_participants()))
+            .enumerate()
+            .map(|(index, event)| (event, self.qualify_participants(index
+                .try_into()
+                .unwrap())))
             .collect();
 
         let mut data2 = self.data.lock().unwrap();
@@ -395,50 +433,55 @@ impl Reports {
         Reports { data, constants }
     }
 
-    fn generate_top_countries(&self, ranking_countries: &mut Vec<(String, i32)>) {
-        ranking_countries.sort_by(|a, b| b.1.cmp(&a.1));
+    fn generate_top_countries(&self, ranking_countries: &mut HashMap<String, (i32, i32)>) {
+        let mut vec: Vec<_> = ranking_countries.iter().collect();
+        vec.sort_by(|a, b| b.1.0.cmp(&a.1.0).then(b.1.1.cmp(&a.1.1)));
 
-        for (i, (name, total)) in ranking_countries.iter().enumerate() {
-            println!("'{}' - {} -> Medallas: {}", i + 1, name, total);
+        for (i, (country, (medals, score))) in vec.iter().take(10).enumerate() {
+            println!("🔵 {:<2} | {:<12} | 🏅 {:<3} | 🧮 {:>4}", i + 1, country, medals, score);
         }
     }
 
-    fn update_country(ranking_countries: &mut Vec<(String, i32)>, country: String) {
-        if let Some(index) = ranking_countries
-            .iter()
-            .position(|(name, _)| name == &country)
-        {
-            ranking_countries[index].1 += 1;
-        } else {
-            ranking_countries.push((country, 1));
+    fn update_country_ranking(
+        ranking_countries: &mut HashMap<String, (i32, i32)>,
+        country: String,
+        score: i32
+    ) {
+        match ranking_countries.get_mut(&country) {
+            Some((medals, current_score)) => {
+                *medals += 1;
+                *current_score += score;
+            },
+            None => {
+                ranking_countries.insert(country, (1, score));
+            }
         }
     }
 
     fn iterate_participants(
         &self,
-        participants: &[(String, String, i32, String)],
-        ranking_countries: &mut Vec<(String, i32)>,
+        participants: &[(String, String, i32, i32, String)],
+        ranking_countries: &mut HashMap<String, (i32, i32)>,
     ) {
-        for (i, (name, country, score, medal)) in participants.iter().enumerate() {
-            println!(
-                "'{}' - {} - {} -> Score: {}, Medal: {}",
-                i + 1,
-                name,
-                country,
-                score,
-                medal
+        for (i, (name, country, _event_id, score, medal)) in participants.iter().enumerate() {
+            println!("🟢 '{:<1}' | {:<7} | {:<12} -> 🔢 {:<3}, | {:<3}", i + 1, name, country, score, medal
             );
-            Self::update_country(ranking_countries, country.clone());
+            Self::update_country_ranking(ranking_countries, country.clone(), score.clone());
         }
     }
 
     fn iterate_events(
         &self,
-        simulation: &Vec<(String, Vec<(String, String, i32, String)>)>,
-        ranking_countries: &mut Vec<(String, i32)>,
+        simulation: &Vec<(String, Vec<(String, String, i32, i32, String)>)>,
+        ranking_countries: &mut HashMap<String, (i32, i32)>,
     ) {
         for (event_name, results) in simulation {
             println!("\nEvent: {}:", event_name);
+            if results.len() < 3 {
+                println!("Evento cancelado por falta de participantes.");
+                continue;
+            }
+
             self.iterate_participants(results, ranking_countries);
         }
     }
@@ -449,13 +492,12 @@ impl IReports for Reports {
         let simulations = self.data.lock().unwrap().simulation_table().get_list();
         if simulations.is_empty() {
             println!("Aún no hay simulaciones creadas.");
-            
             return;
         }
 
         for (i, simulation) in simulations.iter().enumerate() {
             println!("\n______________\nSimulation {}", i + 1);
-            let mut ranking_countries = Vec::new();
+            let mut ranking_countries: HashMap<String, (i32, i32)> = HashMap::new();
             self.iterate_events(simulation, &mut ranking_countries);
 
             println!("\nRanking de países, según el número de medallas:");
@@ -484,11 +526,7 @@ impl Program {
 
         Program {
             events: Box::new(Events::new(data.clone(), input.clone(), constants.clone())),
-            participants: Box::new(Participants::new(
-                data.clone(),
-                input.clone(),
-                constants.clone(),
-            )),
+            participants: Box::new(Participants::new(data.clone(), input.clone(), constants.clone(),)),
             simulation: Box::new(Simulation::new(data.clone(), constants.clone())),
             reports: Box::new(Reports::new(data, constants.clone())),
             input,
@@ -523,5 +561,5 @@ fn main() {
     program.run();
 }
 
-// NOTA: Solo es un intento de practicar la aplicación de los principios SOLID. XD
+// NOTA: Solo es un intento de practicar los principios SOLID. XD
 
