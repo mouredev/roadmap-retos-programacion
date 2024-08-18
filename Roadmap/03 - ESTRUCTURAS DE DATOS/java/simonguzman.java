@@ -204,7 +204,7 @@ public class simonguzman {
     }
 
     public static void agendaContactos(){
-        HashMap<String, Integer> contactos = new HashMap();
+        HashMap<String, Long> contactos = new HashMap();
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do{
@@ -231,7 +231,7 @@ public class simonguzman {
         System.out.println("Ingrese una opcion: ");
     }
 
-    public static void opcionMenu(int opcion, HashMap<String,Integer> contactos ,Scanner scanner){
+    public static void opcionMenu(int opcion, HashMap<String,Long> contactos ,Scanner scanner){
         switch (opcion) {
             case 1:
                     buscarContacto(contactos, scanner);
@@ -255,11 +255,11 @@ public class simonguzman {
         }
     }
 
-    public static void insertarContacto(HashMap<String, Integer> contactos ,Scanner scanner){
+    public static void insertarContacto(HashMap<String, Long> contactos ,Scanner scanner){
         System.out.println("Ingrese el nombre del contacto: ");
         String name = scanner.next();
         System.out.println("Ingrese el numero de telefono:"); 
-        int numPhone = scanner.nextInt();
+        Long numPhone = scanner.nextLong();
         if(validacionCompleta(numPhone)){
             contactos.put(name, numPhone);
             System.out.println("Contacto ingresado con exito");
@@ -268,11 +268,11 @@ public class simonguzman {
         }
     }
 
-    public static void buscarContacto(HashMap<String, Integer> contactos, Scanner scanner){
+    public static void buscarContacto(HashMap<String, Long> contactos, Scanner scanner){
         if(validarVacios(contactos)){
             System.out.println("Ingrese el nombre del contacto: ");
             String nombre = scanner.next();
-            Integer telefono = contactos.get(nombre);
+            Long telefono = contactos.get(nombre);
             if(telefono != null){
                 System.out.println("Nombre del contacto: "+ nombre + "Telefono : "+ telefono); 
             }else{
@@ -281,13 +281,13 @@ public class simonguzman {
         }
     }
 
-    public static void actualizarContacto(HashMap<String,Integer> contactos, Scanner scanner){
+    public static void actualizarContacto(HashMap<String,Long> contactos, Scanner scanner){
         if(validarVacios(contactos)){
             System.out.println("Ingrese el nombre del contacto: ");
             String nombre = scanner.next();
             if(contactos.containsKey(nombre)){
                 System.out.println("Ingrese el numero de telefono nuevo: ");
-                int telefono = scanner.nextInt();
+                Long telefono = scanner.nextLong();
                 if(validacionCompleta(telefono)){
                     contactos.put(nombre, telefono);
                     System.out.println("Contacto actualizado con exito");
@@ -300,7 +300,7 @@ public class simonguzman {
         }
     }
 
-    public static void eliminarContacto(HashMap<String,Integer> contactos, Scanner scanner){
+    public static void eliminarContacto(HashMap<String,Long> contactos, Scanner scanner){
         if(validarVacios(contactos)){
             System.out.println("Ingrese el nombre del contacto: ");
             String nombre = scanner.next();
@@ -312,7 +312,7 @@ public class simonguzman {
         }
     }
 
-    public static boolean validarTelefono(int numPhone){
+    public static boolean validarTelefono(Long numPhone){
         String numPhoneString = String.valueOf(numPhone);
         if(numPhoneString.length() > 11){
             System.out.println("Error: El número de teléfono no puede tener más de 11 dígitos.");
@@ -322,7 +322,7 @@ public class simonguzman {
     }
 
 
-    public static boolean validarNoNumericos(int numPhone){
+    public static boolean validarNoNumericos(Long numPhone){
         String numPhoneString = String.valueOf(numPhone);
         for (int i = 0; i < numPhoneString.length(); i++){
             char c = numPhoneString.charAt(i);
@@ -334,14 +334,14 @@ public class simonguzman {
         return true;        
     }
 
-    public static boolean validacionCompleta(int numPhone){
+    public static boolean validacionCompleta(Long numPhone){
         boolean valPhone = validarTelefono(numPhone);
         boolean valNotNumeric = validarNoNumericos(numPhone);
 
         return valPhone && valNotNumeric;
     }
 
-    public static boolean validarVacios(HashMap<String, Integer> contactos){
+    public static boolean validarVacios(HashMap<String, Long> contactos){
         if(contactos.isEmpty()){
             System.out.println("No hay contactos");
             return false;
