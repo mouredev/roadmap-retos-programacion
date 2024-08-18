@@ -33,7 +33,7 @@ public class Marianoemir {
         int entero = 4000;
 
         //long Tamaño: 64 bits Rango: -9,223,372,036,854,775,808 a 9,223,372,036,854,775,807 Uso: Números enteros muy grandes.
-        long largo = 89999;
+        long largo = 15000000000L;
 
         //float Tamaño: 32 bits Rango: Aproximadamente ±3.40282347E+38F (6-7 dígitos decimales) Uso: Números en punto flotante de precisión simple.
         float decimal = 39f;
