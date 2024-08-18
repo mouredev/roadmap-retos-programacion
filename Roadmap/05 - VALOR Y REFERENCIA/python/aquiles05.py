@@ -43,8 +43,8 @@ print(lista)  # se imprime lista modificada
 def negocio(compra="Casa"):
     print(f"buscando,{compra} sin dinero")
     negocio=10
-    print(negocio)
-negocio()
-negocio("Carro")
-negocio("nada de nada")
+    print(negocio)   #Imprime 10
+negocio()    # imprime "buscando,Casa sin dinero"
+negocio("Carro")  # imprime "buscando,Carro sin dinero"
+negocio("nada de nada")  #imprime "buscando,nada de nada sin dinero"
 
