@@ -7,7 +7,7 @@ public class simonguzman {
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        /*//*********************Arrays*********************
+        //*********************Arrays*********************
         int [] numbers = {1,2,3,4,5}; 
         int newLength = 8;
         //update
@@ -197,12 +197,11 @@ public class simonguzman {
             default:
                 System.out.println("El dia no existe");
                 break;
-        }*/
+
+        //*Ejecucion del ejercicio adicional */
         agendaContactos();
-        //******************************Ejercicio adicional******************************/
-
     }
-
+    //******************************Ejercicio adicional******************************/
     public static void agendaContactos(){
         HashMap<String, Long> contactos = new HashMap();
         Scanner scanner = new Scanner(System.in);
@@ -258,8 +257,7 @@ public class simonguzman {
     public static void insertarContacto(HashMap<String, Long> contactos ,Scanner scanner){
         System.out.println("Ingrese el nombre del contacto: ");
         String name = scanner.next();
-        System.out.println("Ingrese el numero de telefono:"); 
-        Long numPhone = scanner.nextLong();
+        Long numPhone = validInput(scanner, "Ingrese el numero de telefono:");
         if(validacionCompleta(numPhone)){
             contactos.put(name, numPhone);
             System.out.println("Contacto ingresado con exito");
@@ -274,7 +272,7 @@ public class simonguzman {
             String nombre = scanner.next();
             Long telefono = contactos.get(nombre);
             if(telefono != null){
-                System.out.println("Nombre del contacto: "+ nombre + "Telefono : "+ telefono); 
+                System.out.println("Nombre del contacto: "+ nombre + " Telefono : "+ telefono); 
             }else{
                 System.out.println("El contacto no existe");
             }
@@ -286,8 +284,7 @@ public class simonguzman {
             System.out.println("Ingrese el nombre del contacto: ");
             String nombre = scanner.next();
             if(contactos.containsKey(nombre)){
-                System.out.println("Ingrese el numero de telefono nuevo: ");
-                Long telefono = scanner.nextLong();
+                Long telefono = validInput(scanner, "Ingrese el numero de telefono nuevo: ");
                 if(validacionCompleta(telefono)){
                     contactos.put(nombre, telefono);
                     System.out.println("Contacto actualizado con exito");
@@ -315,7 +312,6 @@ public class simonguzman {
     public static boolean validarTelefono(Long numPhone){
         String numPhoneString = String.valueOf(numPhone);
         if(numPhoneString.length() > 11){
-            System.out.println("Error: El número de teléfono no puede tener más de 11 dígitos.");
             return false;
         }
         return true;
@@ -327,7 +323,6 @@ public class simonguzman {
         for (int i = 0; i < numPhoneString.length(); i++){
             char c = numPhoneString.charAt(i);
             if(!Character.isDigit(c)){
-                System.out.println("Error: el numero de telefono solo puede tener digitos");
                 return false;
             }
         }
@@ -350,4 +345,20 @@ public class simonguzman {
         }
     }
 
+
+    public static Long validInput(Scanner scanner, String input){
+        boolean isValidInput = false;
+        Long inputNumber = null;
+        while (!isValidInput) {
+            try {
+                System.out.println(input);
+                inputNumber = scanner.nextLong();
+                isValidInput = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: el numero de telefono solo puede tener digitos");
+                scanner.next();
+            }
+        }
+        return inputNumber;
+    }
 }
