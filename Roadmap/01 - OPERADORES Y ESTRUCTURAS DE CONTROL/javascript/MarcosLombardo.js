@@ -1,181 +1,107 @@
-// Operadores
+/*
+ * EJERCICIO:
+ * - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
+ *   Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits...
+ *   (Ten en cuenta que cada lenguaje puede poseer unos diferentes)
+ * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
+ *   que representen todos los tipos de estructuras de control que existan
+ *   en tu lenguaje:
+ *   Condicionales, iterativas, excepciones...
+ * - Debes hacer print por consola del resultado de todos los ejemplos.
+ *
+ * DIFICULTAD EXTRA (opcional):
+ * Crea un programa que imprima por consola todos los números comprendidos
+ * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+ *
+ * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
+ */
 
-/* Operadores artméticos */
+const num1 = 10;
+const num2 = 5;
 
-let num1 = 5 + 5; // Suma
-let num2 = 5 - 2; // Resta
-let num3 = 5 * 2; // Multiplicación
-let num4 = 10 / 2; // División
-let num5 = 12 % 2; // Módulo (Resto de la división)
+// Operadores aritméticos
+console.log("Operadores aritméticos:");
 
-console.log(num1, num2, num3, num4, num5);
+let suma = num1 + num2;
+let resta = num1 - num2;
+let multiplicacion = num1 * num2;
+let division = num1 / num2;
+let modulo = num1 % num2;
+let exponenciacion = num1 ** num2;
 
-/* Operadores de asignación */
+console.log("Suma:", suma);
+console.log("Resta:", resta);
+console.log("Multiplicación:", multiplicacion);
+console.log("División:", division);
+console.log("Resto:", modulo);
+console.log("Exponenciación:", exponenciacion);
 
-let num6 = 8;
-num6 += 5; // Asignación de suma
-let num7 = 10;
-num7 -= 5; // Asignación de resta
-let num8 = 2;
-num8 *= 2; // Asignación de multiplicación
-let num9 = 10;
-num9 /= 2; // Asignación de división
-let num10 = 9;
-num10 %= 3; // Asignación de módulo
+// Operadores de asignación
+console.log("Operadores de asignación:");
 
-console.log(num6, num7, num8, num9, num10);
+let x = num1; // Asignación
+x += division;
+console.log("Asignación de adición:", x);
 
-/* Operadores de comparación */
+let y = num2;
+y -= 1;
+console.log("Asignación de resta:", y);
 
-let comp1 = 5 == "5"; // Igualdad
-let comp2 = 5 === "5"; // Igualdad estricta
-let comp3 = 8 != "8"; // Desigualdad
-let comp4 = 6 !== "6"; // Desigualdad estricta
-let comp5 = 10 > 5; // Mayor que
-let comp6 = 10 >= 10; // Mayor o igual que
-let comp7 = 8 < 12; // Menor que
-let comp8 = 8 <= 7 // menor o igual que
+let z = num1;
+z *= y;
+console.log("Asignación de multiplicación:", z);
 
-console.log(comp1, comp2, comp3, comp4, comp5, comp6, comp7, comp8);
+let a = multiplicacion;
+a /= resta;
+console.log("Asignación de división:", a);
 
-/* Operadores lógicos */
+let b = exponenciacion;
+b %= x;
+console.log("Asignación de resto:", b);
 
-let logi1 = true && true; // AND
-let logi2 = true || false; // OR
-let logi3 = !true; // NOT
+// Operadores de comparación
+console.log("Operadores de comparación:");
 
-console.log(logi1, logi2, logi3);
+let igualdad = y == "4";
+console.log(igualdad);
 
+let igualdadEstricta = z === 40;
+console.log(igualdadEstricta);
 
+let desigualdad = num1 != resta;
+console.log(desigualdad);
 
-// Estructuras de control
+let desigualdadEstricta = 4 !== "4";
+console.log(desigualdadEstricta);
 
-let num11 = 5
+let mayorQue = num1 > num2;
+console.log(mayorQue);
 
-/* Condicional If */
+let mayorIgualQue = 10 >= 10;
+console.log(mayorIgualQue);
 
-if (num11 > 3) {
-    console.log("Es mayor");
-}
+let menorQue = suma < z;
+console.log(menorQue);
 
-/* Condicional If...Else */
+let menorIgualQue = multiplicacion <= 50;
+console.log(menorIgualQue);
 
-if (num11 < 3) {
-    console.log("Es mayor");
-} else {
-    console.log("No es mayor");
-}
+// Operadores lógicos
+console.log("Operadores lógicos:");
 
-/* Condicional If...Else If */
+let and = true && true;
+console.log("Operador AND lógico: && =>", and);
 
-if (num11 > 5) {
-    console.log("Es mayor");
-} else if (5 < 5) {
-    console.log("No es mayor");
-} else {
-    console.log("Es igual")
-}
+let or = true || false;
+console.log("Operador OR lógico: || =>", or);
 
-/* Operador ternario */
-
-console.log((num11 > 5) ? "Es mayor" : "No es mayor");
-
-/* Estructura Switch */
-
-let mes = "febrero"
-
-switch (mes) {
-    case "febrero":
-        console.log("Estamos en verano")
-        break;
-    case "mayo":
-        console.log("Estamos en otoño")
-        break;
-    case "agosto":
-        console.log("Estamos en invierno")
-        break;
-    case "octubre":
-        console.log("Estamos en primavera")
-        break;
-    default:
-        break;
-}
-
-/* Bucle For */
-
-let array1 = [];
-
-for (let i = 0; i < 5; i++) {
-    array1.push(i);
-}
-
-console.log(array1);
-
-/* Bucle While */
-
-let numero = 0;
-let array2 = [];
-
-while (numero < 2) {
-    array2.push(numero);
-    numero++;
-}
-
-console.log(array2);
-
-/* Bucle Do...while */
-
-let numero2 = 2;
-let array3 = [];
-
-do {
-    array3.push(numero2);
-    numero2++;
-} while (numero2 < 2);
-
-console.log(array3);
-
-/* Bucle For...of */
-
-let colores1 =["Rojo", "Verde", "Azul"];
-let array4 = [];
-
-for (let color of colores1) {
-    array4.push(color);
-}
-
-console.log(array4);
-
-/* Bucle For...in */
-
-let colores2 =["Rojo", "Verde", "Azul"];
-let array5 = [];
-
-for (let color2 in colores2) {
-    array5.push(color2);
-}
-
-console.log(array5);
-
-
-
-// Manejo de excepciones
-
-/* Estructura Try...catch */
-
-try {
-    let resultado = 10 / 0;
-    console.log(resultado);
-} catch (error) {
-    console.log("Ha ocurrido un error:", error.message);
-}
-
-
+let not = !false;
+console.log("Operador NOT lógico: ! =>", not);
 
 // Dificultad extra
 
-for (let n = 10; n <= 55; n++) {
-    if (n % 2 === 0 && n !== 16 && n % 3 !== 0) {
-        console.log(n);
-    }    
+for (let i = 10; i <= 55; i++) {
+  if (i % 2 === 0 && i !== 16 && i % 3 !== 0) {
+    console.log(i);
+  }
 }

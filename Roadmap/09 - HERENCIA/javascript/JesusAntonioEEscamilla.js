@@ -1,3 +1,4 @@
+/** #09 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * La herencia se refiere la capacidad de un objeto (Clase), de heredar propiedades
     y métodos de otra clase en este caso de una SuperClase que seria una clase principal.
