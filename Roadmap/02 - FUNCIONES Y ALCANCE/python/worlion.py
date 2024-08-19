@@ -147,6 +147,6 @@ def funcionExtra(text1, text2):
     
     return count;
         
-funcionExtra("chori", "pan")         
+print("total: " + str(funcionExtra("chori", "pan"))  )
             
     

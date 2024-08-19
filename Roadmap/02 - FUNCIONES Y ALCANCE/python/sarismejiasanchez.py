@@ -141,15 +141,15 @@ ages = [5, 12, 17, 18, 24, 32]
 print(f"Lista ages: {ages}")
 
 def is_adult(age):
-  if age < 18:
-    return False
-  else:
-    return True
+    if age < 18:
+        return False
+    else:
+        return True
 
 adults = filter(is_adult, ages)
 
 for age in adults:
-  print(age)
+    print(age)
 
 
 """
@@ -190,15 +190,15 @@ print(f"\nDIFICULTAD EXTRA")
 def return_numbers(text1, text2):
     count = 0
     for number in range(1, 101):
-         if (number % 3 == 0 and number % 5 == 0):
-             print(text1 + text2)
-         elif number % 3 == 0:
-             print(text1)
-         elif number % 5 == 0:
-             print(text2)
-         else:
-             print(number)
-             count += 1
+        if (number % 3 == 0 and number % 5 == 0):
+            print(text1 + text2)
+        elif number % 3 == 0:
+            print(text1)
+        elif number % 5 == 0:
+            print(text2)
+        else:
+            print(number)
+            count += 1
     return count
     
 # Ejecucion
