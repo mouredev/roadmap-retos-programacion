@@ -77,11 +77,8 @@ class NotificationSystem():
     def send_notification(self,message:str,channel:MessagingChannel):
         channel.send_message(message)
 
-sms_channel = SMSChannel()
-push_channel = PushChannel()
-email_channel = EmailChannel()
 notification_system = NotificationSystem()
 
-notification_system.send_notification(message="Alex, ya tienes tu pedido preparado",channel=sms_channel)
-notification_system.send_notification(message="Alex, tienes un nuevo mensaje en tu bandeja de entrada",channel=push_channel)
-notification_system.send_notification(message="Alex, aquí tienes la newsletter quincenal de la comunidad",channel=email_channel)
+notification_system.send_notification(message="Alex, ya tienes tu pedido preparado",channel=SMSChannel())
+notification_system.send_notification(message="Alex, tienes un nuevo mensaje en tu bandeja de entrada",channel=PushChannel())
+notification_system.send_notification(message="Alex, aquí tienes la newsletter quincenal de la comunidad",channel=EmailChannel())
