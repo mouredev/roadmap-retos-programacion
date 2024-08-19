@@ -30,27 +30,17 @@ namespace exs31;
  * 5. Salir del programa.
 */
 
-// NOTA IMPORTANTE:  Esto es un intento de aplicar los principios SOLID. Claramente, 
-// el reto se podría realizar con unas pocas líneas de código 'hardcoded'.
-
-// ________________________________________________
-public static class GlobalConstants
-{
-    public const string Menu = """
-    SIMULADOR JUEGOS OLÍMPICOS:
-    --------------------------------------------------
-    | 1. Registrar evento        | 4. Crear informes |  
-    | 2. Registrar participante  | 5. Salir          |
-    | 3. Simulación de eventos   |                   |
-    --------------------------------------------------
-    """;
-
-    public static readonly string[] Medals = ["Oro", "Plata", "Bronce"];
-
-}
+// NOTA: Esto es un intento de aplicar los principios SOLID.
 
 // ________________________________________________
 // Interfaces
+/// <summary>Contrato sobre las constantes globales.</summary>
+public interface IConstants
+{
+    string GetMenu();
+    string[] GetMedals();
+}
+
 /// <summary>
 /// Contrato sobre los métodos requeridos para cada tabla creada.
 /// </summary>
@@ -71,8 +61,8 @@ public interface IDataTable<T>
 public interface IData
 {
     IDataTable<string> EventsTable { get; }
-    IDataTable<(string Name, string Country)> ParticipantsTable { get; }
-    IDataTable<List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>> SimulationTable { get; }
+    IDataTable<(string Name, string Country, int EventId)> ParticipantsTable { get; }
+    IDataTable<List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)>> SimulationTable { get; }
 }
 
 /// <summary>
@@ -81,21 +71,41 @@ public interface IData
 public interface IInput
 {
     /// <returns>Una cadena no vacía</returns>
-    string Get(string msg);
+    string GetStr(string msg);
+    /// <returns>Un entero</returns>
+    int GetInt(string msg);
 }
 
 // ________________________________________________
 /// CONTRATOS sobre la comunicación entre la interacción del usuario y la capa de datos.
-public interface IEvents{ void Add(); }
+public interface IEvents { void Add(); }
 
-public interface IParticipants{ void Add(); }
+public interface IParticipants { void Add(); }
 
-public interface ISimulations{ void Start(); }
+public interface ISimulations { void Start(); }
 
-public interface IReports{ void Generate(); }
+public interface IReports { void Generate(); }
 
 // ________________________________________________
 // IMPLEMENTAR CONTRATOS
+// ________________________________________________
+public class Constants : IConstants
+{
+    private const string Menu = """
+    
+    SIMULADOR JUEGOS OLÍMPICOS:
+    --------------------------------------------------
+    | 1. Registrar evento        | 4. Crear informes |  
+    | 2. Registrar participante  | 5. Salir          |
+    | 3. Simulación de eventos   |                   |
+    --------------------------------------------------
+    """;
+
+    private static readonly string[] Medals = ["🥇 Oro", "🥈 Plata", "🥉 Bronce"];
+    public string GetMenu() { return Menu; }
+    public string[] GetMedals() { return Medals; }
+}
+
 public class EventsTable : IDataTable<string>
 {
     private readonly List<string> dt = [];
@@ -116,11 +126,11 @@ public class EventsTable : IDataTable<string>
     }
 }
 
-public class ParticipantsTable : IDataTable<(string Name, string Country)>
+public class ParticipantsTable : IDataTable<(string Name, string Country, int EventId)>
 {
-    private readonly List<(string Name, string Country)> dt = [];
+    private readonly List<(string Name, string Country, int EventId)> dt = [];
 
-    public void Add((string Name, string Country) participant)
+    public void Add((string Name, string Country, int EventId) participant)
     {
         dt.Add(participant);
     }
@@ -130,17 +140,17 @@ public class ParticipantsTable : IDataTable<(string Name, string Country)>
         return dt.Count;
     }
 
-    public List<(string Name, string Country)> GetList()
+    public List<(string Name, string Country, int EventId)> GetList()
     {
-        return new List<(string Name, string Country)>(dt);
+        return new List<(string Name, string Country, int EventId)>(dt);
     }
 }
 
-public class SimulationTable : IDataTable<List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>>
+public class SimulationTable : IDataTable<List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)>>
 {
-    private readonly List<List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>> dt = [];
+    private readonly List<List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)>> dt = [];
 
-    public void Add(List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)> simulation)
+    public void Add(List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)> simulation)
     {
         dt.Add(simulation);
     }
@@ -150,9 +160,9 @@ public class SimulationTable : IDataTable<List<(string EventName, List<(string N
         return dt.Count;
     }
 
-    public List<List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>> GetList()
+    public List<List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)>> GetList()
     {
-        return new List<List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>>(dt);
+        return new List<List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)>>(dt);
     }
 }
 
@@ -163,8 +173,8 @@ public class DataInMemory : IData
 {
     private static DataInMemory? _instance;
     public IDataTable<string> EventsTable { get; private set; }
-    public IDataTable<(string Name, string Country)> ParticipantsTable { get; private set; }
-    public IDataTable<List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>> SimulationTable { get; private set; }
+    public IDataTable<(string Name, string Country, int EventId)> ParticipantsTable { get; private set; }
+    public IDataTable<List<(string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)>> SimulationTable { get; private set; }
 
     private DataInMemory()
     {
@@ -189,7 +199,7 @@ public class DataInMemory : IData
 /// </summary>
 public class Input : IInput
 {
-    public string Get(string msg)
+    public string GetStr(string msg)
     {
         while (true)
         {
@@ -198,6 +208,23 @@ public class Input : IInput
             if (!string.IsNullOrEmpty(txt))
             {
                 return txt;
+            }
+        }
+    }
+
+    public int GetInt(string msg)
+    {
+        while (true)
+        {
+            Console.Write(msg);
+            string? txt = Console.ReadLine();
+            if (int.TryParse(txt, out int input))
+            {
+                return input;
+            }
+            else
+            {
+                Console.WriteLine("Ingresa un número entero.");
             }
         }
     }
@@ -212,10 +239,10 @@ public class Events(IData data, IInput input) : IEvents
     public void Add()
     {
         Console.WriteLine("AGREGAR EVENTO DEPORTIVO:");
-        string sport = input.Get("Deporte: ");
+        string sport = input.GetStr("Deporte: ");
         data.EventsTable.Add(sport);
         Console.WriteLine($"{sport} fue agregado");
-        //Console.WriteLine(GlobalConstants.Menu);
+        //Console.WriteLine(constants.Menu);
     }
 }
 
@@ -223,16 +250,47 @@ public class Events(IData data, IInput input) : IEvents
 /// <summary>
 /// 2. Registrar participantes por nombre y país.
 /// </summary>
-public class Participants(IData data, IInput input) : IParticipants
+public class Participants(IConstants constants, IData data, IInput input) : IParticipants
 {
+    private int GetEventId()
+    {
+        Console.WriteLine("Seleccionar el evento donde participará:");
+        var events = data.EventsTable.GetList();
+        for (int i = 0; i < events.Count; i++)
+        {
+            Console.WriteLine($"{i}. {events[i]}");
+        }
+
+        while (true)
+        {
+            int index = input.GetInt("Id de evento: ");
+            if (index < 0 || index >= events.Count)
+            {
+                Console.WriteLine("\nId no encontrada.");
+            }
+            else
+            {
+                return index;
+            }
+        }
+    }
+
     public void Add()
     {
         Console.WriteLine("AGREGAR PARTICIPANTE:");
-        string name = input.Get("Nombre: ");
-        string country = input.Get("país: ");
-        data.ParticipantsTable.Add((name, country));
-        Console.WriteLine($"{name} fue agregado");
-        //Console.WriteLine(GlobalConstants.Menu);
+        var events = data.EventsTable.GetList();
+        if (!(events.Count > 0))
+        {
+            Console.WriteLine("No existe evento en cuál participar.");
+            return;
+        }
+
+        int eventId = GetEventId();
+        string name = input.GetStr("Nombre: ");
+        string country = input.GetStr("país: ");
+        data.ParticipantsTable.Add((name, country, eventId));
+        Console.WriteLine($"{eventId} fue agregado");
+        Console.WriteLine(constants.GetMenu());
     }
 }
 
@@ -241,31 +299,33 @@ public class Participants(IData data, IInput input) : IParticipants
 /// 3. Simular eventos de manera aleatoria en base a los participantes (mínimo 3).
 /// 4. Asignar medallas (oro, plata y bronce) basándose en el resultado del evento.
 /// </summary>
-public class Simulation(IData data) : ISimulations
+public class Simulation(IConstants constants, IData data) : ISimulations
 {
     private static readonly Random _random = new();
 
     /// <returns>Una lista con los 3 ganadores del éxito, junto con su puntaje y su medalla. </returns>
-    private List<List<object>> QualifyParticipants()
+    private List<List<object>> QualifyParticipants(int eventId)
     {
         var participants = data.ParticipantsTable.GetList();
+        var ParticipantsOfEvent = participants.Where(p => p.EventId == eventId).ToList();
 
-        var qualifiedParticipants = participants.Select(p =>
+        var qualifiedParticipants = ParticipantsOfEvent.Select(p =>
         {
             var list = new List<object>
             {
             p.Name,
             p.Country,
+            p.EventId,
             _random.Next(1, 101)
             };
             return list;
         }).ToList();
 
-        qualifiedParticipants = [.. qualifiedParticipants.OrderByDescending(p => (int)p[2])];
+        qualifiedParticipants = [.. qualifiedParticipants.OrderByDescending(p => (int)p[3])];
 
         var top3Participants = qualifiedParticipants.Take(3).ToList();
 
-        var medals = GlobalConstants.Medals;
+        string[] medals = constants.GetMedals();
         for (int i = 0; i < top3Participants.Count; i++)
         {
             top3Participants[i].Add(medals[i]);
@@ -277,21 +337,24 @@ public class Simulation(IData data) : ISimulations
     private void AddResultEvents()
     {
         var events = data.EventsTable.GetList();
-        var simulation = new List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)>();
+        var simulation = new List<(
+            string EventName, List<(string Name, string Country, 
+            int EventId, int Score, string Medal)> Results)>();
 
-        foreach (var e in events)
+        for (int id = 0; id < events.Count; id++)
         {
-            var qualifiedParticipants = QualifyParticipants();
+            var qualifiedParticipants = QualifyParticipants(id);
             var eventResult = qualifiedParticipants.Select(p =>
                 (
                     Name: p[0]?.ToString() ?? string.Empty,
                     Country: p[1]?.ToString() ?? string.Empty,
-                    Score: Convert.ToInt32(p[2]),
-                    Medal: p[3]?.ToString() ?? string.Empty
+                    eventId: Convert.ToInt32(p[2]),
+                    Score: Convert.ToInt32(p[3]),
+                    Medal: p[4]?.ToString() ?? string.Empty
                 )
             ).ToList();
 
-            simulation.Add((EventName: e, Results: eventResult));
+            simulation.Add((EventName: events[id], Results: eventResult));
         }
 
         data.SimulationTable.Add(simulation);
@@ -318,9 +381,9 @@ public class Simulation(IData data) : ISimulations
 /// 5. Mostrar los ganadores por cada evento.
 /// 6. Mostrar el ranking de países según el número de medallas.
 /// </summary>
-public class Reports(IData data) : IReports
+public class Reports(IConstants constants, IData data) : IReports
 {
-    private readonly Dictionary<string, int> rankingCountries = [];
+    private readonly Dictionary<string, (int Medals, int CurrentScore)> rankingCountries = [];
 
     private void GenerateTopCountries()
     {
@@ -329,37 +392,47 @@ public class Reports(IData data) : IReports
         int i = 1;
         foreach (var (name, total) in sortedRank)
         {
-            Console.WriteLine($"'{i}' - {name} -> Medallas: {total}");
+            Console.WriteLine($"'{i}' - {name} -> Medallas: {total.Medals} | Puntaje: {total.CurrentScore}");
             i++;
         }
     }
 
-    private void IterateParticipants(IEnumerable<(string Name, string Country, int Score, string Medal)> participants)
+    private void IterateParticipants(IEnumerable<(
+        string Name, string Country, int EventId, int Score, string Medal)> participants)
     {
         int i = 1;
-        foreach (var (name, country, score, medal) in participants)
+        foreach (var (name, country, eventid, score, medal) in participants)
         {
             Console.WriteLine($"'{i}' - {name} - {country} -> Score: {score}, Medal: {medal}");
 
             // Registrar para generar ranking de países por número de medallas
-            if (rankingCountries.TryGetValue(country, out int value))
+            if (rankingCountries.TryGetValue(country, out var value))
             {
-                rankingCountries[country] = ++value;
+                int medals = value.Medals;
+                int currentScore = value.CurrentScore;
+                rankingCountries[country] = (medals + 1, currentScore + score);
             }
             else
             {
-                rankingCountries[country] = 1;
+                rankingCountries[country] = (1, score);
             }
 
             i++;
         }
     }
 
-    private void IterateEvents(List<(string EventName, List<(string Name, string Country, int Score, string Medal)> Results)> simulation)
+    private void IterateEvents(List<(
+        string EventName, List<(string Name, string Country, int EventId, int Score, string Medal)> Results)> simulation)
     {
         foreach (var (eventName, results) in simulation)
         {
             Console.WriteLine($"\nEvent: {eventName}:");
+             if (results.Count < 3)
+             {
+                Console.WriteLine("Evento cancelado por falta de participantes.");
+                continue;
+             }
+
             IterateParticipants(results);
         }
     }
@@ -379,20 +452,21 @@ public class Reports(IData data) : IReports
             Console.WriteLine($"\n______________\nSimulation {i}");
             IterateEvents(simulation);
 
-            Console.WriteLine("\nRanking de países, según el número de medallas:");
+            Console.WriteLine("\nRanking de países, según el número de medallas y puntaje:");
             GenerateTopCountries();
             rankingCountries.Clear();
 
             i++;
         }
 
-        //Console.WriteLine(GlobalConstants.Menu);
+        Console.WriteLine(constants.GetMenu());
     }
 }
 
 // ________________________________________________
 public class Features
 {
+    public required IConstants Constants { get; set; }
     public required IData Data { get; set; }
     public required IInput Input { get; set; }
     public required IEvents Events { get; set; }
@@ -408,10 +482,10 @@ public class Program(Features Ft)
 {
     public void Run()
     {
-        Console.WriteLine(GlobalConstants.Menu);
+        Console.WriteLine(Ft.Constants.GetMenu());
         while (true)
         {
-            string option = Ft.Input.Get("\nOpción: ");
+            string option = Ft.Input.GetStr("\nOpción: ");
             switch (option)
             {
                 case "1": Ft.Events.Add(); break;
@@ -426,17 +500,19 @@ public class Program(Features Ft)
 
     public static void Main()
     {
+        IConstants constants = new Constants();
         IData data = DataInMemory.Instance;
         IInput input = new Input();
 
         Features Features_ = new()
         {
+            Constants = constants,
             Data = data,
             Input = input,
             Events = new Events(data, input),
-            Participants = new Participants(data, input),
-            Simulation = new Simulation(data),
-            Reports = new Reports(data)
+            Participants = new Participants(constants, data, input),
+            Simulation = new Simulation(constants, data),
+            Reports = new Reports(constants, data)
         };
 
         Program program = new(Features_);
@@ -444,5 +520,5 @@ public class Program(Features Ft)
     }
 }
 
-// NOTA IMPORTANTE:  Esto es un intento de aplicar los principios SOLID. Claramente, 
-// el reto se podría realizar con unas pocas líneas de código 'hardcoded'.
+// NOTA: Esto es un intento de aplicar los principios SOLID.
+
