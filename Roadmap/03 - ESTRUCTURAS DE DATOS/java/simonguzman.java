@@ -157,11 +157,11 @@ public class simonguzman {
         }
 
         //*********************HashSet*********************
-        HashSet<String> names = new HashSet<>();
+        HashSet<String> namesPersonal = new HashSet<>();
         //Insertion
-        names.add("Juan");
-        names.add("Maria");
-        names.add("Adriano");
+        namesPersonal.add("Juan");
+        namesPersonal.add("Maria");
+        namesPersonal.add("Adriano");
         //Update
         names.remove("Maria");
         //Show HashSet
@@ -197,7 +197,7 @@ public class simonguzman {
             default:
                 System.out.println("El dia no existe");
                 break;
-
+        }
         //*Ejecucion del ejercicio adicional */
         agendaContactos();
     }
