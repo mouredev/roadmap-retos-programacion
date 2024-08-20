@@ -6,60 +6,67 @@
   @RicJDev
 */
 
+//PARTE I: modelado del laberinto (estático) y las funciones para dibujar y mover al personaje.
+
 const maze = [
+  [0, 0, 0, 1, 0, 1],
   [0, 1, 1, 1, 0, 1],
-  [0, 1, 0, 1, 0, 1],
-  [0, 1, 0, 0, 0, 0],
-  [0, 0, 1, 0, 1, 0],
-  [1, 0, 0, 0, 1, 0],
-  [1, 1, 0, 1, 1, 1],
+  [0, 0, 0, 1, 0, 0],
+  [1, 0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 1, 0],
+  [0, 0, 1, 0, 0, 0],
 ]
 
-const mickey = {
-  y: 5,
-  x: 2,
-}
+const character = { y: 5, x: 0 }
 
-const door = {
-  y: 0,
-  x: 4,
-}
+const door = { y: 0, x: 4 }
 
 function drawMaze() {
   maze[door.y][door.x] = 5
-  maze[mickey.y][mickey.x] = 6
+  maze[character.y][character.x] = 6
 
-  const items = new Map([
-    [0, '⬛️'],
-    [1, '⬜️'],
-    [5, '🚪'],
-    [6, '🐭'],
-  ])
+  const items = {
+    0: '⬜️',
+    1: '⬛️',
+    5: '🚪',
+    6: '🐭',
+  }
 
   maze.forEach((row) => {
-    let item
     let rowString = ''
 
     row.forEach((cell) => {
-      item = items.get(cell) || items.get(0)
-      rowString += item
+      rowString += items[cell] || items[0]
     })
 
     console.log(rowString)
   })
 }
 
-function moveMickey(y, x) {
-  let newY = mickey.y + y
-  let newX = mickey.x + x
+function moveCharacter(dy, dx) {
+  let newY = character.y + dy
+  let newX = character.x + dx
 
   if (maze[newY] && maze[newY][newX] !== 1 && maze[newY][newX] !== undefined) {
-    maze[mickey.y][mickey.x] = 0
+    maze[character.y][character.x] = 0
 
-    mickey.y = newY
-    mickey.x = newX
+    character.x = newX
+    character.y = newY
   }
 }
+
+const move = {
+  up: () => moveCharacter(-1, 0),
+  down: () => moveCharacter(1, 0),
+  left: () => moveCharacter(0, -1),
+  right: () => moveCharacter(0, 1),
+}
+
+function isGoal() {
+  return character.y === door.y && character.x === door.x
+}
+
+//PARTE II: Implementación en terminal con manejo básico de entradas erróneas
 
 import * as readline from 'readline/promises'
 const rl = readline.createInterface({
@@ -68,7 +75,7 @@ const rl = readline.createInterface({
 })
 
 let invalid = false
-let message = '\nMueve a Mickey! '
+let [message1, message2] = ['\nMueve a Mickey! ', '\nOpcion no valida. A dónde se mueve Mickey? ']
 
 while (true) {
   console.clear()
@@ -76,29 +83,31 @@ while (true) {
 
   drawMaze()
 
-  if (mickey.y === door.y && mickey.x === door.x) {
-    console.log('\nHas liberado a Mickey! Prepárate para una demanda por copyright!\n')
+  if (isGoal()) {
+    console.log('\nHas liberado a Mickey. ¡Prepárate para una demanda por copyright!\n')
 
     rl.close()
     break
   }
 
+  let message
+
   if (invalid) {
-    message = '\nOpcion no valida. '
+    message = message2
     invalid = false
+  } else {
+    message = message1
   }
 
-  const actions = new Map([
-    ['1', () => moveMickey(-1, 0)],
-    ['2', () => moveMickey(1, 0)],
-    ['3', () => moveMickey(0, -1)],
-    ['4', () => moveMickey(0, 1)],
-  ])
+  const actions = {
+    w: move.up,
+    s: move.down,
+    a: move.left,
+    d: move.right,
+  }
 
-  console.log('\n(1) Arriba. (2) Abajo. (3) Izquierda. (4) Derecha.\n(x) Salir')
+  console.log('\n(w) Arriba. (s) Abajo. (a) Izquierda. (d) Derecha.\n(x) Salir')
   let answer = await rl.question(message)
-
-  message = '\nMueve a Mickey! '
 
   if (answer === 'x') {
     console.log('\nSaliendo del programa...')
@@ -108,7 +117,7 @@ while (true) {
   }
 
   const action =
-    actions.get(answer) ||
+    actions[answer.toLowerCase()] ||
     function () {
       invalid = true
     }
