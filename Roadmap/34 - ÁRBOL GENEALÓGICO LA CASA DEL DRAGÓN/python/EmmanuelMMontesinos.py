@@ -33,7 +33,7 @@ class Personas:
     def __init__(self,nombre) -> None:
         Personas.numero_personas += 1
         self.id = Personas.numero_personas
-        self.nombre = nombre
+        self.nombre = nombre.lower()
         self.pareja = None
         self.padres = [None,None]
         self.hijos = []
@@ -43,8 +43,8 @@ class Personas:
 
     def mostrar_arbol(self):
         print("---Arbol Moure---")
-        for personas in Personas.arbol.values():
-            print(f"{personas.nombre}")
+        for num, personas in enumerate(Personas.arbol.values()):
+            print(f"{num} - {personas.nombre}")
 
     def matar_persona(self,asesino=None):
         if asesino:
@@ -126,6 +126,84 @@ class Personas:
         else:
             self.cambiar_pareja(pareja,ambos=True)
 
+class Consola:
+    def bucle(self):
+        salir = False
+        while not salir:
+            print("1-Añadir pj 2-Añadir pareja a pj 3-Añadir hijo a pj 4- Matar pj 5-Mostrar_datos 6-Salir:")
+            seleccion = input("")
+            match seleccion:
+                case "1":
+                    self.add_pj()
+                    
+                case "2":
+                    self.add_pareja()
+                    
+                case "3":
+                    self.add_hijo()
+                    
+                case "4":
+                    self.matar()
+
+                case "5":
+                    self.mostrar_datos()
+                    
+                case "6":
+                    salir = True
+
+    def mostrar_datos(self):
+        self.mostrar_arbol()
+        try:
+            seleccion = input("Nombre: ")
+            nombre = Personas.arbol[seleccion.lower()]
+            nombre.mostrar_datos()
+        except Exception as e:
+            print(f"Error: {e}")
+                
+    def add_pj(self):
+        nombre = input("Nombre: ")
+        pj = Personas(nombre.lower())
+        print(f"{pj.nombre} añadido al arbol")
+    
+    def add_pareja(self):
+        self.mostrar_arbol()
+        try:
+            seleccion_1 = input("Nombre del primer pj: ")
+            pj_1 = Personas.arbol[seleccion_1.lower()]
+
+            seleccion_2 = input("Nombre del segundo pj: ")
+            pj_2 = Personas.arbol[seleccion_2.lower()]
+
+            pj_1.casamiento(pj_2)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def add_hijo(self):
+        self.mostrar_arbol()
+        try:
+            padre = input("Nombre del padre: ")
+            padre = Personas.arbol[padre.lower()]
+
+            hijo = input("Nombre del hijo: ")
+            hijo = Personas.arbol[hijo.lower()]
+        except Exception as e:
+            print(f"Error: {e}")
+    def matar(self):
+        self.mostrar_arbol()
+        try:
+            victima = input("Nombre víctima")
+            victima = Personas.arbol[victima.lower()]
+            asesino = input("Nombre asesino(enter si es por forma natural)")
+            if asesino:
+                victima.matar_persona(asesino=asesino)
+            else:
+                victima.matar_persona()
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def mostrar_arbol(self):
+        Personas.mostrar_arbol(Personas)
+
 # Pruebas
 
 # Creación de personajes
@@ -169,3 +247,6 @@ daenerys.mostrar_datos()
 
 # Mostrar Arbol actual
 Personas.mostrar_arbol(Personas)
+
+consola = Consola()
+consola.bucle()
