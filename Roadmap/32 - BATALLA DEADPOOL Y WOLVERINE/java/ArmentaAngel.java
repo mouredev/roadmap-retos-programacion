@@ -1,10 +1,113 @@
-package es.armenta.roadmap;
-
 import java.util.Random;
+import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
-public class Game {
+public class ArmentaAngel {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+
+        System.out.println("Enter Deadpool's life points:");
+        Fighter deadpool = new Fighter(Hero.DEADPOOL, scanner.nextInt()) ;
+
+        System.out.println("Enter Wolverine's life points:");
+        Fighter wolverine = new Fighter(Hero.WOLVERINE, scanner.nextInt()) ;
+
+        Game game = new Game(deadpool, wolverine);
+        game.start();
+    }
+}
+
+enum Hero {
+
+    DEADPOOL("Deadpool", 10, 100, 25),
+    WOLVERINE("Wolverine", 10, 120, 20);
+
+    final String name;
+    final int minDamage;
+    final int maxDamage;
+    final int defendAttackPercentage;
+
+    Hero(String name, int minDamage, int maxDamage, int defendAttackPercentage) {
+        this.name = name;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
+        this.defendAttackPercentage = defendAttackPercentage;
+    }
+}
+
+class Fighter {
+
+    public Hero hero;
+    public int life;
+    public String[] randomDefense = new String[100];
+
+    private final String SUPER_DEFENSE = "SUPER_DEFENSE";
+    private final String USED = "USED";
+    private final String NOT_USED = "NOT_USED";
+
+    private final Random rand = new Random();
+
+    public Fighter(Hero hero, int life) {
+        this.hero = hero;
+        this.life = life;
+
+        buildRandomDefense();
+    }
+
+    public int attack() {
+        return randomBetween(hero.minDamage, hero.maxDamage);
+    }
+
+    public boolean defense() {
+        int index;
+        Boolean noDamage;
+
+        do {
+            index = rand.nextInt(100);
+            if (randomDefense[index].equals(SUPER_DEFENSE)) {
+                noDamage = true;
+            } else if (randomDefense[index].equals(NOT_USED)) {
+                noDamage = false;
+            } else {
+                // Only can be USED
+                noDamage = null;
+            }
+        } while (noDamage == null);
+        randomDefense[index] = USED;
+
+        return noDamage;
+    }
+
+    protected int randomBetween(int minInclusive, int maxInclusive) {
+        return rand.nextInt(maxInclusive - minInclusive + 1) + minInclusive;
+    }
+
+    private void buildRandomDefense() {
+        // Place SUPER_DEFENSE positions
+        int avoidAttackCount = hero.defendAttackPercentage;
+        while (avoidAttackCount > 0) {
+            int index = rand.nextInt(100);
+            if (randomDefense[index] == null) {
+                randomDefense[index] = SUPER_DEFENSE;
+                avoidAttackCount--;
+            }
+        }
+
+        fillNullIndexes(randomDefense, NOT_USED);
+    }
+
+    private void fillNullIndexes(String[] array, String filler) {
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == null) {
+                array[i] = filler;
+            }
+        }
+    }
+}
+
+class Game {
     private final Fighter[] fighters = new Fighter[2];
     private int turnCount;
     protected int turnOf;
@@ -121,5 +224,4 @@ public class Game {
         System.out.printf("#                                                                              #%n");
         System.out.printf("################################################################################%n");
     }
-
 }
