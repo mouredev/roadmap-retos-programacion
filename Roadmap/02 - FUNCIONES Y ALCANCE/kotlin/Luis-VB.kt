@@ -70,7 +70,6 @@ fun main() {
     println()
 }
 
-
 fun mynums(text1: String, text2: String): Int {
     var count = 0
     for (i in 1..100) {
