@@ -91,7 +91,7 @@ class Cola:
                 print(item)
                 
 mi_cola = Cola()
-mi_cola.anadir(2)
+mi_cola.anadir(3)
 mi_cola.anadir(mi_coche)
 mi_cola.anadir('Mónica')
 mi_cola.anadir(['E', 'F', 'G', 'H'])
