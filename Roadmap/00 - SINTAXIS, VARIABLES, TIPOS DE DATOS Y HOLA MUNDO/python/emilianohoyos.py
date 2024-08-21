@@ -28,7 +28,7 @@ complejo=3+2j
 texto='Hola Mundo'
 
 booleano=False
-booleano=TRUE
+booleano=True
 
 lista=[1,2,3,4,5]
 
