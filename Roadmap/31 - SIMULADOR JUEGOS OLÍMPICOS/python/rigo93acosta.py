@@ -24,3 +24,31 @@
 
 
 
+if __name__ == '__main__':
+    print("Simulación de Juegos Olímpicos")
+    while True:
+
+        print("""
+        1. Registro de eventos.
+        2. Registro de participantes.
+        3. Simulación de eventos.
+        4. Creación de informes.
+        5. Salir del programa.
+        """)
+
+        option = input("Seleccione una opción: ")
+
+        match option:
+            case "1":
+                print("Registro de eventos")
+            case "2":
+                print("Registro de participantes")
+            case "3":
+                print("Simulación de eventos")
+            case "4":
+                print("Creación de informes")
+            case "5":
+                print("Saliendo del simulador...")
+                break
+            case _:
+                print("Opción no válida, seleccione una opción del menú")
