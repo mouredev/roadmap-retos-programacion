@@ -1,11 +1,11 @@
-import unittest
+import unittest 
 
 def suma(a, b):
   return a + b
 
-class TestSuma(unittest.TestCase):
-  def test_suma(self):
-    self.assertEqual(suma(5, 7), 12)
+class TestSuma(unittest.TestCase): # Heredamos de unittest.TestCase para poder hacer las pruebas
+  def test_suma(self): # Creamos un método que empiece por test para que sea detectado
+    self.assertEqual(suma(5, 7), 12) # Comprobamos que 5 + 7 = 12
     self.assertEqual(suma(5, -7), -2)
     self.assertEqual(suma(0, 0), 0)
     self.assertEqual(suma(3.5, 2.1), 5.6)
@@ -28,7 +28,7 @@ Crea dos test:
 """
 import unittest
 
-dictionary = {
+usuario = {
     "name": "Marcos",
     "age": 42,
     "birth_date": "02-20-1982",
@@ -37,16 +37,16 @@ dictionary = {
 
 class Tests(unittest.TestCase):
     def test_campos(self):
-        self.assertEqual(True if dictionary["name"] else False, True)
-        self.assertEqual(True if dictionary["age"] else False, True)
-        self.assertEqual(True if dictionary["birth_date"] else False, True)
-        self.assertEqual(True if dictionary["programming_languages"] else False, True)
+        self.assertEqual(True if usuario["name"] else False, True) # Si el campo name existe, devolverá True
+        self.assertEqual(True if usuario["age"] else False, True)
+        self.assertEqual(True if usuario["birth_date"] else False, True)
+        self.assertEqual(True if usuario["programming_languages"] else False, True)
         
     def test_tipo(self):
-        self.assertEqual(type(dictionary["name"]), str)
-        self.assertEqual(type(dictionary["age"]), int)
-        self.assertEqual(type(dictionary["birth_date"]), str)
-        self.assertEqual(type(dictionary["programming_languages"]), list)
+        self.assertEqual(type(usuario["name"]), str) # Comprobamos que el tipo de dato es el correcto
+        self.assertEqual(type(usuario["age"]), int)
+        self.assertEqual(type(usuario["birth_date"]), str)
+        self.assertEqual(type(usuario["programming_languages"]), list)
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == '__main__': # Si ejecutamos el script directamente, se ejecutarán las pruebas
+    unittest.main() # Ejecutamos las pruebas
