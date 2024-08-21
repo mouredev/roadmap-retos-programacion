@@ -1,3 +1,5 @@
+
+import java.util.*;
 public class simonguzman {
     public static void main(String[] args) {
         
@@ -106,5 +108,96 @@ public class simonguzman {
         }
         System.out.println(str1);
         System.out.println(reversed);
+
+        //ingresarPalabras();
+        palindromo("jalar", "ala");
+        anagrama("iman", "mani");
+        isograma("ala", "ajo");
     }
+
+    //******************************** Ejercicio adicional ********************************/
+
+    public static void ingresarPalabras(){
+        Scanner scanner = new Scanner(System.in);
+        String word1 = " ";
+        String word2 = " "; 
+        System.out.println("Ingrese la primer palabra: ");
+        word1 = scanner.next();
+        System.out.println("Ingrese la segunda palabra: ");
+        word2 = scanner.next();
+    }
+
+    public static void anagrama(String word1, String word2) {
+        String difOrderWord1 = ordenarPalabra(word1);
+        String difOrderWord2 = ordenarPalabra(word2);
+
+        if ( difOrderWord1.equals(difOrderWord2)){
+            System.out.println("Las palabras son anagramas");
+        }else{
+            System.out.println("Las palabras no son anagramas");
+        }
+    }
+
+    public static void isograma(String word1, String word2){
+        boolean wordIsogram = verificarDuplicados(word1);
+        boolean wordIsogram2 = verificarDuplicados(word2);
+        if(wordIsogram){
+            System.out.println("La palabra es isograma");
+        }else{
+            System.out.println("La palabra no es isograma");
+        }
+
+        if(wordIsogram2){
+            System.out.println("La palabra es isograma");
+        }else{
+            System.out.println("La palabra no es isograma");
+        }
+    }
+
+    public static void palindromo(String word1, String word2){
+        String reverseWord1 = InvertirPalabra(word1);
+        String reverseWord2 = InvertirPalabra(word2);
+
+        if(word1.equals(reverseWord1)){
+            System.out.println("Es palindromo");
+        }else{
+            System.out.println("No es palindromo");
+        }
+        if(word2.equals(reverseWord2)){
+            System.out.println("Es palindromo");
+        }else{
+            System.out.println("No es palindromo");
+        }
+    }
+
+    public static String InvertirPalabra(String word){
+        String reverseWord = "";
+        for (int i = word.length() - 1; i >= 0; i--){
+            reverseWord += word.charAt(i);
+        }
+        return reverseWord;
+    }
+
+    public static String ordenarPalabra(String word){
+        char [] sortWork = word.toCharArray();
+        Arrays.sort(sortWork);
+
+        String newWork = new String(sortWork);
+        System.out.println(newWork);
+        return newWork;
+    }
+
+    public static boolean verificarDuplicados(String word){
+        Set characthers = new HashSet<>();
+        for (int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            if(characthers.contains(c)){
+                System.out.println("Hay caracteres duplicados");
+                return false;
+            }
+            characthers.add(c);
+        }
+        return true;
+    }
+
 }
