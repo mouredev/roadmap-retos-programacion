@@ -99,13 +99,6 @@ while (true) {
     message = message1
   }
 
-  const actions = {
-    w: move.up,
-    s: move.down,
-    a: move.left,
-    d: move.right,
-  }
-
   console.log('\n(w) Arriba. (s) Abajo. (a) Izquierda. (d) Derecha.\n(x) Salir')
   let answer = await rl.question(message)
 
@@ -116,8 +109,15 @@ while (true) {
     break
   }
 
+  const movements = {
+    w: move.up,
+    s: move.down,
+    a: move.left,
+    d: move.right,
+  }
+
   const action =
-    actions[answer.toLowerCase()] ||
+    movements[answer.toLowerCase()] ||
     function () {
       invalid = true
     }
