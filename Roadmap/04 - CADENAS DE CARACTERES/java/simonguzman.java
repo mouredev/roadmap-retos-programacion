@@ -109,10 +109,7 @@ public class simonguzman {
         System.out.println(str1);
         System.out.println(reversed);
 
-        //ingresarPalabras();
-        palindromo("jalar", "ala");
-        anagrama("iman", "mani");
-        isograma("ala", "ajo");
+        ingresarPalabras();
     }
 
     //******************************** Ejercicio adicional ********************************/
@@ -125,6 +122,10 @@ public class simonguzman {
         word1 = scanner.next();
         System.out.println("Ingrese la segunda palabra: ");
         word2 = scanner.next();
+        palindromo(word1, word2);
+        anagrama(word1, word2);
+        isograma(word1, word2);
+        scanner.close();
     }
 
     public static void anagrama(String word1, String word2) {
@@ -183,7 +184,6 @@ public class simonguzman {
         Arrays.sort(sortWork);
 
         String newWork = new String(sortWork);
-        System.out.println(newWork);
         return newWork;
     }
 
@@ -192,7 +192,6 @@ public class simonguzman {
         for (int i = 0; i < word.length(); i++){
             char c = word.charAt(i);
             if(characthers.contains(c)){
-                System.out.println("Hay caracteres duplicados");
                 return false;
             }
             characthers.add(c);
