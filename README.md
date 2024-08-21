@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 19 de agosto de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/rhEef2uu?event=1270224992600326217)** por país y crea un **[recordatorio](https://discord.gg/rhEef2uu?event=1270224992600326217)**
+> #### Lunes 26 de agosto de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/Jfh5EVQh?event=1272649243756069047)** por país y crea un **[recordatorio](https://discord.gg/Jfh5EVQh?event=1272649243756069047)**
 
 ## Roadmap
 
@@ -67,7 +67,8 @@
 |30|[SOLID: PRINCIPIO DE INVERSIÓN DE DEPENDENCIAS](./Roadmap/30%20-%20SOLID%20DIP/ejercicio.md)|[📝](./Roadmap/30%20-%20SOLID%20DIP/python/mouredev.py)|[▶️](https://youtu.be/wxIj6Rs8rAU)|[👥](./Roadmap/30%20-%20SOLID%20DIP/)
 |31|[SIMULADOR JUEGOS OLÍMPICOS](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/ejercicio.md)|[📝](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/python/mouredev.py)|[▶️](https://youtu.be/JN656lQ9WBo)|[👥](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/)
 |32|[BATALLA DEADPOOL Y WOLVERINE](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/ejercicio.md)|[📝](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/python/mouredev.py)|[▶️](https://youtu.be/u2Tn2H3pqjw)|[👥](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/)
-|33|[RESCATANDO A MICKEY](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/ejercicio.md)|[🗓️ 19/08/24](https://discord.gg/rhEef2uu?event=1270224992600326217)||[👥](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/)
+|33|[RESCATANDO A MICKEY](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/ejercicio.md)|[📝](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/python/mouredev.py)|[▶️](https://youtu.be/Bo9Cp3N68C0)|[👥](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/)
+|34|[ÁRBOL GENEALÓGICO DE LA CASA DEL DRAGÓN](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/ejercicio.md)|[🗓️ 26/08/24](https://discord.gg/Jfh5EVQh?event=1272649243756069047)||[👥](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/)
 
 ## Cursos en YouTube
 

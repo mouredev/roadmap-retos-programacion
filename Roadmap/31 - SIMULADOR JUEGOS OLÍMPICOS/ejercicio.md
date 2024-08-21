@@ -1,5 +1,5 @@
 # #31 SIMULADOR JUEGOS OLÍMPICOS
-> #### Dificultad: Fácil | Publicación: 29/07/24 | Corrección: 05/08/24
+> #### Dificultad: Difícil | Publicación: 29/07/24 | Corrección: 05/08/24
 
 ## Ejercicio
 

@@ -1,5 +1,5 @@
 # #32 BATALLA DEADPOOL Y WOLVERINE
-> #### Dificultad: Fácil | Publicación: 05/08/24 | Corrección: 12/08/24
+> #### Dificultad: Media | Publicación: 05/08/24 | Corrección: 12/08/24
 
 ## Ejercicio
 
