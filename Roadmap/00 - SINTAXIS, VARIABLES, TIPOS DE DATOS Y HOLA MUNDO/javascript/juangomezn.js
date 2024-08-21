@@ -7,9 +7,7 @@
 //En_una_linea
 
 /*En Varias
-
 lineas de
-
 codigo*/
 
 // - Crea una variable (y una constante si el lenguaje lo soporta).
