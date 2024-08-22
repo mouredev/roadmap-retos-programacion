@@ -35,8 +35,10 @@ from random import randint
 import copy
 
 # _______________
-# -> Acciones:
-MENU = """
+class GlobalConstants:
+    MEDALS = ['🥇 Oro', '🥈 Plata', '🥉 Bronce']
+
+    MENU = """
 SIMULADOR JUEGOS OLÍMPICOS:
 --------------------------------------------------
 | 1. Registrar evento        | 4. Crear informes |  
@@ -60,7 +62,7 @@ class AbstractDataTable(ABC):
         pass
 
 #__________________________
-class DataInMemory():
+class DataInMemory:
     __instance = None
 
     class EventsTable(AbstractDataTable):
@@ -81,8 +83,8 @@ class DataInMemory():
         def __init__(self) -> None:
             self._dt: list = []
 
-        def add(self, name: str, country: str) -> None: 
-            self._dt.append([name, country])
+        def add(self, name: str, country: str, event_id: int) -> None: 
+            self._dt.append([name, country, event_id])
         
         def count(self) -> int:
             return len(self._dt)
@@ -115,61 +117,89 @@ class DataInMemory():
         return cls.__instance
 
 #__________________________
-class Input():
-    def get(self, msg: str) -> str:
+class Input:
+    def get(self, msg: str, type_= "str") -> str:
+        """Retorna por defecto un tipo 'str' no vacío, si se especifica 'int' retornará un entero. """
         while True:
             txt: str = input(msg)
-            if len(txt) > 0:
+            if type_ == 'str' and len(txt) > 0:
                 return txt
-                break
+            if type_ == 'int' and txt.isdigit():
+                return int(txt)
+            else:
+                print("\nIngresa un número entero.")
 
 #__________________________
 # -> Requisitos:
 # 1. Registrar eventos deportivos.
-class Events():
-    def __init__(self, data, input_):
+class Events:
+    def __init__(self, data, input_, global_constants):
         self.dt = data()
         self.input_ = input_()
+        self.gc = global_constants
 
     def add(self) -> None:
         print("AGREGAR EVENTO DEPORTIVO:")
         sport: str = self.input_.get("Deporte: ")
         self.dt.events_table.add(sport)
         print(f"{sport} fue agregado")
-        #print(MENU)
+        #print(self.gc.MENU)
         
 #__________________________
 # 2. Registrar participantes por nombre y país.
-class Participants():
-    def __init__(self, data, input_):
+class Participants:
+    def __init__(self, data, input_, global_constants):
         self.dt = data()
         self.input_ = input_()
+        self.gc = global_constants()
+
+    def get_event_id(self, events: list) -> int:
+        print("Seleccionar el evento donde participará:")
+        for i, e in enumerate(events):
+            print(f"{i}. {e[0]}")
+
+        while True:
+            index = self.input_.get("Id de evento: ", "int")
+            if not 0 <= int(index) < len(events):
+                print("\nId no encontrada.")
+            else:
+                break              
+        
+        return int(index)
 
     def add(self) -> None:
         print("AGREGAR PARTICIPANTE:")
+        events = self.dt.events_table.get_list()
+        if not len(events) > 0:
+            print("No existe evento en cuál participar, agrega un evento primero.")
+            return
+        
+        event_id: int = self.get_event_id(events)
         name: str = self.input_.get("Nombre: ")
         country: str = self.input_.get("país: ")
-        self.dt.participants_table.add(name, country)
+        self.dt.participants_table.add(name, country, event_id)
         print(f"{name} fue agregado")
-        #print(MENU)
+        print(self.gc.MENU)
         
 #__________________________
 # 3. Simular eventos de manera aleatoria en base a los participantes (mínimo 3).
 # 4. Asignar medallas (oro, plata y bronce) basándose en el resultado del evento.
  
-class Simulation():
-    def __init__(self, data):
+class Simulation:
+    def __init__(self, data, global_constants):
         self.dt = data()
+        self.gc = global_constants()
 
-    def _qualify_participants(self) -> list:
-        participants = self.dt.participants_table.get_list()
+    def _qualify_participants(self, event_id) -> list:
+        participants: list = self.dt.participants_table.get_list()
+        participants = list(filter(lambda x: x[2] == event_id, participants))
         for p in participants:
             p.append(randint(1, 100))
         
-        participants.sort(key=lambda x: x[2], reverse=True)
+        participants.sort(key=lambda x: x[3], reverse=True)
         top_3_participants = participants[:3]
 
-        medals = ['Oro', 'Plata', 'Bronce']
+        medals = self.gc.MEDALS
         for i, p in enumerate(top_3_participants):
             p.append(medals[i])
         
@@ -178,10 +208,9 @@ class Simulation():
     def _add_result_events(self):
         events = self.dt.events_table.get_list()
         simulation: list = []
-        for e in events:
-            top_3_result: list = self._qualify_participants()
-            e.append(self._qualify_participants())
-            simulation.append(e)
+        for event_id, event in enumerate(events):
+            event.append(self._qualify_participants(event_id))
+            simulation.append(event)
 
         self.dt.simulation_table.add(simulation)
 
@@ -200,9 +229,10 @@ class Simulation():
 #__________________________
 # 5. Mostrar los ganadores por cada evento.
 # 6. Mostrar el ranking de países según el número de medallas.
-class Reports():
-    def __init__(self, data):
+class Reports:
+    def __init__(self, data, global_constants):
         self.dt = data()
+        self.gc = global_constants()
         self.ranking_countries: dict = {}
 
     def _generate_top_countries(self):
@@ -210,19 +240,20 @@ class Reports():
         sorted_rank = sorted(countries, key=lambda item: item[1], reverse=True)
 
         for i, (name, total) in enumerate(sorted_rank):
-            print(f"'{i + 1}' - {name} -> Medallas: {total}")
+            print(f"'{i + 1}' - {name} -> Medallas: {total[0]} | Puntaje: {total[1]}")
 
     def _iterate_participants(self, participants):
         for i, participant in enumerate(participants):
-            name, country, score, medal = participant
+            name, country, event_id, score, medal = participant
             
             print(f"'{i + 1}' - {name} - {country} -> Score: {score}, Medal: {medal}")
 
             # Registrar para generar ranking de países por numero de medallas.
             if country in self.ranking_countries:
-                self.ranking_countries[country] += 1
+                medals, current_score = self.ranking_countries[country]
+                self.ranking_countries[country] = [medals + 1, current_score + score]
             else:
-                self.ranking_countries[country] = 1
+                self.ranking_countries[country] = [1, score]
 
     def _iterate_events(self, simulation):
         for event in simulation:
@@ -230,6 +261,10 @@ class Reports():
             participants = event[1]
 
             print(f"\nEvent: {event_name}:")
+            if len(participants) < 3:
+                print("Cancelado por falta de participantes.")
+                continue
+
             self._iterate_participants(participants)
 
     def generate(self) -> None:
@@ -247,19 +282,20 @@ class Reports():
             self._generate_top_countries()
             self.ranking_countries.clear()
 
-        #print(MENU)
+        print(self.gc.MENU)
 
 #__________________________
-class Program():
-    def __init__(self, data, input_):
+class Program:
+    def __init__(self, global_constants, data, input_):
+        self._gc = global_constants()
         self.input_ = input_()
-        self._events = Events(data, input_)
-        self._participants = Participants(data, input_)
-        self._simulation = Simulation(data)
-        self._reports = Reports(data)
+        self._events = Events(data, input_, global_constants)
+        self._participants = Participants(data, input_, global_constants)
+        self._simulation = Simulation(data, global_constants)
+        self._reports = Reports(data, global_constants)
 
     def run(self):
-        print(MENU)
+        print(self._gc.MENU)
         while True:
             option = self.input_.get("\nOpción: ")
             match option:
@@ -272,7 +308,7 @@ class Program():
 
 #__________________________
 if __name__ == "__main__":
-    program = Program(DataInMemory, Input)
+    program = Program(GlobalConstants, DataInMemory, Input)
     program.run()
 
 # end
