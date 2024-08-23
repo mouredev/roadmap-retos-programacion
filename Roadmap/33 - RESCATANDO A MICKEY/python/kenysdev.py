@@ -36,10 +36,10 @@ from typing import List, Dict, Tuple
 import random
 
 # ________________________
-class Moves:
-    def __init__(self, config: Dict[str, str], ref_matrix: List[List[int]]) -> None:
+class Data:
+    def __init__(self, config: Dict[str, str]) -> None:
         self._config = config
-        self._maze: List[List[int]] = ref_matrix
+        self._maze: List[List[int]] = []
         self._position: Tuple[int, int] = (0, 0)
         self._exit: Tuple[int, int] = (0, 0)
 
@@ -48,6 +48,10 @@ class Moves:
         for row in self._maze:
             print("".join(row))
         print("--------------------------------------")
+
+class Moves(Data):
+    def __init__(self, config: Dict[str, str]) -> None:
+        super().__init__(config)
 
     def _can_move(self, y: int, x: int) -> bool:
         size: int = len(self._maze)
@@ -90,8 +94,8 @@ class Moves:
 
 # ________________________
 class Maze(Moves):
-    def __init__(self, config: Dict[str, str], ref_matrix: List[List[int]]) -> None:
-        super().__init__(config, ref_matrix)
+    def __init__(self, config: Dict[str, str]) -> None:
+        super().__init__(config)
 
     def _create_paths(self, x, y, width, height):
         maze: List[List[int]] = self._maze
@@ -190,9 +194,7 @@ if __name__ == "__main__":
         "exit": "🚪"
     }
 
-    ref_maze_matrix: List[List[int]] = []
-
-    _maze = Maze(config, ref_maze_matrix)
+    _maze = Maze(config)
     _game = Game(config, _maze)
     _game.play()
 
