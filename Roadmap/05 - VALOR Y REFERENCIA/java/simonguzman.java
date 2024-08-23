@@ -1,11 +1,14 @@
 public class simonguzman {
     public static void main(String[] args) {
-        
-        //Asignacion por valor
 
         int a = 5;
         int b = a;
+        int[] array1 = {1, 2, 3};
+        int[] array2 = array1;
+        Coche c = new Coche(5, "Opel", "Astra", 85, 1200, 14000 );
+        String miCadena = "Hola: Ejercicio #05";
 
+        //Asignacion por valor
         b=10;
         System.out.println(a);
         System.out.println(b);
@@ -13,9 +16,6 @@ public class simonguzman {
         System.out.println(a);
 
         //Asignacion por referencia
-        int[] array1 = {1, 2, 3};
-        int[] array2 = array1;
-
         array2[0] = 10;
         for (int i = 0; i < array1.length; i++) {
             System.out.println(array1[i]);
@@ -34,6 +34,34 @@ public class simonguzman {
         for (int i = 0; i < array2.length; i++) {
             System.out.println(array2[i]);
         }
+
+        //Objeto por referencia
+
+        System.out.println(c.getNumPuertas());
+        System.out.println(c.getMarca());
+        System.out.println(c.getModelo());
+        System.out.println(c.getNumCaballos());
+        System.out.println(c.getCilindrada());
+        System.out.println(c.getPrecio());
+
+        modificarCoche(c);
+
+        System.out.println(c.getNumPuertas());
+        System.out.println(c.getMarca());
+        System.out.println(c.getModelo());
+        System.out.println(c.getNumCaballos());
+        System.out.println(c.getCilindrada());
+        System.out.println(c.getPrecio());
+
+
+        //Objeto inmutable
+        System.out.println(miCadena);
+        modificarCadena(miCadena);
+        System.out.println(miCadena);
+    }
+
+    private static void modificarCadena(String miCadena){
+        miCadena = "Modificacion de un string";
     }
 
     public static void modificarNumero(int num){
@@ -45,10 +73,84 @@ public class simonguzman {
         array[1] = 1;
         array[2] = 2;
     }
+
+    public static void modificarCoche(Coche c){
+        c.setNumPuertas(3);
+        c.setMarca("Citroen");
+        c.setModelo("C3");
+        c.setNumCaballos(92);
+        c.setCilindrada(1400);
+        c.setPrecio(17000);
+    }
 }
 
 
 class Coche{
     private int numPuertas;
-    private 
+    private String marca;
+    private String modelo;
+    private int numCaballos;
+    private int cilindrada;
+    private double precio;
+
+    public Coche(){
+
+    }
+
+    public Coche(int numPuertas, String marca, String modelo, int numCaballos, int cilindrada, double precio){
+        this.numPuertas = numPuertas;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.numCaballos = numCaballos;
+        this.cilindrada = cilindrada;
+        this.precio = precio;
+    }
+
+    public int getNumPuertas() {
+        return numPuertas;
+    }
+
+    public void setNumPuertas(int numPuertas) {
+        this.numPuertas = numPuertas;
+    }       
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getNumCaballos() {
+        return numCaballos;
+    }
+    
+    public void setNumCaballos(int numCaballos) {
+        this.numCaballos = numCaballos;
+    }
+
+    public int getCilindrada() {
+        return cilindrada;
+    }
+
+    public void setCilindrada(int cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }
