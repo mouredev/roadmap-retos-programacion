@@ -58,8 +58,53 @@ public class simonguzman {
         System.out.println(miCadena);
         modificarCadena(miCadena);
         System.out.println(miCadena);
+
+        //Ejercicio adicional
+        //Intercambio por valor
+        int num1 = 0;
+        int num2 = 1;
+        int []arreglo1 = {1,2,3};
+        int []arreglo2 = {4,5,6};
+
+        System.out.println(num1);
+        System.out.println(num2);
+        int[] intercambio = intercambioXValor(num1, num2);
+        for(int i = 0; i < intercambio.length; i++){
+            System.out.println(intercambio[i]);
+        }
+
+        //Intercambio por referencia
+        for (int i = 0; i < arreglo1.length; i++){
+            System.out.print(arreglo1[i]);
+        }
+        for (int i = 0; i < arreglo2.length; i++){
+            System.out.print(arreglo2[i]);
+        }
+        System.out.println();
+        intercambioXReferencia(arreglo1, arreglo2);
+        for (int i = 0; i < arreglo1.length; i++){
+            System.out.print(arreglo1[i]);
+        }
+        for (int i = 0; i < arreglo2.length; i++){
+            System.out.print(arreglo2[i]);
+        }
     }
 
+        public static int[] intercambioXValor(int num1, int num2){
+            int aux = 0;
+            aux = num1;
+            num1 = num2;
+            num2 = aux;
+            return new int[] {num1,num2};
+        }
+
+    public static void intercambioXReferencia(int[] arreglo1, int[] arreglo2){
+        for (int i = 0; i < arreglo1.length; i++) {
+            int temp = arreglo1[i];
+            arreglo1[i] = arreglo2[i];
+            arreglo2[i] = temp;
+        }
+    }
     private static void modificarCadena(String miCadena){
         miCadena = "Modificacion de un string";
     }
@@ -82,6 +127,7 @@ public class simonguzman {
         c.setCilindrada(1400);
         c.setPrecio(17000);
     }
+
 }
 
 
