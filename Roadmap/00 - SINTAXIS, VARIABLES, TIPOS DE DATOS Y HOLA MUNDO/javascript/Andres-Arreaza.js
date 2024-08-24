@@ -43,7 +43,6 @@ let boolean = true;
 
 //Let Null: Se utiliza para indicar la ausencia intencional de un valor.
 let nombre = null;
-let name = 'Andres';
 
 //let Undefined: Este tipo de variable indica que una variable ha sido declarada pero no se le ha asignado un valor.
 let appellido = undefined;
