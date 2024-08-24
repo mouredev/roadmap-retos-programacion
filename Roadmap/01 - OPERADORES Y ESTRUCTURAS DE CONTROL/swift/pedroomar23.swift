@@ -27,9 +27,9 @@ let modulo = 5 % 5 // Modulos
 
 // Print en Consola 
 print("Los operadores aritmeticos son Suma: \(suma),
-                                      Resta: \(resta)
-                                      Division: \(division)
-                                      Multiplicacion: \(multiplicacion)
+                                      Resta: \(resta),
+                                      Division: \(division),
+                                      Multiplicacion: \(multiplicacion),
                                       Mudulos: \(modulo)")
 
 // Operadores Logicos 
