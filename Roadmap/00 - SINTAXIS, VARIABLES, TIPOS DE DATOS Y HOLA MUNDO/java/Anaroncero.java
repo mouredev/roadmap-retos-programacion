@@ -55,6 +55,5 @@ public class Anaroncero {
 
     // 5.
     System.out.println("Hola JAVA!");
-    
 }    
 }
