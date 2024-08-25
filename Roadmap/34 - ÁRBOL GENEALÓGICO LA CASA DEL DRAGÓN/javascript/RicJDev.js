@@ -4,109 +4,68 @@
   @RicJDev
 */
 
-const idData = []
-
-function assignId() {
-  let next = idData.length + 1
-  idData.push(idData.length + 1)
-
-  return  next
-}
-
-//Clase Component con métodos y propiedades comunes
-
-class FamilyMemberInterface {
+class Person {
   /**
    * @param {string} name
    */
-
   constructor(name) {
-    if (new.target === FamilyMemberInterface) {
-      throw new TypeError('unable to instantiate class "FamilyMemberInterface"')
-    }
-
     this.name = name
-    this.id = assignId()
 
-    this.parentsList = []
-  }
-
-  get parents() {
-    return this.parentsList || []
-  }
-}
-
-//Clase Leaf, que no puede almacenar objetos
-
-class Child extends FamilyMemberInterface {
-  /**
-   * @param {string} name
-
-   */
-
-  constructor(name) {
-    super(name)
-  }
-}
-
-//Clase Composite, que sí puede almacenar objetos
-
-class Parent extends FamilyMemberInterface {
-  /**
-   * @param {string} name
-
-   */
-
-  constructor(name) {
-    super(name)
+    this.parents = {
+      father: null,
+      mother: null,
+    }
 
     this.childrenList = []
-  }
-
-  addChild(child, couple) {
-    if (couple) {
-      child.parentsList.push(this)
-      child.parentsList.push(couple)
-
-      couple.children.push(child)
-      this.children.push(child)
-    } else {
-      console.log('Solo las parejas pueden tener hijos')
-    }
   }
 
   get children() {
     return this.childrenList || []
   }
+
+  get father() {
+    return this.parents.father
+  }
+
+  get mother() {
+    return this.parents.mother
+  }
 }
 
-let test1 = new Parent('Juan')
-let test2 = new Parent('Maria')
+class FamilyTree {
+  constructor() {
+    this.people = {}
+  }
 
-test1.addChild(new Parent('Pedro'), test2)
-test1.addChild(new Parent('Lucia'), test2)
-test1.addChild(new Parent('Kenny'), test2)
-test1.addChild(new Child('Pepe'), test2)
-test1.addChild(new Parent('Mario'), test2)
+  addPerson(name) {
+    let id = Object.keys(this.people).length + 1
+    this.people[id] = new Person(name)
+  }
 
-test1.children.forEach((child) => {
-  child.parents.forEach((parent, index) => {
-    if (index == 0) {
-      console.log(`${child.name}(${child.id}) tiene a ${parent.name} como padre(${parent.id})`)
-    } else if (index == 1) {
-      console.log(`${child.name}(${child.id}) tiene a ${parent.name} como madre(${parent.id})`)
+  /**
+   * @param {number} id
+   */
+  deletePerson(id) {
+    if (this.people[id]) {
+      console.log(`${this.people[id].name} ha desaparecido de los registros!`)
+      delete this.people[id]
+    } else {
+      console.log('Esa persona no existe')
     }
-  })
-})
+  }
 
-console.log(' ')
+  setParents(id, fatherId, motherId) {
+    this.people[id].parents.father = this.people[fatherId].name
+    this.people[id].parents.mother = this.people[motherId].name
+  }
+}
 
-test2.children.forEach((child) => {
-  child.parents.forEach((parent, index) => {
-    if (index == 0) {
-      console.log(`${child.name}(${child.id}) tiene a ${parent.name} como padre`)
-    } else if (index == 1) {
-      console.log(`${child.name}(${child.id}) tiene a ${parent.name} como madre`)
-    }
-  })
-})
+const TREE = new FamilyTree()
+
+TREE.addPerson('Milena')
+TREE.addPerson('Josue')
+TREE.addPerson('Juana')
+
+TREE.setParents(1, 2, 3)
+
+console.log(TREE.people[1])
