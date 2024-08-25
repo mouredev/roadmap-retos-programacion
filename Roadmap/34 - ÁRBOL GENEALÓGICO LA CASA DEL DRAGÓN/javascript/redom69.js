@@ -38,8 +38,7 @@ class FamilyTree{
 
     deletePerson(person_id){
         if (id in this.people) {
-            const index = this.people.indexOf(person_id)
-            this.people.splice(index,1)
+            delete this.people[person_id];
         }else{
             console.log('No existe')
         }
