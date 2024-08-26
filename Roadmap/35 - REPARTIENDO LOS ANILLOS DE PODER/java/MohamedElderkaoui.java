@@ -36,7 +36,7 @@ public class MohamedElderkaoui{
         }
 
         if (!encontrado) {
-            System.out.println("No se encontró un reparto válido para el número de anillos dado.");
+            System.out.println("No   encontró un reparto válido para el número de anillos dado.");
         }
 
         scanner.close();
