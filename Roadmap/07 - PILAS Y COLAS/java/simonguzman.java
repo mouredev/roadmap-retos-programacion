@@ -41,7 +41,7 @@ public class simonguzman {
         //Tamaño de la cola
         System.out.println(cola.size());
 
-        //navegadorWeb();
+        navegadorWeb();
         impresora();
 
 
