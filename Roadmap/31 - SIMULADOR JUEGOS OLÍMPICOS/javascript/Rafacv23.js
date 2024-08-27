@@ -1,3 +1,9 @@
+/* 
+    Creado por Rafa Canosa
+    Github: https://github.com/Rafacv23
+    Website: https://www.rafacanosa.dev
+*/
+
 // Importa el módulo readline para pedir datos por consola
 const readline = require("readline")
 let playing = true // variable que sirve para decidir cuando se ha de cerrar el juego
