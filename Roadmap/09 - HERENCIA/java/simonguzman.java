@@ -92,8 +92,8 @@ public class simonguzman {
     }
 
     static class Employee{
-        private int id;
-        private String name;
+        protected int id;
+        protected String name;
         List<Employee> employees; 
 
         public Employee(){
@@ -123,47 +123,56 @@ public class simonguzman {
 
     static class Manager extends Employee{
 
+        private String nameEnterprise;
+
         public Manager(){
 
         }        
 
-        public Manager(int id, String name){
+        public Manager(int id, String name, String nameEnterprise){
             super(id, name);
+            this.nameEnterprise = nameEnterprise;
         }
 
         public void coordManager(){
-            System.out.println();
+            System.out.println("El gerente " +this.name + " esta a cargo de los proyectos de la empresa "+this.nameEnterprise);
         }
 
     }
 
     static class ProjectManager extends Employee{
 
+        private String proyName;
+
         public ProjectManager(){
 
         }
 
-        public ProjectManager(int id, String name){
+        public ProjectManager(int id, String name, String proyName){
             super(id, name);
+            this.proyName = proyName;
         }
 
         public void coordProjManager(){
-
+            System.out.println("El gerente de proyecto "+this.name+" dirije al proyecto "+this.proyName);
         }
     }
 
     static class Programmer extends Employee{
 
+        private String languaje;
+
         public Programmer(){
 
         }
 
-        public Programmer(int id, String name){
+        public Programmer(int id, String name, String languaje){
             super(id, name);
+            this.languaje = languaje;
         }
 
         public void programmerProyect(){
-            
+            System.out.println("El programador de proyecto "+this.name+ " programa en lenguaje "+this.languaje);
         }
 
     }
