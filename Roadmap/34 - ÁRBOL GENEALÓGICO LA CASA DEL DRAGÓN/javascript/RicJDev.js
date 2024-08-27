@@ -8,10 +8,11 @@ class Person {
     this.name = name
     this.id = id
 
-    this.partner = null
-    this.parents = {}
+    this.hasParents = false
 
     this.children = []
+
+    this.partner = null
   }
 
   addChild(child) {
@@ -24,30 +25,46 @@ class Person {
     }
   }
 
+  hasPartner() {
+    return !(this.partner === null)
+  }
+
   setPartner(partner) {
-    if (this.partner === null) {
+    if (partner.hasPartner() || this.hasPartner()) {
+      this.hasPartner()
+        ? console.log(`${this.name} ya tiene pareja: ${this.partner.name}.`)
+        : console.log(`${partner.name} ya tiene pareja: ${partner.partner.name}.`)
+    } else {
       this.partner = partner
       partner.partner = this
 
-      console.log(`${this.name} ahora es pareja de ${partner.name}.`)
-    } else {
-      console.log(`${this.name} ya tiene pareja: ${this.partner.name}.`)
+      console.log(`${this.name} ahora es pareja de ${partner.name}`)
     }
   }
 }
+
+/*
+let test1 = new Person(12, 'Juan')
+let test2 = new Person(10, 'Martha')
+let test3 = new Person(13, 'Joane')
+
+test1.setPartner(test2)
+test1.setPartner(test3)
+
+test2.setPartner(test3)
+*/
 
 class FamilyTree {
   constructor() {
     this.people = {}
   }
 
-  addPerson(name) {
-    const id = Object.keys(this.people).length + 1
-    const person = new Person(id, name)
-
-    this.people[id] = person
-
-    return person
+  addPerson(id, name) {
+    if (this.people[id]) {
+      console.log(`Este ID ${id} ya ha sido registrado`)
+    } else {
+      this.people[id] = new Person(id, name)
+    }
   }
 
   deletePerson(id) {
@@ -67,25 +84,14 @@ class FamilyTree {
     }
   }
 
-  addChild(id, childName) {
+  addChild(id, childId) {
     const parent = this.people[id]
+    const child = this.people[childId]
 
-    if (parent) {
-      const child = this.addPerson(childName)
+    if (parent && child) {
       parent.addChild(child)
     } else {
-      console.log(`No se ha encontrado a ninguna persona con la ID: ${id}.`)
+      console.log(`Una de las ID's no coincide con ningún registro: ${id}, ${childId}`)
     }
   }
 }
-
-const TREE = new FamilyTree()
-
-TREE.addPerson('Milena')
-TREE.addPerson('Josue')
-TREE.addPerson('Juana')
-
-TREE.setPartner(1, 2)
-TREE.setPartner(12, 24)
-
-TREE.addChild(1, 'Oscar')
