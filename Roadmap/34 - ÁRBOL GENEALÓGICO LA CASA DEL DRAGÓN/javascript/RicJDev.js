@@ -4,16 +4,31 @@
 */
 
 class Person {
-  constructor(name) {
+  constructor(id, name) {
     this.name = name
-    this.partner = {}
+    this.id = id
 
+    this.partner = null
     this.parents = {}
+
     this.children = []
   }
 
   addChild(child) {
-    this.children.push(child)
+    if (!this.children.includes(child)) {
+      this.children.push(child)
+    } else {
+      console.log(`${child.name} ya es hijo de ${this.name}.`)
+    }
+  }
+
+  setPartner(partner) {
+    if (this.partner === null) {
+      this.partner = partner
+      partner.partner = this
+    } else {
+      console.log(`${this.name} ya tiene pareja: ${this.partner.name}.`)
+    }
   }
 }
 
@@ -24,8 +39,7 @@ class FamilyTree {
 
   addPerson(name) {
     const id = Object.keys(this.people).length + 1
-    const person = new Person(name)
-    person.id = id
+    const person = new Person(id, name)
 
     this.people[id] = person
 
@@ -33,37 +47,25 @@ class FamilyTree {
   }
 
   deletePerson(id) {
-    if (this.people[id]) {
-      delete this.people[id]
-    } else {
-      console.log('Cannot delete a record that does not exist')
-    }
+    this.people[id]
+      ? delete this.people[id]
+      : console.log(`No se ha encontrado a ninguna persona con la ID: ${id}.`)
   }
 
   setPartner(id1, id2) {
     const person1 = this.people[id1]
     const person2 = this.people[id2]
 
-    if (person1 && person2) {
-      person1.partner[id2] = person2
-      person2.partner[id1] = person1
-    }
-  }
-
-  setParents(id, parentId) {
-    const person = this.people[id]
-    const parent = this.people[parentId]
-
-    person.parents[parentId] = parent
+    person1.setPartner(person2)
   }
 
   addChild(id, childName) {
-    const person = this.people[id]
+    const parent = this.people[id]
     const child = this.addPerson(childName)
 
-    this.setParents(child.id, person.id)
-
-    person.addChild(child)
+    if (parent) {
+      parent.addChild(child)
+    }
   }
 }
 
@@ -74,4 +76,3 @@ TREE.addPerson('Josue')
 TREE.addPerson('Juana')
 
 TREE.setPartner(1, 2)
-TREE.addChild(1, 'Eloise')
