@@ -121,15 +121,50 @@ public class simonguzman {
         }
     }
 
-    static class Manager{
+    static class Manager extends Employee{
+
+        public Manager(){
+
+        }        
+
+        public Manager(int id, String name){
+            super(id, name);
+        }
+
+        public void coordManager(){
+            System.out.println();
+        }
 
     }
 
-    static class ProjectManager{
+    static class ProjectManager extends Employee{
 
+        public ProjectManager(){
+
+        }
+
+        public ProjectManager(int id, String name){
+            super(id, name);
+        }
+
+        public void coordProjManager(){
+
+        }
     }
 
-    static class programmer{
+    static class Programmer extends Employee{
+
+        public Programmer(){
+
+        }
+
+        public Programmer(int id, String name){
+            super(id, name);
+        }
+
+        public void programmerProyect(){
+            
+        }
 
     }
 
