@@ -1,4 +1,3 @@
-import java.util.*
 
 //1.-Definir estructura de datos para guardar valores
 val ringList= mutableMapOf(
@@ -26,8 +25,13 @@ fun isPrime(num: Int): Boolean {
 }
 
 fun numberRings():Int{
-    println("Enter number of rings: ")
-    return readLine()?.let { it.toInt()-1 } ?:0
+    var numRings=0
+    while (numRings<=0) {
+        println("Enter number of rings: ")
+        numRings= readLine()?.let { it.toInt() - 1 } ?: 0
+        if (numRings<0) println("Number of rings must be greater than 0")
+     }
+    return numRings
 }
 
 fun repartitionRings(numRings:Int) {
