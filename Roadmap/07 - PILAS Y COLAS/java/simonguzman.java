@@ -41,7 +41,10 @@ public class simonguzman {
         //Tamaño de la cola
         System.out.println(cola.size());
 
-        navegadorWeb();
+        //navegadorWeb();
+        impresora();
+
+
     }
 
     public static void navegadorWeb(){
@@ -109,7 +112,7 @@ public class simonguzman {
                 index--;
                 System.out.println("Link de pagina: "+pila.get(index));
             }else{
-                System.out.println("No hay mas historial hacia adelante\n");
+                System.out.println("No hay mas historial hacia atras\n");
             }
         }else{
             System.out.println("No hay ningun historial");
@@ -117,12 +120,56 @@ public class simonguzman {
         return index;
     }
 
-    public static boolean validarColaVacia(Queue<String> cola){
-        return !cola.isEmpty();
-    }
-
     public static boolean validarPilaVacia(Stack<String> pila){
         return !pila.isEmpty();
     }
 
+    public static void impresora(){
+        Queue<String> cola = new LinkedList<>();
+        Scanner sc = new Scanner(System.in);
+        String opcion;
+        do{
+            System.out.println("Ingrese agregar, imprimir o salir: ");
+            opcion = sc.next();
+            opcionesImpresora(cola, opcion);
+        }while(!opcion.equals("salir"));
+    }
+
+    public static void opcionesImpresora(Queue<String> cola, String opcion){
+        switch (opcion) {
+            case "agregar":
+                agregarImpresion(cola);
+                break;
+            case "imprimir":
+                imprimir(cola);
+                break;
+            case "salir":
+                System.out.println("Saliendo del programa...");
+                break;
+            default:
+            System.out.println("Opcion no valida...");
+                break;
+        }
+    }
+
+    public static void agregarImpresion(Queue<String> cola){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el documento a imprimir: ");
+        String documento = sc.next();
+        cola.add(documento);
+    }
+
+    public static void imprimir(Queue<String> cola){
+        if (validarColaVacia(cola)) {
+            String doc= cola.poll();
+            System.out.println(cola);
+            System.out.println("Imprimiendo: "+ doc);
+        }else{
+            System.out.println("La cola de impresion esta vacia");
+        }
+    }
+
+    public static boolean validarColaVacia(Queue<String> cola){
+        return !cola.isEmpty();
+    }
 }
