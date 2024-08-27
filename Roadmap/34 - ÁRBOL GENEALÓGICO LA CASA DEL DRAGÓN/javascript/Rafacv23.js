@@ -1,16 +1,25 @@
-/* 
-    Creado por Rafa Canosa
-    Github: https://github.com/Rafacv23
-    Website: https://www.rafacanosa.dev
-*/
-
 let characters = [] // array donde vamos a ir guardando todos los personajes
 
+function printCharacters() {
+  if (characters.length === 0) {
+    console.log("No hay personajes para mostrar.")
+    return
+  }
+
+  console.log("Lista de Personajes:")
+  characters.forEach((character, index) => {
+    console.log(`\nPersonaje ${index + 1}:`)
+    character.displayInfo()
+  })
+}
+
 class Character {
-  constructor(name, partner = null, children = []) {
+  constructor(name, partner = null, children = [], parents = []) {
     this.name = name
     this.partner = partner // Solo un partner permitido
     this.children = children
+    this.parents = parents // Lista de padres del personaje
+    characters.push(this)
   }
 
   // Método para establecer un partner
@@ -20,10 +29,10 @@ class Character {
         //si es null significa que no tiene una pareja y le podemos asignar una
         this.partner = partner
         partner.partner = this // asignamos la pareja a ambos personajes a la vez, para no tener que llamar al método dos veces
-        console.log(`Àhora ${partner.name} y ${this.name} son pareja`)
+        console.log(`Ahora ${partner.name} y ${this.name} son pareja`)
       } else {
         console.error(
-          `${this.name} ya tiene una pareja por lo tanto no le podemos asignar otra.`
+          `${this.name} ya tiene una pareja, por lo tanto no le podemos asignar otra.`
         )
       }
     } else {
@@ -34,7 +43,17 @@ class Character {
   // Método para agregar un child
   addChild(child) {
     if (child instanceof Character) {
-      this.children.push(child)
+      if (this.children.includes(child)) {
+        console.error(`${child.name} ya es hijo de ${this.name}`)
+      } else if (child.parents.length >= 2) {
+        console.error(`${child.name} ya tiene el máximo de 2 padres`)
+      } else {
+        this.children.push(child)
+        if (!child.parents.includes(this)) {
+          child.parents.push(this)
+        }
+        console.log(`${this.name} ha añadido a ${child.name} como hijo`)
+      }
     } else {
       console.error("Child debe ser una instancia de Character.")
     }
@@ -51,20 +70,25 @@ class Character {
           : "Ninguno"
       }`
     )
+    console.log(
+      `Parents: ${
+        this.parents.length >= 1
+          ? this.parents.map((p) => p.name).join(", ")
+          : "Ninguno"
+      }`
+    )
   }
 }
 
-const john = new Character("John")
-const jane = new Character("Jane")
-const paco = new Character("Paco")
-const child = new Character("Child")
+const daemon = new Character("Daemon Targaryen")
+const laena = new Character("Laena Velaryion")
+const baela = new Character("Baela Targaryen")
+const rhaena = new Character("Rhaena Targaryen")
 
-john.setPartner(jane)
-john.setPartner(paco)
+daemon.setPartner(laena)
+daemon.addChild(baela)
+daemon.addChild(rhaena)
+laena.addChild(baela)
+laena.addChild(rhaena)
 
-john.addChild(child)
-jane.addChild(child)
-
-john.displayInfo()
-jane.displayInfo()
-paco.displayInfo()
+printCharacters()
