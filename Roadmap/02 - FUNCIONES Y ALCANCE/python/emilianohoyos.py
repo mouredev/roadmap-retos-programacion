@@ -91,7 +91,7 @@ saludo2()
 
 # Imprimimos la variable global
 print("La variable global es " + nombre)
- s
+ 
 
 """DIFICULTAD EXTRA (opcional):""" 
 def imprimir(var1,var2)->int:
