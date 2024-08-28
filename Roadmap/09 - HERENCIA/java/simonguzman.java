@@ -11,17 +11,26 @@ public class simonguzman {
         System.out.println("Nombre: "+ cat1.getName() + " Raza: "+cat1.getRaza());
         cat1.hacerSonido();
 
-        Employee emp1 = new Employee(1002, "Simon");
-        Employee emp2 = new Employee(1003, "John");
-        Employee emp3 = new Employee(1004, "Jane");
+        // Crear instancias de Manager, ProjectManager y Programmer
+        Manager manager1 = new Manager(1001, "Alice", "TechCorp");
+        ProjectManager pm1 = new ProjectManager(1002, "Bob", "Project X");
+        Programmer programmer1 = new Programmer(1003, "Charlie", "Java");
+        Programmer programmer2 = new Programmer(1004, "Diana", "Python");
 
-        // Agregar empleados a la lista
-        emp1.agregarEmpleado(emp2);
-        emp1.agregarEmpleado(emp3);
+        // Agregar empleados al manager
+        manager1.agregarEmpleado(pm1);
+        manager1.agregarEmpleado(programmer1);
+        manager1.agregarEmpleado(programmer2);
 
-        // Listar los empleados
-        emp1.listarEmpleados();
+        // Listar empleados bajo el manager
+        System.out.println("Empleados a cargo de " + manager1.name + ":");
+        manager1.listarEmpleados();
 
+        // Probar métodos específicos de cada clase
+        manager1.coordManager();
+        pm1.coordProjManager();
+        programmer1.programmerProyect();
+        programmer2.programmerProyect();
     }
 
     static class Animal{
