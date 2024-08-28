@@ -111,14 +111,15 @@ def load_games(games: list, countries: list):
                 else:
                     members = game.members
                 for i in range(0, members):
-                    if (x % 3) == 0:
-                        print(f"\b\b\b\b---{x}>", end="")
-                        if (x % 60) == 0:
-                            print("")
                     x += 1
+                    if x % 3 == 0:
+                        print(f"\b\b\b\b---{x}>", end="")
+                    if x % 60 == 0:
+                        print("")
                     name = get_valid_name()
                     athlete = Athlete(name, country, game.name, participation_type)
                     game.add_competitor(athlete)
+    print(f"\b\b\b\b---{x}>")
 
 
 def competition(game: Game):
@@ -137,7 +138,7 @@ def competition(game: Game):
         game.set_scores_individual(athlete[0], media)
 
 
-def final_report(game: Game):
+def game_report(game: Game):
     print(f"\n{game.name}")
     print("\tIndividual")
     for medal, athlete in game.medals_individual.items():
@@ -145,6 +146,42 @@ def final_report(game: Game):
     print("\tTeams")
     for medal, country in game.medals_team.items():
         print(f"\t\t{medal} {country}")
+
+
+def final_report(games: list):
+    countries_score = {}
+    t = 0
+    g = 0
+    s = 0
+    b = 0
+    for game in games:
+        for medal, athlete in game.medals_individual.items():
+            if athlete.get_country() not in countries_score.keys():
+                countries_score[athlete.get_country()] = {"total": 0, "gold": 0, "silver": 0, "bronze": 0}
+            countries_score[athlete.get_country()]["total"] += 1
+            if medal == "gold":
+                countries_score[athlete.get_country()]["gold"] += 1
+            elif medal == "silver":
+                countries_score[athlete.get_country()]["silver"] += 1
+            else:
+                countries_score[athlete.get_country()]["bronze"] += 1
+        for medal, country in game.medals_team.items():
+            if country not in countries_score.keys():
+                countries_score[country] = {"total": 0, "gold": 0, "silver": 0, "bronze": 0}
+            countries_score[country]["total"] += 1
+            if medal == "gold":
+                countries_score[country]["gold"] += 1
+            elif medal == "silver":
+                countries_score[country]["silver"] += 1
+            else:
+                countries_score[country]["bronze"] += 1
+    lista_paises = []
+    for y in countries_score.items():
+        lista_paises.append({"country": y[0], "gold": y[1]["gold"], "silver": y[1]["silver"], "bronze": y[1]["bronze"], "total": y[1]["total"]})
+    lista_paises = sorted(lista_paises, key=lambda k: (-k["gold"], -k["silver"], -k["bronze"], -k["total"], k["country"]))
+
+    for c in lista_paises:
+        print(f"{c['country']}: Gold {c['gold']} / Plata {c['silver']} / Bronze {c['bronze']} <=> TOTAL {c['total']}")
 
 
 games = []
@@ -156,9 +193,121 @@ countries = ['AIM', 'Argelia', 'Argentina', 'Brasil', 'Canada', 'China', 'Corea'
 
 load_games(games, countries)
 
-print("")
 for game in games:
     competition(game)
     game.set_medals_individual()
     game.set_medals_team()
-    final_report(game)
+    game_report(game)
+print("\n Ranking Final\n")
+final_report(games)
+
+r"""
+La salida es algo así:
+
+Cargando 504 atletas...
+--------------------------------------60>
+-----------------------------------------------120>
+------------------------------------------------------------180>
+------------------------------------------------------------240>
+------------------------------------------------------------300>
+------------------------------------------------------------360>
+------------------------------------------------------------420>
+------------------------------------------------------------480>
+---------------------------504>
+
+Shoot
+	Individual
+		gold Farah Fossmo / España
+		silver Stefania Nikolaus / Argelia
+		bronze Joachim Hubert / Japón
+	Teams
+		gold EEUU
+		silver España
+		bronze Canada
+
+Archery
+	Individual
+		gold Flurin Chevalier / Japón
+		silver Waldtraut Wedekind / México
+		bronze Amelia Matthews / Argelia
+	Teams
+		gold Argentina
+		silver Egipto
+		bronze EEUU
+
+Swim
+	Individual
+		gold Sabrin Paulsrud / Egipto
+		silver Archie Thomas / Jamaica
+		bronze Franco Broeren / Argentina
+	Teams
+		gold Argelia
+		silver Jamaica
+		bronze Sudáfrica
+
+Gymnastic
+	Individual
+		gold Patsy Fisher / China
+		silver Calvin Peters / AIM
+		bronze Freya Molnes / España
+	Teams
+		gold México
+		silver AIM
+		bronze Jamaica
+
+Tennis
+	Individual
+		gold Signe Hansen / AIM
+		silver Taliana Castro / Brasil
+		bronze Aaron Blanc / Jamaica
+	Teams
+		gold EEUU
+		silver Jamaica
+		bronze Egipto
+
+Judo
+	Individual
+		gold Storm Johansen / AIM
+		silver Maelya Colin / China
+		bronze Valerij Hartwich / Argentina
+	Teams
+		gold Japón
+		silver Argelia
+		bronze Sudáfrica
+
+Fencing
+	Individual
+		gold Clayton Nelson / Brasil
+		silver Prathiksha Manjunath / Egipto
+		bronze Juho Halko / Argelia
+	Teams
+		gold Canada
+		silver Egipto
+		bronze Argentina
+
+Table Tennis
+	Individual
+		gold Ajinkya Manjunath / Argentina
+		silver Jagat Adiga / AIM
+		bronze Aapo Kuusisto / Brasil
+	Teams
+		gold Japón
+		silver España
+		bronze Argelia
+
+Ranking Final:
+
+Japón: Gold 3 / Plata 0 / Bronze 1 <=> TOTAL 4
+AIM: Gold 2 / Plata 3 / Bronze 0 <=> TOTAL 5
+Argentina: Gold 2 / Plata 0 / Bronze 3 <=> TOTAL 5
+EEUU: Gold 2 / Plata 0 / Bronze 1 <=> TOTAL 3
+Egipto: Gold 1 / Plata 3 / Bronze 1 <=> TOTAL 5
+Argelia: Gold 1 / Plata 2 / Bronze 3 <=> TOTAL 6
+España: Gold 1 / Plata 2 / Bronze 1 <=> TOTAL 4
+Brasil: Gold 1 / Plata 1 / Bronze 1 <=> TOTAL 3
+China: Gold 1 / Plata 1 / Bronze 0 <=> TOTAL 2
+México: Gold 1 / Plata 1 / Bronze 0 <=> TOTAL 2
+Canada: Gold 1 / Plata 0 / Bronze 1 <=> TOTAL 2
+Jamaica: Gold 0 / Plata 3 / Bronze 2 <=> TOTAL 5
+Sudáfrica: Gold 0 / Plata 0 / Bronze 2 <=> TOTAL 2
+"""
