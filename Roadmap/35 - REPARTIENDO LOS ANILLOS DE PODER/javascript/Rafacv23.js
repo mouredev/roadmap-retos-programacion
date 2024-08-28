@@ -50,16 +50,6 @@ if (rings >= 4) {
   )
 }
 
-// Función para verificar si un número es impar
-function esImpar(num) {
-  return num % 2 !== 0
-}
-
-// Función para verificar si un número es par
-function esPar(num) {
-  return num % 2 === 0
-}
-
 // Función para verificar si un número es primo
 function esPrimo(num) {
   if (num < 2) return false
