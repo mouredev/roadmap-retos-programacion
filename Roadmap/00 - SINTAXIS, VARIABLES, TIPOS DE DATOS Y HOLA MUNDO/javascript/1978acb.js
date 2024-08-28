@@ -35,4 +35,4 @@
 // Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
 let nombreLenguaje = "JavaScript"
-console.log("Hola, " + nombreLenguaje) 
+console.log("Hola, " + nombreLenguaje)
