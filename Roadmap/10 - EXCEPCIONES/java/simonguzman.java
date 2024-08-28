@@ -5,7 +5,7 @@ public class simonguzman{
     public static void main(String[] args) {
 
         //Manejo de excepciones basicas
-        /*try {
+        try {
             //Excepcion forzada: Division por cero
             int result = 10 / 0;
         } catch (ArithmeticException e) {
@@ -26,7 +26,7 @@ public class simonguzman{
             throw new customException("Mensaje personalizado para una excepcion personalizada");
         } catch (customException e) {
             System.out.println("Se ha producido una excepcion personalizada..."+e.getMessage());
-        }*/
+        }
 
         executeProcessParameters();
     }
