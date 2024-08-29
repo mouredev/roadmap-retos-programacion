@@ -32,6 +32,9 @@ def distribute_rings(rings):
     '''
 
 # Usage examples
+print(distribute_rings(4))
+print(distribute_rings(5))
+print(distribute_rings(6))
 print(distribute_rings(10))
 print(distribute_rings(20))
 print(distribute_rings(30))
