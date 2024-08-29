@@ -2,11 +2,76 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.util.Scanner;
 
 public class simonguzman {
     
     public static void main(String[] args) {
         testFile();
+    }
+
+
+    static void salesManager(){
+        Scanner sc = new Scanner(System.in);
+        int opcion;
+        do{
+            menu();
+            System.out.println("Ingrese una opcion:");
+            opcion = sc.nextInt();
+            opcionsMenu(opcion);
+        }while(opcion != 5);
+    }
+
+    static void menu(){
+        System.out.println("**************** GESTION DE VENTAS ****************");
+        System.out.println("1. Añadir productos");
+        System.out.println("2. Consultar productos");
+        System.out.println("3. Actualizar productos");
+        System.out.println("4. Eliminar productos");
+        System.out.println("5. Salir");
+    }
+
+    static void opcionsMenu(int opcion){
+        switch (opcion) {
+            case 1:
+                addProducts();
+                break;
+            case 2:
+                consultProducts();
+                break;
+            case 3:
+                updateProducts();
+                break;
+            case 4:
+                deleteProducts();
+                break;
+            case 5:
+                exit();
+                break;
+            default:
+            System.out.println("ERROR: Opcion no valida...");
+                break;
+        }
+    }
+
+    static void addProducts(){
+
+    }
+
+    static void consultProducts(){
+
+    }
+
+    static void updateProducts(){
+
+    }
+
+    static void deleteProducts(){
+
+    }
+
+    static void exit(){
+        System.out.println("Saliendo del programa...");
     }
 
     static void testFile(){
