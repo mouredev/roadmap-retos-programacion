@@ -193,6 +193,15 @@ switch (fruitType) {
         break;
 }
 
+try {
+    let operation  =  10 / 0;
+    if(!isFinite(operation)){
+        throw new Error("Resultado es Infinity, operacion no valida");
+    }
+} catch (error) {
+    console.log(`Esta operacion no es valida ${error.message}`)
+}
+
 // este es un ejemplo  donde combinamos un blucle y un array con datos para ver como funciona de mejor manera.
 let fruta = [{ fruit: "manzana", value: 10 }, { fruit: "naranja", value: 5 }, { fruit: "pera", value: 8 }]
 
@@ -213,6 +222,7 @@ fruta.forEach((fruitType) => {
     }
 })
 
+
 //ejercicio para practicar lo visto 
 /**
  * DIFICULTAD EXTRA (opcional):
@@ -224,5 +234,5 @@ console.log(`-----------------------------------------Ejercicio practico--------
 
 
 for(let num = 10; num <= 55; num++){
-    if(num % 2 === 0 && num !== 16) console.log(num)
+    if(num % 2 === 0 && num !== 16 && num % 3 !== 0) console.log(num)
 }
