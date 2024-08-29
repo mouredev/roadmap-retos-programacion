@@ -6,8 +6,13 @@ import java.io.BufferedReader;
 public class simonguzman {
     
     public static void main(String[] args) {
+        testFile();
+    }
+
+    static void testFile(){
         createAndWriteFile();
         readFile();
+        deleteFile();
     }
 
     //Crear y escribrir el fichero
@@ -21,6 +26,7 @@ public class simonguzman {
         }
     }
 
+    //Leer el fichero
     static void readFile(){
         try (BufferedReader reader = new BufferedReader(new FileReader("simonguzman.txt"))){
             String line;
@@ -32,4 +38,12 @@ public class simonguzman {
         }
     }
 
+    static void deleteFile(){
+        java.io.File file = new java.io.File("simonguzman.txt");
+        if(file.delete()){
+            System.out.println("Archivo eliminado correctamente");
+        }else{
+            System.out.println("ERROR: No se puede eliminar el archivo...");
+        }
+    }
 }
