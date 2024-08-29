@@ -2,14 +2,14 @@
 
 /*Crea un comentario en el código y coloca la URL del sitio web oficial del
   lenguaje de programación que has seleccionado.*/
- 
+
 // Este es un comentario con la URL del la web oficial de JavaScript:  * https://developer.mozilla.org/es/docs/Web/JavaScript
 
 
 // Representa las diferentes sintaxis que existen de crear comentarios en el lenguaje (en una línea, varias...).
 
     //Este es un comentario en una linea.
-    
+
     /*Este es un comentario
       en varias
       lineas*/
@@ -35,4 +35,4 @@
 // Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
 let nombreLenguaje = "JavaScript"
-console.log("Hola, " + nombreLenguaje)
+console.log("Hola, " + nombreLenguaje) 
