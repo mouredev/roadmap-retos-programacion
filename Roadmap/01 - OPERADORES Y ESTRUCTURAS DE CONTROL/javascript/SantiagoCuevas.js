@@ -102,3 +102,176 @@ console.log(a <= b);
 //--------------------------operadores logicos----------------------------------------- 
 
 //and 
+
+let numero = 20;
+let numero1 = 30;
+let numero2 = 30;
+
+
+console.log((numero > numero1) && (numero < numero2));//false
+
+//(OR)
+
+console.log((numero > numero1) || (numero < numero2));//true 
+
+//negacion logica !
+
+let esHombre = true;
+
+if (!esHombre){
+    console.log("el ususario es hombre");
+}else{
+    console.log("el usuario es mujer");//imprimira el usuario es mujer ya que la negacion cambia un valor booleano a un valor contrario
+};
+
+//-----------------------operadores de asignacion---------------------------------
+
+//asignacion simple
+
+let asignacionSimple = 20;
+
+//asignacion adicion
+
+asignacionSimple += 5;
+
+console.log(asignacionSimple)//asignacionSimple es 25 (20 + 5)
+
+//de sustraccion
+
+let sustracion = 10;
+
+sustracion -= 4;
+
+console.log(sustracion)//asignacionSimple es 25 (20 + 5)
+
+//multiplicacion
+
+let multiplicacion = 10;
+
+multiplicacion *= 4;
+
+console.log(multiplicacion)//asignacionSimple es 25 (20 + 5)
+
+
+//asignacion de division 
+
+let division = 10;
+
+division /= 4;
+
+console.log(division)//asignacionSimple es 25 (20 + 5)
+
+//asignacion de modulo 
+
+let modulo = 10;
+
+modulo %= 4;
+
+console.log(modulo)//asignacionSimple es 25 (20 + 5)
+
+//asignacion de exponenciacion
+
+let exponenciacion = 10;
+
+exponenciacion **= 4;
+
+console.log(exponenciacion)//asignacionSimple es 25 (20 + 5)
+
+
+//asignacion de  desplazamiento a la izquierda 
+
+let x = 5;
+
+x <<= 1;
+
+console.log(x)
+
+//asignacion de  desplazamiento a la derecha
+
+let y = 5;
+
+y >>= 1;
+
+console.log(y);
+
+//asignacion de  desplazamiento a la derecha con relleno cero 
+
+
+let y1 = 5;
+
+y1 >>>= 1;
+
+console.log(y1);
+
+//asignacion and a nivel de bits
+
+
+let y2 = 5;
+
+y2 &= 1;
+
+console.log(y2);
+
+//asignacion OR a nivel de bits
+
+
+let y3 = 5;
+
+y3 |= 6;
+
+console.log(y3);
+
+//asignacion XOR a nivel de bits
+
+
+let y4 = 5;
+
+y4 ^= 6;
+
+console.log(y4);
+
+//---------------------operadores de identidad-----------------------------
+
+
+//igualdad estricta
+
+let igual1 = 15;
+let igual2 = 13;
+
+if (igual1 === igual2){
+    console.log("son iguales");
+}else{
+    console.log("no es igual");//no son iguales 
+};
+
+//desigualdad estricta
+
+let desigualdad = 15;
+let desigualdad1 = 13;
+
+if (igual1 !== igual2){
+    console.log("son iguales");//son iguales 
+}else{
+    console.log("no es igual");
+};
+
+//-----------------------------operadores de pertenencia-----------------------------
+
+//in
+// se usa para verificar una propiedad en un array u objeto 
+
+const persona = {
+nombre: "juan carlos",
+edad:56
+};
+
+if (`nombre` in persona){
+    console.log("la propiedad nombre si existe")
+}else{
+    console.log("la propiedad nombre no existe")
+};
+
+//intanceof 
+
+//se usa para verificar si un objeto es una instancia de una clase o contructor especifico 
+
