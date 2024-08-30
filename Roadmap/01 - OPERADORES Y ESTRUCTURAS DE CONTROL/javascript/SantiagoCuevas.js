@@ -275,3 +275,4 @@ if (`nombre` in persona){
 
 //se usa para verificar si un objeto es una instancia de una clase o contructor especifico 
 
+//
