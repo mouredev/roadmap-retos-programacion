@@ -20,6 +20,5 @@ let symbol= "";
 let numeroDecimal= "3,14"; 
 let nada= "null"; 
 
-
 //texto
 console.log("hola,javascript")
