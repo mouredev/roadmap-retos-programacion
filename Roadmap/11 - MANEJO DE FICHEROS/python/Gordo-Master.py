@@ -181,6 +181,6 @@ def menu():
                 break
             
             case _:
-                print("Coloque un numero del 1 al 5...")
+                print("Coloque un numero del 1 al 7...")
 
 menu()
