@@ -1,6 +1,7 @@
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -22,6 +23,7 @@ public class simonguzman {
     public static void main(String[] args) {
         createXMLFile();
         readXMLFile();
+        deleteXMLFile();
     }
 
     static void createXMLFile(){
@@ -61,6 +63,8 @@ public class simonguzman {
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
             DOMSource source = new DOMSource(doc);
             StreamResult result = new  StreamResult(new File("datos.xml"));
             transformer.transform(source, result);
@@ -94,6 +98,15 @@ public class simonguzman {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    static void deleteXMLFile(){
+        File file = new File("datos.xml");
+        if(file.delete()){
+            System.out.println("Archivo XML borrado correctamente.");
+        }else{
+            System.out.println("ERROR: No se pudo borrar el archivo XML.");
         }
     }
 }
