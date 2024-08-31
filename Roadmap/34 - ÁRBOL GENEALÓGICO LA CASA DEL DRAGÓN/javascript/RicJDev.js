@@ -17,9 +17,10 @@ class Person {
   addChild(child) {
     if (!this.children.includes(child)) {
       if (child.hasParents()) {
-        console.log(`${child.name} ya tiene padres: ${child.parents.join(', ')}.`)
+        const parentsNames = [child.parents[0].name, child.parents[1].name]
+        console.log(`${child.name} ya tiene padres: ${parentsNames.join(', ')}.`)
       } else {
-        child.parents.push(this.name)
+        child.parents.push(this)
         this.children.push(child)
 
         console.log(`${this.name} ha tenido un hijo: ${child.name}.`)
@@ -58,7 +59,7 @@ class FamilyTree {
 
   addPerson(id, name) {
     if (this.people[id]) {
-      console.log(`Este ID ${id} ya ha sido registrado.`)
+      console.log(`El ID ${id} ya ha sido registrado.`)
     } else {
       this.people[id] = new Person(id, name)
 
@@ -97,7 +98,13 @@ class FamilyTree {
   }
 
   displayTree() {
-    //..
+    const rootPersons = Object.values(this.people).filter((person) => person.parents.length === 0)
+    rootPersons.forEach((root) => this.printTree(root, 0))
+  }
+
+  printTree(person, level) {
+    console.log(' '.repeat(level * 4) + person.name)
+    person.children.forEach((child) => this.printTree(child, level + 1))
   }
 }
 
@@ -114,3 +121,5 @@ tree.setPartner(12, 121)
 tree.addChild(12, 90)
 
 tree.addChild(45, 90)
+
+tree.printTree(tree.people[12], 2)
