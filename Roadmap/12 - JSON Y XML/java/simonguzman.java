@@ -23,6 +23,7 @@ public class simonguzman {
         deleteXMLFile();
         createPropertiesFile();
         readPropertiesFile();
+        deletePropertiesFile();
     }
 
     static void createXMLFile(){
@@ -143,5 +144,15 @@ public class simonguzman {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    static void deletePropertiesFile(){
+        File file = new File("datos.properties");
+        if(file.delete()){
+            System.out.println("Archivo JSON simulado fue eliminado.");
+        }else{
+            System.out.println("ERROR: No se pudo eliminar el archivo.");
+        }
+
     }
 }
