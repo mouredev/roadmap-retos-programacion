@@ -275,3 +275,43 @@ if (`nombre` in persona){
 
 //se usa para verificar si un objeto es una instancia de una clase o contructor especifico 
 
+let fecha = new Date();
+let esFecha = fecha instanceof  Date;
+
+console.log(esFecha);
+
+//------------------------------operadores de bits---------------------------------------------------------------
+
+
+let a2 = 5;  // 0101 en binario
+let b2 = 3;  // 0011 en binario
+
+let andBits = a2 & b2;  // AND de bits (0001 -> 1)
+let orBits = a2 | b2;   // OR de bits (0111 -> 7)
+let xorBits = a2 ^ b2;  // XOR de bits (0110 -> 6)
+let notBits = ~a2;     // NOT de bits (complemento de 2, 1010 -> -6)
+let desplazaIzquierda = a2 << 1; // Desplazamiento a2 la izquierda (1010 -> 10)
+let desplazaDerecha = a2 >> 1;   // Desplazamiento a la derecha (0010 -> 2)
+
+
+
+//---------- --------------------------dificultad--------------------------------------------------
+
+/* DIFICULTAD EXTRA (opcional):
+ * Crea un programa que imprima por consola todos los números comprendidos
+ * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+ *
+ * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
+ */
+
+
+for (let i = 10; i < 56 ; i++){//usamos  un  ciclo for creamos la variable indice igualando a 10, si i e menor a 56 , i aumentara hasta 55
+    if(i === 16){//si i es igual a 16
+        continue;//se salta ese numero 
+    }if(i % 3 === 0){//si i es multiplo de 3 
+        continue;//se salta el numero
+    }
+    console.log(i)
+};
+
+//gracias por su atencion
