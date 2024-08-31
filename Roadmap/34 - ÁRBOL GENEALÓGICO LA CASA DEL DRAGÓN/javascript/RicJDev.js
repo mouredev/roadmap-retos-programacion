@@ -17,8 +17,9 @@ class Person {
   addChild(child) {
     if (!this.children.includes(child)) {
       if (child.hasParents()) {
-        const parentsNames = [child.parents[0].name, child.parents[1].name]
-        console.log(`${child.name} ya tiene padres: ${parentsNames.join(', ')}.`)
+        console.log(
+          `${child.name} ya tiene padres: ${child.parents[0].name}, ${child.parents[1].name}.`
+        )
       } else {
         child.parents.push(this)
         this.children.push(child)
@@ -98,28 +99,51 @@ class FamilyTree {
   }
 
   displayTree() {
-    const rootPersons = Object.values(this.people).filter((person) => person.parents.length === 0)
-    rootPersons.forEach((root) => this.printTree(root, 0))
-  }
+    const visited = new Set()
 
-  printTree(person, level) {
-    console.log(' '.repeat(level * 4) + person.name)
-    person.children.forEach((child) => this.printTree(child, level + 1))
+    function printPerson(person, level) {
+      if (visited.has(person.id)) return
+      visited.add(person.id)
+
+      let ident = ' '.repeat(level * 4)
+
+      console.log(`${ident} - ${person.name} [ID: ${person.id}]`)
+
+      if (person.partner) {
+        visited.add(person.partner.id)
+
+        console.log(`${ident}   Pareja: ${person.partner.name} [ID: ${person.id}]`)
+      }
+
+      if (person.children.length > 0) {
+        console.log(`${ident}   Hijos:`)
+        person.children.forEach((child) => {
+          printPerson(child, level + 1)
+        })
+      }
+    }
+
+    const rootPersons = Object.values(this.people).filter((person) => {
+      return person.parents.length === 0
+    })
+
+    rootPersons.forEach((root) => printPerson(root, 0))
   }
 }
 
 const tree = new FamilyTree()
 
-tree.addPerson(12, 'Juan')
-tree.addPerson(14, 'Peter')
-tree.addPerson(14, 'Peter')
-tree.addPerson(121, 'Monica')
-tree.addPerson(45, 'Erika')
-tree.addPerson(90, 'Kyle')
+tree.addPerson(1, 'persona1')
+tree.addPerson(2, 'persona2')
+tree.addPerson(3, 'persona3')
+tree.addPerson(4, 'persona4')
+tree.addPerson(5, 'persona5')
 
-tree.setPartner(12, 121)
-tree.addChild(12, 90)
+tree.setPartner(1, 2)
+tree.setPartner(3, 4)
 
-tree.addChild(45, 90)
+tree.addChild(1, 3)
+tree.addChild(3, 5)
 
-tree.printTree(tree.people[12], 2)
+console.clear()
+tree.displayTree()
