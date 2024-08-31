@@ -1,23 +1,19 @@
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.List;
-import java.util.Arrays;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-import java.io.File;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class simonguzman {
 
@@ -26,6 +22,7 @@ public class simonguzman {
         readXMLFile();
         deleteXMLFile();
         createPropertiesFile();
+        readPropertiesFile();
     }
 
     static void createXMLFile(){
@@ -124,6 +121,25 @@ public class simonguzman {
         try (FileOutputStream output = new FileOutputStream("datos.properties")){
             properties.store(output, "Datos del usuario en formato JSON simulado");
             System.out.println("Archivo 'datos.properties' creado");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void readPropertiesFile(){
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream("datos.properties")){
+            properties.load(input);
+
+            System.out.println("Nombre: " + properties.getProperty("nombre"));
+            System.out.println("Edad: " + properties.getProperty("edad"));
+            System.out.println("Fecha de nacimiento: " + properties.getProperty("fecha_de_nacimiento"));
+
+            String[] lenguajes = properties.getProperty("lenguajes").split(",");
+            System.out.println("Lenguajes:");
+            for (String lenguaje : lenguajes) {
+                System.out.println("- " + lenguaje);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
