@@ -192,24 +192,27 @@ console.log(division(10,2));
 console.log(division(10,0));
 
 //DIFICULTAD EXTRA
-function cadena(str1, str2){
- let contador=0;
-    for(let i=1;i<=100;i++){
-     if(i%3==0){
-     console.log(str1);
-     }else if(i%5==0){
-        console.log(str2);
-     }else if(i%3==0 && i%5==0){
-        console.log(str1+str2);
-     }else{
-        console.log(i);
-        contador ++;
-     };
+function cadena(str1, str2) {
+    let contador = 0;
+
+    for (let i = 1; i <= 100; i++) {
+        let output = '';
+
+        if (i % 3 === 0) output += str1;
+        if (i % 5 === 0) output += str2;
+
+        if (output === '') {
+            console.log(i);
+            contador++;
+        } else {
+            console.log(output);
+        }
     }
+
     return contador;
-    
 }
+
 const str1 = "Javascript ";
 const str2 = "The Best";
 const result = cadena(str1, str2);
-console.log("Veces que se a impreso el numero en vez de texto", result);
+console.log("Veces que se ha impreso el número en vez de texto:", result);
