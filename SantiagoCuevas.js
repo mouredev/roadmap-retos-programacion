@@ -314,4 +314,4 @@ for (let i = 10; i < 56 ; i++){//usamos  un  ciclo for creamos la variable indic
     console.log(i)
 };
 
-//gracias
+//gracias por su atencion
