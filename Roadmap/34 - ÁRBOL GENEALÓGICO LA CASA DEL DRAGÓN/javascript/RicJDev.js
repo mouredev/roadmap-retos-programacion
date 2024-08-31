@@ -64,7 +64,7 @@ class FamilyTree {
     } else {
       this.people[id] = new Person(id, name)
 
-      console.log(`Se ha registrado a ${name}: ${id}.`)
+      console.log(`Se ha registrado a ${name} [ID: ${id}].`)
     }
   }
 
@@ -133,17 +133,38 @@ class FamilyTree {
 
 const tree = new FamilyTree()
 
-tree.addPerson(1, 'persona1')
-tree.addPerson(2, 'persona2')
-tree.addPerson(3, 'persona3')
-tree.addPerson(4, 'persona4')
-tree.addPerson(5, 'persona5')
+tree.addPerson(1, 'Aegon I Targaryen')
+tree.addPerson(2, 'Rhaenys Targaryen')
+tree.addPerson(3, 'Visenya Targaryen')
+
+tree.addPerson(4, 'Aenys I Targaryen')
+tree.addPerson(5, 'Maegor I Targaryen')
+
+tree.addPerson(6, 'Jaehaerys I Targaryen')
+tree.addPerson(7, 'Alysanne Targaryen')
+
+tree.addPerson(8, 'Aegon II Targaryen')
+tree.addPerson(9, 'Helaena Targaryen')
+
+tree.addPerson(10, 'Viserys II Targaryen')
+
+tree.addPerson(11, 'Rhaenyra Targaryen')
+tree.addPerson(12, 'Daemon Targaryen')
 
 tree.setPartner(1, 2)
-tree.setPartner(3, 4)
+tree.setPartner(1, 3)
+tree.setPartner(4, 7)
+tree.setPartner(8, 9)
+tree.setPartner(11, 12)
 
-tree.addChild(1, 3)
-tree.addChild(3, 5)
+tree.addChild(1, 4)
+tree.addChild(1, 5)
 
-console.clear()
+tree.addChild(4, 6)
+tree.addChild(4, 11)
+
+tree.addChild(6, 8)
+tree.addChild(6, 10)
+
+console.log(' ')
 tree.displayTree()
