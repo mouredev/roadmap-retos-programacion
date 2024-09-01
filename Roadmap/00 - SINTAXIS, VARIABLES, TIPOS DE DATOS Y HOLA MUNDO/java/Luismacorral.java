@@ -75,5 +75,5 @@ public class Luismacorral {
         char tipoChar = 'A'; // Caracter Unicode de 16 bits. Siempre va entre comillas simples ' '.
 
         System.out.print("¡Hola, soy Java y de mayor quiero ser una serpiente! Una pitón verbenera a poder ser.");
-    }
+   }
 }
