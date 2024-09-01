@@ -65,13 +65,14 @@ function agregarPaciente(nombre, edad, sexo) {
 agregarPaciente("Juan", 25, "Masculino");
 console.log(pacientes);
 
-// variale local
+// variable local
 function MostrarPaciente(nombre, edad, sexo) {
   let fichaPaciente = `Nombre: ${nombre}, Edad: ${edad}, Sexo: ${sexo}`;
   console.log(fichaPaciente);
 }
-MostrarPaciente("Lady Gaga", 38, "femenino"); // imprime la fich
+MostrarPaciente("Lady Gaga", 38, "femenino"); // imprime la ficha paciente
 
+// reto extra
 function misNumero(a, b) {
   a = " soy múltiplo de 3"; 
   b = " soy múltiplo de 5";
