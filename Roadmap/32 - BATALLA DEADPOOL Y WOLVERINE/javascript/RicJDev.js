@@ -17,12 +17,19 @@ const rl = readline.createInterface({
 
 //Modelado de personajes
 class Character {
-  constructor(name, hp, attackRange = { min: 0, max: 50 }, defenseRate) {
+  /**
+   * @param {string} name
+   * @param {number} hp
+   * @param {number} defenseRate
+   * @param {{ min: number, max: number, }} attackRange
+   */
+
+  constructor(name, hp, defenseRate, attackRange) {
     this.name = name
     this.hp = this.validateHp(hp)
 
-    this.attackRange = attackRange
     this.defenseRate = defenseRate
+    this.attackRange = attackRange
 
     this.canAttack = true
   }
@@ -140,11 +147,11 @@ async function main() {
 
   //Deadpool
   let deadpoolHP = parseInt(await rl.question('Indique la cantidad de vida para Deadpool. '))
-  const Deadpool = new Character(pc.red('Deadpool'), deadpoolHP, { min: 10, max: 100 }, 25)
+  const Deadpool = new Character(pc.red('Deadpool'), deadpoolHP, 25, { min: 10, max: 100 })
 
   //Wolverine
   let wolverineHP = parseInt(await rl.question('Indique la cantidad de vida para Wolverine. '))
-  const Wolverine = new Character(pc.yellow('Wolverine'), wolverineHP, { min: 10, max: 120 }, 20)
+  const Wolverine = new Character(pc.yellow('Wolverine'), wolverineHP, 20, { min: 10, max: 120 })
 
   console.log(pc.gray('Cargando...'))
   simulateBattle(Deadpool, Wolverine)
