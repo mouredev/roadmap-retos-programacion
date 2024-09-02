@@ -21,112 +21,177 @@
  * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
 
+// Clase abstracta con un método abstracto
+abstract class Animal {
+    // Método abstracto (sin implementación)
+    public abstract void hacerSonido();
+
+    // Método no abstracto (con implementación)
+    public void dormir() {
+        System.out.println("El animal está durmiendo.");
+    }
+}
+
+// Clase concreta que extiende la clase abstracta
+class Perro extends Animal {
+    // Implementación del método abstracto
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro dice: ¡Guau!");
+    }
+}
+
+// Otra clase concreta que extiende la clase abstracta
+class Gato extends Animal {
+    // Implementación del método abstracto
+    @Override
+    public void hacerSonido() {
+        System.out.println("El gato dice: ¡Miau!");
+    }
+}
+
+// Clase con método sincronizado
+class Contador {
+    private int cuenta = 0;
+
+    public synchronized void incrementar() {
+        cuenta++;
+    }
+
+    public int getCuenta() {
+        return cuenta;
+    }
+}
+
+// Clase con métodos de diferentes tipos
 public class Alextc35 {
-    public static void main (String[] args){
 
-        // 1
-        
-        funcionVoidNoParams(); // No tiene parámetros y no retorna nada.
+    // Variable global
+    static int variableGlobal = 777;
 
-        funcionVoidSiParams("cat"); // Tiene un parámetro y no retorna nada.
-
-        funcionVoidTwoParams(13, 22); // Tiene dos parámetros y no retorna nada.
-
-        System.out.println("La suma de 21 + 196 es = " + funcionIntTwoParams(21, 196)); // Tiene dos parámetros y retorna un número.
-
-        System.out.println("Mi nombre es: " + funcionStringSiParams("Alejandro")); // Tiene un parámetro y retorna una cadena de caracteres.
-
-        // 2
-
-        funcionDos(); // funcionUno dentro de la funcionDos.
-
-        // 3
-
-        System.out.println(numPar(8)); // Ejemplo de función ya existente. Si el número del parámetro es par dará 'True'.
-
-        // 4
-
-        int variable = 777; // Variable global que también está en la función 'variable', pero no son las mismas.
-
-        int variableLocal = variable(); // Obtenemos la variable local y la almacenamos, siendo ahora una variable global.
-
-        System.out.println("Variable global: " + variable + "\nVariable local: " + variableLocal); // No son iguales a pesar de haber compartido el nombre de la variable.
-
-        // OPCIONAL
-
-        System.out.println(funcionOpcional("Alejandro", "Tellez")); // Mostrará las cadenas un total de 47 veces, por ende nos debe retornar 53
-        
+    // Constructor explícito sin parámetros
+    public Alextc35() {
+        System.out.println("Constructor de objetos");
     }
-    
-    // 1
 
-    public static void funcionVoidNoParams (){ // Sin parámetros.
+    // Constructor con parámetros
+    public Alextc35(String nombre, int edad) {
+        System.out.println("Nombre: " + nombre + "\nEdad: " + edad);
+    }
+
+    // Método estático
+    public static void metodoStatic() {
+        System.out.println("Método estático.");
+    }
+
+    // Método final
+    public final void metodoFinal() {
+        System.out.println("Método final.");
+    }
+
+    public static void main(String[] args) {
+        Alextc35 yo = new Alextc35(); // Constructor sin parámetros
+        Alextc35 miOtroYo = new Alextc35("Alejandro", 23); // Constructor con parámetros
+
+        // 1. Funciones básicas
+        funcionVoidNoParams();
+        funcionVoidSiParams("cat");
+        funcionVoidTwoParams(13, 22);
+        System.out.println("La suma de 21 + 196 es = " + funcionIntTwoParams(21, 196));
+        System.out.println("Mi nombre es: " + funcionStringSiParams("Alejandro"));
+
+        // Ejemplo de clases abstractas y métodos abstractos
+        Animal miPerro = new Perro();
+        Animal miGato = new Gato();
+
+        miPerro.hacerSonido(); // Debería imprimir: El perro dice: ¡Guau!
+        miPerro.dormir(); // Debería imprimir: El animal está durmiendo.
+
+        miGato.hacerSonido(); // Debería imprimir: El gato dice: ¡Miau!
+        miGato.dormir(); // Debería imprimir: El animal está durmiendo.
+
+        // 2. Función dentro de otra función
+        funcionDos();
+
+        // 3. Ejemplo de función ya existente
+        Integer a = 217;
+        Integer b = 217;
+        System.out.println("a: " + a + "\nb: " + b + "\n¿Son iguales?: " + a.equals(b));
+
+        // 4. Variables globales y locales
+        System.out.println("Variable global: " + variableGlobal);
+        int variableLocal = obtenerVariableLocal();
+        System.out.println("Variable local: " + variableLocal);
+
+        // Ejemplos de métodos adicionales
+        metodoStatic(); // Llamada al método estático
+        Alextc35 instance = new Alextc35();
+        instance.metodoFinal(); // Llamada al método final
+
+        // Ejemplo de método con sincronización
+        Contador contador = new Contador();
+        contador.incrementar();
+        System.out.println("Contador después de incrementar: " + contador.getCuenta());
+
+        // Opcional
+        System.out.println("Número de veces que se imprimió un número: " + funcionOpcional("Alejandro", "Tellez"));
+    }
+
+    // 1. Funciones básicas
+
+    public static void funcionVoidNoParams() {
         System.out.println("Función que no tiene parámetros y no retorna nada.");
-    } // No retorna nada.
+    }
 
-    public static void funcionVoidSiParams (String word){ // Un parámetro de tipo cadena de texto.
+    public static void funcionVoidSiParams(String word) {
         System.out.println("La palabra es " + word + ".");
-    } // No retorna nada.
-
-    public static void funcionVoidTwoParams (int number1, int number2){ // Dos parámetros, ambos de tipo númerico.
-        System.out.println("La suma de " + number1 + " + " + number2 + " es = " + (number1+number2));
-    } // No retorna nada.
-
-    public static int funcionIntTwoParams (int number1, int number2){ // Dos parámetros, ambos de tipo númerico.
-        int suma = number1 + number2;
-        return suma; // Retorna la suma de los parámetros.
     }
 
-    public static String funcionStringSiParams (String name){ // Un parámetro de tipo cadena de texto.
-        String myName = name;
-        return myName; // Retorna la cadena de texto.
+    public static void funcionVoidTwoParams(int number1, int number2) {
+        System.out.println("La suma de " + number1 + " + " + number2 + " es = " + (number1 + number2));
     }
 
-    // 2
+    public static int funcionIntTwoParams(int number1, int number2) {
+        return number1 + number2; // Retorna la suma de los parámetros.
+    }
 
-    public static void funcionUno() { // Función número uno.
+    public static String funcionStringSiParams(String name) {
+        return name; // Retorna la cadena de texto.
+    }
+
+    // 2. Función dentro de otra función
+
+    public static void funcionUno() {
         System.out.println("Soy la función uno!");
     }
-    
-    public static void funcionDos() { // Función número dos.
-        funcionUno(); // Función uno dentro de la función dos.
+
+    public static void funcionDos() {
+        funcionUno(); // Llama a la función uno dentro de la función dos.
         System.out.println("Soy la función dos!");
     }
 
-    // 3
+    // 4. Variables globales y locales
 
-    public static boolean numPar(int number){
-        if (number % 2 == 0) { // Comprueba que el resto de dividir el número entre 2 es 0.
-            return true; // En caso afirmativo, el número será par.
-        }
-        return false; // Si no, será impar.
+    public static int obtenerVariableLocal() {
+        int variableLocal = 666; // Variable local
+        return variableLocal;
     }
 
-    // 4
+    // Opcional
 
-    public static int variable(){
-        int variable = 666; // Esta es la variable local, que no afecta a nuestra variable global.
-        return variable;
-    }
-
-    // OPCIONAL
-
-    public static int funcionOpcional(String cadena1, String cadena2){
+    public static int funcionOpcional(String cadena1, String cadena2) {
         int num = 0;
 
-        // Hacemos un bucle del 1 al 100.
-        for (int i = 1; i <= 100; i++){
-            // Comprobamos si es divisible entre 3
-            if (i % 3 == 0) {
-                System.out.println(cadena1);
-            // Comprobamos si es divisible entre 5
+        // Bucle del 1 al 100
+        for (int i = 1; i <= 100; i++) {
+            if (i % 15 == 0) {
+                System.out.println(cadena1 + cadena2); // Múltiplo de 3 y 5
+            } else if (i % 3 == 0) {
+                System.out.println(cadena1); // Múltiplo de 3
             } else if (i % 5 == 0) {
-                System.out.println(cadena2);
-            // Comprobamos si es divisible entre 3 y 5
-            } else if (i % 3 == 0 && i % 5 == 0){
-                System.out.println(cadena1 + cadena2);
+                System.out.println(cadena2); // Múltiplo de 5
             } else {
-            // Si no se cumple ninguna, sumamos una unidad a nuestra variable.
+                System.out.println(i); // Otro caso
                 num++;
             }
         }
