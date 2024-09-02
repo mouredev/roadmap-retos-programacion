@@ -17,7 +17,7 @@
 '''
 import random
 
-def es_primo(n):
+def primo(n):
     if n < 2:
         return False
     for i in range(2, int(n**0.5) + 1):
@@ -25,8 +25,8 @@ def es_primo(n):
             return False
     return True
 
-for _ in range(100):  # Intentamos 100 veces encontrar una combinación válida
-    enanos = random.choice([i for i in range(1, 20) if es_primo(i)])
+for _ in range(100):  
+    enanos = random.choice([i for i in range(1, 20) if primo(i)])
     elfos = random.choice([i for i in range(1, 20, 2)])
     humanos = random.choice([i for i in range(2, 21, 2)])
     sauron = 1
