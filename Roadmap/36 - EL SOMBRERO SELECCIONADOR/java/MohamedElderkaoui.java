@@ -59,7 +59,7 @@ public class MohamedElderkaoui {
 
 
     private static String[][] generateQuestions(String experience) {
-        if (experience.equals("novato")) {
+        if (experience.compareToIgnoreCase("novato")==0) {
             return new String[][] {
                 {"¿Qué te gustaría aprender primero?", "HTML/CSS", "Bases de datos", "Desarrollo móvil básico", "Manipulación de datos"},
                 {"¿Qué tipo de proyectos te motivan?", "Sitios web", "Sistemas pequeños", "Apps sencillas", "Análisis simple"},
@@ -73,7 +73,7 @@ public class MohamedElderkaoui {
                 {"¿Cómo prefieres aprender?", "Con ejercicios prácticos", "Resolviendo problemas lógicos", "Desarrollando apps pequeñas", "Trabajando con datasets simples"}
             };
             
-        } else if (experience.equals("intermedio")) {
+        } else if (experience.compareToIgnoreCase("intermedio")==0) {
             return new String[][] {
                 {"¿Qué disfrutas optimizar?", "Experiencia visual", "Rendimiento del servidor", "Usabilidad móvil", "Procesos de datos"},
                 {"¿Qué es lo más importante en un proyecto?", "Usabilidad", "Eficiencia", "Compatibilidad", "Precisión de datos"},
