@@ -69,7 +69,7 @@ public class MohamedElderkaoui {
                 {"¿Qué te parece más interesante?", "Crear páginas web", "Gestionar bases de datos", "Desarrollar apps", "Analizar datos"},
                 {"¿En qué tipo de empresa te ves trabajando?", "Agencia digital", "Empresa de software", "Startup móvil", "Consultoría de datos"},
                 {"¿Qué prefieres en términos de desafíos?", "Diseñar una web atractiva", "Optimizar consultas", "Mejorar la usabilidad móvil", "Descubrir patrones en datos"},
-                {"¿Cuál sería tu rol ideal en un equipo?", "Diseñador web", "Administrador de bases de datos", "Desarrollador de apps", "Analista de datos"},
+                {"¿Cuál sería tu rol/es ideal en un equipo?", "Diseñador web", "Administrador de bases de datos", "Desarrollador de apps", "Analista de datos"},
                 {"¿Cómo prefieres aprender?", "Con ejercicios prácticos", "Resolviendo problemas lógicos", "Desarrollando apps pequeñas", "Trabajando con datasets simples"}
             };
             
