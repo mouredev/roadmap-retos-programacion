@@ -19,6 +19,8 @@
  *    pero indicándole al alumno que la decisión ha sido complicada).
  */
 """
+# importo choice para elegir al azar si hay empate
+from random import choice
 # Casas remplazables:
 casas = {
         0:"Sofistas: Se enfocan en la retórica y la persuasión. Creen que la verdad es relativa y cambiante",
@@ -153,7 +155,7 @@ class Sombrero:
         if len(final) == 1:
             self.asignar_mi_casa(final[0])
         elif len(final) > 1:
-            self.asignar_mi_casa(final[-1])
+            self.asignar_mi_casa(choice(final))
             print("Esta siendo difícil.\nPodrías ir a esta... pero...")
 
     def hablar_sombrero(self):
@@ -174,7 +176,7 @@ class Sombrero:
             self.puntuar_pregunta(num,pregunta)
 
         self.asignar_casa()
-        print(f"{self.calificacion}\nTu casa será:\n{self.mi_casa}")
+        print(f"{self.calificacion}\n{self.nombre} tu casa será:\n{self.mi_casa}")
 
 # Prueba
 emmanuel = Sombrero()
