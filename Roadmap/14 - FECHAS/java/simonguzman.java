@@ -8,6 +8,7 @@ import java.util.List;
 public class simonguzman {
     public static void main(String[] args) {
         ejercicioPrincipal();
+        ejercicioAdicional();
     }
 
     static void ejercicioPrincipal(){
@@ -26,17 +27,16 @@ public class simonguzman {
         LocalDateTime fechaNacimiento = LocalDateTime.of(2001, 11, 28, 9, 45, 0);
 
         List<DateTimeFormatter> formatos = new ArrayList<>();
-        DateTimeFormatter formato1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter formato2 = DateTimeFormatter.ofPattern("HH:mm:ss");
-        DateTimeFormatter formato3 = DateTimeFormatter.ofPattern("DDD");
-        DateTimeFormatter formato4 = DateTimeFormatter.ofPattern("EEEE");
-        DateTimeFormatter formato5 = DateTimeFormatter.ofPattern("MMMM");
-        DateTimeFormatter formato6 = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        DateTimeFormatter formato7 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-        DateTimeFormatter formato8 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        DateTimeFormatter formato9 = DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy");
-        DateTimeFormatter formato10 = DateTimeFormatter.ofPattern("yyyy.MM.dd G 'at' HH:mm:ss z");
-    
+        formatos.add(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        formatos.add(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        formatos.add(DateTimeFormatter.ofPattern("DDD"));
+        formatos.add(DateTimeFormatter.ofPattern("EEEE"));
+        formatos.add(DateTimeFormatter.ofPattern("MMMM"));
+        formatos.add(DateTimeFormatter.ofPattern("dd MMMM yyyy"));
+        formatos.add(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
+        formatos.add(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+        formatos.add(DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy"));
+   
         aplicarFormatos(fechaNacimiento, formatos);
     }
 
