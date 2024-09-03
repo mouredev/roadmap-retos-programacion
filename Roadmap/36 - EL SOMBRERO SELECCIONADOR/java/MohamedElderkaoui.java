@@ -1,107 +1,165 @@
 import java.util.*;
 
 public class MohamedElderkaoui {
-    
-    // Clase principal
+
+    static class House {
+        String name;
+        int score;
+
+        House(String name) {
+            this.name = name;
+            this.score = 0;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        // Puntos para cada casa
-        int frontend = 0, backend = 0, mobile = 0, data = 0;
+        // Initial setup of houses
+        List<House> houses = Arrays.asList(
+            new House("Frontend"),
+            new House("Backend"),
+            new House("Mobile"),
+            new House("Data")
+        );
 
-        // Preguntas y respuestas
-        String[] questions = {
-            "¿Qué tipo de proyectos prefieres?",
-            "¿Qué es lo más importante para ti en un lenguaje de programación?",
-            "¿Cuál es tu entorno de desarrollo ideal?",
-            "¿Qué tipo de problemas disfrutas resolver?",
-            "¿Qué te emociona más aprender?",
-            "¿Qué tipo de interfaces prefieres trabajar?",
-            "¿Qué te gusta más en cuanto a la estructura de datos?",
-            "¿Qué tipo de desarrollo te parece más interesante?",
-            "¿Dónde prefieres aplicar tu código?",
-            "¿Qué prefieres optimizar?"
-        };
-
-        String[][] options = {
-            {"Aplicaciones web interactivas", "Sistemas robustos", "Aplicaciones móviles", "Análisis de datos"},
-            {"Simplicidad y eficiencia", "Escalabilidad", "Compatibilidad multiplataforma", "Manejo de grandes volúmenes de datos"},
-            {"Un navegador web", "Un servidor", "Un dispositivo móvil", "Un entorno de análisis de datos"},
-            {"Interfaces de usuario atractivas", "Lógica de negocio compleja", "Experiencia de usuario fluida", "Descubrimiento de patrones en datos"},
-            {"Frameworks de frontend", "Tecnologías de backend", "Desarrollo móvil", "Ciencia de datos"},
-            {"UI/UX", "APIs y microservicios", "Interfaces móviles", "Dashboards y visualizaciones"},
-            {"Arreglos y listas", "Bases de datos y consultas", "Modelos de datos móviles", "Conjuntos de datos masivos"},
-            {"Desarrollo de frontend", "Desarrollo de backend", "Desarrollo de apps", "Análisis de datos"},
-            {"En el cliente", "En el servidor", "En dispositivos móviles", "En la nube"},
-            {"Carga y tiempo de respuesta", "Consumo de recursos", "Usabilidad y rendimiento", "Procesamiento de datos"}
-        };
-
-        // Solicitar nombre del alumno
+        // Collect student information
         System.out.print("¡Bienvenido! ¿Cuál es tu nombre? ");
         String name = scanner.nextLine();
+        System.out.print("¿Qué edad tienes? ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+        System.out.print("¿Qué experiencia tienes en programación? (novato, intermedio, avanzado): ");
+        String experience = scanner.nextLine().toLowerCase();
 
-        // Realizar las preguntas
+        // Personalized question sets based on experience
+        String[][] questions = generateQuestions(experience);
+
+        // Ask the questions with weights
         for (int i = 0; i < questions.length; i++) {
-            System.out.println("\n" + (i + 1) + ". " + questions[i]);
-            System.out.println("1) " + options[i][0]);
-            System.out.println("2) " + options[i][1]);
-            System.out.println("3) " + options[i][2]);
-            System.out.println("4) " + options[i][3]);
+            System.out.println("\n" + questions[i][0]);
+            for (int j = 1; j <= 4; j++) {
+                System.out.println(j + ") " + questions[i][j]);
+            }
             System.out.print("Elige una opción (1-4): ");
             int answer = scanner.nextInt();
+            
+            // Add weighted score to corresponding house
+            addWeightedScore(houses, answer, i + 1);
+        }
 
-            // Asignar puntos según la respuesta
-            switch (answer) {
-                case 1:
-                    frontend++;
-                    break;
-                case 2:
-                    backend++;
-                    break;
-                case 3:
-                    mobile++;
-                    break;
-                case 4:
-                    data++;
-                    break;
-                default:
-                    System.out.println("Opción no válida, no se asignaron puntos.");
-                    break;
+        // Determine the house with the highest score
+        House selectedHouse = determineHouse(houses, random, age, experience);
+
+        // Display final result with personalized feedback
+        displayResult(name, selectedHouse);
+        scanner.close();
+    }
+
+
+    private static String[][] generateQuestions(String experience) {
+        if (experience.equals("novato")) {
+            return new String[][] {
+                {"¿Qué te gustaría aprender primero?", "HTML/CSS", "Bases de datos", "Desarrollo móvil básico", "Manipulación de datos"},
+                {"¿Qué tipo de proyectos te motivan?", "Sitios web", "Sistemas pequeños", "Apps sencillas", "Análisis simple"},
+                {"¿Cuál es tu entorno de aprendizaje preferido?", "Tutoriales en línea", "Cursos estructurados", "Aplicaciones de aprendizaje", "Proyectos con datos"},
+                {"¿Cómo prefieres trabajar?", "Diseñando interfaces", "Organizando datos", "Construyendo aplicaciones", "Analizando información"},
+                {"¿Qué lenguaje de programación te gustaría aprender primero?", "JavaScript", "SQL", "Kotlin", "Python"},
+                {"¿Qué te parece más interesante?", "Crear páginas web", "Gestionar bases de datos", "Desarrollar apps", "Analizar datos"},
+                {"¿En qué tipo de empresa te ves trabajando?", "Agencia digital", "Empresa de software", "Startup móvil", "Consultoría de datos"},
+                {"¿Qué prefieres en términos de desafíos?", "Diseñar una web atractiva", "Optimizar consultas", "Mejorar la usabilidad móvil", "Descubrir patrones en datos"},
+                {"¿Cuál sería tu rol ideal en un equipo?", "Diseñador web", "Administrador de bases de datos", "Desarrollador de apps", "Analista de datos"},
+                {"¿Cómo prefieres aprender?", "Con ejercicios prácticos", "Resolviendo problemas lógicos", "Desarrollando apps pequeñas", "Trabajando con datasets simples"}
+            };
+            
+        } else if (experience.equals("intermedio")) {
+            return new String[][] {
+                {"¿Qué disfrutas optimizar?", "Experiencia visual", "Rendimiento del servidor", "Usabilidad móvil", "Procesos de datos"},
+                {"¿Qué es lo más importante en un proyecto?", "Usabilidad", "Eficiencia", "Compatibilidad", "Precisión de datos"},
+                {"¿Cómo abordas la resolución de problemas?", "Con creatividad", "Con análisis profundo", "Con prototipos rápidos", "Con datos empíricos"},
+                {"¿Qué prefieres en un entorno de desarrollo?", "Herramientas de diseño", "Depuradores avanzados", "Simuladores móviles", "Entornos de análisis de datos"},
+                {"¿Qué te impulsa en un proyecto?", "La estética", "La lógica", "La innovación", "Los resultados basados en datos"},
+                {"¿Cómo manejas el trabajo en equipo?", "Como líder de frontend", "Como arquitecto de backend", "Como desarrollador principal", "Como analista senior"},
+                {"¿Qué tendencia tecnológica te atrae?", "WebAssembly", "Serverless computing", "Realidad aumentada", "Machine learning"},
+                {"¿Qué lenguaje consideras esencial?", "JavaScript/TypeScript", "Go/Rust", "Swift/Java", "Python/R"},
+                {"¿Qué prefieres hacer en tu tiempo libre?", "Prototipar diseños", "Contribuir a proyectos open-source", "Desarrollar apps personales", "Trabajar en proyectos de análisis de datos"},
+                {"¿Cuál es tu objetivo a largo plazo?", "Ser un maestro de la experiencia de usuario", "Liderar la infraestructura de sistemas", "Crear apps de referencia", "Ser un gurú de los datos"}
+            };
+            
+        } else {
+            return new String[][] {
+                {"¿Qué disfrutas optimizar?", "Experiencia visual", "Rendimiento del servidor", "Usabilidad móvil", "Procesos de datos"},
+                {"¿Qué es lo más importante en un proyecto?", "Usabilidad", "Eficiencia", "Compatibilidad", "Precisión de datos"},
+                {"¿Cómo abordas la resolución de problemas?", "Con creatividad", "Con análisis profundo", "Con prototipos rápidos", "Con datos empíricos"},
+                {"¿Qué prefieres en un entorno de desarrollo?", "Herramientas de diseño", "Depuradores avanzados", "Simuladores móviles", "Entornos de análisis de datos"},
+                {"¿Qué te impulsa en un proyecto?", "La estética", "La lógica", "La innovación", "Los resultados basados en datos"},
+                {"¿Cómo manejas el trabajo en equipo?", "Como líder de frontend", "Como arquitecto de backend", "Como desarrollador principal", "Como analista senior"},
+                {"¿Qué tendencia tecnológica te atrae?", "WebAssembly", "Serverless computing", "Realidad aumentada", "Machine learning"},
+                {"¿Qué lenguaje consideras esencial?", "JavaScript/TypeScript", "Go/Rust", "Swift/Java", "Python/R"},
+                {"¿Qué prefieres hacer en tu tiempo libre?", "Prototipar diseños", "Contribuir a proyectos open-source", "Desarrollar apps personales", "Trabajar en proyectos de análisis de datos"},
+                {"¿Cuál es tu objetivo a largo plazo?", "Ser un maestro de la experiencia de usuario", "Liderar la infraestructura de sistemas", "Crear apps de referencia", "Ser un gurú de los datos"}
+            };
+            
+        }
+    }
+
+    // Method to add weighted score to the corresponding house
+    private static void addWeightedScore(List<House> houses, int answer, int questionNumber) {
+        int weight = questionNumber; // More weight for later questions
+        houses.get(answer - 1).score += weight;
+    }
+
+    // Method to determine the house with the highest score and handle ties
+    private static House determineHouse(List<House> houses, Random random, int age, String experience) {
+        houses.sort((h1, h2) -> h2.score - h1.score);
+        List<House> topHouses = new ArrayList<>();
+        int maxScore = houses.get(0).score;
+
+        for (House house : houses) {
+            if (house.score == maxScore) {
+                topHouses.add(house);
             }
         }
 
-        // Determinar la casa con más puntos
-        int maxPoints = Math.max(Math.max(frontend, backend), Math.max(mobile, data));
-        String selectedHouse = "";
-        boolean tie = false;
-
-        // Resolver posibles empates
-        if (frontend == maxPoints) {
-            selectedHouse = "Frontend";
-        }
-        if (backend == maxPoints) {
-            if (!selectedHouse.isEmpty()) tie = true;
-            selectedHouse = "Backend";
-        }
-        if (mobile == maxPoints) {
-            if (!selectedHouse.isEmpty()) tie = true;
-            selectedHouse = "Mobile";
-        }
-        if (data == maxPoints) {
-            if (!selectedHouse.isEmpty()) tie = true;
-            selectedHouse = "Data";
+        // Consider age and experience as tie-breaker criteria
+        if (topHouses.size() > 1) {
+            System.out.println("\n¡Fue una decisión difícil! Considerando tu edad y experiencia...");
+            if (age < 20 && experience.equals("novato")) {
+                return randomHouseSelection(topHouses, random, "Frontend");
+            } else if (age >= 20 && experience.equals("avanzado")) {
+                return randomHouseSelection(topHouses, random, "Backend");
+            } else {
+                return topHouses.get(random.nextInt(topHouses.size()));
+            }
         }
 
-        // Desempatar si es necesario
-        if (tie) {
-            String[] houses = {"Frontend", "Backend", "Mobile", "Data"};
-            selectedHouse = houses[random.nextInt(4)];
-            System.out.println("\n¡Vaya, esto fue difícil! El sombrero estaba muy indeciso...");
-        }
-
-        // Resultado final
-        System.out.println("\n¡Felicidades " + name + "! Has sido seleccionado para la casa " + selectedHouse + "!");
-        scanner.close();
+        return topHouses.get(0);
     }
+
+    // Method to randomly select a house, with preference based on certain conditions
+    private static House randomHouseSelection(List<House> topHouses, Random random, String preferredHouse) {
+        for (House house : topHouses) {
+            if (house.name.equals(preferredHouse)) {
+                return house;
+            }
+        }
+        return topHouses.get(random.nextInt(topHouses.size()));
+    }
+
+    // Method to display the final result with personalized feedback
+    private static void displayResult(String name, House selectedHouse) {
+        System.out.println("\n¡Felicidades " + name + "! Has sido seleccionado para la casa " + selectedHouse.name + "!");
+        System.out.println("Tu afinidad por la " + selectedHouse.name + " se refleja en tus respuestas.");
+        if (selectedHouse.name.equals("Frontend")) {
+            System.out.println("Eres una persona creativa, te encanta construir interfaces y mejorar la experiencia del usuario.");
+        } else if (selectedHouse.name.equals("Backend")) {
+            System.out.println("Disfrutas diseñar la lógica del servidor y crear sistemas eficientes y escalables.");
+        } else if (selectedHouse.name.equals("Mobile")) {
+            System.out.println("Te apasiona el desarrollo móvil y crear aplicaciones que lleguen a las manos de millones de usuarios.");
+        } else if (selectedHouse.name.equals("Data")) {
+            System.out.println("Te gusta analizar datos, encontrar patrones y dar sentido a la información compleja.");
+        }
+    }
+
 }
