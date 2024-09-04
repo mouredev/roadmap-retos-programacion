@@ -7,11 +7,21 @@ public class simonguzman {
     private static ExecutorService executor = Executors.newFixedThreadPool(3);
 
     public  static void main(String[] args) {
-        CompletableFuture<Void> future = executeAsync("test", 2);
-
-        executor.shutdown();
-
+        executeThreads();
     }
+
+    public static void executeThreads(){
+        CompletableFuture<Void> futureC = executeAsync("C", 3);
+        CompletableFuture<Void> futureB = executeAsync("B", 2);
+        CompletableFuture<Void> futureA = executeAsync("A", 1);
+
+        CompletableFuture.allOf(futureC, futureB, futureA).thenRun(()->{
+            executeAsync("D", 1);
+        }).thenRun(()->{
+            executor.shutdown();
+        });
+    }
+
     public static CompletableFuture<Void> executeAsync(String name, int durationSeconds){
         return CompletableFuture.runAsync(() -> {
             long startTime = System.currentTimeMillis();   
