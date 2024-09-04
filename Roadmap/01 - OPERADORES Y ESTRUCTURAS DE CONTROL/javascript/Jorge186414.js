@@ -15,3 +15,96 @@
  *
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
  */
+
+//* Opearadores de Asignacion
+var x
+var y = x
+// Asignacion de adicion
+console.log(x += y)
+// Asignacion de resta
+console.log(x -= y)
+// Asignacion de multiplicacion
+console.log(x *= y)
+// Asignacion de division
+console.log(x /= y)
+// Asignacion de residuo
+console.log(x %= y)
+// Asignacion de exponenciacion
+console.log(x **= y)
+
+//* Operadores de Comparacion
+var numero1 = 10
+var numero2 = 8
+// Igual
+console.log(numero1 == numero2)
+// No es igual
+console.log(numero1 != numero2)
+// Estrictamente igual
+console.log(numero1 === numero2)
+// Desigualdad estricta
+console.log(numero1 !== numero2)
+// Mayor que
+console.log(numero1 > numero2)
+// Mayor o igual que
+console.log(numero1 >= numero2)
+// Menor que
+console.log(numero1 < numero2)
+// Menor o igual que
+console.log(numero1 <= numero2)
+
+//* Operadores Aritmeticos
+// Residuo
+console.log(numero1 % numero2)
+// Suma
+console.log(numero1 + numero2)
+// Resta 
+console.log(numero1 - numero2)
+// Division
+console.log(numero1 / numero2)
+// Multitplicacion
+console.log(numero1 * numero2)
+// Decremento
+console.log(numero1--)
+// Incremento
+console.log(numero2++)
+
+//* Operadores bit a bit 
+var var1 = 8
+var var2 = 4
+// AND
+console.log(var1 & var2)
+// OR
+console.log(var1 | var2)
+// XOR 
+console.log(var1 ^ var2)
+// NOT
+console.log(~var1);
+// Desplazamiento a la derecha
+console.log(var1 >> 1)
+// Desplazamiento a la izquierda
+console.log(var1 << 1)
+// Desplazamiento a la derecha sin signo
+console.log(var1 >>> 1)
+
+//* Operadores Logicos
+var x = 19
+var y = 87
+let and = (x < y) && (y > 70)
+let or = (x == y) || (x < y)
+let not = !(x > y)
+console.log(`AND: ${and}`)
+console.log(`OR: ${or}`)
+console.log(`NOT: ${not}`)
+
+//* Operadores de cadena
+// Concatenacion 
+let nombre = 'Jorge'
+console.log("Hola " + nombre); 
+// Concatenacion Abreviado
+nombre += ' Miranda'
+console.log(nombre);
+
+// Operador condicional (Ternario)
+let edad = 22
+let resultado = edad >= 18 ? 'Es mayor de edad.' : 'Es menor de edad.'
+console.log(resultado);
