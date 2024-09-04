@@ -99,7 +99,7 @@ console.log(`NOT: ${not}`)
 //* Operadores de cadena
 // Concatenacion 
 let nombre = 'Jorge'
-console.log("Hola " + nombre); 
+console.log("Hola " + nombre);
 // Concatenacion Abreviado
 nombre += ' Miranda'
 console.log(nombre);
@@ -108,3 +108,84 @@ console.log(nombre);
 let edad = 22
 let resultado = edad >= 18 ? 'Es mayor de edad.' : 'Es menor de edad.'
 console.log(resultado);
+
+/*
+ * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
+ *   que representen todos los tipos de estructuras de control que existan
+ *   en tu lenguaje:
+*/
+
+//! Condicionales
+if ((edad > 10) && (edad < 15)) {
+  console.log('Eres un ninio')
+} else if ((edad > 15) && edad < 18) {
+  console.log('Eres un adolescente')
+} else {
+  console.log('Eres un universitario')
+}
+
+//! Bucle for
+for (let i = 0; i < 10; i++) {
+  let siguiente = i + 1
+  console.log(`${i} * ${siguiente} = ${siguiente * i}`)
+}
+
+//! Bucle for of
+let mangas = ['Dragon Ball', 'One Piece', 'Hunter X Hunter', 'BTOOM']
+for (manga of mangas) {
+  console.log(manga)
+}
+//! Bucle for in
+const datos_manga = {
+  autor: 'Eichiro Oda',
+  nombre: 'One Piece',
+  tomos: 108,
+  editorial: 'Panini Mexico'
+}
+
+for (dato in datos_manga) {
+  console.log(dato)
+}
+
+for (dato in datos_manga) {
+  console.log(`${dato}: ${datos_manga[dato]}`)
+}
+
+//! Bucle while
+let contador = 0
+while (contador < 10) {
+  console.log(`contador desde while: ${contador}`)
+  contador++
+}
+
+//! Bucle do while
+let contador2 = 0
+do {
+  console.log(`contador desde do while: ${contador2}`)
+  contador2++
+} while (contador2 < 10)
+
+//! Switch
+var nombre1 = 'Julio'
+switch (nombre1.length) {
+  case 4:
+    console.log('Tu nombre tiene 4 letras')
+    break
+  case 5:
+    console.log('Tu nombre tiene 5 letras')
+    break
+  case 6:
+    console.log('Tu nombre tiene 6 letras')
+    break
+}
+
+/* 
+ * DIFICULTAD EXTRA (opcional):
+ * Crea un programa que imprima por consola todos los números comprendidos
+ * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+*/
+for (i = 10; i <= 55; i++) {
+  if (i % 2 === 0 && i !== 16 && i % 3 === 0) {
+    console.log(i)
+  }
+}
