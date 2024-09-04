@@ -32,7 +32,7 @@ MY_CONSTANT = "Una constante"
 
 str_var = "Retos de programacion"
 int_var = 100
-bool_var = True
+bool_var = False
 float_var = 3.14
 complex_var = 1j
 list_var = [1, 2, 3, 4, 5]
