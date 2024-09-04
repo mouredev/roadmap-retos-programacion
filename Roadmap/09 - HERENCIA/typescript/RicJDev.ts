@@ -57,7 +57,13 @@ class Employee {
   }
 }
 
-class Manager extends Employee {
+interface hasWorkers {
+  workers: Employee[]
+  addWorker: (worker: Employee) => void
+  displayWorkersList: () => void
+}
+
+class Manager extends Employee implements hasWorkers {
   workers: Employee[] = []
 
   constructor(name: string, workerID: number) {
@@ -78,3 +84,25 @@ class Manager extends Employee {
     })
   }
 }
+
+class ProjectManager extends Employee implements hasWorkers {
+  workers: Employee[]
+
+  constructor(name: string, workerID: number) {
+    super(name, workerID, 'Project Manager')
+  }
+
+  addWorker(worker: Employee) {
+    this.workers.push(worker)
+  }
+
+  displayWorkersList(): void {
+    console.log(`${this.name}'s workers:`)
+
+    this.workers.forEach((worker) => {
+      console.log(`- ${worker.name}: ${worker.workerID}. ${worker.title}`)
+    })
+  }
+}
+
+class Programer extends Employee {}
