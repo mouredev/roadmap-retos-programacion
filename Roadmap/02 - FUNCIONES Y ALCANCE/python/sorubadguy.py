@@ -108,3 +108,23 @@ def variables():
     print(f"var_global= {var_global},||| var local= {var_local}")
 
 variables()
+
+#Extra
+
+def extra(texto1, texto2):
+    contador = 0
+
+    for i in range(1, 101):
+        if(i % 3 == 0 and i % 5 == 0):
+            print(f"{texto1} {texto2}")
+        elif(i % 3 == 0):
+            print(texto1)
+        elif(i % 5 == 0):
+            print(texto2)
+        else:
+            print(i)
+            contador += 1
+    
+    print(contador)
+
+extra("hola", "chau")
