@@ -36,10 +36,29 @@ func dataStructures() {
     fmt.Println("Slices: Dynamic resizable Arrays of the same type")
     slice := []int{1, 2, 3, 4}
     fmt.Println(slice)
+	slice = append(slice, 152)
+    fmt.Println("After insertion:", slice)
+	// Inserting in a specific index. The function is quite complex in this way
+	index := 1
+    slice = append(slice[:index], append([]int{10}, slice[index:]...)...)
+    fmt.Println("After inserting 10 at index 1:", slice)
 
     fmt.Println("Maps: Implementation of hash tables / dictionaries")
     m := map[string]int{"apple": 1, "banana": 2}
     fmt.Println(m)
+	// add
+	m["orange"] = 3
+    fmt.Println("After adding 'orange':", m)
+	// edit
+    m["banana"] = 4
+    fmt.Println("After editing 'banana':", m)
+	// delete
+	delete(m, "apple")
+    fmt.Println("After deleting 'apple':", m)
+	// Check if key exists
+	if value, exists := m["orange"]; exists {
+        fmt.Println("The value of 'orange' is:", value)
+    }
 
     fmt.Println("Structs: User-defined types that groups variables of different types")
     type Person struct {
@@ -113,6 +132,7 @@ func receiver(ch chan int, wg *sync.WaitGroup) {
 }
 
 ////////////////////// CHALLENGE //////////////////////
+
 
 func challenge(){
 
