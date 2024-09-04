@@ -55,3 +55,5 @@ const x = 2n ** 65n
 const symbol = Symbol('Hola')
 // unndefined
 const undefined = undefined
+
+console.log('Hola, JavaScript')
