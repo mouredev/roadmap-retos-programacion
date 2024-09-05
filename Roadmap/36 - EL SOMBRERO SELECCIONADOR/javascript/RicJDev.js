@@ -191,7 +191,7 @@ import pc from 'picocolors'
 
 console.clear()
 
-const name = await rl.question('Dime tu nombre, querido alumno. ')
+const name = await rl.question('\nDime tu nombre, querido alumno. ')
 
 for (const id in questionary.questions) {
   const question = questionary.questions[id]
@@ -201,7 +201,7 @@ for (const id in questionary.questions) {
 
   while (!Object.keys(question.options).includes(answer.toUpperCase())) {
     console.clear()
-    console.log(`Bienvenido seas, ${pc.bold(name)}. ${message}`)
+    console.log(`\nBienvenido seas, ${pc.bold(name)}. ${message}`)
 
     console.log(`\n${pc.blue(id)}. ${question.title}\n`)
 
@@ -242,9 +242,9 @@ if (wasRandomized) {
 }
 
 console.log(' ')
-console.log(`Total de respuestas A: ${questionary.results.A}.`)
-console.log(`Total de respuestas B: ${questionary.results.B}.`)
-console.log(`Total de respuestas C: ${questionary.results.C}.`)
-console.log(`Total de respuestas D: ${questionary.results.D}. `)
+console.log(`Total de respuestas ${pc.green('A')}: ${pc.yellow(questionary.results.A)}.`)
+console.log(`Total de respuestas ${pc.green('B')}: ${pc.yellow(questionary.results.B)}.`)
+console.log(`Total de respuestas ${pc.green('C')}: ${pc.yellow(questionary.results.C)}.`)
+console.log(`Total de respuestas ${pc.green('B')}: ${pc.yellow(questionary.results.D)}. `)
 
 rl.close()
