@@ -3,23 +3,16 @@
  * - Show examples of creating all the structures supported by default
  *   in your language.
  * - Use operations of insertion, deletion, updating, and sorting.
- *
- * EXTRA DIFFICULTY (optional):
- * Create a contact book via terminal.
- * - You must implement functionalities for searching, inserting, updating,
- *   and deleting contacts.
- * - Each contact must have a name and a phone number.
- * - The program first asks what operation you want to perform,
- *   and then the necessary data to carry it out.
- * - The program cannot allow the input of non-numeric phone numbers and with more
- *   than 11 digits (or the number of digits you want).
- * - An operation to end the program should also be proposed.
  */
 
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -132,8 +125,83 @@ func receiver(ch chan int, wg *sync.WaitGroup) {
 }
 
 ////////////////////// CHALLENGE //////////////////////
+ /*
+ * EXTRA DIFFICULTY (optional):
+ * Create a contact book via terminal.
+ * - You must implement functionalities for searching, inserting, updating,
+ *   and deleting contacts.
+ * - Each contact must have a name and a phone number.
+ * - The program first asks what operation you want to perform,
+ *   and then the necessary data to carry it out.
+ * - The program cannot allow the input of non-numeric phone numbers and with more
+ *   than 11 digits (or the number of digits you want).
+ * - An operation to end the program should also be proposed.
+ */
+
+ func challenge(){
+     type Contact struct {
+         Name     string
+         Phone    string
+     }
+     
+    agenda := make(map[string]Contact)
+
+    fmt.Println("======== AGENDA ========")
+    fmt.Println("1. Add Contact")
+    fmt.Println("2. Find Contact")
+    fmt.Println("3. Update Contact")
+    fmt.Println("4. Delete Contact")
+    fmt.Println("5. Exit")
+    fmt.Println("========================")
+    for{
+
+		input := getInput("Enter Option: ")
+		option, err := strconv.Atoi(input)
+
+		if err != nil {
+			fmt.Println("Invalid input. Please enter a number.")
+			continue
+		}
+
+        switch option{
+        case 1:
+            addContact(agenda)
+        case 2:
+            fmt.Printf("Find contact")
+        case 3:
+            fmt.Printf("Update contact")
+        case 4:
+            fmt.Printf("Delete contact")
+        case 5:
+            fmt.Printf("Good Bye\n")
+            return
+        }
+
+    }
+}
+
+func getInput(prompt string) string {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print(prompt)
+	input, _ := reader.ReadString('\n')
+	return strings.TrimSpace(input)
+}
 
 
-func challenge(){
 
+func addContact(agenda map[string]Contact) {
+	name := getInput("Enter contact name: ")
+	phone :=  getInput("Enter phone: ")
+    if len(phone) > 11 && !isNumeric(phone) {
+        fmt.Println("Invalid input. Please enter a number.")
+	    return
+    }
+
+	agenda[name] = Contact{name: name, phoneNumber: phone}
+	fmt.Println("Contact added successfully!")
+}
+
+func isNumeric(s string) bool {
+	_, err := strconv.Atoi(s)
+	return err == nil
 }
