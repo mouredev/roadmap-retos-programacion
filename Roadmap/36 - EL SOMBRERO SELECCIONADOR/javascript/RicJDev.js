@@ -43,11 +43,11 @@ class Questionary {
   }
 
   addQuestion(title) {
-    const id = this.questionQuantity + 1
+    const id = this.questionsCount + 1
     this.questions[id] = new Question(title)
   }
 
-  get questionQuantity() {
+  get questionsCount() {
     return Object.keys(this.questions).length
   }
 }
