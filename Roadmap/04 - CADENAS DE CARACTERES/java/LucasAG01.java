@@ -134,7 +134,7 @@ public class LucasAG01 {
 
         .reverse():
         El método reverse() invierte el contenido del StringBuilder. Es decir, cambia el orden de los caracteres.
-        Por ejemplo, si uno es "radar", después de aplicar reverse(), obtendrías "radar", que es lo mismo, pero si uno es "hello", obtendrías "olleh".
+
 
         .toString():
         El método toString() convierte el StringBuilder (que tiene la cadena invertida) de vuelta a un objeto de tipo String.
