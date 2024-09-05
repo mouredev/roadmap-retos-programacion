@@ -7,14 +7,12 @@
 //En_una_linea
 
 /*En Varias
-
 lineas de
-
 codigo*/
 
 // - Crea una variable (y una constante si el lenguaje lo soporta).
 
-let Nombre = Juan
+let Nombre = "Juan"
 
 const e = 2.7182; //Constante Euler por convención
 
@@ -23,10 +21,10 @@ const e = 2.7182; //Constante Euler por convención
 let int = 1  //Int
 let float = 1.0 //Float
 let string = "Hola mundo" //String
-let boolean = True //Boolean
-let undefined = undefined
+let boolean = true //Boolean
+let any = undefined //Undefined
 let bigInt = 121437679698743648965734542653n //BigInt
 
 // - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
-Console.log("¡Hola, javascript!");
+console.log("¡Hola, javascript!");

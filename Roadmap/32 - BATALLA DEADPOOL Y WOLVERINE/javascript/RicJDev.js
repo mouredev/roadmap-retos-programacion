@@ -17,12 +17,19 @@ const rl = readline.createInterface({
 
 //Modelado de personajes
 class Character {
-  constructor(name, hp, attackRange = { min: 0, max: 50 }, defenseRate) {
+  /**
+   * @param {string} name
+   * @param {number} hp
+   * @param {number} defenseRate
+   * @param {{ min: number, max: number, }} attackRange
+   */
+
+  constructor(name, hp, defenseRate, attackRange) {
     this.name = name
     this.hp = this.validateHp(hp)
 
-    this.attackRange = attackRange
     this.defenseRate = defenseRate
+    this.attackRange = attackRange
 
     this.canAttack = true
   }
@@ -77,48 +84,56 @@ function simulateAttack(attacker, defender) {
     let damage = defender.defense(attacker.attack())
 
     if (damage > 0) {
-      message = `ataque efectivo! ${defender.name} ${pc.magenta(`-${damage} hp`)}`
+      message = `${attacker.name} ha golpeado a ${defender.name}! ${pc.magenta(`-${damage} hp`)}`
 
       if (damage === attacker.attackRange.max) {
-        message += pc.magenta(' [CRITICAL]')
+        message = `Golpe crítico de ${attacker.name}! ${pc.magenta(`-${damage} hp`)}\n${
+          defender.name
+        } no atacará en el siguiente turno`
 
         defender.canAttack = false
       }
     } else {
-      message = `${defender.name} ha esquivado el ataque`
+      message = `${defender.name} ha esquivado el ataque de ${attacker.name}!`
     }
   } else {
-    message = `recibió un golpe crítico. No puede atacar`
+    message = `${attacker.name} recibió un golpe crítico. No puede atacar`
 
     attacker.canAttack = true
   }
 
-  console.log(`\nTurno de ${attacker.name}: ${message}\n`)
+  console.log(' ')
+  console.log(message)
+  console.log(' ')
 }
 
 function simulateBattle(playerA, playerB) {
-  let turn = true
+  let alternate = true
+  let turn = 1
 
   const battle = setInterval(() => {
     console.clear()
 
-    console.log(pc.underline('\nBATALLA EN CURSO!'))
+    console.log('\nBATALLA EN CURSO!')
+    console.log('Turno:', turn)
+    turn++
+
     display(playerA, playerB)
 
-    if (turn) {
+    if (alternate) {
       simulateAttack(playerA, playerB)
     } else {
       simulateAttack(playerB, playerA)
     }
 
-    turn = !turn
+    alternate = !alternate
 
     if (playerA.hp === 0 || playerB.hp === 0) {
       clearInterval(battle)
 
       console.clear()
 
-      console.log(pc.underline('BATALLA FINALIZADA!'))
+      console.log('BATALLA FINALIZADA!')
       display(playerA, playerB)
       console.log(`\n${playerA.hp === 0 ? playerB.name : playerA.name} ha ganado!\n`)
     }
@@ -128,15 +143,15 @@ function simulateBattle(playerA, playerB) {
 //Implementacion en terminal
 async function main() {
   console.clear()
-  console.log(pc.underline('\nBIENVENIDO AL SIMULADOR!\n'))
+  console.log('\nBIENVENIDO AL SIMULADOR!\n')
 
   //Deadpool
   let deadpoolHP = parseInt(await rl.question('Indique la cantidad de vida para Deadpool. '))
-  const Deadpool = new Character(pc.red('Deadpool'), deadpoolHP, { min: 10, max: 100 }, 25)
+  const Deadpool = new Character(pc.red('Deadpool'), deadpoolHP, 25, { min: 10, max: 100 })
 
   //Wolverine
   let wolverineHP = parseInt(await rl.question('Indique la cantidad de vida para Wolverine. '))
-  const Wolverine = new Character(pc.yellow('Wolverine'), wolverineHP, { min: 10, max: 120 }, 20)
+  const Wolverine = new Character(pc.yellow('Wolverine'), wolverineHP, 20, { min: 10, max: 120 })
 
   console.log(pc.gray('Cargando...'))
   simulateBattle(Deadpool, Wolverine)
