@@ -1,84 +1,8 @@
-/*
-  TODO: Estas preguntas fueron generadas por IA. Recordar revisarlas
-
-  LISTADO DE PREGUNTAS
-
-  1. ¿Qué parte de un sitio web te llama más la atención?
-
-   - A) El diseño visual y la interfaz de usuario.
-   - B) La lógica detrás de cómo funciona el sitio y cómo se conectan las diferentes partes.
-   - C) Cómo se ve y funciona la aplicación en un teléfono móvil.
-   - D) Los datos que se recolectan y cómo se utilizan para mejorar el sitio.
-
-  2. Si tuvieras que elegir entre crear una nueva aplicación móvil o diseñar una base de datos, ¿cuál preferirías?
-
-   - A) Crear una aplicación móvil con una interfaz intuitiva.
-   - B) Diseñar una base de datos eficiente para almacenar grandes cantidades de información.
-   - C) Ambas opciones me parecen igualmente interesantes.
-   - D) Ninguna de las opciones me llama la atención.
-
-  3. ¿Qué te resulta más fácil de entender?
-
-   - A) Diagramas de flujo y diseños visuales.
-   - B) Código y algoritmos.
-   - C) Prototipos y maquetas.
-   - D) Gráficos y estadísticas.
-
-  4. ¿Qué tipo de problemas te gusta resolver?
-
-   - A) Problemas relacionados con la estética y la experiencia del usuario.
-   - B) Problemas lógicos y de optimización.
-   - C) Problemas relacionados con la portabilidad y la compatibilidad en diferentes dispositivos.
-   - D) Problemas relacionados con la extracción de información útil de grandes conjuntos de datos.
-
-  5. ¿Qué herramienta te resulta más interesante?
-
-   - A) Photoshop o Figma.
-   - B) Python o Java.
-   - XCode o Android Studio.
-   - D) SQL o Tableau.
-
-  6. ¿Qué te gustaría hacer en tu tiempo libre?
-
-   - A) Diseñar interfaces de usuario para diferentes aplicaciones.
-   - B) Desarrollar videojuegos o aplicaciones web.
-   - C) Crear aplicaciones móviles para diferentes plataformas.
-   - D) Analizar datos y crear visualizaciones.
-
-  7. ¿Qué tipo de proyectos te motivan más?
-
-   - A) Proyectos que tienen un impacto visual y estético.
-   - B) Proyectos que requieren resolver problemas complejos y optimizar el rendimiento.
-   - C) Proyectos que pueden ser utilizados por muchas personas en sus dispositivos móviles.
-   - D) Proyectos que utilizan datos para tomar decisiones informadas.
-
-  8. ¿Qué habilidad consideras más importante para un desarrollador?
-
-   - A) La creatividad y el sentido del diseño.
-   - B) La capacidad de resolver problemas y pensar de forma lógica.
-   - C) La adaptabilidad y la capacidad de aprender nuevas tecnologías.
-   - D) La capacidad de analizar datos y extraer insights.
-
-  9. ¿Qué tipo de equipo te gustaría formar parte?
-
-   - A) Un equipo de diseño y UX.
-   - B) Un equipo de desarrollo backend.
-   - C) Un equipo de desarrollo móvil.
-   - D) Un equipo de ciencia de datos.
-
-  10. ¿Qué te gustaría lograr a largo plazo en tu carrera?
-
-    - A) Crear productos digitales con una interfaz de usuario excepcional.
-    - B) Desarrollar aplicaciones escalables y eficientes.
-    - C) Crear aplicaciones móviles que cambien la forma en que las personas interactúan con el mundo.
-    - D) Utilizar datos para resolver problemas del mundo real y tomar decisiones estratégicas.
-
-*/
-
 // Modelado de preguntas y cuestionario
 
 class Question {
-  constructor(title) {
+  constructor(title, id = 0) {
+    this.id = id
     this.title = title
     this.options = {
       A: null,
@@ -100,10 +24,10 @@ class Question {
   }
 
   editOption(letter, newOption) {
-    if (Object.keys(this.options).includes(letter)) {
+    if (this.options[letter]) {
       this.options[letter] = newOption
     } else {
-      console.log('Esta intentando acceder a una opcion inexistente')
+      console.log('Está intentando acceder a una opción inexistente')
     }
   }
 }
@@ -113,11 +37,21 @@ class Questionary {
     this.questions = {}
   }
 
-  addQuestion(question) {
-    const id = Object.keys(this.questions).length + 1
+  addQuestion(id, question) {
+    if (this.questions[id]) {
+      console.log('Esta pregunta ya existe en el cuestionario.')
+    } else {
+      this.questions[id] = question
+      question.id = id
+    }
+  }
 
-    this.questions[id] = question
-    question.id = id
+  printQuestion(id) {
+    const question = this.questions[id]
+
+    for (const letter in question.options) {
+        console.log(` - ${letter}. ${question.options[letter] || 'Opción vacía'}`)
+    }
   }
 
   printAllQuestions() {
@@ -125,23 +59,105 @@ class Questionary {
       const currentQuestion = this.questions[id]
 
       console.log(`\n${id}. ${currentQuestion.title}\n`)
-
-      for (const letter in currentQuestion.options) {
-        console.log(` - ${letter}. ${currentQuestion.options[letter]}`)
-      }
+      this.printQuestion(id)
     }
   }
 }
 
-const q1 = new Question('¿Qué parte de un sitio web te llama más la atención?')
+// Implementamos las clases para crear el cuestionario
 
-q1.addOption('El diseño visual y la interfaz de usuario.')
-q1.addOption('La lógica detrás de cómo funciona el sitio y cómo se conectan las diferentes partes.')
-q1.addOption('Cómo se ve y funciona la aplicación en un teléfono móvil.')
-q1.addOption('Los datos que se recolectan y cómo se utilizan para mejorar el sitio.')
-q1.addOption('Cómo se ha estructurado y maquetado el contenido.')
+const questionary = new Questionary()
 
-const myQuestionary = new Questionary()
+questionary.addQuestion(1, new Question('¿Qué parte de un sitio web te llama más la atención?'))
 
-myQuestionary.addQuestion(q1)
-myQuestionary.printAllQuestions()
+questionary.questions[1].addOption('El diseño visual y la interfaz de usuario.')
+questionary.questions[1].addOption(
+  'La lógica detrás de cómo funciona el sitio y cómo se conectan las diferentes partes.'
+)
+questionary.questions[1].addOption('Cómo se ve y funciona la aplicación en un teléfono móvil.')
+questionary.questions[1].addOption(
+  'Los datos que se recolectan y cómo se utilizan para mejorar el sitio.'
+)
+
+questionary.addQuestion(
+  2,
+  new Question(
+    'Si tuvieras que elegir entre crear una nueva aplicación móvil o diseñar una base de datos, ¿cuál preferirías?'
+  )
+)
+questionary.questions[2].addOption('Crear una aplicación móvil con una interfaz intuitiva.')
+questionary.questions[2].addOption(
+  'Diseñar una base de datos eficiente para almacenar grandes cantidades de información.'
+)
+questionary.questions[2].addOption('Ambas opciones me parecen igualmente interesantes.')
+questionary.questions[2].addOption('Ninguna de las opciones me llama la atención.')
+
+questionary.addQuestion(3, new Question('¿Qué te resulta más fácil de entender?'))
+questionary.questions[3].addOption('Diagramas de flujo y diseños visuales.')
+questionary.questions[3].addOption('Código y algoritmos.')
+questionary.questions[3].addOption('Prototipos y maquetas.')
+questionary.questions[3].addOption('Gráficos y estadísticas.')
+
+questionary.addQuestion(4, new Question('¿Qué tipo de problemas te gusta resolver?'))
+questionary.questions[4].addOption(
+  'Problemas relacionados con la estética y la experiencia del usuario.'
+)
+questionary.questions[4].addOption('Problemas lógicos y de optimización.')
+questionary.questions[4].addOption(
+  'Problemas relacionados con la portabilidad y la compatibilidad en diferentes dispositivos.'
+)
+questionary.questions[4].addOption(
+  'D',
+  'Problemas relacionados con la extracción de información útil de grandes conjuntos de datos.'
+)
+
+questionary.addQuestion(5, new Question('¿Qué herramienta te resulta más interesante?'))
+questionary.questions[5].addOption('Photoshop o Figma.')
+questionary.questions[5].addOption('Python o Java.')
+questionary.questions[5].addOption('XCode o Android Studio.')
+questionary.questions[5].addOption('SQL o Tableau.')
+
+questionary.addQuestion(6, new Question('¿Qué te gustaría hacer en tu tiempo libre?'))
+questionary.questions[6].addOption('Diseñar interfaces de usuario para diferentes aplicaciones.')
+questionary.questions[6].addOption('Desarrollar videojuegos o aplicaciones web.')
+questionary.questions[6].addOption('Crear aplicaciones móviles para diferentes plataformas.')
+questionary.questions[6].addOption('Analizar datos y crear visualizaciones.')
+
+questionary.addQuestion(7, new Question('¿Qué tipo de proyectos te motivan más?'))
+questionary.questions[7].addOption('Proyectos que tienen un impacto visual y estético.')
+questionary.questions[7].addOption(
+  'Proyectos que requieren resolver problemas complejos y optimizar el rendimiento.'
+)
+questionary.questions[7].addOption(
+  'Proyectos que pueden ser utilizados por muchas personas en sus dispositivos móviles.'
+)
+questionary.questions[7].addOption('Proyectos que utilizan datos para tomar decisiones informadas.')
+
+questionary.addQuestion(
+  8,
+  new Question('¿Qué habilidad consideras más importante para un desarrollador?')
+)
+questionary.questions[8].addOption('La creatividad y el sentido del diseño.')
+questionary.questions[8].addOption('La capacidad de resolver problemas y pensar de forma lógica.')
+questionary.questions[8].addOption(
+  'La adaptabilidad y la capacidad de aprender nuevas tecnologías.'
+)
+questionary.questions[8].addOption('La capacidad de analizar datos y extraer insights.')
+
+questionary.addQuestion(9, new Question('¿Qué tipo de equipo te gustaría formar parte?'))
+questionary.questions[9].addOption('Un equipo de diseño y UX.')
+questionary.questions[9].addOption('Un equipo de desarrollo backend.')
+questionary.questions[9].addOption('Un equipo de desarrollo móvil.')
+questionary.questions[9].addOption('Un equipo de ciencia de datos.')
+
+questionary.addQuestion(10, new Question('¿Qué te gustaría lograr a largo plazo en tu carrera?'))
+questionary.questions[10].addOption(
+  'Crear productos digitales con una interfaz de usuario excepcional.'
+)
+questionary.questions[10].addOption('Desarrollar aplicaciones escalables y eficientes.')
+questionary.questions[10].addOption(
+  'Crear aplicaciones móviles que cambien la forma en que las personas interactúan con el mundo.'
+)
+questionary.questions[10].addOption(
+  'Utilizar datos para resolver problemas del mundo real y tomar decisiones estratégicas.'
+)
