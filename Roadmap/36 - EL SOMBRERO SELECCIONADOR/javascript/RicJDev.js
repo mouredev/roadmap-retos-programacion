@@ -1,3 +1,9 @@
+/*
+  EJERCICIO:
+
+  @RicJDev
+*/
+
 // Modelado de preguntas y cuestionario
 
 class Question {
@@ -45,6 +51,28 @@ class Questionary {
   addQuestion(title) {
     const id = this.questionsCount + 1
     this.questions[id] = new Question(title)
+  }
+
+  getWinnerLetter() {
+    let result = 'A'
+
+    for (const letter in this.results) {
+      if (this.results[letter] > this.results[result]) {
+        result = letter
+      }
+    }
+
+    const equals = Object.keys(this.results).filter((key) => {
+      return this.results[result] === this.results[key]
+    })
+
+    if (equals.length > 1) {
+      const randomIndex = Math.floor(Math.random() * equals.length)
+
+      return { letter: equals[randomIndex], wasRandomized: true }
+    }
+
+    return { letter: result, wasRandomized: false }
   }
 
   get questionsCount() {
@@ -183,18 +211,40 @@ for (const id in questionary.questions) {
 
     answer = await rl.question(pc.gray('\nIndica la opción de tu preferencia. '))
 
-    message = pc.yellow('Elije una opción válida, por favor')
+    message = pc.yellow('Elije una opción válida, por favor.')
   }
 
   questionary.results[answer.toUpperCase()]++
 }
 
-console.clear()
-console.log('\nEl cuestionario ha terminado!\nEstos son los resultados:')
+// Mostrando los resultados del cuestionario
 
-console.log(`Total de respuestas A: ${questionary.results.A} ${pc.blue('(frontend)')}.`)
-console.log(`Total de respuestas B: ${questionary.results.B} ${pc.blue('(backend)')}.`)
-console.log(`Total de respuestas C: ${questionary.results.C} ${pc.blue('(mobile)')}.`)
-console.log(`Total de respuestas D: ${questionary.results.D} ${pc.blue('(data)')}`)
+console.clear()
+console.log(
+  `\nQuerido ${pc.bold(name)}, ¡el cuestionario ha terminado!\nEstos son los resultados:\n`
+)
+
+const conditions = {
+  A: `Tu casa será el desarrollo ${pc.blue('Frontend')}.`,
+  B: `Tu casa será el desarrollo ${pc.blue('Backend')}.`,
+  C: `Tu casa será el desarrollo ${pc.blue('Mobile')}.`,
+  D: `Tu casa será el análisis de ${pc.blue('Data')}.`,
+}
+
+const { letter, wasRandomized } = questionary.getWinnerLetter()
+
+const resultMessage = conditions[letter] || pc.red('Ha ocurrido algun error inesperado')
+
+console.log(resultMessage)
+
+if (wasRandomized) {
+  console.log('\nFue una decisión difícil debido a que hubo empate en algunas preguntas')
+}
+
+console.log(' ')
+console.log(`Total de respuestas A: ${questionary.results.A}.`)
+console.log(`Total de respuestas B: ${questionary.results.B}.`)
+console.log(`Total de respuestas C: ${questionary.results.C}.`)
+console.log(`Total de respuestas D: ${questionary.results.D}. `)
 
 rl.close()
