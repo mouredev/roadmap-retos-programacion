@@ -19,11 +19,13 @@ class Question {
 
   addOption(letter, option) {
     if (Object.keys(this.options).includes(letter.toUpperCase())) {
-      this.options[letter] !== option
-        ? (this.options[letter] = option)
-        : console.warn('No puedes repetir opciones.')
+      if (this.options[letter] === option) {
+        throw new Error('No puedes repetir opciones.')
+      }
+
+      this.options[letter] = option
     } else {
-      console.warn('Estás intentando acceder a una opción inexistente.')
+      throw new Error('Estás intentando acceder a una opción inexistente.')
     }
   }
 }
@@ -64,7 +66,7 @@ questionary.addQuestion('¿Qué habilidad consideras más importante para un des
 questionary.addQuestion('¿Qué tipo de equipo te gustaría formar parte?')
 questionary.addQuestion('¿Qué te gustaría lograr a largo plazo en tu carrera?')
 
-// Almacenamos las respuestas separadas por "casas" y las asignamos segun las opciones
+// Almacenamos las respuestas separadas por "casas" y las asignamos según las opciones
 
 const frontendHouse = [
   'El diseño visual y la interfaz de usuario.',
@@ -167,10 +169,10 @@ function getWinnerLetter() {
   if (sameValues.length > 1) {
     const randomIndex = Math.floor(Math.random() * sameValues.length)
 
-    return { letter: sameValues[randomIndex], isRandomized: true }
+    return { letter: sameValues[randomIndex], isTie: true }
   }
 
-  return { letter: winner, isRandomized: false }
+  return { letter: winner, isTie: false }
 }
 
 // * Aquí empieza la magia *
@@ -204,7 +206,7 @@ for (const id in questionary.questions) {
 
 rl.close()
 
-// Mostramos los resultados del cuestionario y se finaliza el programa
+// Mostramos los resultados del cuestionario y aquí finaliza el programa
 
 console.clear()
 console.log(
@@ -218,13 +220,13 @@ const conditions = {
   D: `Tu casa será el análisis de ${pc.blue('Data')}.`,
 }
 
-const { letter, isRandomized } = getWinnerLetter()
+const { letter, isTie } = getWinnerLetter()
 
 const resultMessage = conditions[letter] || pc.red('Ha ocurrido algun error inesperado.')
 
 console.log(resultMessage)
 
-if (isRandomized) {
+if (isTie) {
   console.log('\nFue una decisión difícil debido a que hubo empate en algunas preguntas.')
 }
 
