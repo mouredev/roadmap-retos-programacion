@@ -667,7 +667,7 @@ switch (true) {
         console.log("More than 20.");
 } */
 
-// Extra dificulty: Write a code that prints all the even numbers between 10 and 55 inclusive, and if the number are 2 or 16 dont't print them
+// Extra dificulty: Create a program that prints the even numbers from 10 to 55 inclusive and avoids printing the numbers if they are equal to 16 or multiples of 3
 
 for(let i = 10; i <= 55; i++ ){
     if(i % 3 == 0 || i == 16) continue;
