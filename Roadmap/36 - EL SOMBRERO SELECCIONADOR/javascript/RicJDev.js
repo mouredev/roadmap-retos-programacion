@@ -20,12 +20,12 @@ class Question {
   addOption(letter, option) {
     if (Object.keys(this.options).includes(letter.toUpperCase())) {
       if (this.options[letter] === option) {
-        throw new Error('No puedes repetir opciones.')
+        throw new Error('You cannot repeat options.')
       }
 
       this.options[letter] = option
     } else {
-      throw new Error('Estás intentando acceder a una opción inexistente.')
+      throw new Error('You cannot access an option that does not exist.')
     }
   }
 }
@@ -95,7 +95,6 @@ const backendHouse = [
 ]
 
 const mobileHouse = [
-  'Cómo se ve y funciona la aplicación en un teléfono móvil.',
   'Cómo se ve y funciona la aplicación en un teléfono móvil.',
   'Ambas opciones me parecen igualmente interesantes.',
   'Prototipos y maquetas.',
@@ -196,7 +195,7 @@ for (const id in questionary.questions) {
       console.log(` - ${pc.green(letter)}. ${question.options[letter] || 'Opción vacía.'}`)
     }
 
-    answer = await rl.question(pc.underline('\nIndica la opción de tu preferencia. '))
+    answer = await rl.question('\nIndica la opción de tu preferencia. ')
 
     message = pc.yellow('Elije una opción válida, por favor.')
   }
