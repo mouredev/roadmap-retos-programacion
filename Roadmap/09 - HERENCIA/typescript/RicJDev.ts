@@ -3,10 +3,14 @@ class Animal {
   name: string
   constructor(name: string) {
     this.name = name
+
+    if (new.target === Animal) {
+      throw new TypeError('unable to instantiate class "Animal"')
+    }
   }
 
   speak(): void {
-    throw new Error('Must be implemented')
+    throw new Error('the method "speak()" must be implemented')
   }
 }
 
@@ -39,27 +43,66 @@ mike.speak()
 //EXTRA
 class Employee {
   name: string
-  id: number
+  workerID: number
   title: string
-  employees: string[]
 
-  constructor(name: string, id: number, title: string) {
+  constructor(name: string, workerID: number, title: string) {
     this.name = name
-    this.id = id
+    this.workerID = workerID
     this.title = title
-    this.employees = []
   }
 
-  get Credential() {
-    const credential = {
-      title: this.title,
-      name: this.name,
-      id: this.id,
-    }
-
-    return credential
+  work(): void {
+    console.log(`${this.name} is working...`)
   }
 }
 
-const John = new Employee('John', 12, 'Manager')
-console.log(John.Credential)
+interface hasWorkers {
+  workers: Employee[]
+  addWorker: (worker: Employee) => void
+  displayWorkersList: () => void
+}
+
+class Manager extends Employee implements hasWorkers {
+  workers: Employee[] = []
+
+  constructor(name: string, workerID: number) {
+    super(name, workerID, 'manager')
+  }
+
+  addWorker(worker: Employee): void {
+    this.workers.push(worker)
+
+    console.log(`${worker.name} is now working for ${this.name}.`)
+  }
+
+  displayWorkersList(): void {
+    console.log(`${this.name}'s workers:`)
+
+    this.workers.forEach((worker) => {
+      console.log(`- ${worker.name}: ${worker.workerID}. ${worker.title}`)
+    })
+  }
+}
+
+class ProjectManager extends Employee implements hasWorkers {
+  workers: Employee[]
+
+  constructor(name: string, workerID: number) {
+    super(name, workerID, 'Project Manager')
+  }
+
+  addWorker(worker: Employee) {
+    this.workers.push(worker)
+  }
+
+  displayWorkersList(): void {
+    console.log(`${this.name}'s workers:`)
+
+    this.workers.forEach((worker) => {
+      console.log(`- ${worker.name}: ${worker.workerID}. ${worker.title}`)
+    })
+  }
+}
+
+class Programer extends Employee {}
