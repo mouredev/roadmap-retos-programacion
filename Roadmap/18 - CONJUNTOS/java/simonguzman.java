@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class simonguzman {
     public static void main(String[] args) {
         testArrayList();
+        extraExercise();
     }
     
     static void testArrayList() {
@@ -66,5 +69,51 @@ public class simonguzman {
 
     static void deleteAll(ArrayList<Integer> list){
         list.clear();
+    }
+
+    static void extraExercise(){
+        Set<String> setA = new HashSet<>();
+        Set<String> setB = new HashSet<>();
+        createSets(setA, setB);
+        setUnion(setA, setB);
+        setIntersection(setA, setB);
+        setDifference(setA, setB);
+        setSymmetricalDifference(setA, setB);
+    }
+
+    static void createSets(Set<String>setA, Set<String>setB){
+        setA.add("A");
+        setA.add("B");
+        setA.add("C");
+        setB.add("B");
+        setB.add("C");
+        setB.add("D");
+    }
+
+    static void setUnion(Set<String>setA, Set<String>setB){
+        Set<String> union = new HashSet<>(setA);
+        union.addAll(setB);
+        System.out.println("Union: "+union);
+    }
+
+    static void setIntersection(Set<String>setA, Set<String>setB){
+        Set<String> intersection = new HashSet<>(setA);
+        intersection.retainAll(setB);
+        System.out.println("Interseccion: "+intersection); 
+    }
+
+    static void setDifference(Set<String>setA, Set<String>setB){
+        Set<String> difference = new HashSet<>(setA);
+        difference.removeAll(setB);
+        System.out.println("Diferencia: "+difference);
+    }
+
+    static void setSymmetricalDifference(Set<String>setA, Set<String>setB){
+        Set<String> symmetricalDifference = new HashSet<>(setA);
+        symmetricalDifference.addAll(setB);
+        Set<String> tmp = new HashSet<>(setA);
+        tmp.retainAll(setB);
+        symmetricalDifference.removeAll(tmp);
+        System.out.println("Diferencia simetrica: "+symmetricalDifference);
     }
 }
