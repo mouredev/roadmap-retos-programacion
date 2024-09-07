@@ -9,23 +9,12 @@
 class Question {
   constructor(title) {
     this.title = title
-    this.options = {
-      A: null,
-      B: null,
-      C: null,
-      D: null,
-    }
+    this.options = { A: null, B: null, C: null, D: null }
   }
 
   addOption(letter, option) {
     if (Object.keys(this.options).includes(letter.toUpperCase())) {
-      if (this.options[letter] === option) {
-        throw new Error('You cannot repeat options.')
-      }
-
-      this.options[letter] = option
-    } else {
-      throw new Error('You cannot access an option that does not exist.')
+      if (this.options[letter] !== option) this.options[letter] = option
     }
   }
 }
@@ -37,6 +26,7 @@ class Questionary {
 
   addQuestion(title) {
     const id = Object.keys(this.questions).length + 1
+
     this.questions[id] = new Question(title)
   }
 
@@ -143,41 +133,11 @@ const rl = readline.createInterface({
 
 import pc from 'picocolors'
 
-// Hacemos un sitema básico para manejar los resultados
-
-const results = {
-  A: 0,
-  B: 0,
-  C: 0,
-  D: 0,
-}
-
-function getWinnerLetter() {
-  let winner = 'A'
-
-  for (const letter in results) {
-    if (results[letter] > results[winner]) {
-      winner = letter
-    }
-  }
-
-  const sameValues = Object.keys(results).filter((key) => {
-    return results[winner] === results[key]
-  })
-
-  if (sameValues.length > 1) {
-    const randomIndex = Math.floor(Math.random() * sameValues.length)
-
-    return { letter: sameValues[randomIndex], isTie: true }
-  }
-
-  return { letter: winner, isTie: false }
-}
-
 // * Aquí empieza la magia *
 
-console.clear()
+const results = { A: 0, B: 0, C: 0, D: 0 }
 
+console.clear()
 const name = await rl.question('\nDime tu nombre, querido alumno. ')
 
 for (const id in questionary.questions) {
@@ -189,6 +149,7 @@ for (const id in questionary.questions) {
   while (!Object.keys(question.options).includes(answer.toUpperCase())) {
     console.clear()
     console.log(`\nBienvenido seas, ${pc.bold(name)}. ${message}`)
+
     console.log(`\n${pc.blue(id)}. ${question.title}\n`)
 
     for (const letter in question.options) {
@@ -205,27 +166,37 @@ for (const id in questionary.questions) {
 
 rl.close()
 
-// Mostramos los resultados del cuestionario y aquí finaliza el programa
+// Mostramos los resultados del cuestionario y finaliza el programa
+
+let winner = Object.keys(results).reduce((previous, current) => {
+  if (results[current] > results[previous]) {
+    previous = current
+  }
+
+  return previous
+})
+
+const tieValues = Object.keys(results).filter((same) => results[winner] === results[same])
+
+if (tieValues.length > 1) winner = tieValues[Math.floor(Math.random() * tieValues.length)]
 
 console.clear()
 console.log(
   `\nQuerido ${pc.bold(name)}, ¡el cuestionario ha terminado!\nEstos son los resultados:\n`
 )
 
-const conditions = {
+const messages = {
   A: `Tu casa será el desarrollo ${pc.blue('Frontend')}.`,
   B: `Tu casa será el desarrollo ${pc.blue('Backend')}.`,
   C: `Tu casa será el desarrollo ${pc.blue('Mobile')}.`,
   D: `Tu casa será el análisis de ${pc.blue('Data')}.`,
 }
 
-const { letter, isTie } = getWinnerLetter()
-
-const resultMessage = conditions[letter] || pc.red('Ha ocurrido algun error inesperado.')
+const resultMessage = messages[winner] || pc.red('Ha ocurrido algún error inesperado.')
 
 console.log(resultMessage)
 
-if (isTie) {
+if (tieValues.length > 1) {
   console.log('\nFue una decisión difícil debido a que hubo empate en algunas preguntas.')
 }
 
