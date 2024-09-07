@@ -26,7 +26,10 @@ def is_prime(number: int) -> bool:
     return True
 
 
+
 def distribute_rings(total_rings: int):
+
+    distributed_rings = []
 
     sauron = 1
     total_rings -= sauron
@@ -37,17 +40,18 @@ def distribute_rings(total_rings: int):
             dwarves = total_rings - elves - men
 
             if dwarves > 0 and is_prime(dwarves):
-                return {
+                
+                distributed_rings.append({
                     "Hombres": men,
                     "Elfos": elves,
                     "Enanos": dwarves,
                     "Sauron": sauron
-                }
+                })
 
+    if distributed_rings:
+        return distributed_rings
     return "Error: No es posible repartir los anillos."
     
-
-
 if __name__ == '__main__':
     
     try:
@@ -57,10 +61,12 @@ if __name__ == '__main__':
         
         distributed_rings = distribute_rings(total_rings)
 
-        if isinstance(distributed_rings, dict):
+        if isinstance(distributed_rings, list):
             print("Posibles distribuciones de los anillos de poder:\n")
-            print(distributed_rings)
-  
+            for distribution in enumerate(distributed_rings):
+                print(f"{distribution[0] + 1}. {distribution[1]}")
+
+            print(f"\nDistribución media: {distributed_rings[int(len(distributed_rings) / 2)]}")
         else:
             print(distributed_rings)
     except ValueError:
