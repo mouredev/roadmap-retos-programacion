@@ -17,3 +17,51 @@
  */
 '''
 
+def is_prime(number: int) -> bool:
+    if number < 2:
+        return False
+    for i in range(2, int((number ** 0.5)+1)):
+        if number % i == 0:
+            return False
+    return True
+
+
+def distribute_rings(total_rings: int):
+
+    sauron = 1
+    total_rings -= sauron
+
+    for men in range(2, total_rings, 2):
+        for elves in range(1, total_rings, 2):
+
+            dwarves = total_rings - elves - men
+
+            if dwarves > 0 and is_prime(dwarves):
+                return {
+                    "Hombres": men,
+                    "Elfos": elves,
+                    "Enanos": dwarves,
+                    "Sauron": sauron
+                }
+
+    return "Error: No es posible repartir los anillos."
+    
+
+
+if __name__ == '__main__':
+    
+    try:
+        total_rings = int(
+            input('Introduce el número de anillos a repartir: ')
+        )
+        
+        distributed_rings = distribute_rings(total_rings)
+
+        if isinstance(distributed_rings, dict):
+            print("Posibles distribuciones de los anillos de poder:\n")
+            print(distributed_rings)
+  
+        else:
+            print(distributed_rings)
+    except ValueError:
+        print('Error, el número debe ser un entero.')
