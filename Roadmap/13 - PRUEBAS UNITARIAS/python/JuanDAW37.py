@@ -27,7 +27,7 @@ class TestSumar(unittest.TestCase): #Clase obligatoria para que se ejecuten los 
     #Para crear una función de test, debemos crear una función en la que su nombre debe comenzar por test
     def test_sumar(self):        
         self.assertEqual(sumar(5, 5), 10) #Función assert para testing y pruebas        
-        self.assertEqual(sumar(2, 5), 7)
+        self.assertEqual(sumar(4, 5), 9)
         self.assertEqual(sumar(-5, -5), -10)
         
     def test_sumar_tipos(self):        
