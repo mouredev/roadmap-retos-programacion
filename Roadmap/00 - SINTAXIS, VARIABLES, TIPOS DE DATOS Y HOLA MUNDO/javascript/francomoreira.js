@@ -38,4 +38,4 @@ let simbolito = Symbol('mi-simbolo');
 
 // 5.
 
-console.log(`¡Hola, ${lenguaje}`);
+console.log(`¡Hola, JavaScript`);
