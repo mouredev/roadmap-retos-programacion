@@ -22,7 +22,7 @@ string2_var = 'Cadena de texto con comilla simple'
 
 # 4.Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
-YO      = "Dkp-Dev!!"
+YO      = "Dkp-Dev!"
 PYTHON  = "Python!!"
 
 print("Hola", PYTHON, "soy ",YO)
