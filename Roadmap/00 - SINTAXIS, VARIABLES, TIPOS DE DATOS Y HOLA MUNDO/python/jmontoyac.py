@@ -1,8 +1,11 @@
 # https://www.python.org/
 
-# Python solo tiene comentarios de una linea
-# Para agregar comentarion multi lineas, se agregan
-# mas comentarios de una linea
+# Comentario de una linea
+
+'''
+# Comentario multi lineas
+# Segunda linea de comentario
+'''
 
 # Variable en Python
 primera_variable = 0
