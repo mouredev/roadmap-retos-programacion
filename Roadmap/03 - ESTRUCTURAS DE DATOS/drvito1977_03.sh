@@ -131,7 +131,7 @@ function actualizar_contacto {
 function eliminar_contacto {
     read -p "Nombre: " nombre
     # Verificar si el contacto existe en la agenda
-    if [[ -z ${agenda[$nombre]} ]]; entonces
+    if [[ -z ${agenda[$nombre]} ]]; then
         echo "Contacto no encontrado."
         return
     fi
