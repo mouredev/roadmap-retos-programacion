@@ -53,8 +53,8 @@ echo "String original: $string"
 string+="!" # Inserción
 # Imprimir la cadena después de la inserción
 echo "String después de inserción: $string"
-# Eliminar parte de la cadena (mantener solo los primeros 5 caracteres)
-string=${string:0:5} # Borrado
+# Eliminar parte de la cadena (mantener solo los primeros 4 caracteres)
+string=${string:0:4} # Borrado
 # Imprimir la cadena después del borrado
 echo "String después de borrado: $string"
 # Actualizar la cadena completa
@@ -83,65 +83,84 @@ echo "Número después de actualización: $num"
 # Agenda de contactos
 declare -A agenda
 
+# Declarar un array asociativo para la agenda de contactos
+declare -A agenda
+
 # Función para insertar un contacto
 function insertar_contacto {
+    # Pedir al usuario que ingrese el nombre del contacto
     read -p "Nombre: " nombre
+    # Pedir al usuario que ingrese el número de teléfono del contacto
     read -p "Número de teléfono: " telefono
     # Validar que el número de teléfono sea numérico y tenga hasta 11 dígitos
-    if [[ ! $telefono =~ ^[0-9]{1,11}$ ]]; then
+    if ! echo "$telefono" | grep -qE "^[0-9]{1,11}$"; then
+        # Si el número no es válido, mostrar un mensaje y salir de la función
         echo "Número de teléfono inválido."
         return
     fi
     # Añadir el contacto a la agenda
     agenda[$nombre]=$telefono
+    # Confirmar que el contacto ha sido añadido
     echo "Contacto añadido."
 }
 
 # Función para buscar un contacto
 function buscar_contacto {
+    # Pedir al usuario que ingrese el nombre del contacto a buscar
     read -p "Nombre: " nombre
     # Verificar si el contacto existe en la agenda
     if [[ -z ${agenda[$nombre]} ]]; then
+        # Si no existe, mostrar un mensaje
         echo "Contacto no encontrado."
     else
+        # Si existe, mostrar el número de teléfono del contacto
         echo "Teléfono de $nombre: ${agenda[$nombre]}"
     fi
 }
 
 # Función para actualizar un contacto
 function actualizar_contacto {
+    # Pedir al usuario que ingrese el nombre del contacto a actualizar
     read -p "Nombre: " nombre
     # Verificar si el contacto existe en la agenda
     if [[ -z ${agenda[$nombre]} ]]; then
+        # Si no existe, mostrar un mensaje y salir de la función
         echo "Contacto no encontrado."
         return
     fi
+    # Pedir al usuario que ingrese el nuevo número de teléfono
     read -p "Nuevo número de teléfono: " telefono
     # Validar que el nuevo número de teléfono sea numérico y tenga hasta 11 dígitos
-    if [[ ! $telefono =~ ^[0-9]{1,11}$ ]]; then
+    if ! echo "$telefono" | grep -qE "^[0-9]{1,11}$"; then
+        # Si el número no es válido, mostrar un mensaje y salir de la función
         echo "Número de teléfono inválido."
         return
     fi
     # Actualizar el contacto en la agenda
     agenda[$nombre]=$telefono
+    # Confirmar que el contacto ha sido actualizado
     echo "Contacto actualizado."
 }
 
 # Función para eliminar un contacto
 function eliminar_contacto {
+    # Pedir al usuario que ingrese el nombre del contacto a eliminar
     read -p "Nombre: " nombre
     # Verificar si el contacto existe en la agenda
     if [[ -z ${agenda[$nombre]} ]]; then
+        # Si no existe, mostrar un mensaje y salir de la función
         echo "Contacto no encontrado."
         return
     fi
     # Eliminar el contacto de la agenda
     unset agenda[$nombre]
+    # Confirmar que el contacto ha sido eliminado
     echo "Contacto eliminado."
 }
 
 # Función para mostrar el menú de opciones
 function mostrar_menu {
+    # Mostrar las opciones disponibles al usuario
     echo "1. Insertar contacto"
     echo "2. Buscar contacto"
     echo "3. Actualizar contacto"
@@ -151,14 +170,17 @@ function mostrar_menu {
 
 # Bucle principal para mostrar el menú y ejecutar las opciones seleccionadas
 while true; do
+    # Mostrar el menú de opciones
     mostrar_menu
+    # Pedir al usuario que seleccione una opción
     read -p "Seleccione una opción: " opcion
+    # Ejecutar la acción correspondiente a la opción seleccionada
     case $opcion in
-        1) insertar_contacto ;;
-        2) buscar_contacto ;;
-        3) actualizar_contacto ;;
-        4) eliminar_contacto ;;
-        5) break ;;
-        *) echo "Opción inválida." ;;
+        1) insertar_contacto ;;  # Llamar a la función para insertar un contacto
+        2) buscar_contacto ;;    # Llamar a la función para buscar un contacto
+        3) actualizar_contacto ;; # Llamar a la función para actualizar un contacto
+        4) eliminar_contacto ;;  # Llamar a la función para eliminar un contacto
+        5) break ;;              # Salir del bucle y terminar el programa
+        *) echo "Opción inválida." ;; # Mostrar un mensaje si la opción no es válida
     esac
 done
