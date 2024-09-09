@@ -85,3 +85,34 @@ const preguntas = [
     ],
   },
 ]
+
+const casas = [
+  {
+    casa: "Frontend",
+    color: "#f2f2f2",
+    icono:
+      "https://www.iconfinder.com/icons/464586/code_icon_flat_web_development_programming_icon/size_64/png",
+    tema: "Diseño y desarrollo de interfaces web",
+  },
+  {
+    casa: "Backend",
+    color: "#e3e3e3",
+    icono:
+      "https://www.iconfinder.com/icons/1438014/server_icon_flat/size_64/png",
+    tema: "Desarrollo de sistemas backend",
+  },
+  {
+    casa: "Mobile",
+    color: "#cccccc",
+    icono:
+      "https://www.iconfinder.com/icons/1832874/mobile_app_icon_flat/size_64/png",
+    tema: "Desarrollo de aplicaciones móviles",
+  },
+  {
+    casa: "Data",
+    color: "#ffffff",
+    icono:
+      "https://www.iconfinder.com/icons/2518380/database_icon_flat/size_64/png",
+    tema: "Análisis y visualización de datos",
+  },
+]
