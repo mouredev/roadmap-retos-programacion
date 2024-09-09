@@ -14,7 +14,13 @@ class Question {
 
   addOption(letter, option) {
     if (Object.keys(this.options).includes(letter.toUpperCase())) {
-      if (this.options[letter] !== option) this.options[letter] = option
+      if (this.options[letter] === option) {
+        throw new Error('You cannot repeat options.')
+      }
+
+      this.options[letter] = option
+    } else {
+      throw new Error(`Options avalaible: A, B, C or D. Cannot set '${letter}' option.`)
     }
   }
 }
