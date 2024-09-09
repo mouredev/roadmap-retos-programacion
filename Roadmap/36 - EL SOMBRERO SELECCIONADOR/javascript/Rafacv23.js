@@ -230,5 +230,61 @@ const rl = readline.createInterface({
 })
 const prompt = (query) => new Promise((resolve) => rl.question(query, resolve))
 
+;(async () => {
+  try {
+    console.log(
+      "Bienvenido a Hogwarts, la escuela de Programación para magos y brujas del código."
+    )
+
+    for (let i = 0; i < preguntas.length; i++) {
+      const pregunta = preguntas[i]
+
+      console.log(`\n${pregunta.pregunta}`)
+      pregunta.opciones.forEach((opcion, index) => {
+        console.log(`${index + 1}) ${opcion.respuesta}`)
+      })
+
+      let respuesta = await prompt("Selecciona una opción (1-4): ")
+      respuesta = parseInt(respuesta) - 1
+
+      // Validar que la respuesta esté en el rango adecuado
+      if (respuesta >= 0 && respuesta < pregunta.opciones.length) {
+        const casaSeleccionada = pregunta.opciones[respuesta].casa
+        puntosCasas[casaSeleccionada]++
+      } else {
+        console.log(
+          "Opción inválida, por favor selecciona un número entre 1 y 4."
+        )
+        i-- // Volver a preguntar si la opción es inválida
+      }
+    }
+
+    // Encontrar el puntaje más alto
+    const maxPuntos = Math.max(...Object.values(puntosCasas))
+
+    // Encontrar todas las casas que tienen el puntaje más alto
+    const casasEmpatadas = Object.keys(puntosCasas).filter(
+      (casa) => puntosCasas[casa] === maxPuntos
+    )
+
+    let casaGanadora
+
+    if (casasEmpatadas.length > 1) {
+      // Si hay empate, selecciona una casa al azar
+      console.log("\nEl sombrero ha tenido dificultades para decidir...")
+      const indiceAleatorio = Math.floor(Math.random() * casasEmpatadas.length)
+      casaGanadora = casasEmpatadas[indiceAleatorio]
+    } else {
+      // Si no hay empate, simplemente selecciona la casa ganadora
+      casaGanadora = casasEmpatadas[0]
+    }
+
+    console.log(`\n¡Felicidades! Perteneces a la casa ${casaGanadora}.`)
+    rl.close()
+  } catch (e) {
+    console.error("Error en la selección", e)
+  }
+})()
+
 // When done reading prompt, exit program
 rl.on("close", () => process.exit(0))
