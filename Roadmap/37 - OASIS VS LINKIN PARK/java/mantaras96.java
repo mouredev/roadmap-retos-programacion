@@ -17,8 +17,8 @@ import java.util.Base64;
 
 public class Main {
 
-    private static final String CLIENT_ID = "1e0c8262ed9c4e17b7c63186c6f9fb16";
-    private static final String CLIENT_SECRET = "5713c0964a79484f88bc719730752b98";
+    private static final String CLIENT_ID = "";
+    private static final String CLIENT_SECRET = "";
     private static final String TOKEN_URL = "https://accounts.spotify.com/api/token";
     private static final String SEARCH_URL = "https://api.spotify.com/v1/search";
     private static final String ARTIST_URL = "https://api.spotify.com/v1/artists";
