@@ -67,3 +67,80 @@ y **= z
 print(f'y **= z, resultado: {y}')
 y //= z
 print(f'y //= z, resultado: {y}')
+
+# Operadores de identidad
+a = 100
+b = 100
+
+print(f'a={a}, b={b}, a is b: {a is b}')
+b = 200
+print(f'a={a}, b={b}, a is b: {a is b}')
+
+lista1 = [10, 20, 30]
+lista2 = [10, 20, 30]
+
+print(f'l1: {lista1}, l2: {lista2} l1 is l2: {lista1 is lista2}')
+
+a = 100
+b = 100
+
+print(f'a={a}, b={b}, a is not b: {a is not b}')
+b = 200
+print(f'a={a}, b={b}, a is not b: {a is not b}')
+
+# Operadores de pertenencia
+
+lista1 = ['a', 'c', 'e']
+print(f'e in {lista1}: {"e" in lista1}')
+print(f'g in {lista1}: {"g" in lista1}')
+print(f'e not in {lista1}: {"e" not in lista1}')
+print(f'n not in {lista1}: {"n" not in lista1}')
+
+# Operadores de bits
+
+x = 0b0001
+y = 0b1010
+
+print(f'Operador and & bitwise: {x} & {y}: {x & y}')
+print(f'Operador or | bitwise: {x} | {y}: {x | y}')
+print(f'Operador not ~ bitwise: {x}: {~x}')
+print(f'Operador xor ^ bitwise: {x} ^ {y}: {x ^ y}')
+
+# Estructuras de control
+
+# Condicionales
+print(f'if {a} == {b}: {a == b}')
+print(f'if {a} != {b}: {a != b}')
+print(f'if {a} > {b}: {a > b}')
+print(f'if {a} < {b}: {a < b}')
+print(f'if {a} >= {b}: {a >= b}')
+print(f'if {a} <= {b}: {a <= b}')
+
+# Iterativas
+
+# While
+x = 0
+while x < 3:
+    print(f'Ciclo while, Valor de x: {x}')
+    x += 1
+else:
+    print('Fin de ciclo while')
+    
+# For 
+x = 3
+for i in range (0, x):
+    print(f'Ciclo for, Valor de i: {i}')
+    
+for elemento in lista1:
+    print(f'Elemento de lista: {elemento}')
+    
+cadena = 'cadena de texto'
+for c in cadena:
+    print(f'Caracter de cadena de texto: {c}')
+    
+# Ejercicio de dificultad extra
+
+n = 56
+for i in range (10, n):
+    if (i % 2 == 0) and (i != 16) and (i % 3 != 0):
+        print(f'Numeros: {i}')
