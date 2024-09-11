@@ -230,14 +230,13 @@ for index, question in enumerate(questions):
     for i, answer in enumerate(question["answers"]):
         print(f"{i + 1}. {answer["option"]}")
 
-    # Solicitar una opción válida
     choice = None
-    while choice not in range(1, 5):  # Verificar si el número está en el rango correcto
+    while choice not in range(1, 5):
         try:
             choice = int(input("\nSelecciona una respuesta entre 1 y 4: "))
-            if choice not in range(1, 5):  # Verifica si la opción es válida
+            if choice not in range(1, 5): 
                 print("Por favor, selecciona un número válido entre 1 y 4.")
-        except ValueError:  # En caso de que el input no sea un número
+        except ValueError:
             print("Entrada inválida. Por favor ingresa un número entre 1 y 4.")
 
     selected_answer = question["answers"][choice - 1]
