@@ -39,7 +39,7 @@ var myUInt = 100
 var myFloat = 1.12345
 
 //Double: Número de punto flotante de precisión doble (64 bits). Se usa cuando necesitas más precisión que Float.
-var myFloat = 1.1234567890
+var myDouble = 1.1234567890
 
 //Boolean: Valores que representan verdadero o falso (true o false).
 var myBool = true
