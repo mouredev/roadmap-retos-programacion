@@ -30,9 +30,7 @@ class Questionary {
     this.questions = {}
   }
 
-  addQuestion(title) {
-    const id = Object.keys(this.questions).length + 1
-
+  addQuestion(id, title) {
     this.questions[id] = new Question(title)
   }
 
@@ -49,78 +47,81 @@ class Questionary {
 
 const questionary = new Questionary()
 
-questionary.addQuestion('¿Qué parte de un sitio web te llama más la atención?')
+questionary.addQuestion(1, '¿Qué parte de un sitio web te llama más la atención?')
 questionary.addQuestion(
+  2,
   'Si tuvieras que elegir entre crear una nueva aplicación móvil o diseñar una base de datos, ¿cuál preferirías?'
 )
-questionary.addQuestion('¿Qué te resulta más fácil de entender?')
-questionary.addQuestion('¿Qué tipo de problemas te gusta resolver?')
-questionary.addQuestion('¿Qué herramienta te resulta más interesante?')
-questionary.addQuestion('¿Qué te gustaría hacer en tu tiempo libre?')
-questionary.addQuestion('¿Qué tipo de proyectos te motivan más?')
-questionary.addQuestion('¿Qué habilidad consideras más importante para un desarrollador?')
-questionary.addQuestion('¿Qué tipo de equipo te gustaría formar parte?')
-questionary.addQuestion('¿Qué te gustaría lograr a largo plazo en tu carrera?')
+questionary.addQuestion(3, '¿Qué te resulta más fácil de entender?')
+questionary.addQuestion(4, '¿Qué tipo de problemas te gusta resolver?')
+questionary.addQuestion(5, '¿Qué herramienta te resulta más interesante?')
+questionary.addQuestion(6, '¿Qué te gustaría hacer en tu tiempo libre?')
+questionary.addQuestion(7, '¿Qué tipo de proyectos te motivan más?')
+questionary.addQuestion(8, '¿Qué habilidad consideras más importante para un desarrollador?')
+questionary.addQuestion(9, '¿Qué tipo de equipo te gustaría formar parte?')
+questionary.addQuestion(10, '¿Qué te gustaría lograr a largo plazo en tu carrera?')
 
 // Almacenamos las respuestas separadas por "casas" y las asignamos según las opciones
 
-const frontendHouse = [
-  'El diseño visual y la interfaz de usuario.',
-  'Crear una aplicación móvil con una interfaz intuitiva.',
-  'Diagramas de flujo y diseños visuales.',
-  'Problemas relacionados con la estética y la experiencia del usuario.',
-  'Photoshop o Figma.',
-  'Diseñar interfaces de usuario para diferentes aplicaciones.',
-  'Proyectos que tienen un impacto visual y estético.',
-  'La creatividad y el sentido del diseño.',
-  'Un equipo de diseño y UX.',
-  'Crear productos digitales con una interfaz de usuario excepcional.',
-]
+const houses = {
+  frontend: {
+    1: 'El diseño visual y la interfaz de usuario.',
+    2: 'Crear una aplicación móvil con una interfaz intuitiva.',
+    3: 'Diagramas de flujo y diseños visuales.',
+    4: 'Problemas relacionados con la estética y la experiencia del usuario.',
+    5: 'Photoshop o Figma.',
+    6: 'Diseñar interfaces de usuario para diferentes aplicaciones.',
+    7: 'Proyectos que tienen un impacto visual y estético.',
+    8: 'La creatividad y el sentido del diseño.',
+    9: 'Un equipo de diseño y UX.',
+    10: 'Crear productos digitales con una interfaz de usuario excepcional.',
+  },
 
-const backendHouse = [
-  'La lógica detrás de cómo funciona el sitio y cómo se conectan las diferentes partes.',
-  'Diseñar una base de datos eficiente para almacenar grandes cantidades de información.',
-  'Código y algoritmos.',
-  'Problemas lógicos y de optimización.',
-  'Python o Java.',
-  'Desarrollar videojuegos o aplicaciones web.',
-  'Proyectos que requieren resolver problemas complejos y optimizar el rendimiento.',
-  'La capacidad de resolver problemas y pensar de forma lógica.',
-  'Un equipo de desarrollo backend.',
-  'Desarrollar aplicaciones escalables y eficientes.',
-]
+  backend: {
+    1: 'La lógica detrás de cómo funciona el sitio y cómo se conectan las diferentes partes.',
+    2: 'Diseñar una base de datos eficiente para almacenar grandes cantidades de información.',
+    3: 'Código y algoritmos.',
+    4: 'Problemas lógicos y de optimización.',
+    5: 'Python o Java.',
+    6: 'Desarrollar videojuegos o aplicaciones web.',
+    7: 'Proyectos que requieren resolver problemas complejos y optimizar el rendimiento.',
+    8: 'La capacidad de resolver problemas y pensar de forma lógica.',
+    9: 'Un equipo de desarrollo backend.',
+    10: 'Desarrollar aplicaciones escalables y eficientes.',
+  },
 
-const mobileHouse = [
-  'Cómo se ve y funciona la aplicación en un teléfono móvil.',
-  'Ambas opciones me parecen igualmente interesantes.',
-  'Prototipos y maquetas.',
-  'Problemas relacionados con la portabilidad y la compatibilidad en diferentes dispositivos.',
-  'XCode o Android Studio.',
-  'Crear aplicaciones móviles para diferentes plataformas.',
-  'Proyectos que pueden ser utilizados por muchas personas en sus dispositivos móviles.',
-  'La adaptabilidad y la capacidad de aprender nuevas tecnologías.',
-  'Un equipo de desarrollo móvil.',
-  'Crear aplicaciones móviles que cambien la forma en que las personas interactúan con el mundo.',
-]
+  mobile: {
+    1: 'Cómo se ve y funciona la aplicación en un teléfono móvil.',
+    2: 'Ambas opciones me parecen igualmente interesantes.',
+    3: 'Prototipos y maquetas.',
+    4: 'Problemas relacionados con la portabilidad y la compatibilidad en diferentes dispositivos.',
+    5: 'XCode o Android Studio.',
+    6: 'Crear aplicaciones móviles para diferentes plataformas.',
+    7: 'Proyectos que pueden ser utilizados por muchas personas en sus dispositivos móviles.',
+    8: 'La adaptabilidad y la capacidad de aprender nuevas tecnologías.',
+    9: 'Un equipo de desarrollo móvil.',
+    10: 'Crear aplicaciones móviles que cambien la forma en que las personas interactúan con el mundo.',
+  },
 
-const dataHouse = [
-  'Los datos que se recolectan y cómo se utilizan para mejorar el sitio.',
-  'Ninguna de las opciones me llama la atención.',
-  'Gráficos y estadísticas.',
-  'Problemas relacionados con la extracción de información útil de grandes conjuntos de datos.',
-  'SQL o Tableau.',
-  'Analizar datos y crear visualizaciones.',
-  'Proyectos que utilizan datos para tomar decisiones informadas.',
-  'La capacidad de analizar datos y extraer insights.',
-  'Un equipo de ciencia de datos.',
-  'Utilizar datos para resolver problemas del mundo real y tomar decisiones estratégicas.',
-]
+  data: {
+    1: 'Los datos que se recolectan y cómo se utilizan para mejorar el sitio.',
+    2: 'Ninguna de las opciones me llama la atención.',
+    3: 'Gráficos y estadísticas.',
+    4: 'Problemas relacionados con la extracción de información útil de grandes conjuntos de datos.',
+    5: 'SQL o Tableau.',
+    6: 'Analizar datos y crear visualizaciones.',
+    7: 'Proyectos que utilizan datos para tomar decisiones informadas.',
+    8: 'La capacidad de analizar datos y extraer insights.',
+    9: 'Un equipo de ciencia de datos.',
+    10: 'Utilizar datos para resolver problemas del mundo real y tomar decisiones estratégicas.',
+  },
+}
 
 for (const id in questionary.questions) {
-  questionary.addOption(id, 'A', frontendHouse[id - 1])
-  questionary.addOption(id, 'B', backendHouse[id - 1])
-  questionary.addOption(id, 'C', mobileHouse[id - 1])
-  questionary.addOption(id, 'D', dataHouse[id - 1])
+  questionary.addOption(id, 'A', houses.frontend[id])
+  questionary.addOption(id, 'B', houses.backend[id])
+  questionary.addOption(id, 'C', houses.mobile[id])
+  questionary.addOption(id, 'D', houses.data[id])
 }
 
 /*
