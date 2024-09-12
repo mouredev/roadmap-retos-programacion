@@ -21,8 +21,7 @@ Ejercicio extra
 '''
 #function("D", 1) 
 async def async_tasks():
-    # Ejecución en paralelo
-    await asyncio.gather(function("C", 3), function("B", 2), function("A", 1))
+    await asyncio.gather(function("C", 3), function("B", 2), function("A", 1))  # Ejecución en paralelo
     await function("D", 1)
 
 asyncio.run(async_tasks())
