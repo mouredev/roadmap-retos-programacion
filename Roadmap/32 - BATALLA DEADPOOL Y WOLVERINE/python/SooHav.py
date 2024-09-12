@@ -99,7 +99,6 @@ while True:
                               personaje} realiza un ataque máximo.")
                         print(f"{list(simulador_batalla.registro.keys())[
                               1 if personaje == 'Deadpool' else 0]} se regenera.")
-                        # Aquí podrías definir la regeneración como un aumento en los puntos de vida, por ejemplo:
                         defensor["Puntos de vida"] += random.randint(1, 3)
                         simulador_batalla.registro_ataque(list(simulador_batalla.registro.keys())[
                                                           1 if personaje == 'Deadpool' else 0], defensor["Puntos de vida"], defensor["Evasión de ataque"], defensor["Numero de ataque"], defensor["Daño máximo"], dano)
