@@ -1,4 +1,4 @@
-namespace exs28;
+namespace exs29;
 /*
 ╔══════════════════════════════════════╗
 ║ Autor:  Kenys Alvarado               ║
@@ -116,10 +116,10 @@ public class Fax : IFax
 
 public class MultiFunctionPrinter
 {
-    public MonoPrinter monoPrinter = new();
-    public ColorPrinter colorPrinter = new();
-    public Scanner theScanner = new();
-    public Fax fax = new();
+    public IPrinter monoPrinter = new MonoPrinter();
+    public IPrinter colorPrinter = new ColorPrinter();
+    public IScanner theScanner = new Scanner();
+    public IFax fax = new Fax();
 }
 
 //__________________
