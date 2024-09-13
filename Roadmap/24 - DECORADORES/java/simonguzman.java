@@ -8,15 +8,19 @@ public class simonguzman {
 
     /***************************** Ejemplo generico *****************************/
 
+    
     static void genericExample(){
         Component component = new ConcreteComponent();
         Component decorated = new ConcreteDecorator(component);
         decorated.operation();
     }
+    
+    //Interfaz base
     static interface Component{
         void operation();
     }
 
+    //Componente concreto
     static class ConcreteComponent implements Component{
         @Override
         public void operation() {
@@ -24,6 +28,7 @@ public class simonguzman {
         }
     }
 
+    //Decorador abstracto
     static abstract class Decorator implements Component{
         protected Component component;
 
@@ -36,6 +41,7 @@ public class simonguzman {
         }
     }
 
+    //Decorador concreto que añade funcionalidad
     static class ConcreteDecorator extends Decorator{
         public ConcreteDecorator(Component component){
             super(component);
