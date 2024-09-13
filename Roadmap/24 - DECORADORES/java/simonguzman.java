@@ -8,6 +8,63 @@ public class simonguzman {
     public  static void main(String[] args) {
         genericExample();
         example();
+        adittionalExercise();
+    }
+
+    /***************************** Ejercicio adicional*****************************/
+
+    static void adittionalExercise(){
+        ComponentExtra componente = new ConcreteComponentExtra();
+        CountDecorator contadorDecorador = new CountDecorator(componente);
+
+        contadorDecorador.operation();  
+        contadorDecorador.operation();  
+        contadorDecorador.operation();  
+
+        System.out.println("Total de invocaciones: " + contadorDecorador.getContador());
+    }
+    static interface ComponentExtra{
+        void operation();
+    }
+
+    //Componente concreto
+    static class ConcreteComponentExtra implements ComponentExtra{
+        @Override
+        public void operation() {
+            System.out.println("Ejecutando operacion base...");
+        }
+    }
+
+    //Decorador abstracto
+    static abstract class DecoratorExtra implements ComponentExtra{
+        protected ComponentExtra component;
+
+        public DecoratorExtra(ComponentExtra component){
+            this.component = component;
+        }
+
+        public void operation() {
+            this.component.operation();
+        }
+    }
+    // Decorador concreto que cuenta las veces que se llama a la operación
+    static class CountDecorator extends DecoratorExtra {
+        private int contador = 0;
+    
+        public CountDecorator(ComponentExtra component) {
+            super(component);
+        }
+    
+        @Override
+        public void operation() {
+            contador++;
+            System.out.println("La operación se ha llamado " + contador + " veces.");
+            super.operation();
+        }
+    
+        public int getContador() {
+            return contador;
+        }
     }
 
     /***************************** Ejemplo de implemetacion mas complejo *****************************/
