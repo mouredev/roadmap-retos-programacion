@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -8,43 +10,54 @@ import java.util.logging.Logger;
 
 public class simonguzman{
     public static void main(String[] args) {
-        //sintaxisLogger();
-        //exampleLog();
+        sintaxisLogger();
+        exampleLog();
         advancedLoggingExample();
+        adittionalExercise();
     }
     /************************ ejercicio adicional************************/
     public static void adittionalExercise(){
+        List<Task> tasks = new ArrayList<>();
+        Logger logger = Logger.getLogger(simonguzman.class.getName());
         Scanner sc = new Scanner(System.in);
-        int option;
+        int option = 0;
         do{
             menu();
             System.out.println("Ingrese una opcion");
-            option = sc.nextInt();
-        }while(option != 4);
-        
+            try {
+                option = sc.nextInt();
+                sc.nextLine();
+                optionsMenu(option, sc, tasks, logger);
+            } catch (InputMismatchException e) {
+                System.out.println("ERROR: Entrada invalida, solo ingresar valores numericos");
+                sc.next();
+            }
+        }while(option != 4);    
+        sc.close();
     }
 
-    public static void optionsMenu(int option){
+    public static void optionsMenu(int option, Scanner sc, List<Task> tasks, Logger logger){
+        
         switch (option) {
             case 1:
-                
+                addTaskMenu(sc, tasks, logger);
                 break;
             case 2:
-                
+                removeTaskMenu(sc, tasks, logger);
                 break;
             case 3:
-                
+                listTasks(tasks, logger);
                 break;
             case 4:
                 outSystem();
                 break;
             default:
-                throw new AssertionError();
+                System.out.println("ERROR: Opcion no valida...");
         }
     }
 
-    public static String outSystem(){
-        return "Saliendo...";
+    public static void outSystem(){
+        System.out.println("Saliendo....");
     }
 
     public static void menu(){
@@ -55,16 +68,30 @@ public class simonguzman{
         System.out.println("4. Salir");
     }
 
-    public void addTask(String name, String description, List<Task> tasks, Logger logger){
+    public static void addTaskMenu(Scanner sc, List<Task> tasks, Logger logger){
+        System.out.print("Introduce el nombre de la tarea: ");
+        String name = sc.next();
+        System.out.print("Introduce la descripción de la tarea: ");
+        String description = sc.next();
+        addTask(name, description, tasks, logger);
+    }
+
+    public static void removeTaskMenu(Scanner sc, List<Task> tasks, Logger logger){
+        System.out.println("Introduce el nombre de la tarea a eliminar: ");
+        String name = sc.next();
+        removeTask(name, tasks, logger);
+    }
+
+    public static void addTask(String name, String description, List<Task> tasks, Logger logger){
         long startTime = System.currentTimeMillis();
         Task task = new Task(name, description);
         tasks.add(task);
-        logger.info("Tarea añadida: "+task.getName());
+        logger.info("Tarea añadida: "+task.getName()+ ", Description: "+task.getDescription());
         long endTime = System.currentTimeMillis();
         logger.info("Tiempo de ejecucion para añadir la tarea: "+(endTime - startTime));
     }
 
-    public void removeTask(String name, List<Task> tasks, Logger logger){
+    public static  void removeTask(String name, List<Task> tasks, Logger logger){
         long startTime = System.currentTimeMillis();
         boolean removed = tasks.removeIf(task -> task.getName().equalsIgnoreCase(name));
         if(removed){
@@ -103,6 +130,10 @@ public class simonguzman{
 
         public String getName() {
             return name;
+        }
+
+        public String getDescription() {
+            return description;
         }
 
         @Override
