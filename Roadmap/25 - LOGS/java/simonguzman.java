@@ -1,4 +1,6 @@
 
+import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
@@ -10,7 +12,105 @@ public class simonguzman{
         //exampleLog();
         advancedLoggingExample();
     }
+    /************************ ejercicio adicional************************/
+    public static void adittionalExercise(){
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do{
+            menu();
+            System.out.println("Ingrese una opcion");
+            option = sc.nextInt();
+        }while(option != 4);
+        
+    }
 
+    public static void optionsMenu(int option){
+        switch (option) {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                outSystem();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    public static String outSystem(){
+        return "Saliendo...";
+    }
+
+    public static void menu(){
+        System.out.println("------------Gestion de tareas------------");
+        System.out.println("1. Añadir tarea");
+        System.out.println("2. Eliminar tarea");
+        System.out.println("3. Listar tareas");
+        System.out.println("4. Salir");
+    }
+
+    public void addTask(String name, String description, List<Task> tasks, Logger logger){
+        long startTime = System.currentTimeMillis();
+        Task task = new Task(name, description);
+        tasks.add(task);
+        logger.info("Tarea añadida: "+task.getName());
+        long endTime = System.currentTimeMillis();
+        logger.info("Tiempo de ejecucion para añadir la tarea: "+(endTime - startTime));
+    }
+
+    public void removeTask(String name, List<Task> tasks, Logger logger){
+        long startTime = System.currentTimeMillis();
+        boolean removed = tasks.removeIf(task -> task.getName().equalsIgnoreCase(name));
+        if(removed){
+            logger.info("Tarea eliminada: "+name);
+        }else{
+            logger.warning("No se encontro la tarea con nombre: "+name);
+        }
+        long endTime = System.currentTimeMillis();
+        logger.info("Tiempo de ejecucion para eliminar la tarea: "+(endTime - startTime)+ " ms");
+    }
+
+    public static void listTasks(List<Task> tasks, Logger logger) {
+        long startTime = System.currentTimeMillis();
+        if(tasks.isEmpty()){
+            logger.warning("No hay tareas para listar.");
+        }else{
+            logger.info("Listado de tareas: ");
+            tasks.forEach(task -> logger.info(task.toString()));
+        }
+        long endTime = System.currentTimeMillis();
+        logger.info("Tiempo de ejecucion para listar tareas " +(endTime - startTime)+ " ms");
+    }
+
+    static class Task{
+        private String name;
+        private String description;
+
+        public Task(){
+
+        }
+
+        public Task(String name, String description){
+            this.name = name;
+            this.description = description;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "Tarea: "+ name +", Descripcion: "+description;
+        }
+        
+    }
     /************************ ejemplo del log mas avanzado************************/
     public static void advancedLoggingExample(){
         Logger logger = Logger.getLogger(simonguzman.class.getName());
