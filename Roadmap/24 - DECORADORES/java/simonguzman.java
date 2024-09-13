@@ -11,7 +11,13 @@ public class simonguzman {
     }
 
     /***************************** Ejemplo de implemetacion mas complejo *****************************/
+    /*Se realizo un ejemplo adicional para mostrar mejor y poner en practica la sintaxis
+     * del patron decorador, en el cual se busco simular lo que seria un login de una cuenta
+     * de un usuario, con sus respectivas validaciones
+     */
     static void example(){
+
+        //Simulacion de inicio de sesion.
         UserService userService = new LoginAttemptsDecorator(new BasicUserService(), 3);
         userService.login("user1", "password");
         userService.login("user1", "wrongpassword");
@@ -19,14 +25,17 @@ public class simonguzman {
         userService.login("user1", "wrongpassword");
         userService.login("user1", "wrongpassword");
     }
+    //Interfaz base del servicio de usuario
     static interface UserService{
         boolean login(String username, String password);
     }
 
+    //implementacion basica del servicio de usuario
     static class BasicUserService implements UserService{
         private Map<String, String> userDatabase = new HashMap<>();
 
         public BasicUserService(){
+            //Simulacion de una base de datos de usuarios
             userDatabase.put("user1", "password");
             userDatabase.put("user2", "12345");
         }
@@ -44,6 +53,7 @@ public class simonguzman {
         }
     }
 
+    //Decorador para contar los intentos de inicio de sesion
     static class LoginAttemptsDecorator implements UserService{
         private UserService userService;
         private Map<String, Integer> loginAttempts;
