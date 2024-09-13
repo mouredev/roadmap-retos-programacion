@@ -1,4 +1,5 @@
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -6,9 +7,34 @@ import java.util.logging.Logger;
 public class simonguzman{
     public static void main(String[] args) {
         //sintaxisLogger();
-        exampleLog();
+        //exampleLog();
+        advancedLoggingExample();
     }
 
+    /************************ ejemplo del log mas avanzado************************/
+    public static void advancedLoggingExample(){
+        Logger logger = Logger.getLogger(simonguzman.class.getName());
+        logger.setLevel(Level.ALL);
+        try {
+            startTask("Tarea 1");
+            TimeUnit.SECONDS.sleep(2);
+            endTask("Tarea 1");
+            
+            startTask("Tarea 2");
+            TimeUnit.SECONDS.sleep(1);
+            endTask("Tarea 2");
+        } catch (InterruptedException e) {
+            logger.severe("Error en la ejecucion de las tareas..."+e.getMessage());
+        }
+    }
+
+    public static void startTask(String taskName){
+        System.out.println("Iniciando "+taskName);
+    }
+
+    public static void endTask(String taskName){
+        System.out.println("Finalizando "+taskName);
+    }
     /************************ ejemplo del log************************/
     public static void exampleLog(){
         Logger logger = Logger.getLogger(simonguzman.class.getName());
