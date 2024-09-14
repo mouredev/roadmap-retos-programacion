@@ -1,5 +1,5 @@
-# Enunciado
-# /*
+# */
+#  * Enunciado
 #  * EJERCICIO:
 #  * ¡Dos de las bandas más grandes de la historia están de vuelta!
 #  * Oasis y Linkin Park han anunciado nueva gira, pero, ¿quién es más popular?
