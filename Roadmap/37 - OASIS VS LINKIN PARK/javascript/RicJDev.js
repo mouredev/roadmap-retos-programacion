@@ -1,7 +1,13 @@
-// Creamos una función para obtener el token de acceso y le pasaremos el client_id y secret_client como parámetros.
+/**
+ *  Genera un token de acceso, necesario para hacer peticiones a la API de Spotify.
+ *
+ * @param {string} clientId Visite https://developer.spotify.com/dashboard para obtenerlo.
+ * @param {string} clientSecret Visite https://developer.spotify.com/dashboard para obtenerlo.
+ * @returns {Promise<object>}
+ */
 
 async function getToken(clientId, clientSecret) {
-  const accessToken = await fetch('https://accounts.spotify.com/api/token', {
+  const token = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -15,19 +21,63 @@ async function getToken(clientId, clientSecret) {
     .then((response) => response.json())
     .catch((err) => console.log(err))
 
-  return accessToken
+  return token
 }
 
 /*
+
 * IMPORTANTE *
 
-Estoy importando mis ID's del archivo RicJDev_client.js (que no está disponible dentro del repo).
-Si desea ejecutar este código deberá pasar sus propias ID's como parámetros de la función getToken().
-
-Para obtenerlas puede revisar esta sección en su cuenta de Spotify para desarrolladores: https://developer.spotify.com/dashboard
+Estoy importando mis id's del archivo RicJDev_client.js (lo cual dará error, ya que no lo he subido al repo).
+Si desea ejecutar este código deberá usar sus propias id's.
 
 */
 
 import { myClientId, myClientSecret } from './RicJDev_client.js'
 
 const token = await getToken(myClientId, myClientSecret)
+
+/**
+ * Retorna la información sobre un artista utilizando la API de Spotify.
+ *
+ * @param {string} artistId se obtiene de la página del artista en Spotify `https://open.spotify.com/intl-es/artist/{artistId}`.
+ * @param {object} token token de acceso. Use getToken() para obetenerlo.
+ * @returns {Promise<object>}
+ */
+
+async function getArtistData(artistId, token) {
+  const artistData = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `${token.token_type} ${token.access_token}`,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => console.log(err))
+
+  return artistData
+}
+
+// Almacenamos las id's de Oasis y Linkin Park.
+
+const OasisId = '4YwysTnPMvi1Q72Zopy8VA'
+const LinkinParkId = '6XyY86QOPPrYVGvF9ch6wz'
+
+const OasisData = await getArtistData(OasisId, token)
+const LinkinParkData = await getArtistData(LinkinParkId, token)
+
+console.log(OasisData)
+console.log(LinkinParkData)
+
+/*
+TODO: 
+
+Acciones:
+1. Accede a las estadísticas de las dos bandas.
+  Por ejemplo: número total de seguidores, escuchas mensuales,
+  canción con más reproducciones...
+2. Compara los resultados de, por lo menos, 3 endpoint.
+3. Muestra todos los resultados por consola para notificar al usuario.
+4. Desarrolla un criterio para seleccionar qué banda es más popular.
+
+*/
