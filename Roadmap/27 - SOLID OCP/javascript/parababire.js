@@ -52,6 +52,8 @@ console.log(`Hola mi nombre es ${engineer.name} soy ${engineer.getOccupation()}`
 
 // Extra
 
+/* Clase abstracta. No puede ser instanciada directamente pero es capaz de ser heredada por la descendencia */
+
 class Operation {
   constructor() {
     if (new.target === Operation) {
@@ -107,10 +109,22 @@ class Divide extends Operation{
   }
 }
 
+class Power extends Operation{
+  constructor(a, b) {
+    super()
+    this.a = a
+    this.b = b
+  }
+  execute() {
+    return this.a ** this.b
+  }
+}
+
 class Calculator {
   constructor() {
     this.operations = {}
   }
+  
   addOperation(name, operation) {
     this.operations[name] = operation
   }
@@ -127,7 +141,11 @@ const calculadora = new Calculator()
 calculadora.addOperation('addition', new Addition(10, 2))
 calculadora.addOperation('subtraction', new Subtract(5, 2))
 calculadora.addOperation('multiplication', new Multiply(9, 2))
+calculadora.addOperation('division', new Divide(9, 2))
+calculadora.addOperation('power', new Power(5, 4))
 
 console.log(calculadora.calculate('subtraction'))
 console.log(calculadora.calculate('addition'))
 console.log(calculadora.calculate('multiplication'))
+console.log(calculadora.calculate('division'))
+console.log(calculadora.calculate('power'))
