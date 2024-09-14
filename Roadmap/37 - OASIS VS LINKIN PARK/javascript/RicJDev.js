@@ -1,9 +1,11 @@
 /**
- *  Genera un token de acceso, necesario para hacer peticiones a la API de Spotify.
+ * Genera un token de acceso, necesario para hacer peticiones a la API de Spotify.
  *
- * @param {string} clientId Visite https://developer.spotify.com/dashboard para obtenerlo.
- * @param {string} clientSecret Visite https://developer.spotify.com/dashboard para obtenerlo.
+ * @param {string} clientId
+ * @param {string} clientSecret
  * @returns {Promise<object>}
+ *
+ * @see https://developer.spotify.com/dashboard
  */
 
 async function getToken(clientId, clientSecret) {
@@ -17,9 +19,7 @@ async function getToken(clientId, clientSecret) {
       client_id: clientId,
       client_secret: clientSecret,
     }),
-  })
-    .then((response) => response.json())
-    .catch((err) => console.log(err))
+  }).then((response) => response.json())
 
   return token
 }
@@ -40,8 +40,8 @@ const token = await getToken(myClientId, myClientSecret)
 /**
  * Retorna la información sobre un artista utilizando la API de Spotify.
  *
- * @param {string} artistId se obtiene de la página del artista en Spotify `https://open.spotify.com/intl-es/artist/{artistId}`.
- * @param {object} token token de acceso. Use getToken() para obetenerlo.
+ * @param {string} artistId se obtiene de la página del artista en Spotify (https://open.spotify.com/intl-es/artist/ `artistId`).
+ * @param {object} token token de acceso. Use `getToken()` para obetenerlo.
  * @returns {Promise<object>}
  */
 
@@ -51,22 +51,23 @@ async function getArtistData(artistId, token) {
     headers: {
       Authorization: `${token.token_type} ${token.access_token}`,
     },
-  })
-    .then((response) => response.json())
-    .catch((err) => console.log(err))
+  }).then((response) => response.json())
 
   return artistData
 }
 
 // Almacenamos las id's de Oasis y Linkin Park.
 
-const OasisId = '4YwysTnPMvi1Q72Zopy8VA'
+const OasisId = '2DaxqgrOhkeH0fpeiQq2f4'
 const LinkinParkId = '6XyY86QOPPrYVGvF9ch6wz'
 
 const OasisData = await getArtistData(OasisId, token)
 const LinkinParkData = await getArtistData(LinkinParkId, token)
 
+console.log('\nDatos de Oasis')
 console.log(OasisData)
+
+console.log('\nDatos de Linkin Park')
 console.log(LinkinParkData)
 
 /*
