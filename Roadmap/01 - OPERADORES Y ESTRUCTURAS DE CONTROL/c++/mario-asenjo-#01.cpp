@@ -1,15 +1,13 @@
 #include <iostream>
 
-// RETO #01 - EJERCICIOS
-
 int main(){
+    // RETO #01 - EJERCICIOS
+    // - 1. Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
+    //     (Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits...)(Ten en cuenta que cada lenguaje puede poseer unos diferentes).
 
-// - 1. Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
-//     (Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits...)(Ten en cuenta que cada lenguaje puede poseer unos diferentes).
-
-/*OPERADORES C++ : En C++, los operadores se dividen en varias categorías:
- operadores aritméticos, operadores de asignación, operadores de comparación, operadores lógicos,
- operadores bit a bit (bitwise), operadores de incremento/decremento, operadores de punteros, operadores ternarios y operadores de tipo.*/
+    /*OPERADORES C++ : En C++, los operadores se dividen en varias categorías:
+    operadores aritméticos, operadores de asignación, operadores de comparación, operadores lógicos,
+    operadores bit a bit (bitwise), operadores de incremento/decremento, operadores de punteros, operadores ternarios y operadores de tipo.*/
 
     // Operadores Aritméticos: Realizan operaciones matemáticas.
     int a = 10, b = 3;
@@ -60,8 +58,8 @@ int main(){
     contador--;  // Decremento: contador ahora es 10
 
     //Operadores de Punteros: Se usan para trabajar con direcciones de memoria.
-    int numero = 42;
-    int* puntero = &numero;  // Operador de dirección: obtiene la dirección de la variable
+    int numero42 = 42;
+    int* puntero = &numero42;  // Operador de dirección: obtiene la dirección de la variable
     int valor = *puntero;  // Operador de desreferencia: obtiene el valor de la variable apuntada
 
     //Operador Ternario: Actua como un condicional compacto.
@@ -72,19 +70,19 @@ int main(){
     int numeroEntero = 7;
     double numeroDecimal = static_cast<double>(numeroEntero);  // Convertir entero a double
 
-// - 2. Crea ejemplos que representen todos los tipos de estructuras de control que existan en tu lenguaje: Condicionales, iterativas, excepciones...
-    
+    // - 2. Crea ejemplos que representen todos los tipos de estructuras de control que existan en tu lenguaje: Condicionales, iterativas, excepciones...
+
     /*ESTRUCTURAS DE CONTROL : Las estructuras de control permiten alterar el flujo normal del programa. Estas
     incluyen condicionales, bucles y estructuras de salto.*/
 
     //Estructura condicional if-else: Ejecuta bloques de código basados en una condicion.
     int numero = 10;
     if (numero > 0) {
-        std::cout << "El número es positivo" << std::endl;
+        std::cout << "El numero es positivo" << std::endl;
     } else if (numero < 0) {
-        std::cout << "El número es negativo" << std::endl;
+        std::cout << "El numero es negativo" << std::endl;
     } else {
-        std::cout << "El número es cero" << std::endl;
+        std::cout << "El numero es cero" << std::endl;
     }
 
     //Estructura switch : Ejecuta bloques de código según el valor de una variable.
@@ -102,22 +100,22 @@ int main(){
     }
 
     //Bucles while: Ejecutan bloque de código mientras una condición sea verdadera.
-    int contador = 0;
-    while (contador < 5) {
-        std::cout << "Contador: " << contador << std::endl;
-        contador++;
+    int contadorW = 0;
+    while (contadorW < 5) {
+        std::cout << "Contador: " << contadorW << std::endl;
+        contadorW++;
     }
 
     //Bucles do-while: Similar a while, pero garantiza que el bloque de código se ejecute al menos una vez.
-    int contador = 0;
+    int contadorDW = 0;
     do {
-        std::cout << "Contador: " << contador << std::endl;
-        contador++;
-    } while (contador < 5);
+        std::cout << "Contador: " << contadorDW << std::endl;
+        contadorDW++;
+    } while (contadorDW < 5);
 
     //Bucles for: Se usa cuando el número de iteraciones es conocido.
     for (int i = 0; i < 5; i++) {
-        std::cout << "Iteración: " << i << std::endl;
+        std::cout << "Iteracion: " << i << std::endl;
     }
 
     // Estructura break y continue: break termina el bucle prematuramente, continue salta a la siguiente iteración.
@@ -131,5 +129,17 @@ int main(){
         std::cout << "i: " << i << std::endl;
     }
 
-return 0;
+    //Dificultad Extra: Crea un programa que imprima por consola todos los números comprendidos
+    //                  entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+
+    for(int i = 10; i<=55; i+=2){
+        if((i != 16) && (i % 3 != 0)){
+            std::cout<<i<<" ";
+        }
+        else{
+            continue;
+        }
+    }
+
+    return 0;
 }
