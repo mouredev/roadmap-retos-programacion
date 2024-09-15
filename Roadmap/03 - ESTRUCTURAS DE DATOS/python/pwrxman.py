@@ -132,7 +132,6 @@ print(myfamily)
  * - También se debe proponer una operación de finalización del programa.
 """
 
-global agenda
 agenda = {}
 
 def searching():
