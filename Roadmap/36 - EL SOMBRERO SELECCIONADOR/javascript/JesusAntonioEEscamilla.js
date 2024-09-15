@@ -23,96 +23,97 @@ const house = {
 // Preguntas y sus opciones con puntos asignados a cada casa
 const questions = [
     {
-        question: '1-¿Que te apasiona más al programador?',
+        question: '1- ¿Qué tipo de proyectos te entusiasma más desarrollar?',
         options: {
-            a: {text: 'Crear interfaces de usuario', points: { Frontend: 2 }},
-            b: {text: 'Desarrollador lógica de negocio', points: { Backend: 2 }},
-            c: {text: 'Aplicaciones móviles', points: { Mobile: 2 }},
-            d: {text: 'Trabajar con datos y descubrir patrones para mejorar decisiones', points: { Data: 2 }},
+            a: { text: 'APIs y lógica de negocio en el servidor.', points: { Backend: 2 } },
+            b: { text: 'Análisis de datos y modelos predictivos.', points: { Data: 2 } },
+            c: { text: 'Aplicaciones móviles con experiencia de usuario fluida.', points: { Mobile: 2 } },
+            d: { text: 'Aplicaciones web interactivas con diseño atractivo.', points: { Frontend: 2 } },
         },
     },
     {
-        question: '2-¿Cuál es tu herramienta favorita?',
+        question: '2- ¿Cuál es tu entorno de trabajo favorito?',
         options: {
-            a: { text: 'React o Angular', points: { Frontend: 2 } },
-            b: { text: 'Node.js', points: { Backend: 2 } },
-            c: { text: 'Swift o Kotlin', points: { Mobile: 2 } },
-            d: { text: 'Python y Pandas', points: { Data: 2 } },
+            a: { text: 'Terminales y scripts de automatización.', points: { Backend: 2 } },
+            b: { text: 'Emuladores y entornos móviles.', points: { Mobile: 2 } },
+            c: { text: 'Entornos visuales y herramientas de diseño.', points: { Frontend: 2 } },
+            d: { text: 'Herramientas de análisis de datos y estadísticas.', points: { Data: 2 } },
         },
     },
     {
-        question: '3-¿Cuál de estas tareas te resulta más satisfactoria?',
+        question: '3- ¿Qué lenguaje de programación prefieres?',
         options: {
-            a: { text: 'Diseñar y estilizar componentes visuales', points: { Frontend: 2 } },
-            b: { text: 'Crear APIs y gestionar bases de datos', points: { Backend: 2 } },
-            c: { text: 'Optimizar aplicaciones para diferentes dispositivos móviles', points: { Mobile: 2 } },
-            d: { text: 'Trabajar con grandes volúmenes de datos y modelos analíticos', points: { Data: 2 } },
+            a: { text: 'Python o R para análisis de datos.', points: { Data: 2 } },
+            b: { text: 'JavaScript o TypeScript para desarrollo web.', points: { Frontend: 2 } },
+            c: { text: 'Python o Java para desarrollo backend.', points: { Backend: 2 } },
+            d: { text: 'Kotlin o Swift para desarrollo móvil.', points: { Mobile: 2 } },
         },
     },
     {
-        question: '4-¿Con cuál de estas tecnologías te sientes más cómodo trabajando?',
+        question: '4- ¿Qué aspecto disfrutas más al resolver problemas?',
         options: {
-            a: { text: 'HTML, CSS, JavaScript', points: { Frontend: 2 } },
-            b: { text: 'Python, Java, SQL', points: { Backend: 2 } },
-            c: { text: 'Flutter, React Native', points: { Mobile: 2 } },
-            d: { text: 'R, SQL, Hadoop', points: { Data: 2 } },
+            a: { text: 'Extraer y analizar patrones de grandes volúmenes de datos.', points: { Data: 2 } },
+            b: { text: 'Crear interfaces intuitivas y responsivas.', points: { Frontend: 2 } },
+            c: { text: 'Implementar funcionalidades en dispositivos móviles.', points: { Mobile: 2 } },
+            d: { text: 'Optimizar la lógica y la arquitectura del servidor.', points: { Backend: 2 } },
         },
     },
     {
-        question: '5-¿Qué herramienta o lenguaje prefieres usar para resolver problemas?',
+        question: '5- ¿Qué tecnología o framework te interesa aprender más?',
         options: {
-            a: { text: 'Herramientas y frameworks para diseño de interfaces (e.g., Figma, React)', points: { Frontend: 2 } },
-            b: { text: 'Lenguajes y frameworks para backend (e.g., Node.js, Django, Spring Boot)', points: { Backend: 2 } },
-            c: { text: 'Herramientas de desarrollo móvil (e.g., Xcode, Android Studio)', points: { Mobile: 2 } },
-            d: { text: 'Herramientas de análisis de dato (e.g., Jupyter, Tableau, Power BI)', points: { Data: 2 } },
+            a: { text: 'Node.js, Django, o Spring.', points: { Backend: 2 } },
+            b: { text: 'TensorFlow, Pandas, o Spark.', points: { Data: 2 } },
+            c: { text: 'React, Angular, o Vue.', points: { Frontend: 2 } },
+            d: { text: 'React Native, Flutter, o SwiftUI.', points: { Mobile: 2 } },
         },
     },
     {
-        question: '6-¿Cuál de estas actividades disfrutas más?',
+        question: '6- ¿Cómo prefieres estructurar tu código?',
         options: {
-            a: { text: 'Crear experiencias de usuario interactivas y responsivas', points: { Frontend: 2 } },
-            b: { text: 'Resolver problemas complejos de lógica y optimización de procesos', points: { Backend: 2 } },
-            c: { text: 'Construir y probar aplicaciones que funcionen en múltiples dispositivos móviles', points: { Mobile: 2 } },
-            d: { text: 'Analizar y visualizar datos para extraer información relevante', points: { Data: 2 } },
+            a: { text: 'Controladores de vistas y gestores de estado.', points: { Mobile: 2 } },
+            b: { text: 'Scripts y pipelines de datos organizados.', points: { Data: 2 } },
+            c: { text: 'Servicios y controladores bien definidos.', points: { Backend: 2 } },
+            d: { text: 'Componentes modulares y reutilizables.', points: { Frontend: 2 } },
         },
     },
     {
-        question: '7-¿Qué prefieres en un proyecto?',
+        question: '7- ¿Qué herramienta te parece más útil en tu desarrollo diario?',
         options: {
-            a: { text: 'Trabajar en el diseño y la interacción con los usuarios', points: { Frontend: 2 } },
-            b: { text: 'Enfocarte en la lógica de negocio y la eficiencia del sistema', points: { Backend: 2 } },
-            c: { text: 'Desarrollar para plataformas móviles y trabajar con sus características únicas', points: { Mobile: 2 } },
-            d: { text: 'Investigar y analizar datos para proporcionar insights', points: { Data: 2 } },
+            a: { text: 'Simuladores y herramientas de debugging móvil.', points: { Mobile: 2 } },
+            b: { text: 'Inspectores de navegador y herramientas de diseño.', points: { Frontend: 2 } },
+            c: { text: 'Postman y bases de datos.', points: { Backend: 2 } },
+            d: { text: 'Jupyter Notebooks y herramientas de visualización de datos.', points: { Data: 2 } },
         },
     },
     {
-        question: '8-¿Cuál es tu tipo de proyecto ideal?',
+        question: '8- ¿Qué te motiva más en tu carrera de desarrollo?',
         options: {
-            a: { text: 'Un sitio web interactivo y visualmente atractivo', points: { Frontend: 2 } },
-            b: { text: 'Un sistema robusto que gestione datos y lógica de negocio', points: { Backend: 2 } },
-            c: { text: 'Una aplicación móvil con una experiencia de usuario fluida', points: { Mobile: 2 } },
-            d: { text: 'Un dashboard o modelo predictivo que ofrezca información clave', points: { Data: 2 } },
+            a: { text: 'Llevar nuevas ideas al mercado rápidamente en dispositivos móviles.', points: { Mobile: 2 } },
+            b: { text: 'Asegurar la estabilidad y seguridad del sistema.', points: { Backend: 2 } },
+            c: { text: 'Descubrir conocimientos ocultos en los datos.', points: { Data: 2 } },
+            d: { text: 'Crear interfaces que los usuarios amen usar.', points: { Frontend: 2 } },
         },
     },
     {
-        question: '9-¿Qué te da más satisfacción al finalizar un proyecto?',
+        question: '9- ¿Qué consideras más importante en un proyecto?',
         options: {
-            a: { text: 'Ver a los usuarios interactuar de manera positiva con tu interfaz', points: { Frontend: 2 } },
-            b: { text: 'Saber que tu código maneja de manera eficiente grandes volúmenes de datos', points: { Backend: 2 } },
-            c: { text: 'Ver tu aplicación móvil en funcionamiento en diferentes dispositivos', points: { Mobile: 2 } },
-            d: { text: 'Proveer información valiosa basada en datos a la empresa', points: { Data: 2 } },
+            a: { text: 'La portabilidad y rendimiento en diferentes dispositivos.', points: { Mobile: 2 } },
+            b: { text: 'La eficiencia y escalabilidad del backend.', points: { Backend: 2 } },
+            c: { text: 'La precisión y utilidad de los insights de datos.', points: { Data: 2 } },
+            d: { text: 'La experiencia y estética del usuario.', points: { Frontend: 2 } },
         },
     },
     {
-        question: '10-¿Qué consideras un reto divertido en el desarrollo?',
+        question: '10- ¿En qué área te gustaría especializarte más?',
         options: {
-            a: { text: 'Mejorar la usabilidad y la estética de una aplicación', points: { Frontend: 2 } },
-            b: { text: 'Optimizar la seguridad y el rendimiento de un backend', points: { Backend: 2 } },
-            c: { text: 'Resolver problemas de compatibilidad entre diferentes plataformas móviles', points: { Mobile: 2 } },
-            d: { text: 'Desarrollar modelos predictivos y manejar bases de datos complejas', points: { Data: 2 } },
+            a: { text: 'Desarrollo de aplicaciones móviles innovadoras.', points: { Mobile: 2 } },
+            b: { text: 'Ciencia de datos y aprendizaje automático.', points: { Data: 2 } },
+            c: { text: 'Desarrollo de interfaces de usuario y experiencia.', points: { Frontend: 2 } },
+            d: { text: 'Arquitectura de software y servicios web.', points: { Backend: 2 } },
         },
     },
 ];
+
 
 let currentQuestion = 0;
 let studentName = '';
@@ -131,10 +132,10 @@ function askQuestion() {
             const option = q.options[answer.toLowerCase()];
 
             if (option) {
-                Object.keys(option.points).forEach((house) => {
-                    house[house] += option.points[house];
+                Object.keys(option.points).forEach((houseName) => {
+                    house[houseName] += option.points[houseName];
                 });
-
+                
                 currentQuestion++;
                 askQuestion();
             } else {
@@ -164,7 +165,9 @@ function sortStudent() {
 }
 
 // Inicio del programa
-rl.question('¿Cuál es tu nombre? ', (name) => {
+console.log("\n¡Bienvenido a Hogwarts, la escuela de programación para magos y brujas del código!")
+console.log("El sombrero seleccionador decidirá cuál es tu casa como programador.")
+rl.question('\n¿Cuál es tu nombre? ', (name) => {
     studentName = name;
     askQuestion(); 
 });
