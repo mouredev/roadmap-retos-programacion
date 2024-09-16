@@ -9,8 +9,128 @@ public class simonguzman {
     public static void main(String[] args) {
         //incorrectSrp();
         //correctSrp();
-        additionalExerciseNoSrp();
+        //additionalExerciseNoSrp();
+        additionalExerciseSrp();
     }
+    /****************************** Ejercicio adicional(Con srp) ******************************/
+    public static void additionalExerciseSrp(){
+        BookManager bookManager = new BookManager();
+        UserManager userManager = new UserManager();
+        LoanManager loanManager = new LoanManager();
+
+        bookManager.registerBook("1984", "George Orwell", 3);
+        userManager.registerUser("John Doe", "001", "johndoe@example.com");
+
+        User user = userManager.findUserById("001");
+        Book book = bookManager.findBookByTitle("1984");
+
+        loanManager.borrowBook(user, book);
+        loanManager.returnBook(user, book);
+    }
+
+    class BookSrp {
+        private String title;
+        private String author;
+        private int copies;
+    
+        public BookSrp(){
+
+        }
+
+        public BookSrp(String title, String author, int copies) {
+            this.title = title;
+            this.author = author;
+            this.copies = copies;
+        }
+    
+        public String getTitle() {
+            return title;
+        }
+    
+        public int getCopies() {
+            return copies;
+        }
+    
+        public void setCopies(int copies) {
+            this.copies = copies;
+        }
+    }
+    
+    class UserSrp {
+        private String name;
+        private String id;
+        private String email;
+    
+        public UserSrp(){
+
+        }
+
+        public UserSrp(String name, String id, String email) {
+            this.name = name;
+            this.id = id;
+            this.email = email;
+        }
+    
+        public String getName() {
+            return name;
+        }
+    
+        public String getId() {
+            return id;
+        }
+    }
+    
+    static class BookManager{
+        private List<Book> books = new ArrayList<>();
+        
+        public void registerBook(String title, String author, int copies){
+            books.add(new Book(title, author, copies));
+            System.out.println("Libro registrado: " + title);
+        }
+
+        public Book findBookByTitle(String title){
+            return books.stream().filter(b -> b.getTitle().equals(title)).findFirst().orElse(null);
+        }
+    }
+
+    static class UserManager{
+        private List<User> users = new ArrayList<>();
+
+        public void registerUser(String name, String id, String email){
+            users.add(new User(name, id, email));
+            System.out.println("Usuario registrado: " + name);
+        }
+
+        public User findUserById(String id){
+            return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
+        }
+    }
+
+    static class LoanManager{
+        private Map<User, List<Book>> borrowedBooks = new HashMap<>();
+
+        public void borrowBook(User user, Book book) {
+            if (book != null && book.getCopies() > 0) {
+                borrowedBooks.computeIfAbsent(user, k -> new ArrayList<>()).add(book);
+                book.setCopies(book.getCopies() - 1);
+                System.out.println("Libro prestado: " + book.getTitle() + " a " + user.getName());
+            } else {
+                System.out.println("No se pudo procesar el préstamo.");
+            }
+        }
+
+        public void returnBook(User user, Book book) {
+            List<Book> borrowed = borrowedBooks.get(user);
+            if (borrowed != null && borrowed.contains(book)) {
+                borrowed.remove(book);
+                book.setCopies(book.getCopies() + 1);
+                System.out.println("Libro devuelto: " + book.getTitle());
+            } else {
+                System.out.println("No se pudo devolver el libro.");
+            }
+        }
+    }
+
     /****************************** Ejercicio adicional(Sin srp) ******************************/
     public static void additionalExerciseNoSrp(){
         Library library = new Library();
