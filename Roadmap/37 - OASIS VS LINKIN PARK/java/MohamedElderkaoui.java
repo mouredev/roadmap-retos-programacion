@@ -13,8 +13,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 public class MohamedElderkaoui {
 
-    private static final String CLIENT_ID = "TU_CLIENT_ID";
-    private static final String CLIENT_SECRET = "TU_CLIENT_SECRET";
+ private static final String CLIENT_ID = System.getenv("SPOTIFY_CLIENT_ID");
+private static final String CLIENT_SECRET = System.getenv("SPOTIFY_CLIENT_SECRET");
     private static final String TOKEN_URL = "https://accounts.spotify.com/api/token";
     private static final String ARTIST_OASIS_ID = "2DaxqgrOhkeH0fpeiQq2f4"; // ID de Spotify para Oasis
     private static final String ARTIST_LP_ID = "6XyY86QOPPrYVGvF9ch6wz"; // ID de Spotify para Linkin Park
