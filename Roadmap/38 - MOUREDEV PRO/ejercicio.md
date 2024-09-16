@@ -23,8 +23,8 @@
  * 2. Recupera los datos desde el programa y selecciona email aleatorios.
  * Acciones:
  * 1. Accede al fichero .csv y selecciona de manera aleatoria un email
- *    ganador de una suscripción, otro ganador de un descuento y un 
- *    último ganador de un libro (sólo si tiene status activo).
+ *    ganador de una suscripción, otro ganador de un descuento y un último
+ *    ganador de un libro (sólo si tiene status "activo" y no está repetido).
  * 2. Muestra los emails ganadores y su id.
  * 3. Ten en cuenta que la primera fila (con el nombre de las columnas)
  *    no debe tenerse en cuenta.
