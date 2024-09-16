@@ -12,6 +12,8 @@ x++; // aumentador
 y--; // disminuidor
 
 
+
+
 //Estructuras de control
 // If
 if (suma === 7) {
@@ -51,7 +53,7 @@ switch (TipoDeFruta) {
         console.log("Las manzanas cuestan $2800 por kg")
         break;
     default:
-    console.log(`Disculpa, no tenemos stock de ${TipoDeFruta} en este momento`)
+        console.log(`Disculpa, no tenemos stock de ${TipoDeFruta} en este momento`)
         break;
 }
 
@@ -69,7 +71,7 @@ fin */
 //Resolución ejercicio extra
 console.log("#Resolución ejercicio extra");
 for (let index = 10; index <= 55; index++) {
-    if(index % 2 === 0 && index !==16 && index%3 !==0)
-    console.log(`Numero: ${index}`);
+    if (index % 2 === 0 && index !== 16 && index % 3 !== 0)
+        console.log(`Numero: ${index}`);
 }
 
