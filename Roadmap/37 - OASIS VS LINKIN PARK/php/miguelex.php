@@ -1,9 +1,8 @@
 <?php
 
-$clientId = '4cc0a0d989f54e4f8e44da158cf646b0';
-$clientSecret = '05fa3d3be3c54a4d941d648c980ca228';
+$clientId = '';
+$clientSecret = '';
 
-// Función para obtener el token de acceso de Spotify
 function getAccessToken() {
     global $clientId, $clientSecret;
     
@@ -45,10 +44,9 @@ function getArtistData($token, $artistName) {
     }
     
     $data = json_decode($result, true);
-    return $data['artists']['items'][0];  // Retorna la primera coincidencia
+    return $data['artists']['items'][0];  
 }
 
-// Función para obtener las estadísticas del artista
 function getArtistStats($artistId, $token) {
     $options = [
         'http' => [
@@ -73,7 +71,6 @@ function getArtistStats($artistId, $token) {
     ];
 }
 
-// Función para obtener la canción más popular de un artista
 function getArtistTopTracks($artistId, $token) {
     $options = [
         'http' => [
@@ -90,10 +87,10 @@ function getArtistTopTracks($artistId, $token) {
     }
     
     $data = json_decode($result, true);
-    $mostPopularTrack = $data['tracks'][0];  // La canción más popular es la primera
+    $mostPopularTrack = $data['tracks'][0];  
     return [
         'name' => $mostPopularTrack['name'],
-        'playCount' => $mostPopularTrack['popularity'], // No se obtiene el número exacto de reproducciones
+        'playCount' => $mostPopularTrack['popularity'], 
         'album' => $mostPopularTrack['album']['name']
     ];
 }
@@ -120,12 +117,10 @@ function compareBands($band1, $band2) {
     echo "Canción más popular de {$band2}: ";
     print_r($band2TopTrack);
     
-    // Comparar seguidores
     $moreFollowers = ($band1Stats['followers'] > $band2Stats['followers'])
         ? $band1
         : $band2;
     
-    // Comparar popularidad de las canciones
     $morePopularTrack = ($band1TopTrack['playCount'] > $band2TopTrack['playCount'])
         ? $band1
         : $band2;
@@ -134,7 +129,6 @@ function compareBands($band1, $band2) {
     echo "La banda con la canción más popular es: {$morePopularTrack}\n";
 }
 
-// Solicitar el nombre de las bandas al usuario
 echo "Introduce el nombre del primer grupo: ";
 $band1 = trim(fgets(STDIN));
 
