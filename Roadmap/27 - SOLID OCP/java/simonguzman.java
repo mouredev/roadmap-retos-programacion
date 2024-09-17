@@ -40,6 +40,13 @@ public class simonguzman {
         }      
     }
 
+    static class Power implements Operation{
+        @Override
+        public double function(double num1, double num2) {
+            return Math.pow(num1, num2);
+        }
+    }
+
     static class CalculatorOCP{
         public double Calculate(Operation operation, double num1, double num2){
             return operation.function(num1, num2);
