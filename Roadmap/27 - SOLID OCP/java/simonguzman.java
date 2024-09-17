@@ -7,6 +7,46 @@ public class simonguzman {
         //libraryViolationOcp();
         libraryFollowOCP();
     }
+    /*************************** Ejercicio adicional con ocp(Correcto) ***************************/
+    interface Operation{
+        double function(double num1, double num2);
+    }
+
+    static class Addition implements Operation{
+        @Override
+        public double function(double num1, double num2) {
+            return num1 + num2; 
+        }
+    }
+
+    static class Subtraction implements Operation{
+        @Override
+        public double function(double num1, double num2) {
+            return num1 - num2;
+        }  
+    }
+
+    static class Multiplication implements Operation{
+        @Override
+        public double function(double num1, double num2) {
+            return num1 * num2;
+        }  
+    }
+
+    static class Division implements Operation{
+        @Override
+        public double function(double num1, double num2) {
+            return num1 /  num2;
+        }      
+    }
+
+    static class CalculatorOCP{
+        public double Calculate(Operation operation, double num1, double num2){
+            return operation.function(num1, num2);
+        }
+    }
+
+
     /*************************** Ejercicio adicional sin ocp(Incorrecto) ***************************/
     static class Calculator{
         public double calculate(String operation, double num1, double num2){
