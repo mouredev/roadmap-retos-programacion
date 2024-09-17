@@ -5,9 +5,29 @@ import java.util.List;
 public class simonguzman {
     public static void main(String[] args) {
         //libraryViolationOcp();
-        libraryFollowOCP();
+        //libraryFollowOCP();
+        calculatorTest();
+        calculatorOCPTest();
     }
     /*************************** Ejercicio adicional con ocp(Correcto) ***************************/
+    static void calculatorOCPTest(){
+        CalculatorOCP calculator = new CalculatorOCP();
+
+        double resultAdd = calculator.Calculate(new Addition(), 10, 5);
+        System.out.println("Suma: " + resultAdd);
+
+        double resultSub = calculator.Calculate(new Subtraction(), 10, 5);
+        System.out.println("Resta: " + resultSub);
+
+        double resultMul = calculator.Calculate(new Multiplication(), 10, 5);
+        System.out.println("Multiplicación: " + resultMul);
+
+        double resultDiv = calculator.Calculate(new Division(), 10, 5);
+        System.out.println("División: " + resultDiv);
+
+        double resultPow = calculator.Calculate(new Power(), 2, 3);
+        System.out.println("Potencia: " + resultPow);
+    }
     interface Operation{
         double function(double num1, double num2);
     }
@@ -55,6 +75,29 @@ public class simonguzman {
 
 
     /*************************** Ejercicio adicional sin ocp(Incorrecto) ***************************/
+    static void calculatorTest(){
+        Calculator calculator = new Calculator();
+
+        double resultAdd = calculator.calculate("sum", 10, 5);
+        System.out.println("Suma: " + resultAdd);
+
+        double resultSub = calculator.calculate("substract", 10, 5);
+        System.out.println("Resta: " + resultSub);
+
+        double resultMul = calculator.calculate("multiply", 10, 5);
+        System.out.println("Multiplicación: " + resultMul);
+
+        double resultDiv = calculator.calculate("divide", 10, 5);
+        System.out.println("División: " + resultDiv);
+
+        try {
+            double resultPow = calculator.calculate("power", 2, 3);
+            System.out.println("Potencia: " + resultPow);
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     static class Calculator{
         public double calculate(String operation, double num1, double num2){
             switch (operation) {
