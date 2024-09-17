@@ -28,59 +28,87 @@ async function getToken(clientId, clientSecret) {
     return response.json()
   })
 
-  return token['access_token']
+  return token.access_token
 }
+
+// Nos almacenamos el metodo de autenticacion que usaremos para las peticiones.
 
 const accessToken = await getToken(CLIENT_ID, CLIENT_SECRET)
+const authorization = { headers: { Authorization: `Bearer  ${accessToken}` } }
 
-console.log(accessToken)
+// Creamos una funcion para aprovechar el sitema de busqueda de la API.
 
-const authorization = {
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer  ${accessToken}`,
-  },
+async function getArtistId(artist) {
+  const url = `https://api.spotify.com/v1/search?q=${artist}&type=artist&limit=1`
+  const results = await fetch(url, authorization).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Error al obtener el artista`)
+    }
+
+    return response.json()
+  })
+
+  if (!results.artists.items) {
+    throw new Error(`Artista ${artist} no ha sido encontrado.`)
+  }
+
+  return results.artists.items[0].id
 }
+
+// E iremos almacenando la informacion de nuestros artistas.
+
+const LinkinPark = {
+  id: await getArtistId('Linkin Park'),
+}
+
+const Oasis = {
+  id: await getArtistId('Oasis'),
+}
+
+// Creamos una funcion que nos retorne los datos del artista desde la API.
 
 async function getArtistData(artistId) {
   const url = `https://api.spotify.com/v1/artists/${artistId}`
-  const artistData = await fetch(url, authorization).then((response) => response.json())
+  const results = await fetch(url, authorization).then((response) => {
+    if (response.status !== 200) {
+      throw new Error(`Error al obtener datos del artista`)
+    }
 
-  return artistData
+    return response.json()
+  })
+
+  return {
+    name: results.name,
+    followers: results.followers.total,
+    popularity: results.popularity,
+  }
 }
 
-async function getArtistAlbumsData(artistId) {
-  const url = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&market=VE&limit=50`
-  const albumData = await fetch(url, authorization).then((response) => response.json())
-
-  return albumData
-}
-
-// Almacenamos las id's de Oasis y Linkin Park.
-
-const Oasis = {
-  id: '2DaxqgrOhkeH0fpeiQq2f4',
-}
-
-const LinkinPark = {
-  id: '6XyY86QOPPrYVGvF9ch6wz',
-}
-
+LinkinPark.data = await getArtistData(LinkinPark.id)
 Oasis.data = await getArtistData(Oasis.id)
-LinkinPark.data = await getArtistData(Oasis.id)
 
-console.log(Oasis.data)
-console.log(LinkinPark.data)
+// Creamos otra funcion para obtener la cancion mas escuchada de la semana.
 
-/*
-TODO: 
+async function getArtistTopTrack(artistId) {
+  const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=VE`
+  const results = await fetch(url, authorization).then((response) => {
+    if (response.status !== 200) {
+      throw new Error(`Error al obtener cancion mas popular.`)
+    }
 
-Acciones:
-1. Accede a las estadísticas de las dos bandas.
-  Por ejemplo: número total de seguidores, escuchas mensuales,
-  canción con más reproducciones...
-2. Compara los resultados de, por lo menos, 3 endpoint.
-3. Muestra todos los resultados por consola para notificar al usuario.
-4. Desarrolla un criterio para seleccionar qué banda es más popular.
+    return response.json()
+  })
 
-*/
+  return {
+    name: results.tracks[0].name,
+    popularity: results.tracks[0].popularity,
+    album: results.tracks[0].album.name,
+  }
+}
+
+LinkinPark.topTrack = await getArtistTopTrack(LinkinPark.id)
+Oasis.topTrack = await getArtistTopTrack(Oasis.id)
+
+// Aqui empezamos a comparar.
+
+//TODO
