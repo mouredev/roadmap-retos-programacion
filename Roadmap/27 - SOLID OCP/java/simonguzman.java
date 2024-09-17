@@ -4,8 +4,8 @@ import java.util.List;
 
 public class simonguzman {
     public static void main(String[] args) {
-        //libraryViolationOcp();
-        //libraryFollowOCP();
+        libraryViolationOcp();
+        libraryFollowOCP();
         calculatorTest();
         calculatorOCPTest();
     }
