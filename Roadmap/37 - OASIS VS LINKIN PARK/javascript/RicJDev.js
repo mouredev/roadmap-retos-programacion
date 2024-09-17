@@ -1,11 +1,13 @@
-/**
- * Genera un token de acceso, necesario para hacer peticiones a la API de Spotify.
- *
- * @param {string} clientId
- * @param {string} clientSecret
- *
- * @see https://developer.spotify.com/dashboard
- */
+import { CLIENT_ID, CLIENT_SECRET } from './client.js'
+
+/*
+IMPORTANTE:
+
+Estoy importando mis id's del archivo client.js, el cual no está subido al repo.
+Si desea ejecutar este código deberá usar sus propias id's.
+*/
+
+// Creamos una función para obtener el token de acceso.
 
 async function getToken(clientId, clientSecret) {
   const token = await fetch('https://accounts.spotify.com/api/token', {
@@ -18,89 +20,57 @@ async function getToken(clientId, clientSecret) {
       client_id: clientId,
       client_secret: clientSecret,
     }),
-  }).then((response) => response.json())
+  }).then((response) => {
+    if (response.status !== 200) {
+      throw new Error(`Falla al obtener respuesta de la API. ${response.json()}`)
+    }
 
-  return token
+    return response.json()
+  })
+
+  return token['access_token']
 }
 
-/*
+const accessToken = await getToken(CLIENT_ID, CLIENT_SECRET)
 
-* IMPORTANTE *
+console.log(accessToken)
 
-Estoy importando mis id's del archivo RicJDev_client.js (lo cual dará error, ya que no lo he subido al repo).
-Si desea ejecutar este código deberá usar sus propias id's.
-
-*/
-
-import { myClientId, myClientSecret } from './RicJDev_client.js'
-
-const token = await getToken(myClientId, myClientSecret)
-const GET_requestMethod = {
+const authorization = {
   method: 'GET',
   headers: {
-    Authorization: `${token.token_type} ${token.access_token}`,
+    Authorization: `Bearer  ${accessToken}`,
   },
 }
 
-/**
- * Retorna la información sobre un artista utilizando la API de Spotify.
- *
- * @param {string} artistId se obtiene de la página del artista en Spotify (https://open.spotify.com/intl-es/artist/ `artistId`).
- * @returns {Promise<object>}
- *
- * @see https://developer.spotify.com/dashboard
- */
-
 async function getArtistData(artistId) {
-  const artistData = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}`,
-    GET_requestMethod
-  ).then((response) => response.json())
+  const url = `https://api.spotify.com/v1/artists/${artistId}`
+  const artistData = await fetch(url, authorization).then((response) => response.json())
 
   return artistData
 }
 
-/**
- * Retorna la data de los albums de un artista utilizando la API de Spotify.
- *
- * @param {string} artistId se obtiene de la página del artista en Spotify (https://open.spotify.com/intl-es/artist/ `artistId`).
- *
- * @see https://developer.spotify.com/dashboard
- */
-
 async function getArtistAlbumsData(artistId) {
-  const artistData = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&market=VE&limit=50`,
-    GET_requestMethod
-  ).then((response) => response.json())
+  const url = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&market=VE&limit=50`
+  const albumData = await fetch(url, authorization).then((response) => response.json())
 
-  return artistData
+  return albumData
 }
 
 // Almacenamos las id's de Oasis y Linkin Park.
 
 const Oasis = {
   id: '2DaxqgrOhkeH0fpeiQq2f4',
-
-  data: null,
-
-  topTracks: null,
-
-  albums: null,
 }
 
 const LinkinPark = {
   id: '6XyY86QOPPrYVGvF9ch6wz',
-
-  data: null,
-
-  topTracks: null,
-
-  albums: null,
 }
 
-Oasis.data = await getArtistData(Oasis.id, token)
-LinkinPark.data = await getArtistData(Oasis.id, token)
+Oasis.data = await getArtistData(Oasis.id)
+LinkinPark.data = await getArtistData(Oasis.id)
+
+console.log(Oasis.data)
+console.log(LinkinPark.data)
 
 /*
 TODO: 
