@@ -4,9 +4,122 @@ import java.util.List;
 
 public class simonguzman {
     public static void main(String[] args) {
-        libraryViolationOcp();
+        //libraryViolationOcp();
+        libraryFollowOCP();
     }
 
+    /*************************** Ejemplo con ocp(Correcto) ***************************/
+    static void libraryFollowOCP(){
+        List<String> books = new ArrayList<>();
+        List<String> users = new ArrayList<>();
+        LibraryOcp library = new LibraryOcp();
+
+        LibraryOperation registerBook = new RegisterBookOperation("El Quijote", books);
+        library.performOperation(registerBook);
+
+        LibraryOperation registerUser = new RegisterUserOperation("Juan Perez", users);
+        library.performOperation(registerUser);
+
+        LibraryOperation loanBook = new LoanBookOperation("El Quijote", "Juan Perez", books);
+        library.performOperation(loanBook);
+
+        LibraryOperation renewLoan = new RenewLoanOperation("El Quijote", "Juan Perez");
+        library.performOperation(renewLoan);
+    }
+
+    interface LibraryOperation{
+        void execute();
+    }
+
+    static class RegisterBookOperation implements LibraryOperation{
+        private String book;
+        private List<String> books;
+
+        public RegisterBookOperation(){
+            
+        }
+
+        public RegisterBookOperation(String book, List<String> books){
+            this.book = book;
+            this.books = books;
+        }
+
+        @Override
+        public void execute() {
+            books.add(book);
+            System.out.println("Libro registrado: " + book);
+        }
+    }
+
+    static class RegisterUserOperation implements LibraryOperation{
+        private String user;
+        private List<String> users;
+
+        public RegisterUserOperation(){
+
+        }
+
+        public RegisterUserOperation(String user, List<String> users){
+            this.user = user;
+            this.users = users;
+        }
+        @Override
+        public void execute() {
+            users.add(user);
+            System.out.println("Usuario registrado: "+user);
+        }
+    }
+
+    static class LoanBookOperation implements LibraryOperation{
+        private String book;
+        private String user;
+        private List<String> books;
+
+        public LoanBookOperation(){
+
+        }
+
+        public LoanBookOperation(String book, String user, List<String> books){
+            this.book = book;
+            this.user = user;
+            this.books = books;
+        }
+
+        @Override
+        public void execute() {
+            if(books.contains(book)){
+                System.out.println("Libro: " + book + " usuario " + user);
+            }else{
+                System.out.println("El libro no esta disponible.");
+            }
+        }
+        
+    }
+
+    static class RenewLoanOperation implements LibraryOperation{
+        private String book;
+        private String user;
+
+        public RenewLoanOperation(){
+
+        }
+
+        public RenewLoanOperation(String book, String user){
+            this.book = book;
+            this.user = user;
+        }
+
+        @Override
+        public void execute() {
+            System.out.println("El prestamo del libro " + book + " a sido renovado por " + user);
+        }
+    }
+
+    static class LibraryOcp{
+        public void performOperation(LibraryOperation operation){
+            operation.execute();
+        }
+    }
     /*************************** Ejemplo sin ocp(Incorrecto) ***************************/
     static void libraryViolationOcp(){
         Library library = new Library();
