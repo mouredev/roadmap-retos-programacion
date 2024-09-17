@@ -7,6 +7,19 @@ public class simonguzman {
         //libraryViolationOcp();
         libraryFollowOCP();
     }
+    /*************************** Ejercicio adicional sin ocp(Incorrecto) ***************************/
+    static class Calculator{
+        public double calculate(String operation, double num1, double num2){
+            switch (operation) {
+                case "sum": return  num1 + num2; 
+                case "substract": return  num1 - num2; 
+                case "multiply": return  num1 * num2; 
+                case "divide": return  num1 / num2; 
+                default:
+                    throw new UnsupportedOperationException("Operacion no soportada");
+            }
+        }
+    }
 
     /*************************** Ejemplo con ocp(Correcto) ***************************/
     static void libraryFollowOCP(){
