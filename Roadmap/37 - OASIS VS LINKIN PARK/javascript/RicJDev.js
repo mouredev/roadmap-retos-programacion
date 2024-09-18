@@ -41,27 +41,23 @@ const authorization = { headers: { Authorization: `Bearer  ${accessToken}` } }
 async function getArtistId(artist) {
   const url = `https://api.spotify.com/v1/search?q=${artist}&type=artist&limit=1`
   const results = await fetch(url, authorization).then((response) => {
-    if (response.status !== 200) {
-      throw new Error(`Error al obtener el artista ${artist}`)
-    }
+    if (response.status !== 200) throw new Error(`Error al obtener el artista ${artist}.`)
 
     return response.json()
   })
 
-  if (!results.artists.items) {
-    throw new Error(`Artista ${artist} no ha sido encontrado.`)
-  }
+  if (!results.artists.items) throw new Error(`Artista ${artist} no ha sido encontrado.`)
 
   return results.artists.items[0].id
 }
 
 // E iremos almacenando la información de nuestros artistas.
 
-const LinkinPark = {
+const artist1 = {
   id: await getArtistId('Linkin Park'),
 }
 
-const Oasis = {
+const artist2 = {
   id: await getArtistId('Oasis'),
 }
 
@@ -70,9 +66,7 @@ const Oasis = {
 async function getArtistData(artistId) {
   const url = `https://api.spotify.com/v1/artists/${artistId}`
   const results = await fetch(url, authorization).then((response) => {
-    if (response.status !== 200) {
-      throw new Error(`Error al obtener datos del artista`)
-    }
+    if (response.status !== 200) throw new Error(`Error al obtener datos del artista.`)
 
     return response.json()
   })
@@ -84,17 +78,15 @@ async function getArtistData(artistId) {
   }
 }
 
-LinkinPark.data = await getArtistData(LinkinPark.id)
-Oasis.data = await getArtistData(Oasis.id)
+artist1.data = await getArtistData(artist1.id)
+artist2.data = await getArtistData(artist2.id)
 
 // Creamos otra función para obtener la canción más escuchada de la semana.
 
 async function getArtistTopTrack(artistId) {
   const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=VE`
   const results = await fetch(url, authorization).then((response) => {
-    if (response.status !== 200) {
-      throw new Error(`Error al obtener cancion mas popular.`)
-    }
+    if (response.status !== 200) throw new Error(`Error al obtener canción más popular.`)
 
     return response.json()
   })
@@ -106,9 +98,74 @@ async function getArtistTopTrack(artistId) {
   }
 }
 
-LinkinPark.topTrack = await getArtistTopTrack(LinkinPark.id)
-Oasis.topTrack = await getArtistTopTrack(Oasis.id)
+artist1.topTrack = await getArtistTopTrack(artist1.id)
+artist2.topTrack = await getArtistTopTrack(artist2.id)
 
 // Aquí empezamos a comparar.
 
-//TODO
+console.log('COMPARANDO ARTISTAS.\n')
+
+console.log(`- ${artist1.data.name}.`)
+console.log(`- ${artist2.data.name}.`)
+
+artist1.points = 0
+artist2.points = 0
+
+// Ronda 1: seguidores.
+
+console.log('\n¿Quién tiene más seguidores?')
+
+console.log(`${artist1.data.name}:`, artist1.data.followers)
+console.log(`${artist2.data.name}:`, artist2.data.followers)
+
+if (artist1.data.followers > artist2.data.followers) {
+  console.log(`\n¡Punto para ${artist1.data.name}!`)
+
+  artist1.points++
+} else {
+  console.log(`\n¡Punto para ${artist2.data.name}!`)
+
+  artist2.points++
+}
+
+// Ronda 2: popularidad.
+
+console.log('\n¿Quién tiene más popularidad a nivel general?')
+
+console.log(`${artist1.data.name}:`, artist1.data.popularity)
+console.log(`${artist2.data.name}:`, artist2.data.popularity)
+
+if (artist1.data.popularity > artist2.data.popularity) {
+  console.log(`\n¡Punto para ${artist1.data.name}!`)
+
+  artist1.points++
+} else {
+  console.log(`\n¡Punto para ${artist2.data.name}!`)
+
+  artist2.points++
+}
+
+// Ronda 2: cancion mas escuchada.
+
+console.log(
+  '\nTenemos la canción más escuchada de cada artista. ¿Cuál tiene mayor popularidad general?'
+)
+
+console.log(`${artist1.data.name}: ${artist1.topTrack.name}:`, artist1.topTrack.popularity)
+console.log(`${artist2.data.name}: ${artist2.topTrack.name} :`, artist2.topTrack.popularity)
+
+if (artist1.topTrack.popularity > artist2.topTrack.popularity) {
+  console.log(`\n¡Punto para ${artist1.data.name}!`)
+
+  artist1.points++
+} else {
+  console.log(`\n¡Punto para ${artist2.data.name}!`)
+
+  artist2.points++
+}
+
+console.log('\nRESULTADOS:')
+
+artist1.points > artist2.points
+  ? console.log(`Ha ganado ${artist1.data.name}:`, artist1.points)
+  : console.log(`Ha ganado ${artist2.data.name}:`, artist2.points)
