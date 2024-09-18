@@ -8,10 +8,70 @@ public class simonguzman {
     public static void main(String[] args) {
         //libraryManagementSystemLiskovViolation();
         //libraryLSP();
-        LiskovIncorrectTest();
+        //LiskovIncorrectTest();
+        LiskovCorrectTest();
     }
     /****************************** ejercicio adicional con lsp (Correcto) ******************************/
+    public static void LiskovCorrectTest() {
+        VehiculoLsp coche = new Coche();
+        VehiculoLsp bicicleta = new Bicicleta();
+        VehiculoLsp motocicleta = new Motocicleta();
 
+        // Probar comportamiento de los vehículos
+        acelerarYFrenarLsp(coche);
+        acelerarYFrenarLsp(bicicleta);
+        acelerarYFrenarLsp(motocicleta);
+    }
+
+    public static void acelerarYFrenarLsp(VehiculoLsp vehiculo) {
+        vehiculo.acelerar();
+        vehiculo.frenar();
+    }
+
+    static class VehiculoLsp {
+        public void acelerar() {
+            System.out.println("El vehículo está acelerando.");
+        }
+
+        public void frenar() {
+            System.out.println("El vehículo está frenando.");
+        }
+    }
+
+    static class Coche extends VehiculoLsp {
+        @Override
+        public void acelerar() {
+            System.out.println("El coche está acelerando rápidamente.");
+        }
+
+        @Override
+        public void frenar() {
+            System.out.println("El coche está frenando suavemente.");
+        }
+    }
+
+    static class Bicicleta extends VehiculoLsp {
+        @Override
+        public void acelerar() {
+            System.out.println("La bicicleta está acelerando lentamente.");
+        }
+
+        @Override
+        public void frenar() {
+            System.out.println("La bicicleta está frenando manualmente.");
+        }
+    }
+    static class Motocicleta extends VehiculoLsp {
+        @Override
+        public void acelerar() {
+            System.out.println("La motocicleta está acelerando con potencia.");
+        }
+
+        @Override
+        public void frenar() {
+            System.out.println("La motocicleta está frenando rápidamente.");
+        }
+    }
     /****************************** ejercicio adicional sin lsp (Incorrecto) ******************************/
     public static void LiskovIncorrectTest() {
         Vehiculo cocheElectrico = new CocheElectrico();
