@@ -7,9 +7,51 @@ import java.util.Map;
 public class simonguzman {
     public static void main(String[] args) {
         //libraryManagementSystemLiskovViolation();
-        libraryLSP();
+        //libraryLSP();
+        LiskovIncorrectTest();
+    }
+    /****************************** ejercicio adicional con lsp (Correcto) ******************************/
+
+    /****************************** ejercicio adicional sin lsp (Incorrecto) ******************************/
+    public static void LiskovIncorrectTest() {
+        Vehiculo cocheElectrico = new CocheElectrico();
+        acelerarYFrenar(cocheElectrico);
+
+        ((CocheElectrico) cocheElectrico).recargarBateria();
     }
 
+    public static void acelerarYFrenar(Vehiculo vehiculo) {
+        vehiculo.acelerar();
+        vehiculo.frenar();
+    }
+
+    static class Vehiculo {
+        public void acelerar() {
+            System.out.println("El vehículo está acelerando.");
+        }
+
+        public void frenar() {
+            System.out.println("El vehículo está frenando.");
+        }
+    }
+
+// Subclase CocheEléctrico que viola LSP
+    static class CocheElectrico extends Vehiculo {
+        @Override
+        public void acelerar() {
+            System.out.println("El coche eléctrico está acelerando silenciosamente.");
+        }
+
+        @Override
+        public void frenar() {
+            System.out.println("El coche eléctrico está frenando regenerativamente.");
+        }
+
+        // Método adicional que viola el LSP
+        public void recargarBateria() {
+            System.out.println("Recargando la batería del coche eléctrico.");
+        }
+    }
     /****************************** ejemplo con lsp (Correcto) ******************************/
     static void libraryLSP(){
         LibraryManager libraryManager = new LibraryManager();
