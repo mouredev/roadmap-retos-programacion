@@ -26,7 +26,8 @@
  */
  """
 import uuid
-from graphviz import Digraph
+
+#from graphviz import Digraph
 
 
 class Persona:
@@ -75,7 +76,7 @@ class ArbolGenealogico:
             
             persona.parejas.append(pareja)
             pareja.parejas.append(persona)
-             # Inicializa la lista de hijos para esta pareja
+            # Inicializa la lista de hijos para esta pareja
             persona.hijos[pareja] = []
             pareja.hijos[persona] = []
         else:
@@ -93,10 +94,25 @@ class ArbolGenealogico:
                 madre.hijos[padre].append(hijo)
         else:
             print("Padre, madre o hijo no encontrado")
-            
+    #Formato de impresión de árbol con /tab para tabular los niveles/generaciones        
     def imprimir_arbol(self):
+        set_visitados = set()
+
+        def mostrar_persona(persona: Persona, nivel=0):
+            identacion = "\t" * nivel
+            if persona.id in set_visitados:
+                return
+            else:                              
+                print(f"{identacion} - {persona.nombre} {persona.apellido}")
+                set_visitados.add(persona.id)
+                if persona.parejas:
+                    for pareja in persona.parejas:
+                        print(f"{identacion} Pareja: {pareja.nombre} {pareja.apellido}")
+                        for hijo in persona.hijos.get(pareja, []):
+                            mostrar_persona(hijo, nivel + 1)
+
         for persona in self.personas.values():
-            print(persona)
+            mostrar_persona(persona)
             
     def buscar_por_nombre(self, nombre):
         return [persona for persona in self.personas.values() if persona.nombre.lower() == nombre.lower()]
@@ -138,7 +154,7 @@ class ArbolGenealogico:
         
         dot.render('arbol_genealogico_hijos', format='png', cleanup=True)
         print("Árbol genealógico generado como 'arbol_genealogico_hijos.png'.")
-                   
+
         # Añadir flecha para cada pareja
         ya_conectado = set()
         for persona in self.personas.values():
@@ -255,4 +271,4 @@ arbol.agregar_hijo(aegon_ii, helaena, maelor)
 arbol.imprimir_arbol()
 
 #Imprime el arbol en png
-arbol.generar_arbol_grafico()
+#arbol.generar_arbol_grafico()
