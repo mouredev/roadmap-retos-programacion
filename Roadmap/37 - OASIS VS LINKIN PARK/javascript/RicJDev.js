@@ -145,7 +145,7 @@ if (artist1.data.popularity > artist2.data.popularity) {
   artist2.points++
 }
 
-// Ronda 2: canción más escuchada.
+// Ronda 3: canción más escuchada.
 
 console.log(
   '\nTenemos la canción más escuchada de cada artista. ¿Cuál tiene mayor popularidad general?'
