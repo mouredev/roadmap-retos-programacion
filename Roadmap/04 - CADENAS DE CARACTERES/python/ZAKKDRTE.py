@@ -142,3 +142,4 @@ def get_text(text1, text2) -> str:
 
 
 get_text(text1, text2)
+
