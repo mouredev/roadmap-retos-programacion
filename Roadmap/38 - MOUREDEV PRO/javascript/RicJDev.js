@@ -4,9 +4,9 @@
   @RicJDev
 */
 
-import fs from 'fs/promises'
-
 // Creamos una función para convertir los datos del .csv en un array de objetos, usando las cabeceras como las claves de los valores de cada usuario.
+
+import fs from 'fs/promises'
 
 async function getUsersData() {
   const usersArray = []
