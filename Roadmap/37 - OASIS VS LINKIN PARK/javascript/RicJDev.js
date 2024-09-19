@@ -1,3 +1,9 @@
+/*
+  EJERCICIO:
+
+  @RicJDev
+*/
+
 import { CLIENT_ID, CLIENT_SECRET } from './client.js'
 
 /*
