@@ -18,5 +18,11 @@ that_is_a_variable = "My User"
 my_user = "lswebdevelops"
 
 CONSTANTE_LANGUAGE = "Python"
+integer = 12
+spring = "python is my language"
+boolean = False
+dictionary = {12, 12,122, 234, 234}
+array = ['test' , 23, 23, "2333"]
 
-print(CONSTANTE_LANGUAGE)
+
+print(f"!Hola, {CONSTANTE_LANGUAGE}!")
