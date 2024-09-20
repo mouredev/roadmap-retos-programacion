@@ -281,16 +281,16 @@ a = [1, 2, 3, 4, 5]
 print(f"a = {a}")
 #Esta 3 en la lista a?
 print(f"3 in a: {3 in a}") # Muestra True 
-  
+
 #No está 12 en la lista a?
 print(f"12 not in a: {12 not in a}") # Muestra True
-  
+
 str = "Hello World"
 print(f"str: {str}")
 
 #Contiene World el string str?
 print(f"'World' in str: {'World' in str}") # Muestra True
-  
+
 #Contiene world el string str? (nota: distingue mayúsculas y minúsculas)
 print(f"'world' in str: {'world' in str}")  # Muestra False  
 
@@ -305,37 +305,33 @@ Consideremos a = 2 (en binario = 10) y b = 3 (en binario = 11) para los siguient
 """
 a = 2 # (en binario = 10)
 b = 3 # (en binario = 11)
-print("""Operador &
-      Realiza bit a bit la operación AND en los operandos""")
+print("""Operador & \nRealiza bit a bit la operación AND en los operandos""")
 print(f"a & b: {a & b}") # = 2(Binario: 10 & 11 = 10)
 
 print("""
-Operador |
-      Realiza bit a bit la operación OR en los operandos""")
+Operador | \nRealiza bit a bit la operación OR en los operandos""")
 print(f"a | b: {a | b}") # = 3 (Binario: 10 | 11 = 11)
 
 print("""
-Operador ^
-      Realiza bit a bit la operación XOR en los operandos""")
+Operador ^ \nRealiza bit a bit la operación XOR en los operandos""")
 print(f"a ^ b: {a ^ b}") # = 1 (Binario: 10 ^ 11 = 01)
 
 print("""
-Operador ~
-      Realiza bit a bit la operación NOT bit a bit. Invierte cada bit en el operando""")
+Operador ~ \nRealiza bit a bit la operación NOT bit a bit. Invierte cada bit en el operando""")
 print(f"~ a: {~ a}") # = -3 (Binario: ~(00000010) = (11111101))
 
 print("""
-Operador >>
-      Realiza un desplazamiento a la derecha bit a bit.
-      Desplaza los bits del operador de la izquierda a la derecha tantos bits 
-      como indica el operador de la derecha""")
+Operador >> 
+        Realiza un desplazamiento a la derecha bit a bit.
+        Desplaza los bits del operador de la izquierda a la derecha tantos bits 
+        como indica el operador de la derecha""")
 print(f"a >> b: {a >> b}") # = 0 (Binario: 00000010 >> 00000011 = 0)
 
 print("""
 Operador <<
-      Realiza un desplazamiento a la izquierda bit a bit. 
-      Desplaza los bits del operando de la izquierda a la izquierda tantos bits 
-      como especifique el operador de la derecha""")
+        Realiza un desplazamiento a la izquierda bit a bit. 
+        Desplaza los bits del operando de la izquierda a la izquierda tantos bits 
+        como especifique el operador de la derecha""")
 print(f"a << b: {a << b}") # 16 (Binario: 00000010 << 00000011 = 00001000)
 
 # ESTRUCTURAS DE CONTROL
@@ -376,8 +372,7 @@ elif calificacion >= 70:
 else:
     print("No aprobado")
     
-print("""
-Ciclo for""")
+print("Ciclo for")
 """
 En Python, el ciclo for se utiliza para iterar sobre una secuencia 
 (como una lista, tupla, cadena de caracteres, etc.) o cualquier objeto iterable. 
@@ -399,8 +394,7 @@ for n in numeros:
     print(n)
 
 
-print("""
-Ciclo while""")
+print("Ciclo while")
 """
 En Python, el ciclo while se utiliza para ejecutar un bloque de código mientras 
 una condición especificada sea verdadera. Su estructura básica es la siguiente:
@@ -429,11 +423,11 @@ while numero <= 5:
 print("DIFICULTAD EXTRA")
 for i in range(10, 56):
     if i % 2 == 0: # Pares
-        if i % 16 != 0: # No es el 16
+        if i != 16: # No es el 16
             if i % 3 != 0: # No es multiplo de 3
                 print(i)
 
 print("Optimizado")
 for i in range(10, 56):
-    if (i % 2 == 0 and i % 16 != 0 and i % 3 != 0):
+    if (i % 2 == 0 and i != 16 and i % 3 != 0):
         print(i)

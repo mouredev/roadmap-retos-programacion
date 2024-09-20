@@ -51,7 +51,7 @@ class GeometricShape {
 	}
 
 	getArea() {
-		return false;
+		return 1;
 	}
 }
 
@@ -60,6 +60,7 @@ class Rectangle extends GeometricShape {
 		super();
 		this.height = height;
 		this.width = width;
+		this.area = this.getArea();
 	}
 
 	getArea() {
@@ -71,6 +72,7 @@ class Square extends GeometricShape {
 	constructor(height) {
 		super();
 		this.height = height;
+		this.area = this.getArea();
 	}
 
 	getArea() {
@@ -82,16 +84,11 @@ class Circle extends GeometricShape {
 	constructor(radius) {
 		super();
 		this.radius = radius;
+		this.area = this.getArea();
 	}
 
 	getArea() {
 		return this.radius * 2 * Math.PI;
-	}
-}
-
-class AreaCalculator {
-	calculateArea(shape) {
-		return shape.getArea();
 	}
 }
 
@@ -100,12 +97,14 @@ class App {
 	square = new Square(20);
 	circle = new Circle(5);
 
-	areaCalc = new AreaCalculator();
+	calculateArea(geometricShape) {
+		return geometricShape.area;
+	}
 
 	displayAreas() {
-		console.log('Rectángulo:', this.areaCalc.calculateArea(this.rectangle));
-		console.log('Cuadrado:', this.areaCalc.calculateArea(this.square));
-		console.log('Círculo:', this.areaCalc.calculateArea(this.circle));
+		console.log('Rectángulo:', this.calculateArea(this.rectangle));
+		console.log('Cuadrado:', this.calculateArea(this.square));
+		console.log('Círculo:', this.calculateArea(this.circle));
 	}
 }
 
@@ -117,78 +116,81 @@ app.displayAreas();
 console.log('\nCalculadora');
 class Operation {
 	calculate(a, b) {
-		throw new Error('operación no soportada');
+		throw new Error('Operación no soportada');
 	}
 }
 
-class Add extends Operation {
+class Addition extends Operation {
 	calculate(a, b) {
 		return a + b;
 	}
 }
 
-class Susbtract extends Operation {
+class Substraction extends Operation {
 	calculate(a, b) {
 		return a - b;
 	}
 }
 
-class Multiply extends Operation {
+class Multiplication extends Operation {
 	calculate(a, b) {
 		return a * b;
 	}
 }
 
-class Divide extends Operation {
+class Division extends Operation {
 	calculate(a, b) {
 		return a / b;
 	}
 }
 
 class Calculator {
-	operations = {
-		add: new Add(),
-		substract: new Susbtract(),
-		multiply: new Multiply(),
-		divide: new Divide(),
-	};
+	operations = {};
 
-	calculate(operationType, a, b) {
-		let operation = this.operations[operationType] || new Operation();
+	addOperation(name, operation) {
+		this.operations[name] = operation;
+	}
+
+	calculate(operation, a, b) {
+		let op = this.operations[operation] || new Operation();
 
 		try {
-			return operation.calculate(a, b);
+			return op.calculate(a, b);
 		} catch (error) {
-			console.log(`Se produjo un error: ${error.message}`);
+			console.log(`Se produjo un error. ${error.message}: ${operation}`);
 			return NaN;
 		}
 	}
 }
 
 const calculator = new Calculator();
+calculator.addOperation('Addition', new Addition());
+calculator.addOperation('Substraction', new Substraction());
+calculator.addOperation('Multiplication', new Multiplication());
+calculator.addOperation('Division', new Division());
 
-let result = calculator.calculate('add', 12, 10);
+let result = calculator.calculate('Addition', 12, 10);
 console.log('Suma:', result);
 
-result = calculator.calculate('substract', 10, 2);
+result = calculator.calculate('Substraction', 10, 2);
 console.log('Resta:', result);
 
-result = calculator.calculate('multiply', 10, 2);
+result = calculator.calculate('Multiplication', 10, 2);
 console.log('Multiplicación:', result);
 
-result = calculator.calculate('divide', 10, 2);
+result = calculator.calculate('Division', 10, 2);
 console.log('División:', result);
 
-result = calculator.calculate('exponent', 10, 2);
+result = calculator.calculate('Pow', 10, 2);
 console.log('Potencia:', result);
 
-class Exponent extends Operation {
+class Pow extends Operation {
 	calculate(a, b) {
 		return a ** b;
 	}
 }
 
-calculator.operations.exponent = new Exponent();
+calculator.addOperation('Pow', new Pow());
 
-result = calculator.calculate('exponent', 10, 2);
+result = calculator.calculate('Pow', 10, 2);
 console.log('Potencia:', result);
