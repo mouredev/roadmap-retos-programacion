@@ -1,4 +1,4 @@
-# https://www.python.org
+# 'https://www.python.org'
 
 # Comentario en una linea 
 
@@ -9,8 +9,7 @@ o en varias lineas
 
 my_variable = "Variable"
 
-MY_CONSTANT = "Constant"  # "Constant"
-
+MY_CONSTANT = "Constant"  # "Constante"
 
 my_str = "Alex"
 my_int = 8
