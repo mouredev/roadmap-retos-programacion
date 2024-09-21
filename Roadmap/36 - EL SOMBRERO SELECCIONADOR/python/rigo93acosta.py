@@ -19,6 +19,7 @@
  *    pero indicándole al alumno que la decisión ha sido complicada).
  */
 '''
+import random
 
 houses = {
     "Frontend": 0,
@@ -237,4 +238,32 @@ questions = [
         ]
     }
 ]
+
+print("¡Bienvenido al Hogwarts para magos y brujas del código!")
+print("El sombrero seleccionador te ayudará a encontrar tu casa ideal.")
+name = input("¿Cuál es tu nombre? ")
+
+for index, question in enumerate(questions):
+    print(f"\nPregunta {index + 1}: {question['question']}\n")
+
+    for i, answer in enumerate(question['answers']):
+        print(f"{i + 1}. {answer['option']}")
+
+    choice = int(input("\nElige una opción (1-4): "))
+    house = question['answers'][choice - 1]['house']
+    houses[house] += 1
+
+print(f"\n¡{name.capitalize()}! El sombrero seleccionador ha tomado una decisión...")
+assig_house = max(houses, key=houses.get)
+scores = list(houses.values())
+
+if scores.count(max(scores)) > 1:
+    print(f"Hmmmm.... La decisión ha sido complicada, pero......")
+    possible_houses = [
+        house for house, points in houses.items() if points == max(scores)
+    ]
+    assig_house = random.choice(possible_houses)
+    print(f"¡{name.capitalize()} tu casa es... {assig_house}!")
+else:
+    print(f"¡{name.capitalize()} tu casa es... {assig_house}!")
 
