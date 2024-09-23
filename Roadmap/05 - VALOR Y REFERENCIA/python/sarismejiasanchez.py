@@ -22,7 +22,8 @@ print(b)    # 20 (b tiene un nuevo valor)
 
 # PASO POR REFERENCIA
 # Variables mutables (se comportan como si fueran "por referencia")
-# Los tipos de datos mutables incluyen list, dict, set. Modificar una variable mutable afecta # a todas las referencias que apuntan a ese objeto.
+# Los tipos de datos mutables incluyen list, dict, set. Modificar una variable mutable afecta
+# a todas las referencias que apuntan a ese objeto.
 
 print("PASO POR REFERENCIA")
 # Variables mutables (listas)
@@ -80,5 +81,39 @@ print(mi_lista)     # [1, 2, 3, 100] (la lista ha sido modificada)
 *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
 *   Comprueba también que se ha conservado el valor original en las primeras.
 */
-
 """
+
+print("\nEXTRA")
+# POR VALOR
+print("POR VALOR")
+def values_exchange(value1, value2):
+    temp = value1  # Guarda temporalmente el valor de value1
+    value1 = value2     # Asigna el valor de value2 a value1
+    value2 = temp     # Asigna el valor temporal (el original de value1) a value2
+    return value1, value2
+
+num1 = 10
+num2 = 15
+print(f"Valor original num1: {num1}")
+print(f"Valor original num2: {num2}")
+
+inter_num1, inter_num2 = values_exchange(num1, num2)
+print(f"Valor intercambio num1: {inter_num1}")
+print(f"Valor intercambio num2: {inter_num2}")
+    
+# POR REFERENCIA
+print("\nPOR REFERENCIA")
+
+def reference_exchange(value1, value2):
+    # Intercambiar el contenido de los argumentos mutables
+    value1[:], value2[:] = value2[:], value1[:]     # Asignación por slice para modificar in-place
+    return value1, value2
+
+
+numbers = [num for num in range(10) if num % 2 == 0]    # Numeros pares entre 0 y 10
+fruits = ["naranja", "melon", "manzana"]    # Lista de frutas
+print(f"Valor original numbers: {numbers}")
+print(f"Valor original fruits: {fruits}")
+inter_value1, inter_value2 = reference_exchange(numbers, fruits)
+print(f"Valor intercambio numbers: {inter_value1}")
+print(f"Valor intercambio fruits: {inter_value2}")
