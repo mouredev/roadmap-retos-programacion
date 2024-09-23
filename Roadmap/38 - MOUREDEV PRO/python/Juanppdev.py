@@ -41,7 +41,7 @@ def seleccionar_ganadores(suscriptores):
 
 # Mostrar los ganadores
 def mostrar_ganadores(ganadores):
-    premios = ['suscripción', 'descuento', 'libro']
+    premios = ['suscripción', 'Descuento', 'Libro']
     for ganador, premio in zip(ganadores, premios):
         print(f"Ganador de {premio}: ID {ganador['id']}, Email {ganador['email']}")
 
