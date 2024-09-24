@@ -1,8 +1,8 @@
 // Clase base o superclase
-class Animal {
+class eulogioep {
     protected String nombre;
 
-    public Animal(String nombre) {
+    public eulogioep(String nombre) {
         this.nombre = nombre;
     }
 
