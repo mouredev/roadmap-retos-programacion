@@ -31,7 +31,7 @@ public class llonardo798 {
         long distanciaTierraSol = 149600000000L;    // 64 bits, rango de valores permitidos -9223372036854775808 hasta 9223372036854775807
         float precioProducto  = 19.99f;             // 32 bits, rango de valores permitidos 1.4e-045 hasta 3.4e+038
         double gravedadTierra = 9.80665;            // 64 bits, rango de valores permitidos -1.79769313486232e308 hasta 1.79769313486232e308
-        char primeraLetra = 'L';                    // 16 bits, rango de valores permitidos '\u000' hasta '\uffff' (Caracteres Unicode)
+        char primeraLetra = 'L';                    // 16 bits, rango de valores permitidos '\u0000' hasta '\uffff' (Caracteres Unicode)
 
         // 5. Imprimir en consola.
         System.out.println("Hola, Java!");
