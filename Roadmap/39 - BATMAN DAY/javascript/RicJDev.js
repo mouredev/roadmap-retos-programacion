@@ -8,7 +8,7 @@
 
 // Nos creamos una función que generará un día de Batman para el año que le pasemos como parámetro.
 
-function generateBatmanDay(year = 2014) {
+function getBatmanDay(year = 2014) {
   let week = 0
 
   let day = 1
@@ -29,7 +29,7 @@ function generateBatmanDay(year = 2014) {
 let year = 2024
 
 for (let i = 0; i < 15; i++) {
-  console.log(generateBatmanDay(year).toLocaleDateString())
+  console.log(getBatmanDay(year).toLocaleDateString())
   year++
 }
 
