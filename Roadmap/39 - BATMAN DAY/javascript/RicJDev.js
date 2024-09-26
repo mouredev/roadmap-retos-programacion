@@ -34,7 +34,7 @@ for (let i = 0; i < 15; i++) {
 
 // RETO 2: El Bati-sistema de seguridad.
 
-// Creamos nuestro tablero de 20x20 que representará a Gotham City.
+// Creamos nuestro tablero de 20x20 que representará a Gotham City. Inicialmente todos los cuadros tendran un nivel de amenaza 0.
 
 const GothamCity = Array(20)
 
@@ -43,17 +43,19 @@ for (let i = 0; i < GothamCity.length; i++) {
 }
 
 /*
-    Creamos una función que reciba los reportes de amenazas.
+    Creamos una función que reciba una lista con los reportes de amenazas.
 
     Debido a que en JavaScript no hay tuplas, las simularemos con arrays.
-    Cada uno tendrá tres valores: [coordenada y, coordenada x, nivel de amenaza]
+    Cada reporte tendrá tres valores: [coordenada y, coordenada x, nivel de amenaza]
 
     Usaremos esto para ubicar y asignar el valor de cada amenaza dentro de nuestro GothamCity.
 */
 
 function updateCityStatus(reports) {
-  reports.forEach((tuple) => {
-    GothamCity[tuple[0]][tuple[1]] = tuple[2]
+  reports.forEach((report) => {
+    const [y, x, level] = report
+
+    GothamCity[y][x] = level
   })
 }
 
@@ -68,6 +70,9 @@ const reports = [
   [2, 5, 5],
   [17, 9, 6],
   [1, 16, 7],
+  [9, 4, 8],
+//  [10, 5, 10],
+  [10, 6, 10],
   [2, 9, 6],
   [7, 15, 8],
   [1, 9, 2],
@@ -76,8 +81,72 @@ const reports = [
 
 updateCityStatus(reports)
 
-// Una vez tengamos esto, podemos 'escanear' la ciudad para ver dónde debemos concentrar los recursos.
+// Esta función copia 'áreas' de 3x3 del mapa según las coordenadas que le pasemos.
+
+function getArea(y, x) {
+  let area = []
+
+  for (let i = 0; i < 3; i++) area.push(GothamCity[y + i].slice(x, x + 3))
+
+  return area
+}
+
+// Para obtener el nivel de amenaza (la sumatoria total) de cada área tendremos la siguiente función.
+
+function getThreatLevelOf(area) {
+  const total = []
+
+  area.forEach((row) => total.push(row.reduce((counter, value) => counter + value)))
+
+  return total.reduce((counter, value) => counter + value)
+}
+
+/*
+    Finalmente creamos una función para escanear toda la ciudad.
+
+    Esta devuelve un objeto con las siguientes claves:
+    - area: la cuadrícula 3x3 que representa el área con mayor nivel de amenaza.
+    - level: la sumatoria de los sensores de área.
+    - coords: las coordenadas del centro de área.
+*/
 
 function scanCity() {
-  // TODO
+  const result = { area: [], level: 0, coords: [0, 0] }
+
+  for (let i = 0; i < GothamCity.length - 3; i++) {
+    for (let j = 0; j < GothamCity[0].length - 3; j++) {
+      const zone = getArea(i, j)
+      const level = getThreatLevelOf(zone)
+
+      if (level > result.level) {
+        result.area = zone
+        result.level = level
+        result.coords = [i + 1, j + 1]
+      }
+    }
+  }
+
+  return result
 }
+
+// Implementamos esto en nuestro sistema de seguridad.
+
+function securitySystem() {
+  const { area, level, coords } = scanCity()
+  const [y, x] = coords
+
+  console.log(`Se ha detectado un nivel de amenaza ${level}.`)
+  console.log(`Las coordenadas son (${x}, ${y}).`)
+
+  if (level >= 20) {
+    console.log('Batman esta en camino...')
+    // TODO: actualizar los valores del área para eliminar la amenaza.
+    return
+  }
+
+  console.log(`No supera el umbral de seguridad.`)
+}
+
+console.log(' ')
+
+securitySystem()
