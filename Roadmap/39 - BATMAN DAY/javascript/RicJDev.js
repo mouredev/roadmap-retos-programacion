@@ -4,7 +4,7 @@
   @RicJDev
 */
 
-// RETO 1: Día de Batman.
+console.log('RETO 1: Día de Batman.\n')
 
 // Nos creamos una función que generará un día de Batman para el año que le pasemos como parámetro.
 
@@ -32,7 +32,7 @@ for (let i = 0; i < 15; i++) {
   year++
 }
 
-// RETO 2: El Bati-sistema de seguridad.
+console.log('\nRETO 2: El Bati-sistema de seguridad.')
 
 // Creamos nuestro tablero de 20x20 que representará a Gotham City. Inicialmente todos los cuadros tendran un nivel de amenaza 0.
 
@@ -71,7 +71,7 @@ const reports = [
   [17, 9, 6],
   [1, 16, 7],
   [9, 4, 8],
-//  [10, 5, 10],
+  [10, 5, 10],
   [10, 6, 10],
   [2, 9, 6],
   [7, 15, 8],
@@ -84,7 +84,7 @@ updateCityStatus(reports)
 // Esta función copia 'áreas' de 3x3 del mapa según las coordenadas que le pasemos.
 
 function getArea(y, x) {
-  let area = []
+  const area = []
 
   for (let i = 0; i < 3; i++) area.push(GothamCity[y + i].slice(x, x + 3))
 
@@ -107,19 +107,18 @@ function getThreatLevelOf(area) {
     Esta devuelve un objeto con las siguientes claves:
     - area: la cuadrícula 3x3 que representa el área con mayor nivel de amenaza.
     - level: la sumatoria de los sensores de área.
-    - coords: las coordenadas del centro de área.
+    - coords: las coordenadas del centro de área ( [coordenada y, coordenada x] ).
 */
 
 function scanCity() {
-  const result = { area: [], level: 0, coords: [0, 0] }
+  const result = { level: 0, coords: [0, 0] }
 
   for (let i = 0; i < GothamCity.length - 3; i++) {
     for (let j = 0; j < GothamCity[0].length - 3; j++) {
-      const zone = getArea(i, j)
-      const level = getThreatLevelOf(zone)
+      const area = getArea(i, j),
+        level = getThreatLevelOf(area)
 
       if (level > result.level) {
-        result.area = zone
         result.level = level
         result.coords = [i + 1, j + 1]
       }
@@ -129,24 +128,43 @@ function scanCity() {
   return result
 }
 
-// Implementamos esto en nuestro sistema de seguridad.
+/*
+    Implementamos esto en nuestro sistema de seguridad.
+
+    Al pasar el umbral, Batman se dirige a la zona y empieza a repartir putazos (actualizando los valores a cero en esa área).
+*/
 
 function securitySystem() {
-  const { area, level, coords } = scanCity()
-  const [y, x] = coords
+  const { level, coords } = scanCity()
 
-  console.log(`Se ha detectado un nivel de amenaza ${level}.`)
-  console.log(`Las coordenadas son (${x}, ${y}).`)
+  let y = coords[0],
+    x = coords[1]
 
-  if (level >= 20) {
-    console.log('Batman esta en camino...')
-    // TODO: actualizar los valores del área para eliminar la amenaza.
+  console.log('Analizando ciudad en busca de amenazas potenciales...')
+  console.log(
+    `Se ha detectado un nivel de amenaza ${level} en las coordenadas (${x}, ${y}), a ${
+      x + y
+    } kilómetros de la Bati-cueva.`
+  )
+
+  if (level < 20) {
+    console.log(`No supera el umbral de amenaza. No se ha activado el protocolo de seguridad.`)
     return
   }
 
-  console.log(`No supera el umbral de seguridad.`)
+  console.log('El protocolo de seguridad ha sido activado. Batman está en camino.')
+
+  y--, x--
+
+  for (let i = y; i < y + 3; i++) {
+    for (let j = x; j < x + 3; j++) {
+      GothamCity[i][j] = 0
+    }
+  }
 }
 
 console.log(' ')
+securitySystem()
 
+console.log(' ')
 securitySystem()
