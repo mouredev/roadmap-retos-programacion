@@ -105,7 +105,6 @@ function getThreatLevelOf(area) {
     Finalmente creamos una función para escanear toda la ciudad.
 
     Esta devuelve un objeto con las siguientes claves:
-    - area: la cuadrícula 3x3 que representa el área con mayor nivel de amenaza.
     - level: la sumatoria de los sensores de área.
     - coords: las coordenadas del centro de área ( [coordenada y, coordenada x] ).
 */
