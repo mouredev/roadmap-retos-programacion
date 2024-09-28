@@ -1,20 +1,3 @@
-/*
- * EJERCICIO:
- * - Muestra ejemplos de asignación de variables "por valor" y "por referencia", según
- *   su tipo de dato.
- * - Muestra ejemplos de funciones con variables que se les pasan "por valor" y 
- *   "por referencia", y cómo se comportan en cada caso en el momento de ser modificadas.
- * (Entender estos conceptos es algo esencial en la gran mayoría de lenguajes)
- *
- * DIFICULTAD EXTRA (opcional):
- * Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
- * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
- *   Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
- *   se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
- *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
- *   Comprueba también que se ha conservado el valor original en las primeras.
- */
-
 // Asignacion de variables por valor
 let valor1 = 25;
 console.log(`Asignación de variable por valor → valor1 = ${valor1}.`)
@@ -29,7 +12,6 @@ console.log(`Asignación de variable por referencia → objetoReferencia = ${JSO
 //Funciones con variables por valor
 function descuento10(fullPrize) {
     fullPrize = fullPrize-fullPrize*0.10;
-    console.log(`El precio del articulo con descuento es de ${fullPrize}`);
     return fullPrize;
 }
 
@@ -46,11 +28,47 @@ let stockProductos = [
     {nombre: "Termo", precio: 1800, stock: 7},
     {nombre: "Bombilla", precio: 80, stock: 2}
 ]
+
 function actualizaStock(producto,cantidad) {
-    let nuevoStock = stockProductos;
-    nuevoStock[producto].stock=cantidad;
-    console.log(nuevoStock)
-    return (nuevoStock);
+    stockProductos[producto].stock=cantidad;
+    console.log(`El nuevo stock de ${stockProductos[producto].nombre} es: ${cantidad}`);
 }
 
 actualizaStock(1,9);
+
+/*
+ * DIFICULTAD EXTRA (opcional):
+ * Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
+ * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
+ *   Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
+ *   se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
+ *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
+ *   Comprueba también que se ha conservado el valor original en las primeras.
+ */
+
+//Programa 1
+let a =  "Abierto"
+let b = "Cerrado"
+
+function intercambiaPorValor(a,b) {
+    let guardaA = a;
+    a = b;
+    b = guardaA;
+    return[a,b]
+}
+let resultado = intercambiaPorValor(a, b);
+// Muestra los valores intercambiados
+console.log(`Los valores intercambiados son: ${resultado}`); 
+//comprobar valores originales
+console.log(`Los valores originales son: ${a}, ${b}`); 
+
+//Programa2
+let programa2 = [
+    {cosa: 1, material: "hierro"},
+    {cosa: 2, material: "madera"},
+    {cosa: 3, material: "aluminio"},
+
+]
+function intercambiaPorReferencia(c,d) {
+    
+}
