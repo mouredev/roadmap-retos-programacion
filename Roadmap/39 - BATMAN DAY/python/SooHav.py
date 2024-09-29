@@ -1,19 +1,21 @@
 # 39 Batman day
 
-from datetime import datetime
 from tkinter import *
 from tkinter import ttk
 import numpy as np
-
+import calendar
+import datetime
 # Reto 1
 
 
 class BatmanDay:
-    def __init__(self, root):
+    def __init__(self, root, anio=2039, mes=9):
         self.root = root
         self.root.title("Días para el centenario de Batman")
         self.root.configure(background='black')
         self.root.geometry("600x140")
+        self.anio = anio
+        self.mes = mes
 
         # Etiqueta
         self.etiqueta = ttk.Label(self.root, font=("Helvetica", 20),
@@ -31,18 +33,34 @@ class BatmanDay:
         self.boton_apagado.pack(pady=10)
 
         # Calcular los días y mostrar el resultado
-        self.mostrar_dias("2039-09-21")  # Centenario de Batman
+        self.mostrar_dias(anio, mes)  # Centenario de Batman
 
-    def calcular_dias(self, fecha_final):
+    def tercer_sabado_de_mes(self, anio, mes):
+        """
+        Calcula la fecha del tercer sábado de un mes dado.
+        """
+        calendario = calendar.Calendar(firstweekday=calendar.SATURDAY)
+        dias_del_mes = calendario.itermonthdates(anio, mes)
+
+        sabados = 0
+        for dia in dias_del_mes:
+            if dia.weekday() == calendar.SATURDAY:
+                sabados += 1
+            if sabados == 3:
+                return dia
+
+        return None
+
+    def calcular_dias(self, anio, mes):
         """Calcula los días entre la fecha actual y la fecha final."""
-        fecha1 = datetime.today()
-        fecha2 = datetime.strptime(fecha_final, '%Y-%m-%d')
-        diferencia = fecha2 - fecha1
+        fecha1 = datetime.date.today()
+        fecha2 = self.tercer_sabado_de_mes(anio, mes)
+        diferencia = (fecha2 - fecha1)
         return diferencia.days
 
-    def mostrar_dias(self, fecha_final):
+    def mostrar_dias(self, anio, mes):
         """Muestra el número de días restantes."""
-        dias_restantes = self.calcular_dias(fecha_final)
+        dias_restantes = self.calcular_dias(anio, mes)
         self.etiqueta.config(
             text=f"Faltan {dias_restantes} días para el centenario de Batman")
 
