@@ -1,51 +1,51 @@
 def my_agenda():
-    agenda = {}
+    diccionario = {}
 
-    def insert_contact(name):
-        phone = input("Introduce el teléfono del contacto: ")
-        if phone.isdigit() and len(phone) > 0 and len(phone) <= 11:
-            agenda[name] = phone
+    def agregar_usuario():
+        telefono = input(
+            "Ingrese numero de telefono no debe superar los 11 caracteres")
+        if telefono.isdigit() and len(telefono) < 11:
+            diccionario[usuario] = telefono
         else:
-            print("Debes introducir un número de teléfono un máximo de 11 dígitos.")
+            print("numero no cumple condiciones")
 
     while True:
-        print("")
-        print("1. Buscar contacto")
-        print("2. Insertar contacto")
-        print("3. Actualizar contacto")
-        print("4. Eliminar contacto")
-        print("5. Salir")
-
-        option = input("\nSelecciona una opción: ")
-
-        match option:
+        print("Bienvenido a la terminal")
+        print("1. Ingresar usuario: ")
+        print("2. Para Buscar usuario: ")
+        print("3. Para Eliminar usuario: ")
+        print("4. Para Actualizar usuario: ")
+        print("5. Para salir.")
+        opcion_usuario = input("Ingrese una opción: ")
+        match opcion_usuario:
             case "1":
-                name = input("Introduce el nombre del contacto a buscar: ")
-                if name in agenda:
-                    print(
-                        f"El número de teléfono de {name} es {agenda[name]}.")
-                else:
-                    print(f"El contacto {name} no existe.")
+                usuario = input("Ingrese usuario: ")
+                agregar_usuario()
             case "2":
-                name = input("Introduce el nombre del contacto: ")
-                insert_contact(name)
+                usuario = input("Ingrese usuario a buscar: ")
+                if usuario in diccionario:
+                    print(
+                        f"El número de teléfono de {usuario} es {diccionario[usuario]}.")
+                else:
+                    print(f"Usuario {usuario} no encontrado")
             case "3":
-                name = input("Introduce el nombre del contacto a actualizar: ")
-                if name in agenda:
-                    insert_contact(name)
+                usuario = input("Introduce el usuario a eliminar: ")
+                if usuario in diccionario:
+                    del diccionario[usuario]
+                    print("Usuario eliminado correctamente")
                 else:
-                    print(f"El contacto {name} no existe.")
+                    print("Usuario no existe")
             case "4":
-                name = input("Introduce el nombre del contacto a eliminar: ")
-                if name in agenda:
-                    del agenda[name]
+                usuario = input("Introduce el usuario a actualizar: ")
+                if usuario in diccionario:
+                    agregar_usuario()
                 else:
-                    print(f"El contacto {name} no existe.")
+                    print("Usuario no existe")
             case "5":
-                print("Saliendo de la agenda.")
+                print("Saliendo del programa")
                 break
             case _:
-                print("Opción no válida. Elige una opción del 1 al 5.")
+                print("Opcion invalida favor de leer las intrucciones")
 
 
 my_agenda()
