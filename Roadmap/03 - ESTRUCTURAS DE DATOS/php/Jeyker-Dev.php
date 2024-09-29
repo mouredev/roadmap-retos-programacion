@@ -160,4 +160,72 @@
 
     print_r($splobjectstorage);
 
+    /*  Ejercicio de Agenda de Contactos    */
+
+    echo "Bienvenido a la Agenda de Contactos.\n";
+    echo "Las Opciones que se pueden realizar son las siguientes:\n";
+    echo "Ver Lista de Contactos. Coloca 1.\n";
+    echo "Buscar un Contacto en la Lista. Coloca 2.\n";
+    echo "Guardar Contacto. Coloca 3.\n";
+    echo "Actualizar Contacto. Coloca 4.\n";
+    echo "Eliminar Contacto. Coloca 5.\n";
+    echo "Salir de la Agenda. Coloca 6.\n";
+
+    Class Contacto
+    {
+        public $nombre;
+        public $numero;
+        public static $agenda;
+        public function __construct($nombre, $numero)
+        {
+            $this->nombre = $nombre;
+            $this->numero = $numero;
+        }   // Here End Constructor
+
+        public static function iniciarAgenda()
+        {
+            self::$agenda = new SplObjectStorage;
+        }   // Here End Function
+
+        // Guarda los Contactos en la Agenda
+        public function guardar()
+        {
+
+        }   // Here End FUnction
+
+        // Actualiza los Contactos en la Agenda
+        public function actualizar()
+        {
+
+        }   // Here End FUnction
+
+        // Elimina los Contactos en la Agenda
+        public function eliminar()
+        { 
+
+        }   // Here End Function
+
+        // Muestra los Contactos de la Agenda
+        public function show()
+        {
+
+        }   // Here End Function
+    }   // Here End Class
+
+    Contacto::iniciarAgenda();
+    $agenda = Contacto::$agenda;
+
+    $contacto_1 = new Contacto("Jeyker", "04245652392");
+    $contacto_2 = new Contacto("Maria", "04263318767");
+    $contacto_3 = new Contacto("Ramon", "04125618690");
+    $contacto_4 = new Contacto("Alejandro", "04164126754");
+    $contacto_5 = new Contacto("Fernando", "04148879135");
+
+    $agenda->attach(object: $contacto_1);
+    $agenda->attach(object: $contacto_2);
+    $agenda->attach(object: $contacto_3);
+    $agenda->attach(object: $contacto_4);
+    $agenda->attach(object: $contacto_5);
+
+    print_r(value: $agenda);
 ?>
