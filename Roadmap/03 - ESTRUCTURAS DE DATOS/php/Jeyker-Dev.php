@@ -197,17 +197,16 @@
         public function actualizar()
         {
 
-        }   // Here End FUnction
+        }   // Here End Function
+
+        // Muestra los Conctactos de la Agenda
+        public function getInfo() {
+            return "Nombre: $this->nombre, Número: $this->numero";
+        }
 
         // Elimina los Contactos en la Agenda
         public function eliminar()
         { 
-
-        }   // Here End Function
-
-        // Muestra los Contactos de la Agenda
-        public function show()
-        {
 
         }   // Here End Function
     }   // Here End Class
@@ -227,5 +226,60 @@
     $agenda->attach(object: $contacto_4);
     $agenda->attach(object: $contacto_5);
 
-    print_r(value: $agenda);
+    $numero =  trim(fgets((STDIN)));
+
+    if(filter_var($numero, FILTER_VALIDATE_INT) === false)
+    {
+        echo "El Dato a Ingresar Debe Ser un Numero.\n";
+        exit;
+    }   // Here End If
+
+    // Validacion para que el numero a ingresar sea entre las opciones dadas
+    if($numero <= 0 || $numero > 6)
+    {
+        echo "El Dato a Ingresar Debe Ser Entre las Opciones Dadas.\n";
+        exit;
+    }   // Here End If
+
+    switch($numero)
+    {
+        case 1:
+            echo "Lista de Contactos: \n";
+
+            // Mostrar contactos con Nombre y Numero
+            $agenda->rewind();
+            while ($agenda->valid()) 
+            {
+                $contacto = $agenda->current();
+                $info = $agenda->getInfo();
+
+                echo $contacto->getInfo() . " - " . $info . "\n";
+                $agenda->next();
+            }   // Here End While
+            break;
+
+        case 2:
+            echo "Es 2";
+            break;
+
+        case 3:
+            echo "Es 3";
+            break;
+
+        case 4;
+        echo "Es 4";
+            break;
+
+        case 5;
+        echo "Es 5";
+        break;
+
+        case 6:
+            echo "Es 6";
+            break;
+
+            default:
+            echo "Error Inesperado. Vuelva a Intentar";
+            break;
+    }   // Here End Switch
 ?>
