@@ -189,9 +189,10 @@
         }   // Here End Function
 
         // Guarda los Contactos en la Agenda
-        public function guardar()
+        public static function guardar($nuevo_contacto)
         {
-
+            self::$agenda->attach($nuevo_contacto);
+            echo "Contacto Agregado Correctamente";
         }   // Here End FUnction
 
         // Actualiza los Contactos en la Agenda
@@ -300,8 +301,19 @@
                 }   // Here End Else
             break;
 
+            // Guardar un Contacto
         case 3:
-            echo "Es 3";
+            echo "Escribe un Nombre para el Contacto: . \n";
+            $nombre_contacto = trim(fgets(STDIN));
+
+            echo "Escribe un Numero para el Contacto: . \n";
+            $numero_contacto = trim(fgets(STDIN));
+
+            $contacto_nuevo = new Contacto($nombre_contacto, $numero_contacto);
+
+            $agenda->attach($contacto_nuevo);
+
+            echo "Contacto Agregado Correctamente.\n";
             break;
 
         case 4;
