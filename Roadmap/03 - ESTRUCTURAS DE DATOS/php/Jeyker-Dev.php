@@ -182,6 +182,7 @@
             $this->numero = $numero;
         }   // Here End Constructor
 
+        // Instancia de SPlobjectStorage
         public static function iniciarAgenda()
         {
             self::$agenda = new SplObjectStorage;
@@ -200,9 +201,23 @@
         }   // Here End Function
 
         // Muestra los Conctactos de la Agenda
-        public function getInfo() {
+        public function getInfo() 
+        {
             return "Nombre: $this->nombre, Número: $this->numero";
-        }
+        }   // Here End Function
+
+        public static function find($nombre_buscar)
+        {
+            self::$agenda->rewind();
+            while (self::$agenda->valid()) {
+                $contacto = self::$agenda->current();
+                if ($contacto->nombre == $nombre_buscar) {
+                    return $contacto;
+                }
+                self::$agenda->next();
+            }
+            return false;
+        }   // Here End Function
 
         // Elimina los Contactos en la Agenda
         public function eliminar()
@@ -253,13 +268,23 @@
                 $contacto = $agenda->current();
                 $info = $agenda->getInfo();
 
-                echo $contacto->getInfo() . " - " . $info . "\n";
+                echo $contacto->getInfo() . ". \n";
                 $agenda->next();
             }   // Here End While
             break;
 
         case 2:
-            echo "Es 2";
+            echo "Ingresa El Nombre del Contacto que Buscas:\n";
+            $contacto_buscar = trim(fgets(STDIN));
+            $contacto = Contacto::find($contacto_buscar);
+                if ($contacto) 
+                {
+                    echo "Contacto encontrado: " . $contacto->getInfo() . "\n";
+                }   // Here End If 
+                else 
+                {
+                    echo "No se encontraron contactos.\n";
+                }   // Here End Else
             break;
 
         case 3:
@@ -275,7 +300,8 @@
         break;
 
         case 6:
-            echo "Es 6";
+            echo "Saliendo de la Agenda.\n";
+            exit;
             break;
 
             default:
