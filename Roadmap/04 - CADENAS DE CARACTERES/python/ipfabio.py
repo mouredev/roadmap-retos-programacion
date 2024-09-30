@@ -89,44 +89,42 @@ print(s4.isnumeric())
 """
 Extra
 """
+print("-- Extra --\n")
+def imprimir_resultado(titulo: str, function, *args):
+    print("")
+    print(titulo)
+    function(*args)
 
+def palindromo(*words: str):
+    for word in words:
+        palindromo = word == word[::1]
+        print(f"¿{word} es palindromo?: {palindromo}")
 
-def palindromo(w1: str):
-    if w1[::-1] == w1:
-        print(f"{w1} es palindromo")
-    else:
-        print(f"No es palindromo: {w1}, {w1[::-1]} ")
+def anagrama(w1, w2):
+    anagrama = sorted(w1) == sorted(w2)
+    print(f"¿{w1} y {w2} son anagramas?: {anagrama}")
 
-def anagrama(w1: str, w2: str):
-    if sorted(w1) == sorted(w2):
-        print(f"{w1} y {w2} son anagramas")
-    else:
-        print(f"{w1} y {w2} no son anagramas.")
-
-def isograma(*word: str):
-    word_dict = dict()
+def isograma(*words: str):
+    for word in words:
+        word_dict = dict()
     
-    for w in word:
-        word_dict[w] = word_dict.get(w, 0) + 1
+        for w in word:
+            word_dict[w] = word_dict.get(w, 0) + 1
 
-    isogram = True
-    values = list(word_dict.values())
-    isogram_len = values[0]
-    for w_count in values:
-        if w_count != isogram_len:
-            isogram = False
-            break
-    if isogram:
-        print(f"{word}, es un isograma")
-    else:
-        print(f"{word}, no es un isograma")
+        isogram = True
+        for w_count in word_dict.values():
+            if w_count > 1:
+                isogram = False
+                break
+        print(f"¿{word} es un isograma?: {isogram}")
 
 
 
 def check(word1: str, word2: str):
-    palindromo(word1)
-    anagrama(word1, word2)
-    isograma(word1)
+    imprimir_resultado("Verificando Palíndromo:", palindromo, word1, word2)
+    imprimir_resultado("Verificando Anagrama:", anagrama, word1, word2)
+    imprimir_resultado("Verificando Isograma:", isograma, word1, word2)
+    
 
 if __name__ == "__main__":
     word1 = input("Ingresa la palabra a verificar: ")
