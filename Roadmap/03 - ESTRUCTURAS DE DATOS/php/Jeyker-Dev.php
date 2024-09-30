@@ -317,7 +317,16 @@
             break;
 
         case 4;
-        echo "Es 4";
+            echo "Lista de Contactos: \n";
+            Contacto::show();
+
+            echo "Escribe el Nombre del Contacto a Editar: \n";
+            $nombre_actualizar = trim(fgets(STDIN));
+
+            echo "Escribre el Numero del Contacto a Actualizar: \n";
+            $numero_actualizar = trim(fgets(STDIN));
+
+            $contacto_actualizar = new Contacto($nombre_actualizar, $numero_actualizar);
             break;
 
         case 5;
