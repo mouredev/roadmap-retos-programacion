@@ -41,21 +41,7 @@ def batman_day() -> None:
     for year in range(2024, 2050):
         sep_fst = dt.strptime(str(year) + "-09-01", "%Y-%m-%d")
         # Batman's day is celebrated every 3rd Saturday of September
-        match sep_fst.strftime("%a"):
-            case "Sun":
-                days = 20
-            case "Mon":
-                days = 19
-            case "Tue":
-                days = 18
-            case "Wed":
-                days = 17
-            case "Thu":
-                days = 16
-            case "Fri":
-                days = 15
-            case _:
-                days = 14
+        days = 20 - int(sep_fst.strftime("%w"))
         bat_day = sep_fst + td(days=days)
         print(f"Batman celebrates its {anniversary}th anniversary on  {bat_day.strftime('%A %B %d, %Y')}")
         anniversary += 1
