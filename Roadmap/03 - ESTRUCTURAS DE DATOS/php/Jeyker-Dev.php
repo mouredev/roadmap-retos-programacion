@@ -206,17 +206,32 @@
             return "Nombre: $this->nombre, Número: $this->numero";
         }   // Here End Function
 
+        // Buscar un contacto
         public static function find($nombre_buscar)
         {
             self::$agenda->rewind();
             while (self::$agenda->valid()) {
                 $contacto = self::$agenda->current();
-                if ($contacto->nombre == $nombre_buscar) {
+                if ($contacto->nombre == $nombre_buscar) 
+                {
                     return $contacto;
-                }
+                }   // Here End If
                 self::$agenda->next();
-            }
+            }   // Here End While
             return false;
+        }   // Here End Function
+
+        // Mostrar todos los contactos en la agenda
+        public static function show()
+        {
+            self::$agenda->rewind();
+
+            while(self::$agenda->valid())
+            {
+                $contactos = self::$agenda->current();
+                echo $contactos->getInfo() . ".\n";
+                self::$agenda->next();
+            }   // Here End While
         }   // Here End Function
 
         // Elimina los Contactos en la Agenda
@@ -226,23 +241,28 @@
         }   // Here End Function
     }   // Here End Class
 
+    // Instancia de Estructura SPLOBJECTSTORAGE
     Contacto::iniciarAgenda();
     $agenda = Contacto::$agenda;
 
+    // Crear Objetos de Contactos
     $contacto_1 = new Contacto("Jeyker", "04245652392");
     $contacto_2 = new Contacto("Maria", "04263318767");
     $contacto_3 = new Contacto("Ramon", "04125618690");
     $contacto_4 = new Contacto("Alejandro", "04164126754");
     $contacto_5 = new Contacto("Fernando", "04148879135");
 
+    // Agregar Contactos a la agenda
     $agenda->attach(object: $contacto_1);
     $agenda->attach(object: $contacto_2);
     $agenda->attach(object: $contacto_3);
     $agenda->attach(object: $contacto_4);
     $agenda->attach(object: $contacto_5);
 
+    // Pedir al usuario ingresar un dato
     $numero =  trim(fgets((STDIN)));
 
+    // Validacion para verificar que el dato ingresado sea numerico
     if(filter_var($numero, FILTER_VALIDATE_INT) === false)
     {
         echo "El Dato a Ingresar Debe Ser un Numero.\n";
@@ -256,23 +276,16 @@
         exit;
     }   // Here End If
 
+    // Menu de opciones
     switch($numero)
     {
+        // Mostras la lista de contactos en la agenda
         case 1:
             echo "Lista de Contactos: \n";
-
-            // Mostrar contactos con Nombre y Numero
-            $agenda->rewind();
-            while ($agenda->valid()) 
-            {
-                $contacto = $agenda->current();
-                $info = $agenda->getInfo();
-
-                echo $contacto->getInfo() . ". \n";
-                $agenda->next();
-            }   // Here End While
+            Contacto::show();
             break;
 
+        // Buscar un contacto en la agenda
         case 2:
             echo "Ingresa El Nombre del Contacto que Buscas:\n";
             $contacto_buscar = trim(fgets(STDIN));
