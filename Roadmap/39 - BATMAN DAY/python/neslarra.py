@@ -41,21 +41,7 @@ def batman_day() -> None:
     for year in range(2024, 2050):
         sep_fst = dt.strptime(str(year) + "-09-01", "%Y-%m-%d")
         # Batman's day is celebrated every 3rd Saturday of September
-        match sep_fst.strftime("%a"):
-            case "Sun":
-                days = 20
-            case "Mon":
-                days = 19
-            case "Tue":
-                days = 18
-            case "Wed":
-                days = 17
-            case "Thu":
-                days = 16
-            case "Fri":
-                days = 15
-            case _:
-                days = 14
+        days = 20 - int(sep_fst.strftime("%w"))
         bat_day = sep_fst + td(days=days)
         print(f"Batman celebrates its {anniversary}th anniversary on  {bat_day.strftime('%A %B %d, %Y')}")
         anniversary += 1
@@ -104,9 +90,13 @@ def max_alert(alerted_blocks: list) -> list:
     return [x for x in alerted_blocks if x[1] == maximal_alert]
 
 
-def activate_protocol(alerted_blocks: list) -> None:
+def activate_protocol(alerted_blocks: list) -> bool:
+    activated = False
     for alert in max_alert(alerted_blocks):
         print(f"\nAlert Level: {alert[1]} / Distance from batcave to coord {gotham[alert[0]][4]} = {calculate_distance(gotham[alert[0]][4])}")
+        activated = True
+        break
+    return activated
 
 
 batman_day()
@@ -115,7 +105,11 @@ while True:
     sensors = gotham_sensors()
     alerted_blocks = system_monitor(gotham, sensors)
     if alerted_blocks:
-        activate_protocol(alerted_blocks)
-        break
+        if activate_protocol(alerted_blocks):
+            print("To the Batmobile, Robin.")
+            break
+        else:
+            print("\nNo alert rises over the minimal level of risk => police can be in charge.")
     else:
-        print("No alert rises over the minimal level of risk => police can be in charge.")
+        print("\nAll quiet on Gotham.")
+    print("Keep tracking.")
