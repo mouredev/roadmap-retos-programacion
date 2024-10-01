@@ -3,15 +3,13 @@
 # Esto es un comentario
 
 """
-Esto es comentario en varias lineas en Python 
-
+Esto es un comentario en varias lineas en Python 
 """
 
 '''
-
-Esto es comentario en varias lineas en Python 
-
+Esto tambien es un comentario en varias lineas en Python 
 '''
+
 #  Crear variable
 mi_variable = "Hola, esta es mi variable"
 
