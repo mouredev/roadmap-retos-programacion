@@ -4,32 +4,37 @@
   @RicJDev
 */
 
-console.log('RETO 1: Día de Batman.\n')
+console.log('RETO 1: Día de Batman.')
 
 // Nos creamos una función que generará un día de Batman para el año que le pasemos como parámetro.
 
 function getBatmanDay(year = 2014) {
-  let week = 0,
-    day = 1,
+  let day = 1,
     date = new Date(year, 8, day)
 
-  while (date.getDay() !== 6 || week !== 3) {
+  while (date.getDay() !== 6) {
     day++
     date = new Date(year, 8, day)
-
-    if (date.getDay() === 6) week++
   }
+
+  date = new Date(year, 8, day + 14)
 
   return date
 }
 
 // Luego mostramos los días de Batman de los siguientes 15 años. El último será el aniversario 100.
 
-let year = 2024
+console.log(' ')
 
-for (let i = 0; i < 15; i++) {
-  console.log(getBatmanDay(year).toLocaleDateString())
-  year++
+let currentYear = 2024
+const creationYear = 1939
+
+while (currentYear - creationYear <= 100) {
+  const aniversary = currentYear - creationYear
+
+  console.log(`${getBatmanDay(currentYear).toLocaleDateString()}. ${aniversary} aniversario.`)
+
+  currentYear++
 }
 
 console.log('\nRETO 2: El Bati-sistema de seguridad.')
@@ -134,16 +139,14 @@ function scanCity() {
 */
 
 function securitySystem() {
-  const { level, coords } = scanCity()
-
-  let y = coords[0],
-    x = coords[1]
+  const { level, coords } = scanCity(),
+    [y, x] = coords
 
   console.log('Analizando ciudad en busca de amenazas potenciales...')
+
+  //prettier-ignore
   console.log(
-    `Se ha detectado un nivel de amenaza ${level} en las coordenadas (${x}, ${y}), a ${
-      x + y
-    } kilómetros de la Bati-cueva.`
+    `Se ha detectado un nivel de amenaza ${level} en las coordenadas (${x}, ${y}), a ${x + y} kilómetros de la Bati-cueva.`
   )
 
   if (level < 20) {
@@ -153,10 +156,8 @@ function securitySystem() {
 
   console.log('El protocolo de seguridad ha sido activado. Batman está en camino.')
 
-  y--, x--
-
-  for (let i = y; i < y + 3; i++) {
-    for (let j = x; j < x + 3; j++) {
+  for (let i = y - 1; i < y + 2; i++) {
+    for (let j = x - 1; j < x + 2; j++) {
       GothamCity[i][j] = 0
     }
   }
