@@ -51,9 +51,9 @@ let a =  "Abierto"
 let b = "Cerrado"
 
 function intercambiaPorValor(a,b) {
-    let guardaA = a;
-    a = b;
-    b = guardaA;
+    let guardaA = a; //Guardas el primer valor
+    a = b; // le asignas al primer valor, el segundo
+    b = guardaA; //Le asignas al segundo valor, el primero
     return[a,b]
 }
 let resultado = intercambiaPorValor(a, b);
@@ -62,13 +62,22 @@ console.log(`Los valores intercambiados son: ${resultado}`);
 //comprobar valores originales
 console.log(`Los valores originales son: ${a}, ${b}`); 
 
-//Programa2
+// Programa2
 let programa2 = [
-    {cosa: 1, material: "hierro"},
-    {cosa: 2, material: "madera"},
-    {cosa: 3, material: "aluminio"},
+    {nombre: "Gary" , tipo: "Caracol"},
+    {nombre: "Bob", tipo: "Esponja"},
+    {nombre: "Patricio", tipo: "Estrella"},
 
 ]
-function intercambiaPorReferencia(c,d) {
-    
+
+function intercambiaPorReferencia (objeto,index1, index2){
+    let guardaA = objeto[index1]; //Guardas el primer valor
+    objeto[index1] = objeto[index2]; //Asignas el primer valor, al segundo
+    objeto[index2] = guardaA; //Asignas al segundo valor, el primero que guardaste
+
+    console.log(programa2);
 }
+
+intercambiaPorReferencia(programa2,0,2);
+
+
