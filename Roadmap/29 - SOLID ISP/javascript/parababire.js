@@ -1,122 +1,113 @@
 // Incorrecto
 
-/* class Entity {
-  constructor(name, attackDamage, health) {
-    this.name = name
-    this.attackDamage = attackDamage
-    this.health = health
-  }
-  move() {
-    console.log(`${this.name} moved`)
-  }
-  attack(targetEntity) {
-    console.log(`${this.name} attacked ${targetEntity.name} for ${this.attackDamage} damage`)
-    targetEntity.takeDamage(this.attackDamage)
-  }
-  takeDamage(amount) {
-    this.health -= amount
-    console.log(`${this.name} has ${this.health} remaining`)
-  }
-}
-
-class Character extends Entity {
-  
-}
-
-class Wall extends Entity {
-  constructor(name, health) {
-    super(name, 0, health)
-  }
-  move() {
-    return null
-  }
-  attack() {
-    return null
-  }
-}
-
-class Turret extends Entity {
-  constructor(name, attackDamage) {
-    super(name, attackDamage, -1)
-  }
-  move() {
-    return null
-  }
-  takeDamage() {
-    return null
-  }
-}
-
-const turret = new Turret('Turret', 5)
-const character = new Character('Character', 3, 100)
-const wall = new Wall('Wall', 100)
-
-turret.attack(character)
-character.move()
-character.attack(wall) */
-
-//Correcto
-
-class Entity {
+/* class Animal {
   constructor(name) {
     this.name = name
+    if (new.target === Animal) {
+      throw new Error('Animal es una interface y no puede ser instanciada')
+    }
+    if (!this.eat) {
+      throw new Error('Debe implimentar el método eat')
+    }
+    if (!this.fly) {
+      throw new Error('Debe implimentar el método fly')
+    }
+    if (!this.swim) {
+      throw new Error('Debe implimentar el método swim')
+    }
   }
 }
 
-const mover = {
-  move() {
-    console.log(`${this.name} moved`)
+class Fish extends Animal {
+  eat() {
+    console.log(`${this.name} is eating`)
+  }
+  swim() {
+    console.log(`${this.name} is swimming`)
+  }
+  fly() {
+    console.error("ERROR! Fishes can't fly")
   }
 }
 
-const attacker = {
-  attack(targetEntity) {
-    console.log(`${this.name} attacked ${targetEntity.name} for ${this.attackDamage} damage`)
-    targetEntity.takeDamage(this.attackDamage)
+class Bird extends Animal {
+  eat() {
+    console.log(`${this.name} is eating`)
+  }
+  swim() {
+    console.error("ERROR! Birds can't swim");
+  }
+  fly() {
+    console.log(`${this.name} is flying`)
   }
 }
 
-const hasHealth = {
-  takeDamage(amount) {
-    this.health -= amount
-    console.log(`${this.name} has ${this.health} remaining`)
+const bird = new Bird('Titi the Parrot');
+bird.swim(); // ERROR! Birds can't swim
+
+const fish = new Fish('Neo the Dolphin');
+fish.fly(); // ERROR! Fishes can't fly
+ */
+// Correcto
+
+class Swimmer {
+  constructor(name) {
+    this.name = name
+    if (new.target === Swimmer) {
+      throw new Error('Swimmer es una interface y no puede ser instanciada')
+    }
+    if (!this.swim) {
+      throw new Error('Debe implimentar el método swim')
+    }
   }
 }
 
-class Character extends Entity {
-  constructor(name, attackDamage, health) {
-    super(name)
-    this.attackDamage = attackDamage
-    this.health = health
+class Flyer {
+  constructor(name) {
+    this.name = name
+    if (new.target === Flyer) {
+      throw new Error('Flyer es una interface y no puede ser instanciada')
+    }
+    if (!this.fly) {
+      throw new Error('Debe implimentar el método eat')
+    }
   }
 }
 
-Object.assign(Character.prototype, mover)
-Object.assign(Character.prototype, attacker)
-Object.assign(Character.prototype, hasHealth)
+// Implement interfaces for specific types of animals
 
-class Wall extends Entity {
-  constructor(name, health) {
-    super(name)
-    this.health = health
+class Bird extends Flyer {
+  constructor(name) {
+    super(name);
+  }
+  fly() {
+    console.log(`${this.name} is flying`);
+  }
+  eat() {
+    console.log(`${this.name} is eating`);
   }
 }
 
-Object.assign(Wall.prototype, hasHealth)
-
-class Turret extends Entity {
-  constructor(name, attackDamage) {
-    super(name)
-    this.attackDamage = attackDamage
+class Fish extends Swimmer {
+  constructor(name) {
+    super(name);
+  }
+  swim() {
+    console.log(`${this.name} is swimming`);
+  }
+  eat() {
+    console.log(`${this.name} is eating`);
   }
 }
 
-Object.assign(Turret.prototype, attacker)
+// Usage
 
-const turret = new Turret('Turret', 5)
-const character = new Character('Character', 3, 100)
-const wall = new Wall('Wall', 100)
+const bird = new Bird('Titi the Parrot');
+bird.fly(); // Titi the Parrot is flying
+bird.eat(); // Titi the Parrot is eating
 
-turret.attack(character)
-character.move()
-character.attack(wall)
+console.log('\n');
+
+const fish = new Fish('Neo the Dolphin');
+fish.swim(); // Neo the Dolphin is swimming
+fish.eat(); // Neo the Dolphin is eating
