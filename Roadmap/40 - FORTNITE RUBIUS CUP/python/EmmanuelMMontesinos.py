@@ -38,8 +38,7 @@ class Token:
         params = {
             "client_id": self.id,
             "client_secret": self.secret,
-            "grant_type": "client_credentials",
-            "scope": "moderator:read:followers"
+            "grant_type": "client_credentials"
         }
 
         response = requests.post(url,params=params)
