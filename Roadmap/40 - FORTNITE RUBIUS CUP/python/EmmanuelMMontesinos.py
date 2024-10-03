@@ -158,7 +158,7 @@ class Participante:
 
 
 # Pruebas
-token = Token(id,secret)
+
 lista = [
     "littleragergirl","ache","AdriContreras4","agustin51","alexby11","ampeterby7",
     "tvandeR","arigameplays","arigeli_","auronplay","axozer","beniju03","bycalitos",
