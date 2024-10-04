@@ -156,3 +156,14 @@ const multifuncional = new ColorPrinter()
 multifuncional.print()
 multifuncional.sendFax()
 multifuncional.scanning()
+
+function testInterface(object, interface) {
+  const prototypeProperties = Object.getOwnPropertyNames(interface.prototype)
+
+  for (const method of prototypeProperties) {
+    if (!object[method] || typeof object[method] !== 'function') {
+      throw new Error(`La clase no implementa el método ${method} de la interface.`)
+  }
+  }
+}
+testInterface(multifuncional, Printer)
