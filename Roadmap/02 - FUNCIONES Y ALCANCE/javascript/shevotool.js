@@ -58,3 +58,22 @@ function saludar(persona) {
   return `Hola ${persona} ${apodo}`;
 }
 console.log(saludar("Jonny"));
+
+// DIFICULTAD EXTRA
+
+function textoANumero(parametro1, parametro2) {
+  let contador = 0;
+  for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log(parametro1 + parametro2);
+    } else if (i % 3 === 0) {
+      console.log(parametro1);
+    } else if (i % 5 === 0) {
+      console.log(parametro2);
+    } else {
+      contador++;
+    }
+  }
+  return contador;
+}
+console.log(textoANumero("Fizz", "Buzz"));
