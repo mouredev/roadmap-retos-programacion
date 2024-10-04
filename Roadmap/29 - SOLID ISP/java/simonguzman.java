@@ -3,6 +3,7 @@ public class simonguzman {
         exampleNoIsp();
         exampleIsp();
         adittionalExerciseNoIsp();
+        adittionalExerciseIsp();
     }
 
     /******************************** Ejercicio adicional con isp ********************************/
