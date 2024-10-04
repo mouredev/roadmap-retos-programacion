@@ -114,46 +114,41 @@ fish.eat(); // Neo the Dolphin is eating
 
 // Extra
 
-class BlackAndWhitePrint {
+class Printer {
   constructor() {
-    if (new.target === BlackAndWhitePrint) {
-      throw new Error("BlackAndWhitePrint es una interface no puedes instanciarla.")
+    if (new.target === Printer) {
+      throw new Error("Printer es una interface no puedes instanciarla.")
     }
     if (!this.print) {
       throw new Error("Debes implementar el método print")
     }
   }
 }
-class ColorPrint {
-  constructor() {
-    if (new.target === ColorPrint) {
-      throw new Error("ColorPrint es una interface no puedes instanciarla.")
-    }
-    if (!this.print) {
-      throw new Error("Debes implementar el método print")
-    }
+
+class BlackAndWhitePrinter extends Printer {
+  print() {
+    console.log("Se imprime en blanco y negro.")
   }
 }
+
+class ColorPrinter extends Printer {
+  print() {
+    console.log("Se imprime a color.")
+  }
+}
+
 const sendingFax = {
   sendFax() {
     console.log("Enviando fax.")
   }
 }
+
 const scanner = {
   scanning() {
     console.log("Escaneando documento.")
   }
 }
-class BlackAndWhitePrinter extends BlackAndWhitePrint {
-  print() {
-    console.log("Hace solo impresiones en blanco y negro.")
-  }
-}
-class ColorPrinter extends ColorPrint {
-  print() {
-    console.log("Hace impresiones a color.")
-  }
-}
+
 Object.assign(ColorPrinter.prototype, sendingFax)
 Object.assign(ColorPrinter.prototype, scanner)
 
