@@ -1,6 +1,7 @@
 public class simonguzman {
     public static void main(String[] args) {
         exampleDIP();
+        exampleNoDIP();
     }
     /*********************************** Ejercicio adicional sin DIP ***********************************/
 
@@ -8,36 +9,36 @@ public class simonguzman {
 
     /*********************************** Ejemplo con DIP ***********************************/
     static void exampleDIP(){
-        MessageSender emailSender = new EmailSender();
-        NotificationService notificationService = new NotificationService(emailSender);
+        MessageSender emailSender = new EmailSenderDIP();
+        NotificationServiceDIP notificationService = new NotificationServiceDIP(emailSender);
         notificationService.notifyUser("Tu cuenta ha sido activada.");
 
-        MessageSender smsSender = new SMSSender();
-        notificationService = new NotificationService(smsSender);
+        MessageSender smsSender = new SMSSenderDIP();
+        notificationService = new NotificationServiceDIP(smsSender);
         notificationService.notifyUser("Tu código de verificación es 1234.");
     }
     static interface MessageSender {
         void sendMessage(String message);
     }
 
-    static class EmailSender implements MessageSender {
+    static class EmailSenderDIP implements MessageSender {
         @Override
         public void sendMessage(String message) {
             System.out.println("Enviando email: " + message);
         }
     }
 
-    static class SMSSender implements MessageSender {
+    static class SMSSenderDIP implements MessageSender {
         @Override
         public void sendMessage(String message) {
             System.out.println("Enviando SMS: " + message);
         }
     }
 
-    static class NotificationService {
+    static class NotificationServiceDIP {
         private MessageSender messageSender;
 
-        public NotificationService(MessageSender messageSender) {
+        public NotificationServiceDIP(MessageSender messageSender) {
             this.messageSender = messageSender;
         }
 
@@ -47,4 +48,23 @@ public class simonguzman {
     }
 
     /*********************************** Ejemplo sin DIP ***********************************/
+    static void exampleNoDIP(){
+        NotificationService notificationService = new NotificationService();
+        notificationService.notifyUser("Tu cuenta ha sido activada.");
+    }
+    static class EmailSender {
+        public void sendEmail(String message) {
+            System.out.println("Enviando email: " + message);
+        }
+    }
+
+    static class NotificationService {
+        private EmailSender emailSender = new EmailSender();  // Dependencia concreta
+
+        public void notifyUser(String message) {
+            emailSender.sendEmail(message);
+        }
+    }
+
+
 }
