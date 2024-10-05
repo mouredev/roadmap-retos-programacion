@@ -3,8 +3,8 @@ import json
 from datetime import datetime
 import urllib.parse 
 
-client_id = "5vajdn1ri9655drqe7pieqwi46qh2e"
-client_secret = "8nm35qwxvbqs4rr24axpihjypl2e8y"
+client_id = "Your ID"
+client_secret = "Your secret"
 
 def getToken():
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
