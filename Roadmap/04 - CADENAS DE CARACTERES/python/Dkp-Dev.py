@@ -78,3 +78,48 @@ print(x6.isnumeric())
 print(x1.isalnum())     # Si la cadena es alfanumerica (contiene letras y/o numeros)
 print(x6.isalnum())
 
+"""
+DIFICULTAD EXTRA (opcional):
+ * Crea un programa que analice dos palabras diferentes y realice comprobaciones
+ * para descubrir si son:
+ * - Palíndromos (palabras que se leen igual aunque se posiciones en orden inverso como radar o salas)
+ * - Anagramas (palabras que contiene las mismas letras pero en diferente orden)
+ * - Isogramas (palabras que no tienen mas de una letra repetida)
+
+"""
+
+def check(cadena1: str,cadena2: str):
+
+    # Palindromo
+    print(f"Es {cadena1} un palindromo?: {cadena1 == cadena1[::-1]}")   # Mediante el slicing comprobamos si la cadena se lee igual en reversa
+    print(f"Es {cadena2} un palindromo?: {cadena2 == cadena2[::-1]}")
+
+    # Anagramas
+    print(f"Es {cadena1} un anagrama de {cadena2}?: {sorted(cadena1) == sorted(cadena2)}")      # Se ordenan las cadenas y se comprueban los characteres
+
+    # Isograma
+
+    def isograma(cadena:str) -> bool:       # Funcion que recibe una cadena y arroja un booleano
+
+        cadena_dict = dict()        # Primero un dict de la cadena
+        for letras in cadena:
+            cadena_dict[letras] = cadena_dict.get(letras, 0) + 1
+
+        isograma = True
+        valor = list(cadena_dict.values())      # Lista de values
+        isograma_len = valor[0]
+        for cadena_count in valor:              # Se cuentan los values
+            if cadena_count != isograma_len:    # Se comprueban ambas listas
+                isograma = False
+                break
+
+        return isograma
+
+    print(f"Es {cadena1} un isograma? {isograma(cadena1)}")
+    print(f"Es {cadena2} un isograma? {isograma(cadena2)}")
+
+
+   
+
+check("radar","quesoqueso")
+check("amor","roma")
