@@ -23,8 +23,8 @@ from datetime import datetime
 
 class ApiTwitch():
     """"""
-    __CLIENT_ID = '0zbh496w9t10e0df5861ijgv1tz6el'
-    __CLIENT_SECRET = 'r7yh0vfuvr67xh4sg18qwq9wdz08b8'
+    __CLIENT_ID = ':('
+    __CLIENT_SECRET = ':)'
 
     __ACCESS_TOKEN = None
     __HEADERS = None
