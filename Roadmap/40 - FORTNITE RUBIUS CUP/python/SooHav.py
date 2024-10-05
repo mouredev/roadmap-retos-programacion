@@ -6,12 +6,13 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 
-# Cargar las variables de entorno desde .env
+# Cargar las variables de entorno desde .env para obtener CLIENT_ID y CLIENT_SECRET
 load_dotenv()
 
-# Obtener CLIENT_ID y CLIENT_SECRET desde las variables de entorno
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+
+# Funciones
 
 
 def obtener_token() -> str:
@@ -115,6 +116,8 @@ def buscar_info_canal(token: str, broadcaster_id: str):
         "juegos": "sin información",
         "tópicos del canal": "sin información",
     }
+
+# Uso de codigo
 
 
 token = obtener_token()
@@ -221,18 +224,18 @@ for participante_evento_fortnite in informacion_participantes_seguidores:
     print(f"Participante: {participante_evento_fortnite['usuario twitch']}, Estado: {
           participante_evento_fortnite['estado del usuario de twitch']}, Seguidores: {participante_evento_fortnite['total seguidores']}")
 
-print("\nLista de antigueddad de las cuentas de los participantes del evento Rubius Cup en Twitch\n")
+print("\nLista de antiguedad de las cuentas de los participantes del evento Rubius Cup en Twitch\n")
 
 # Participantes del evento Rubius Cup
 for participante_evento_fortnite in informacion_participantes_antiguedad:
     fecha_creacion = participante_evento_fortnite.get("creación de cuenta")
 
     if isinstance(fecha_creacion, datetime):
-        fecha_visual = fecha_creacion.strftime("%d-%m-%Y %H:%M:%S")
+        fecha = fecha_creacion.strftime("%d-%m-%Y %H:%M:%S")
     elif isinstance(fecha_creacion, str):
-        fecha_visual = fecha_creacion
+        fecha = fecha_creacion
     else:
-        fecha_visual = "Información no disponible"
+        fecha = "Información no disponible"
 
     print(f"Participante: {participante_evento_fortnite['usuario twitch']}, Estado: {
-          participante_evento_fortnite['estado del usuario de twitch']}, Creación de cuenta: {fecha_visual}")
+          participante_evento_fortnite['estado del usuario de twitch']}, Creación de cuenta: {fecha}")
