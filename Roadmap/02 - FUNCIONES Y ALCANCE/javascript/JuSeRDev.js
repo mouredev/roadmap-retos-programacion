@@ -48,6 +48,8 @@ let fechaActual = new Date()
 console.log("la fecha de hoy es: ", fechaActual);
 
 let numeromayor = Math.max(3, 5, 10, 12)
+console.log(numeromayor);
+
 
 //  * - Pon a prueba el concepto de variable LOCAL y GLOBAL.
 
