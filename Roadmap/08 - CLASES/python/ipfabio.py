@@ -103,8 +103,3 @@ print(my_queue.deequeue())
 print(my_queue.deequeue())
 print(my_queue.deequeue())
 print(my_queue.count())
-
-"""
-TODO:
-    Finalizado, falta editar comentarios y subir.
-"""
