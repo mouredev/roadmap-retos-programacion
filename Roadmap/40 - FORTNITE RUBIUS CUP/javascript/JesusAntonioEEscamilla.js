@@ -6,22 +6,25 @@
  */
 
 const participants = [
-    'Abby', 'Ache', 'Adri Contreras', 'Agustin', 'Alexby', 'Ampeter', 'Ander', 'Ari Gameplays',
-    'Arigely', 'Auronplay', 'Axozer', 'Beniju', 'By Calitos', 'Byviruzz', 'Carrera', 'Celopan',
-    'Cheto', 'CrystalMolly', 'Dario Eme Hache', 'Dheyo', 'DjMariio', 'Doble', 'Elvisa', 'Elyas360',
-    'Folagor', 'Grefg', 'Guanyar', 'Hika', 'Hiper', 'Ibai', 'Ibelky', 'Illojuan', 'Imantado',
-    'Irina Isasia', 'JessKiu', 'Jopa', 'JordiWild', 'Kenai Souza', 'Keroro', 'Kidd Keo', 'Kiko Rivera',
-    'Knekro', 'Koko', 'KronnoZomber', 'Leviathan', 'Lit Killah', 'Lola Lolita', 'Lolito', 'Luh',
-    'Luzu', 'Mangel', 'Mayichi', 'Melo', 'MissaSinfonia', 'Mixwell', 'Mr. Jagger', 'Nate Gentile',
-    'Nexxuz', 'Nia', 'Nil Ojeda', 'NissaXter', 'Ollie', 'Orslok', 'Outconsumer', 'Papi Gavi',
-    'Paracetamor', 'Patica', 'Paula Gonu', 'Pausenpaii', 'Perxitaa', 'Plex', 'Polispol', 'Quackity',
-    'RecueroDP', 'Reven', 'Rivers', 'RobertPG', 'Roier', 'Rojuu', 'Rubius', 'Shadoune', 'Silithur',
-    'SpokSponha', 'Spreen', 'Spursito', 'Staxx', 'SuzyRoxx', 'Vicens', 'Vituber', 'Werlyb', 'Xavi',
-    'Xcry', 'Xokas', 'Zarcort', 'Zeling', 'Zorman'
+    "littleragergirl", "ache", "adricontreras4", "agustin51", "alexby11", "ampeterby7", "tvander",
+    "arigameplays", "arigeli_", "auronplay", "axozer", "beniju03", "bycalitos",
+    "byviruzz", "carreraaa", "celopan", "srcheeto", "crystalmolly", "darioemehache",
+    "dheylo", "djmariio", "doble", "elvisayomastercard", "elyas360", "folagorlives", "thegrefg",
+    "guanyar", "hika", "hiperop", "ibai", "ibelky_", "illojuan", "imantado",
+    "irinaissaia", "jesskiu", "jopa", "jordiwild", "kenaivsouza", "mrkeroro10",
+    "thekiddkeo95", "kikorivera", "knekro", "kokoop", "kronnozomberoficial", "leviathan",
+    "litkillah", "lolalolita", "lolitofdez", "luh", "luzu", "mangel", "mayichi",
+    "melo", "missasinfonia", "mixwell", "jaggerprincesa", "nategentile7", "nexxuz",
+    "lakshartnia", "nilojeda", "nissaxter", "olliegamerz", "orslok", "outconsumer", "papigavitv",
+    "paracetamor", "patica1999", "paulagonu", "pausenpaii", "perxitaa", "nosoyplex",
+    "polispol1", "quackity", "recuerd0p", "reventxz", "rivers_gg", "robertpg", "roier",
+    "ceuvebrokenheart", "rubius", "shadoune666", "silithur", "spok_sponha", "elspreen", "spursito",
+    "bystaxx", "suzyroxx", "vicens", "vitu", "werlyb", "xavi", "xcry", "elxokas",
+    "thezarcort", "zeling", "zormanworld", "mouredev"
 ];
 
-const twitch_clientId = 'y6di6t9mk7ihz9hyqt32wh67rguhzi';
-const twitch_clientSecret = 'o887i5ph5u94u6aapqvocrnpedl3oo';
+const twitch_clientId = 'MY_ID_TWITCH';
+const twitch_clientSecret = 'MY_SECRET_TWITCH';
 
 // Para obtener un token
 async function tokenAccessTwitch(clientId, clientSecret) {
@@ -59,7 +62,6 @@ async function fetchTwitchAPI(endpoint) {
 
 // Para obtener los datos los participantes
 async function getUserInfo(username) {
-    username = username.replace(/[^a-zA-Z0-9_]/g, '');
     const userData = await fetchTwitchAPI(`/users?login=${username}`)
     if (userData.data.length > 0) {
         const user = userData.data[0];
