@@ -1,4 +1,4 @@
-/** #37 - JavaScript -> Jesus Antonio Escamilla */
+/** #39 - JavaScript -> Jesus Antonio Escamilla */
 
 /**
  * BATMAN DAY.
