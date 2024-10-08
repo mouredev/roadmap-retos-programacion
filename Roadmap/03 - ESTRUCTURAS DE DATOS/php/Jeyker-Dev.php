@@ -196,9 +196,10 @@
         }   // Here End FUnction
 
         // Actualiza los Contactos en la Agenda
-        public function actualizar()
+        public function actualizar($nombre_actualizar, $numero_actualizar)
         {
-
+            $this->nombre = $nombre_actualizar;
+            $this->numero = $numero_actualizar;
         }   // Here End Function
 
         // Muestra los Conctactos de la Agenda
@@ -323,10 +324,25 @@
             echo "Escribe el Nombre del Contacto a Editar: \n";
             $nombre_actualizar = trim(fgets(STDIN));
 
-            echo "Escribre el Numero del Contacto a Actualizar: \n";
-            $numero_actualizar = trim(fgets(STDIN));
+            $contacto_encontrado = Contacto::find($nombre_actualizar);
 
-            $contacto_actualizar = new Contacto($nombre_actualizar, $numero_actualizar);
+            if($contacto_encontrado === false)
+            {
+                echo "No se Encontraron Contactos con Este Nombre. \n";
+            }   // Here End If
+            else
+            {
+                echo "Ingresa un Nuevo Nombre: ";
+                $nuevo_nombre = trim(fgets(STDIN));
+
+                echo "Ingresa un Nuevo Numero: ";
+                $nuevo_numero = trim(fgets(STDIN));
+
+                $contacto_encontrado->actualizar($nuevo_nombre, $nuevo_numero);
+                echo "Contacto Actualizado. \n";
+                Contacto::show();
+            }   // Here End Else
+
             break;
 
         case 5;
@@ -335,7 +351,6 @@
 
         case 6:
             echo "Saliendo de la Agenda.\n";
-            exit;
             break;
 
             default:
