@@ -1,4 +1,4 @@
-/** #37 - JavaScript -> Jesus Antonio Escamilla */
+/** #40 - JavaScript -> Jesus Antonio Escamilla */
 
 /**
  * FORTNITE RUBIUS CUP.
