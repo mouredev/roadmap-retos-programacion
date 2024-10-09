@@ -1,5 +1,12 @@
 import { CLIENT_ID, CLIENT_SECRET } from './client.js'
 
+/*
+  Función para obtener token de autenticación.
+  Solo se ejecuta si se le pasa un client_id y un client_secret (los cuales no subiré al repo).
+
+  Consulta la documentación de la API de Twitch para más información (https://dev.twitch.tv/docs).
+  */
+
 async function getAuthToken(clientId, clientSecret) {
   const token = await fetch('https://id.twitch.tv/oauth2/token', {
     method: 'POST',
@@ -22,6 +29,8 @@ async function getAuthToken(clientId, clientSecret) {
   return token.access_token
 }
 
+// Métodos de auntenticación que necesitaremos para las peticiones.
+
 const accessToken = await getAuthToken(CLIENT_ID, CLIENT_SECRET)
 
 const requestBody = {
@@ -32,25 +41,14 @@ const requestBody = {
   },
 }
 
-async function getChannelData(name) {
-  const url = `https://api.twitch.tv/helix/search/channels?query=${name}&first=1`
+// Usaremos esta función para obtener el número total de seguidores del usuario.
+
+async function getTotalFollowers(userId) {
+  const url = `https://api.twitch.tv/helix/channels/followers?broadcaster_id=${userId}`
 
   const results = await fetch(url, requestBody).then((response) => {
     if (response.status !== 200)
-      throw new Error(`Error al obtener informacion del canal buscado: ${name}.`)
-
-    return response.json()
-  })
-
-  return { name: results.data[0].display_name, id: results.data[0].id }
-}
-
-async function getTotalFollowers(broadcasterId) {
-  const url = `https://api.twitch.tv/helix/channels/followers?broadcaster_id=${broadcasterId}`
-
-  const results = await fetch(url, requestBody).then((response) => {
-    if (response.status !== 200)
-      throw new Error(`Error al obtener seguidores del canal con la id: ${broadcasterId}.`)
+      throw new Error(`Error al obtener seguidores del canal con la id: ${userId}.`)
 
     return response.json()
   })
@@ -58,111 +56,59 @@ async function getTotalFollowers(broadcasterId) {
   return results.total
 }
 
-const ari = {
-  data: null,
-  followers: null,
-  createdDate: null,
+// Y con esta obtendremos los datos los participantes.
+
+async function getUsersData(users, ...more) {
+  if (users.constructor.name === 'Array') users = users.join('&login=')
+  if (more.length > 0) users += `&login=${more.join('&login=')}`
+
+  const url = `https://api.twitch.tv/helix/users?login=${users}`
+  const result = await fetch(url, requestBody).then((response) => {
+    if (response.status !== 200) throw new Error(`Error al obtener los datos solicitados ${users}`)
+
+    return response.json()
+  })
+
+  const data = []
+
+  result.data.forEach(async (user) => {
+    // TODO: resolver esta obtención de datos.
+
+    // const followers = await getTotalFollowers(user.id)
+
+    data.push({
+      id: user.id,
+      login: user.login,
+      displayName: user.display_name,
+      // followers: followers,
+      createdAt: user.created_at,
+    })
+  })
+
+  return data
 }
 
-ari.data = await getChannelData('Ari Gameplays')
-ari.followers = await getTotalFollowers(ari.data.id)
+const test = await getUsersData('arigameplays')
 
-console.log(ari)
+console.log(test)
 
+// Queries mejoradas gracias a Brais Moure y ChatGPT :)
+
+// prettier-ignore
 const participants = [
-  'Abby',
-  'Ache',
-  'Adri Contreras',
-  'Agustin',
-  'Alexby',
-  'Ampeter',
-  'Ander',
-  'Ari Gameplays',
-  'Arigelli',
-  'Auronplay',
-  'Axozer',
-  'Beniju',
-  'By Calitos',
-  'Byviruzz',
-  'Carrerra',
-  'Celopan',
-  'Cheeto',
-  'Crystalmolly',
-  'Dario Eme Hache',
-  'Dheylo',
-  'DJMarrio',
-  'Doble',
-  'Elvisa',
-  'Elyas360',
-  'Folagor',
-  'Grefg',
-  'Guanyar',
-  'Hika',
-  'Hiper',
-  'Ibai',
-  'Ibelky',
-  'Illojuan',
-  'Imantado',
-  'Irina Isasia',
-  'Jesskiu',
-  'Jopa',
-  'JordiWild',
-  'Kenai Souza',
-  'Keroro',
-  'Kidd Keo',
-  'Kiko Rivera',
-  'Knekro',
-  'KronnoZomber',
-  'Leviathan',
-  'Lit Killah',
-  'Lola Lolita',
-  'Luh',
-  'Luzu',
-  'Mangel',
-  'Mayichi',
-  'Melo',
-  'MissaSinfonia',
-  'Mixwell',
-  'Mr.Jagger',
-  'Nate Gentile',
-  'Nexxuz',
-  'Nia',
-  'Nil Ojeda',
-  'Nissaxter',
-  'Ollie',
-  'Outsconsumer',
-  'OrsloK',
-  'Papi Gavi',
-  'Paracetarol',
-  'Patica',
-  'Paula Gonu',
-  'Pausenpaii',
-  'Perxitaa',
-  'Plex',
-  'Polispol',
-  'Quackity',
-  'Recuerdop',
-  'Reven',
-  'Rivers',
-  'RoberTPG',
-  'Roier',
-  'Rojuu',
-  'Rubius',
-  'Shadoune',
-  'Silithur',
-  'Spoksponha',
-  'Spreen',
-  'Spursiti',
-  'Staxx',
-  'Suzyroxx',
-  'Vicens',
-  'Vituber',
-  'Werlyb',
-  'Xavi',
-  'Xcry',
-  'Xokas',
-  'Xraas',
-  'Zarcort',
-  'Zeling',
-  'Zorman',
+    'littleragergirl', 'ache', 'adricontreras4', 'agustin51', 'alexby11', 'ampeterby7', 'tvander',
+    'arigameplays', 'arigeli_', 'auronplay', 'axozer', 'beniju03', 'bycalitos',
+    'byviruzz', 'carreraaa', 'celopan', 'srcheeto', 'crystalmolly', 'darioemehache',
+    'dheylo', 'djmariio', 'doble', 'elvisayomastercard', 'elyas360', 'folagorlives', 'thegrefg',
+    'guanyar', 'hika', 'hiperop', 'ibai', 'ibelky_', 'illojuan', 'imantado',
+    'irinaissaia', 'jesskiu', 'jopa', 'jordiwild', 'kenaivsouza', 'mrkeroro10',
+    'thekiddkeo95', 'kikorivera', 'knekro', 'kokoop', 'kronnozomberoficial', 'leviathan',
+    'litkillah', 'lolalolita', 'lolitofdez', 'luh', 'luzu', 'mangel', 'mayichi',
+    'melo', 'missasinfonia', 'mixwell', 'jaggerprincesa', 'nategentile7', 'nexxuz',
+    'lakshartnia', 'nilojeda', 'nissaxter', 'olliegamerz', 'orslok', 'outconsumer', 'papigavitv',
+    'paracetamor', 'patica1999', 'paulagonu', 'pausenpaii', 'perxitaa', 'nosoyplex',
+    'polispol1', 'quackity', 'recuerd0p', 'reventxz', 'rivers_gg', 'robertpg', 'roier',
+    'ceuvebrokenheart', 'rubius', 'shadoune666', 'silithur', 'spok_sponha', 'elspreen', 'spursito',
+    'bystaxx', 'suzyroxx', 'vicens', 'vitu', 'werlyb', 'xavi', 'xcry', 'elxokas',
+    'thezarcort', 'zeling', 'zormanworld', 'mouredev'
 ]
