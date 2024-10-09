@@ -346,7 +346,18 @@
             break;
 
         case 5;
-        echo "Es 5";
+        Contacto::show();
+
+        echo "Escribe el Nombre del Contacto que Quieres Eliminar: ";
+        $nombre_eliminar = trim(fgets(STDIN));
+
+        $contacto_eliminar = Contacto::find($nombre_eliminar);
+
+        $agenda->offsetUnset($contacto_eliminar);
+
+        Contacto::show();
+
+        echo "Contacto Eliminado Correctamente.\n";
         break;
 
         case 6:
