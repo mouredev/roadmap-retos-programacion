@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 30 de septiembre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/Ak6SdZZ8?event=1285336208586833930)** por país y crea un **[recordatorio](https://discord.gg/Ak6SdZZ8?event=1285336208586833930)**
+> #### Lunes 14 de octubre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/juhmSSRF?event=1290376752622993469)** por país y crea un **[recordatorio](https://discord.gg/juhmSSRF?event=1290376752622993469)**
 
 ## Roadmap
 
@@ -74,7 +74,8 @@
 |37|[OASIS VS LINKIN PARK](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/ejercicio.md)|[📝](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/python/mouredev.py)|[▶️](https://youtu.be/q-zBKriHupY)|[👥](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/)
 |38|[MOUREDEV PRO](./Roadmap/38%20-%20MOUREDEV%20PRO/ejercicio.md)|[📝](./Roadmap/38%20-%20MOUREDEV%20PRO/python/mouredev.py)|[▶️](https://youtu.be/AbGROLoAVLs)|[👥](./Roadmap/38%20-%20MOUREDEV%20PRO/)
 |39|[BATMAN DAY](./Roadmap/39%20-%20BATMAN%20DAY/ejercicio.md)|[📝](./Roadmap/39%20-%20BATMAN%20DAY/python/mouredev.py)|[▶️](https://youtu.be/Lmj5enZG5pg)|[👥](./Roadmap/39%20-%20BATMAN%20DAY/)
-|40|[FORTNITE RUBIUS CUP](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/ejercicio.md)|[🗓️ 07/10/24](https://discord.gg/u3R4HUUE?event=1287881476460773456)||[👥](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/)
+|40|[FORTNITE RUBIUS CUP](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/ejercicio.md)|[📝](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/python/mouredev.py)|[▶️](https://youtu.be/UlWtFvLLSXw)|[👥](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/)
+|41|[CAMISETA RAR](./Roadmap/41%20-%20CAMISETA%20RAR/ejercicio.md)|[🗓️ 14/10/24](https://discord.gg/juhmSSRF?event=1290376752622993469)||[👥](./Roadmap/41%20-%20CAMISETA%20RAR/)
 
 ## Cursos en YouTube
 
