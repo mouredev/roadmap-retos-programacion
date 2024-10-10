@@ -7,7 +7,7 @@ import { CLIENT_ID, CLIENT_SECRET } from './client.js'
   Consulta la documentación de la API de Twitch para más información (https://dev.twitch.tv/docs).
   */
 
-async function getAuthToken(clientId, clientSecret) {
+async function getAccessToken(clientId, clientSecret) {
   const token = await fetch('https://id.twitch.tv/oauth2/token', {
     method: 'POST',
     headers: {
@@ -31,7 +31,7 @@ async function getAuthToken(clientId, clientSecret) {
 
 // Métodos de auntenticación que necesitaremos para las peticiones.
 
-const accessToken = await getAuthToken(CLIENT_ID, CLIENT_SECRET)
+const accessToken = await getAccessToken(CLIENT_ID, CLIENT_SECRET)
 
 const requestBody = {
   headers: {
@@ -69,35 +69,27 @@ async function getUsersData(users, ...more) {
     return response.json()
   })
 
-  const data = []
+  const usersData = []
 
-  result.data.forEach(async (user) => {
-    // TODO: resolver esta obtención de datos.
+  for (let i = 0; i < result.data.length; i++) {
+    const user = result.data[i]
 
-    // const followers = await getTotalFollowers(user.id)
-
-    data.push({
+    usersData.push({
       id: user.id,
       login: user.login,
       displayName: user.display_name,
-      // followers: followers,
+      followers: await getTotalFollowers(user.id),
       createdAt: user.created_at,
     })
-  })
+  }
 
-  return data
+  return usersData
 }
-
-const test = await getUsersData('arigameplays')
-
-console.log(test)
-
-// Queries mejoradas gracias a Brais Moure y ChatGPT :)
 
 // prettier-ignore
 const participants = [
-    'littleragergirl', 'ache', 'adricontreras4', 'agustin51', 'alexby11', 'ampeterby7', 'tvander',
-    'arigameplays', 'arigeli_', 'auronplay', 'axozer', 'beniju03', 'bycalitos',
+  'littleragergirl', 'ache', 'adricontreras4', 'agustin51', 'alexby11', 'ampeterby7', 'tvander',
+  'arigameplays', 'arigeli_', 'auronplay', 'axozer', 'beniju03', 'bycalitos',
     'byviruzz', 'carreraaa', 'celopan', 'srcheeto', 'crystalmolly', 'darioemehache',
     'dheylo', 'djmariio', 'doble', 'elvisayomastercard', 'elyas360', 'folagorlives', 'thegrefg',
     'guanyar', 'hika', 'hiperop', 'ibai', 'ibelky_', 'illojuan', 'imantado',
@@ -110,5 +102,29 @@ const participants = [
     'polispol1', 'quackity', 'recuerd0p', 'reventxz', 'rivers_gg', 'robertpg', 'roier',
     'ceuvebrokenheart', 'rubius', 'shadoune666', 'silithur', 'spok_sponha', 'elspreen', 'spursito',
     'bystaxx', 'suzyroxx', 'vicens', 'vitu', 'werlyb', 'xavi', 'xcry', 'elxokas',
-    'thezarcort', 'zeling', 'zormanworld', 'mouredev'
+    'thezarcort', 'zeling', 'zormanworld'
 ]
+
+const participantsData = await getUsersData(participants)
+
+// TODO: Mostrar resultados no encontrados.
+
+// Ordenar por antigüedad.
+// prettier-ignore
+const sortedByOld = participantsData.toSorted((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+
+console.log('\nRanking por antigüedad.')
+sortedByOld.forEach((streamer, index) =>
+  console.log(
+    `${index + 1}. ${streamer.displayName}. ${new Date(streamer.createdAt).toLocaleDateString()}`
+  )
+)
+
+// Ordenar por numero de seguidores.
+
+const sortedByFollowers = participantsData.toSorted((a, b) => b.followers - a.followers)
+
+console.log('\nRanking de seguidores.')
+sortedByFollowers.forEach((streamer, index) => {
+  console.log(`${index + 1}. ${streamer.displayName}: ${streamer.followers.toLocaleString()}`)
+})
