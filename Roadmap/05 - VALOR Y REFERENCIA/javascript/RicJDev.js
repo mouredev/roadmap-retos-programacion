@@ -17,31 +17,27 @@ console.log(arr1); //---> [1, 2, 3, 4]
 console.log(arr2); //---> [1, 2, 3, 4]
 
 //-Funciones con datos por valor-
-const cambiaEsteNumA40 = (n) => {
-	n = 40;
-	return n;
-};
-
 let miNumC = 5;
+
+function suma40(num) {
+	return num + 40;
+}
+
 console.log(miNumC);
 
-cambiaEsteNumA40(miNumC);
+suma40(miNumC);
 console.log(miNumC);
 
 //-Funciones con datos por referencia-
 const arr3 = [12, 34, 53];
 
-const cambiaEsteArr = (arr) => {
-	arr.push(30);
-
-	const arr4 = arr;
-	arr4.push(24);
-
-	console.log(arr);
-	console.log(arr4);
+const agrega40ALaLista = (arr) => {
+	return arr.push(40);
 };
 
-cambiaEsteArr(arr3);
+console.log(arr3);
+
+agrega40ALaLista(arr3);
 console.log(arr3);
 
 //EXTRA
@@ -59,9 +55,7 @@ let miNumF = 63;
 let [nuevoNumD, nuevoNumF] = intercambiaLosValores(miNumD, miNumF);
 
 console.log(`\nValores originales: ${miNumD}, ${miNumF}`);
-console.log(
-	`\nValores luego de cambiarlos con la función: ${nuevoNumD}, ${nuevoNumF}`
-);
+console.log(`\nValores luego de cambiarlos con la función: ${nuevoNumD}, ${nuevoNumF}`);
 
 //-Por referencia-
 //Funciona de la misma manera con los arrays

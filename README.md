@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 1 de julio de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/CPKcDD9d?event=1252321976027054111)** por país y crea un **[recordatorio](https://discord.gg/CPKcDD9d?event=1252321976027054111)**
+> #### Lunes 14 de octubre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/juhmSSRF?event=1290376752622993469)** por país y crea un **[recordatorio](https://discord.gg/juhmSSRF?event=1290376752622993469)**
 
 ## Roadmap
 
@@ -60,7 +60,32 @@
 |23|[SINGLETON](./Roadmap/23%20-%20SINGLETON/ejercicio.md)|[📝](./Roadmap/23%20-%20SINGLETON/python/mouredev.py)|[▶️](https://youtu.be/cOIcFo_w9hA)|[👥](./Roadmap/23%20-%20SINGLETON/)
 |24|[DECORADORES](./Roadmap/24%20-%20DECORADORES/ejercicio.md)|[📝](./Roadmap/24%20-%20DECORADORES/python/mouredev.py)|[▶️](https://youtu.be/jxJOjg7gPG4)|[👥](./Roadmap/24%20-%20DECORADORES/)
 |25|[LOGS](./Roadmap/25%20-%20LOGS/ejercicio.md)|[📝](./Roadmap/25%20-%20LOGS/python/mouredev.py)|[▶️](https://youtu.be/y2O6L1r_skc)|[👥](./Roadmap/25%20-%20LOGS/)
-|26|[SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA](./Roadmap/26%20-%20SOLID%20SRP/ejercicio.md)|[🗓️ 01/07/24](https://discord.gg/CPKcDD9d?event=1252321976027054111)||[👥](./Roadmap/26%20-%20SOLID%20SRP/)
+|26|[SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA](./Roadmap/26%20-%20SOLID%20SRP/ejercicio.md)|[📝](./Roadmap/26%20-%20SOLID%20SRP/python/mouredev.py)|[▶️](https://youtu.be/7NM8FK9G91M)|[👥](./Roadmap/26%20-%20SOLID%20SRP)
+|27|[SOLID: PRINCIPIO ABIERTO-CERRADO](./Roadmap/27%20-%20SOLID%20OCP/ejercicio.md)|[📝](./Roadmap/27%20-%20SOLID%20OCP/python/mouredev.py)|[▶️](https://youtu.be/o0lSVzu4ur4)|[👥](./Roadmap/27%20-%20SOLID%20OCP/)
+|28|[SOLID: PRINCIPIO DE SUSTITUCIÓN DE LISKOV](./Roadmap/28%20-%20SOLID%20LSP/ejercicio.md)|[📝](./Roadmap/28%20-%20SOLID%20LSP/python/mouredev.py)|[▶️](https://youtu.be/SgHoiF1KLTo)|[👥](./Roadmap/28%20-%20SOLID%20LSP/)
+|29|[SOLID: PRINCIPIO DE SEGREGACIÓN DE INTERFACES](./Roadmap/29%20-%20SOLID%20ISP/ejercicio.md)|[📝](./Roadmap/29%20-%20SOLID%20ISP/python/mouredev.py)|[▶️](https://youtu.be/0zTmCTHJ_lg)|[👥](./Roadmap/29%20-%20SOLID%20ISP/)
+|30|[SOLID: PRINCIPIO DE INVERSIÓN DE DEPENDENCIAS](./Roadmap/30%20-%20SOLID%20DIP/ejercicio.md)|[📝](./Roadmap/30%20-%20SOLID%20DIP/python/mouredev.py)|[▶️](https://youtu.be/wxIj6Rs8rAU)|[👥](./Roadmap/30%20-%20SOLID%20DIP/)
+|31|[SIMULADOR JUEGOS OLÍMPICOS](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/ejercicio.md)|[📝](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/python/mouredev.py)|[▶️](https://youtu.be/JN656lQ9WBo)|[👥](./Roadmap/31%20-%20SIMULADOR%20JUEGOS%20OLÍMPICOS/)
+|32|[BATALLA DEADPOOL Y WOLVERINE](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/ejercicio.md)|[📝](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/python/mouredev.py)|[▶️](https://youtu.be/u2Tn2H3pqjw)|[👥](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/)
+|33|[RESCATANDO A MICKEY](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/ejercicio.md)|[📝](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/python/mouredev.py)|[▶️](https://youtu.be/Bo9Cp3N68C0)|[👥](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/)
+|34|[ÁRBOL GENEALÓGICO DE LA CASA DEL DRAGÓN](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/ejercicio.md)|[📝](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/python/mouredev.py)|[▶️](https://youtu.be/GAHBOAzgE2w)|[👥](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/)
+|35|[REPARTIENDO LOS ANILLOS DE PODER](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/ejercicio.md)|[📝](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/python/mouredev.py)|[▶️](https://youtu.be/10i2dnaMLj8)|[👥](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/)
+|36|[EL SOMBRERO SELECCIONADOR](./Roadmap/36%20-%20EL%20SOMBRERO%20SELECCIONADOR/ejercicio.md)|[📝](./Roadmap/36%20-%20EL%20SOMBRERO%20SELECCIONADOR/python/mouredev.py)|[▶️](https://youtu.be/_UjOD587elY)|[👥](./Roadmap/36%20-%20EL%20SOMBRERO%20SELECCIONADOR/)
+|37|[OASIS VS LINKIN PARK](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/ejercicio.md)|[📝](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/python/mouredev.py)|[▶️](https://youtu.be/q-zBKriHupY)|[👥](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/)
+|38|[MOUREDEV PRO](./Roadmap/38%20-%20MOUREDEV%20PRO/ejercicio.md)|[📝](./Roadmap/38%20-%20MOUREDEV%20PRO/python/mouredev.py)|[▶️](https://youtu.be/AbGROLoAVLs)|[👥](./Roadmap/38%20-%20MOUREDEV%20PRO/)
+|39|[BATMAN DAY](./Roadmap/39%20-%20BATMAN%20DAY/ejercicio.md)|[📝](./Roadmap/39%20-%20BATMAN%20DAY/python/mouredev.py)|[▶️](https://youtu.be/Lmj5enZG5pg)|[👥](./Roadmap/39%20-%20BATMAN%20DAY/)
+|40|[FORTNITE RUBIUS CUP](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/ejercicio.md)|[📝](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/python/mouredev.py)|[▶️](https://youtu.be/UlWtFvLLSXw)|[👥](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/)
+|41|[CAMISETA RAR](./Roadmap/41%20-%20CAMISETA%20RAR/ejercicio.md)|[🗓️ 14/10/24](https://discord.gg/juhmSSRF?event=1290376752622993469)||[👥](./Roadmap/41%20-%20CAMISETA%20RAR/)
+
+## Cursos en YouTube
+
+A media que avanzamos en el roadmap estoy creando cursos que agrupan las clases.
+
+[![Lógica 1](http://i3.ytimg.com/vi/TdITcVD64zI/maxresdefault.jpg)](https://youtu.be/TdITcVD64zI)
+
+[![Lógica 2](http://i3.ytimg.com/vi/b-kk1WQo-YA/maxresdefault.jpg)](https://youtu.be/b-kk1WQo-YA)
+
+[![Lógica 3 SOLID](http://i3.ytimg.com/vi/ASBC5drF-QU/maxresdefault.jpg)](https://youtu.be/ASBC5drF-QU)
 
 ## Instrucciones
 

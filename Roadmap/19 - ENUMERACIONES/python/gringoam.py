@@ -1,5 +1,7 @@
 from enum import Enum
 
+
+
 """
 Ejercicio
 """
