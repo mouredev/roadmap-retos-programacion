@@ -105,58 +105,114 @@ print(mi_Diccionario.popitem()) # entrega última clave-valor y lo eleimina
 print(f"Ahora mi_Diccionario tiene los elementos: {mi_Diccionario}\n")
 
 """
-Agenda
+AGENDA
 """
-print("++++++++++++++++++++++++++++++++++++++++++")
-print("           A G E N D A\n")
-print("++++++++++++++++++++++++++++++++++++++++++")
+
 agenda ={}
-while True:         # iniciamos la consulta de que quiere hacer el usuario
-
-    print("1- Busqueda de un contacto\n")
-    print("2- Inserción de un contacto\n")
-    print("3- Actualización de un contacto\n")
-    print("4- Eliminación de un contacto\n")
-    
-    entrada=input("escribe opción: \n")
-    if agenda == {} and (entrada=="1" or entrada=="3" or entrada=="4"):
-        print("la agenda está vacia\n")
-        continue
-    elif entrada == "1" or entrada == "2" or entrada == "3" or entrada =="4":
-        print("procesando\n")
-        break
-    else:
-        print("no has escogido correctamente")    
-
-# Gestionamos la opción decidia
-
-if entrada == "1":                  # Busqueda de contacto
-    nombre=input("nombre: ")
-    elemento= agenda.get(nombre)
-    if elemento == None:
-        print("no existe contacto")
-
-elif entrada == "2":                # Introducción de contacto
-    nombre=input("nombre: ")
-    apellidos=input("apellidos: ")
-    telefono=input("teléfono: ")
-    agenda[nombre] = [apellidos, telefono]
-    
-
-elif entrada == "3":                # solicitamos que contacto quiere actualizar y el que
-    
-    while True:
+while True:
+    while True:         # iniciamos la consulta de que quiere hacer el usuario
+        limpio=input("limpio la pantalla? (si) o (no): ")
+        if limpio=="si": 
+            limpiar()
+        elif limpio=="no":
+            pass
+        print("\n")
+        print("++++++++++++++++++++++++++++++++++++++++++")
+        print("           A G E N D A\n")
+        print("++++++++++++++++++++++++++++++++++++++++++\n")
+        print("1- Busqueda de un contacto\n")
+        print("2- Inserción de un contacto\n")
+        print("3- Actualización de un contacto\n")
+        print("4- Eliminación de un contacto\n")
+        print("5- Listado de contactos\n")
+        print("6- EXIT\n")
         
-        nombre=input("dame el nombre del contacto a actualizar")
-        print("que quieres realizar: \n")
-        print("1- actualizar nombre: \n")
-        print("2- actualizar apellidos: \n")
-        print("3- actualizar telefono: \n")
-        opcion=input("escribe la opción: ")
-
-        if opcion=="1":
-            if nombre in agenda:
-                nuevo_contacto=agenda.pop(nombre)
-                agenda[nombre]=nuevo_contacto
-            print(agenda)
+        entrada=input("escribe opción: \n")
+        if agenda == {} and (entrada=="1" or entrada=="3" or entrada=="4" or entrada=="5"):
+            print("la agenda está vacia\n")
+            continue
+        elif entrada == "1" or entrada == "2" or entrada == "3" or entrada =="4" or entrada=="5" or entrada=="6":
+            print("procesando\n")
             break
+        else:
+            print("no has escogido correctamente")    
+
+    # Gestionamos la opción decidia
+
+    if entrada == "1":                  # OPCIÓN 1- Busqueda de contacto
+        nombre=input("nombre: ")
+        elemento= agenda.get(nombre)
+        if elemento == None:
+            print("no existe contacto")
+        else:
+            print(elemento)
+
+    elif entrada == "2":                # OPCIÓN 2- Introducción de contacto
+        print("introducimos un nuevo contacto\n")
+        nombre=input("nombre: ")
+        apellidos=input("apellidos: ")
+        telefono=input("teléfono: ")
+        agenda[nombre] = [apellidos, telefono]
+        
+
+    elif entrada == "3":                # OPCIÓN 3- solicitamos que contacto quiere actualizar y el que
+        bucle=True
+        while bucle:
+            
+            nombre=input("dame el nombre del contacto a actualizar: ")
+            print("que quieres realizar: \n")
+            print("1- actualizar nombre: \n")
+            print("2- actualizar apellidos: \n")
+            print("3- actualizar telefono: \n")
+            print("4- volver")
+            opcion=input("escribe la opción: ")
+
+            if opcion=="1":
+                if nombre in agenda:
+                    nuevo_contacto=agenda.pop(nombre)
+                    nuevo_nombre=input("introduce el nuevo nombre: ")
+                    agenda[nuevo_nombre]=nuevo_contacto
+                    apellidos_diccionario=agenda.get(nuevo_nombre)
+                print("contacto actualizado: ",nuevo_nombre,*apellidos_diccionario)
+                bucle=False
+            elif opcion=="2":
+                if nombre in agenda:
+                    nuevo_apellido=input("introduce los apellidos: \n")
+                    valores=agenda.get(nombre)
+                    tel=valores[1]
+                    agenda[nombre]=[nuevo_apellido,tel]
+                    valores=agenda.get(nombre)
+                print("contacto actualizado: ",nombre, *valores)
+            elif opcion=="3":
+                if nombre in agenda:
+                    nuevo_telefono=input("introduce el nuevo teléfono: \n")
+                    valores=agenda.get(nombre)
+                    apell=valores[0]
+                    agenda[nombre]=[apell,nuevo_telefono]
+                    valores=agenda.get(nombre)
+                print("contacto actualizado: ",nombre, *valores)
+                bucle=False
+            elif opcion=="4":
+                bucle=False
+    elif entrada == "4":                # OPCIÓN 4- solicitamos que contacto quiere eliminar
+        bucle=True
+        while bucle:
+            contacto_elim=input("dame el nombre del contacto a eliminar: ")
+            if contacto_elim in agenda:
+                alerta=input("estas seguro que quieres borrar el contacto?? (si - no): ")
+                if alerta=="si": 
+                    agenda.pop(contacto_elim)
+                    print("contacto eliminado\n")
+                    bucle=False
+                elif alerta=="no":
+                    bucle=False
+    elif entrada == "5":                # listamos los contactos
+        bucle=True
+        for clave in agenda:
+            valores=agenda.get(clave)
+            print(clave,*valores) 
+            bucle=False
+    elif entrada == "6":
+        break
+                
+            
