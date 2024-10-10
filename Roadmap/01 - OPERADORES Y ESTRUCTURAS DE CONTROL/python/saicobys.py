@@ -1,82 +1,80 @@
-# Operadores aritméticos
-x = 10
-y = 3
-suma = x + y
-resta = x - y
-multiplicacion = x * y
-division = x / y
-division_entera = x // y
-modulo = x % y
-potencia = x ** y
+""" Operadores en Python: """
+# Operadores Aritméticos
+a = 10
+b = 3
+print(f"Suma: {a + b}")          # Suma
+print(f"Resta: {a - b}")          # Resta
+print(f"Multiplicación: {a * b}")  # Multiplicación
+print(f"División: {a / b}")        # División
+print(f"División entera: {a // b}") # División entera
+print(f"Módulo: {a % b}")         # Resto de la división
+print(f"Exponenciación: {a ** b}") # Potencia
 
-print("Suma:", suma)
-print("Resta:", resta)
-print("Multiplicacion:", multiplicacion)
-print("Division:", division)
-print("division entera:", division_entera)
-print("Modulo:", modulo)
-print("Potencia:", potencia)
+# Operadores de Comparación
+x = 5
+y = 8
+print(f"x == y: {x == y}")      # Igual a
+print(f"x != y: {x != y}")      # Distinto de
+print(f"x > y: {x > y}")       # Mayor que
+print(f"x < y: {x < y}")       # Menor que
+print(f"x >= y: {x >= y}")      # Mayor o igual que
+print(f"x <= y: {x <= y}")      # Menor o igual que
 
-# Operadores de comparacion
-a = 5 
-b = 8
-print("a == b:", a == b)
-print("a != b:", a != b)
-print("a > b:", a > b)
-print("a < b:", a < b)
-print("a >= b:", a >= b)
-print("a <= b:", a <= b)
+# Operadores Lógicos
+p = True
+q = False
+print(f"p and q: {p and q}")    # AND lógico (ambos deben ser True)
+print(f"p or q: {p or q}")     # OR lógico (al menos uno debe ser True)
+print(f"not p: {not p}")       # NOT lógico (invierte el valor de verdad)
 
-# Operadores lógicos
-c = True
-d = False
-print("c and d:", c and d)
-print("c or d:", c or d)
-print("not c:", not c)
+# Operadores de Asignación
+z = 20
+z += 5   # z = z + 5
+print(f"z += 5: {z}")
+z -= 3   # z = z - 3
+print(f"z -= 3: {z}")
+z *= 2   # z = z * 2
+print(f"z *= 2: {z}")
+z /= 4   # z = z / 4
+print(f"z /= 4: {z}")
 
-# Operadores de asignación
-e = 15
-e += 5  # e = e + 5
-print("e += 5:", e)
-e -= 3  # e = e - 3
-print("e -= 3:", e)
+# Operadores de Identidad
+lista1 = [1, 2, 3]
+lista2 = [1, 2, 3]
+lista3 = lista1
+print(f"lista1 is lista2: {lista1 is lista2}")  # False (objetos diferentes)
+print(f"lista1 is lista3: {lista1 is lista3}")  # True (misma referencia)
 
-# Operadores de identidad
-f = [1, 2, 3]
-g = [1, 2, 3]
-h = f
-print("f is g:", f is g)  # False (objetos diferentes)
-print("f is h:", f is h)  # True (misma referencia)
-print("f == g:", f == g)  # True (mismo contenido)
+# Operadores de Pertenencia
+print(f"1 in lista1: {1 in lista1}")  # True
+print(f"4 in lista1: {4 in lista1}")  # False
 
-# Operadores de pertenencia
-lista = [1, 2, 3, 4]
-print("1 in lista:", 1 in lista)
-print("5 in lista:", 5 in lista)
-
-# Condicionales
+""" Estructuras de Control en Python: """
+# Condicionales (if, elif, else)
 edad = 25
 
 if edad < 18:
-  print("Eres menor de edad")
-elif edad >= 18 and edad < 65:
-  print("Eres adulto")
+    print("Eres menor de edad")
+elif 18 <= edad < 65: # Combina comparación y operadores lógicos
+    print("Eres adulto")
 else:
-  print("Eres jubilado")
+    print("Eres adulto mayor")
 
-# Iterativas (bucles)
-for i in range(1, 6):  # Imprime números del 1 al 5
-  print(i)
+# Bucles (for , while)
+for i in range(1, 6): # Bucle for: itera sobre un rango de números
+    print(i)
 
-numero = 1
-while numero <= 5:  # Imprime números del 1 al 5
-  print(numero)
-  numero += 1
+contador = 0
+while contador < 5:   # Bucle while: itera mientras se cumpla una condición
+    print(contador)
+    contador += 1
 
-# Excepciones
+# Excepciones (try, except, else, finally)
 try:
-  resultado = 10 / 0  # División por cero (error)
-except ZeroDivisionError as e:
-  print("Error:", e)
-finally:
-  print("Fin del programa")
+    resultado = 10 / 0 # División por cero (genera una excepción)
+except ZeroDivisionError:
+    print("Error: División por cero no permitida")
+else: # Se ejecuta si no hubo excepciones
+    print("El resultado es:", resultado)
+finally: # Se ejecuta siempre, haya o no excepciones
+    print("Fin del programa")

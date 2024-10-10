@@ -1,19 +1,24 @@
-# Python: https://www.python.org/
-"""
-Este es un comentario de varias líneas
+# URL del sitio web oficial de Python: https://www.python.org/
 
+# Comentarios en Python.
+# Comentario de una sola linea: se utiliza el simbolo # al inicio.
+
+""" 
+Comentario multilinea:
+Se utilizan tres comillas dobles (""" """) al principio y al final.
+Puedes usar comillas simples triples (''' ''') también.
 """
 
-# creación de variable de prueba
-variable_prueba = 420 # Python no tiene constantes
+# Variables y constantes
+nombre_lenguaje = "Python" # Variable: Almacena el nombre del lenguaje, puede cambiar su valor.
+PI = 3.14159 # Constante: Almacena el valor de pi, no debe cambiar.
 
 # Tipos de datos primitivos
-string = "Hola Jacob"
-integer = 99
-float = 2.20
-boolean = True
-NoneType = None
-complex_number = 1 + 4j
+saludo = "Hola, mundo!" # str (cadena de texto)
+edad = 30 # int (número entero)
+altura = 1.75 # float ( numero decimal)
+es_estudiante = True # bool (booleano: True o False)
+nada = None # NoneType (representa la ausencia de valor)
 
-# imprimir por terminal
-print("¡Hola, Python!")
+# Imprimir por terminal
+print(f"Hola, {nombre_lenguaje}!") # Imprime el saludo usando f-string para insertar la variable.
