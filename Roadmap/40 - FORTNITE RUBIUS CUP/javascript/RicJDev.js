@@ -1,3 +1,9 @@
+/*
+  EJERCICIO:
+
+  @RicJDev
+*/
+
 import { CLIENT_ID, CLIENT_SECRET } from './client.js'
 
 /*
@@ -5,7 +11,7 @@ import { CLIENT_ID, CLIENT_SECRET } from './client.js'
   Solo se ejecuta si se le pasa un client_id y un client_secret (los cuales no subiré al repo).
 
   Consulta la documentación de la API de Twitch para más información (https://dev.twitch.tv/docs).
-  */
+*/
 
 async function getAccessToken(clientId, clientSecret) {
   const token = await fetch('https://id.twitch.tv/oauth2/token', {
@@ -19,9 +25,8 @@ async function getAccessToken(clientId, clientSecret) {
       client_secret: clientSecret,
     }),
   }).then((response) => {
-    if (response.status !== 200) {
+    if (response.status !== 200)
       throw new Error(`Falla al obtener respuesta de la API. ${response.json()}`)
-    }
 
     return response.json()
   })
@@ -86,41 +91,38 @@ async function getUsersData(users, ...more) {
   return usersData
 }
 
-// prettier-ignore
+// Esta es la lista de participantes. La lista original ha sido modificada para que cada elemento corresponda al login del participante.
+
 const participants = [
   'littleragergirl', 'ache', 'adricontreras4', 'agustin51', 'alexby11', 'ampeterby7', 'tvander',
   'arigameplays', 'arigeli_', 'auronplay', 'axozer', 'beniju03', 'bycalitos',
-    'byviruzz', 'carreraaa', 'celopan', 'srcheeto', 'crystalmolly', 'darioemehache',
-    'dheylo', 'djmariio', 'doble', 'elvisayomastercard', 'elyas360', 'folagorlives', 'thegrefg',
-    'guanyar', 'hika', 'hiperop', 'ibai', 'ibelky_', 'illojuan', 'imantado',
-    'irinaissaia', 'jesskiu', 'jopa', 'jordiwild', 'kenaivsouza', 'mrkeroro10',
-    'thekiddkeo95', 'kikorivera', 'knekro', 'kokoop', 'kronnozomberoficial', 'leviathan',
-    'litkillah', 'lolalolita', 'lolitofdez', 'luh', 'luzu', 'mangel', 'mayichi',
-    'melo', 'missasinfonia', 'mixwell', 'jaggerprincesa', 'nategentile7', 'nexxuz',
-    'lakshartnia', 'nilojeda', 'nissaxter', 'olliegamerz', 'orslok', 'outconsumer', 'papigavitv',
-    'paracetamor', 'patica1999', 'paulagonu', 'pausenpaii', 'perxitaa', 'nosoyplex',
-    'polispol1', 'quackity', 'recuerd0p', 'reventxz', 'rivers_gg', 'robertpg', 'roier',
-    'ceuvebrokenheart', 'rubius', 'shadoune666', 'silithur', 'spok_sponha', 'elspreen', 'spursito',
-    'bystaxx', 'suzyroxx', 'vicens', 'vitu', 'werlyb', 'xavi', 'xcry', 'elxokas',
-    'thezarcort', 'zeling', 'zormanworld'
+  'byviruzz', 'carreraaa', 'celopan', 'srcheeto', 'crystalmolly', 'darioemehache',
+  'dheylo', 'djmariio', 'doble', 'elvisayomastercard', 'elyas360', 'folagorlives', 'thegrefg',
+  'guanyar', 'hika', 'hiperop', 'ibai', 'ibelky_', 'illojuan', 'imantado',
+  'irinaissaia', 'jesskiu', 'jopa', 'jordiwild', 'kenaivsouza', 'mrkeroro10',
+  'thekiddkeo95', 'kikorivera', 'knekro', 'kokoop', 'kronnozomberoficial', 'leviathan',
+  'litkillah', 'lolalolita', 'lolitofdez', 'luh', 'luzu', 'mangel', 'mayichi',
+  'melo', 'missasinfonia', 'mixwell', 'jaggerprincesa', 'nategentile7', 'nexxuz',
+  'lakshartnia', 'nilojeda', 'nissaxter', 'olliegamerz', 'orslok', 'outconsumer', 'papigavitv',
+  'paracetamor', 'patica1999', 'paulagonu', 'pausenpaii', 'perxitaa', 'nosoyplex',
+  'polispol1', 'quackity', 'recuerd0p', 'reventxz', 'rivers_gg', 'robertpg', 'roier',
+  'ceuvebrokenheart', 'rubius', 'shadoune666', 'silithur', 'spok_sponha', 'elspreen', 'spursito',
+  'bystaxx', 'suzyroxx', 'vicens', 'vitu', 'werlyb', 'xavi', 'xcry', 'elxokas',
+  'thezarcort', 'zeling', 'zormanworld'
 ]
 
 const participantsData = await getUsersData(participants)
 
-// TODO: Mostrar resultados no encontrados.
-
 // Ordenar por antigüedad.
-// prettier-ignore
+
 const sortedByOld = participantsData.toSorted((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
 
 console.log('\nRanking por antigüedad.')
-sortedByOld.forEach((streamer, index) =>
-  console.log(
-    `${index + 1}. ${streamer.displayName}. ${new Date(streamer.createdAt).toLocaleDateString()}`
-  )
-)
+sortedByOld.forEach((streamer, index) => {
+  console.log(`${index + 1}. ${streamer.displayName}. ${new Date(streamer.createdAt).toLocaleDateString()}`)
+})
 
-// Ordenar por numero de seguidores.
+// Ordenar por número de seguidores.
 
 const sortedByFollowers = participantsData.toSorted((a, b) => b.followers - a.followers)
 
@@ -128,3 +130,16 @@ console.log('\nRanking de seguidores.')
 sortedByFollowers.forEach((streamer, index) => {
   console.log(`${index + 1}. ${streamer.displayName}: ${streamer.followers.toLocaleString()}`)
 })
+
+// Resultados no encontrados.
+
+const notFound = [...participants]
+
+participantsData.forEach((streamer) => {
+  if (notFound.includes(streamer.login)) {
+    notFound.splice(notFound.indexOf(streamer.login), 1)
+  }
+})
+
+console.log('\nResultados no encontrados:')
+notFound.forEach((participant, index) => console.log(`${index + 1}. ${participant}`))
