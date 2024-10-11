@@ -1,6 +1,6 @@
 numero1 = 10
 numero2 = 3
-numero3 = 34
+numero3 = 343
 
 cadena = "10 23 esto es una cadena"
 
