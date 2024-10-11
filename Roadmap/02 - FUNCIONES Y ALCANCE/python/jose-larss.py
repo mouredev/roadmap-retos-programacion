@@ -68,21 +68,29 @@ def funcion_extra(cadena1, cadena2):
     contador = 0
 
     for i in range(1, 101):
-        print(i)
         
-        if i % 3 == 0:
-            if i % 5 == 0:
-                print(cadena1, cadena2)
-            else:
-                print(cadena1)
+        if i % 3 == 0 and i % 5 == 0:
+            print(cadena1, cadena2)
+        elif i % 3 == 0:
+            print(cadena1)
         elif i % 5 == 0:
-            if i % 3 == 0:
-                print(cadena1, cadena2)
-            else:
-                print(cadena2)
+            print(cadena2)
         else:
+            print(i)
             contador += 1
     return contador
 
 contador = funcion_extra(cadena1, cadena2)
 print("el numero de veces que se ha impreso el numero es", contador)
+
+def saludar(*names):
+    for name in names:
+        print(f"Hola: {name}!!")
+
+saludar('pepe', 'juan', 'antonio', 'jose', 'pepita', 'cristina', 'angel')
+
+def datos_usuario(**usuario): # es un diccionario
+    for key, value in usuario.items():
+        print(f"Hola su {key} es {value}")
+
+datos_usuario(nombre='juan', apellidos='castro', edad=34, ciudad="Madrid", codigo_postal=28016)
