@@ -1,9 +1,17 @@
 class Program
 {
+    static List<Contacto> agenda = new List<Contacto>
+    {
+        new Contacto(1, "Emilio", "612123456"),
+        new Contacto(2, "Samantha", "62134567"),
+        new Contacto(3, "Aldo", "6124573154")
+    };
+    static int id = 4;
     static void Main(string[] args)
     {
         // Estructuras de Datos
-        
+
+        #region Arrays
         // Arreglos o Arrays
         /* 
             -Almacenan elementos del mismo tipo.
@@ -13,7 +21,7 @@ class Program
         */
         string[] personas = { "Hugo", "Paco", "Luis" }; // Se puede inicializar definiendo los elementos que lo conforman 
         int[] edades = new int[5]; // Tambien se puede indicar el tamaño al inicializarlo para su llenado posterior
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 5; i++) // => {1, 2, 3, 4, 5}
             edades[i] = i;
 
         string[,] coordenadads = new string[5, 5]; // Un array de dos dimensiones se conoce como matríz
@@ -28,7 +36,8 @@ class Program
                 coordenadads[i, j] = $"{i},{j}";
             }
         }
-
+        
+        // Agregar
         /* 
          * Al tener su tamaño definido al momento de creación
          * no es posible agregar nuevos elementos, pero si 
@@ -37,13 +46,14 @@ class Program
          * el último elemento de un array con 5 elementos se
          * encuentra en el índice 4
          */
-        edades[4] = 6;
+        edades[4] = 6; // => {1, 2, 3, 4, 6}
         /* 
          * edades[5] = 6 <- esto daría un error ya que el tamaño
          *                  del array es de 5 por lo que el índice
          *                  5 estaría fuera de ese límite
          */
 
+        // Eliminar
         /* 
          * Para elminar elementos de un array se puede usar el metodo
          * Array.Clear() en el cual se indica a partir de cual indice
@@ -51,20 +61,18 @@ class Program
          * Sin embargo el tamaño del array no cambia y en los índices
          * donde se elimino se coloca un valor por default como el 0
          */
-        Array.Clear(edades, 2, 2);
-        foreach (int edad in edades)
-            Console.WriteLine(edad);
+        Array.Clear(edades, 2, 2); // => {1, 2, 0, 0, 6}
 
-        // Modificación
+        // Modificar
         /* 
          * Para modificar solo se debe indicar el indice del elemento
          * a modificar y asignarle el nuevo valor
          */
-        edades[0] = 5;
-        edades[2] = 7;
-        edades[3] = 2;
+        edades[0] = 5; // => {5, 2, 0, 0, 6}
+        edades[2] = 7; // => {5, 2, 7, 0, 6}
+        edades[3] = 2; // => {5, 2, 7, 2, 6}
 
-        // Ordenamiento
+        // Ordenar
         /* 
          * El metodo Array.Sort() ordena los elemento de
          * mayor a menor por default en caso de tipos enteros
@@ -74,13 +82,9 @@ class Program
          */
 
         char[] letras = { 'f', 'b', 'a', 'h', 'c' };
-        Array.Sort(letras);
-        Console.Write("{");
-        foreach (char c in letras)
-            Console.Write($"{c},");
-
-        Console.Write("}");
-
+        Array.Sort(letras); // => {a, b, c, f, h}
+        #endregion
+        #region Listas
         // Listas
         /*
          * También llamadas colecciones las listas
@@ -97,9 +101,9 @@ class Program
         paises.Add("México");
         paises.Add("España");
         paises.Add("Perú");
-        paises.Add("Colombia");
-        // Eliminar datos
-        paises.Remove("Perú");
+        paises.Add("Colombia");// => {"México", "España", "Perú", "Colombia"}
+        // Eliminar
+        paises.Remove("Perú"); // => {"México", "España", "Colombia"}
 
         // Modificar
         /*
@@ -111,16 +115,17 @@ class Program
          * que primero se tendría que buscar dicho 
          * índice
          */
-        paises[1] = "Españita";
-        paises[0] = "Estados Unidos Mexicanos";
+        paises[1] = "Españita"; // => {"México", "Españita", "Colombia"}
+        paises[0] = "Estados Unidos Mexicanos"; // => {"Estados Unidos Mexicanos", "España", "Colombia"}
 
         // Ordenar
         /*
          * Se ordenan los elementos de manera similar
          * a  como se hace con arrays
          */
-        paises.Sort();
-
+        paises.Sort(); // => {"Colombia", "Españita", "Estados Unidos Mexicanos"}
+        #endregion
+        #region Diccionario
         // Diccionario
         /*
          * Representa una colección de claves y valores
@@ -161,9 +166,10 @@ class Program
          * Linq para ordenarlos
          */
         languages = (from language in languages
-                    orderby language.Key ascending
-                    select language).ToDictionary();
-
+                     orderby language.Key ascending
+                     select language).ToDictionary();
+        #endregion
+        #region Queue
         // Queue
         /*
          * Queue o fila es una colección de datos
@@ -177,14 +183,14 @@ class Program
         /*
          * Se utiliza el método Enqueue()
          */
-        turnos.Enqueue("Uno");
-        turnos.Enqueue("Dos");
-        turnos.Enqueue("Tres");
-        turnos.Enqueue("Cuatro");
-        turnos.Enqueue("Cinco");
+        turnos.Enqueue("Uno"); // => {"Uno"}
+        turnos.Enqueue("Dos"); // => {"Uno", "Dos"}
+        turnos.Enqueue("Tres"); // => {"Uno", "Dos", "Tres"}
+        turnos.Enqueue("Cuatro"); // => {"Uno", "Dos", "Tres", "Cuatro"}
+        turnos.Enqueue("Cinco"); // => {"Uno", "Dos", "Tres", "Cuatro", "Cinco"}
 
         // Eliminar
-        turnos.Dequeue();
+        turnos.Dequeue(); // => {"Dos", "Tres", "Cuatro", "Cinco"}
         /*
          * Para elminar se utiliza el metodo Dequeue()
          * se elimina el primer elemento en se añadido
@@ -192,7 +198,8 @@ class Program
          */
 
         // No es posible modificar u ordenar una fila
-
+        #endregion
+        #region Stack
         // Stack
         /*
          * Stack o pila es una colección de datos
@@ -206,19 +213,304 @@ class Program
         /*
          * Para agregar se utiliza el método Push
          */
-        stack.Push(1);
-        stack.Push(2);
-        stack.Push(3);
-        stack.Push(4);
-        stack.Push(5);
+        stack.Push(1); // => {1}
+        stack.Push(2); // => {1, 2}
+        stack.Push(3); // => {1, 2, 3}
+        stack.Push(4); // => { 1, 2, 3, 4}
+        stack.Push(5); // => { 1, 2, 3, 4, 5}
 
         // Eliminar
         /*
          * Se utiliza el método Pop() para remover
          * el último elemento agregado a la pila
          */
-        stack.Pop();
+        stack.Pop(); // => { 1, 2, 3, 4}
 
         // No es posible modificar u ordenar una pila
+        #endregion
+        #region Linked List
+        // Listas enlazadas
+        /*
+         * Una lista enlazada o linked list
+         * es una colección de datos en la
+         * cual todos sus elementos estan relacionados
+         */
+
+        LinkedList<string> list = new LinkedList<string>();
+        // Agregrar elementos
+        /*
+         * Existen cuatro metodos diferente para agregar
+         * elmentos o nodos a una lista enlazada
+         */
+        list.AddFirst("Primer elemento"); //Se agrega un nodo al inicio de la lista
+        list.AddLast("Cuarto elemento"); // Se agrega un nodo al final de la lista
+        LinkedListNode<string> current = list.Last; // Tomamos el último nodo para agregar otro en una posición anterior
+        list.AddBefore(current, "Segundo elemento"); // Agregamos el nuevo nodo antes del nodo indicado
+        current = list.Find("Segundo elemento"); // Seleccionamos el nodo que acabamos de agregar
+        list.AddAfter(current, "Tercer elemento"); // Agregamos el nodo después del nodo indicado
+        list.AddLast("Quinto elemento");
+        list.AddLast("Sexto elemento");
+        list.AddLast("Séptimo elemento");
+
+        // Eliminar
+        /*
+         * Existen tres formas diferentes para 
+         * elminiar elementos o nodos
+         */
+        list.RemoveFirst(); // Se elimina el primer nodo de la lista
+        list.RemoveLast(); // Se elimina el último nodo de la lista
+        current = list.Find("Tercer elemento"); // Se busca el nodo a eliminar
+        list.Remove(current); // Se elimina indicando el nodo
+
+        // Modificar
+        current = list.Find("Segundo elemento"); // Se busca elemento a modificar
+        current.Value = "Primer elemento"; // Se asigna a la propiedad value el nuevo valor 
+
+        // Ordenar
+        /*
+         * Para ordenar es necesario crear una
+         * segunda lista para almecenar el resultado
+         * de la función Sort() ya que esta no 
+         * modifica la lista a ordenar
+         */
+        var orderedList = list.Order();
+
+        #endregion
+        #region HashSet
+        // Hash Set
+
+        /*
+         * Conjunto de datos que no
+         * admite elementos repetidos
+         * y no tiene un orden
+         */
+
+        HashSet<int> numeros = new HashSet<int>();
+        // Agregar
+        numeros.Add(1);
+        numeros.Add(2);
+        numeros.Add(3);
+        numeros.Add(3);
+        numeros.Add(4);
+        numeros.Add(5);
+        /*
+         * Aunque se indique la instruccón de agregar el número 3
+         * el hashset solo contiene 5 elemento ya que no acepta
+         * valores repetidos
+         */
+        Console.WriteLine($"El hash tiene {numeros.Count} elementos");
+
+        // Eliminar
+
+        numeros.Remove(1); // Se indica el valor a eliminar
+
+        // No es posible modificar un elemento o ordenar el hashset
+        #endregion
+        // Agenda telefónica
+        
+        bool salir = false;
+
+        Console.WriteLine();
+        Console.WriteLine();
+        while (!salir)
+        {
+            Console.WriteLine("----SISTEMA DE AGENDA TELEFONICA----");
+            MostrarMenu();
+
+            int opcion;
+            int.TryParse(Console.ReadLine(), out opcion);
+            if (opcion == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Opción no valida, intente de nuevo");
+            }
+            switch (opcion)
+            {
+                case 1:
+                    Console.Clear();
+                    if (agenda.Count == 0)
+                    {
+                        Console.WriteLine("Su agenda está vacía...");
+                        break;
+                    }
+                    MostrarAgenda(agenda);
+                    break;
+                case 2:
+                    BuscarContacto();
+                    break;
+                case 3:
+                    AgregarContacto();
+                    break;
+                case 4:
+                    ModificarContacto();
+                    break;
+                case 5:
+                    EliminarContacto();
+                    break;
+                case 6:
+                    Console.Clear();
+                    Console.WriteLine("Hasta la próxima...");
+                    Thread.Sleep(1000);
+                    salir = true;
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Opción no valida, intente de nuevo");
+                    break;
+            }
+
+        }
+        
+    }
+    static void MostrarMenu()
+    {
+        Console.WriteLine("1.- Consultar contactos");
+        Console.WriteLine("2.- Buscar contacto");
+        Console.WriteLine("3.- Agregar un nuevo contacto");
+        Console.WriteLine("4.- Modificar contacto existente");
+        Console.WriteLine("5.- Eliminar contacto");
+        Console.WriteLine("6.- Salir");
+        Console.WriteLine("Por favor elija una opción...");
+    }
+    static void MostrarAgenda(List<Contacto> agenda)
+    {
+        foreach (var contacto in agenda)
+            Console.WriteLine($"ID: {contacto.Id}, Nombre: {contacto.Nombre}, Teléfono: {contacto.Telefono}");
+    }
+    static void BuscarContacto()
+    {
+        Console.Clear();
+        Console.WriteLine("Ingrese el nombre del contacto que desea buscar:");
+        string contacto = Console.ReadLine();
+        var resultado = agenda.Where(c => c.Nombre.ToUpper().Contains(contacto.ToUpper())).ToList();
+        Console.Clear();
+        if (resultado.Count() == 0)
+        {
+            Console.WriteLine("No se encontró ningún contacto...");
+            return;
+        }
+        Console.WriteLine("Se encontraron los siguientes contactos:");
+        MostrarAgenda(resultado);
+    }
+    static string IngresarNombre()
+    {
+        string nombre = "";
+        do
+        {
+            Console.WriteLine("Ingrese el nombre del contacto");
+            nombre = Console.ReadLine();
+            if (nombre == "")
+            {
+                Console.Clear();
+                Console.WriteLine("El nombre ingresado no es valido, intente de nuevo");
+            }
+        } while (nombre == "");
+        return nombre;
+    }
+    static string IngresarTelefono()
+    {
+        Int64 num;
+        string telefono;
+        bool esValido = true;
+        do
+        {
+            esValido = true;
+            Console.WriteLine("Ingrese el número del contacto");
+            telefono = Console.ReadLine();
+            if (!Int64.TryParse(telefono, out num) | telefono.Length > 11)
+            {
+                Console.Clear();
+                Console.WriteLine("El número ingresado no es valido, intente de nuevo");
+                esValido = false;
+            }
+        } while (!esValido);
+        return telefono;
+    }
+    static void AgregarContacto()
+    {
+        Console.Clear();
+        string nombre = IngresarNombre();
+        string telefono = IngresarTelefono();
+        agenda.Add(new Contacto(id, nombre, telefono));
+        Console.Clear();
+        Console.WriteLine("El contacto se agregó correctamente:");
+        Console.WriteLine($"ID: {id}, Nombre: {nombre}, Telefono: {telefono}");
+        id++;
+    }
+    static int BuscarPorId()
+    {
+        bool esValido = true;
+        int idContacto;
+        do
+        {
+            esValido = true;
+            Console.WriteLine("Especifique el id del contacto");
+
+            int.TryParse(Console.ReadLine(), out idContacto);
+            if (idContacto == 0)
+            {
+                Console.WriteLine("Por favor ingrese un id válido...");
+                esValido = false;
+            }
+            else if (agenda.Where(c => c.Id == idContacto).Count() == 0)
+            {
+                Console.WriteLine($"No existe ningún contacto con el id {idContacto}...");
+                esValido = false;
+            }
+
+        } while (!esValido);
+        return idContacto;
+    }
+    static void ModificarContacto()
+    { 
+        Console.Clear();
+        MostrarAgenda(agenda);
+        int idContacto = BuscarPorId();
+
+        string nombre = IngresarNombre();
+        string telefono = IngresarTelefono();
+        var contacto = agenda.FirstOrDefault(c => c.Id == idContacto);
+        contacto.Nombre = nombre;
+        contacto.Telefono = telefono;
+        Console.Clear();
+        Console.WriteLine("Contacto modificado existosamente");
+        MostrarAgenda(agenda);
+
+    }
+    static void EliminarContacto()
+    {
+        Console.Clear();
+        MostrarAgenda(agenda);
+        int idContacto = BuscarPorId();
+        var contacto = agenda.FirstOrDefault(c => c.Id == idContacto);
+        Console.WriteLine("Se eliminará el siguiente contacto:");
+        Console.WriteLine($"ID: {contacto.Id}, Nombre: {contacto.Nombre}, Teléfono: {contacto.Telefono}");
+        Console.WriteLine("Para confirmar ingrese la tecla s, para cancelar ingrese otra tecla");
+        string respuesta = Console.ReadLine();
+        if( respuesta.ToUpper() == "S")
+        {
+            agenda.Remove(contacto);
+            Console.WriteLine("El contacto se eliminó correctamente...");
+        }
+        else
+        {
+            Console.WriteLine("La operación ha sido cancelada...");
+        }
+        Thread.Sleep(2000);
+        Console.Clear();
+    }
+
+    class Contacto
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Telefono { get; set; }
+
+        public Contacto(int id, string nombre, string telefono) 
+        {
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Telefono = telefono;
+        }
     }
 }
