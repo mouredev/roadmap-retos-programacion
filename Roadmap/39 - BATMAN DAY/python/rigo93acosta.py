@@ -40,27 +40,27 @@ from datetime import datetime, timedelta
 import math
 
 ## Reto 1
-# year_of_creation: int = 1939
-# anniversary: int = year_of_creation + 85
-# batman_day_ann_dates = []
-# while anniversary <= year_of_creation + 100:
-#     september = datetime(anniversary, 9, 1)
-#     first_saturday = 5 - september.weekday() \
-#                         if september.weekday() <= 5 \
-#                         else 12 - september.weekday()
-#     third_saturday = september + timedelta(days=first_saturday + 14)
+year_of_creation: int = 1939
+anniversary: int = year_of_creation + 85
+batman_day_ann_dates = []
+while anniversary <= year_of_creation + 100:
+    september = datetime(anniversary, 9, 1)
+    first_saturday = 5 - september.weekday() \
+                        if september.weekday() <= 5 \
+                        else 12 - september.weekday()
+    third_saturday = september + timedelta(days=first_saturday + 14)
 
-#     batman_day_ann_dates.append(
-#         (
-#             anniversary, 
-#             anniversary - year_of_creation, 
-#             third_saturday.strftime("%d-%m-%Y")
-#         )
-#     )
-#     anniversary += 1
+    batman_day_ann_dates.append(
+        (
+            anniversary, 
+            anniversary - year_of_creation, 
+            third_saturday.strftime("%d-%m-%Y")
+        )
+    )
+    anniversary += 1
 
-# for year, anniversary, date in batman_day_ann_dates:
-#     print(f"Batman Day {anniversary}º Aniversario: {date}")
+for year, anniversary, date in batman_day_ann_dates:
+    print(f"Batman Day {anniversary}º Aniversario: {date}")
 
 ## Reto 2
 sensors = [
