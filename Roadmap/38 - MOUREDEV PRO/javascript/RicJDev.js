@@ -8,28 +8,24 @@
 
 import fs from 'fs/promises'
 
-async function getUsersData() {
+async function getActiveUsers() {
   const usersArray = []
 
-  try {
-    const filePath = new URL('./data.csv', import.meta.url)
-    const data = await fs.readFile(filePath, 'utf8')
+  const filePath = new URL('./subs.csv', import.meta.url)
+  const data = await fs.readFile(filePath, 'utf8')
 
-    const lines = data.trim().split('\n')
-    const headers = lines[0].split(',')
+  const lines = data.trim().split('\n')
+  const headers = lines[0].split(',')
 
-    for (let i = 1; i < lines.length; i++) {
-      const user = {}
-      const values = lines[i].split(',')
+  for (let i = 1; i < lines.length; i++) {
+    const user = {}
+    const values = lines[i].split(',')
 
-      headers.forEach((header, index) => {
-        user[header.trim()] = values[index].trim()
-      })
+    headers.forEach((header, index) => {
+      user[header.trim()] = values[index].trim()
+    })
 
-      usersArray.push(user)
-    }
-  } catch (error) {
-    console.error('Error al leer el archivo CSV:', error)
+    if (user.status === 'activo') usersArray.push(user)
   }
 
   return usersArray
@@ -37,8 +33,8 @@ async function getUsersData() {
 
 // Una vez obtenidos los datos, creamos una función que nos retornará un usuario al azar.
 
-const usersData = await getUsersData()
-const getRandomUser = () => usersData[Math.floor(Math.random() * usersData.length)]
+const activeUsers = await getActiveUsers()
+const getRandomUser = () => activeUsers[Math.floor(Math.random() * activeUsers.length)]
 
 // Haremos las comprobaciones para el ganador de cada premio y lo almacenaremos en un objeto.
 
@@ -58,7 +54,7 @@ while (Object.values(winners).includes(winner)) {
 
 winners.discount = winner
 
-while (Object.values(winners).includes(winner) || winner.status !== 'activo') {
+while (Object.values(winners).includes(winner)) {
   winner = getRandomUser()
 }
 
