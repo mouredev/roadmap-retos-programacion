@@ -102,7 +102,7 @@ print(dicc1)
 print(dicc1['años'])
 
 # Actualización
-dicc1['años'] = 12
+dicc1['años'] = 34
 
 print(dicc1)
 
