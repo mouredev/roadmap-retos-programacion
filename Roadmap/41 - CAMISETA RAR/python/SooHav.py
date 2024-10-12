@@ -12,7 +12,7 @@ zipfile - Módulo para trabajar con archivos ZIP
 Este módulo proporciona herramientas para crear, leer, escribir, agregar y listar archivos ZIP.
 Permite manipular archivos comprimidos utilizando diferentes algoritmos de compresión.
 
-CLASE: class zipfile.ZipFile(file, mode='r', compression=ZIP_STORED, allowZip64=True, 
+CLASE: class zipfile.ZipFile(file, mode='r', compression=ZIP_STORED, allowZip64=True,
                   compresslevel=None, *, strict_timestamps=True)
 
 Esta clase permite abrir, crear y manipular archivos ZIP. Los archivos ZIP pueden ser comprimidos
@@ -105,8 +105,8 @@ writestr(self, zinfo_or_arcname, data, compress_type=None):
 setpassword(self, pwd):
     Establece una contraseña para el archivo ZIP.
 
-infolist(self): 
-    Devuelve una lista de objetos ZipInfo que representan los miembros 
+infolist(self):
+    Devuelve una lista de objetos ZipInfo que representan los miembros
     del archivo ZIP. Esto permite iterar sobre los archivos dentro del ZIP.
 
 testzip(self):
@@ -138,7 +138,6 @@ def compress_with_zipfile(filename, output_dir):
 
     try:
         # Comprimir el archivo
-
         with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=8) as zipf:
             zipf.write(filename, os.path.basename(filename))
         print(f"Archivo comprimido guardado en: {output_path}")
@@ -189,6 +188,47 @@ decompress_with_zipfile(zip_filename, output_dir)
 
 
 # GZIP
+"""
+Este módulo proporciona una interfaz simple para comprimir y descomprimir archivos en formato gzip.
+
+La compresión de datos es proporcionada por el módulo zlib. El formato gzip se usa
+en sistemas Unix/Linux para la compresión de archivos, especialmente archivos de texto.
+
+1. Funciones del módulo:
+   - gzip.open(filename, mode='rb', compresslevel=9, encoding=None, errors=None, newline=None):
+     Abre un archivo comprimido gzip en modo binario o de texto, retornando un objeto de archivo.
+     - `filename`: Nombre de archivo.
+     - `mode`: Puede ser 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', 'xb' para modo binario, o 'rt', 'at', 
+     'wt', 'xt' para modo texto. El valor predeterminado es 'rb'.
+     - `compresslevel`: Un entero de 0 a 9 que define el nivel de compresión.
+     - Los argumentos `encoding`, `errors`, y `newline` son utilizados solo en modo texto.
+
+   - gzip.compress(data, compresslevel=9):
+     Comprime los datos proporcionados (bytes) y retorna los datos comprimidos. El argumento `compresslevel` 
+     es un entero de 0 a 9 que controla el nivel de compresión, siendo 1 la compresión más rápida y 9 la más 
+     lenta pero con la mayor compresión.
+
+   - gzip.decompress(data):
+     Descomprime los datos comprimidos (bytes) y retorna los datos originales. Se espera que los datos de 
+     entrada sean un objeto bytes.
+
+2. Clase `GzipFile`: gzip.GzipFile(filename=None, mode=None, compresslevel=9, fileobj=None, mtime=None):
+    
+    Constructor para la clase `GzipFile`, que simula la mayoría de los métodos de un objeto de archivo 
+    (excepto `truncate()`). Debe proporcionarse al menos uno de `fileobj` o `filename`.
+
+    - `filename`: Nombre del archivo a abrir.
+    - `mode`: Modo de apertura ('r', 'rb', 'a', 'ab', 'w', 'wb', 'x', 'xb'). Por defecto es 'rb'.
+    - `compresslevel`: Controla el nivel de compresión (0 a 9).
+    - `fileobj`: Archivo, objeto `io.BytesIO` o cualquier objeto que simule un archivo. Si es `None`, 
+      se abrirá `filename`.
+    - `mtime`: Timestamp en formato Unix (segundos desde el 1 de enero de 1970). Por defecto, se usa 
+      la hora actual.
+
+    El método `close()` de un objeto `GzipFile` no cierra `fileobj`, permitiendo agregar más datos 
+    después de la compresión. 
+"""
+
 
 def compress_with_gzip(filename, output_dir):
     if not os.path.exists(filename):
@@ -213,7 +253,7 @@ def compress_with_gzip(filename, output_dir):
     try:
         # Comprimir el archivo
         with open(filename, 'rb') as f_in:
-            with gzip.open(output_path, 'wb') as f_out:
+            with gzip.GzipFile(output_path, 'wb', compresslevel=9) as f_out:
                 shutil.copyfileobj(f_in, f_out)
         print(f"Archivo comprimido guardado en: {output_path}")
     except Exception as e:
@@ -243,7 +283,7 @@ def decompress_with_gzip(gzip_filename, output_dir):
 
     try:
         # Descomprimir el archivo
-        with gzip.open(gzip_filename, 'rb') as f_in:
+        with gzip.GzipFile(gzip_filename, 'rb') as f_in:
             with open(output_path, 'wb') as f_out:
                 shutil.copyfileobj(f_in, f_out)
         print(f"Archivo descomprimido guardado en: {output_path}")
