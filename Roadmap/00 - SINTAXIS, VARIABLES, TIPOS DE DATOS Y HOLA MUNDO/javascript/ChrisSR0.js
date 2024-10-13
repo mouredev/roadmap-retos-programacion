@@ -1,7 +1,7 @@
-//documentacion de jaavaScript MDN WEB DOCS
+//documentacion de javaScript MDN WEB DOCS
 //https://developer.mozilla.org/es/docs/Web/JavaScript
 
-// coentario de una linea y empieza con // solo se comenta una linea
+// comentario de una linea y empieza con // solo se comenta esta linea
 
 /* comentario de varias lines (bloque) nos permite
     comentar en varias
