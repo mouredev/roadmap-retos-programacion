@@ -191,10 +191,16 @@ public class JesusAntonioEEscamilla {
             System.out.println("Este bloque se ejecuta siempre");
         }
 
-        /**-----DIFICULTAD EXTRA-----*/
+    /**-----DIFICULTAD EXTRA-----*/
 
-        //Pendiente
+        System.out.println("\n-----EXTRA-----\n");
 
-        /**-----DIFICULTAD EXTRA-----*/
+        for(int m = 10; m < 55; m++){
+            if ((m % 2 == 0) && (m != 16) && (m % 3 == 0)) {
+                System.out.println(m);
+            }
+        }
+
+    /**-----DIFICULTAD EXTRA-----*/
     }
 }

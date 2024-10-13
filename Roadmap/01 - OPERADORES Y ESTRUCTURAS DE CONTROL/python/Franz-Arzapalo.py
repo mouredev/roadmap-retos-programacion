@@ -289,7 +289,7 @@ Un operador muy criticado y dificil de utilizar porque se usa para definir una v
 # Ejemplo Operador walrus:
 print(k := 2)
 # Como se obesarva en la terminal imprime k y k fue definida en la misma funcion print esto puede ser util para
-# reducir el numero de lineas de codigo en un funcion pero es critica porque es dificil de interpretar para el resto de personas.
+# reducir el numero de lineas de codigo en un funcion pero es criticada porque es dificil de interpretar para el resto de personas.
 
 # 2. Utilizando las operaciones con operadores que tú quieras, crea ejemplos
 #    que representen todos los tipos de estructuras de control que existan
@@ -297,7 +297,7 @@ print(k := 2)
 #    Condicionales, iterativas, exepciones...
 
 """
-TIpos de sitemas de control
+Tipos de estructuras de control
 """
 
 # Variables para los ejemplos:
@@ -324,7 +324,7 @@ else :
     print(f"Ejm_int-1 no es = {2}")
 # AL usar esta extension "else" lagragamos una accion que se ejecutara si el caso definido con if no es True.
 
-# Extension de if "ELif"
+# Extension de if "ELif" esto renplaza de cierta manera "Switch" esto no existe en python pero es es util saberlo. 
 if Ejm_string_1 == "str" :
     print(f"Ejm_string_1 = {Ejm_string_1}")
 elif Ejm_string_1 == "stg" : 
@@ -404,6 +404,25 @@ while x > 0:
 else:
     print("El bucle ha finalizado")
 # Se puede usar el else en while aqui el else se ejecuta cuando la condicion del while se deja de cumplirn osea cuando el bucle se termina.
+
+# Modificadores "Break" y "Continue" : Son modificadores de comportamiento para los bucles se usan de la siguiente manera.
+
+# "Break":
+for l in "Break":
+    if l == "a":
+        print("Econtro la a")
+        break
+    print(l)
+# De esta forma cuando "l" sea igual a "a" el bucle parara pero antes se ejecutara el codigo que lo precede.
+
+# "Continue":
+num = 5
+while x > 0:
+    num -= 1
+    if num == 3:
+        continue
+    print(num)
+# De esta forma cuando "num" sea igual a 3  el bucle omitira y pasara a la siguiente operacion.
 
 # Manejo de excepciones
 try:
