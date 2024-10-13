@@ -97,7 +97,7 @@ public class JimsimroDev {
     List<Integer> listaE = new ArrayList<>();
     listaE.add(40);
     listaE.add(50);
-    System.out.println("listaE = " + listaD);
+    System.out.println("listaD = " + listaD);
     System.out.println("listaE = " + listaE);
     System.out.println("listaE = " + referencia(listaD, listaE)[0] + " listaD = " + referencia(listaD, listaE)[1]);
   }
