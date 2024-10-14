@@ -71,7 +71,7 @@ class Fighter {
     if (value < 0 || value > 100) {
       throw new Error(`El valor de ${attribute} debe ser entre 0 y 100`)
     }
-    return attribute
+    return value
   }
 
   showInfo() {
@@ -81,4 +81,16 @@ class Fighter {
     console.log(`Defensa: ${this.defensa}`)
     console.log(`Salud: ${this.salud}`)
   }
+}
+
+// function that sims the tournament
+function tournament(fighters) {
+  if (
+    (fighters.length & (fighters.length - 1)) !== 0 ||
+    fighters.length === 0
+  ) {
+    console.log("El número de luchadores debe ser una potencia de 2")
+    return
+  }
+  console.log("¡El torneo puede comenzar!")
 }
