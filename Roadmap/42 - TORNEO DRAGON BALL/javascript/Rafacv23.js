@@ -23,7 +23,7 @@ class Fighter {
 
     // Calcular el daño
     let damage
-    if (defender.defensa > this.ataque) {
+    if (defender.defensa > this.ataque || defender.defensa === this.ataque) {
       damage = this.ataque * 0.1 // Recibe solo el 10% del ataque
       console.log(`${defender.nombre} bloquea gran parte del daño!`)
     } else {
