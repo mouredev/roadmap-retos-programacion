@@ -12,15 +12,15 @@ print(f"Módulo: 8 % 5 = {8 % 5}")
 print(f"Potencia: 8 ** 5 = {8 ** 5}")
 
 # Operadores Lógicos:
-print(f"AND (&&):") 
+print(f"AND (and):") 
 print(f"True and True = {True and True}")
 print(f"True and False = {True and False}")
 print(f"False and False = {False and False}")
-print(f"OR (||):") 
+print(f"OR (or):") 
 print(f"True or True = {True or True}")
 print(f"True or False = {True or False}")
 print(f"False or False = {False or False}")
-print(f"NOT (||):") 
+print(f"NOT (not):") 
 print(f"not True = {not True}")
 print(f"not False = {not False}")
 
@@ -70,8 +70,8 @@ print(f"AND: 10 & 12 = {10 & 12}")
 print(f"OR: 10 | 12 = {10 | 12}")  
 print(f"XOR: 10 ^ 12 = {10 ^ 12}")  
 print(f"NOT: ~2 = {~2}")
-print(f"Desplazamiento a la derecha: 10 >> 2 = {12 >> 2}") 
-print(f"Desplazamiento a la izquierda: 10 << 2 = {12 << 2}")
+print(f"Desplazamiento a la derecha: 10 >> 2 = {10 >> 2}") 
+print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}")
 
 '''
   ESTRUCTURAS DE CONTROL

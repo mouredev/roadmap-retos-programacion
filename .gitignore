@@ -1,2 +1,15 @@
-*.txt
 .vscode/
+*.txt
+*.xml
+*.iml
+*.json
+*.csv
+*.zip
+!stats.json
+.DS_Store
+.idea/
+pubspec.yaml
+pubspec.lock
+.venv
+*.class
+*.gradle 

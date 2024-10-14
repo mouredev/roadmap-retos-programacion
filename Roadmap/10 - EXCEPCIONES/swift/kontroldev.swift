@@ -64,3 +64,42 @@ func getValue(at index: Int, from array: [Int]) throws -> Int {
 }
 
 handleExceptions()
+
+//MARK: - Extra
+enum StrTypeError: Error {
+    case invalidType
+}
+
+func processParams(_ parameters: [Any]) {
+    guard parameters.count >= 3 else {
+        print("El número de elementos de la lista debe ser mayor que dos.")
+        return
+    }
+    
+    guard let divisor = parameters[1] as? Int, divisor != 0 else {
+        print("El segundo elemento de la lista no puede ser un cero.")
+        return
+    }
+    
+    guard !(parameters[2] is String) else {
+        print("El tercer elemento no puede ser una cadena de texto.")
+        return
+    }
+    
+    print(parameters[2])
+    print(parameters[0] as! Int / divisor)
+    print((parameters[2] as! Int) + 5)
+}
+
+do {
+    try processParams([1, 2, 3, 4])
+} catch StrTypeError.invalidType {
+    print("El tercer elemento no puede ser una cadena de texto.")
+} catch let error as NSError {
+    print("Se ha producido un error inesperado: \(error.localizedDescription)")
+} catch {
+    print("Se ha producido un error inesperado.")
+} finally {
+    print("El programa finaliza sin detenerse.")
+}
+

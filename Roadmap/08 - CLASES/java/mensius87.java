@@ -1,6 +1,3 @@
-package Retos_2024.roadmap-retos-programacion.Roadmap.08 - CLASES.java;
-
-
 public class Persona {
     private String nombre;
     private int edad;
@@ -15,9 +12,6 @@ public class Persona {
         System.out.println("Edad: " + this.edad);
     }
 
-}
-
-public class mensius87 {
     public static void main(String[] args) {
         // Crear una instancia de la clase Persona
         Persona persona1 = new Persona("Juan", 30);
