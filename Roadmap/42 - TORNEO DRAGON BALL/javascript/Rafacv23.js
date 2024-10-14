@@ -1,62 +1,3 @@
-const fighters = [
-  {
-    nombre: "Goku",
-    velocidad: 85,
-    ataque: 95,
-    defensa: 80,
-    salud: 100,
-  },
-  {
-    nombre: "Vegeta",
-    velocidad: 80,
-    ataque: 90,
-    defensa: 85,
-    salud: 100,
-  },
-  {
-    nombre: "Piccolo",
-    velocidad: 70,
-    ataque: 75,
-    defensa: 90,
-    salud: 100,
-  },
-  {
-    nombre: "Gohan",
-    velocidad: 88,
-    ataque: 92,
-    defensa: 78,
-    salud: 100,
-  },
-  {
-    nombre: "Trunks",
-    velocidad: 78,
-    ataque: 88,
-    defensa: 82,
-    salud: 100,
-  },
-  {
-    nombre: "Kefla",
-    velocidad: 60,
-    ataque: 99,
-    defensa: 85,
-    salud: 100,
-  },
-  {
-    nombre: "Freezer",
-    velocidad: 75,
-    ataque: 85,
-    defensa: 80,
-    salud: 100,
-  },
-  {
-    nombre: "Cell",
-    velocidad: 83,
-    ataque: 87,
-    defensa: 90,
-    salud: 100,
-  },
-]
-
 class Fighter {
   constructor(nombre, velocidad, ataque, defensa) {
     this.nombre = nombre
@@ -74,25 +15,33 @@ class Fighter {
     return value
   }
 
-  attack(attacker, defender) {
-    if (this.salud === 0) {
-      console.log(`${attacker.nombre} ha perdido toda su salud`)
-      return
-    }
+  attack(defender) {
     if (defender.salud === 0) {
       console.log(`${defender.nombre} ha perdido toda su salud`)
       return
     }
-    let damage = this.ataque - defender.defensa
+
+    // Calcular el daño
+    let damage
     if (defender.defensa > this.ataque) {
-      damage = this.ataque - defender.defensa * 0.1
+      damage = this.ataque * 0.1 // Recibe solo el 10% del ataque
+      console.log(`${defender.nombre} bloquea gran parte del daño!`)
+    } else {
+      damage = this.ataque - defender.defensa // Full damage
     }
+
+    // Evitar que el daño sea negativo
+    if (damage < 0) damage = 0
+
+    // Aplicar el daño al defensor
     defender.salud -= damage
+
     console.log(
-      `${attacker.nombre} ha atacado ${defender.nombre} con ${damage} de daño`
+      `${this.nombre} ha atacado a ${defender.nombre} con ${damage.toFixed(
+        2
+      )} de daño`
     )
-    console.log(`El daño restante de ${defender.nombre} es ${defender.salud}`)
-    console.log(`El daño restante de ${attacker.nombre} es ${attacker.salud}`)
+    console.log(`Salud restante de ${defender.nombre}: ${defender.salud}`)
   }
 
   showInfo() {
@@ -101,6 +50,81 @@ class Fighter {
     console.log(`Ataque: ${this.ataque}`)
     console.log(`Defensa: ${this.defensa}`)
     console.log(`Salud: ${this.salud}`)
+  }
+}
+
+const fighters = [
+  new Fighter("Goku", 85, 95, 80),
+  new Fighter("Vegeta", 80, 90, 85),
+  new Fighter("Piccolo", 70, 75, 90),
+  new Fighter("Gohan", 88, 92, 78),
+  new Fighter("Trunks", 78, 88, 82),
+  new Fighter("Kefla", 60, 90, 85),
+  new Fighter("Freezer", 75, 85, 80),
+  new Fighter("Cell", 83, 87, 90),
+]
+
+function shuffleFighters(fighters) {
+  for (let i = fighters.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[fighters[i], fighters[j]] = [fighters[j], fighters[i]]
+  }
+  return fighters
+}
+
+function drawFighters() {
+  let round = 1
+
+  while (fighters.length > 1) {
+    console.log(`\n--- Ronda ${round} ---`)
+
+    // Shuffle fighters for random matchups
+    shuffleFighters(fighters)
+
+    // Process battles in pairs
+    for (let i = 0; i < fighters.length; i += 2) {
+      const fighter1 = fighters[i]
+      const fighter2 = fighters[i + 1]
+
+      console.log(
+        `\n${fighter1.nombre} (Salud: ${fighter1.salud}) vs ${fighter2.nombre} (Salud: ${fighter2.salud})`
+      )
+
+      // Decide who attacks first based on speed
+      let attacker, defender
+      if (fighter1.velocidad >= fighter2.velocidad) {
+        attacker = fighter1
+        defender = fighter2
+      } else {
+        attacker = fighter2
+        defender = fighter1
+      }
+
+      // Fight until one of them loses
+      while (attacker.salud > 0 && defender.salud > 0) {
+        attacker.attack(defender)
+        if (defender.salud > 0) {
+          defender.attack(attacker)
+        }
+      }
+
+      // Remove the defeated fighter
+      if (attacker.salud <= 0) {
+        console.log(`${attacker.nombre} ha sido eliminado`)
+        fighters.splice(fighters.indexOf(attacker), 1)
+      } else if (defender.salud <= 0) {
+        console.log(`${defender.nombre} ha sido eliminado`)
+        fighters.splice(fighters.indexOf(defender), 1)
+      }
+    }
+
+    round++
+  }
+
+  // The last remaining fighter is the winner
+  if (fighters.length === 1) {
+    console.log("\n¡El torneo ha terminado! El ganador/a es:")
+    fighters[0].showInfo()
   }
 }
 
@@ -113,5 +137,7 @@ function tournament(fighters) {
     console.log("El número de luchadores debe ser una potencia de 2")
     return
   }
-  console.log("¡El torneo puede comenzar!")
+  drawFighters()
 }
+
+tournament(fighters)
