@@ -1,0 +1,58 @@
+const fighters = [
+  {
+    nombre: "Goku",
+    velocidad: 85,
+    ataque: 95,
+    defensa: 80,
+    salud: 100,
+  },
+  {
+    nombre: "Vegeta",
+    velocidad: 80,
+    ataque: 90,
+    defensa: 85,
+    salud: 100,
+  },
+  {
+    nombre: "Piccolo",
+    velocidad: 70,
+    ataque: 75,
+    defensa: 90,
+    salud: 100,
+  },
+  {
+    nombre: "Gohan",
+    velocidad: 88,
+    ataque: 92,
+    defensa: 78,
+    salud: 100,
+  },
+  {
+    nombre: "Trunks",
+    velocidad: 78,
+    ataque: 88,
+    defensa: 82,
+    salud: 100,
+  },
+  {
+    nombre: "Kefla",
+    velocidad: 60,
+    ataque: 99,
+    defensa: 85,
+    salud: 100,
+  },
+  {
+    nombre: "Freezer",
+    velocidad: 75,
+    ataque: 85,
+    defensa: 80,
+    salud: 100,
+  },
+  {
+    nombre: "Cell",
+    velocidad: 83,
+    ataque: 87,
+    defensa: 90,
+    salud: 100,
+  },
+]
