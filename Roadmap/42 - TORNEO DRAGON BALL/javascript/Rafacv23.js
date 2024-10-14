@@ -56,3 +56,29 @@ const fighters = [
     salud: 100,
   },
 ]
+
+class Fighter {
+  constructor(nombre, velocidad, ataque, defensa) {
+    this.nombre = nombre
+    this.velocidad = this.checkAttribute(velocidad, "velocidad")
+    this.ataque = this.checkAttribute(ataque, "ataque")
+    this.defensa = this.checkAttribute(defensa, "defensa")
+    this.salud = 100 // Inicialmente, todos tienen 100 de salud
+  }
+
+  // ensure that the attribute are between 0 and 100
+  checkAttribute(value, attribute) {
+    if (value < 0 || value > 100) {
+      throw new Error(`El valor de ${attribute} debe ser entre 0 y 100`)
+    }
+    return attribute
+  }
+
+  showInfo() {
+    console.log(`Nombre: ${this.nombre}`)
+    console.log(`Velocidad: ${this.velocidad}`)
+    console.log(`Ataque: ${this.ataque}`)
+    console.log(`Defensa: ${this.defensa}`)
+    console.log(`Salud: ${this.salud}`)
+  }
+}
