@@ -74,6 +74,27 @@ class Fighter {
     return value
   }
 
+  attack(attacker, defender) {
+    if (this.salud === 0) {
+      console.log(`${attacker.nombre} ha perdido toda su salud`)
+      return
+    }
+    if (defender.salud === 0) {
+      console.log(`${defender.nombre} ha perdido toda su salud`)
+      return
+    }
+    let damage = this.ataque - defender.defensa
+    if (defender.defensa > this.ataque) {
+      damage = this.ataque - defender.defensa * 0.1
+    }
+    defender.salud -= damage
+    console.log(
+      `${attacker.nombre} ha atacado ${defender.nombre} con ${damage} de daño`
+    )
+    console.log(`El daño restante de ${defender.nombre} es ${defender.salud}`)
+    console.log(`El daño restante de ${attacker.nombre} es ${attacker.salud}`)
+  }
+
   showInfo() {
     console.log(`Nombre: ${this.nombre}`)
     console.log(`Velocidad: ${this.velocidad}`)
