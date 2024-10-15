@@ -21,8 +21,16 @@ class Fighter {
       return
     }
 
+    // calculamos si el defensor evita el ataque o no
+    const evadeChance = Math.random()
+
+    if (evadeChance < 0.2) {
+      console.log(`${defender.nombre} ha esquivado el ataque`)
+      return
+    }
     // Calcular el daño
     let damage
+
     if (defender.defensa > this.ataque || defender.defensa === this.ataque) {
       damage = this.ataque * 0.1 // Recibe solo el 10% del ataque
       console.log(`${defender.nombre} bloquea gran parte del daño!`)
@@ -115,9 +123,11 @@ function drawFighters() {
       // Remove the defeated fighter
       if (attacker.salud <= 0) {
         console.log(`${attacker.nombre} ha sido eliminado`)
+        console.log(`${defender.nombre} avanza a la siguiente ronda`)
         fighters.splice(fighters.indexOf(attacker), 1)
       } else if (defender.salud <= 0) {
         console.log(`${defender.nombre} ha sido eliminado`)
+        console.log(`${attacker.nombre} avanza a la siguiente ronda`)
         fighters.splice(fighters.indexOf(defender), 1)
       }
     }
