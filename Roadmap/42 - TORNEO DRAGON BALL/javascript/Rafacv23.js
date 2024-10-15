@@ -86,7 +86,7 @@ function drawFighters() {
     shuffleFighters(fighters)
 
     // Process battles in pairs
-    for (let i = 0; i < fighters.length; i += 2) {
+    for (let i = 0; i < fighters.length; i++) {
       const fighter1 = fighters[i]
       const fighter2 = fighters[i + 1]
 
