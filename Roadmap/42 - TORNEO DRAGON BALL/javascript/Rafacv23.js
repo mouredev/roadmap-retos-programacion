@@ -1,10 +1,13 @@
+const EVADE_CHANCE = 0.2
+const HEALTH = 100
+
 class Fighter {
   constructor(nombre, velocidad, ataque, defensa) {
     this.nombre = nombre
     this.velocidad = this.checkAttribute(velocidad, "velocidad")
     this.ataque = this.checkAttribute(ataque, "ataque")
     this.defensa = this.checkAttribute(defensa, "defensa")
-    this.salud = 100 // Inicialmente, todos tienen 100 de salud
+    this.salud = HEALTH // Inicialmente, todos tienen 100 de salud
   }
 
   // ensure that the attribute are between 0 and 100
@@ -22,9 +25,9 @@ class Fighter {
     }
 
     // calculamos si el defensor evita el ataque o no
-    const evadeChance = Math.random()
+    const evade = Math.random()
 
-    if (evadeChance < 0.2) {
+    if (evade < EVADE_CHANCE) {
       console.log(`${defender.nombre} ha esquivado el ataque`)
       return
     }
