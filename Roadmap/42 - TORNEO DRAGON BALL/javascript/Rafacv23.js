@@ -149,7 +149,7 @@ function drawFighters() {
 }
 
 // function that sims the tournament
-function tournament(fighters) {
+;(function tournament() {
   if (
     (fighters.length & (fighters.length - 1)) !== 0 ||
     fighters.length === 0
@@ -158,6 +158,4 @@ function tournament(fighters) {
     return
   }
   drawFighters()
-}
-
-tournament(fighters)
+})()
