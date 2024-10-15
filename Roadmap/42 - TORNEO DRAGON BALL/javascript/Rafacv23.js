@@ -1,3 +1,6 @@
+// Hecho por @Rafacv23 | https://github.com/Rafacv23 | https://twitter.com/rafacanosa  | https://www.rafacanosa.dev
+
+// Global constants
 const EVADE_CHANCE = 0.2
 const HEALTH = 100
 
