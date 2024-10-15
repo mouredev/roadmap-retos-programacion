@@ -76,7 +76,11 @@ function drawFighters() {
   let round = 1
 
   while (fighters.length > 1) {
-    console.log(`\n--- Ronda ${round} ---`)
+    if (fighters.length === 2) {
+      console.log(`\n--- Ronda Final ---`)
+    } else {
+      console.log(`\n--- Ronda ${round} ---`)
+    }
 
     // Shuffle fighters for random matchups
     shuffleFighters(fighters)
