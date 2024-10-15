@@ -14,3 +14,12 @@ console.info(
 console.debug(
   "Esto es un console.debug(), sirve para mostrar un mensaje por consola pero con el modo debug activado."
 )
+
+// Dificultad opcional
+class Task {
+  // Sirve para crear nuevas tareas
+  constructor(name, description) {
+    this.name = name
+    this.description = description
+  }
+}
