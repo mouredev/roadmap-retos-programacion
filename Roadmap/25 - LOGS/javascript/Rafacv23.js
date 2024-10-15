@@ -22,4 +22,29 @@ class Task {
     this.name = name
     this.description = description
   }
+
+  deleteTask(name, taskList) {
+    // check if name is provided
+    if (!name) {
+      console.error("No se ha introducido el nombre de la tarea")
+      return
+    }
+
+    //Check if task exists
+    const taskExists = taskList.some((task) => task.name === name)
+
+    if (!taskExists) {
+      console.error(
+        `Error: No se encontró ninguna tarea con el nombre "${name}".`
+      )
+      return taskList // Retornar el array original si no se encuentra el item
+    }
+
+    const updatedTaskList = taskList.filter((task) => task.name !== name)
+    console.log(`Tarea con nombre "${name}" eliminada correctamente.`)
+
+    return updatedTaskList // Devolver la lista actualizada
+  }
 }
+
+const taskList = []
