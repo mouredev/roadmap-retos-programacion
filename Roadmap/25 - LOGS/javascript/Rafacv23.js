@@ -45,6 +45,13 @@ class Task {
 
     return updatedTaskList // Devolver la lista actualizada
   }
+
+  showTasks(taskList) {
+    console.log("Tareas actuales:")
+    for (let i = 0; i < taskList.length; i++) {
+      console.log(`${i + 1}. ${taskList[i].name} - ${taskList[i].description}`)
+    }
+  }
 }
 
 const taskList = []
