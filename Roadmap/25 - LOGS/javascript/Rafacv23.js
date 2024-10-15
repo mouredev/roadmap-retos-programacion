@@ -16,14 +16,19 @@ console.debug(
 )
 
 // Dificultad opcional
+console.log("Iniciando programa de gestión de tareas...")
 class Task {
   // Sirve para crear nuevas tareas
   constructor(name, description) {
+    console.time("Tiempo para añadir tarea")
     this.name = name
     this.description = description
+    console.timeEnd("Tiempo para añadir tarea")
   }
 
   deleteTask(name, taskList) {
+    console.time("Tiempo para eliminar tarea")
+
     // check if name is provided
     if (!name) {
       console.error("No se ha introducido el nombre de la tarea")
@@ -43,15 +48,28 @@ class Task {
     const updatedTaskList = taskList.filter((task) => task.name !== name)
     console.log(`Tarea con nombre "${name}" eliminada correctamente.`)
 
+    console.timeEnd("Tiempo para eliminar tarea")
     return updatedTaskList // Devolver la lista actualizada
   }
 
   showTasks(taskList) {
+    console.time("Tiempo para listar tareas")
     console.log("Tareas actuales:")
     for (let i = 0; i < taskList.length; i++) {
       console.log(`${i + 1}. ${taskList[i].name} - ${taskList[i].description}`)
     }
+    console.timeEnd("Tiempo para listar tareas")
   }
 }
 
-const taskList = []
+const taskList = [
+  new Task("Lavar la ropa", "Separar blanco de color"),
+  new Task("Hacer la compra", "Comprar pan, leche y huevos"),
+  new Task("Estudiar", "Estudiar para el examen de JavaScript"),
+]
+
+const taskManager = new Task()
+
+taskManager.showTasks(taskList)
+
+taskManager.deleteTask("Estudiar", taskList)
