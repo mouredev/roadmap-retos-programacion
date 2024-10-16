@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 14 de octubre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/juhmSSRF?event=1290376752622993469)** por país y crea un **[recordatorio](https://discord.gg/juhmSSRF?event=1290376752622993469)**
+> #### Lunes 21 de octubre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/K4SGshHf?event=1294092672793051177)** por país y crea un **[recordatorio](https://discord.gg/K4SGshHf?event=1294092672793051177)**
 
 ## Roadmap
 
@@ -75,7 +75,8 @@
 |38|[MOUREDEV PRO](./Roadmap/38%20-%20MOUREDEV%20PRO/ejercicio.md)|[📝](./Roadmap/38%20-%20MOUREDEV%20PRO/python/mouredev.py)|[▶️](https://youtu.be/AbGROLoAVLs)|[👥](./Roadmap/38%20-%20MOUREDEV%20PRO/)
 |39|[BATMAN DAY](./Roadmap/39%20-%20BATMAN%20DAY/ejercicio.md)|[📝](./Roadmap/39%20-%20BATMAN%20DAY/python/mouredev.py)|[▶️](https://youtu.be/Lmj5enZG5pg)|[👥](./Roadmap/39%20-%20BATMAN%20DAY/)
 |40|[FORTNITE RUBIUS CUP](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/ejercicio.md)|[📝](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/python/mouredev.py)|[▶️](https://youtu.be/UlWtFvLLSXw)|[👥](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/)
-|41|[CAMISETA RAR](./Roadmap/41%20-%20CAMISETA%20RAR/ejercicio.md)|[🗓️ 14/10/24](https://discord.gg/juhmSSRF?event=1290376752622993469)||[👥](./Roadmap/41%20-%20CAMISETA%20RAR/)
+|41|[CAMISETA RAR](./Roadmap/41%20-%20CAMISETA%20RAR/ejercicio.md)|[📝](./Roadmap/41%20-%20CAMISETA%20RAR/python/mouredev.py)||[👥](./Roadmap/41%20-%20CAMISETA%20RAR/)
+|42|[TORNEO DRAGON BALL](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/ejercicio.md)|[🗓️ 21/10/24](https://discord.gg/K4SGshHf?event=1294092672793051177)||[👥](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/)
 
 ## Cursos en YouTube
 
