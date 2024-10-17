@@ -1,0 +1,60 @@
+import { Observable } from 'rxjs';
+import type { InquirerReadline } from '@inquirer/type';
+import type { Answers, PromptSession, StreamOptions } from '../types.js';
+export declare const _: {
+    set: (obj: Record<string, unknown>, path: string | undefined, value: unknown) => void;
+    get: (obj: object, path?: string | number | symbol, defaultValue?: unknown) => any;
+};
+export interface PromptBase {
+    /**
+     * Runs the prompt.
+     *
+     * @returns
+     * The result of the prompt.
+     */
+    run(): Promise<any>;
+}
+/**
+ * Provides the functionality to initialize new prompts.
+ */
+export interface LegacyPromptConstructor {
+    /**
+     * Initializes a new instance of a prompt.
+     *
+     * @param question
+     * The question to prompt.
+     *
+     * @param readLine
+     * An object for reading from the command-line.
+     *
+     * @param answers
+     * The answers provided by the user.
+     */
+    new (question: any, readLine: InquirerReadline, answers: Record<string, any>): PromptBase;
+}
+export type PromptFn<Value = any, Config = any> = (config: Config, context: StreamOptions & {
+    signal: AbortSignal;
+}) => Promise<Value>;
+/**
+ * Provides a set of prompt-constructors.
+ */
+export type PromptCollection = Record<string, PromptFn | LegacyPromptConstructor>;
+/**
+ * Base interface class other can inherits from
+ */
+export default class PromptsRunner<A extends Answers> {
+    private prompts;
+    answers: Partial<A>;
+    process: Observable<any>;
+    private abortController;
+    private opt;
+    constructor(prompts: PromptCollection, opt?: StreamOptions);
+    run(questions: PromptSession<A>, answers?: Partial<A>): Promise<A>;
+    private prepareQuestion;
+    private fetchAnswer;
+    /**
+     * Close the interface and cleanup listeners
+     */
+    close: () => void;
+    private shouldRun;
+}
