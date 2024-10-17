@@ -114,13 +114,14 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 1. Realiza un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del repositorio de retos semanales desde GitHub.
 2. CLONA ese repositorio a tu máquina local `git clone [TU-REPOSITORIO]`.
 3. (Opcional) Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
-4. Añade el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`.
-5. Haz COMMIT con el mensaje de la solución `git commit -m "#[NÚMERO-RETO] - [LENGUAJE-UTILIZADO]"`.
-6. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]` (puede ser la "main" o la que creaste en el paso 3)
-7. En el repositorio principal debes ir a la rama y hacer [PULL REQUEST](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
-8. CONTRIBUTE.
-9. CREATE PULL REQUEST (cubre la plantilla que te aparecerá).
-10. Si el proceso de entrega se ha realizado de forma correcta, se añadirá tu corrección al repositorio. En caso contrario, se te notificarán los cambios a realizar o los motivos del rechazo.
+4. 
+5. Añade el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`.
+6. Haz COMMIT con el mensaje de la solución `git commit -m "#[NÚMERO-RETO] - [LENGUAJE-UTILIZADO]"`.
+7. Haz PUSH `git push [EL-NOMBRE-DE-TU-RAMA]` (puede ser la "main" o la que creaste en el paso 3)
+8. En el repositorio principal debes ir a la rama y hacer [PULL REQUEST](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+9. CONTRIBUTE.
+10. CREATE PULL REQUEST (cubre la plantilla que te aparecerá).
+11. Si el proceso de entrega se ha realizado de forma correcta, se añadirá tu corrección al repositorio. En caso contrario, se te notificarán los cambios a realizar o los motivos del rechazo.
 
 *He creado un curso completo gratis para aprender a trabajar con Git y GitHub desde cero.*
 
