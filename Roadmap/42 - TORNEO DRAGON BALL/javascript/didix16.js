@@ -42,21 +42,109 @@
  *  5. En caso de que el daño sea 0 o negativo, el daño será el 10% del ataque del atacante.
  *  6. Si un personaje tiene 0 de velocidad, no podrá esquivar los ataques pero tendrá superarmadura, haciendo que los golpes con daño positivo solo le quiten el 10% (min 1)
  *  7. Si un personaje tiene 100 de velocidad, será supersónico y tendrá un 50% de probabilidad de esquivar los ataques!!!
+ *  8. Mecánica de ki y SPARKING! MODE. Los personajes tienen 50 de ki máximo (y pueden empezar con 20 o 30) y disponen de 3 ataques especiales que comsumen ki, el débil consume 20, el fuerte 40 y la definitiva 50.
+ *  Los turnos deberán usarse para atacar o recuperar ki. Si un personaje se queda sin ki, no podrá usar ataques especiales y está obligado a recuperar ki.
+ *  Cada personaje dipondrá de una velocidad de recuperación de ki (cantidad a recuperar entre 10 o 20 por turno) y una probabilidad de recuperar ki que dependerá de la cantidad de ki restante
+ *  en su turno. La probabilidad de recuperar ki dependerá de la cantidad de recuperación de ki del personaje, a cuanta más cantidad menos probabilidad.
+ *  La probabilidad de escoger recuperación en vez de ataque dependerá de la cantidad de ki restante. Para ello generaremos 2 tipos de curvas cúbicas a trozos (natural cubic spline) que aproximen la probabilidad:
+ *      - una para los que recuperan 10 de ki por turno (Ki Recharge = 10)
+ *      - otra para los que recuperan 20 de ki por turno (Ki Recharge = 20)
+ *  Si un personaje tiene menos de 20 de ataque se considerará débil pero como bonificación para balancear un poco la cosa, sus ataques de ki débil tendrán un 20% más de daño y los fuertes un 50% más de daño además de tener 10% más de probabilidad de ignorar la defensa del defensor.
+ *  Los ataques de ki no se calculan como los ataques normales, sino que tienen un daño base (atk+%) y una probabilidad de ignorar la defensa del defensor además de no tener críticos:
+ *  Los ataques de ki débiles producen un daño equivalente al atk + 25% (+50% si personaje debil; min 2 daño) y tienen una probabilidad del 20% (30% si personaje debil) de ignorar el 80% de la defensa del defensor.
+ *  Los ataques de ki fuertes producen un daño equivalente al atk + 50% (+100% si personaje debil; min 5 daño) y tienen una probabilidad del 40% (50% si personaje debil) de ignorar el 80% de la defensa del defensor.
+ *  Los ataques de ki definitivos producen un daño equivalente al atk + 200% (+300% si personaje debil; min 10 daño) y tienen un 70% de probabilidad de ignorar el 100% de la defensa del defensor.
+ *  Además, para realizar un ataque de ki definitivo, el personaje debe entrar en modo SPARKING!. Para ello, el personaje debe tener 50 de ki y la probabilidad de entrar en modo SPARKING! se calcula como:
+ *     - 50% si el personaje no es considerado débil
+ *     - 60% si el personaje es considerado débil
+ *     - 65% + ((atk-70)/30)*20% si el personaje es considerado fuerte (70atk => 65%, 100atk => 85%)
+ *  Entrar en modo SPARKING! consumirá un turno. En este modo, el personaje obtendrá:
+ *     - +5% de probabilidad de crítico adicional
+ *     - +10% de probabilidad de esquivar adicional
+ *     - +10% de atk adicional
+ *     - -20% de reducción defensa
+ *     - posibilidad de realizar el ataque definitivo de ki
+ *  Este modo consta de un contador especial de 50 unidades las cuales cuando llegue a 0, el personaje saldrá del modo SPARKING!
+ *  Durante el modo SPARKING! el personaje consumirá contador SPARKING! según el ataque que realice:
+ *     - 5 unidades por ataque físico
+ *     - 20 unidades por ataque de ki débil
+ *     - 40 unidades por ataque de ki fuerte
+ *     - 50 unidades por ataque de ki definitivo (consume 50 de ki y sale del modo SPARKING!)
+ *  Mientras el contador sea positivo, se podrá realizar cualquier combinación de ataque posible. Cuando el contador llegue a 0, el personaje saldrá del modo SPARKING!. Realizar un ataque definitivo de ki consumirá el contador y el ki del personaje.
+ *  Para elegir entre ataque físico o de ki, dependerá de si tiene ki disponible (o contador SPARKING!) y si lo tiene entonces la probabilidad se calcula como:
+ *     - Si modo SPARKING! activo
+ *          - 10% para el ataque de ki débil
+ *          - 20% para el ataque de ki fuerte
+ *          - 10% para ataques físicos
+ *          - 60% para ataque definitivo de ki
+ *     - Si ki disponible >= 40
+ *          - 15% para el ataque de ki débil
+ *          - 25% para el ataque de ki fuerte
+ *          - 60% para ataques físicos
+ *     - Si ki disponible >= 20 y < 40
+ *         - 25% para el ataque de ki débil
+ *         - 75% para ataques físicos
+ *    - Si ki disponible < 20
+ *      -  100% para ataques físicos
  */
 
 // utils
 const rand = Math.random;
 const randInt = (min, max) => Math.floor(rand() * (max - min + 1) + min);
+const randValuesFrom = (list) => list[randInt(0, list.length - 1)];
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const printAtack = (fighter1, fighter2, damage, evaded, isCrit) => {
+const AttackType = {
+    PHYISICAL_ATK: 0,
+    KI_WEAK_ATK: 1,
+    KI_STRONG_ATK: 2,
+    KI_ULTIMATE_ATK: 3,
+    isPhysicalAtk: (atkType) => atkType === AttackType.PHYISICAL_ATK,
+    isKiWeakAtk: (atkType) => atkType === AttackType.KI_WEAK_ATK,
+    isKiStrongAtk: (atkType) => atkType === AttackType.KI_STRONG_ATK,
+    isKiUltimateAtk: (atkType) => atkType === AttackType.KI_ULTIMATE_ATK,
+};
+
+const printAtack = (fighter1, fighter2, damage, evaded, isCrit, defenseIgnored) => {
     if (!evaded)
         console.log(
             `${fighter1.name} ataca 🤜 a ${fighter2.name} y le hace ${damage} de daño 💔⬇️. ${
                 isCrit ? ' 💥💥 ¡UUH ESO HA SIDO UN CRÍTICO! 💥💥' : ''
-            }`
+            }${defenseIgnored ? ' 💥🛡️ ¡UUH LE HA PUESTO TODA SU ENERGÍA Y HA ATRAVESADO LA DEFENSA! 🛡️💥' : ''}`
         );
-    else console.log(`${fighter1.name} ataca a ${fighter2.name} pero ${fighter2.name} esquiva el ataque! 🤸‍♂️💨`);
+    else console.log(`${fighter1.name} ataca 🤜 a ${fighter2.name} pero ${fighter2.name} esquiva el ataque! 🤸‍♂️💨`);
+};
+
+const kiAtackTypeMsg = {
+    [AttackType.KI_WEAK_ATK]: 'un ataque de ki débil',
+    [AttackType.KI_STRONG_ATK]: 'un ataque de ki fuerte',
+    [AttackType.KI_ULTIMATE_ATK]: 'el ataque definitivo de ki',
+};
+
+const printKiAtack = (fighter1, fighter2, damage, evaded, ignoreDefense, atkType) => {
+    const fighter1Name = fighter1.getName();
+    const fighter2Name = fighter2.getName();
+    const kiAtkIcon = `🫸〰️${AttackType.isKiUltimateAtk(atkType) ? '🧿' : ''}`;
+    if (!evaded)
+        console.log(
+            `${fighter1Name} ataca ${kiAtkIcon} a ${fighter2Name} con ${
+                kiAtackTypeMsg[atkType]
+            } y le hace ${damage} de daño 💔⬇️. ${ignoreDefense ? ' 💥💥 ¡UUH ESA ATAQUE HA HECHO MELLA! 💥💥' : ''}`
+        );
+    else
+        console.log(
+            `${fighter1Name} ataca ${kiAtkIcon} a ${fighter2Name} con ${kiAtackTypeMsg[atkType]} pero ${fighter2Name} esquiva el ataque! 🤸‍♂️💨`
+        );
+};
+
+const printHealthAndKiOf = (fighter) => {
+    console.log(
+        `${fighter.getName()} tiene ${fighter.getHealth()} de vida ❤️ y ${
+            !fighter.isInSparkingMode()
+                ? fighter.getKi() + ' de ki ⚡'
+                : fighter.getSparkingGauge() + ' de SPARKING! MODE 🌟⚡'
+        }`
+    );
 };
 
 // some names and its usage
@@ -99,40 +187,216 @@ const names = {
     'Android 21': 0,
 };
 
+// some ki natural cubic spline functions
+const rechargeProbabilities = {
+    10: (ki) =>
+        ki >= 0 && ki <= 10
+            ? -2.9508e-5 * ki ** 3 - 1.7049e-2 * ki + 1
+            : ki > 10 && ki <= 20
+            ? 4.7541e-5 * ki ** 3 - 2.3115e-3 * ki ** 2 + 6.0656e-3 * ki + 0.92295
+            : ki > 20 && ki <= 40
+            ? -3.6885e-6 * ki ** 3 + 7.623e-4 * ki ** 2 - 5.541e-2 * ki + 1.3328
+            : ki > 40 && ki <= 50
+            ? -1.0656e-5 * ki ** 3 + 1.5984e-3 * ki ** 2 - 8.8852e-2 * ki + 1.7787
+            : 0,
+    20: (ki) =>
+        ki >= 0 && ki <= 10
+            ? 1.1639e-4 * ki ** 3 - 7.163e-2 * ki + 1
+            : ki > 10 && ki <= 20
+            ? -1.3197e-4 * ki ** 3 + 7.4508e-3 * ki ** 2 - 1.4615e-1 * ki + 1.2484
+            : ki > 20 && ki <= 40
+            ? 1.4549e-5 * ki ** 3 - 1.3402e-3 * ki ** 2 + 2.9672e-2 * ki + 7.623e-2
+            : ki > 40 && ki <= 50
+            ? -1.3525e-5 * ki ** 3 + 2.0287e-3 * ki ** 2 - 1.0508e-1 * ki + 1.873
+            : 0,
+};
+
+// ki/sparking gauge amount to discharge by atk type
+const dischargeKiAmountByType = {
+    [AttackType.PHYISICAL_ATK]: 5,
+    [AttackType.KI_WEAK_ATK]: 20,
+    [AttackType.KI_STRONG_ATK]: 40,
+    [AttackType.KI_ULTIMATE_ATK]: 50,
+};
+
 // class Fighter
 class Fighter {
+    static MAX_KI = 50;
     health = 100;
+    ki;
+    initialKi;
+    kiRechargeAmount = 10;
     name;
     atk;
     def;
     speed;
     evasionProbability;
-    constructor(name, atk, def, speed) {
+    kiRechargeProbability = (ki) => 0;
+    sparkingGauge = 0;
+
+    constructor(name, atk, def, speed, ki = 20, kiRecharge = 10) {
         this.name = name;
         this.atk = atk;
         this.def = def;
         this.speed = speed;
+        this.ki = Math.max(0, Math.min(Fighter.MAX_KI, ki));
+        this.initialKi = ki;
         this.evasionProbability = this.isSuperSonic() ? 0.5 : this.isFast() ? 0.3 : !this.hasSuperArmor() ? 0.2 : 0.0;
+        this.kiRechargeAmount = kiRecharge;
+        this.kiRechargeProbability = rechargeProbabilities[kiRecharge];
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    getAtk() {
+        return !this.isInSparkingMode() ? this.atk : parseInt(this.atk * 1.1);
+    }
+
+    getDef() {
+        return !this.isInSparkingMode() ? this.def : parseInt(this.def * 0.8);
+    }
+
+    getSpeed() {
+        return this.speed;
+    }
+
+    getKiRechargeAmount() {
+        return this.kiRechargeAmount;
+    }
+
+    getHealth() {
+        return this.health;
+    }
+
+    getKi() {
+        return this.ki;
+    }
+
+    getSparkingGauge() {
+        return this.sparkingGauge;
+    }
+
+    isInSparkingMode() {
+        return this.sparkingGauge > 0;
+    }
+
+    enterInSparkingMode() {
+        if (this.ki === Fighter.MAX_KI) {
+            const sparkingProbability = this.isStrong()
+                ? 0.65 + ((this.atk - 70) / 30) * 0.2
+                : this.isWeak()
+                ? 0.6
+                : 0.5;
+            if (rand() < sparkingProbability) {
+                this.sparkingGauge = Fighter.MAX_KI;
+                return true;
+                console.log(`${this.name} entra en modo SPARKING! 🌟🔥`);
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    exitSparkingMode() {
+        this.sparkingGauge = 0;
+        return this;
+    }
+
+    dischargeSparkingGauge(amount) {
+        this.sparkingGauge = Math.max(0, this.sparkingGauge - amount);
+        return this;
+    }
+
+    // if true, the fighter will recharge ki, if false, the fighter will attack
+    hasToRechargeKi() {
+        return rand() < this.kiRechargeProbability(this.ki);
     }
 
     evade() {
-        return rand() < this.evasionProbability;
+        return rand() < (!this.isInSparkingMode() ? this.evasionProbability : this.evasionProbability + 0.1);
     }
 
-    takeDamageFrom(fighter) {
-        let damage = fighter.atk - this.def;
+    useKiOrPhysicalAttack() {
+        const r = rand();
+
+        // check if the fighter is in sparking mode
+        if (this.isInSparkingMode()) {
+            // 10% for weak ki atk, 20% for strong ki atk, 10% for physical atk and 60% for ultimate ki atk
+            return r < 0.1
+                ? AttackType.KI_WEAK_ATK
+                : r < 0.3
+                ? AttackType.KI_STRONG_ATK
+                : r < 0.4
+                ? AttackType.PHYISICAL_ATK
+                : AttackType.KI_ULTIMATE_ATK;
+        }
+
+        if (this.ki >= 40) {
+            // 15% for weak ki atk, 25% for strong ki atk and 60% for physical atk
+            return r < 0.15 ? AttackType.KI_WEAK_ATK : r < 0.4 ? AttackType.KI_STRONG_ATK : AttackType.PHYISICAL_ATK;
+        } else if (this.ki >= 20) {
+            // 25% for weak ki atk and 75% for physical at
+            return r < 0.25 ? AttackType.KI_WEAK_ATK : AttackType.PHYISICAL_ATK;
+        } else {
+            return AttackType.PHYISICAL_ATK;
+        }
+    }
+
+    // return the damage and if the defense was ignored partially or totally
+    takeKiDamageFrom(fighter, kiType) {
+        let damage = 0;
+        let ignoreDefense = false;
+        let minDamage = 0;
+        let tempDef = this.getDef();
+        switch (kiType) {
+            case AttackType.KI_WEAK_ATK:
+                damage = parseInt(fighter.getAtk() * (fighter.isWeak() ? 1.5 : 1.25));
+                minDamage = 2;
+                tempDef = rand() < (fighter.isWeak() ? 0.3 : 0.2) ? parseInt(tempDef * 0.8) : tempDef;
+                break;
+            case AttackType.KI_STRONG_ATK:
+                damage = parseInt(fighter.getAtk() * (fighter.isWeak() ? 2 : 1.5));
+                minDamage = 5;
+                tempDef = rand() < (fighter.isWeak() ? 0.5 : 0.4) ? parseInt(tempDef * 0.8) : tempDef;
+                break;
+            case AttackType.KI_ULTIMATE_ATK:
+                damage = parseInt(fighter.getAtk() * (fighter.isWeak() ? 4 : 3));
+                minDamage = 10;
+                ignoreDefense = rand() < 0.7;
+                break;
+            default:
+                throw new Error('Invalid ki type');
+        }
+
+        if (!ignoreDefense) {
+            damage = damage - tempDef;
+        }
+
+        this.health -= damage = Math.max(minDamage, damage);
+        return [damage, ignoreDefense || this.getDef() !== tempDef];
+    }
+
+    takePhysicalDamageFrom(fighter) {
+        let damage = fighter.getAtk() - this.getDef();
         let critProbability = (fighter.isStrong() ? 0.2 : 0.1) - (fighter.isFast() ? 0.05 : 0);
+        let defenseIgnored = false;
+        critProbability += fighter.isInSparkingMode() ? 0.05 : 0;
+
         const isCrit = rand() < critProbability;
         if (isCrit) {
             // if the defender has more defense than the atk of the atacker or they are the same, the crit ignores the defense
             if (damage <= 0) {
-                damage = fighter.atk << 1; // double the damage (fighter atk) ignoring the defense
+                damage = fighter.getAtk() << 1; // double the damage (fighter atk) ignoring the defense
+                defenseIgnored = true;
             } else {
                 damage <<= 1; // double the damage
             }
         }
         // if the defender has more defense than the atk of the atacker or they are the same, the damage  is the 10% of the atk of the atacker
-        else if (damage <= 0) damage = parseInt(fighter.atk * 0.1); // get the integer part;
+        else if (damage <= 0) damage = parseInt(fighter.getAtk() * 0.1); // get the integer part;
 
         // if the defender has super armor, the damage is reduced by 90% (min 1)
         if (this.hasSuperArmor()) {
@@ -140,7 +404,7 @@ class Fighter {
         }
 
         this.health -= damage;
-        return [damage, isCrit];
+        return [damage, isCrit, defenseIgnored];
     }
 
     hasSuperArmor() {
@@ -159,12 +423,32 @@ class Fighter {
         return this.atk >= 70;
     }
 
+    isWeak() {
+        return this.atk < 20;
+    }
+
     isDead() {
         return this.health <= 0;
     }
 
     heal() {
         this.health = 100;
+        return this;
+    }
+
+    healKi() {
+        this.ki = this.initialKi;
+        return this;
+    }
+
+    dischargeKiAmount(amount) {
+        this.ki = Math.max(0, this.ki - amount);
+        return this;
+    }
+
+    rechargeKi() {
+        this.ki = Math.min(Fighter.MAX_KI, this.ki + this.kiRechargeAmount);
+        return this;
     }
 }
 
@@ -187,10 +471,10 @@ const Tournament = {
     winner: null,
     timmer: null, // If set, use this to simulate the time between attacks and rounds
     async generateFighters(n, timmerIsSet) {
-        // check if n is integer, is positive and max 2^52, its min 2 and is a power of 2
-        if (!Number.isInteger(n) || (n & (n - 1)) !== 0 || n < 2 || n > 2 ** 52) {
+        // check if n is integer, is positive and max 2^10, its min 2 and is a power of 2
+        if (!Number.isInteger(n) || (n & (n - 1)) !== 0 || n < 2 || n > 1024) {
             throw new Error(
-                'El torneo solo es válido con un número de luchadores potencia de 2,un mínimo de 2 luchadores y máximo 2^52'
+                'El torneo solo es válido con un número de luchadores potencia de 2,un mínimo de 2 luchadores y máximo de 1024'
             );
         }
 
@@ -205,9 +489,11 @@ const Tournament = {
             const atk = randInt(10, 100); // min 10 atk to make some damage
             const def = randInt(0, 100);
             const speed = randInt(0, 100);
-            this.fighters.push(new Fighter(name, atk, def, speed));
+            const initialKi = randValuesFrom([20, 30]);
+            const rechargeAmount = randValuesFrom([10, 20]);
+            this.fighters.push(new Fighter(name, atk, def, speed, initialKi, rechargeAmount));
             console.log(
-                `${name} se une al torneo con ataque: ${atk} 💪, defensa: ${def} 🛡️ y velocidad: ${speed} 🪽`,
+                `${name} se une al torneo con ataque: ${atk} 💪, defensa: ${def} 🛡️, velocidad: ${speed} 🪽, ki inicial: ${initialKi} ⚡ y ${rechargeAmount} de carga de ki ⬆️⚡ `,
                 speed === 0 ? '¡¡¡INCLUSO TIENE SUPER ARMADURA!!! 🧱' : '[no tiene super armadura]',
                 speed === 100 ? '¡¡¡ES SUPERSÓNICO, ESQUIVARÁ CASI TODO!!! 🏃‍♂️💨' : '[no es supersónico]'
             );
@@ -230,11 +516,8 @@ const Tournament = {
     async init(numOfFighters, timeInMsBetweenAttacks = 0) {
         await this.generateFighters(numOfFighters, timeInMsBetweenAttacks > 0);
         this.rounds = Math.log2(this.fighters.length);
-        if (timeInMsBetweenAttacks > 0) {
-            this.timmer = timeInMsBetweenAttacks;
-            return await this.startAsync();
-        }
-        return this.start();
+        this.timmer = timeInMsBetweenAttacks;
+        return await this.startAsync();
     },
 
     async startAsync() {
@@ -245,26 +528,11 @@ const Tournament = {
             winners = await this.roundAsync(winners);
         }
 
-        console.log(`Ronda final entre 🤜 ${winners[0].name} y ${winners[1].name} 🤛`);
+        console.log(`Ronda final entre 🤜 ${winners[0].getName()} y ${winners[1].getName()} 🤛`);
         winners = await this.roundAsync(winners, true);
 
         this.winner = winners[0];
-        console.log(`El ganador es ${this.winner.name} 🎉`);
-        return this.winner;
-    },
-
-    start() {
-        let winners = this.fighters;
-        for (let i = 0; i < this.rounds - 1; i++) {
-            console.log(`Ronda ${i + 1}`);
-            winners = this.round(winners);
-        }
-
-        console.log(`Ronda final entre 🤜 ${winners[0].name} y ${winners[1].name} 🤛`);
-        winners = this.round(winners, true);
-
-        this.winner = winners[0];
-        console.log(`El ganador es ${this.winner.name} 🎉`);
+        console.log(`El ganador es ${this.winner.getName()} 🎉`);
         return this.winner;
     },
 
@@ -274,77 +542,107 @@ const Tournament = {
             const fighter1 = fighters[i];
             const fighter2 = fighters[i + 1];
             !isFinal &&
-                console.log(`Empieza la batalla #${(i >>> 1) + 1} 🤜 entre ${fighter1.name} y ${fighter2.name} 🤛!`) &&
+                console.log(
+                    `Empieza la batalla #${(i >>> 1) + 1} 🤜 entre ${fighter1.getName()} y ${fighter2.getName()} 🤛!`
+                ) &&
                 (await sleep(this.timmer));
             const winner = await this.battleAsync(fighter1, fighter2);
-            !isFinal && console.log(`${winner.name} avanza a la siguiente ronda 👏`) && (await sleep(this.timmer));
-            winners.push(winner);
-        }
-        return winners;
-    },
-
-    round(fighters, isFinal = false) {
-        let winners = [];
-        for (let i = 0; i < fighters.length; i += 2) {
-            const fighter1 = fighters[i];
-            const fighter2 = fighters[i + 1];
-            !isFinal &&
-                console.log(`Empieza la batalla #${(i >>> 1) + 1} 🤜 entre ${fighter1.name} y ${fighter2.name} 🤛!`);
-            const winner = this.battle(fighter1, fighter2);
-            !isFinal && console.log(`${winner.name} avanza a la siguiente ronda 👏`);
+            !isFinal && console.log(`${winner.getName()} avanza a la siguiente ronda 👏`) && (await sleep(this.timmer));
             winners.push(winner);
         }
         return winners;
     },
 
     async battleAsync(fighter1, fighter2) {
-        let turn = fighter1.speed > fighter2.speed ? [fighter1, fighter2] : [fighter2, fighter1];
+        let turn = fighter1.getSpeed() > fighter2.getSpeed() ? [fighter1, fighter2] : [fighter2, fighter1];
         while (true) {
             const atacker = turn[0];
             const defender = turn[1];
+
+            // check if the atacker attacks or recharges ki
+            if (atacker.hasToRechargeKi()) {
+                atacker.rechargeKi();
+                console.log(
+                    `${atacker.getName()} recarga ki 🔄🧘 y recupera ${atacker.getKiRechargeAmount()} de ki ⚡⬆️. Ahora tiene ${atacker.getKi()} de ki ⚡`
+                );
+                await sleep(this.timmer);
+                turn = [defender, atacker];
+                continue;
+            }
+
+            // check if the atacker enters in sparking mode
+            const atackerInSparkingMode = atacker.isInSparkingMode();
+            if (!atackerInSparkingMode && atacker.enterInSparkingMode()) {
+                console.log(`${atacker.getName()} entra en modo SPARKING! 🌟🔥. La cosa se pone seria ⚠️`);
+                await sleep(this.timmer);
+                turn = [defender, atacker];
+                continue;
+            }
+
+            // atacker attacks
+            // check if the atacker uses ki or physical attack
+            const atkType = atacker.useKiOrPhysicalAttack();
+
+            // check if the defender evades the attack
             const evaded = defender.evade();
             let damage = 0;
-            let isCrit = false;
-            if (!evaded) {
-                [damage, isCrit] = defender.takeDamageFrom(atacker);
+
+            // if the atacker uses ki, the defender takes ki damage
+            if (!AttackType.isPhysicalAtk(atkType)) {
+                let ignoreDefense = false;
+
+                if (!evaded) [damage, ignoreDefense] = defender.takeKiDamageFrom(atacker, atkType);
+                atackerInSparkingMode
+                    ? atacker.dischargeSparkingGauge(dischargeKiAmountByType[atkType]) &&
+                      AttackType.isKiUltimateAtk(atkType) &&
+                      atacker.dischargeKiAmount(dischargeKiAmountByType[atkType])
+                    : atacker.dischargeKiAmount(dischargeKiAmountByType[atkType]);
+
+                printKiAtack(atacker, defender, damage, evaded, ignoreDefense, atkType);
+                if (defender.isDead()) {
+                    console.log(`${defender.getName()} ha muerto 💀`);
+                    atacker.heal().healKi().exitSparkingMode();
+                    await sleep(this.timmer);
+                    return atacker;
+                } else {
+                    // print if the atacker leaves the sparking mode
+                    const atackerLeavesSparkingMode = atackerInSparkingMode && !atacker.isInSparkingMode();
+                    atackerLeavesSparkingMode && console.log(`${atacker.getName()} sale del modo SPARKING! 🌟🔥`);
+
+                    printHealthAndKiOf(atacker);
+                    printHealthAndKiOf(defender);
+
+                    await sleep(this.timmer);
+                }
+                turn = [defender, atacker];
+                continue;
             }
-            printAtack(atacker, defender, damage, evaded, isCrit);
+
+            let isCrit = false;
+            let defenseIgnored = false;
+
+            if (!evaded) [damage, isCrit, defenseIgnored] = defender.takePhysicalDamageFrom(atacker);
+            atackerInSparkingMode && atacker.dischargeSparkingGauge(dischargeKiAmountByType[AttackType.PHYISICAL_ATK]);
+
+            printAtack(atacker, defender, damage, evaded, isCrit, defenseIgnored);
+
             if (defender.isDead()) {
-                console.log(`${defender.name} ha muerto 💀`);
-                atacker.heal();
+                console.log(`${defender.getName()} ha muerto 💀`);
+                atacker.heal().healKi().exitSparkingMode();
                 await sleep(this.timmer);
                 return atacker;
             } else {
-                console.log(`${atacker.name} tiene ${atacker.health} de vida ❤️`);
-                console.log(`${defender.name} tiene ${defender.health} de vida ❤️`);
+                // print if the atacker leaves the sparking mode
+                const atackerLeavesSparkingMode = atackerInSparkingMode && !atacker.isInSparkingMode();
+                atackerLeavesSparkingMode && console.log(`${atacker.getName()} sale del modo SPARKING! 🌟🔥`);
+
+                printHealthAndKiOf(atacker);
+                printHealthAndKiOf(defender);
+
                 await sleep(this.timmer);
             }
             turn = [defender, atacker];
             await sleep(this.timmer);
-        }
-    },
-
-    battle(fighter1, fighter2) {
-        let turn = fighter1.speed > fighter2.speed ? [fighter1, fighter2] : [fighter2, fighter1];
-        while (true) {
-            const atacker = turn[0];
-            const defender = turn[1];
-            const evaded = defender.evade();
-            let damage = 0;
-            let isCrit = false;
-            if (!evaded) {
-                [damage, isCrit] = defender.takeDamageFrom(atacker);
-            }
-            printAtack(atacker, defender, damage, evaded, isCrit);
-            if (defender.isDead()) {
-                console.log(`${defender.name} ha muerto 💀`);
-                atacker.heal();
-                return atacker;
-            } else {
-                console.log(`${atacker.name} tiene ${atacker.health} de vida ❤️`);
-                console.log(`${defender.name} tiene ${defender.health} de vida ❤️`);
-            }
-            turn = [defender, atacker];
         }
     },
 };
