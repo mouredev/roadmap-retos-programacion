@@ -1,13 +1,23 @@
 import random
+import math
 
-# Function to get the number of fighters and validate input
+# Function to check if a number is a power of 2
+def is_power_of_two(n):
+    if n <= 0:
+        return False
+    log2_n = math.log2(n)
+    return log2_n.is_integer()
+
+# Get the number of fighters ensuring it's a power of 2
 def get_number_of_fighters() -> int:
     while True:
-        number_of_fighters = input("Enter the number of fighters (must be even): ")
-        if validate_input(number_of_fighters, even=True, min_value=2):
+        number_of_fighters = input("Enter the number of fighters (must be a power of 2): ")
+        if validate_input(number_of_fighters, min_value=2) and is_power_of_two(int(number_of_fighters)):
             return int(number_of_fighters)
+        else:
+            print("Please enter a number that is a power of 2 (e.g., 2, 4, 8, 16, 32, etc.)")
 
-# Unified validation function
+# Unified validation function for input
 def validate_input(input_value, even=False, min_value=0, max_value=100) -> bool:
     try:
         number = int(input_value)
@@ -27,7 +37,7 @@ def create_fighters(number_of_fighters) -> list:
     fighters_list = []
     for i in range(number_of_fighters):
         name = input(f"Enter fighter's name #{i + 1}: ")
-        strength = get_fighter_property(f"Enter {name}'s strength (0-100): ")
+        strength = get_fighter_property(f"Enter {name}'s strength (1-100): ", min_value=1)
         defense = get_fighter_property(f"Enter {name}'s defense (0-100): ")
         velocity = get_fighter_property(f"Enter {name}'s speed (0-100): ")
         fighters_list.append(Fighter(name, strength, defense, velocity))
@@ -35,10 +45,10 @@ def create_fighters(number_of_fighters) -> list:
     return fighters_list
 
 # Function to get and validate a fighter's property
-def get_fighter_property(property_text) -> int:
+def get_fighter_property(property_text, min_value = 0) -> int:
     while True:
         property_value = input(property_text)
-        if validate_input(property_value):
+        if validate_input(property_value, min_value=min_value):
             return int(property_value)
 
 # Function to shuffle fighters and pair them up
@@ -87,8 +97,9 @@ def combat(fighters):
 # Simulate one attack between two fighters
 def combat_turn(attacker, defender):
     if random.random() > 0.2:  # 80% chance to hit
-        damage = attacker.strength * 0.1 if attacker.strength >= defender.defense else attacker.strength - defender.defense
-        defender.health_points -= max(0, damage)  # Prevent negative damage
+        damage = max(1, attacker.strength * 0.1) if attacker.strength >= defender.defense else max(1, attacker.strength - defender.defense)
+        defender.health_points -= damage  # Ensure defender loses health points
+        print(f"{attacker.name} hits {defender.name} for {damage:.2f} damage!")
     else:
         print(f"{defender.name} dodges the attack!")
 
