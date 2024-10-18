@@ -88,21 +88,18 @@ class Batalla():
     
 
     def cal_defensa(self)-> bool:
-        if self.turno:
-            if self.luchador_1.cal_defensa_mayor_que_ataque(self.luchador_2):
-                contra_ataque = self.luchador_1.stats.ataque*0.1
-                self.luchador_1.stats.vida -=contra_ataque
-                print(f"La defensa de {self.luchador_2.nombre} supera el ataque de {self.luchador_1.nombre}.")
-                print(f"{self.luchador_1.nombre} recibe {contra_ataque} puntos de daño por rebote.")
-                return False
-        else:
-            if self.luchador_2.cal_defensa_mayor_que_ataque(self.luchador_1):
-                contra_ataque = self.luchador_2.stats.ataque*0.1
-                self.luchador_2.stats.vida -=contra_ataque
-                print(f"La defensa de {self.luchador_1.nombre} supera el ataque de {self.luchador_2.nombre}.")
-                print(f"{self.luchador_2.nombre} recibe {contra_ataque} puntos de daño por rebote.")
-                return False
+        atacante = self.luchador_1 if self.turno else self.luchador_2
+        defensor = self.luchador_2 if self.turno else self.luchador_1
+        if atacante.cal_defensa_mayor_que_ataque(defensor):
+            contra_ataque = defensor.stats.ataque*0.1
+            atacante.stats.vida -=contra_ataque
+            print(f"La defensa de {defensor.nombre} supera el ataque de {atacante.nombre}.")
+            print(f"{defensor.nombre} recibe {contra_ataque} puntos de daño por rebote.")
+            return False
         return True
+
+
+
     
     def batallar(self)-> None:
         while self.batalla:
