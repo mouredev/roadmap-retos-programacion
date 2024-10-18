@@ -184,7 +184,8 @@ class Tournament implements ITournament {
         if (this.pairOfFighters.length < 2)
             throw new Error('Not enough fighters to execute the next round')
 
-        const offset: number = this.round
+        this.round += 1
+        const offset: number = this.round - 1
 
         let fighter01: IFighter = this.pairOfFighters[offset]
         let fighter02: IFighter = this.pairOfFighters[offset + 1]
@@ -231,6 +232,11 @@ class Tournament implements ITournament {
         const looser: IFighter = this.pairOfFighters.splice(looserIndex, 1)[0]
 
         if (this.pairOfFighters.length < 2) this.winner = this.pairOfFighters[0]
+
+        if (this.round == this.pairOfFighters.length) {
+            this.round = 0
+            this.phase += 1
+        }
 
         return {
             winner: fighter01.getLife() ? fighter01.clone() : fighter02.clone(),
