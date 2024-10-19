@@ -4,12 +4,12 @@
  * booleanos, null, undefined, symbol y bigInt)
  */
 let number1: number = 5;
-let number2: number = number1;  // Se copia el valor de 'a' en 'b'
+let number2: number = number1;  // Se copia el valor de 'number1' en 'number2'
 
 console.log(number1); // 5
 console.log(number2); // 5
 
-// Ahora cambiamos el valor de 'a'
+// Ahora cambiamos el valor de 'number1'
 number1 = 10;
 
 console.log(number1); // 10
