@@ -4,6 +4,7 @@
 '''
 # https://www.python.org/
 
+
 '''
 * - Representa las diferentes sintaxis que existen de crear comentarios
 *   en el lenguaje (en una línea, varias...).
@@ -43,25 +44,18 @@ nombreUsuaro = "user1"
 
 # Integer
 numero = 5
-
 # Float
 flotante = 3.14
-
 # Tuple
 tupla = (1,2,3,"cuatro","cinco")
-
 # List
 lista = [1,2,3,"cuatro","cinco"]
-
 # Set
 conjunto = {1,2,3,"cuatro","cinco"}
-
 # Dictionary
 diccionario = {"primero":"Hola", "segundo":"Mundo"}
-
 # Bolean
 estado = True
-
 # String
 comentario = "¡Hola Mundo!"
 
@@ -70,6 +64,9 @@ comentario = "¡Hola Mundo!"
 '''
 print("¡Hola, Python! \n")
 
+'''
+Impresiión de las diferentes variables
+'''
 print(f"Constante: {PI} \n")
 print(f"String: {nombreUsuaro} \n")
 print(f"Integer: {numero} \n")
