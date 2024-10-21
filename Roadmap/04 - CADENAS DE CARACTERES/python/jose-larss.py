@@ -117,8 +117,13 @@ def check(word1: str, word2: str):
 
         word_dict = dict()
         for character in word:
-            word_dict[character] = word_dict.get(character, 0) + 1
-
+            if character in word_dict:
+                word_dict[character] += 1
+                word_dict.get()
+            else:
+                word_dict[character] = 1
+            #word_dict[character] = word_dict.get(character, 0) + 1
+        print(word_dict)
         isogram = True
         values = list(word_dict.values())
         isogram_len = values[0]
