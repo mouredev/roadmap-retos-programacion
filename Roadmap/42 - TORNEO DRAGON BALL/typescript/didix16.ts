@@ -90,38 +90,69 @@
 
 // utils
 const rand = Math.random;
-const randInt = (min, max) => Math.floor(rand() * (max - min + 1) + min);
-const randValuesFrom = (list) => list[randInt(0, list.length - 1)];
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const randInt = (min: number, max: number) => Math.floor(rand() * (max - min + 1) + min);
+const randValuesFrom = <T>(list: Array<T>) => list[randInt(0, list.length - 1)];
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const AttackType = {
-    PHYISICAL_ATK: 0,
-    KI_WEAK_ATK: 1,
-    KI_STRONG_ATK: 2,
-    KI_ULTIMATE_ATK: 3,
-    isPhysicalAtk: (atkType) => atkType === AttackType.PHYISICAL_ATK,
-    isKiWeakAtk: (atkType) => atkType === AttackType.KI_WEAK_ATK,
-    isKiStrongAtk: (atkType) => atkType === AttackType.KI_STRONG_ATK,
-    isKiUltimateAtk: (atkType) => atkType === AttackType.KI_ULTIMATE_ATK,
-};
+enum AttackType {
+    PHYSICAL_ATK,
+    KI_WEAK_ATK,
+    KI_STRONG_ATK,
+    KI_ULTIMATE_ATK,
+}
 
-const printAtack = (fighter1, fighter2, damage, evaded, isCrit, defenseIgnored) => {
+namespace AttackType {
+    export function isPhysicalAtk(atkType: AttackType): boolean {
+        return atkType === AttackType.PHYSICAL_ATK;
+    }
+
+    export function isKiWeakAtk(atkType: AttackType): boolean {
+        return atkType === AttackType.KI_WEAK_ATK;
+    }
+
+    export function isKiStrongAtk(atkType: AttackType): boolean {
+        return atkType === AttackType.KI_STRONG_ATK;
+    }
+
+    export function isKiUltimateAtk(atkType: AttackType): boolean {
+        return atkType === AttackType.KI_ULTIMATE_ATK;
+    }
+}
+
+const printAtack = (
+    fighter1: Fighter,
+    fighter2: Fighter,
+    damage: number,
+    evaded: boolean,
+    isCrit: boolean,
+    defenseIgnored: boolean
+) => {
     if (!evaded)
         console.log(
-            `${fighter1.name} ataca 🤜 a ${fighter2.name} y le hace ${damage} de daño 💔⬇️. ${
+            `${fighter1.getName()} ataca 🤜 a ${fighter2.getName()} y le hace ${damage} de daño 💔⬇️. ${
                 isCrit ? ' 💥💥 ¡UUH ESO HA SIDO UN CRÍTICO! 💥💥' : ''
             }${defenseIgnored ? ' 💥🛡️ ¡UUH LE HA PUESTO TODA SU ENERGÍA Y HA ATRAVESADO LA DEFENSA! 🛡️💥' : ''}`
         );
-    else console.log(`${fighter1.name} ataca 🤜 a ${fighter2.name} pero ${fighter2.name} esquiva el ataque! 🤸‍♂️💨`);
+    else
+        console.log(
+            `${fighter1.getName()} ataca 🤜 a ${fighter2.getName()} pero ${fighter2.getName()} esquiva el ataque! 🤸‍♂️💨`
+        );
 };
 
-const kiAtackTypeMsg = {
+const kiAtackTypeMsg: Record<AttackType | number, string> = {
     [AttackType.KI_WEAK_ATK]: 'un ataque de ki débil',
     [AttackType.KI_STRONG_ATK]: 'un ataque de ki fuerte',
     [AttackType.KI_ULTIMATE_ATK]: 'el ataque definitivo de ki',
 };
 
-const printKiAtack = (fighter1, fighter2, damage, evaded, ignoreDefense, atkType) => {
+const printKiAtack = (
+    fighter1: Fighter,
+    fighter2: Fighter,
+    damage: number,
+    evaded: boolean,
+    ignoreDefense: boolean,
+    atkType: AttackType
+) => {
     const fighter1Name = fighter1.getName();
     const fighter2Name = fighter2.getName();
     const kiAtkIcon = `🫸〰️${AttackType.isKiUltimateAtk(atkType) ? '🧿' : ''}`;
@@ -137,7 +168,7 @@ const printKiAtack = (fighter1, fighter2, damage, evaded, ignoreDefense, atkType
         );
 };
 
-const printHealthAndKiOf = (fighter) => {
+const printHealthAndKiOf = (fighter: Fighter) => {
     console.log(
         `${fighter.getName()} tiene ${fighter.getHealth()} de vida ❤️ y ${
             !fighter.isInSparkingMode()
@@ -147,48 +178,8 @@ const printHealthAndKiOf = (fighter) => {
     );
 };
 
-// some names and its usage
-const names = {
-    Goku: 0,
-    Vegeta: 0,
-    Piccolo: 0,
-    Gohan: 0,
-    Krillin: 0,
-    Yamcha: 0,
-    Tien: 0,
-    Chiaotzu: 0,
-    'Master Roshi': 0,
-    Trunks: 0,
-    Goten: 0,
-    Pan: 0,
-    Frieza: 0,
-    Cell: 0,
-    'Majin Buu': 0,
-    Beerus: 0,
-    Whis: 0,
-    Jiren: 0,
-    Hit: 0,
-    Kale: 0,
-    Caulifla: 0,
-    Cabba: 0,
-    Broly: 0,
-    Zamasu: 0,
-    'Black Goku': 0,
-    Vegito: 0,
-    Gogeta: 0,
-    Kefla: 0,
-    Toppo: 0,
-    Dyspo: 0,
-    'Android 17': 0,
-    'Android 18': 0,
-    'Android 16': 0,
-    'Android 19': 0,
-    'Android 20': 0,
-    'Android 21': 0,
-};
-
 // some ki natural cubic spline functions
-const rechargeProbabilities = {
+const rechargeProbabilities: Record<10 | 20, (ki: number) => number> = {
     10: (ki) =>
         ki >= 0 && ki <= 10
             ? -2.9508e-5 * ki ** 3 - 1.7049e-2 * ki + 1
@@ -212,8 +203,8 @@ const rechargeProbabilities = {
 };
 
 // ki/sparking gauge amount to discharge by atk type
-const dischargeKiAmountByType = {
-    [AttackType.PHYISICAL_ATK]: 5,
+const dischargeKiAmountByType: Record<AttackType | number, number> = {
+    [AttackType.PHYSICAL_ATK]: 5,
     [AttackType.KI_WEAK_ATK]: 20,
     [AttackType.KI_STRONG_ATK]: 40,
     [AttackType.KI_ULTIMATE_ATK]: 50,
@@ -221,20 +212,20 @@ const dischargeKiAmountByType = {
 
 // class Fighter
 class Fighter {
-    static MAX_KI = 50;
-    health = 100;
-    ki;
-    initialKi;
-    kiRechargeAmount = 10;
-    name;
-    atk;
-    def;
-    speed;
-    evasionProbability;
-    kiRechargeProbability = (ki) => 0;
-    sparkingGauge = 0;
+    protected static MAX_KI = 50;
+    protected health = 100;
+    protected ki: number;
+    protected initialKi: number;
+    protected kiRechargeAmount = 10;
+    protected name: string;
+    protected atk: number;
+    protected def: number;
+    protected speed: number;
+    protected evasionProbability: number;
+    protected kiRechargeProbability = (ki: number) => 0;
+    protected sparkingGauge = 0;
 
-    constructor(name, atk, def, speed, ki = 20, kiRecharge = 10) {
+    constructor(name: string, atk: number, def: number, speed: number, ki = 20, kiRecharge: 10 | 20 = 10) {
         this.name = name;
         this.atk = atk;
         this.def = def;
@@ -246,43 +237,43 @@ class Fighter {
         this.kiRechargeProbability = rechargeProbabilities[kiRecharge];
     }
 
-    getName() {
+    getName(): string {
         return this.name;
     }
 
-    getAtk() {
-        return !this.isInSparkingMode() ? this.atk : parseInt(this.atk * 1.1);
+    getAtk(): number {
+        return !this.isInSparkingMode() ? this.atk : Math.trunc(this.atk * 1.1);
     }
 
-    getDef() {
-        return !this.isInSparkingMode() ? this.def : parseInt(this.def * 0.8);
+    getDef(): number {
+        return !this.isInSparkingMode() ? this.def : Math.trunc(this.def * 0.8);
     }
 
-    getSpeed() {
+    getSpeed(): number {
         return this.speed;
     }
 
-    getKiRechargeAmount() {
+    getKiRechargeAmount(): number {
         return this.kiRechargeAmount;
     }
 
-    getHealth() {
+    getHealth(): number {
         return this.health;
     }
 
-    getKi() {
+    getKi(): number {
         return this.ki;
     }
 
-    getSparkingGauge() {
+    getSparkingGauge(): number {
         return this.sparkingGauge;
     }
 
-    isInSparkingMode() {
+    isInSparkingMode(): boolean {
         return this.sparkingGauge > 0;
     }
 
-    enterInSparkingMode() {
+    enterInSparkingMode(): boolean {
         if (this.ki === Fighter.MAX_KI) {
             const sparkingProbability = this.isStrong()
                 ? 0.65 + ((this.atk - 70) / 30) * 0.2
@@ -292,7 +283,6 @@ class Fighter {
             if (rand() < sparkingProbability) {
                 this.sparkingGauge = Fighter.MAX_KI;
                 return true;
-                console.log(`${this.name} entra en modo SPARKING! 🌟🔥`);
             } else {
                 return false;
             }
@@ -300,26 +290,26 @@ class Fighter {
         return false;
     }
 
-    exitSparkingMode() {
+    exitSparkingMode(): this {
         this.sparkingGauge = 0;
         return this;
     }
 
-    dischargeSparkingGauge(amount) {
+    dischargeSparkingGauge(amount: number): this {
         this.sparkingGauge = Math.max(0, this.sparkingGauge - amount);
         return this;
     }
 
     // if true, the fighter will recharge ki, if false, the fighter will attack
-    hasToRechargeKi() {
+    hasToRechargeKi(): boolean {
         return rand() < this.kiRechargeProbability(this.ki);
     }
 
-    evade() {
+    evade(): boolean {
         return rand() < (!this.isInSparkingMode() ? this.evasionProbability : this.evasionProbability + 0.1);
     }
 
-    useKiOrPhysicalAttack() {
+    useKiOrPhysicalAttack(): AttackType {
         const r = rand();
 
         // check if the fighter is in sparking mode
@@ -330,40 +320,40 @@ class Fighter {
                 : r < 0.3
                 ? AttackType.KI_STRONG_ATK
                 : r < 0.4
-                ? AttackType.PHYISICAL_ATK
+                ? AttackType.PHYSICAL_ATK
                 : AttackType.KI_ULTIMATE_ATK;
         }
 
         if (this.ki >= 40) {
             // 15% for weak ki atk, 25% for strong ki atk and 60% for physical atk
-            return r < 0.15 ? AttackType.KI_WEAK_ATK : r < 0.4 ? AttackType.KI_STRONG_ATK : AttackType.PHYISICAL_ATK;
+            return r < 0.15 ? AttackType.KI_WEAK_ATK : r < 0.4 ? AttackType.KI_STRONG_ATK : AttackType.PHYSICAL_ATK;
         } else if (this.ki >= 20) {
             // 25% for weak ki atk and 75% for physical at
-            return r < 0.25 ? AttackType.KI_WEAK_ATK : AttackType.PHYISICAL_ATK;
+            return r < 0.25 ? AttackType.KI_WEAK_ATK : AttackType.PHYSICAL_ATK;
         } else {
-            return AttackType.PHYISICAL_ATK;
+            return AttackType.PHYSICAL_ATK;
         }
     }
 
     // return the damage and if the defense was ignored partially or totally
-    takeKiDamageFrom(fighter, kiType) {
+    takeKiDamageFrom(fighter: Fighter, kiType: AttackType): [number, boolean] {
         let damage = 0;
         let ignoreDefense = false;
         let minDamage = 0;
         let tempDef = this.getDef();
         switch (kiType) {
             case AttackType.KI_WEAK_ATK:
-                damage = parseInt(fighter.getAtk() * (fighter.isWeak() ? 1.5 : 1.25));
+                damage = Math.trunc(fighter.getAtk() * (fighter.isWeak() ? 1.5 : 1.25));
                 minDamage = 2;
-                tempDef = rand() < (fighter.isWeak() ? 0.3 : 0.2) ? parseInt(tempDef * 0.8) : tempDef;
+                tempDef = rand() < (fighter.isWeak() ? 0.3 : 0.2) ? Math.trunc(tempDef * 0.8) : tempDef;
                 break;
             case AttackType.KI_STRONG_ATK:
-                damage = parseInt(fighter.getAtk() * (fighter.isWeak() ? 2 : 1.5));
+                damage = Math.trunc(fighter.getAtk() * (fighter.isWeak() ? 2 : 1.5));
                 minDamage = 5;
-                tempDef = rand() < (fighter.isWeak() ? 0.5 : 0.4) ? parseInt(tempDef * 0.8) : tempDef;
+                tempDef = rand() < (fighter.isWeak() ? 0.5 : 0.4) ? Math.trunc(tempDef * 0.8) : tempDef;
                 break;
             case AttackType.KI_ULTIMATE_ATK:
-                damage = parseInt(fighter.getAtk() * (fighter.isWeak() ? 4 : 3));
+                damage = Math.trunc(fighter.getAtk() * (fighter.isWeak() ? 4 : 3));
                 minDamage = 10;
                 ignoreDefense = rand() < 0.7;
                 break;
@@ -379,7 +369,7 @@ class Fighter {
         return [damage, ignoreDefense || this.getDef() !== tempDef];
     }
 
-    takePhysicalDamageFrom(fighter) {
+    takePhysicalDamageFrom(fighter: Fighter): [number, boolean, boolean] {
         let damage = fighter.getAtk() - this.getDef();
         let critProbability = (fighter.isStrong() ? 0.2 : 0.1) - (fighter.isFast() ? 0.05 : 0);
         let defenseIgnored = false;
@@ -396,57 +386,57 @@ class Fighter {
             }
         }
         // if the defender has more defense than the atk of the atacker or they are the same, the damage  is the 10% of the atk of the atacker
-        else if (damage <= 0) damage = parseInt(fighter.getAtk() * 0.1); // get the integer part;
+        else if (damage <= 0) damage = Math.trunc(fighter.getAtk() * 0.1); // get the integer part;
 
         // if the defender has super armor, the damage is reduced by 90% (min 1)
         if (this.hasSuperArmor()) {
-            damage = Math.max(1, parseInt(damage * 0.1));
+            damage = Math.max(1, Math.trunc(damage * 0.1));
         }
 
         this.health -= damage;
         return [damage, isCrit, defenseIgnored];
     }
 
-    hasSuperArmor() {
+    hasSuperArmor(): boolean {
         return this.speed === 0;
     }
 
-    isSuperSonic() {
+    isSuperSonic(): boolean {
         return this.speed === 100;
     }
 
-    isFast() {
+    isFast(): boolean {
         return this.speed >= 70;
     }
 
-    isStrong() {
+    isStrong(): boolean {
         return this.atk >= 70;
     }
 
-    isWeak() {
+    isWeak(): boolean {
         return this.atk < 20;
     }
 
-    isDead() {
+    isDead(): boolean {
         return this.health <= 0;
     }
 
-    heal() {
+    heal(): this {
         this.health = 100;
         return this;
     }
 
-    healKi() {
+    healKi(): this {
         this.ki = this.initialKi;
         return this;
     }
 
-    dischargeKiAmount(amount) {
+    dischargeKiAmount(amount: number): this {
         this.ki = Math.max(0, this.ki - amount);
         return this;
     }
 
-    rechargeKi() {
+    rechargeKi(): this {
         this.ki = Math.min(Fighter.MAX_KI, this.ki + this.kiRechargeAmount);
         return this;
     }
@@ -459,18 +449,68 @@ class Fighter {
  *  init(numOfFighters, timeInMsBetweenAttacks) -> start the tournament with numOfFighters and simulate the time between attacks and rounds if timeInMsBetweenAttacks is set
  *  return the winner of the tournament
  *  Example 1 (first time) with 8 fighters and no time between attacks:
- *  await Tournament.init(8);
+ *  await Tournament.getInstance().init(8);
  *  Example 2 (first time) with 8 fighters and 1.1s between attacks and rounds:
- *  await Tournament.init(8, 1100);
+ *  await Tournament.getInstance().init(8, 1100);
  *  Example 3 (reset the tournament) with 16 fighters and no time between attacks:
- *  await Tournament.reset().init(16);
+ *  await Tournament.getInstance().reset().init(16);
  */
-const Tournament = {
-    fighters: [],
-    rounds: 0,
-    winner: null,
-    timmer: null, // If set, use this to simulate the time between attacks and rounds
-    async generateFighters(n, timmerIsSet) {
+class Tournament {
+    protected static instance: Tournament | null = null;
+    protected fighters: Array<Fighter> = [];
+    protected rounds: number = 0;
+    protected winner: Fighter | null = null;
+    protected timmer: number = 0; // If set, use this to simulate the time between attacks and rounds
+    // some names and its usage
+    protected static NAMES: Record<string, number> = {
+        Goku: 0,
+        Vegeta: 0,
+        Piccolo: 0,
+        Gohan: 0,
+        Krillin: 0,
+        Yamcha: 0,
+        Tien: 0,
+        Chiaotzu: 0,
+        'Master Roshi': 0,
+        Trunks: 0,
+        Goten: 0,
+        Pan: 0,
+        Frieza: 0,
+        Cell: 0,
+        'Majin Buu': 0,
+        Beerus: 0,
+        Whis: 0,
+        Jiren: 0,
+        Hit: 0,
+        Kale: 0,
+        Caulifla: 0,
+        Cabba: 0,
+        Broly: 0,
+        Zamasu: 0,
+        'Black Goku': 0,
+        Vegito: 0,
+        Gogeta: 0,
+        Kefla: 0,
+        Toppo: 0,
+        Dyspo: 0,
+        'Android 17': 0,
+        'Android 18': 0,
+        'Android 16': 0,
+        'Android 19': 0,
+        'Android 20': 0,
+        'Android 21': 0,
+    };
+
+    protected constructor() {}
+
+    public static getInstance(): Tournament {
+        if (!Tournament.instance) {
+            Tournament.instance = new Tournament();
+        }
+        return Tournament.instance;
+    }
+
+    async generateFighters(n: number, timmerIsSet: boolean) {
         // check if n is integer, is positive and max 2^10, its min 2 and is a power of 2
         if (!Number.isInteger(n) || (n & (n - 1)) !== 0 || n < 2 || n > 1024) {
             throw new Error(
@@ -478,19 +518,19 @@ const Tournament = {
             );
         }
 
-        const nameList = Object.keys(names);
+        const nameList = Object.keys(Tournament.NAMES);
         const namesLength = nameList.length;
 
         for (let i = 0; i < n; i++) {
             const idx = randInt(0, namesLength - 1);
             let name = nameList[idx];
             // add #number to the name if it is repeated
-            names[name]++ && (name += `#${names[name]}`);
+            Tournament.NAMES[name]++ && (name += `#${Tournament.NAMES[name]}`);
             const atk = randInt(10, 100); // min 10 atk to make some damage
             const def = randInt(0, 100);
             const speed = randInt(0, 100);
             const initialKi = randValuesFrom([20, 30]);
-            const rechargeAmount = randValuesFrom([10, 20]);
+            const rechargeAmount = randValuesFrom([10, 20]) satisfies 10 | 20;
             this.fighters.push(new Fighter(name, atk, def, speed, initialKi, rechargeAmount));
             console.log(
                 `${name} se une al torneo con ataque: ${atk} 💪, defensa: ${def} 🛡️, velocidad: ${speed} 🪽, ki inicial: ${initialKi} ⚡ y ${rechargeAmount} de carga de ki ⬆️⚡ `,
@@ -503,24 +543,29 @@ const Tournament = {
         this.fighters.sort(() => randInt(-1, 1));
 
         return this;
-    },
+    }
 
-    reset() {
+    reset(): this {
         this.fighters = [];
         this.rounds = 0;
         this.winner = null;
-        this.timmer = null;
-        return this;
-    },
+        this.timmer = 0;
+        // reset the names
+        for (const name in Tournament.NAMES) {
+            Tournament.NAMES[name] = 0;
+        }
 
-    async init(numOfFighters, timeInMsBetweenAttacks = 0) {
+        return this;
+    }
+
+    async init(numOfFighters: number, timeInMsBetweenAttacks = 0) {
         await this.generateFighters(numOfFighters, timeInMsBetweenAttacks > 0);
         this.rounds = Math.log2(this.fighters.length);
         this.timmer = timeInMsBetweenAttacks;
         return await this.startAsync();
-    },
+    }
 
-    async startAsync() {
+    async startAsync(): Promise<Fighter> {
         let winners = this.fighters;
         for (let i = 0; i < this.rounds - 1; i++) {
             console.log(`Ronda ${i + 1}`);
@@ -534,9 +579,9 @@ const Tournament = {
         this.winner = winners[0];
         console.log(`El ganador es ${this.winner.getName()} 🎉`);
         return this.winner;
-    },
+    }
 
-    async roundAsync(fighters, isFinal = false) {
+    async roundAsync(fighters: Array<Fighter>, isFinal = false): Promise<Array<Fighter>> {
         let winners = [];
         for (let i = 0; i < fighters.length; i += 2) {
             const fighter1 = fighters[i];
@@ -551,9 +596,9 @@ const Tournament = {
             winners.push(winner);
         }
         return winners;
-    },
+    }
 
-    async battleAsync(fighter1, fighter2) {
+    async battleAsync(fighter1: Fighter, fighter2: Fighter): Promise<Fighter> {
         let turn = fighter1.getSpeed() > fighter2.getSpeed() ? [fighter1, fighter2] : [fighter2, fighter1];
         while (true) {
             const atacker = turn[0];
@@ -622,7 +667,7 @@ const Tournament = {
             let defenseIgnored = false;
 
             if (!evaded) [damage, isCrit, defenseIgnored] = defender.takePhysicalDamageFrom(atacker);
-            atackerInSparkingMode && atacker.dischargeSparkingGauge(dischargeKiAmountByType[AttackType.PHYISICAL_ATK]);
+            atackerInSparkingMode && atacker.dischargeSparkingGauge(dischargeKiAmountByType[AttackType.PHYSICAL_ATK]);
 
             printAtack(atacker, defender, damage, evaded, isCrit, defenseIgnored);
 
@@ -644,10 +689,8 @@ const Tournament = {
             turn = [defender, atacker];
             await sleep(this.timmer);
         }
-    },
-};
+    }
+}
 
-// Versión síncrona  con 8 luchadores sin simulación de tiempo
-//await Tournament.init(8);
-// Versión asíncrona con 8 luchadores y simulación de tiempo entre ataques y rondas
-await Tournament.reset().init(8, 1100);
+// 8 fighters and 1s between attacks and rounds
+(async () => await Tournament.getInstance().init(8, 1000))();
