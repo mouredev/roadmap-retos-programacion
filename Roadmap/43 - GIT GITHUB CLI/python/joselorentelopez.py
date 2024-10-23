@@ -166,14 +166,13 @@ class Git_CLI(CLI):
 
     @staticmethod
     def push_changes():
-        # Verificar si hay commits en el repositorio
+
         result = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"], capture_output=True, text=True)
         
         if result.returncode != 0:
             print("Not a valid Git repository. Please ensure you are in a valid Git directory.")
             return
 
-        # Obtener el nombre de la rama actual
         result = subprocess.run(["git", "branch", "--show-current"], capture_output=True, text=True)
         current_branch = result.stdout.strip()
 
@@ -181,14 +180,12 @@ class Git_CLI(CLI):
             print("No branch detected. Please ensure you have a branch checked out before pushing.")
             return
 
-        # Asegurarse de que la rama actual tiene commits
         commit_result = subprocess.run(["git", "rev-parse", current_branch], capture_output=True, text=True)
 
         if commit_result.returncode != 0:
             print(f"The branch '{current_branch}' has no commits. Please make an initial commit before pushing.")
             return
 
-        # Realizar el push de la rama actual
         try:
             subprocess.run(["git", "push", "-u", "origin", current_branch], check=True)
             print(f"Changes pushed successfully to branch '{current_branch}'.\n")
