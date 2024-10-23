@@ -5,17 +5,8 @@
 '''
 
 '''
-* - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
-*   que representen todos los tipos de estructuras de control que existan
-*   en tu lenguaje:
-*   Condicionales, iterativas, excepciones...
-'''
-
-'''
 * - Debes hacer print por consola del resultado de todos los ejemplos.
 '''
-
-# Realizo los tres primeros puntos juntos
 
 # Operadores Aritméticos
 print("OPERADORES ARITMÉTICOS: \n")
@@ -185,18 +176,59 @@ print(f"25 not in lista: {12 not in lista} \n")
 print(f"'Visual' not in texto: {"Visual" not in texto} \n")
 
 '''
+* - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
+*   que representen todos los tipos de estructuras de control que existan
+*   en tu lenguaje:
+*   Condicionales, iterativas, excepciones...
+'''
+
+# Condicionales
+print("OPERADORES CONDICIONALES: \n")
+
+nombreMascota = "Caramelo"
+
+if nombreMascota == "Calcetines":
+    print("El nombre de la mascota es 'Calcetines' \n")
+elif nombreMascota == "Manchitas":
+    print("El nombre de la mascota es 'Manchitas' \n")
+else:
+    print(f"El nombre de la mascota no es 'Calcetines' ni 'Manchitas', es {nombreMascota} \n")
+
+# Iterativas
+print("OPERADORES ITERATIVOS: \n")
+# Variables que usaremos para ilustrar los ejemplos
+a = 3
+b = 33
+# Bucle For
+print(f"Bucle For de {a} hasta {b} \n")
+for i in range(a,b+1):
+    print(f"- {i}")
+
+# Bucle While
+print(f"\n Bucle While de {a} hasta {b} \n")
+i = a
+while i <= b:
+    print(f"- {i}")
+    i += 1
+
+# Excepciones
+print("\n MANEJO DE EXCEPCIONES: \n")
+try:
+    print(f"Comparamos b <= a: {b <= a} \n")
+except:
+    print("Se ha producido un error en la operación. \n")
+finally:
+    print("Ha finalizado el manejo de excepciones pase lo que pase \n")
+
+'''
 * DIFICULTAD EXTRA (opcional):
 * Crea un programa que imprima por consola todos los números comprendidos
 * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
 '''
 
 # Hacemos uso de la estructura for para recorrer un rango e ir comprobando números
-print ("EJERCICIO")
-for i in range(10,56):
-    # Comprobamos que no es 16 al principio y nos ahorramos algún proceso
-    if i != 16:
-        # Números pares
-        if i % 2 == 0:
-            # Comprobamos si no es múltiplo de 3
-            if i % 3 != 0:
-                print(f"- {i}")
+print ("EJERCICIO \n")
+for i in range(10, 56):
+    # Comprobamos que el número a imprimir cumple con las tres condiciones
+    if i % 2 == 0 and i != 16 and i % 3 != 0:
+        print(f"- {i}")
