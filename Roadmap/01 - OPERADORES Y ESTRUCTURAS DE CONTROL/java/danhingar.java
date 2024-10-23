@@ -74,42 +74,56 @@ public class danhingar {
 
         // Condicionales
         String nombre = "Daniel";
-        if (nombre == "MoureDev") {
-            System.out.println("my_string es 'MoureDev'");
+        if (nombre == "Daniel") {
+            System.out.println("nombre es 'Daniel'");
         } else if (nombre == "Pepe") {
-            System.out.println("my_string es 'MoureDev'");
+            System.out.println("nombre es 'Pepe'");
         } else {
-            System.out.println("my_string es 'MoureDev'");
+            System.out.println("nombre es indefinido");
         }
 
-        //Iterativas
-        for(int i=0;i<12;i++){
+        switch (nombre) {
+            case "Daniel":
+                System.out.println("Hola Daniel");
+                break;
+            case "Pepe":
+                System.out.println("Hola Pepe");
+                break;
+            default:
+                System.out.println("Hola desconocido");
+        }
+
+        String saludo = nombre.equals("Daniel") ? "Hola Daniel" : "Hola desconocido";
+        System.out.println(saludo);
+
+        // Iterativas
+        for (int i = 0; i < 12; i++) {
             System.out.println(i);
         }
 
-        List<String> names=   List.of("Daniel","Paco","Pepe","Luis");
-        //Itera todas una colección
+        List<String> names = List.of("Daniel", "Paco", "Pepe", "Luis");
+        // Itera todas una colección
         for (String name : names) {
             System.out.println(name);
         }
 
-        while(numero2>1){
+        while (numero2 > 1) {
             System.out.println(numero2);
             numero2--;
         }
 
-        //Excepciones
+        // Excepciones
         try {
-            int divisionError = 10/0;
+            int divisionError = 10 / 0;
         } catch (ArithmeticException e) {
             System.out.println("Error aritmetico");
-        } finally{
+        } finally {
             System.out.println("Finalizado el manejo de excepciones");
         }
 
-        //EJERCICIO EXTRA
-        for(int j=10;j<56;j++){
-            if(j!=16 && j%2==0 && j%3!=0){
+        // EJERCICIO EXTRA
+        for (int j = 10; j < 56; j++) {
+            if (j != 16 && j % 2 == 0 && j % 3 != 0) {
                 System.out.println(j);
             }
         }

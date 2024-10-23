@@ -77,7 +77,7 @@ my_int_f, my_int_g = value(my_int_d, my_int_e)
 print(f"{my_int_d}, {my_int_e}")
 print(f"{my_int_f}, {my_int_g}")
 
-# Por referencia
+# Por referencias
 
 
 def ref(value_a: list, value_b: list) -> tuple:
