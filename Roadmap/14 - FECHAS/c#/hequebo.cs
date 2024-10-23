@@ -28,7 +28,6 @@ class Program
         Console.WriteLine($"La edad es de {edad} años");
 
         // Ejercicio extra
-        // Día del mes
         Console.WriteLine($"1. Día del mes: {fechaNacimiento.ToString("dd")}");
         Console.WriteLine($"2. Día de la semana: {fechaNacimiento.ToString("dddd")}");
         Console.WriteLine($"3. Fecha corta: {fechaNacimiento.ToString("d")}");
