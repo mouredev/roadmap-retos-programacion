@@ -79,16 +79,6 @@ console.log(miNombre);
 
 
 
-
-
- 
- /*/* - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
- *   que representen todos los tipos de estructuras de control que existan
- *   en tu lenguaje:
- *   Condicionales, iterativas, excepciones.../*/
-
-
- //- Debes hacer print por consola del resultado de todos los ejemplos.
  
 
 
