@@ -1,0 +1,18 @@
+# Archivos y carpetas generados por Rust
+/target/
+Cargo.lock
+
+# Archivos de compilación
+*.rlib
+
+# Archivos de depuración
+*.d
+*.pdb
+
+# Archivos generados por el sistema operativo
+*.DS_Store
+Thumbs.db
+
+# Archivos del proyecto
+Cargo.toml
+/src/
