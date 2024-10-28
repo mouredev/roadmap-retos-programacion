@@ -93,7 +93,7 @@ class Pokemon {
 }
 
 class Fetcher {
-  static async customFetch<T>(endpoint: string): Promise<T> {
+  static async get<T>(endpoint: string): Promise<T> {
     const response = await fetch(endpoint);
     const data = (await response.json()) as T;
     return data;
@@ -106,7 +106,7 @@ class PokemonFetcher {
   static async fetchPokemonInformation(
     pokemonTarget: string
   ): Promise<PokemonResponse> {
-    return await Fetcher.customFetch<PokemonResponse>(
+    return await Fetcher.get<PokemonResponse>(
       `${this.baseUrl}pokemon/${pokemonTarget}`
     );
   }
@@ -114,7 +114,7 @@ class PokemonFetcher {
   static async fetchPokemonSpecies(
     pokemonTarget: string
   ): Promise<PokemonSpeciesResponse> {
-    return await Fetcher.customFetch<PokemonSpeciesResponse>(
+    return await Fetcher.get<PokemonSpeciesResponse>(
       `${this.baseUrl}pokemon-species/${pokemonTarget}`
     );
   }
@@ -122,7 +122,7 @@ class PokemonFetcher {
   static async fetchPokemonEvolutionFromURL(
     evolutionURL: string
   ): Promise<PokemonEvolutionResponse> {
-    return await Fetcher.customFetch<PokemonEvolutionResponse>(evolutionURL);
+    return await Fetcher.get<PokemonEvolutionResponse>(evolutionURL);
   }
 }
 
