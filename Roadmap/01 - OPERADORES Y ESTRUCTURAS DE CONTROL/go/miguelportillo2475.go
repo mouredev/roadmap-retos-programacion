@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-var a, b, c = 2, 3, 3
+var a, b, c = 4, 7, 9
 
 func main() {
 	/*
