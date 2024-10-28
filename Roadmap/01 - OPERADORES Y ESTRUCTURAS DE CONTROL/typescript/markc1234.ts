@@ -99,7 +99,7 @@
     // Crea un programa que imprima por consola todos los números comprendidos
     // entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
     for (let index = 10; index <= 55; index++) {
-        if(i % 2 === 0 && index !== 16 && index % 3 !== 0) {
+        if(index % 2 === 0 && index !== 16 && index % 3 !== 0) {
             console.log(index)
         }
     }
