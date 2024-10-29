@@ -1,5 +1,7 @@
 // Author: EdiedRamos
 
+import * as process from "process";
+
 interface PokemonType {
   name: string;
   url: string;
@@ -126,23 +128,50 @@ class PokemonFetcher {
   }
 }
 
-(async () => {
-  try {
-    const pokemonTarget = "pikachu";
-    const pokemonBaseInformation = await PokemonFetcher.fetchPokemonInformation(
-      pokemonTarget
-    );
-    const pokemonSpecies = await PokemonFetcher.fetchPokemonSpecies(
-      pokemonTarget
-    );
-    const pokemonEvolutions = await PokemonFetcher.fetchPokemonEvolutionFromURL(
-      pokemonSpecies.evolution_chain.url
-    );
+class PokemonService {
+  static async searchInformation(pokemonTarget: string): Promise<string> {
+    try {
+      const pokemonBaseInformation =
+        await PokemonFetcher.fetchPokemonInformation(pokemonTarget);
+      const pokemonSpecies = await PokemonFetcher.fetchPokemonSpecies(
+        pokemonTarget
+      );
+      const pokemonEvolutions =
+        await PokemonFetcher.fetchPokemonEvolutionFromURL(
+          pokemonSpecies.evolution_chain.url
+        );
 
-    const pokemon = new Pokemon(pokemonBaseInformation, pokemonEvolutions);
-
-    console.log(pokemon.toString);
-  } catch (error) {
-    console.error(error);
+      const pokemon = new Pokemon(pokemonBaseInformation, pokemonEvolutions);
+      return pokemon.toString;
+    } catch (error) {
+      return `
+    ${"=".repeat(20)}
+    Pokémon no encontrado...
+    ${"=".repeat(20)}
+      `;
+    }
   }
-})();
+}
+
+function menu() {
+  process.stdout.write(
+    "Ingrese el nombre o id del pokémon (o 'salir' para terminar): "
+  );
+
+  process.stdin.on("data", async (data: string) => {
+    const input = data.toString().trim().toLowerCase();
+
+    if (input === "salir") {
+      process.stdout.write("Saliendo del programa...\n");
+      process.stdin.close();
+    } else {
+      const information = await PokemonService.searchInformation(input);
+      console.log(information);
+      process.stdout.write(
+        "Ingrese el nombre o id del pokémon (o 'salir' para terminar): "
+      );
+    }
+  });
+}
+
+(() => menu())();
