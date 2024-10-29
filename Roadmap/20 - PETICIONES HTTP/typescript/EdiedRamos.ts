@@ -154,20 +154,18 @@ class PokemonService {
 }
 
 function menu() {
-  process.stdout.write(
-    "Ingrese el nombre o id del pokémon (o 'salir' para terminar): "
-  );
+  console.log("Ingrese el nombre o id del pokémon (o 'salir' para terminar): ");
 
   process.stdin.on("data", async (data: string) => {
     const input = data.toString().trim().toLowerCase();
 
     if (input === "salir") {
-      process.stdout.write("Saliendo del programa...\n");
+      console.log("Saliendo del programa...\n");
       process.stdin.close();
     } else {
       const information = await PokemonService.searchInformation(input);
       console.log(information);
-      process.stdout.write(
+      console.log(
         "Ingrese el nombre o id del pokémon (o 'salir' para terminar): "
       );
     }
