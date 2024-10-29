@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Persona {
+class PersonaH4ckxel {
     private String nombre;
     private int edad;
 
-    public Persona(String nombre, int edad) {
+    public PersonaH4ckxel(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
     }
@@ -32,10 +32,10 @@ class Persona {
     }
 }
 
-class Pila {
+class PilaH4ckxel {
     private List<Integer> pila;
 
-    public Pila(List<Integer> pila) {
+    public PilaH4ckxel(List<Integer> pila) {
         this.pila = pila;
     }
 
@@ -55,10 +55,10 @@ class Pila {
     }
 }
 
-class Cola {
+class ColaH4ckxel {
     private List<Integer> cola;
 
-    public Cola(List<Integer> cola) {
+    public ColaH4ckxel(List<Integer> cola) {
         this.cola = cola;
     }
 
@@ -75,9 +75,9 @@ class Cola {
     }
 }
 
-public class Main {
+class MainH4ckxel {
     public static void main(String[] args) {
-        Persona person1 = new Persona("Juan", 30);
+        PersonaH4ckxel person1 = new PersonaH4ckxel("Juan", 30);
         person1.imprimirInformacion();
         person1.setNombre("Pedro");
         person1.setEdad(25);
@@ -85,7 +85,8 @@ public class Main {
         System.out.println(person1.getNombre());
         System.out.println(person1.getEdad());
 
-        Pila pila1 = new Pila(new ArrayList<>());
+        // Usa PilaH4ckxel en lugar de ColaH4ckxel para manejar una pila
+        PilaH4ckxel pila1 = new PilaH4ckxel(new ArrayList<>());
         pila1.push(1);
         pila1.push(2);
         pila1.push(3);
@@ -93,7 +94,8 @@ public class Main {
         System.out.println(pila1.pop());
         pila1.imprimir();
 
-        Cola cola1 = new Cola(new ArrayList<>());
+        // Usa ColaH4ckxel para manejar una cola
+        ColaH4ckxel cola1 = new ColaH4ckxel(new ArrayList<>());
         cola1.enqueue(1);
         cola1.enqueue(2);
         cola1.enqueue(3);

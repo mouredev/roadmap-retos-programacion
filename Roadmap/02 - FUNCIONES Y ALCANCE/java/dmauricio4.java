@@ -24,7 +24,7 @@ package com.dm4.roadmap;
  */
 
 
-public class Roadmap02_FuncionYAlcance {
+class Roadmap02_FuncionYAlcance {
 
     /**
      * Variable global: Resultan visibles y disponibles para todas las sentencias de un script

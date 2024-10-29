@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class reto_8 {
+class reto_8 {
     private String nombre;
     private int edad;
     private String direccion;

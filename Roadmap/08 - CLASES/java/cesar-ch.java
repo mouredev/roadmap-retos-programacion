@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Persona {
+class PersonaCesar {
     private String nombre;
     private int edad;
 
-    public Persona(String nombre, int edad) {
+    public PersonaCesar(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
     }
@@ -32,10 +32,10 @@ class Persona {
     }
 }
 
-class Pila {
+class PilaCesar {
     private List<Integer> pila;
 
-    public Pila(List<Integer> pila) {
+    public PilaCesar(List<Integer> pila) {
         this.pila = pila;
     }
 
@@ -55,10 +55,10 @@ class Pila {
     }
 }
 
-class Cola {
+class ColaCesar {
     private List<Integer> cola;
 
-    public Cola(List<Integer> cola) {
+    public ColaCesar(List<Integer> cola) {
         this.cola = cola;
     }
 
@@ -75,9 +75,9 @@ class Cola {
     }
 }
 
-public class Main {
+class Main {
     public static void main(String[] args) {
-        Persona person1 = new Persona("Juan", 30);
+        PersonaCesar person1 = new PersonaCesar("Juan", 30);
         person1.imprimirInformacion();
         person1.setNombre("Pedro");
         person1.setEdad(25);
@@ -85,7 +85,7 @@ public class Main {
         System.out.println(person1.getNombre());
         System.out.println(person1.getEdad());
 
-        Pila pila1 = new Pila(new ArrayList<>());
+        PilaCesar pila1 = new PilaCesar(new ArrayList<>());
         pila1.push(1);
         pila1.push(2);
         pila1.push(3);
@@ -93,7 +93,7 @@ public class Main {
         System.out.println(pila1.pop());
         pila1.imprimir();
 
-        Cola cola1 = new Cola(new ArrayList<>());
+        ColaCesar cola1 = new ColaCesar(new ArrayList<>());
         cola1.enqueue(1);
         cola1.enqueue(2);
         cola1.enqueue(3);

@@ -1,4 +1,4 @@
-public class Main {
+class MainJordi {
 
     public static final String LENGUAJE = "Java";
 

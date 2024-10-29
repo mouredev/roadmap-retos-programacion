@@ -5,7 +5,7 @@
 
 import java.util.Date;
 
-public class KronstadtLambda {
+class KronstadtLambda {
 
     static void printGreetings() {
         System.out.println("Hello roadmap-retos-programacion!");

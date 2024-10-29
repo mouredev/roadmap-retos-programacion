@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class Main {
+class MainJordi {
 
     /**
      * Una clase es una plantilla que permite crear objetos de un tipo determinado.

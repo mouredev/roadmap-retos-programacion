@@ -20,7 +20,7 @@
  * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
  * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
-public class FunsYalcance {
+class FunsYalcance {
     static String variableGlobal = "soy una variable global";
 
     // funcion sin parametros ni retorno

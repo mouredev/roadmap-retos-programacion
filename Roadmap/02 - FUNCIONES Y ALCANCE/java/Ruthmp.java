@@ -18,7 +18,7 @@
         * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
         * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
-public class Funciones_Alcance {
+class Funciones_Alcance {
 
     static String variableGlobal = "Esto es una variable Global"; //Variable Global, sin parámetro ni retorno
 

@@ -1,4 +1,4 @@
-public class Solucion_02_Java {
+class Solucion_02_Java {
 
     // Variable global
     static String esto_es_una_variable_global = "Variable_local";

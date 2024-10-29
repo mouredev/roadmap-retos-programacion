@@ -1,4 +1,6 @@
-public class Main {
+import java.util.ArrayList;
+
+class MainAbel {
     public static void main(String[] args) {
         Client client = new Client("Abel", 20);
         System.out.println(client);
@@ -8,7 +10,7 @@ public class Main {
         System.out.println("--------- DIFICULTAD EXTRA -------------");
 
         //Pilas
-        Stack stack = new Stack();
+        Stack<Number> stack = new Stack<Number>();
         stack.push(30);
         stack.push(20);
         stack.push(10);
@@ -68,7 +70,7 @@ class Client {
     }
 }
 
-class Stack{
+class Stack<I extends Number> {
     ArrayList<Object> stack;
 
     public Stack() {

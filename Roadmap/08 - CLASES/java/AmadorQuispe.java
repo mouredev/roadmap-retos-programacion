@@ -3,7 +3,7 @@ import java.time.Period;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Poo {
+class Poo {
     public static void main(String[] args) {
         // creamos un objeto de la clase estudiante,
         Student s = new Student(120, "Amador", "Quispe", LocalDate.of(1992, 7, 13));

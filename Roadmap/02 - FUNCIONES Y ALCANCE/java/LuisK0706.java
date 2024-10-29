@@ -1,4 +1,4 @@
-public class Ejercicio02 {
+class Ejercicio02 {
 
     //Creando una variable global (La variables globales se pueden usar en cualquier lugar del codigo)
     public static String mi_variable = "Variable global";

@@ -1,4 +1,4 @@
-public class Main {
+class MainJoan {
     static int globalVariable=2;
 
     public static void main(String[] args) {

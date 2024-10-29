@@ -1,7 +1,3 @@
-package com.example.headfirstjava;
-
-import org.springframework.boot.SpringApplication;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,7 +6,6 @@ import java.util.List;
 public class Natalinacn {
 
     public static void main(String[] args) {
-        SpringApplication.run(HeadFirstjavaApplication.class, args);
 
         imprimirMensaje();
         imprimirNombre("Natalin");

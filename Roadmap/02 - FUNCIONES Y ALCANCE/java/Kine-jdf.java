@@ -1,4 +1,4 @@
-public class Kine_jdf {
+class Kine_jdf {
     public static final String STATIC_CONSTANT= "ESTATICA\n";
     public static void main(String args[]) {
     
@@ -50,7 +50,7 @@ funcConFunc();
   }
   public static void globalLocal() {
       String STATIC_CONSTANT= "Galletitas de Chocolate|\n";
-        System.out.print("\nvariable GLOBAL STATIC_CONSTANT :"+MyClass.STATIC_CONSTANT);
+        System.out.print("\nvariable GLOBAL STATIC_CONSTANT :"+STATIC_CONSTANT);
        System.out.println("\nvariable local STATIC_CONSTANT |"+STATIC_CONSTANT);
   }
   

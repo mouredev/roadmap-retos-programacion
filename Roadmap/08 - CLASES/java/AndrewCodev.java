@@ -1,5 +1,6 @@
-
-import java.util.*;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.LinkedList;
 
 public class AndrewCodev {
 
@@ -15,8 +16,7 @@ public class AndrewCodev {
 		this.edad = 29;
 	}
 
-	// Creamos los metodos Get y Set de cada atributo para acceder al valor de los
-	// atributos en el constructor
+	// Métodos Get y Set
 	public String getNombre() {
 		return nombre;
 	}
@@ -42,94 +42,98 @@ public class AndrewCodev {
 	}
 
 	public static void main(String[] args) {
-		// creamos la instancia del objeto AndrewCodev y accedemos a sus métodos desde
-		// el metodo main
 		AndrewCodev andrewCodev = new AndrewCodev();
-		// Imprimimos sus atributos
 		System.out.println("Atributos inicializados");
 		System.out.println("Nombre: " + andrewCodev.getNombre());
 		System.out.println("Apellido: " + andrewCodev.getApellido());
 		System.out.println("Edad: " + andrewCodev.getEdad());
 
-		// Modificamos los atributos
-		System.out.println("\nAtributos modificados");
 		andrewCodev.setNombre("Felipe");
-		System.out.println("Nombre: " + andrewCodev.getNombre());
 		andrewCodev.setApellido("Mendoza");
-		System.out.println("Apellido: " + andrewCodev.getApellido());
 		andrewCodev.setEdad(30);
+		System.out.println("\nAtributos modificados");
+		System.out.println("Nombre: " + andrewCodev.getNombre());
+		System.out.println("Apellido: " + andrewCodev.getApellido());
 		System.out.println("Edad: " + andrewCodev.getEdad());
 
-		// FIN DEL EJERCICIO BASE
+		// Usando la clase de Pilas
+		ClsPilas pila = new ClsPilas();
+		pila.agregar(10);
+		pila.agregar(20);
+		System.out.println("\nPila después de agregar elementos:");
+		pila.listarTodo();
+		System.out.println("Elemento en la cima: " + pila.verUltimo());
+		pila.eliminarUltimo();
+		System.out.println("Pila después de eliminar el último elemento:");
+		pila.listarTodo();
+
+		// Usando la clase de Colas
+		OrdenLlegada cola = new OrdenLlegada();
+		cola.agregarPlato(1);
+		cola.agregarPlato(2);
+		System.out.println("\nCola después de agregar elementos:");
+		cola.verTodos();
+		System.out.println("Elemento en el frente de la cola: " + cola.verUltimo());
+		cola.eliminarUltimo();
+		System.out.println("Cola después de eliminar el primer elemento:");
+		cola.verTodos();
 	}
 
-	// Creamos la clase que representa la estructura de PILAS
+	// Clase para manejar Pila
 	static class ClsPilas {
 		Stack<Integer> pila;
 
-		// Creamos los métodos que ejecutarán las acciones de agregar, listar, remover,
+		public ClsPilas() {
+			pila = new Stack<>();
+		}
 
-		// Agregar elemento
-		public Stack<Integer> agregar(Stack<Integer> pila, int numero) {
+		public void agregar(int numero) {
 			pila.push(numero);
-			return pila;
 		}
 
-		// Ver elemento superior en la pila
-		public Stack<Integer> verUltimo(Stack<Integer> pila) {
-			pila.peek();
-			return pila;
+		public int verUltimo() {
+			return pila.peek();
 		}
 
-		// Listar todo
-		public Stack<Integer> listarTodo(Stack<Integer> pila) {
-			return pila;
+		public void listarTodo() {
+			System.out.println("Pila completa: " + pila);
 		}
 
-		// Eliminar elemento superior en la pila
-		public Stack<Integer> eliminarUltimo(Stack<Integer> pila) {
+		public void eliminarUltimo() {
 			pila.pop();
-			return pila;
 		}
 
-		// Eliminar todos
-		public Stack<Integer> eliminarTodos(Stack<Integer> pila) {
+		public void eliminarTodos() {
 			pila.clear();
-			return pila;
 		}
 	}
 
+	// Clase para manejar Cola
 	static class OrdenLlegada {
 		Queue<Integer> cola;
-		// Creamos los métodos que ejecutarán las acciones de agregar, listar, remover,
 
-		// Agregar elemento
-		public Queue<Integer> agregarPlato(Queue<Integer> cola, int numero) {
+		public OrdenLlegada() {
+			cola = new LinkedList<>();
+		}
+
+		public void agregarPlato(int numero) {
 			cola.add(numero);
-			return cola;
 		}
 
-		// Ver elemento superior en la pila
-		public Queue<Integer> verUltimo(Queue<Integer> cola) {
-			cola.peek();
-			return cola;
+		public int verUltimo() {
+			return cola.peek();
 		}
 
-		// Ver elemento superior en la pila
-		public Queue<Integer> verTodos(Queue<Integer> cola) {
-			return cola;
+		public void verTodos() {
+			System.out.println("Cola completa: " + cola);
 		}
 
-		// Eliminar elemento superior en la pila
-		public Queue<Integer> eliminarUltimo(Queue<Integer> cola) {
+		public void eliminarUltimo() {
 			cola.remove();
-			return cola;
 		}
 
-		// Eliminar todos
-		public Queue<Integer> eliminarTodos(Queue<Integer> cola) {
+		public void eliminarTodos() {
 			cola.clear();
-			return cola;
 		}
 	}
 }

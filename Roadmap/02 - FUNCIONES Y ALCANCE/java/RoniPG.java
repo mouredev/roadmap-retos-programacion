@@ -1,6 +1,6 @@
 
 // @Roni
-public class FUNCIONES_Y_ALCANCE_02 {
+class FUNCIONES_Y_ALCANCE_02 {
 	
 
 		// Diferenciaremos entre Funciones, Metodos y Procedimientos

@@ -18,7 +18,7 @@ import java.util.Queue;
  */
 
 
-public class _08_Clases {
+class _08_Clases {
     public String Nombre;
     public String Saludo;
 

@@ -47,7 +47,7 @@ class Iguana{
 		System.out.println("Genero: "+this.genero+ "\nEndemico: "+this.endemico+"\nEspecie :"+this.especie);
 	}
 }
-public class CLASES_08{
+class CLASES_08{
 	
 	public static void main(String[] args) {
 		
@@ -59,7 +59,7 @@ public class CLASES_08{
 		ig1.setEspecie("Iguana");
 		ig1.print(); // --> Llamamos al método que nos devolvera los valores		
 		System.out.println("****PILA****");
-		Pila pila = new Pila(); // --> Instanciamos/Incicalizamos la clase
+		PilaRoni pila = new PilaRoni(); // --> Instanciamos/Incicalizamos la clase
 		/*Le asignamos los valores*/
 		pila.añadirDatos(1);		pila.añadirDatos(2);		pila.añadirDatos(3);
 		System.out.println("El número de elementos es: "+pila.numeroDeElementos()); // --> Imprimimos números de elementos
@@ -71,7 +71,7 @@ public class CLASES_08{
 		pila.elminarDatos();
 		pila.elminarDatos(); // --> Salta el aviso
 		System.out.println("****COLA****");
-		Cola cola= new Cola(); // --> Instanciamos/Incicalizamos la clase
+		ColaRoni cola= new ColaRoni(); // --> Instanciamos/Incicalizamos la clase
 		/*Le asignamos los valores*/
 		cola.añadirDatos("Elemento 0");		cola.añadirDatos("Elemento 1");		cola.añadirDatos("Elemento 2");
 		System.out.println("El número de elementos es: "+cola.numeroDeElementos()); // --> Imprimimos números de elementos
@@ -91,9 +91,9 @@ public class CLASES_08{
  * - Deben poder inicializarse y disponer de operaciones para añadir, eliminar,
  *   retornar el número de elementos e imprimir todo su contenido.
  */
-class Pila{
+class PilaRoni{
 	private Stack<Integer> datos;
-	public Pila() {
+	public PilaRoni() {
 	 this.datos=new Stack<>();
 	}
 	public void añadirDatos(int dato) {
@@ -117,9 +117,9 @@ class Pila{
 		}
 	}
 }
-class Cola{
+class ColaRoni{
 	private Queue<String> datos;
-	public Cola() {
+	public ColaRoni() {
 	 this.datos=new LinkedList<>();	
 	}
 	public void añadirDatos(String dato) {

@@ -1,8 +1,8 @@
-public class Persona {
+class PersonaMensius {
     private String nombre;
     private int edad;
     
-    public Persona(String nombre, int edad) {
+    public PersonaMensius(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
     }
@@ -14,7 +14,7 @@ public class Persona {
 
     public static void main(String[] args) {
         // Crear una instancia de la clase Persona
-        Persona persona1 = new Persona("Juan", 30);
+        PersonaMensius persona1 = new PersonaMensius("Juan", 30);
 
         // Imprimir la información utilizando el método de la clase
         persona1.imprimirInformacion();

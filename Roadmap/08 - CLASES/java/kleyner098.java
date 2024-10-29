@@ -26,7 +26,7 @@ public class kleyner098 {
 
 
         // DIFICULTAD EXTRA (opcional):
-        Pila<Integer> pila = new Pila();
+        PilaKleyner<Integer> pila = new PilaKleyner<>();
         pila.apilar(1);
         pila.apilar(2);
         pila.apilar(3);
@@ -34,7 +34,7 @@ public class kleyner098 {
         pila.desapilar();
         pila.desapilar();
         System.out.println("Pila : " + pila);
-        Cola<Integer> cola = new Cola();
+        ColaKleyner<Integer> cola = new ColaKleyner();
         cola.encolar(1);
         cola.encolar(2);
         cola.encolar(3);
@@ -88,10 +88,10 @@ class Contador {
 
 }
 
-class Pila<T> {
+class PilaKleyner<T> {
     private T[] pila;
 
-    Pila() {
+    PilaKleyner() {
         pila = (T[]) new Object[0];
     }
 
@@ -120,10 +120,10 @@ class Pila<T> {
     }
 }
 
-class Cola<T> {
+class ColaKleyner<T> {
     private T[] cola;
 
-    Cola() {
+    ColaKleyner() {
         cola = (T[]) new Object[0];
     }
 

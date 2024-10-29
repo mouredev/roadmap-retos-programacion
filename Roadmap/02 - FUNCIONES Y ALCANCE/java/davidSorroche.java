@@ -1,5 +1,5 @@
 
-public class Funciones {
+class Funciones {
     /*
         * - Crea ejemplos de funciones básicas que representen las diferentes
         *   posibilidades del lenguaje:
@@ -45,7 +45,7 @@ public class Funciones {
     }
 }
 
-public class DificultadExtraFunciones_Alcances {
+class DificultadExtraFunciones_Alcances {
     /*
         * Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
         * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
@@ -113,7 +113,7 @@ public class DificultadExtraFunciones_Alcances {
     }
 }
 
-public class PrincipalFunciones_Alcances {
+class PrincipalFunciones_Alcances {
     public static void main(String[] args) {
         Funciones f = new Funciones();
         

@@ -1,4 +1,3 @@
-package javaExample_;
 import java.util.Scanner;
 
 
@@ -29,7 +28,7 @@ import java.util.Scanner;
 //En Java las funciones son conocidas como métodos y se declaran dentro de la clase antes del bloque main
 
 
-public class Funciones_alcance_02 {
+class Funciones_alcance_02 {
 	
 	
 	

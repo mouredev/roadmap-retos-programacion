@@ -1,6 +1,6 @@
-package MauroDevRetos;
 
-public class reto_2 {
+
+class reto_2 {
 
     // Variable global
     static int variableGlobal = 10;
