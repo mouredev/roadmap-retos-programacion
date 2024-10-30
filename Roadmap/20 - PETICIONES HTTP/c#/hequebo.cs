@@ -39,7 +39,6 @@ class Program
 
         Console.ReadLine();
         Console.Clear();
-        Console.Clear();
 
         // Ejercicio extra
         var httpClientPokemon = new HttpClient
@@ -80,7 +79,7 @@ class Program
     static async Task Search(HttpClient httpClient)
     {
         Console.Clear();
-        Console.WriteLine("Ingresa id de pokemón a consultar");
+        Console.WriteLine("Ingresa id o nombre de pokemón a consultar");
         string search = Console.ReadLine();
 
         var response = await httpClient.GetAsync($"{httpClient.BaseAddress}/{search}");
