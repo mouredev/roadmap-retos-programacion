@@ -15,7 +15,7 @@ function iniciarApp(){
 iniciarApp();
 
 //EXTRA
-interface errorSuma{
+interface errorObj{
     errorCode:number,
     body:string
 }
@@ -44,7 +44,7 @@ export class OutOfRange extends CustomError{
     }
 }
 
-export default function handleError(error: unknown): errorSuma {
+export default function handleError(error: any): errorObj {
     if (error instanceof CustomError) {
       return {
         errorCode: error.errorCode,
@@ -53,7 +53,7 @@ export default function handleError(error: unknown): errorSuma {
     } else {
       return {
         errorCode: 500,
-        body: JSON.stringify({ error }),
+        body: error,
       };
     }
   }
@@ -77,11 +77,8 @@ export default function handleError(error: unknown): errorSuma {
     } catch(error){
         const response = handleError(error);
         console.warn("Código de error: "+response.errorCode)
-        if(response.errorCode<=0){
-            console.error(`ERROR: ${response.errorCode}, ${response.body}`);
-        } else {
-            console.error(`ERROR: ${error}`);
-        }
+        console.error(`ERROR: ${response.errorCode}, ${response.body}`);
+        
     } finally {
       console.log("Aplicación finalizada\n");
     }
