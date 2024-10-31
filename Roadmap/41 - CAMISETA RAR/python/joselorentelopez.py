@@ -29,7 +29,7 @@ class ZipCompression(FileCompression):
         Initializes the ZipCompression class with the path of the file to be compressed.
 
         Args:
-            file_path (str): The path to the file that needs to be compressed.
+            file_path (str): The path to the file that needs to be compressed
         """
 
         super().__init__()
