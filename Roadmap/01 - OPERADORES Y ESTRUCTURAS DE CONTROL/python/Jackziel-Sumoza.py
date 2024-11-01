@@ -38,7 +38,6 @@ print(f"{num_1} es igual a {num_2} y {num_2} es igual a {num_3}: {num_1 == num_2
 print(f"{num_1} es menor {num_2} o {num_2} es igual a {num_3}: {num_1 < num_2 or num_2 == num_3}")
 print(f"{num_1} no es igual a {num_2}: {not num_1 ==  num_2}")
 
-
 #* Comparación
 print()
 print("OPERADORES DE COMPARACIÓN")
@@ -48,3 +47,23 @@ print(f"Mayor que {num_1} > {num_2}: {num_1 > num_2}")
 print(f"Menor que {num_1} < {num_2}: {num_1 < num_2}")
 print(f"Mayor o igual que {num_1} >= {num_2}: {num_1 >= num_2}")
 print(f"Menor o igual que {num_1} <= {num_2}: {num_1 <= num_2}")
+
+#* Asignación
+print()
+print("OPERADORES DE ASIGNACIÓN")
+num_1 = 25
+print(f"asignar un valor 25: {num_1}")
+num_1 += 2
+print(f"sumar dos: {num_1}")
+num_1 -= 2
+print(f"restar dos: {num_1}")
+num_1 *= 4
+print(f"multiplicar por cuatro: {num_1}")
+num_1 /= 1
+print(f"dividir entre uno: {num_1}")
+num_1 //= 2
+print(f"división entera entre dos: {num_1}")
+num_1 %= 3
+print(f"Modulo de tres: {num_1}")
+num_1 **= 3
+print(f"elevación al cubo: {num_1}")
