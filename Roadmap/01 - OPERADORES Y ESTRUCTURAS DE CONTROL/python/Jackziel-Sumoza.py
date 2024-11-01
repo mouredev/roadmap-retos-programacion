@@ -31,6 +31,14 @@ print(f"Esto es una multiplicación {num_1} * {num_2}: {num_1 * num_2}")
 print(f"Esto es modulo o resto {num_1} % {num_2}: {num_1 % num_3}")
 print(f"Esto es una potencia {num_1} ** {num_2}: {num_1 ** num_3}")
 
+#* Lógicos
+print()
+print("OPERADORES LÓGICOS")
+print(f"{num_1} es igual a {num_2} y {num_2} es igual a {num_3}: {num_1 == num_2 and num_2 == num_3}")
+print(f"{num_1} es menor {num_2} o {num_2} es igual a {num_3}: {num_1 < num_2 or num_2 == num_3}")
+print(f"{num_1} no es igual a {num_2}: {not num_1 ==  num_2}")
+
+
 #* Comparación
 print()
 print("OPERADORES DE COMPARACIÓN")
