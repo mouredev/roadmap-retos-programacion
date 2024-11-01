@@ -21,10 +21,22 @@ num_2 = 54
 num_3 = 2.45
 
 #* Aritméticos
-print(f"Esto es una suma: {num_1 + num_2}")
-print(f"Esto es una resta: {num_1 - num_2} \n")
-print(f"Esto es una división: {num_1 / num_3} \n")
-print(f"Esto es una división entera: {num_1 // num_3} \n")
-print(f"Esto es una multiplicación: {num_1 * num_2} \n")
-print(f"Esto es modulo o resto: {num_1 % num_3} \n")
-print(f"Esto es una potencia: {num_1 ** num_3} \n")
+print()
+print("OPERADORES ARITMÉTICOS")
+print(f"Esto es una suma {num_1} + {num_2}: {num_1 + num_2}")
+print(f"Esto es una resta {num_1} - {num_2}: {num_1 - num_2}")
+print(f"Esto es una división {num_1} / {num_2}: {num_1 / num_3}")
+print(f"Esto es una división entera {num_1} // {num_2}: {num_1 // num_3}")
+print(f"Esto es una multiplicación {num_1} * {num_2}: {num_1 * num_2}")
+print(f"Esto es modulo o resto {num_1} % {num_2}: {num_1 % num_3}")
+print(f"Esto es una potencia {num_1} ** {num_2}: {num_1 ** num_3}")
+
+#* Comparación
+print()
+print("OPERADORES DE COMPARACIÓN")
+print(f"Igual que {num_1} == {num_2}: {num_1 == num_2}")
+print(f"Distinto de {num_1} != {num_2}: {num_1 != num_2}")
+print(f"Mayor que {num_1} > {num_2}: {num_1 > num_2}")
+print(f"Menor que {num_1} < {num_2}: {num_1 < num_2}")
+print(f"Mayor o igual que {num_1} >= {num_2}: {num_1 >= num_2}")
+print(f"Menor o igual que {num_1} <= {num_2}: {num_1 <= num_2}")
