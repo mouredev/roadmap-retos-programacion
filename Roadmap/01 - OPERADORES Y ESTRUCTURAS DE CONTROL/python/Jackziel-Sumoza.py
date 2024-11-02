@@ -77,3 +77,9 @@ objeto_3 = [1,2,3]
 print(f"objeto_2 se refiere al mismo objeto que objeto_1: {objeto_1 is objeto_2}")
 print(f"objeto_3 no se refiere al mismo objeto que objeto_1: {objeto_3 is not objeto_1}")
 
+#* Pertenencia
+print()
+print("OPERADORES DE PERTENENCIA")
+lista_1 = [1,2,3,4,5,6,7,8,9,10]
+print(f"El numero 7 se encuentra en la lista_1: {10 in lista_1}")
+print(f"La palabra \"Python\" no se encuentra en la lista_1: {"Python" not in lista_1}")
