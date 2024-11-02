@@ -83,3 +83,20 @@ print("OPERADORES DE PERTENENCIA")
 lista_1 = [1,2,3,4,5,6,7,8,9,10]
 print(f"El numero 7 se encuentra en la lista_1: {10 in lista_1}")
 print(f"La palabra \"Python\" no se encuentra en la lista_1: {"Python" not in lista_1}")
+
+#* Bits
+print()
+print("OPERADORES DE BITS")
+binario_1, binario_2 = 20, 43 
+# Si ambos bits correspondientes son 1, el resultado es 1; de lo contrario, es 0.
+print(f"Operador binario and: {bin(binario_1)} AND[&] {bin(binario_2)}: {bin(binario_1 & binario_2)}")
+# Si al menos uno de los bits correspondientes es 1, el resultado es 1; de lo contrario, es 0.
+print(f"Operador binario or: {bin(binario_1)} OR[|] {bin(binario_2)}: {bin(binario_1 | binario_2)}")
+# Si los bits correspondientes son diferentes, el resultado es 1; de lo contrario, es 0.
+print(f"Operador binario xor: {bin(binario_1)} XOR[^] {bin(binario_2)}: {bin(binario_1 ^ binario_2)}")
+# Invierte todos los bits de un número.
+print(f"Operador binario not: {bin(binario_1)} NOT[~]: {bin(~ binario_2)}")
+# Desplaza todos los bits de un número una cierta cantidad de posiciones hacia la izquierda, llenando los espacios vacíos con ceros.
+print(f"Desplazar a la derecha: 2 posiciones a {bin(binario_2)} [>>]: {bin(binario_1 >> 2)}")
+#  Desplaza todos los bits de un número una cierta cantidad de posiciones hacia la derecha. El comportamiento del bit más a la izquierda depende del tipo de entero (con o sin signo).
+print(f"Desplazar a la izquierda: 2 posiciones a {bin(binario_1)} [<<]: {bin(binario_1 << 2)}")
