@@ -4,8 +4,6 @@
  *   que representen todos los tipos de estructuras de control que existan
  *   en tu lenguaje:
  *   Condicionales, iterativas, excepciones...
- * - Debes hacer print por consola del resultado de todos los ejemplos.
- *
  * DIFICULTAD EXTRA (opcional):
  * Crea un programa que imprima por consola todos los números comprendidos
  * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
@@ -113,3 +111,23 @@ elif num_1 != num_2 and num_2 != num_3:
     print(f"el {num_1} es distinto de {num_2} y {num_2} es distinto de {num_3}")
 else:
     print("ninguna de las afirmaciones anteriores son reales")
+
+#** Bucles
+#* For
+print()
+print("BUCLE FOR")
+nombre = "Jackziel"
+letras = list()
+for letra in nombre:
+    letras.append(letra)
+print(letras)
+
+#* While
+print()
+print("BUCLE WHILE")
+x = 0
+numeros_naturales = list()
+while x - 10:
+    numeros_naturales.append(x)
+    x += 1
+print(numeros_naturales)
