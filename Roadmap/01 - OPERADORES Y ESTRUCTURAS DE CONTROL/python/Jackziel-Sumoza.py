@@ -1,15 +1,3 @@
-""" /*
- * EJERCICIO:
- * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
- *   que representen todos los tipos de estructuras de control que existan
- *   en tu lenguaje:
- *   Condicionales, iterativas, excepciones...
- * DIFICULTAD EXTRA (opcional):
- * Crea un programa que imprima por consola todos los números comprendidos
- * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
- *
- * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
- */ """
 
 #** Operadores
 
@@ -99,6 +87,7 @@ print(f"Desplazar a la derecha: 2 posiciones a {bin(binario_2)} [>>]: {bin(binar
 print(f"Desplazar a la izquierda: 2 posiciones a {bin(binario_1)} [<<]: {bin(binario_1 << 2)}")
 
 #** Condicionales
+
 num_1 = 40
 num_2 = 50
 num_3 = num_1
@@ -113,6 +102,7 @@ else:
     print("ninguna de las afirmaciones anteriores son reales")
 
 #** Bucles
+
 #* For
 print()
 print("BUCLE FOR")
@@ -132,7 +122,8 @@ while x - 10:
     x += 1
 print(numeros_naturales)
 
-#* Excepciones
+#** Excepciones
+
 print()
 print("EXCEPCIONES")
 try:
@@ -141,3 +132,11 @@ except:
     print("No puedes sumar dos tipos de datos diferentes, corrígelo y vuelve a intentar")
 finally:
     print("el programa a finalizado")
+
+#** Ejercicio complejo
+
+print()
+print("DIFICULTAD EXTRA")
+for numero in range(10, 56):
+    if numero % 2 == 0 and numero != 16 and numero % 3 != 0:
+        print(numero)
