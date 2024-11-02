@@ -1,8 +1,5 @@
 """ /*
  * EJERCICIO:
- * - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:
- *   Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits...
- *   (Ten en cuenta que cada lenguaje puede poseer unos diferentes)
  * - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
  *   que representen todos los tipos de estructuras de control que existan
  *   en tu lenguaje:
@@ -15,6 +12,8 @@
  *
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
  */ """
+
+#** Operadores
 
 num_1 = 24
 num_2 = 54
@@ -100,3 +99,17 @@ print(f"Operador binario not: {bin(binario_1)} NOT[~]: {bin(~ binario_2)}")
 print(f"Desplazar a la derecha: 2 posiciones a {bin(binario_2)} [>>]: {bin(binario_1 >> 2)}")
 #  Desplaza todos los bits de un número una cierta cantidad de posiciones hacia la derecha. El comportamiento del bit más a la izquierda depende del tipo de entero (con o sin signo).
 print(f"Desplazar a la izquierda: 2 posiciones a {bin(binario_1)} [<<]: {bin(binario_1 << 2)}")
+
+#** Condicionales
+num_1 = 40
+num_2 = 50
+num_3 = num_1
+
+print()
+print("CONDICIONALES")
+if num_1 == num_3:
+    print(f"El numero {num_1} es igual a {num_3}")
+elif num_1 != num_2 and num_2 != num_3:
+    print(f"el {num_1} es distinto de {num_2} y {num_2} es distinto de {num_3}")
+else:
+    print("ninguna de las afirmaciones anteriores son reales")
