@@ -67,3 +67,13 @@ num_1 %= 3
 print(f"Modulo de tres: {num_1}")
 num_1 **= 3
 print(f"elevación al cubo: {num_1}")
+
+#* Identidad
+print()
+print("OPERADORES DE IDENTIDAD")
+objeto_1 = [1,2,3]
+objeto_2 = objeto_1
+objeto_3 = [1,2,3]
+print(f"objeto_2 se refiere al mismo objeto que objeto_1: {objeto_1 is objeto_2}")
+print(f"objeto_3 no se refiere al mismo objeto que objeto_1: {objeto_3 is not objeto_1}")
+
