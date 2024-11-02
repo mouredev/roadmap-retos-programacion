@@ -131,3 +131,13 @@ while x - 10:
     numeros_naturales.append(x)
     x += 1
 print(numeros_naturales)
+
+#* Excepciones
+print()
+print("EXCEPCIONES")
+try:
+    print(f"{"hola mundo" + 15.6}")
+except:
+    print("No puedes sumar dos tipos de datos diferentes, corrígelo y vuelve a intentar")
+finally:
+    print("el programa a finalizado")
