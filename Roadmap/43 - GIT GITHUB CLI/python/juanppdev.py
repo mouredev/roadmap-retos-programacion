@@ -22,108 +22,151 @@
  * Puedes intentar controlar los diferentes errores.
 """
 
+# Usar pip install gitpython
+
 import os
-import subprocess
+import sys
+import git
+from git import Repo, GitCommandError
 
-# Función para ejecutar comandos en la terminal y capturar su salida o errores
-def run_command(command):
-    try:
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
-        return result.stdout
-    except subprocess.CalledProcessError as e:
-        return f"Error: {e.stderr}"
-
-# Funciones para las diferentes opciones del CLI
 def set_working_directory():
-    path = input("Introduce el directorio de trabajo: ")
-    try:
+    path = input("Introduce la ruta del directorio de trabajo: ")
+    if os.path.isdir(path):
         os.chdir(path)
-        print(f"Directorio de trabajo establecido en: {os.getcwd()}")
-    except FileNotFoundError:
-        print("Error: Directorio no encontrado.")
+        print(f"Directorio cambiado a: {os.getcwd()}")
+    else:
+        print("Ruta no válida. Inténtalo de nuevo.")
 
 def create_repository():
-    print(run_command(["git", "init"]))
+    try:
+        Repo.init(os.getcwd())
+        print("Repositorio creado exitosamente.")
+    except GitCommandError as e:
+        print(f"Error al crear el repositorio: {e}")
 
-def create_branch():
+def create_branch(repo):
     branch_name = input("Nombre de la nueva rama: ")
-    print(run_command(["git", "branch", branch_name]))
+    try:
+        repo.git.branch(branch_name)
+        repo.git.checkout(branch_name)
+        print(f"Rama '{branch_name}' creada y cambiada.")
+    except GitCommandError as e:
+        print(f"Error al crear la rama: {e}")
 
-def switch_branch():
-    branch_name = input("Nombre de la rama a la que deseas cambiar: ")
-    print(run_command(["git", "checkout", branch_name]))
+def switch_branch(repo):
+    branch_name = input("Nombre de la rama a la que quieres cambiar: ")
+    try:
+        repo.git.checkout(branch_name)
+        print(f"Cambiado a la rama '{branch_name}'.")
+    except GitCommandError as e:
+        print(f"Error al cambiar de rama: {e}")
 
-def show_pending_files():
-    print(run_command(["git", "status"]))
+def show_pending_files(repo):
+    try:
+        status = repo.git.status()
+        print(status)
+    except GitCommandError as e:
+        print(f"Error al mostrar archivos pendientes: {e}")
 
-def make_commit():
-    message = input("Mensaje para el commit: ")
-    run_command(["git", "add", "."])
-    print(run_command(["git", "commit", "-m", message]))
+def make_commit(repo):
+    commit_message = input("Mensaje del commit: ")
+    try:
+        repo.git.add(all=True)
+        repo.git.commit(m=commit_message)
+        print("Commit realizado.")
+    except GitCommandError as e:
+        print(f"Error al hacer el commit: {e}")
 
-def show_commit_history():
-    print(run_command(["git", "log", "--oneline"]))
+def show_commit_history(repo):
+    try:
+        log = repo.git.log("--oneline")
+        print(log)
+    except GitCommandError as e:
+        print(f"Error al mostrar el historial de commits: {e}")
 
-def delete_branch():
+def delete_branch(repo):
     branch_name = input("Nombre de la rama a eliminar: ")
-    print(run_command(["git", "branch", "-d", branch_name]))
+    try:
+        repo.git.branch("-d", branch_name)
+        print(f"Rama '{branch_name}' eliminada.")
+    except GitCommandError as e:
+        print(f"Error al eliminar la rama: {e}")
 
-def set_remote_repository():
-    remote_url = input("Introduce la URL del repositorio remoto: ")
-    print(run_command(["git", "remote", "add", "origin", remote_url]))
+def set_remote_repository(repo):
+    remote_url = input("URL del repositorio remoto: ")
+    try:
+        repo.create_remote("origin", remote_url)
+        print(f"Repositorio remoto '{remote_url}' añadido como 'origin'.")
+    except GitCommandError as e:
+        print(f"Error al añadir el repositorio remoto: {e}")
 
-def pull_changes():
-    print(run_command(["git", "pull", "origin", "main"]))
+def pull_changes(repo):
+    try:
+        repo.git.pull("origin")
+        print("Pull realizado.")
+    except GitCommandError as e:
+        print(f"Error al hacer pull: {e}")
 
-def push_changes():
-    print(run_command(["git", "push", "origin", "main"]))
+def push_changes(repo):
+    try:
+        repo.git.push("origin")
+        print("Push realizado.")
+    except GitCommandError as e:
+        print(f"Error al hacer push: {e}")
 
-# Función principal del CLI
+def show_menu():
+    print("\n--- Git CLI ---")
+    print("1. Establecer el directorio de trabajo")
+    print("2. Crear un nuevo repositorio")
+    print("3. Crear una nueva rama")
+    print("4. Cambiar de rama")
+    print("5. Mostrar ficheros pendientes de hacer commit")
+    print("6. Hacer commit")
+    print("7. Mostrar el historial de commits")
+    print("8. Eliminar rama")
+    print("9. Establecer repositorio remoto")
+    print("10. Hacer pull")
+    print("11. Hacer push")
+    print("12. Salir")
+
 def main():
+    repo = None
     while True:
-        print("\nOpciones:")
-        print("1. Establecer el directorio de trabajo")
-        print("2. Crear un nuevo repositorio")
-        print("3. Crear una nueva rama")
-        print("4. Cambiar de rama")
-        print("5. Mostrar ficheros pendientes de hacer commit")
-        print("6. Hacer commit (junto con un add de todos los ficheros)")
-        print("7. Mostrar el historial de commits")
-        print("8. Eliminar rama")
-        print("9. Establecer repositorio remoto")
-        print("10. Hacer pull")
-        print("11. Hacer push")
-        print("12. Salir")
-
-        option = input("Selecciona una opción: ")
-
-        if option == "1":
+        show_menu()
+        choice = input("Selecciona una opción: ")
+        
+        # Opciones
+        if choice == '1':
             set_working_directory()
-        elif option == "2":
+            repo = Repo(os.getcwd()) if os.path.isdir(os.getcwd()) and ".git" in os.listdir(os.getcwd()) else None
+        elif choice == '2':
             create_repository()
-        elif option == "3":
-            create_branch()
-        elif option == "4":
-            switch_branch()
-        elif option == "5":
-            show_pending_files()
-        elif option == "6":
-            make_commit()
-        elif option == "7":
-            show_commit_history()
-        elif option == "8":
-            delete_branch()
-        elif option == "9":
-            set_remote_repository()
-        elif option == "10":
-            pull_changes()
-        elif option == "11":
-            push_changes()
-        elif option == "12":
-            print("Saliendo del programa.")
+            repo = Repo(os.getcwd())
+        elif repo is None:
+            print("Primero establece el directorio de trabajo y crea o abre un repositorio.")
+        elif choice == '3':
+            create_branch(repo)
+        elif choice == '4':
+            switch_branch(repo)
+        elif choice == '5':
+            show_pending_files(repo)
+        elif choice == '6':
+            make_commit(repo)
+        elif choice == '7':
+            show_commit_history(repo)
+        elif choice == '8':
+            delete_branch(repo)
+        elif choice == '9':
+            set_remote_repository(repo)
+        elif choice == '10':
+            pull_changes(repo)
+        elif choice == '11':
+            push_changes(repo)
+        elif choice == '12':
+            print("Saliendo...")
             break
         else:
-            print("Opción no válida. Intenta de nuevo.")
+            print("Opción no válida. Inténtalo de nuevo.")
 
 if __name__ == "__main__":
     main()
