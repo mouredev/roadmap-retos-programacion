@@ -19,5 +19,11 @@ float = 3.14
 boolean1 = True
 boolean2 = False
 
+print(type(string))
+print(type(int))
+print(type(float))
+print(type(boolean1))
+print(type(boolean2))
+
 # Aquí comienza este nuevo camino
 print("¡Hola, Python!")
