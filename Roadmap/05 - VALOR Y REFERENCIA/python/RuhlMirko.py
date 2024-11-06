@@ -59,6 +59,8 @@ first_var = 2024
 second_var = 2020
 print(f"Original state = A:{first_var} - B:{second_var}")
 print(invert_values(first_var, second_var))
+
+
 print(f"Original state = A:{first_list} - B:{second_list}")
 print(invert_references(first_list, second_list))
 
