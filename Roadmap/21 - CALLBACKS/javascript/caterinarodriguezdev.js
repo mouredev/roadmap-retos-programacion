@@ -28,11 +28,23 @@ legendario("Rodríguez", diMiApellido);
 
 console.log("--------------DIFICULTAD EXTRA---------------");
 
+const readline = require("readline");
+const rl = readline.createInterface(process.stdin, process.stdout);
+
+rl.question("¿Qué le gustaría pedir? 🤌 ", (resp) => {
+  pedir(resp, confirmar, notificarListo, notificarEntregado);
+});
+
 const pedir = (nombrePlato, confirmar, notificarListo, notificarEntregado) => {
+  console.log("\n");
+
   confirmar(nombrePlato);
+
+  console.log('\n');
 
   setTimeout(() => {
     notificarListo(nombrePlato);
+    console.log("\n");
 
     setTimeout(() => {
       notificarEntregado(nombrePlato);
@@ -51,10 +63,3 @@ const notificarListo = (nombrePlato) => {
 const notificarEntregado = (nombrePlato) => {
   console.log(`El pedido ${nombrePlato} ya se ha entregado 😲`);
 };
-
-pedir(
-  "Padthai con doble de lima 🍋",
-  confirmar,
-  notificarListo,
-  notificarEntregado
-);
