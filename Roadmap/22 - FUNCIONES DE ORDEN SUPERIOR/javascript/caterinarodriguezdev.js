@@ -34,7 +34,7 @@ let estudiantes = [
     {
         nombre: 'Grace',
         fechaNacimiento: '27/07/1999',
-        calificaciones: [10, 9, 8]
+        calificaciones: [10, 9, 8.5]
     },
     {
         nombre: 'Cate',
@@ -48,10 +48,12 @@ let estudiantes = [
     },
 ];
 
-const getExpediente = (calcularPromedio, getMejoresEstudiantes, getNacimiento, getMayorNota) => {
+const getExpediente = (calcularPromedio, getMejoresEstudiantes, orderEstudiantesByBirth, getMayorNota) => {
 
-    console.log(calcularPromedio());
+    console.log('Promedios: ',calcularPromedio());
     console.log('Mejores estudiantes', getMejoresEstudiantes());
+    console.log('Nacimientos', orderEstudiantesByBirth());
+    console.log('Mayor nota', getMayorNota());
 }
 
 const calcularPromedio = () => {
@@ -72,11 +74,34 @@ const calcularPromedio = () => {
 const getMejoresEstudiantes = () => {
     const promedios = calcularPromedio();
     
-    const promediosArray = Object.entries(promedios);
-    const mejoresEstudiantes = promediosArray.filter(([nombre, promedio]) => promedio > 9);
+    const mejoresEstudiantes = Object.entries(promedios).filter(([nombre, promedio]) => promedio > 9);
     const resultado = Object.fromEntries(mejoresEstudiantes);
     
     return resultado;
 }
 
-getExpediente(calcularPromedio, getMejoresEstudiantes);
+const orderEstudiantesByBirth = () => {
+
+    return estudiantes.sort((a, b) => new Date(a.fechaNacimiento) - new Date(b.fechaNacimiento));
+}
+
+const getMayorNota = () => {
+
+    let mayorNota = 0;
+    let nombreEstudiante;
+    estudiantes.filter(estudiante => {
+        estudiante.calificaciones.forEach(nota => {
+            if (nota > mayorNota) {
+                mayorNota = nota;
+                nombreEstudiante = estudiante.nombre;
+            }
+        })
+    })
+
+    return {
+        nombre: nombreEstudiante,
+        nota: mayorNota
+    };
+}
+
+getExpediente(calcularPromedio, getMejoresEstudiantes, orderEstudiantesByBirth, getMayorNota);
