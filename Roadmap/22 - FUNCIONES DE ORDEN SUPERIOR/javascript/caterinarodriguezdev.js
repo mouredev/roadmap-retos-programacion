@@ -87,21 +87,7 @@ const orderEstudiantesByBirth = () => {
 
 const getMayorNota = () => {
 
-    let mayorNota = 0;
-    let nombreEstudiante;
-    estudiantes.filter(estudiante => {
-        estudiante.calificaciones.forEach(nota => {
-            if (nota > mayorNota) {
-                mayorNota = nota;
-                nombreEstudiante = estudiante.nombre;
-            }
-        })
-    })
-
-    return {
-        nombre: nombreEstudiante,
-        nota: mayorNota
-    };
+    return Math.max(...estudiantes.flatMap(estudiante => estudiante.calificaciones))
 }
 
 getExpediente(calcularPromedio, getMejoresEstudiantes, orderEstudiantesByBirth, getMayorNota);
