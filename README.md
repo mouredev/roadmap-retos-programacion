@@ -77,7 +77,7 @@
 |40|[FORTNITE RUBIUS CUP](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/ejercicio.md)|[📝](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/python/mouredev.py)|[▶️](https://youtu.be/UlWtFvLLSXw)|[👥](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/)
 |41|[CAMISETA RAR](./Roadmap/41%20-%20CAMISETA%20RAR/ejercicio.md)|[📝](./Roadmap/41%20-%20CAMISETA%20RAR/python/mouredev.py)|[▶️](https://youtu.be/QXFrWIFCkGY)|[👥](./Roadmap/41%20-%20CAMISETA%20RAR/)
 |42|[TORNEO DRAGON BALL](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/ejercicio.md)|[📝](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/python/mouredev.py)|[▶️](https://youtu.be/SgwX7ISEkvM)|[👥](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/)
-|43|[GIT GITHUB CLI](./Roadmap/43%20-%20GIT%20GITHUB%20CLI/ejercicio.md)|[📝](./Roadmap/43%20-%20GIT%20GITHUB%20CLI/python/mouredev.py)||[👥](./Roadmap/43%20-%20GIT%20GITHUB%20CLI/)
+|43|[GIT GITHUB CLI](./Roadmap/43%20-%20GIT%20GITHUB%20CLI/ejercicio.md)|[📝](./Roadmap/43%20-%20GIT%20GITHUB%20CLI/python/mouredev.py)|[▶️](https://youtu.be/Ct4GKpbqflI)|[👥](./Roadmap/43%20-%20GIT%20GITHUB%20CLI/)
 |44|[CUENTA ATRÁS MOUREDEV PRO](./Roadmap/44%20-%20CUENTA%20ATRÁS%20MOUREDEV%20PRO/ejercicio.md)|[🗓️ 11/11/24](https://discord.gg/bDgt5Zjk?event=1300807174523457676)||[👥](./Roadmap/44%20-%20CUENTA%20ATRÁS%20MOUREDEV%20PRO/)
 
 ## Cursos en YouTube
