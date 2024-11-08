@@ -8,7 +8,7 @@ de línea
 '''
 
 a = 10 # Esto es una variable, el numero puede cambiar
-diez = 10 # Este valor se conserva lo largo del programa, es una constante.
+DIEZ = 10 # Este valor se conserva lo largo del programa, es una constante.
 
 # Tipos de datos primitivos
 string = "Este es un string"
