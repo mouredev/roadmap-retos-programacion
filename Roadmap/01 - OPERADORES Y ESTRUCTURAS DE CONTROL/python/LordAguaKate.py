@@ -4,8 +4,6 @@
 Los operadores aritmeticos permiten realizar operaciones numericas
 usando variables
 '''
-from idlelib.pyshell import extended_linecache_checkcache
-
 #Operadores Aritmeticos
 suma = 3 + 3
 resta = 10 - 5
