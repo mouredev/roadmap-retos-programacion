@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 2 de septiembre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/tKNfr5p8?event=1275291456201953441)** por país y crea un **[recordatorio](https://discord.gg/tKNfr5p8?event=1275291456201953441)**
+> #### Lunes 21 de octubre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/K4SGshHf?event=1294092672793051177)** por país y crea un **[recordatorio](https://discord.gg/K4SGshHf?event=1294092672793051177)**
 
 ## Roadmap
 
@@ -69,7 +69,14 @@
 |32|[BATALLA DEADPOOL Y WOLVERINE](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/ejercicio.md)|[📝](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/python/mouredev.py)|[▶️](https://youtu.be/u2Tn2H3pqjw)|[👥](./Roadmap/32%20-%20BATALLA%20DEADPOOL%20Y%20WOLVERINE/)
 |33|[RESCATANDO A MICKEY](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/ejercicio.md)|[📝](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/python/mouredev.py)|[▶️](https://youtu.be/Bo9Cp3N68C0)|[👥](./Roadmap/33%20-%20RESCATANDO%20A%20MICKEY/)
 |34|[ÁRBOL GENEALÓGICO DE LA CASA DEL DRAGÓN](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/ejercicio.md)|[📝](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/python/mouredev.py)|[▶️](https://youtu.be/GAHBOAzgE2w)|[👥](./Roadmap/34%20-%20ÁRBOL%20GENEALÓGICO%20LA%20CASA%20DEL%20DRAGÓN/)
-|35|[REPARTIENDO LOS ANILLOS DE PODER](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/ejercicio.md)|[🗓️ 02/09/24](https://discord.gg/tKNfr5p8?event=1275291456201953441)||[👥](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/)
+|35|[REPARTIENDO LOS ANILLOS DE PODER](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/ejercicio.md)|[📝](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/python/mouredev.py)|[▶️](https://youtu.be/10i2dnaMLj8)|[👥](./Roadmap/35%20-%20REPARTIENDO%20LOS%20ANILLOS%20DE%20PODER/)
+|36|[EL SOMBRERO SELECCIONADOR](./Roadmap/36%20-%20EL%20SOMBRERO%20SELECCIONADOR/ejercicio.md)|[📝](./Roadmap/36%20-%20EL%20SOMBRERO%20SELECCIONADOR/python/mouredev.py)|[▶️](https://youtu.be/_UjOD587elY)|[👥](./Roadmap/36%20-%20EL%20SOMBRERO%20SELECCIONADOR/)
+|37|[OASIS VS LINKIN PARK](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/ejercicio.md)|[📝](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/python/mouredev.py)|[▶️](https://youtu.be/q-zBKriHupY)|[👥](./Roadmap/37%20-%20OASIS%20VS%20LINKIN%20PARK/)
+|38|[MOUREDEV PRO](./Roadmap/38%20-%20MOUREDEV%20PRO/ejercicio.md)|[📝](./Roadmap/38%20-%20MOUREDEV%20PRO/python/mouredev.py)|[▶️](https://youtu.be/AbGROLoAVLs)|[👥](./Roadmap/38%20-%20MOUREDEV%20PRO/)
+|39|[BATMAN DAY](./Roadmap/39%20-%20BATMAN%20DAY/ejercicio.md)|[📝](./Roadmap/39%20-%20BATMAN%20DAY/python/mouredev.py)|[▶️](https://youtu.be/Lmj5enZG5pg)|[👥](./Roadmap/39%20-%20BATMAN%20DAY/)
+|40|[FORTNITE RUBIUS CUP](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/ejercicio.md)|[📝](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/python/mouredev.py)|[▶️](https://youtu.be/UlWtFvLLSXw)|[👥](./Roadmap/40%20-%20FORTNITE%20RUBIUS%20CUP/)
+|41|[CAMISETA RAR](./Roadmap/41%20-%20CAMISETA%20RAR/ejercicio.md)|[📝](./Roadmap/41%20-%20CAMISETA%20RAR/python/mouredev.py)|[▶️](https://youtu.be/QXFrWIFCkGY)|[👥](./Roadmap/41%20-%20CAMISETA%20RAR/)
+|42|[TORNEO DRAGON BALL](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/ejercicio.md)|[🗓️ 21/10/24](https://discord.gg/K4SGshHf?event=1294092672793051177)||[👥](./Roadmap/42%20-%20TORNEO%20DRAGON%20BALL/)
 
 ## Cursos en YouTube
 
