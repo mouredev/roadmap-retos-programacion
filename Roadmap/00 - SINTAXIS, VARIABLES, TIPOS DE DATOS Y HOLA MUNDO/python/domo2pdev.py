@@ -23,7 +23,7 @@ Este es un comentario de varias lineas
 # Definicion de variables:
 my_variable = "Soy una variable"
 
-#definicion de constantes por convencion se escriben en mayusculas
+#definicion de constantes por convencion se escriben en MAYUSCULAS.
 MY_CONSTANT = "Soy una constante"
 
 # Tipos de datos primitivos:
