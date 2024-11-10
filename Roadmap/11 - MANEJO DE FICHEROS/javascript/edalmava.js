@@ -1,4 +1,4 @@
-// En package.json se debe agregar "type": "module"
+// En package.json se debe agregar "type": "module" para usar archivo .js
 
 import { open, unlink, access, constants } from 'node:fs/promises';
 import * as readline from 'node:readline/promises';
