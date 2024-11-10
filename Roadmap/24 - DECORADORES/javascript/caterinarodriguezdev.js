@@ -9,6 +9,7 @@
  */
 
 /*  
+
 Esta es la propuesta de decoradores de Javascript, aún en stage 3
 function logger(value, context) {
     console.log(value, context);
@@ -27,7 +28,6 @@ class Persona {
 */
 
 // Implementación del Patrón Decorador sin sintaxis de decorador
-
 function logger(metodo) {
 
     return function (...arg) {
@@ -53,3 +53,31 @@ p1 = new Persona();
 
 p1.getAltura = logger(p1.getAltura);
 p1.getAltura();
+
+
+console.log('---------------------------DIFICULTAD EXTRA------------------------');
+
+let numLlamadas = 0;
+
+const contador = (metodo) => {
+
+    return function (...arg) {
+
+        numLlamadas++;
+        metodo.apply(this, ...arg);
+    }
+}
+
+let antonioRecio = () => {
+    console.log('Antonio Recio, mayorista, no limpio pescado');
+}
+
+antonioRecio = contador(antonioRecio);
+
+let i = 0;
+while (i < Math.floor(Math.random() * 10) + 1) {
+    antonioRecio();
+    i++;
+}
+
+console.log(`La función ha sido llamada ${numLlamadas} veces`);
