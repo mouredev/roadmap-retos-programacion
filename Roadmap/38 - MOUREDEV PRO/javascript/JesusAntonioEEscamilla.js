@@ -1,4 +1,4 @@
-/** #37 - JavaScript -> Jesus Antonio Escamilla */
+/** #38 - JavaScript -> Jesus Antonio Escamilla */
 
 /**
  * MOUREDEV PRO.
