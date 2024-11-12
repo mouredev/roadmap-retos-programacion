@@ -229,3 +229,55 @@ do{
 
 // el while no se ejecuta porque la condición es falsa
 // El do- while se ejecuta una vez, y es hasta que esa ejecución termina que se revisa la condición de pemanencia y el ciclo termina.
+
+// <--------- For ----------->
+/**La sintaxis del for se compone de tres elementos principales:
+ * iterador ===> Para controlar el número de veces que se ejecuta un ciclo
+ * condición ===> Si la condición se evalúa como true el ciclo se ejecuta por otra iteración, si la condición se evalúa como false, la ejecución termina.
+ * incremento ===> Es la modificación del valor del iterador.
+ */ 
+
+for (iterador; condición; incremento) {
+    //BLoque de código
+}
+
+// Ejemplo
+
+for (let i5 = 0; i5 <= 20; i5++) {
+    if(i5 % 2 == 0){
+        console.log(i5);
+    }
+}
+
+// <--------- Try-Catch ------------>
+
+/** Nos permite definir un bloque de código para 
+ * intentar ejecutar (try), y una respuesta si es que
+ * se prodice una excepción en dicha ejecución (catch).
+ */
+
+try {
+    //Bloque de código
+} catch (excepción) {
+    // Bloque de código
+}
+
+// Ejemplo
+
+try{
+    ejemplo();
+} catch (e) {
+    console.log('Ha ocurrido el error:' + e);
+}
+
+
+// <----------- Dificultad extra ------------->
+
+/*** Crea un programa que imprima por consola todos los números comprendidos
+ * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3. */
+
+for (let num = 10; num < 56; num++){
+    if (num % 2 == 0 && num != 16 && num % 3 != 0) {
+        console.log(num);
+    }
+}
