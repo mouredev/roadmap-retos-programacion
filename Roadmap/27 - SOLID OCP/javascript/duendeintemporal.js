@@ -26,10 +26,9 @@ class SimpleCalculator {
     }
 }
 
-// Usage
 const calculator1 = new SimpleCalculator();
-console.log(calculator1.calculate('add', 5, 3)); // 8
-console.log(calculator1.calculate('divide', 10, 2)); // 5
+console.log(calculator1.calculate('add', 856, 30)); // 886
+console.log(calculator1.calculate('divide', 220, 4423)); // 0.04973999547818223
 
 //Using Open-Close Principle (OCP)
 
