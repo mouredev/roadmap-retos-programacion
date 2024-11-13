@@ -4,7 +4,7 @@ b = 'Iban'
 c = "Señor4"
 
 print(a + " " + b) #Concatenación
-print(a*3) #Repetición
+print(a*4) #Repetición
 print(len(a)) #Len
 print(a.upper()) #Mayúscula
 print(a.lower()) #Minúscula
