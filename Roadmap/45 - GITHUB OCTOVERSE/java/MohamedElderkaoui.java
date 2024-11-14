@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 public class MohamedElderkaoui {
-    private static final String USER = "rsancho64"; // GitHub user to generate the report for
+    private static final String USER = "MohamedElderkaoui"; // GitHub user to generate the report for
     private static final String token ="";// System.getenv("your_GITHUB_TOKEN");
 
     public static void main(String[] args) throws IOException {
