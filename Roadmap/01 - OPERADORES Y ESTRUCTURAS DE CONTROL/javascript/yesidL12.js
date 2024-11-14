@@ -196,7 +196,7 @@ while (condición) {
 
 // Ejemplo
 
-let i3 = o;
+let i3 = 0;
 while (i3 <= 20) {
     if(i3 % 2 == 0) {
         console.log(i3);
