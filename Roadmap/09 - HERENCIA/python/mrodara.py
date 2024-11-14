@@ -249,6 +249,12 @@ p5.work()
 for p in pm1.programmers:
     print(p.name)
 
+# Añadir un programador a un ProjectManager
+pm1.programmers.append(p5)
+
+for p in pm1.programmers:
+    print(p.name)
+    
 # FIN DIFICULTAD EXTRA
        
 ###################################### FIN HERENCIA ########################################
