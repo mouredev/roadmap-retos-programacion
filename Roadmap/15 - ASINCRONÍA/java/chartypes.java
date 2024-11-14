@@ -19,7 +19,7 @@ public class chartypes {
           funcitonName + " started. Time: " + startTime +
               " milliseconds. Should take " + duration * 1000 + " milliseconds.");
       try {
-        Thread.sleep((long) duration * 1000);
+        Thread.sleep((long) duration * 10000);
       } catch (InterruptedException e) {
         System.out.println(e.getMessage());
       }
@@ -32,7 +32,7 @@ public class chartypes {
 
   private static void exercise() {
     System.out.println("EXERCISE:");
-    Thread thread = asynFunction("my function1", 20);
+    Thread thread = asynFunction("my function1", 1);
     thread.start();
     try {
 
@@ -58,9 +58,9 @@ public class chartypes {
       threadB.start();
       threadC.start();
 
-      threadA.join(5000);
-      threadB.join(5000);
-      threadC.join(5000);
+      threadA.join();
+      threadB.join();
+      threadC.join();
 
       System.out.println("Starting Function D...");
       threadD.start();
