@@ -11,7 +11,7 @@ estas pueden ser dobles ' " ' """
 Y si nos fijamos bien, hewmos utilizado las comillas dobles y sencillas en cada comntario comentario"""
 
 miVariable = "Esta es una variable"
-MICONTASTNTE = "Esta es una constante"  # Realmente python no utiliza constantes como tal, sólo que por convención se nombra la variable "CONSTANTE" con el estilo UPPERCASE.
+MICONSTANTE = "Esta es una constante"  # Realmente python no utiliza constantes como tal, sólo que por convención se nombra la variable "CONSTANTE" con el estilo UPPERCASE.
 
 myString = "DG Juancho"
 otherString = "Python"
