@@ -139,6 +139,8 @@ print(c1.isnumeric())
  * - Isogramas
  */ """
 
+from collections import Counter
+
 def comparador():
 
     def palindropo():
@@ -149,16 +151,22 @@ def comparador():
         else:
             print("\nNo es un palíndrono")
 
-           
+    def anagrama():
+        counter1 = Counter(word1.lower())
+        counter2 = Counter(word2.lower())
+
+        if counter1 == counter2:
+            print(f"\nLas palabra {word1} y {word2} son anagramas")
+        else:
+            print(f"\nLas palabra {word1} y {word2} no son anagramas")
 
     while True:
 
         print("")
         print("1. Comprobar si es un palíndromo.")
         print("2. Comprobar si es un anagrama")
-        print("3. Comprobar si es un palíndrono y un anagrama")
-        print("4. Comprobar si es un isograma")
-        print("5. Salir de la comprobación.")
+        print("3. Comprobar si es un isograma")
+        print("4. Salir de la comprobación.")
         option = input("\nElige una de las anteriores opciones: ")
 
         match option:
@@ -170,20 +178,11 @@ def comparador():
             
             case("2"):
                 
-                def anagrama(word1, word2):
-                    word1 = word1.lower()
-                    letras1 = set(word1)
-                    word2 = word2.lower()
-                    letras2 = set(word2)
-                    return letras1.count("") == letras2.count("") 
-                word_1 = input("Palabra 1: ")
-                word_2 = input("Palabra 2: ")
-                if anagrama(word1="", word2=""):
-                    print(f"{word_1} y {word_2} son anagramas.")
-                else:
-                    print(f"{word_1} y {word_2} no son anagramas.")
+                word1 = input("Primera palabra: ")
+                word2 = input("Segunda palabra: ")
+                anagrama()
 
-            case("4"):
+            case("3"):
                 def isograma(word_3):
                     
                     word_3 = word_3.lower()
@@ -196,6 +195,7 @@ def comparador():
                 else:
                     print(f"\n{word_3} no es un isograma")
 
-comparador()
+            case("4"):
+                break
 
-#no consigo sacar el paso 2
+comparador()
