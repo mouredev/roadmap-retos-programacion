@@ -16,25 +16,25 @@
 
 class Ball {
   bounce() {
-    console.log(`The ball bounce!!!`);
+    console.log('La pelota rebota');
   }
 }
 
 class BowlingBall extends Ball {
   bounce() {
-    throw new Error(`Bowling ball can't bounce!!!`)
+    throw new Error('La bola de bolos no puede rebotar')
   }
 } 
 
 class BallLSP {
   throw() {
-    console.log(`Throw the ball`);
+    console.log('Tira la bola');
   }
 }
 
 class BowlingBallLSP extends Ball {
   throw() {
-    console.log(`Throw the ball toward pins`);
+    console.log('Tira la bola hacia los bolos');
   }
 }
 
