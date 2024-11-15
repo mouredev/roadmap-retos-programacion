@@ -127,22 +127,29 @@ class User {
         int starsSum = 0;
         int forksSum = 0;
 
-        for (int i = 0; i < reposData.length(); i++) {
-            JSONObject repo = reposData.getJSONObject(i);
-            starsSum += repo.optInt("stargazers_count", 0);
-            forksSum += repo.optInt("forks_count", 0);
-            String language = repo.optString("language", "Unknown");
-            languageCount.put(language, languageCount.getOrDefault(language, 0) + 1);
+        if (reposData != null && reposData.length() > 0) {
+            for (int i = 0; i < reposData.length(); i++) {
+                JSONObject repo = reposData.getJSONObject(i);
+                starsSum += repo.optInt("stargazers_count", 0);
+                forksSum += repo.optInt("forks_count", 0);
+
+                String language = repo.optString("language", "Unknown");
+                if (!language.equals("Unknown")) {
+                    languageCount.put(language, languageCount.getOrDefault(language, 0) + 1);
+                }
+            }
         }
 
         this.stars = starsSum;
         this.forks = forksSum;
 
-        this.mostUsedLanguage = languageCount.entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse("Unknown");
+        this.mostUsedLanguage = languageCount.isEmpty()
+                ? "No languages found"
+                : languageCount.entrySet()
+                        .stream()
+                        .max(Map.Entry.comparingByValue())
+                        .map(Map.Entry::getKey)
+                        .orElse("Unknown");
     }
 
     public String getName() {
