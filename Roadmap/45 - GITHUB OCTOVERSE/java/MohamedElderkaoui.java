@@ -2,20 +2,19 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
-import org.json.JSONObject;
-import org.json.JSONArray;
+import org.json.*;
 
 public class MohamedElderkaoui {
     private static final String USER = "MohamedElderkaoui"; // GitHub user to generate the report for
-    private static final String token ="";// System.getenv("your_GITHUB_TOKEN");
+    private static final String TOKEN = System.getenv("GITHUB_TOKEN");
 
     public static void main(String[] args) throws IOException {
-        if (token == null || token.isEmpty()) {
+        if (TOKEN == null || TOKEN.isEmpty()) {
             System.out.println("Error: GitHub token is not set. Please set the GITHUB_TOKEN environment variable.");
             return;
         }
 
-        GitHubClient client = GitHubClient.create(token);
+        GitHubClient client = GitHubClient.create(TOKEN);
         User user = client.getUser(USER);
 
         if (user == null) {
@@ -25,7 +24,16 @@ public class MohamedElderkaoui {
 
         // Generate user report
         StringBuilder report = new StringBuilder();
-        report.append("User Information for ").append(USER).append(":\n").append("Most Used Language: ").append(user.getMostUsedLanguage()).append("\n").append("Number of Repositories: ").append(user.getPublicRepos()).append("\n").append("Followers: ").append(user.getFollowers()).append("\n").append("Following: ").append(user.getFollowing()).append("\n").append("Stars: ").append(user.getStars()).append("\n").append("Forks: ").append(user.getForks()).append("\n");
+        report.append("GitHub User Report for ").append(USER).append(":\n")
+                .append("Name: ").append(user.getName()).append("\n")
+                .append("Location: ").append(user.getLocation()).append("\n")
+                .append("Bio: ").append(user.getBio()).append("\n")
+                .append("Public Repositories: ").append(user.getPublicRepos()).append("\n")
+                .append("Followers: ").append(user.getFollowers()).append("\n")
+                .append("Following: ").append(user.getFollowing()).append("\n")
+                .append("Most Used Language: ").append(user.getMostUsedLanguage()).append("\n")
+                .append("Total Stars: ").append(user.getStars()).append("\n")
+                .append("Total Forks: ").append(user.getForks()).append("\n");
 
         System.out.println(report);
     }
@@ -45,9 +53,12 @@ class GitHubClient {
     public User getUser(String username) throws IOException {
         String apiUrl = "https://api.github.com/users/" + username;
         JSONObject userData = fetchJsonFromUrl(apiUrl);
-        if (userData == null) return null;
 
-        // Retrieve user stats from repositories
+        if (userData == null) {
+            return null;
+        }
+
+        // Fetch user's repositories
         JSONArray reposData = fetchJsonArrayFromUrl(apiUrl + "/repos");
 
         return new User(userData, reposData);
@@ -93,51 +104,57 @@ class GitHubClient {
     }
 }
 
- class User {
-    private final String mostUsedLanguage;
-    private final int publicRepos;
+class User {
+    private final String name;
+    private final String location;
+    private final String bio;
     private final int followers;
     private final int following;
+    private final int publicRepos;
     private final int stars;
     private final int forks;
+    private final String mostUsedLanguage;
 
     public User(JSONObject userData, JSONArray reposData) {
-        this.publicRepos = userData.getInt("public_repos");
-        this.followers = userData.getInt("followers");
-        this.following = userData.getInt("following");
+        this.name = userData.optString("name", "N/A");
+        this.location = userData.optString("location", "N/A");
+        this.bio = userData.optString("bio", "N/A");
+        this.followers = userData.optInt("followers", 0);
+        this.following = userData.optInt("following", 0);
+        this.publicRepos = userData.optInt("public_repos", 0);
 
-        int starCount = 0;
-        int forkCount = 0;
         Map<String, Integer> languageCount = new HashMap<>();
+        int starsSum = 0;
+        int forksSum = 0;
 
         for (int i = 0; i < reposData.length(); i++) {
             JSONObject repo = reposData.getJSONObject(i);
-            starCount += repo.getInt("stargazers_count");
-            forkCount += repo.getInt("forks_count");
-
-            // Only count non-null and non-empty language fields
-            String language = repo.optString("language", null);
-            if (language != null && !language.equals("null")) {
-                languageCount.put(language, languageCount.getOrDefault(language, 0) + 1);
-            }
+            starsSum += repo.optInt("stargazers_count", 0);
+            forksSum += repo.optInt("forks_count", 0);
+            String language = repo.optString("language", "Unknown");
+            languageCount.put(language, languageCount.getOrDefault(language, 0) + 1);
         }
 
-        this.stars = starCount;
-        this.forks = forkCount;
+        this.stars = starsSum;
+        this.forks = forksSum;
 
-        // Find the most used language
-        this.mostUsedLanguage = languageCount.entrySet().stream()
+        this.mostUsedLanguage = languageCount.entrySet()
+                .stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
-                .orElse("No predominant language");
+                .orElse("Unknown");
     }
 
-    public String getMostUsedLanguage() {
-        return mostUsedLanguage;
+    public String getName() {
+        return name;
     }
 
-    public int getPublicRepos() {
-        return publicRepos;
+    public String getLocation() {
+        return location;
+    }
+
+    public String getBio() {
+        return bio;
     }
 
     public int getFollowers() {
@@ -148,11 +165,19 @@ class GitHubClient {
         return following;
     }
 
+    public int getPublicRepos() {
+        return publicRepos;
+    }
+
     public int getStars() {
         return stars;
     }
 
     public int getForks() {
         return forks;
+    }
+
+    public String getMostUsedLanguage() {
+        return mostUsedLanguage;
     }
 }
