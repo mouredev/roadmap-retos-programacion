@@ -15,12 +15,24 @@
  */
 
 class Ball {
+  bounce() {
+    console.log(`The ball bounce!!!`);
+  }
+}
+
+class BowlingBall extends Ball {
+  bounce() {
+    throw new Error(`Bowling ball can't bounce!!!`)
+  }
+} 
+
+class BallLSP {
   throw() {
     console.log(`Throw the ball`);
   }
 }
 
-class BowlingBall extends Ball {
+class BowlingBallLSP extends Ball {
   throw() {
     console.log(`Throw the ball toward pins`);
   }
