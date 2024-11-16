@@ -38,3 +38,67 @@ class BowlingBallLSP extends Ball {
   }
 }
 
+class Vehiculo {
+  constructor() {
+      this.velocidad = 0;
+  }
+
+  acelerar(incremento) {
+      this.velocidad += incremento;
+      console.log(`Acelerando: Velocidad actual = ${this.velocidad} km/h`);
+  }
+
+  frenar(decremento) {
+      this.velocidad = Math.max(0, this.velocidad - decremento);
+      console.log(`Frenando: Velocidad actual = ${this.velocidad} km/h`);
+  }
+}
+
+class Coche extends Vehiculo {
+  constructor(marca) {
+      super();
+      this.marca = marca;
+  }
+
+  acelerar(incremento) {
+      super.acelerar(incremento);
+      console.log(`El coche ${this.marca} ha acelerado.`);
+  }
+}
+
+class Bicicleta extends Vehiculo {
+  constructor(tipo) {
+      super();
+      this.tipo = tipo;
+  }
+
+  acelerar(incremento) {
+      super.acelerar(incremento);
+      console.log(`La bicicleta de tipo ${this.tipo} ha acelerado.`);
+  }
+}
+
+class Motocicleta extends Vehiculo {
+  constructor(modelo) {
+      super();
+      this.modelo = modelo;
+  }
+
+  acelerar(incremento) {
+      super.acelerar(incremento);
+      console.log(`La motocicleta modelo ${this.modelo} ha acelerado.`);
+  }
+}
+
+function probarVehiculo(vehiculo) {
+  vehiculo.acelerar(20);
+  vehiculo.frenar(10);
+}
+
+const miCoche = new Coche('Toyota');
+const miBicicleta = new Bicicleta('Montaña');
+const miMotocicleta = new Motocicleta('Yamaha');
+
+probarVehiculo(miCoche);
+probarVehiculo(miBicicleta);
+probarVehiculo(miMotocicleta);
