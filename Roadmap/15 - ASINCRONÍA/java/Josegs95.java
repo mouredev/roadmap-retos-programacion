@@ -5,8 +5,8 @@ import java.util.concurrent.CyclicBarrier;
 public class Josegs95 {
     public static void main(String[] args) {
         //Ejercicio
-//        Thread thread = new Thread(new Task("Tarea 1", 5, false));
-//        thread.start();
+        Thread thread = new Thread(new Task("Tarea 1", 5, false));
+        thread.start();
 
         //Reto
         System.out.println("\n");
