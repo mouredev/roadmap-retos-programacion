@@ -11,55 +11,45 @@
 //INCORRECTO
 class Bird_{
    fly(){
-      console.log("Flying");
+      throw new Error("This method should be overridden");
    }
 }
 
 class Eagle_ extends Bird_{
    fly(){
-      console.log("Eagle flying high!");
+      return "Eagle flying high!";
    }
 }
 
 class Penguin_ extends Bird_{
    fly(){
-      throw new Error("Penguins can't fly!!");
+      return"Penguin can't flying!";
    }
-}
-
-function makeBirdFly_(bird) {
-   bird.fly();
 }
 
 const eagle_ = new Eagle_();
 const penguin_ = new Penguin_();
 
-makeBirdFly_(eagle_);
-// makeBirdFly_(penguin_);
+console.log(eagle_.fly());
+console.log(penguin_.fly());
 
 
 //CORRECTO
 class Bird{
    move(){
-      console.log("Moving");
+      throw new Error("This method should be overridden");
    }
 }
 
-class FlyingBird extends Bird{
-   fly(){
-      console.log("Flying");
-   }
-}
-
-class Eagle extends FlyingBird{
-   fly(){
-      console.log("Eagle flying high!!");
+class Eagle extends Bird{
+   move(){
+      console.log("Eagle is Walking!!");
    }
 }
 
 class Penguin extends Bird{
    move(){
-      console.log("Penguin waddling");
+      console.log("Penguin is Walking!!");
    }
 }
 
@@ -79,6 +69,10 @@ makeBirdMove(penguin);
 
 // Creando la clase
 class Vehículos{
+   constructor(){
+      this.speed = 0;
+   }
+
    acelerar(){
       throw new Error("Método 'acelerar' debe ser implementado");
    }
@@ -86,43 +80,47 @@ class Vehículos{
    frenar(){
       throw new Error("Método 'frenar' debe ser implementado");
    }
+
+   getSpeed(){
+      return this.speed;
+   }
 }
 
 // Sub-clases la clase principal
 class Coche extends Vehículos{
-   acelerar(){
-      console.log("El coche esta acelerando");
+   acelerar(speed){
+      console.log(`El coche esta acelerando, con ${speed} km/h`);
    }
 
-   frenar(){
-      console.log("El coche esta frenando");
+   frenar(speed){
+      console.log(`El coche esta frenando, con ${speed} km/h`);
    }
 }
 
 class Trailer extends Vehículos{
-   acelerar(){
-      console.log("El trailer esta acelerando");
+   acelerar(speed){
+      console.log(`El tailer esta acelerando, con ${speed} km/h`);
    }
-   
-   frenar(){
-      console.log("El trailer esta frenando");
+
+   frenar(speed){
+      console.log(`El trailer esta frenando, con ${speed} km/h`);
    }
 }
 
 class Moto extends Vehículos{
-   acelerar(){
-      console.log("La moto esta acelerando");
+   acelerar(speed){
+      console.log(`El moto esta acelerando, con ${speed} km/h`);
    }
 
-   frenar(){
-      console.log("La moto esta frenando");
+   frenar(speed){
+      console.log(`El moto esta frenando, con ${speed} km/h`);
    }
 }
 
 // Comprobación del LSP
 function pruebaLSP(vehículo) {
-   vehículo.acelerar();
-   vehículo.frenar();
+   vehículo.acelerar(2);
+   vehículo.frenar(1);
 }
 
 // Ejemplo LSP
@@ -130,13 +128,13 @@ const coche = new Coche();
 const trailer = new Trailer();
 const moto = new Moto();
 
-console.log("Prueba con Coche:");
+// console.log("Prueba con Coche:");
 pruebaLSP(coche);
 
-console.log("Prueba con Trailer:");
+// console.log("Prueba con Trailer:");
 pruebaLSP(trailer);
 
-console.log("Prueba con Moto:");
+// console.log("Prueba con Moto:");
 pruebaLSP(moto);
 
 /**-----DIFICULTAD EXTRA-----*/

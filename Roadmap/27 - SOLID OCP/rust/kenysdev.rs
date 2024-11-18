@@ -29,6 +29,9 @@ trait Product {
         self.price() - self.apply_discount()
     }
 }
+
+//____________________________________
+// Estructuras concretas
 struct ElectronicsProduct {
     name: String,
     price: f64,
@@ -42,13 +45,9 @@ impl Product for ElectronicsProduct {
         }
     }
 
-    fn name(&self) -> &str {
-        &self.name
-    }
+    fn name(&self) -> &str {&self.name}
 
-    fn price(&self) -> f64 {
-        self.price
-    }
+    fn price(&self) -> f64 {self.price}
 
     fn apply_discount(&self) -> f64 {
         self.price * 0.05 // 5% discount
@@ -69,13 +68,9 @@ impl Product for ClothingProduct {
         }
     }
 
-    fn name(&self) -> &str {
-        &self.name
-    }
+    fn name(&self) -> &str {&self.name}
 
-    fn price(&self) -> f64 {
-        self.price
-    }
+    fn price(&self) -> f64 {self.price}
 
     fn apply_discount(&self) -> f64 {
         if self.price > 50.0 {
@@ -84,16 +79,6 @@ impl Product for ClothingProduct {
             0.0
         }
     }
-}
-
-
-//____________________________________
-fn process_product<T: Product>(product: T) {
-    println!(
-        "Producto: {}, Precio final: {}",
-        product.name(),
-        product.final_price()
-    );
 }
 
 /*
@@ -112,90 +97,90 @@ _______________
 // Trait base
 trait Calculator {
     fn new(a: f64, b: f64) -> Self where Self: Sized;
-    fn math_operation(&self) -> f64;
-    fn a(&self) -> f64;
-    fn b(&self) -> f64;
-    fn operation_name(&self) -> &'static str;
-    fn operation_symbol(&self) -> &'static str;
+    fn operation_result(&self);
+}
+
+// __________________________________________
+// Estructuras concretas
+struct Sum { a: f64, b: f64 }
+
+impl Calculator for Sum {
+    fn new(a: f64, b: f64) -> Sum {Sum { a, b }}
     
-    fn print_result(&self) {
-        println!("\n{} de {} {} {}:", 
-            self.operation_name(), self.a(), self.operation_symbol(), self.b());
-        println!("Es: {}", self.math_operation());
+    fn operation_result(&self) {
+        println!("\nSuma:");
+        println!("{} + {} = {}", self.a, self.b, self.a + self.b);
     }
 }
 
-// Estructuras concretas
-struct Sum { a: f64, b: f64 }
+// __________________________________________
 struct Subtraction { a: f64, b: f64 }
-struct Multiplication { a: f64, b: f64 }
-struct Division { a: f64, b: f64 }
-struct Pow { a: f64, b: f64 }
-
-impl Calculator for Sum {
-    fn new(a: f64, b: f64) -> Self { Self { a, b } }
-    fn a(&self) -> f64 { self.a }
-    fn b(&self) -> f64 { self.b }
-    fn operation_name(&self) -> &'static str { "Suma" }
-    fn operation_symbol(&self) -> &'static str { "+" }
-    fn math_operation(&self) -> f64 { self.a + self.b }
-}
 
 impl Calculator for Subtraction {
-    fn new(a: f64, b: f64) -> Self { Self { a, b } }
-    fn a(&self) -> f64 { self.a }
-    fn b(&self) -> f64 { self.b }
-    fn operation_name(&self) -> &'static str { "Resta" }
-    fn operation_symbol(&self) -> &'static str { "-" }
-    fn math_operation(&self) -> f64 { self.a - self.b }
+    fn new(a: f64, b: f64) -> Subtraction {Subtraction { a, b }}
+    
+    fn operation_result(&self) {
+        println!("\nResta:");
+        println!("{} - {} = {}", self.a, self.b, self.a - self.b);
+    }
 }
+
+// __________________________________________
+struct Multiplication { a: f64, b: f64 }
 
 impl Calculator for Multiplication {
-    fn new(a: f64, b: f64) -> Self { Self { a, b } }
-    fn a(&self) -> f64 { self.a }
-    fn b(&self) -> f64 { self.b }
-    fn operation_name(&self) -> &'static str { "Multiplicación" }
-    fn operation_symbol(&self) -> &'static str { "*" }
-    fn math_operation(&self) -> f64 { self.a * self.b }
+    fn new(a: f64, b: f64) -> Multiplication {Multiplication { a, b }}
+    
+    fn operation_result(&self) {
+        println!("\nMultiplicación:");
+        println!("{} * {} = {}", self.a, self.b, self.a * self.b);
+    }
 }
+
+// __________________________________________
+struct Division { a: f64, b: f64 }
 
 impl Calculator for Division {
-    fn new(a: f64, b: f64) -> Self { Self { a, b } }
-    fn a(&self) -> f64 { self.a }
-    fn b(&self) -> f64 { self.b }
-    fn operation_name(&self) -> &'static str { "División" }
-    fn operation_symbol(&self) -> &'static str { "/" }
-    fn math_operation(&self) -> f64 { self.a / self.b }
+    fn new(a: f64, b: f64) -> Division {Division { a, b }}
+    
+    fn operation_result(&self) {
+        println!("\nDivisión:");
+        println!("{} / {} = {}", self.a, self.b, self.a / self.b);
+    }
 }
 
+// __________________________________________
+struct Pow { a: f64, b: f64 }
+
 impl Calculator for Pow {
-    fn new(a: f64, b: f64) -> Self { Self { a, b } }
-    fn a(&self) -> f64 { self.a }
-    fn b(&self) -> f64 { self.b }
-    fn operation_name(&self) -> &'static str { "Potencia" }
-    fn operation_symbol(&self) -> &'static str { "^" }
-    fn math_operation(&self) -> f64 { self.a.powf(self.b) }
+    fn new(a: f64, b: f64) -> Pow {Pow { a, b }}
+    
+    fn operation_result(&self) {
+        println!("\nPotencia:");
+        println!("{} ^ {} = {}", self.a, self.b, self.a.powf(self.b));
+    }
 }
 
 fn main() {
-    let laptop = ElectronicsProduct::new("Laptop", 700.0);
-    let pants = ClothingProduct::new("Pants", 55.0);
+    //____________________________________
+    fn process_product<T: Product>(product: T) {
+        println!(
+            "Producto: {}, Precio final: {}",
+            product.name(),
+            product.final_price()
+        );
+    }
 
-    process_product(laptop); // Output: Producto: Laptop, Precio final: 665
-    process_product(pants);  // Output: Producto: Pants, Precio final: 45
+    process_product(ElectronicsProduct::new("Laptop", 700.0));
+    process_product(ClothingProduct::new("Pants", 55.0));
 
     // _______________________________________________
     // exs 2
 
-    let calculators: Vec<Box<dyn Calculator>> = vec![
-        Box::new(Sum::new(2.0, 2.0)),
-        Box::new(Subtraction::new(2.0, 2.0)),
-        Box::new(Multiplication::new(2.0, 2.0)),
-        Box::new(Division::new(2.0, 2.0)),
-        Box::new(Pow::new(2.0, 2.0)),
-    ];
+    Sum::new(2.0, 2.0).operation_result();
+    Subtraction::new(2.0, 2.0).operation_result();
+    Multiplication::new(2.0, 2.0).operation_result();
+    Division::new(2.0, 2.0).operation_result();
+    Pow::new(2.0, 2.0).operation_result();
 
-    for calc in calculators.iter() {
-        calc.print_result();
-    }
 }
