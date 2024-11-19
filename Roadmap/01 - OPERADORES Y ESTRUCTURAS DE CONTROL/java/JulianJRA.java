@@ -155,7 +155,7 @@ public class JulianJRA {
         if (b == 0) {
             throw new ArithmeticException("División por cero no permitida.");
         }
-        System.out.println("Resultado: " + (a / b));
+        System.out.println("Resultado:  " + (a / b));
     }
 
 }
