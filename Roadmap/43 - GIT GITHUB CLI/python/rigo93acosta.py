@@ -80,7 +80,7 @@ def delete_branch(name: str):
 
 def set_remote_repository(remote_url: str):
     run_command(f"git remote add origin {remote_url}")
-    run_command("git branch --set-upstream origin main")
+    run_command("git push -u origin main")
 
 def make_pull():
     run_command("git pull")
