@@ -3,8 +3,10 @@
 #comemtario de una línea 
 
 """
-comentario de varias lineas
-para poder explicar mejor el codigo
+comentario 
+de
+ varias lineas
+
 
 """
 variable = "variable"
