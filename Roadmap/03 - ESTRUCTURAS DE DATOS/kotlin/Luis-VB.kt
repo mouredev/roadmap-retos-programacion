@@ -17,9 +17,9 @@ import com.sun.jdi.IntegerType
 //*/
 
 // List
-fun myDataStructures() {
+fun myDataStructures () {
     //# List
-    var myList = listOf<String>("Ahoj", "Ja jsem", "dobre", "aitjak")
+    var myList = listOf<String>("Ahoj","Ja jsem","dobre","aitjak")
     println(myList)
     println("Number of elements: ${myList.size}")   // Number of elements
     println("Third word of my list is ${myList.get(2)}")       // Access element at index 2
@@ -30,13 +30,13 @@ fun myDataStructures() {
     println()
 
     //# List editable
-    var myEditList = mutableListOf<Int>(1, 2, 3, 4)
+    var myEditList = mutableListOf<Int>(1,2,3,4)
     println(myEditList)
-    myEditList.add(5)               // Insert 5
+    myEditList.add(5)                // Insert 5
     println(myEditList)
-    myEditList.removeAt(2)   // Remove element at index 2
+    myEditList.removeAt(2)      // Remove element at index 2
     println(myEditList)
-    println(myEditList[0])          // Access element at index 0
+    println(myEditList[0])                   // Access element at index 0
     println(myEditList)
     myEditList[0] = 10              // Update element at index 0
     println(myEditList)
@@ -45,12 +45,12 @@ fun myDataStructures() {
     println()
 
     //# Set
-    var mySet = setOf<Int>(78, 15, 46, 11, 23, 1)           // Set
+    var mySet = setOf<Int> (78,15,46,11,23,1)           // Set
     println(mySet)
     println(mySet.sorted())                     // Sort the set
     println()
     //# Set editable
-    var myEditSet = mutableSetOf<Any>(1, "Hola", 3, "mystringhere")
+    var myEditSet = mutableSetOf<Any> (1,"Hola", 3, "mystringhere")
     println(myEditSet)
     myEditSet.add(345)                  // Insert 345
     println(myEditSet)
@@ -74,19 +74,15 @@ fun myDataStructures() {
     users.forEach { user ->
         println("Name: ${user["name"]}, Age: ${user["Age"]}")
     }
-    println()
     //    Lambda expression to print the name and age of each user over 30
     users.filter { (it["Age"] as Int) > 30 }
         .forEach { user ->
             println("Name: ${user["name"]}, Age: ${user["Age"]}")
         }
-    println()
-    users.forEach() { user ->
-        println("Name: ${user["name"]}, Alias: ${user["Alias"]}")
-    }
+
 }
 
-fun main() {
+fun main () {
 
     myDataStructures()
 }
