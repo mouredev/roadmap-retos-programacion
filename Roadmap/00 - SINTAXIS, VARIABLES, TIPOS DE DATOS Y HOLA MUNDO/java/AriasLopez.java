@@ -11,7 +11,7 @@ public class AriasLopez{
          */
 
         int numero = 5;
-            System.out.println("Esta es una variable" + numero);
+            System.out.println("Esta es una variable de tipo entero: " + numero);
         final int constante = 10;
             System.out.println("Esta es una constante" + constante);
         
@@ -27,10 +27,7 @@ public class AriasLopez{
 
         System.out.println("entero: " + entero + ", Flotante: " + flotante + ", Doble: " + doble + ", Cadena: " + cadena + ", Char: " + caracter + ", Verdadero: " + Verdadero + ", Falso: " + falso + ".");
 
-        System.out.println("Hola, Java");
-
-
-
+        System.out.println("Hola, Java ");
 
 
     }
