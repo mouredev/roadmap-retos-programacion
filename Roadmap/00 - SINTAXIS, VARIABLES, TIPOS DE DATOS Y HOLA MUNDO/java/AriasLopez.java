@@ -13,7 +13,7 @@ public class AriasLopez{
         int numero = 5;
             System.out.println("Esta es una variable de tipo entero: " + numero);
         final int constante = 10;
-            System.out.println("Esta es una constante" + constante);
+            System.out.println("Esta es una constante de tipo entero: " + constante);
         
         // Tipos de datos
 
