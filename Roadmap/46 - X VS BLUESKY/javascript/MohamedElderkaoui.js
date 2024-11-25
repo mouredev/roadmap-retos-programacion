@@ -139,7 +139,15 @@ function likePost() {
         const authorName = prompt("Ingrese el nombre del usuario que publicó el post: ");
         const author = users.get(authorName);
         if (author) {
-            const postNumber = parseInt(prompt("Ingrese el número del post que desea dar like (1 para el primero, 2 para el segundo, etc.): "));
+            let postNumber;
+            do {
+                try {
+                    postNumber = parseInt(prompt("Ingrese el número del post que desea dar like (1 para el primero, 2 para el segundo, etc.): "));
+                    break;
+                } catch (error) {
+                    console.log("Debe ingresar un número entero.");
+                }
+            } while (true);
             const posts = author.posts;
             if (postNumber > 0 && postNumber <= posts.length) {
                 const post = posts[postNumber - 1];
@@ -217,7 +225,13 @@ function main() {
         console.log("9. Ver feed de usuarios seguidos");
         console.log("10. Listar usuarios registrados");
         console.log("11. Salir");
-        option = parseInt(prompt("Seleccione una opción: "));
+        do {
+            try {
+                option = parseInt(prompt("Seleccione una opción: "));
+            } catch (error) {
+                console.log("Debe ingresar un número entero.");
+            }
+        } while (isNaN(option));
         switch (option) {
             case 1: registerUser(); break;
             case 2: followUser(); break;
