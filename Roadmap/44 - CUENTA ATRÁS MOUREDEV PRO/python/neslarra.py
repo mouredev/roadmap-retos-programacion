@@ -17,32 +17,36 @@ r"""
  - Realiza la ejecución, si el lenguaje lo soporta, en
    un hilo independiente.
 """
-from datetime import datetime as dt, timedelta as td
+from datetime import datetime as dt, timezone as tz
 from threading import Thread
-from os import system
+from os import system, name
 from time import sleep
 
-END_TIME = dt.strptime('20241105111925', '%Y%m%d%H%M%S')
+END_TIME = dt.strptime('20241122112725', '%Y%m%d%H%M%S').replace(
+    tzinfo=dt.now().astimezone().tzinfo).astimezone(tz.utc)
 
 
 class Clock(Thread):
     def run(self):
-        while dt.now() < END_TIME:
-            system("cls")
-            current_time = END_TIME - dt.now()
+        while dt.now(tz.utc) < END_TIME:
+            if name == "posix":
+                system("clear")
+            else:
+                system("cls")
+            current_time = END_TIME - dt.now(tz.utc)
             days_left = current_time.days
             hours_left = current_time.seconds // 3600
-            minutes_left = current_time.seconds // 60
+            minutes_left = (current_time.seconds % 3600) // 60
             seconds_left = current_time.seconds - hours_left * 3600 - minutes_left * 60
             print(f"Faltan: {days_left} días, {hours_left} horas, {minutes_left} minutos, {seconds_left} segundos")
             sleep(1)
-        print(f"TERMINADO: {END_TIME} {dt.now()}")
+        print(f"TERMINADO: {END_TIME} {dt.now(tz.utc)}")
 
 
 class Counter(Thread):
     def run(self):
         count = 0
-        while dt.now() < END_TIME:
+        while dt.now(tz.utc) < END_TIME:
             count += 1
             print(f"Vamos contando {count}")
             sleep(1)
@@ -50,5 +54,5 @@ class Counter(Thread):
 
 
 Clock().start()
-sleep(0.3)
+sleep(0.5)
 Counter().start()
