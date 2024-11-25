@@ -12,60 +12,87 @@
  * actividad, y almacenan los empleados a su cargo.
  */ """
 
-""" class animal():
-    def __init__(self, sound):
-        self.sound = sound
+# EJERCICIO
+
+class animal():
+    def __init__(self, name):
+        self.name = name
 
 class dog(animal):
     
-    def __init__(self, sound):
-        super().__init__(sound)
+    def sound(self):
+        print("Guau")
 
 class cat(animal):
-    def __init__(self, sound):
-        super().__init__(sound)
 
-my_dog = dog(sound="Guau")
-print(my_dog.sound)
-my_cat = cat(sound="Miau")
-print(my_cat.sound) """
+    def sound(self):
+        print("Miau")
+
+def print_sound(animal: animal):
+    animal.sound()
+
+my_dog = dog("Perro")
+my_dog.sound()
+my_cat = cat("Gato")
+my_cat.sound()
+print_sound(my_dog)
+print_sound(my_cat)
+
 
 #DIFICULTAD EXTRA
 
 class empleados:
-    def __init__(self, id, name):
+
+    def __init__(self, id: int, name: str):
         self.id = id
         self.name = name
+        self.empleado = []
 
-class gerentes(empleados):
-    def __init__(self, id, name, work):
+    def añadir(self, empleados):
+        self.empleado.append(empleados)
+        
+class gerente(empleados):
+
+    def funcion(self):
+        print(f"{self.name} está a cargo de todos los proyectos de la empresa.")
+
+class gerente_proyecto(empleados):
+
+    def __init__(self, id, name, proyecto):
         super().__init__(id, name)
-        self.work = work
-    
-    def charge_workers_gerentes():
-        print(len(gerentes_proyectos) + len(programadores))
+        self.proyecto = proyecto
 
-class gerentes_proyectos(empleados):
-    def __init__(self, id, name, work):
+    def funcion(self):
+        print(f"{self.name} está a cargo del proyecto {self.proyecto}.")
+
+class programador(empleados):
+
+    def __init__(self, id, name, lenguaje):
         super().__init__(id, name)
-        self.work = work
+        self.lenguaje = lenguaje
 
-    def charge_workers_gerentes_proyectos():
-        print(len(programadores))
+    def codigo(self):
+        print(f"{self.name} está programando en {self.lenguaje}")
 
-class programadores(empleados):
-    def __init__(self, id, name, work):
-        super().__init__(id, name)
-        self.work = work
+mi_gerente = gerente(1, "David")
+mi_gerente_proyecto = gerente_proyecto(2, "Miguel", "X")
+mi_gerente_proyecto2 = gerente_proyecto(3, "Juan", "Y")
+mi_programador = programador(4, "Marcos", "Python")
+mi_programador2 = programador(5, "Yae", "JS")
+mi_programador3 = programador(6, "Pedro", "Angular")
+mi_programador4 = programador(7, "José", "React")
 
-User1 = gerentes_proyectos(1, "Juan", "Gerente de proyecto")
-User2 = gerentes_proyectos(2, "Pepe", "Gerente de proyecto")
-User3 = gerentes_proyectos(3, "María", "Gerente de proyecto")
-User4 = gerentes_proyectos(4, "Carlos", "Gerente de proyecto")
+mi_gerente.añadir(mi_gerente_proyecto)
+mi_gerente.añadir(mi_gerente_proyecto2)
+mi_gerente_proyecto.añadir(mi_programador)
+mi_gerente_proyecto.añadir(mi_programador2)
+mi_gerente_proyecto2.añadir(mi_programador3)
+mi_gerente_proyecto2.añadir(mi_programador4)
 
-
-print(User1.id, User1.name, User1.work)
-print(User2.id, User2.name, User2.work)
-print(User3.id, User3.name, User3.work)
-print(User4.id, User4.name, User4.work)
-print(gerentes.charge_workers_gerentes)
+mi_gerente.funcion()
+mi_gerente_proyecto.funcion()
+mi_gerente_proyecto2.funcion()
+mi_programador.codigo()
+mi_programador2.codigo()
+mi_programador3.codigo()
+mi_programador4.codigo()
