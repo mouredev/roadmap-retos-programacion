@@ -103,10 +103,10 @@ class Dredux {
         // 3)
         System.out.println("Numeros pares entre 10 y 55 que no son 16 ni multiplos de 3:");
         for (int i = 10; i <= 55; i++) {
-        if (i % 2 != 0 || i == 16 || i % 3 == 0) {
-            continue;
+            if (i % 2 != 0 || i == 16 || i % 3 == 0) {
+                continue;
+            }
+            System.out.println(i);
         }
-        System.out.println(i);
-}
     }
 }
