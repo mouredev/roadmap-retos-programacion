@@ -40,13 +40,13 @@ async def order_delivered(plate_name: str) -> None:
 # Función principal
 async def procesar_pedido(plate_name: str, cb_confirmed, cb_ready, cb_delivered) -> None:
     print(f"Procesando pedido de {plate_name}...")
-    await asyncio.sleep(1)
+    #await asyncio.sleep(1)
     await cb_confirmed(plate_name)
-    await asyncio.sleep(1)
+    #await asyncio.sleep(1)
     await cb_ready(plate_name)
-    await asyncio.sleep(1)
+    #await asyncio.sleep(1)
     await cb_delivered(plate_name)
-    await asyncio.sleep(1)
+    #await asyncio.sleep(1)
     print(f"Pedido de {plate_name} procesado.")
     
 # Ejecución asíncrona
