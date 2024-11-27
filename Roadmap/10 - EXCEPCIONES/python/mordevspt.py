@@ -119,3 +119,7 @@ except ValueError as ve:
     print(f"ValueError - Se ha producido un error [{str(ve)}]")
 except Exception as e:
     print(f"Exception - Se ha producido un error [{str(e)}]")
+else:
+    print("No se han producido errores")
+finally:
+    print("El programa ha finalizado")
