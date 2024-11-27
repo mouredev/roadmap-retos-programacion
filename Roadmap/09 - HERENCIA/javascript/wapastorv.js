@@ -169,5 +169,3 @@ diseñador.trabajar();// María está creado un diseño UI/UX.
 gerente.mostarEquipo(); // Laura tiene a su cargo a: 1. Carlos (ID: 2)
 
 gerenteProyecto.mostarEquipo(); // Carlos tiene a su cargo a: 1. Juan (ID: 3) 2. Ana (ID: 4) 3. María (ID: 5)
-
-
