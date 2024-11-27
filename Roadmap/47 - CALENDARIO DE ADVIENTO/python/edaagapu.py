@@ -31,12 +31,23 @@
 # - Si se selecciona un número ya descubierto, se le notifica
 #   al usuario.
 
-selected_nums = []
+numbers = []
 
-q_col = 6
-q_row = 4
+columns = 6
+rows = 4
 
-def gen_grid(columns:int, rows:int, numbers:list = [], width:int=4, height:int=3):
+prices = ['Curso de lógica de programación', 'Diplomado sobre Metodologías Ágiles', 'Desarrollo de interfaces con Qt4', 
+  'Introducción a la programación funcional', 'Desarrollo en C#', 'Buenas prácticas de programación en Java Springboot', 
+  '¿Cómo hacer Smart Commits?', 'Uso básico de la terminal Linux', 'Primeros pasos en Django Rest Framework (DRF)',
+  'Práctica aplicada de los patrones SOLID en Java', 'Introducción de Base de Datos', 'Buenas prácticas dentro de Python',
+  'Paradigma de Metodologías Tradicionales ¿Aún tienen uso? ¿En qué casos es aplicable?', 'Data Science con Python y R',
+  'GO ¿El lenguaje del futuro?', 'Patrones de Diseño de Software aplicados en Python', 'Algoritmos de optimización aplicados en C++',
+  'Fundamentos de la Inteligencia Artificial', 'Aplicación en la actualidad del IoT', 'Uso de librería numpy y pandas dentro de Python',
+  'POO aplicada en Java', '0 a héroe en PostgreSQL', 'Generación de servicios REST con AWS Api Gateway y Lambda',
+  'Programación básica en C#'
+]
+
+def gen_grid(width:int=4):
   borders = ['*'*width for _ in range(columns)]
 
   matrix = []
@@ -55,12 +66,13 @@ def gen_grid(columns:int, rows:int, numbers:list = [], width:int=4, height:int=3
 
 if __name__ == '__main__':
   num = 1
-  gen_grid(q_col, q_row)
+  gen_grid()
   while (num!=0):
     num = int(input('Escriba un dia entre 1 y 24 (O si desea terminar el proceso escriba 0): '))
-    if (num in selected_nums):
+    if (num in numbers):
       print('El numero ya fue escogido. Intente nuevamente')
       continue
     if (1<=num<=24):
-      selected_nums.append(num)
-      gen_grid(q_col, q_row, selected_nums)
+      print(f'¡Felicitaciones! Su premio es: "{prices[num-1]}"')
+      numbers.append(num)
+      gen_grid()
