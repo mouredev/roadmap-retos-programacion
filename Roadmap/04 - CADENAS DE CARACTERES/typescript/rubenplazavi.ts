@@ -184,4 +184,20 @@ if(contador === inglaterra.length){
     console.log(`${integrarla} no es un anagrama de ${inglaterra}`);
 }
 
+
+// Ejemplo refactorizado y optimizado:
+function areAnagrams(word1: string, word2: string): boolean {
+    if (word1.length !== word2.length) return false;
+    const sortedWord1 = word1.toLowerCase().split("").sort().join("");
+    const sortedWord2 = word2.toLowerCase().split("").sort().join("");
+    return sortedWord1 === sortedWord2;
+}
+
+if (areAnagrams(inglaterra, integrarla)) {
+    console.log(`${integrarla} es un anagrama de ${inglaterra}`);
+} else {
+    console.log(`${integrarla} no es un anagrama de ${inglaterra}`);
+}
+
+
 //! Isogramas
