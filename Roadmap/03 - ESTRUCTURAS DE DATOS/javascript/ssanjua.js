@@ -1,3 +1,5 @@
+// ssanjua.js
+
 // Operadores aritméticos
 let suma = 5 + 3;
 let resta = 5 - 3;
