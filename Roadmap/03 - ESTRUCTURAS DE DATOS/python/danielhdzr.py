@@ -22,40 +22,40 @@ def main():
     # CREAMOS LISTA
     this_is_a_list = [1, 2, 3, 4]
     print(this_is_a_list)
-    # Para insertar podemos usar el metodo insert en el index que deseamos (en este caso lo inserto al inicio)
+    # insertar podemos usar el metodo insert en el index que deseamos (en este caso lo inserto al inicio)
     this_is_a_list.insert(0, 0)
     print(this_is_a_list)
-    # Para actualizar podemos usar el metodo append (agrega el objeto al final de la lista)
+    # actualizar podemos usar el metodo append (agrega el objeto al final de la lista)
     this_is_a_list.append(5)
     print(this_is_a_list)
-    # Para ordenar podemos usar el metodo sort (yo lo use para odenarlo al reves con el parametro reverse=True)
+    # ordenar podemos usar el metodo sort (yo lo use para odenarlo al reves con el parametro reverse=True)
     this_is_a_list.sort(reverse=True)
     print(this_is_a_list)
-    # Para borrar el contenido de la lista (no la lista en si misma) podemos usar el metodo clear
+    # borrar el contenido de la lista (no la lista en si misma) podemos usar el metodo clear
     this_is_a_list.clear()
     print(this_is_a_list)
     
     # CREAMOS DICCIONARIO
     this_is_a_dictionary = {"key1" : 1, "key2" : 2, "key3" : 3}
     print(this_is_a_dictionary)
-    # Para insertar, nombramos una nueva key en el diccionario, y asignamos su value correspondiente
+    # insertar, nombramos una nueva key en el diccionario, y asignamos su value correspondiente
     this_is_a_dictionary["key4"] = 4
     print(this_is_a_dictionary)
-    # Podemos actualizar los objetos de un dict, incluyendo en este los objetos de un segundo dict
+    # actualizar los objetos de un dict, incluyendo en este los objetos de un segundo dict
     this_is_another_dictionary = {"key5": 5}
     this_is_a_dictionary.update(this_is_another_dictionary)
     print(this_is_a_dictionary)
-     # Tambien podemos actualizar, si accedemos al key que queremos modificar y le reasignamos un value nuevo
+     # podemos actualizar, si accedemos al key que queremos modificar y le reasignamos un value nuevo
     this_is_a_dictionary["key4"] = "four"
     print(this_is_a_dictionary)
     # Nuevo diccionario
     new_dict = {"one":1, "three":3, "two": 2, "five": 5, "four" : 4}
-    # Podemos ordenar mediante la funcion sorted y un dict comprehension (ordenando por keys)
+    # ordenar mediante la funcion sorted y un dict comprehension (ordenando por keys)
     # Ya que las keys son str, se ordenan en orden alfabetico
     sorted_by_keys = {key: new_dict[key] for key in sorted(new_dict)}
     print(f"Sorted by keys: {sorted_by_keys}")
 
-    # Podemos ordenar mediante la funcion sorted y un dict comprehension (ordenado por values)
+    # ordenar mediante la funcion sorted y un dict comprehension (ordenado por values)
     sorted_by_values = {k: v for k, v in sorted(new_dict.items(), key=lambda item: item[1])}
     print(f"Sorted by values: {sorted_by_values}")
 
@@ -73,25 +73,25 @@ def main():
     # CREAMOS SET (desordenado, no admite duplicados)
     this_is_a_set = {2, 1, 3}
     print(this_is_a_set)
-    # Para insertar podemos usar el metodo add y se agrega al final
+    # insertar podemos usar el metodo add y se agrega al final
     this_is_a_set.add(4)
     print(this_is_a_set)
-    # Para actualizar podemos usar el metodo update que actualiza el set uniendo los datos de otro set
+    # actualizar podemos usar el metodo update que actualiza el set uniendo los datos de otro set
     new_set = {6, 5}
     print(new_set)
     this_is_a_set.update(new_set)
     print(this_is_a_set)
-    # Para ordenar podemos convertir el set a una lista y ordenar la lista
+    # ordenar podemos convertir el set a una lista y ordenar la lista
     list_from_set = sorted(this_is_a_set)
     print(list_from_set)
-    # Para borrar el contenido del set usamos el metodo clear
+    # borrar el contenido del set usamos el metodo clear
     this_is_a_set.clear()
     print(this_is_a_set)
 
     # CREAMOS TUPLA (inmutable)
     this_is_a_tuple = (1, 2, 3, 4)
     print(this_is_a_tuple)
-    # Para insertar y actualizar, convertimos la tupla a lista, le agregamos el miembro nuevo, y la reconvertimos a tupla
+    # insertar y actualizar, convertimos la tupla a lista, le agregamos el miembro nuevo, y la reconvertimos a tupla
     print("Tupla convertida a lista para insertar y actualizar")
     list_from_tuple = list(this_is_a_tuple)
     list_from_tuple.append(5)
@@ -103,14 +103,14 @@ def main():
     this_is_a_tuple = tuple(list_from_tuple)
     print(this_is_a_tuple)
    
-    # Para ordenar la tupla, la convertimos a lista, usamos sort, y la reconvertimos a tupla tuple("nombre de la lista")
+    # ordenar la tupla, la convertimos a lista, usamos sort, y la reconvertimos a tupla tuple("nombre de la lista")
     unordered_tuple = (4,2,5,3,1)
     print(f"Tupla desordenada {unordered_tuple}")
     ordered_list = list(unordered_tuple)
     ordered_list.sort()
     unordered_tuple = tuple(ordered_list)
     print(f"Tupla Ordenada {unordered_tuple}")
-    # Para borrar la tuple usamos la palabra reservada del
+    # borrar la tuple usamos la palabra reservada del
     del this_is_a_tuple
     
 if __name__=="__main__":
