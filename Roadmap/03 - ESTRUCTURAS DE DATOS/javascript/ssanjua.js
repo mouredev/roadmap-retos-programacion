@@ -1,74 +1,113 @@
+// Operadores aritméticos
+let suma = 5 + 3;
+let resta = 5 - 3;
+let multiplicacion = 5 * 3;
+let division = 5 / 3;
+let modulo = 5 % 3;
+let potencia = 5 ** 3;
+console.log('Aritméticos:', suma, resta, multiplicacion, division, modulo, potencia);
 
-// /*
-//  * EJERCICIO:
-//  * - Muestra ejemplos de creación de todas las estructuras soportadas por defecto en tu lenguaje.
-//  * - Utiliza operaciones de inserción, borrado, actualización y ordenación.
-//  *
-//  * DIFICULTAD EXTRA (opcional):
-//  * Crea una agenda de contactos por terminal.
-//  * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
-//  * - Cada contacto debe tener un nombre y un número de teléfono.
-//  * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
-//  *   los datos necesarios para llevarla a cabo.
-//  * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
-//  *   (o el número de dígitos que quieras)
-//  * - También se debe proponer una operación de finalización del programa.
-//  */
+// Operadores lógicos
+let and = true && false;
+let or = true || false;
+let not = !true;
+console.log('Lógicos:', and, or, not);
 
-// ESTRUCTURAS(8) -> - array - sets - maps - stacks - queueus - arboles - grafos
+// Operadores de comparación
+let igual = 5 == '5';
+let estrictamenteIgual = 5 === '5';
+let diferente = 5 != '5';
+let mayorQue = 5 > 3;
+let menorQue = 5 < 3;
+console.log('Comparación:', igual, estrictamenteIgual, diferente, mayorQue, menorQue);
 
-// {* ARRAYSS *} (arreglos)
+// Operadores de asignación
+let x = 5;
+x += 3; // 8
+x -= 2; // 6
+x *= 2; // 12
+x /= 2; // 6
+x %= 2; // 0
+console.log('Asignación:', x);
 
-const array = [1,2,3,4,"hola", "tambien", 501, "array"]
-console.log("array", array, "soy de tipo:", typeof(array))
+// Operadores de identidad
+let identidad = 5 === 5;
+console.log('Identidad:', identidad);
 
-// Operaciones:
-const insertado = "metidito"                      // insercion:
-array.push(insertado)
-console.log("insertamos a ", insertado, " en el array: ", array)
+// Operadores de pertenencia
+let array = [1, 2, 3, 4, 5];
+let pertenece = array.includes(3);
+console.log('Pertenencia:', pertenece); // true
+console.log('Pertenencia:', array.includes(6)); // false
 
-array.splice(3, 1)                                // borrado:
-console.log("borramos el 3er elemento, ahora estamos: ", array)
-array.pop(insertado)
-console.log("ay sacamos el ultimo:", array)
-array.unshift(insertado)
-console.log("arrepentido lo ponemos primero: ", array)
+// Operadores de bits
+let bitAnd = 5 & 3;
+let bitOr = 5 | 3;
+let bitXor = 5 ^ 3;
+let bitNot = ~5;
+let bitShiftLeft = 5 << 1;
+let bitShiftRight = 5 >> 1;
+console.log('Bits:', bitAnd, bitOr, bitXor, bitNot, bitShiftLeft, bitShiftRight);
 
-array[7] = "actualiz4d0"                        // actualizacion:
-console.log("hubo una actualizacion, ", array)
+// Estructuras de control condicionales
+if (suma > 5) {
+  console.log('Condicional if: La suma es mayor que 5');
+} else {
+  console.log('Condicional if: La suma no es mayor que 5');
+}
 
-array.sort()                                    // ordenacion:
-console.log("ordenamos un poco: ", array)
+// Estructuras de control iterativas
+for (let i = 0; i < 5; i++) {
+  console.log('Iterativa for:', i);
+}
 
-// {*  SETS  *} -> coleccion de valores unicos, no permite duplicados y mantienen el orden en que fueron insertados
-// pueden contener cualquier tipo, incluidos objetos, funciones y otros sets
+let j = 0;
+while (j < 5) {
+  console.log('Iterativa while:', j);
+  j++;
+}
 
-const sets = new Set([1, 2, 3])
-sets.add("metidito");                           // Inserción
-console.log("sets después de inserción:", sets)
-sets.delete(2);                                 // Borrado
-console.log("sets después de borrado:", sets)
+// Estructuras de control excepciones
+try {
+  throw new Error('Esto es un error');
+} catch (error) {
+  console.log('Excepción:', error.message);
+}
 
-// {* DICCIONARIOS (mapas) *} -> 
+// Switch case
+let mayor = 18;
+switch (mayor) {
+  case 18:
+    console.log('Eres mayor de edad');
+    break;
+  case 21:
+    console.log('Ya puedes beber');
+    break;
+  default:
+    console.log('No eres mayor de edad');
+    break;
+}
 
-const diccionario = new Map();
-diccionario.set('nombre', 'Pauli')                              // Inserción
-diccionario.set('edad', 30);
-console.log("Diccionario después de inserción:", diccionario)
-diccionario.set('edad', 31);                                    // Actualización
-console.log("Diccionario después de actualización:", diccionario)
-diccionario.delete('nombre');                                   // Borrado
-console.log("Diccionario después de borrado:", diccionario)
-
-// {* OBJETOS *} -> pares CLAVE - VALOR 
-
-const persona = {
-  nombre: 'Pau',
-  edad: 30
+// For in
+let persona = {
+  nombre: 'Juan',
+  edad: 25
 };
 
-console.log('la persona es:', persona.nombre)
-persona.edad = 31            // Actualización
-console.log('actualizamos la edad a:', persona.edad)  
-delete persona.edad       // Borrado
-console.log('hemos eliminado la edad de la persona', persona.nombre)
+for (let key in persona) {
+  console.log('For in:', key, persona[key]);
+}
+
+// For of
+let colores = ['rojo', 'verde', 'azul'];
+
+for (let color of colores) {
+  console.log('For of:', color);
+}
+
+// DIFICULTAD EXTRA
+for (let i = 10; i <= 55; i++) {
+  if (i % 2 === 0 && i !== 16 && i % 3 !== 0) {
+    console.log('Número:', i);
+  }
+}
