@@ -132,7 +132,7 @@ function deletePost() {
     }
 }
 
-function likePost() {
+function likePost() { // No implementado
     const userName = prompt("Tu nombre de usuario: ");
     const user = users.get(userName);
     if (user) {
