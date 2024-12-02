@@ -32,53 +32,9 @@
  *   al usuario.
  */
 import * as promptSync from "prompt-sync";
-//import PromptSync = require("prompt-sync");
 
 const prompt = promptSync();
 
-class CalendarioAdviento{
-    private dias: string[];
-
-    constructor(){
-        this.dias = Array(24).fill('****');
-    }
-
-    public mostrarCalendario(){
-        var calendario = "";
-        var dia = 1;
-        for (let i = 0; i < 4; i++) {      
-            //Inicio del calendario
-            for(let j = 0; j < 6; j++) {
-                calendario += "".repeat(j) + "*".repeat(4) + " ";
-            }
-    
-            calendario += "\n";
-            for(let j = 0; j < 6; j++) {
-                dia++;
-               
-                if(dia < 10)
-                {
-                    calendario += "*" + "".padStart(1, "0") + dia + "* " ;     
-                }
-                else{
-                    calendario += "*" + dia + "* "; 
-                }
-                       
-            }
-            calendario += "\n"
-            // console.log(" ");
-            // console.log("".padEnd(6, "*"));
-        }
-        //Cierre del calendario
-        for(let j = 0; j < 6; j++) {
-            calendario += "".repeat(j) + "*".repeat(4) + " ";
-        }
-
-        calendario += "\n";
-        console.log(calendario);
-    }
-
-}
 
 function calendario() {
     var dia: number = 0;
@@ -135,10 +91,8 @@ function calendario() {
             for(let j = 0; j < 6; j++) {
                 dia++;
                 if(diasRegalos.includes(dia))
-                {
-                    
-                    calendario += "**** "; 
-                        
+                {                    
+                    calendario += "**** ";                         
                 }else
                 {
                     if(dia < 10)
@@ -151,8 +105,6 @@ function calendario() {
                 }            
             }
             calendario += "\n"
-            // console.log(" ");
-            // console.log("".padEnd(6, "*"));
         }
         //Cierre del calendario
         for(let j = 0; j < 6; j++) {
@@ -162,11 +114,6 @@ function calendario() {
         calendario += "\n";
         console.log(calendario);
     }
-
-    
 }
 
 calendario();
-
-// const calendarioAdviento = new CalendarioAdviento();
-// calendarioAdviento.mostrarCalendario();
