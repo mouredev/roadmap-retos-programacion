@@ -1,0 +1,37 @@
+/*EJERCICIO:
+ * - Crea un comentario en el código y coloca la URL del sitio web oficial del
+ *   lenguaje de programación que has seleccionado.
+ * - Representa las diferentes sintaxis que existen de crear comentarios
+ *   en el lenguaje (en una línea, varias...).
+ * - Crea una variable (y una constante si el lenguaje lo soporta).
+ * - Crea variables representando todos los tipos de datos primitivos
+ *   del lenguaje (cadenas de texto, enteros, booleanos...).
+ * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
+ */
+ 
+ // El lenguaje C no tiene un sitio web oficial
+ 
+ //Este es un comentario de una sola linea
+ 
+ /*Este es un 
+ comentario de 
+ varias lineas */ 
+ 
+ int Numero_entero; //Esta es una variable de tipo entero
+ #define PI 3.14159 //Esta es una variable constante
+  
+// Tipos de datos primitivos
+int numero_entero; //Esta es una variable de tipo entero 
+float numero_flotante; // Esta es una variable de tipo flotante
+char caracter; //Esta es una variable de tipo caracter
+char cadena[50];//Variable de tipo caracter que puede almacenar una cadena de caracteres (texto)
+double grandeDecimal; //Variable de tipo doble precision
+short numero_corto; //Variable de tipo numero entero pequeño o corto 
+long numero_largo; //Variable de tipo numero entero largo o grande 
+bool verdadero_falso; //Variable de tipo booleano, usado para almacenar valores de verdad(verdadero o falso)
+
+#include <stdio.h> //Libreria estandar para las funciones de entrada y salida
+
+main(){ //La funcion principal del codigo
+	printf("¡Hola, C!"); // Imprime en la pantalla de la consola
+}
