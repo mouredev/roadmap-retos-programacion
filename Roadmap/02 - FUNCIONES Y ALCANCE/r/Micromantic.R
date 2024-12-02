@@ -10,35 +10,104 @@
 #   (y tener en cuenta que cada lenguaje puede poseer más o menos posibilidades)
 
 
-#### Funciones según su comportamiento
+#### Funciones definidas por el usuario
 
-### Funciones sin retorno
+# Simple
 
-## Con parametros
+saludar <- function() {
+  print("¡Hola, R!")
+}
 
-rm(list = ls())
-# Al ser aplicada de esta manera, la función rm borra todos los objetos del environment
+saludar()
 
+# Con retorno
 
-## Sin parametros
+saludar_con_retorno <- function() {
+  return("¡Hola, R!")
+}
 
-graphics.off()
-# graphics.off cierra todos los dispositivos gráficos abiertos (por ejemplo, las visualizaciones en el panel Plots)
+print(saludar_con_retorno())
 
-### Funciones con retorno
+saludo <- saludar_con_retorno()
 
-## Con parametros
+saludo
 
-sum(2, 2)
+# Con un argumento
 
+saludar_con_argumento <- function(x) {
+  cat("¡Hola, ", x,"!", sep = "")
+}
 
-## Sin parametros
+saludar_con_argumento("Micromantic")
 
-Sys.Date()
-# la función Sys.Date arroja la fecha actual en el formato "YYYY-MM-DD"
+# Con dos argumentos
 
+saludar_con_argumentos <- function(x, y) {
+  cat("¡", x, ", ", y, "!", sep = "")
+}
 
-### Función dentro de otra función
+saludar_con_argumentos("Buenas", "Micromantic")
+
+# Con un argumento por defecto
+
+saludar_con_argumento_por_defecto <- function(x = "R") {
+  cat("¡Hola, ", x,"!", sep = "")
+}
+
+saludar_con_argumento("Micromantic")
+
+# Con dos argumentos por defecto
+
+saludar_con_argumentos_por_defecto <- function(x = "Hola" , y = "R") {
+  cat("¡", x, ", ", y, "!", sep = "")
+}
+
+saludar_con_argumentos("Buenas", "Micromantic")
+
+# Con retorno de varios valores
+
+saludar_con_multiple_retorno <- function() {
+  
+  return(c("Hola", "R"))
+}
+
+saludar_con_multiple_retorno()
+
+saludo <- saludar_con_multiple_retorno()[1]
+lenguaje <- saludar_con_multiple_retorno()[2]
+
+saludo
+lenguaje
+
+# Con un número variable de argumentos
+
+saludo_con_argumentos_variables <- function(...) {
+  for (i in list(...)) {
+    print(paste0("Hola, ", i))
+    
+  }
+}
+
+saludo_con_argumentos_variables("Carlos", "Daniel")
+
+# Con un número variable de argumentos con palabras clave
+
+saludo_con_argumentos_variables_clave <- function(...) {
+  
+  claves <- list(...)
+  for (clave in names(claves)) {
+    cat("Hola,", "mi", clave, "es", claves[[clave]], "\n")
+  }
+}
+
+saludo_con_argumentos_variables_clave(
+  nombre = "Daniel",
+  lenguaje = "R",
+  apodo = "Micromantic",
+  edad = "30"
+  )
+
+# Función dentro de otra función
 
 por_100 <- function(x) {
   
@@ -55,6 +124,34 @@ por_100(x = 1)
 
 # esta funcion recibe un argumento, lo multiplica por 100 y luego usa una
 # función interna para multiplicar el resultado por 5
+
+#### Funciones del lenguaje R
+
+### Funciones sin retorno
+
+## Con parametros
+
+rm(list = ls())
+
+# Al ser aplicada de esta manera, la función rm borra todos los objetos del environment
+
+## Sin parametros
+
+graphics.off()
+
+# graphics.off cierra todos los dispositivos gráficos abiertos (por ejemplo, las visualizaciones en el panel Plots)
+
+### Funciones con retorno
+
+## Con parametros
+
+sum(2, 2)
+
+## Sin parametros
+
+Sys.Date()
+
+# la función Sys.Date arroja la fecha actual en el formato "YYYY-MM-DD"
 
 
 ### Concepto de alcance LOCAL y GLOBAL
@@ -96,13 +193,13 @@ por_100 <- function(x) {
 # Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
 
 
-vector_1_100 <- function(x, y) {
+imprimir_numeros <- function(x, y) {
   vector <- 1:100
   multiplos_3_5 <- c()
   
   for (i in vector) {
     if(i %% 3 == 0 & i %% 5 == 0) {
-      print(paste(x, y, sep = " "))
+      print(paste0(x, y, sep = " "))
       } else if(i %% 3 == 0) {
         print(x)
         } else if(i %% 5 == 0) {
@@ -116,4 +213,4 @@ vector_1_100 <- function(x, y) {
   paste0("Hubo un total de ", length(multiplos_3_5), " números impresos en vez de textos.")
 }
 
-vector_1_100("Hola", "R")
+imprimir_numeros("Fizz", "Buzz")
