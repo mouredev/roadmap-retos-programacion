@@ -32,3 +32,23 @@
 Sigue las **[instrucciones](../../README.md)**, consulta las correcciones y aporta la tuya propia utilizando el lenguaje de programación que quieras.
 
 > Recuerda que cada semana se publica un nuevo ejercicio y se corrige el de la semana anterior en directo desde **[Twitch](https://twitch.tv/mouredev)**. Tienes el horario en la sección "eventos" del servidor de **[Discord](https://discord.gg/mouredev)**.
+>
+> def my_func(str_1, str_2):
+    counter = 0
+    for n in range(100):
+        
+        if n % 3 == 0 and n % 5 == 0:
+            str_1 + str_2
+            counter += 1
+        elif n % 3 == 0:
+            str_1
+            counter += 1
+        elif n % 5 ==0:
+            str_2
+            counter += 1
+        else:
+            n
+    return counter
+
+
+print(my_func("Me divido por 3", "Me divido por 5"))
