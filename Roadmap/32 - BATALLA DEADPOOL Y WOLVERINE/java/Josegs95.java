@@ -49,8 +49,10 @@ public class Josegs95 {
         Random rnd = new Random();
         Superhero first;
         Superhero last;
+        int turn = 1;
         while(true){
             System.out.println();
+            System.out.println("Turno: " + turn++);
             System.out.println(deadpool);
             System.out.println(wolverine);
 
