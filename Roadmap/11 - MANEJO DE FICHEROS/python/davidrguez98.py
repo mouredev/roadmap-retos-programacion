@@ -26,8 +26,6 @@ import os
 
 #EJERCICIO
 
-""" 
-
 file_name = "davidrguez98.txt"
 
 with open(file_name, "w") as file:
@@ -38,7 +36,7 @@ with open(file_name, "w") as file:
 with open(file_name, "r") as file:
     print(file.read())
 
-os.remove(file_name) """
+os.remove(file_name)
 
 #DIFICULTAD EXTRA
 
@@ -47,14 +45,14 @@ sale_list = "sale_list.txt"
 open(sale_list, "a")
 
 while True:
-    print("1. Añadir producto.") #ok
-    print("2. Consultar producto.") #ok
-    print("3. Actualizar producto.") #ok
-    print("4. Ver lista de productos") #ok
-    print("5. Eliminar producto.") #ok
+    print("1. Añadir producto.")
+    print("2. Consultar producto.")
+    print("3. Actualizar producto.")
+    print("4. Ver lista de productos")
+    print("5. Eliminar producto.")
     print("6. Calcular la venta total.")
     print("7. Calcular venta por producto.")
-    print("8. Salir del programa") #ok
+    print("8. Salir del programa")
 
     option = input("\nSelecciona una opción: ")
 
@@ -110,17 +108,23 @@ while True:
             total = 0
             with open(sale_list, "r") as file:
                 for line in file.readlines():
-                    components = line.split(", ")
-                    quantity_product = int(components[1])
-                    price_product = float(components[2])
+                    products_value = line.split(", ")
+                    quantity_product = int(products_value[1])
+                    price_product = float(products_value[2])
                     total += quantity_product * price_product
-
-                    print(total)
-
-            pass
+            print(total)
         
-        case("7"):
-            pass
+        case("7"): 
+            name_product = input("¿De que producto quieres saber la venta total?: ")
+
+            with open(sale_list, "r") as file:
+                for line in file.readlines():
+                    if line.split(", ")[0] == name_product:
+                        quantity_product = int(line.split(", ")[1])
+                        price_product = float(line.split(", ")[2])
+                        print(quantity_product * price_product)
+                    else:
+                        print("El producto no se encuentra en la lista.")
         
         case("8"):
             os.remove(sale_list)
