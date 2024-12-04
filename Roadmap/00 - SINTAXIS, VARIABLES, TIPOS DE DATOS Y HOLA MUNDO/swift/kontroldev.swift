@@ -1,4 +1,5 @@
-/*EJERCICIO:
+/*
+ * EJERCICIO:
  * - Crea un comentario en el código y coloca la URL del sitio web oficial del
  *   lenguaje de programación que has seleccionado.
  * - Representa las diferentes sintaxis que existen de crear comentarios
@@ -7,31 +8,32 @@
  * - Crea variables representando todos los tipos de datos primitivos
  *   del lenguaje (cadenas de texto, enteros, booleanos...).
  * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
- *
- * ¿Fácil? No te preocupes, recuerda que esta es una ruta de estudio y
- * debemos comenzar por el principio.
  */
 
-import UIKit
+// URL oficial del lenguaje: https://www.swift.org
 
+// Comentarios en Swift:
+// Comentario de una línea
+/*
+ Comentario de 
+ varias líneas
+ */
 
-// Voy a utilizar https://www.swift.org
+// Constante
+let mensajeConstante = "Esto es una constante"
 
-// esto es un comentario de 1 linea.
-/* esto es un
- comentario de
- varias lineas*/
+// Variable
+var mensajeVariable = "Esto es una variable"
 
+// Tipos de datos primitivos
+var texto: String = "Esto es una cadena de texto"
+var numeroEntero: Int = 42
+var numeroDecimal: Float = 3.14
+var numeroDoble: Double = 2.718281828
+var valorBooleano: Bool = true
 
-let constante = "Esto es una constante"
-var variable = " Esto es una variable"
-
-var string = "esto es una cadena de texto"
-var int = [1, 2, 3]
-var float = [2024]
-var double = [3,1416]
-var bool = true
-
+// Nombre del lenguaje
 let lenguaje = "Swift"
 
-print("Hola \(lenguaje)")
+// Imprimir mensaje en consola
+print("¡Hola, \(lenguaje)!")
