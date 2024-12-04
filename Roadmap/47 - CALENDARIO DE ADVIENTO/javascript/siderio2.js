@@ -3,6 +3,7 @@
  * @version 1.0
  * @description "Javascript implementation of the Advent Calendar exercise 48 from MoureDev Roadmap"
  * @see https://retosdeprogramacion.com/roadmap/
+ *
  */
 
 /**
