@@ -10,12 +10,6 @@
 * - Listado de lenguajes de programación
 * Muestra el contenido de los archivos.
 * Borra los archivos.
-*
-* DIFICULTAD EXTRA (opcional):
-* Utilizando la lógica de creación de los archivos anteriores, crea un
-* programa capaz de leer y transformar en una misma clase custom de tu 
-* lenguaje los datos almacenados en el XML y el JSON.
-* Borra los archivos.
 */
 const fs = require('fs');
 
@@ -74,3 +68,150 @@ fs.readFile('persona.json', 'utf8', (err, data) => {
         console.log(jsonData); // Imprime el contenido del archivo JSON como un objeto
     }
 });
+
+/* DIFICULTAD EXTRA (opcional):
+* Utilizando la lógica de creación de los archivos anteriores, crea un
+* programa capaz de leer y transformar en una misma clase custom de tu 
+* lenguaje los datos almacenados en el XML y el JSON.
+* Borra los archivos.
+*/
+
+// Clase Persona
+class Persona {
+    constructor(nombre, edad, ciudad, fechaDeNacimiento, listadoDeLenguajesProgramacion) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.ciudad = ciudad;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.listadoDeLenguajesProgramacion = listadoDeLenguajesProgramacion;
+    }
+}
+
+// Leer el archivo XML
+
+fs.readFile('persona.xml', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+    } else {
+        // Convertir XML a JSON
+        const xml2js = require('xml2js');
+        xml2js.parseString(data, (err, result) => {
+            if (err) {
+                console.error(err);
+            } else {
+                const personaXml = result.persona;
+                const persona = new Persona(
+                    personaXml.nombre[0],
+                    parseInt(personaXml.edad[0]),
+                    personaXml.ciudad[0],
+                    personaXml.fechaDeNacimiento[0],
+                    personaXml.listadoDeLenguajesProgramacion[0].split(',')
+                );
+                console.log(persona);
+            }
+        });
+    }
+});
+
+// Leer el archivo JSON
+fs.readFile('persona.json', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+    } else {
+        const jsonData = JSON.parse(data);
+        const persona = new Persona(
+            jsonData.nombre,
+            jsonData.edad,
+            jsonData.ciudad,
+            jsonData.fechaDeNacimiento,
+            jsonData.listadoDeLenguajesProgramacion
+        );
+        console.log(persona);
+    }
+});
+
+// Borrar los archivos (opcional)
+fs.unlink('persona.xml', (err) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('Archivo XML eliminado');
+    }
+});
+fs.unlink('persona.json', (err) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('Archivo JSON eliminado');
+    }
+});
+
+// Otra forma de hacerlo
+
+
+/*
+const fs = require('fs');
+const xml2js = require('xml2js');
+
+class Persona {
+    constructor(nombre, edad, hobbies, ciudad, pais) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.hobbies = hobbies;
+        this.ciudad = ciudad;
+        this.pais = pais;
+    }
+}
+
+function unificarDatos(xmlData, jsonData) {
+    const personaXml = new Persona(
+        xmlData.persona.nombre[0],
+        parseInt(xmlData.persona.edad[0]),
+        xmlData.persona.hobbies[0].hobby
+    );
+    const personaJson = new Persona(    
+        jsonData.nombre,
+        jsonData.edad,
+        [], // Inicializamos hobbies como un array vacío
+        jsonData.ciudad,
+        jsonData.pais
+    );
+
+    // Combinar hobbies:
+    personaUnificada = { ...personaXml, ...personaJson };
+    personaUnificada.hobbies = [...personaXml.hobbies, ...personaJson.hobbies];
+
+    return personaUnificada;
+}
+
+// Leer el archivo XML
+fs.readFile('persona.xml', 'utf8', (err, xmlData) => {
+    if (err) throw err;
+
+    // Convertir XML a JSON
+    xml2js.parseString(xmlData, (err, result) => {
+        if (err) throw err;
+
+        // Leer el archivo JSON
+        fs.readFile('persona.json', 'utf8', (err, jsonData) => {
+            if (err) throw err;
+
+            jsonData = JSON.parse(jsonData);
+
+            // Unificar los datos
+            const personaUnificada = unificarDatos(result, jsonData);
+            console.log(personaUnificada);
+
+            // Borrar los archivos (opcional)
+            /*fs.unlink('persona.xml', (err) => {
+                if (err) throw err;
+                console.log('Archivo XML eliminado');
+            });
+            fs.unlink('persona.json', (err) => {
+                if (err) throw err;
+                console.log('Archivo JSON eliminado');
+            });
+        });
+    });
+});
+*/
