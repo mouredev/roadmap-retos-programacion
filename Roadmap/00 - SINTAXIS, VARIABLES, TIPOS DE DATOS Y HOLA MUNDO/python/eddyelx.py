@@ -1,4 +1,4 @@
 Sitio web oficial de lenguaje python
 
-https://www.python.org/auaje seleccionado
+https://www.python.org/
 
