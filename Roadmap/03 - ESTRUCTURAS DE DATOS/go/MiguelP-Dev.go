@@ -16,7 +16,7 @@ type Pair struct {
 	value int
 }
 
-// PairList is un slice de pares
+// PairList es un slice de pares
 type PairList []Pair
 
 // Implementando la interface de ordenamiento para la pairList
