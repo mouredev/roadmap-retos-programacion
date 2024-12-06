@@ -59,6 +59,24 @@ program HOLA_FORTRAN
     !con esta precisión (sería fabuloso que alguien completara esta información) pero son números con máximo 32 cifras 
     !significativas.
 
+    !Fortran permite crear variables de tipo derivado, las cuales se crean como combinación de variables tipo intrinseco (integer,
+    !real, complex, logical y character) la sintaxis para crear una variable de tipo derivado es la siguiente.
+    type fluido
+        character (len=10):: nombre !Nombre del fluido
+        integer :: gamma !Peso especifico
+        real :: rho !Densidad
+    end type
+
+    !Para declarar una variable tipo fluido es la siguiente.
+    type (fluido) :: water !En este caso la variable "water" es de tipo "fluido"
+
+    !La asignaciones de valores a la variable "water" se puede realizar de dos maneras, primero asignando valores de manera global
+    !o se puede realizar la asignación por componentes
+    water=fluido('agua',9810,999.7) !Asignación global
+    water%nombre='agua' !Asignación por componentes
+    water%gamma=9810
+    water%rho=999.7
+
     !Para imprimir por terminal en Fortran se pueden utilizar las variables "print" o "write".
     print*,'Hola Fortran' !El asterisco imprime el texto luego de la coma en formato por defecto de Fortran.
     print*,ay !Se imprime en terminal la variable ay con print.

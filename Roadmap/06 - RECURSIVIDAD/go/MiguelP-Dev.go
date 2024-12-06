@@ -73,7 +73,7 @@ func main() {
 	coutdown(100)
 
 	// Factorial
-	fmt.Println("El factorial de 7 es: ", factorialCalc(25))
+	fmt.Println("El factorial de 25 es: ", factorialCalc(25))
 
 	// Fibbonacci
 	fmt.Println("El número en la posición 25 de la sucesión es: ", fibbo(25))
