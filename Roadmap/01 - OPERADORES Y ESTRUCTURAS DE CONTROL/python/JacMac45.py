@@ -75,3 +75,44 @@ print(f"XOR: 10 ^ 3 = {10 ^ 3}") # 1001
 print(f"NOT: ~10 = {~10}")
 print(f"Desplazamiento a la derecha: 10 >> 2 = {10 >> 2}") # 0010
 print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}") # 101000
+
+
+# ESTRUCTURAS DE CONTROL
+
+# 📌 CONDICIONALES
+
+print("\n======== CONDICIONALES ========")
+
+print("\n======== IF ELSE ========")
+my_name = "Hola"
+
+if my_name == "Danilo":
+    print('my_name es : "Danilo"')
+elif my_name == "Calderon":
+    print('my_name es: "Calderon"')
+else:
+    print("my_name no es 'Danilo' ni 'Calderon'")
+
+# 📌 ITERATIVAS
+
+print("\n======== ITERATIVAS ========")
+
+print("\n======== FOR IN ========")
+for i in range(11):
+    print(i)
+
+print("\n======== WHILE ========")
+i = 0
+while i <= 10:
+    print(i)
+    i += 1
+
+# 📌 MANEJO DE EXCEPCIONES
+
+print("\n======== MANEJO DE EXCEPCIONES ========")
+try:
+    print(10 / 0)
+except:
+    print("Ha ocurrido un error")
+finally:
+    print("Ha finalizado el manejo de excepciones")
