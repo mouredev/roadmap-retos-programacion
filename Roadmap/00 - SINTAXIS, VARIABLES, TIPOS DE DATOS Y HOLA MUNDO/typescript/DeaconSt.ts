@@ -1,0 +1,21 @@
+//////////////////////////////////////Punto #1///////////////////////////////////////
+//Documentación oficial de TypeScript: https://www.typescriptlang.org/es/docs/
+//////////////////////////////////////Punto #2///////////////////////////////////////
+//Comentario monolineal: Como por ejemplo este
+/* Comentario 
+multilineal: 
+Como por ejemplo este
+*/
+//////////////////////////////////////Punto #3///////////////////////////////////////
+let nombre: string = "Juan Felipe ";
+const diasAñoNormal: number = 365;
+//////////////////////////////////////Punto #4///////////////////////////////////////
+let pais: string = "Colombia y/o algo más";
+let peso: number = 80;
+let premisa: boolean = true; //o false
+let nullType: null = null;
+let undefindeType: undefined = undefined;
+let symbol: symbol = Symbol('S')
+//////////////////////////////////////Punto #5///////////////////////////////////////
+let message: string = "TypeScript";
+console.log("¡Hola "+message+"!");

@@ -16,7 +16,7 @@ public class JesusAntonioEEscamilla {
         System.out.println("Por Referencia");
         funciónPorReferencia();
 
-        //EXTRA
+    //---EXTRA---
         System.out.println("Extra por Valor");
         extraValor();
         System.out.println("Extra por Referencia");

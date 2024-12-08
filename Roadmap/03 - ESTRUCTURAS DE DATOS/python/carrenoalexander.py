@@ -41,8 +41,8 @@ print(my_set)
 # Diccionario
 
 my_dict = {
-    "Month": "July",
-    "Day": "Tuesday",
+    "Month": "April",
+    "Day": "Monday",
     "Year": 2024
 }
 print(my_dict)
@@ -54,7 +54,7 @@ print(my_dict)
 del my_dict["Century"]  # Borrado
 print(my_dict)
 
-my_dict["Month"] = "June"  # Actualización
+my_dict["Month"] = "August"  # Actualización
 print(my_dict)
 
 my_dict = dict(sorted(my_dict.items()))  # Ordenación
@@ -76,13 +76,12 @@ def menu():
 
 menu()
 
-
 def contacts_agenda():
 
     agenda = {}
 
     def validate_phone_number(phone):
-        return phone.isdigit() and len(phone) == 11
+        return phone.isdigit() and len(phone) == 10
 
     while True:
         option = input("Choose an option: ")

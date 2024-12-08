@@ -1,65 +1,72 @@
-from abc import ABC, abstractmethod
+class Vehicle:
+    model: str
+    brand: str
 
+    def __init__(self, model, brand):
+        self.model = model
+        self.brand = brand
 
-class BWPrinter(ABC):
-    @abstractmethod
-    def print_BW(self, file):
+    def acelerate(self):
+        pass
+
+    def brake(self):
         pass
 
 
-class ColorPrinter(ABC):
-    @abstractmethod
-    def print_color(self, file):
-        pass
+class Car(Vehicle):
+    wheels: int
+    doors: int
+
+    def __init__(self, doors, brand, model):
+        super().__init__(model, brand)
+        self.doors = doors
+        self.wheels = 4
+
+    def acelerate(self):
+        print("Acelerando 20 km/h")
+
+    def brake(self):
+        print("Frenando 10 km/h")
 
 
-class Scanner(ABC):
-    @abstractmethod
-    def scann(self, file):
-        pass
+class Motorbike(Vehicle):
+    wheels: int
+
+    def __init__(self, model, brand):
+        super().__init__(model, brand)
+        self.wheels = 2
+
+    def acelerate(self):
+        print("Acelerando 30 km/h")
+
+    def brake(self):
+        print("Frenando 40 km/h")
 
 
-class Fax(ABC):
-    @abstractmethod
-    def send(self, file):
-        pass
+class ElectricScooter(Vehicle):
+    wheels: int
 
+    def __init__(self, model, brand):
+        super().__init__(model, brand)
+        self.wheels = 2
 
-class PrinterBW(BWPrinter):
-    def print_BW(self, file):
-        print(f"Imprimiendo {file} en blanco y negro")
+    def acelerate(self):
+        print("Acelerando 5 km/h")
 
-
-class PrinterColor(ColorPrinter):
-    def print_color(self, file):
-        print(f"Imprimiendo {file} en color")
-
-
-class Multiprinter(BWPrinter, ColorPrinter, Scanner, Fax):
-    def print_BW(self, file):
-        print(f"Imprimiendo {file} en blanco y negro")
-
-    def print_color(self, file):
-        print(f"Imprimiendo {file} en color")
-
-    def scann(self, file):
-        print(f"Escaneando {file}")
-
-    def send(self, file):
-        print(f"Enviando {file}")
+    def brake(self):
+        print("Frenando 10 km/h")
 
 
 def main():
-    bw_printer = PrinterBW()
-    color_printer = PrinterColor()
-    multiprinter = Multiprinter()
+    coche = Car(doors=5, brand="ford", model="fiesta")
+    motorbike = Motorbike(brand="honda", model="2001")
+    scooter = ElectricScooter(brand="Xiaomi", model="2020")
 
-    bw_printer.print_BW("CV")
-    color_printer.print_color("CV")
-    multiprinter.print_BW("CV")
-    multiprinter.print_color("CV")
-    multiprinter.scann("CV")
-    multiprinter.send("CV")
+    coche.acelerate()
+    scooter.brake()
+    motorbike.acelerate()
+
+    print(f"El {coche.brand} {coche.model} tiene {coche.doors} puertas")
 
 
 if __name__ == '__main__':

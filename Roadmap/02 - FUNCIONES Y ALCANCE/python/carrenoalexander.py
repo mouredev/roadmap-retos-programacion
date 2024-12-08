@@ -45,7 +45,7 @@ arguments_language("Python", "3.12.3")
 def default_argument_language(language="not JavaScript"):
     print("The language is", language)
 
-default_argument_language()  # JavaScript
+default_argument_language()  # not JavaScript
 default_argument_language("Python")
 
 # Con argumentos posicionales
@@ -71,34 +71,34 @@ def kwargs_language(**languages):
 
 kwargs_language(language_1="Python", language_2="JavaScript", language_3="TypeScript")
 
-# * Funciones dentro de funciones
+# Funciones dentro de funciones
 
 def other_function():
     def inside_function():
         print("Inside function")
-            
+
     inside_function()
 
 other_function()
 
-# * Algunas funciones ya creadas del lenguaje
+# Algunas funciones ya creadas del lenguaje
 
 print("Hello")
 print(type("Hello"))
 print(len("Hello"))
 print("Hello".upper())
-print("Hello".find("o"))
+print("Hello".replace("Hello", "HI"))
 
-# * Variable LOCAL y GLOBAL
+# Variable LOCAL y GLOBAL
 
-global_variable = "Variable global"
+global_variable = "Global variable"
 
 def scope():
-    local_variable = "Variable local"
+    local_variable = "Local variable"
     print(f"{local_variable} and {global_variable}")
 
 print(global_variable)
-# print(local_variable) # Error es local, no se puede acceder
+# print(local_variable)  # No se puede acceder a la variable local
 
 scope()
 
@@ -120,4 +120,4 @@ def extra(text_1, text_2):
             count += 1
     return count
 
-print(extra("Language", "Python"))
+print(extra("This is", "Python"))
