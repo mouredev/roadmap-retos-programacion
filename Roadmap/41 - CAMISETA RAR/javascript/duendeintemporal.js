@@ -34,8 +34,7 @@ async function compressFile(inputFilePath, outputZipPath) {
     log(`File compressed and saved as ${outputZipPath}`);
 }
 
-// Example usage
-const inputFilePath = 'C:/Users/Niko Zen/Documents/a Nany.docx'; // Replace with your file path
+const inputFilePath = 'C:/Users/Niko Zen/Documents/a Nany.docx'; // Replace with the file path to compress
 const outputZipPath = 'test_output.zip'; // Desired output zip file name
 
 compressFile(inputFilePath, outputZipPath)
