@@ -124,11 +124,18 @@ const confirmacion = (palabra1, palabra2)=>{
     console.log(esPalindromo(palabra2));
     console.log(esAnagrama(palabra1, palabra2))
     console.log(esIsograma(palabra1, palabra2))
+//<<<<<<< main
+    
+=======
 
+//>>>>>>> main
     return resultado.join("\n")
     
 }
 
 console.log(confirmacion("casa", "oso"))
 
+//<<<<<<< main
+//=======
 console.log(confirmacion("perro", "lateleletal"))
+//>>>>>>> main
