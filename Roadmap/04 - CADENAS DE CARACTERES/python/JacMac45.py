@@ -108,3 +108,18 @@ print(nu2)
 print("cadena1 tiene {} y cadena2 tiene {}".format(cadena_01, cadena_02)) # Con format()
 print(f"cadena1 tiene {cadena_01} y cadena2 tiene {cadena_02}") # Con f-string 
 
+# Extra
+Palabra1 = input("Dime una palabra => ")
+Palabra2 = input("Dime otra palabra => ")
+print()
+# El palindromo se comprueba comparando la palabra con su inversa
+print(f"{Palabra1} Es un palindromo") if Palabra1 == Palabra1[::-1] else print(f"{Palabra1} NO es un palindromo")
+print(f"{Palabra2} Es un palindromo") if Palabra2 == Palabra2[::-1] else print(f"{Palabra2} NO es un palindromo")
+print()
+
+print(f"{Palabra1} y {Palabra2} Son anagramas") if sorted(Palabra1) == sorted(Palabra2) else print(f"{Palabra1} y {Palabra2} NO son anagramas")
+print()
+
+print(f"{Palabra1} Es un isograma") if len(Palabra1) == len(set(Palabra1)) else print(f"{Palabra1} NO es un isograma")
+print(f"{Palabra2} Es un isograma") if len(Palabra2) == len(set(Palabra2)) else print(f"{Palabra2} NO es un isograma")
+
