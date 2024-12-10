@@ -16,10 +16,17 @@ func main() {
 	var numericString = "1234567"
 	var numbers = 567890
 	var runicString rune = 'a'
+	var lang = "golang"
 
 	// Concatenación
 	fmt.Println("Concatenación con paquetes: ", strings.Join([]string{"Hola", "Golang!"}, ", "))
-	fmt.Println("Concatenación con paquetes: ", "Hola "+"Mundo "+"de "+"Desarrolladores.")
+	fmt.Println("Concatenación con siḿbolo de suma: ", "Hola "+"Mundo "+"de "+"Desarrolladores.")
+	fmt.Println("concatenación de variables", sayHi+" "+" "+longString)
+
+	// interpolación
+	fmt.Printf("Esta es la página oficial del lenguaje %s: %s\n", lang, godev)
+	interpolacion := fmt.Sprintf("Esta es la página oficial del lenguaje %s: %s", lang, godev)
+	fmt.Println(interpolacion)
 
 	// Búsqueda
 	fmt.Println("Busca una palabra: ", strings.Contains(longString, "una"))
@@ -82,7 +89,7 @@ func main() {
 	fmt.Println("'Amor y Roma', ¿son anagrama?: ", anagramWord("AmoR", "RoMa"))
 	fmt.Println("'Verde y Rojo', ¿son anagrama?: ", anagramWord("Verde", "rOjo"))
 
-	// Extra: Anagramas
+	// Extra: Isogramas
 	fmt.Println("'Murciélago' ¿es un isograma?: ", isogramWord("murciélago"))
 	fmt.Println("'Pan' ¿es un isograma?: ", isogramWord("pan"))
 	fmt.Println("'Pasta' ¿es un isograma?: ", isogramWord("pasta"))
@@ -133,11 +140,23 @@ func anagramWord(x, y string) bool {
 	return true
 }
 
-func isogramWord(word string) bool {
-	splited := strings.Split(strings.ToLower(word), "")
+func isogramWord(s string) bool {
+	word := strings.ToLower(s)
 
-	for _, v := range splited {
-		if strings.Count(word, v) > 1 {
+	runeCount := make(map[rune]int)
+
+	for _, r := range word {
+		runeCount[r]++
+	}
+
+	var firstCount int
+	for _, count := range runeCount {
+		firstCount = count
+		break
+	}
+
+	for _, count := range runeCount {
+		if count != firstCount {
 			return false
 		}
 	}
