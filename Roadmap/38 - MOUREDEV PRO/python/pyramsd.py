@@ -9,7 +9,6 @@ print(df)
 
 emails_activos = df[df["status"] == "activo"][["id", "email"]]
 
-#print(emails_activos["email"].to_list())
 ganadores = emails_activos.sample(3)
 categorias = ["ganador de una suscripción", "ganador de un descuento", "ganador de un libro"]
 
