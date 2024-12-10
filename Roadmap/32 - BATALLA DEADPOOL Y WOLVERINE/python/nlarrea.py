@@ -26,12 +26,16 @@
 
 from random import randint, random
 from time import sleep
+from typing import Self
 
 
 class Damage:
     def __init__(self, min_: int = 10, max_: int = 100):
         self._min = min_
         self._max = max_
+
+    def calculate(self):
+        return randint(self.min, self.max)
 
     @property
     def min(self):
@@ -55,33 +59,45 @@ class Fighter:
         self._damage = damage
         self._evade = evade
         self._life = life
-        self.rests = rests
+        self._rests = rests
 
-    # def __eq__(self, other: object) -> bool:
-    #     if isinstance(other, Fighter):
-    #         return self.name == other.name
+    def attack(self) -> int:
+        # Check if current fighter has to rest
+        if self._rests:
+            print(f"{self.name} se está recuperando...")
+            self._rests = False
+            return 0
 
-    #     return False
+        # Calculate the damage value
+        damage = self._damage.calculate()
+        # Check if fighter will need to rest in his next turn
+        self._rests = damage == self._damage.max
+        if self._rests:
+            print(
+                f"Golpe crítico! {self.name} deberá descansar en el siguiente turno..."
+            )
+
+        return damage
+
+    def evade(self, damage: int):
+        if random() < self._evade:
+            print(f"{self.name} ha esquivado el ataque!")
+        else:
+            print(f"{self.name} ha recibido {damage} puntos de daño!")
+            self._update_life(damage)
+
+    def _update_life(self, damage: int):
+        self._life -= damage
+        if self._life < 0:
+            self._life = 0
 
     @property
     def name(self):
         return self._name
 
     @property
-    def damage(self):
-        return self._damage
-
-    @property
-    def evade(self):
-        return self._evade
-
-    @property
     def life(self):
         return self._life
-
-    @life.setter
-    def life(self, life: int):
-        self._life = life
 
 
 D = "Deadpool"
@@ -131,44 +147,13 @@ def create_fighters() -> tuple[Fighter, Fighter] | None:
     return deadpool, wolverine
 
 
-def get_damage(damage: Damage):
-    return randint(damage.min, damage.max)
-
-
-def winner(fighter: Fighter):
-    return fighter.life <= 0
+def is_winner(fighters: tuple[Fighter]):
+    return any([fighter.life <= 0 for fighter in fighters])
 
 
 def show_life(fighters: list[Fighter]):
     for fighter in fighters:
         print(f" - Vida de {fighter.name}:", fighter.life)
-
-
-def fight(current_fighter: Fighter, other_fighter: Fighter) -> bool:
-    # Check if current fighter has to rest
-    if current_fighter.rests:
-        print(f"{current_fighter.name} se está recuperando...")
-        current_fighter.rests = False
-        return False
-
-    # Calculate the damage value
-    damage = get_damage(current_fighter.damage)
-    # Check if fighter will need to rest in his next turn
-    current_fighter.rests = damage == current_fighter.damage.max
-    if current_fighter.rests:
-        print(
-            f"Golpe crítico! {current_fighter.name} deberá descansar en el siguiente turno..."
-        )
-
-    if random() < other_fighter.evade:
-        print(f"{other_fighter.name} ha esquivado el ataque!")
-    else:
-        print(f"{other_fighter.name} ha recibido {damage} puntos de daño!")
-        other_fighter.life -= damage
-        if other_fighter.life < 0:
-            other_fighter.life = 0
-
-    return winner(other_fighter)
 
 
 def simulate():
@@ -183,27 +168,27 @@ def simulate():
     print("\n¡COMIENZA EL COMBATE!")
 
     # Select who starts the fight
-    turn = fighters[0] if random() < 0.5 else fighters[1]
+    current_fighter = fighters[0] if random() < 0.5 else fighters[1]
 
     turn_counter = 1
-    is_winner = False
-    while not is_winner:
-        print(f"\nTURNO {turn_counter}: {turn.name} ataca!")
+    while not is_winner(fighters):
+        print(f"\nTURNO {turn_counter}: {current_fighter.name} ataca!")
 
-        other_fighter = fighters[(fighters.index(turn) + 1) % len(fighters)]
+        other_fighter = fighters[
+            (fighters.index(current_fighter) + 1) % len(fighters)
+        ]
 
-        is_winner = fight(
-            current_fighter=turn,
-            other_fighter=other_fighter,
-        )
+        damage = current_fighter.attack()
+        if damage:
+            other_fighter.evade(damage)
 
         show_life(fighters)
 
-        if is_winner:
-            print(f"\n{turn.name.upper()} HA GANADO EL COMBATE!")
+        if is_winner(fighters):
+            print(f"\n{current_fighter.name.upper()} HA GANADO EL COMBATE!")
             return
 
-        turn = other_fighter
+        current_fighter = other_fighter
         turn_counter += 1
 
         sleep(1)
