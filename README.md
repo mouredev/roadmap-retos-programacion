@@ -82,7 +82,7 @@
 |45|[GITHUB OCTOVERSE](./Roadmap/45%20-%20GITHUB%20OCTOVERSE/ejercicio.md)|[📝](./Roadmap/45%20-%20GITHUB%20OCTOVERSE/python/mouredev.py)|[▶️](https://youtu.be/yj5ZFT_Xmcs)|[👥](./Roadmap/45%20-%20GITHUB%20OCTOVERSE/)
 |46|[X VS BLUESKY](./Roadmap/46%20-%20X%20VS%20BLUESKY/ejercicio.md)|[📝](./Roadmap/46%20-%20X%20VS%20BLUESKY/python/mouredev.py)|[▶️](https://youtu.be/RzwFGihKpOM)|[👥](./Roadmap/46%20-%20X%20VS%20BLUESKY/)
 |47|[CALENDARIO DE ADVIENTO](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/ejercicio.md)|[📝](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/python/mouredev.py)|[▶️](https://youtu.be/LteI1J5gmZw)|[👥](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/)
-|48|[ÁRBOL DE NAVIDAD](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/ejercicio.md)|[📝](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/python/mouredev.py)||[👥](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/)
+|48|[ÁRBOL DE NAVIDAD](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/ejercicio.md)|[📝](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/python/mouredev.py)|[▶️](https://youtu.be/bIguZe3iXVo)|[👥](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/)
 |49|[EL ALMACÉN DE PAPÁ NOEL](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/ejercicio.md)|[🗓️ 23/12/24](https://discord.gg/mouredev?event=1313337113567035494)||[👥](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/)
 
 ## Cursos en YouTube
