@@ -61,4 +61,3 @@ sensores = [
 
 # Ejecutar el programa con los datos de sensores
 procesar_sensores(sensores)
-
