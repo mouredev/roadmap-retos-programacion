@@ -163,8 +163,8 @@ console.timeEnd()
  * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
  * [-] Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
- * [-] Cada contacto debe tener un nombre y un número de teléfono.
- * [-] El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+ * [x] Cada contacto debe tener un nombre y un número de teléfono.
+ * [x] El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
  *   los datos necesarios para llevarla a cabo.
  * [x] El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
  *   (o el número de dígitos que quieras)
@@ -221,22 +221,22 @@ const menu = () => {
 const insertarContacto = () => {
   rl.question("Nombre del contacto -> ", (nombre) => {
     rl.question("Número del contacto -> ", (numero) => {
-      if (String(numero).length === 0) {
+      if (String(nombre).length === 0 && String(numero).length === 0) {
+        console.log("Error debes insertar un nombre de contacto y un número de telefono.")
+      } else if (String(nombre).length === 0) {
         console.log("Error debes insertar un nombre de contacto.")
-        menu()
-      }
-      if (isNaN(parseInt(numero))) {
+      } else if (String(numero).length === 0) {
         console.log("Error debes insertar un número de telefono.")
-        menu()
+      } else if (isNaN(parseInt(numero))) {
+        console.log("Error debes insertar un número de telefono.")
       } else if (String(numero).length > 11 || String(numero).length < 11) {
         console.log("Error el número de teléfono debe ser de solo 11 dígitos")
-        menu()
       } else {
         const contactUser = { id: libretaContactos.size + 1, nombre: nombre, numero: numero }
         libretaContactos.set(contactUser.id, contactUser)
         console.log(`Contacto agregado\nNombre: ${nombre}\nNúmero de teléfono: ${numero}`)
-        menu()
       }
+      menu()
     })
   })
 }
@@ -249,26 +249,55 @@ const eliminarContacto = () => {
     let isDeleted = false
     if (String(nombre).length === 0) {
       console.log("Error debes insertar un nombre de contacto.")
-      menu()
-    }
-    for (const [key, value] of libretaContactos) {
-      if (value.nombre === nombre) {
-        libretaContactos.delete(key)
-        isDeleted = true
-      }
-    }
-    if (isDeleted) {
-      console.info("Contacto eliminado.")
+    } else if (libretaContactos.size === 0) {
+      console.log("Error libreta de contactos vacía.")
     } else {
-      console.log("Contacto no encontrado.")
+      for (const [key, value] of libretaContactos) {
+        if (value.nombre === nombre) {
+          libretaContactos.delete(key)
+          console.info(`Contacto eliminado.\nNombre: ${value.nombre}\nNúmero de teléfono: ${value.numero}`)
+          isDeleted = true
+          break
+        }
+      }
+      if (!isDeleted) {
+        console.log("Contacto no encontrado.")
+      }
     }
     menu()
   })
 }
 
+/**
+ * Buscar un contacto en la libreta telefónica
+ */
 const buscarContacto = () => {
   //TODO Buscar un contacto por nombre
+  rl.question("Inserte el nombre del contacto -> ", (answer) => {
+    let isContact = false
+    if (String(answer).length === 0) {
+      console.log("Error debes insertar un nombre para buscar.")
+    } else if (libretaContactos.size === 0) {
+      console.log("Error libreta de contactos vacía.")
+    } else {
+      for (const value of libretaContactos.values()) {
+        if (value.nombre === String(answer)) {
+          console.info(`Contacto encontrado.\nNombre: ${value.nombre}\nNúmero de teléfono: ${value.numero}`)
+          isContact = true
+          break
+        }
+      }
+      if (!isContact) {
+        console.log("Contacto no encontrado.")
+      }
+    }
+    menu()
+  })
 }
+
+/**
+ * Actualizar un contacto en la libreta telefónica
+ */
 const actualizarContacto = () => {
   //TODO Actualizar número de teléfono de contacto
 }
