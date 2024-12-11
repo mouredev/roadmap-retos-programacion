@@ -158,3 +158,97 @@ for (const [clave, valor] of mapOrdenado) {
   console.log(clave, valor) //aplicar ordenación
 }
 console.timeEnd()
+
+/**
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una agenda de contactos por terminal.
+ * [-] Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+ * [-] Cada contacto debe tener un nombre y un número de teléfono.
+ * [-] El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+ *   los datos necesarios para llevarla a cabo.
+ * [x] El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+ *   (o el número de dígitos que quieras)
+ * [x] También se debe proponer una operación de finalización del programa.
+ */
+
+const readline = require("node:readline")
+const { stdin: input, stdout: output } = require("node:process")
+const rl = readline.createInterface({ input, output })
+
+const libretaContactos = new Map()
+
+/**
+ * Menú interactivo con readline para Proyecto ¡Agenda de Contactos!
+ */
+const menu = () => {
+  console.info(
+    `\nApp: ¡Agenda de contactos!
+  1. Insertar contacto
+  2. Eliminar contacto
+  3. Buscar contacto
+  4. Actualizar contacto
+  5. Salir
+  `
+  )
+  rl.question("Seleccione una opción -> ", (answer) => {
+    switch (answer) {
+      case "1":
+        insertarContacto()
+        break
+      case "2":
+        eliminarContacto()
+        break
+      case "3":
+        buscarContacto()
+        break
+      case "4":
+        actualizarContacto()
+        break
+      case "5":
+        rl.close()
+        break
+      default:
+        console.log("Opción inválida")
+        menu()
+    }
+  })
+}
+
+/**
+ * Insertar un contacto en la libreta de direcciones (void function)
+ * Readline: nombre de contacto, un número de 11 dígitos
+ */
+const insertarContacto = () => {
+  rl.question("Nombre del contacto -> ", (nombre) => {
+    rl.question("Número del contacto -> ", (numero) => {
+      if (String(numero).length === 0) {
+        console.log("Error debes insertar un nombre de contacto.")
+        menu()
+      }
+      if (isNaN(parseInt(numero))) {
+        console.log("Error debes insertar un número de telefono.")
+        menu()
+      } else if (String(numero).length > 11 || String(numero).length < 11) {
+        console.log("Error el número de teléfono debe ser de solo 11 dígitos")
+        menu()
+      } else {
+        const contactUser = { id: libretaContactos.size + 1, nombre: nombre, numero: numero }
+        libretaContactos.set(contactUser.id, contactUser)
+        console.log(`Contacto agregado\nNombre: ${nombre}\nNúmero de teléfono: ${numero}`)
+        menu()
+      }
+    })
+  })
+}
+
+const eliminarContacto = () => {
+  //TODO Eliminar el contacto por el nombre
+}
+const buscarContacto = () => {
+  //TODO Buscar un contacto por nombre
+}
+const actualizarContacto = () => {
+  //TODO Actualizar número de teléfono de contacto
+}
+
+menu()
