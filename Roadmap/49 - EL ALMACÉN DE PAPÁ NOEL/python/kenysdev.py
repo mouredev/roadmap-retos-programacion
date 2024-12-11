@@ -33,7 +33,7 @@
 """
 
 # ____________________________________________________________________________
-import random
+from random import sample
 
 def verify_allowed_char(code_entry: str) -> bool:
     for ch in code_entry:
@@ -54,7 +54,7 @@ def get_entry() -> str:
         if verify_allowed_char(code_entry):
             return code_entry
 
-def run(code: str) -> bool:
+def is_open(code: str) -> bool:
     code_entry: str = get_entry()
     if code_entry == code:
         return True
@@ -63,11 +63,9 @@ def run(code: str) -> bool:
     for i, ch in enumerate(code_entry):
         if ch == code[i]:
             print(f"'{ch}' está en la posición correcta.")
-            continue
 
-        if ch in code:
+        elif ch in code:
             print(f"'{ch}' está en el código, pero en otra posición.")
-            continue
 
         else:
             print(f"'{ch}' no está presente en el código.")
@@ -83,13 +81,12 @@ print("""
 - Código de 4 caracteres. Permitidos: a, b, c, 1, 2, 3.
 - Nota: No hay dígitos repetidos.""")
 
-code : str = ''.join(random.sample("abc123", 4))
+code : str = ''.join(sample("abc123", 4))
 
 for attempts in range(10):
     print(f"\n___________\nIntento #{attempts + 1}")
-    open: bool = run(code)
 
-    if open:
+    if is_open(code):
         print("Código correcto, almacén abierto.")
         print("Papá Noel ahora podrá entregar los regalos.")
         break
