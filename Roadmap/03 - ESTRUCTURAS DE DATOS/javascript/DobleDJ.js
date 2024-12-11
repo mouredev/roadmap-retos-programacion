@@ -241,9 +241,31 @@ const insertarContacto = () => {
   })
 }
 
+/**
+ * Eliminar un contacto de la libreta de contactos por el nombre
+ */
 const eliminarContacto = () => {
-  //TODO Eliminar el contacto por el nombre
+  rl.question("Nombre del contacto a eliminar -> ", (nombre) => {
+    let isDeleted = false
+    if (String(nombre).length === 0) {
+      console.log("Error debes insertar un nombre de contacto.")
+      menu()
+    }
+    for (const [key, value] of libretaContactos) {
+      if (value.nombre === nombre) {
+        libretaContactos.delete(key)
+        isDeleted = true
+      }
+    }
+    if (isDeleted) {
+      console.info("Contacto eliminado.")
+    } else {
+      console.log("Contacto no encontrado.")
+    }
+    menu()
+  })
 }
+
 const buscarContacto = () => {
   //TODO Buscar un contacto por nombre
 }
