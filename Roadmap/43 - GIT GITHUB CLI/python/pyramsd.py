@@ -105,3 +105,4 @@ class GitCli:
 if __name__ == "__main__":
     cli = GitCli()
     cli.bucle()
+    
