@@ -49,6 +49,53 @@ del my_queue[0] #tambien lo podemos hacer como en el caso de pila pero esta vez 
 """
 Extra
 """
+
+def web_navigator():
+    
+    stack_web = []
+    stack_foward = []
+    
+    while True:
+        action = input("Añade una ruta, o selecciona atras, adelante o salir: \n")
+        
+        if action == "salir":
+            print("Saliendo de la aplicación")
+            break
+        elif action == "adelante":
+            if stack_foward: # equiva a -> len(stack_foward)>0
+                siguiente_pagina = stack_foward.pop()# recupera la pagina hacia adelante
+                stack_web.append(siguiente_pagina) # la añade al historial
+                
+            else:
+                print("No hay paginas para avanzar.")
+                 
+        elif action == "atras":
+            if stack_web: # equivale a -> len(stack_web)> 0:
+                ultima_pagina = stack_web.pop() #retira la pagina actual y la asigna a stack_foward
+                stack_foward.append(ultima_pagina)
+                if stack_web: 
+                    print(f"te envuentras en el sitio: {stack_web[-1]}\n")
+                else: 
+                    print("Te encuentras en la pagina principal. el historial de navegacion se encuentra vacio.")
+                
+            else:
+                print("Te encuentras en la pagina principal. el historial de navegacion se encuentra vacio.")
+            
+        else:
+            stack_web.append(action)
+            stack_foward.clear()
+            
+        print(f"Historial de navegación: {stack_web}")
+        print(f"pagina hacia adelante: {stack_foward}\n")
+        
+web_navigator()
+    
+    
+"""
+Nota: se implementó un pila temporal, para recuperar el valor alojado en ".pop" y tener la opción de hacer
+un paso "adelante". cuando el usuario ingresa una nueva url la pila temporal se reinicia.
+"""
+    
 def shared_printer():
     
     cola_impresion = []
