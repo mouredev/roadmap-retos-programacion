@@ -1,5 +1,5 @@
 # #19 ENUMERACIONES
-> #### Dificultad: Media | Publicación: 06/04/24 | Corrección: 13/05/24
+> #### Dificultad: Media | Publicación: 06/05/24 | Corrección: 13/05/24
 
 ## Ejercicio
 

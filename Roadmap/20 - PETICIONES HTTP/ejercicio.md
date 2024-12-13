@@ -1,5 +1,5 @@
 # #20 PETICIONES HTTP
-> #### Dificultad: Difícil | Publicación: 13/04/24 | Corrección: 20/05/24
+> #### Dificultad: Difícil | Publicación: 13/05/24 | Corrección: 20/05/24
 
 ## Ejercicio
 

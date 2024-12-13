@@ -27,9 +27,9 @@ let modulo = 5 % 5 // Modulos
 
 // Print en Consola 
 print("Los operadores aritmeticos son Suma: \(suma),
-                                      Resta: \(resta)
-                                      Division: \(division)
-                                      Multiplicacion: \(multiplicacion)
+                                      Resta: \(resta),
+                                      Division: \(division),
+                                      Multiplicacion: \(multiplicacion),
                                       Mudulos: \(modulo)")
 
 // Operadores Logicos 
@@ -247,3 +247,14 @@ do {
 } catch {
     print("Si hay errores para corregir")
 }
+
+// Extra 
+func program() {
+    for numeros in 10...55 {
+        if numeros % 6 == 0 && 3 != 0 && 16 != 0 {
+            print(numeros)
+        }
+    }
+}
+
+program()
