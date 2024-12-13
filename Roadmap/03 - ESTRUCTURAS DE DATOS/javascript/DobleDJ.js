@@ -178,6 +178,23 @@ const rl = readline.createInterface({ input, output })
 const libretaContactos = new Map()
 
 /**
+ * Función para validar nombre insertado
+ * @param {string} nombre Cualquier valor de tipo cadena
+ * @returns Retorna un boolean
+ */
+function validarNombre(nombre) {
+  if (!(nombre.trim().length > 0)) {
+    return "Error: Debes insertar un nombre válido."
+  }
+  if (/\d/.test(nombre)) {
+    return "Error: El nombre no debe poseer números."
+  }
+  return null
+}
+
+const validarNumero = (numero) => /^\d{11}$/.test(numero)
+
+/**
  * Menú interactivo con readline para Proyecto ¡Agenda de Contactos!
  */
 const menu = () => {
@@ -190,7 +207,7 @@ const menu = () => {
   5. Salir
   `
   )
-  rl.question("Seleccione una opción -> ", (answer) => {
+  rl.question("Seleccione una opción: ", (answer) => {
     switch (answer) {
       case "1":
         insertarContacto()
@@ -206,6 +223,8 @@ const menu = () => {
         break
       case "5":
         rl.close()
+        console.log(`
+          Ha finalizado la Agenda de Contactos. ¡Hasta luego!`)
         break
       default:
         console.log("Opción inválida")
@@ -219,23 +238,21 @@ const menu = () => {
  * Readline: nombre de contacto, un número de 11 dígitos
  */
 const insertarContacto = () => {
-  rl.question("Nombre del contacto -> ", (nombre) => {
-    rl.question("Número del contacto -> ", (numero) => {
-      if (String(nombre).length === 0 && String(numero).length === 0) {
-        console.log("Error debes insertar un nombre de contacto y un número de telefono.")
-      } else if (String(nombre).length === 0) {
-        console.log("Error debes insertar un nombre de contacto.")
-      } else if (String(numero).length === 0) {
-        console.log("Error debes insertar un número de telefono.")
-      } else if (isNaN(parseInt(numero))) {
-        console.log("Error debes insertar un número de telefono.")
-      } else if (String(numero).length > 11 || String(numero).length < 11) {
-        console.log("Error el número de teléfono debe ser de solo 11 dígitos")
-      } else {
-        const contactUser = { id: libretaContactos.size + 1, nombre: nombre, numero: numero }
-        libretaContactos.set(contactUser.id, contactUser)
-        console.log(`Contacto agregado\nNombre: ${nombre}\nNúmero de teléfono: ${numero}`)
+  rl.question("Nombre del contacto: ", (nombre) => {
+    const error = validarNombre(nombre)
+    if (error) {
+      console.log(`Error: ${error}`)
+      return insertarContacto()
+    }
+    rl.question("Número del contacto: ", (numero) => {
+      if (!validarNumero(numero)) {
+        console.log("Error: El número debe ser un número de teléfono válido de 11 dígitos.")
+        return insertarContacto()
       }
+      const contactUser = { id: libretaContactos.size + 1, nombre, numero }
+      libretaContactos.set(contactUser.id, contactUser)
+      console.log(`
+        Contacto creado: ${contactUser.nombre} - ${contactUser.numero}`)
       menu()
     })
   })
@@ -245,61 +262,131 @@ const insertarContacto = () => {
  * Eliminar un contacto de la libreta de contactos por el nombre
  */
 const eliminarContacto = () => {
-  rl.question("Nombre del contacto a eliminar -> ", (nombre) => {
-    let isDeleted = false
-    if (String(nombre).length === 0) {
-      console.log("Error debes insertar un nombre de contacto.")
-    } else if (libretaContactos.size === 0) {
-      console.log("Error libreta de contactos vacía.")
-    } else {
-      for (const [key, value] of libretaContactos) {
-        if (value.nombre === nombre) {
-          libretaContactos.delete(key)
-          console.info(`Contacto eliminado.\nNombre: ${value.nombre}\nNúmero de teléfono: ${value.numero}`)
-          isDeleted = true
-          break
-        }
+  if (libretaContactos.size === 0) {
+    console.log("Error: Libreta de contactos vacía.")
+    return menu()
+  } else {
+    rl.question("Nombre del contacto: ", (nombre) => {
+      const error = validarNombre(nombre)
+      if (error) {
+        console.log(`Error: ${error}`)
+        return eliminarContacto()
       }
-      if (!isDeleted) {
+      if (borrarContacto(nombre)) {
+        console.log(`
+            Contacto eliminado: ${nombre}`)
+      } else {
         console.log("Contacto no encontrado.")
       }
+      menu()
+    })
+  }
+}
+
+const borrarContacto = (contacto) => {
+  for (const [key, value] of libretaContactos) {
+    if (value.nombre === contacto) {
+      libretaContactos.delete(key)
+      return true
     }
-    menu()
-  })
+  }
+  return false
 }
 
 /**
  * Buscar un contacto en la libreta telefónica
  */
 const buscarContacto = () => {
-  //TODO Buscar un contacto por nombre
-  rl.question("Inserte el nombre del contacto -> ", (answer) => {
-    let isContact = false
-    if (String(answer).length === 0) {
-      console.log("Error debes insertar un nombre para buscar.")
-    } else if (libretaContactos.size === 0) {
-      console.log("Error libreta de contactos vacía.")
-    } else {
-      for (const value of libretaContactos.values()) {
-        if (value.nombre === String(answer)) {
-          console.info(`Contacto encontrado.\nNombre: ${value.nombre}\nNúmero de teléfono: ${value.numero}`)
-          isContact = true
-          break
-        }
+  let isContact = false
+  if (libretaContactos.size === 0) {
+    console.log("Error: Libreta de contactos vacía.")
+    return menu()
+  } else {
+    rl.question("Nombre del contacto: ", (nombre) => {
+      const error = validarNombre(nombre)
+      if (error) {
+        console.log(`Error: ${error}`)
+        return buscarContacto()
       }
-      if (!isContact) {
-        console.log("Contacto no encontrado.")
+
+      const singleContact = findContacto(nombre)
+      if (Object.keys(singleContact).length !== 0) {
+        console.log(`
+            Contacto encontrado: ${singleContact.nombre} - ${singleContact.numero}`)
+      } else {
+        console.log(`
+            Contacto no encontrado`)
       }
+      menu()
+    })
+  }
+}
+
+/**
+ * Función que dado una cadena de texto comprueba si aparece en la libreta de contactos
+ * @param {string} nombre Cualquier cadena de texto
+ * @returns Retorna el objeto encontrado, si no aparece devuelve un objeto vacío
+ */
+const findContacto = (nombre) => {
+  const contacto = {}
+  for (const value of libretaContactos.values()) {
+    if (value.nombre === nombre) {
+      contacto.nombre = value.nombre
+      contacto.numero = value.numero
     }
-    menu()
-  })
+  }
+  return contacto
 }
 
 /**
  * Actualizar un contacto en la libreta telefónica
  */
 const actualizarContacto = () => {
-  //TODO Actualizar número de teléfono de contacto
+  if (libretaContactos.size === 0) {
+    console.log("Error: libreta de contactos vacía.")
+    return menu()
+  } else {
+    rl.question("Nombre del contacto: ", (nombre) => {
+      const error = validarNombre(nombre)
+      if (error) {
+        console.log(`Error: ${error}`)
+        return actualizarContacto()
+      }
+      const singleContact = findContacto(nombre)
+      if (Object.keys(singleContact).length === 0) {
+        console.log(`
+            Contacto no encontrado`)
+        return actualizarContacto()
+      } else {
+        rl.question("Número del contacto: ", (numero) => {
+          if (!validarNumero(numero)) {
+            console.log("Error: El número debe ser un número de teléfono válido de 11 dígitos.")
+            return actualizarContacto()
+          }
+          updateContact(nombre, numero)
+          console.log(`
+              Contacto actualizado: ${nombre} - ${numero}`)
+          menu()
+        })
+      }
+    })
+  }
+}
+
+/**
+ * Función actualizar contacto
+ * @param {string} nombre Una cadena de texto sin números
+ * @param {string} numero Un número de 11 dígitos
+ * @returns Retorna un boolean
+ */
+const updateContact = (nombre, numero) => {
+  for (const value of libretaContactos.values()) {
+    if (value.nombre === nombre) {
+      value.numero = numero
+      return true
+    }
+  }
+  return false
 }
 
 menu()
