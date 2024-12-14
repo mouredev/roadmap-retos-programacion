@@ -1,4 +1,3 @@
-from icecream import ic
 ## Pilas Y Colas
 
 # pilas (stacks - LIFO)
@@ -11,7 +10,6 @@ my_stack.append(2) #apilo, el segundo elemento
 my_stack.append(3) #apilo, el tercer elemento
 
 print(my_stack)
-ic(my_stack)
 
 #pop
 my_stack_item = my_stack[len(my_stack)-1] #recupero el ultimo elemento en mi lista(my_stack)
@@ -19,10 +17,7 @@ my_stack_item = my_stack[len(my_stack)-1] #recupero el ultimo elemento en mi lis
 del my_stack[-1] #tambien se puede eliminar el elemento a travez de su indice
 
 print(my_stack_item)
-ic(my_stack_item)
-
 print(my_stack)
-ic(my_stack)
 
 #desapilando un elemento a travez del método ".pop()"
 my_pop_item = my_stack.pop()
