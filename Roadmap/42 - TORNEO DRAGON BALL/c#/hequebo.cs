@@ -191,7 +191,7 @@ class Program
                 $"{roster[i + 2].Id}.- {roster[i + 2].Name}\t\t" +
                 $"{roster[i + 3].Id}.- {roster[i + 3].Name}");
         }
-        Console.WriteLine("Ingresa los Id de los peleladores que desees seleccionar");
+        Console.WriteLine("Ingresa los Id de los peleadores que desees seleccionar");
         Console.WriteLine("Si deseas elegir aleatoriamente ingresa la tecla 'R'");
 
         bool randomSelection = Console.ReadLine().ToLower() == "r";
