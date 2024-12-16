@@ -100,3 +100,40 @@ for (let index = 0; index < message.length; index++) {
  - [] Anagramas
  - [] Isogramas
 */
+
+/**
+ * Determine if two words are palindromes, anagram or isogram
+ * @param {string} firstWord Any string word
+ * @param {string} secondWord Any string word
+ * @returns Returns a boolean response true or false
+ */
+function textAnalizer(firstWord, secondWord) {
+  //TODO
+  const resultPalindrome = palindromeTester(firstWord, secondWord)
+  const resultAnagram = anagramaTester(firstWord, secondWord)
+  const resultIsogram = isogramaTester(firstWord, secondWord)
+}
+
+/**
+ * Determine if two words are palindromes
+ * @param {string} firstWord Any string word
+ * @param {string} secondWord Any string word
+ * @returns Returns a boolean response true or false
+ */
+const palindromeTester = (firstWord, secondWord) => {}
+
+/**
+ * Determine if two words are anagram
+ * @param {string} firstWord Any string word
+ * @param {string} secondWord Any string word
+ * @returns Returns a boolean response true or false
+ */
+const anagramaTester = (firstWord, secondWord) => {}
+
+/**
+ * Determine if two words are isogram
+ * @param {string} firstWord Any string word
+ * @param {string} secondWord Any string word
+ * @returns Returns a boolean response true or false
+ */
+const isogramaTester = (firstWord, secondWord) => {}
