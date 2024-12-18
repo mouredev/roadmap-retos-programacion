@@ -49,12 +49,7 @@ print(queue)
 
 def web_navigation():
     navigator = []
-    navigator.append("Google")
-    navigator.append("Facebook")
-    navigator.append("Twitter")
-    navigator.append("Youtube")
-    navigator.append("Netflix")
-    navigator.append("Instagram")
+    print("Panel de inicio de navegación")
 
     while True:
         action = input("Introduce una url o elige una de las opciones: adelante/atrás/salir: ").lower()
@@ -79,3 +74,31 @@ def web_navigation():
             
 
 web_navigation()
+
+# DIFICULTAD EXTRA 2
+
+# Impresora con implementación de cola:
+
+def shared_printer():
+    queue = []
+    while True:
+                
+        action = input("Introduce el documento que deseas añadir o selecciona 'imprimir' para imprimir o 'salir' \n").lower()
+        
+        if action == "salir":
+            break
+        elif action == "imprimir":
+            if len(queue) > 0:
+                print(f"Imprimiendo el documento {queue.pop(0)}")
+            else:
+                print("No hay documentos en la cola de impresión.")
+        else:
+            queue.append(action)
+
+        
+        if len(queue) > 0: print(f"Cola de impresión: {queue}")
+        else: print("No hay documentos en la cola de impresión.")
+        
+
+shared_printer()
+
