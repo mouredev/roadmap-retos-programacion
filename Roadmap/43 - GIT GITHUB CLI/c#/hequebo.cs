@@ -42,7 +42,7 @@ class Git
         string? branchName = RunCommand("git branch --show-current");
         RunCommand($"git push origin {branchName}");
     }
-    public string? RunCommand(string command)
+    private string? RunCommand(string command)
     {
         var process = new Process();
         process.StartInfo.FileName = "cmd.exe";
@@ -146,10 +146,6 @@ class Program
                     exit = true;
                     Console.WriteLine("Hasta la próxima...");
                     Thread.Sleep(1000);
-                    break;
-                case 13:
-                    Console.Clear();
-                    git.RunCommand("git branch --show-current");
                     break;
                 default:
                     Console.WriteLine("La opción no es válida...");
