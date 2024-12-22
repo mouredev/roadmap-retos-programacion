@@ -102,6 +102,13 @@ for (let index = 0; index < message.length; index++) {
 */
 
 /**
+ * Reverse a string
+ * @param {string} word Any string word with symbols, spaces and string
+ * @returns Returns reversed string word
+ */
+const reverseManual = (word) => word.split("").reverse().join("")
+
+/**
  * Determine if two words are palindromes, anagram or isogram
  * @param {string} firstWord Any string word
  * @param {string} secondWord Any string word
@@ -109,7 +116,8 @@ for (let index = 0; index < message.length; index++) {
  */
 function textAnalizer(firstWord, secondWord) {
   //TODO
-  const resultPalindrome = palindromeTester(firstWord, secondWord)
+  if (palindromeTester(firstWord, secondWord)) console.log("Las palabras son palíndromes")
+
   const resultAnagram = anagramaTester(firstWord, secondWord)
   const resultIsogram = isogramaTester(firstWord, secondWord)
 }
@@ -120,7 +128,10 @@ function textAnalizer(firstWord, secondWord) {
  * @param {string} secondWord Any string word
  * @returns Returns a boolean response true or false
  */
-const palindromeTester = (firstWord, secondWord) => {}
+const palindromeTester = (firstWord, secondWord) => {
+  //TODO reversed secondWord check firstWord
+  return firstWord.toLowerCase() === reverseManual(secondWord).toLowerCase()
+}
 
 /**
  * Determine if two words are anagram
