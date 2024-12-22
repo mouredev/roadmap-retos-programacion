@@ -7,9 +7,24 @@ import sys
 
 # Funcion que comprueba errores
 
-def errores(psw_in):
+def validar_cadena(cadena):
 
+    if len(cadena) != 4:
+        return "Error: La cadena debe tener exactamente 4 caracteres."
 
+    errores = []
+
+    for char in cadena:
+        if char not in "ABC123":
+            errores.append(f"'{char}'")
+
+    if len(set(cadena)) != len(cadena):
+        errores.append("Los caracteres no deben repetirse")
+
+    if errores:
+        return f"Error: {', '.join(errores)}. Solo se permiten A, B, C, 1, 2, y 3, y sin repeticiones."
+
+    return "La cadena es válida."
 
 # Funcion que comprueba la contraseña ingresada
 
@@ -18,15 +33,10 @@ def comprobar_psw(psw_in, psw):
     for x, y in zip(psw_in, psw):
 
         if x == y:
-
             print(f'\n{x}: Correcto')
-
         elif x in psw:
-
             print(f'\n{x}: Presente')
-
         else:
-
             print(f'\n{x}: Incorrecto')
 
 # Generar una cadena aleatoria de 4 caracteres
@@ -50,35 +60,28 @@ intento = 0
 while intento < 10:
 
     intento += 1
-
     print(f'\nIntento n.° {intento}:')
 
-    while True:
+    psw_in = input('\nIngresa contraseña: ')
+    resultado = validar_cadena(psw_in)
 
-        psw_in = input('\nIngresa contraseña: ')
-
-        if errores(psw_in):
-
-            print('''
-            \nLos caracteres ingresados no son correctos.
-            \nInténtalo de nuevo...
-            ''')
+    if resultado == "La cadena es válida.":
+        pass
+    else:
+        print(resultado)
+        continue
 
     if psw_in == psw:
-
         print('''
         \n La contraseña es correcta.
         \n¡Felicidades, a repartir juguetes!
         ''')
-
-        exit()
-
+        sys.exit()
     else:
-
         print(f'''
         \nLa contraseña es incorrecta. Pero descuida, te doy unas pistas:
-        \n{comprobar_psw(psw_in, psw)}
         ''')
+        comprobar_psw(psw_in, psw)
 
 print('''
         \n¡Oh, no. Papá Noel has olvidado la contraseña!
