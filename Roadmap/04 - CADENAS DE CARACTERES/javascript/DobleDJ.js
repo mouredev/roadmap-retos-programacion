@@ -109,17 +109,12 @@ for (let index = 0; index < message.length; index++) {
 const reverseManual = (word) => word.split("").reverse().join("")
 
 /**
- * Determine if two words are palindromes, anagram or isogram
- * @param {string} firstWord Any string word
- * @param {string} secondWord Any string word
- * @returns Returns a boolean response true or false
+ * Extrae las palabras únicas de un string
+ * @param {string} word Any string word
  */
-function textAnalizer(firstWord, secondWord) {
-  //TODO
-  if (palindromeTester(firstWord, secondWord)) console.log("Las palabras son palíndromes")
-
-  const resultAnagram = anagramaTester(firstWord, secondWord)
-  const resultIsogram = isogramaTester(firstWord, secondWord)
+const palabrasUnicas = (word) => {
+  //TODO al string realizar .split agregarlo a un Set retornarlo a string y si es igual no tiene palabras repetidas
+  return Array.from(new Set(word.split(""))).join("")
 }
 
 /**
@@ -134,17 +129,58 @@ const palindromeTester = (firstWord, secondWord) => {
 }
 
 /**
- * Determine if two words are anagram
- * @param {string} firstWord Any string word
- * @param {string} secondWord Any string word
- * @returns Returns a boolean response true or false
+ * Determine if a word is an isogram
+ * @param {string} word Any string word
+ * @returns {boolean} Returns true if the word is an isogram, false otherwise
  */
-const anagramaTester = (firstWord, secondWord) => {}
+const esIsograma = (word) => {
+  return word === palabrasUnicas(word)
+}
 
 /**
- * Determine if two words are isogram
+ * Determine if two words are isograms
  * @param {string} firstWord Any string word
  * @param {string} secondWord Any string word
- * @returns Returns a boolean response true or false
+ * @returns {boolean} Returns true if both words are isograms, false otherwise
  */
-const isogramaTester = (firstWord, secondWord) => {}
+const isogramaTester = (firstWord, secondWord) => {
+  const firstIsIsogram = esIsograma(firstWord)
+  const secondIsIsogram = esIsograma(secondWord)
+
+  console.log(`La palabra ${firstWord} ${firstIsIsogram ? "es" : "no es"} un isograma`)
+  console.log(`La palabra ${secondWord} ${secondIsIsogram ? "es" : "no es"} un isograma`)
+
+  return firstIsIsogram && secondIsIsogram
+}
+
+/**
+ * Determine if two words are anagrams
+ * @param {string} firstWord Any string word
+ * @param {string} secondWord Any string word
+ * @returns {boolean} Returns true if both words are anagrams, false otherwise
+ */
+const anagramaTester = (firstWord, secondWord) => {
+  const normalize = (word) => word.toLowerCase().replace(/\s+/g, "").split("").sort().join("")
+  return normalize(firstWord) === normalize(secondWord)
+}
+
+function textAnalizer(firstWord, secondWord) {
+  const firstIsIsogram = esIsograma(firstWord)
+  const secondIsIsogram = esIsograma(secondWord)
+
+  if (palindromeTester(firstWord, secondWord)) {
+    console.log("Las palabras son palíndromes")
+  } else {
+    console.log("Las palabras no son palíndromes")
+  }
+
+  if (anagramaTester(firstWord, secondWord)) {
+    console.log("Las palabras son anagramas")
+  } else {
+    console.log("Las palabras no son anagramas")
+  }
+  console.log(`La palabra ${firstWord} ${firstIsIsogram ? "es" : "no es"} un isograma`)
+  console.log(`La palabra ${secondWord} ${secondIsIsogram ? "es" : "no es"} un isograma`)
+}
+
+textAnalizer("Listen", "silent")
