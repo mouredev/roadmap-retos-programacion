@@ -27,8 +27,8 @@
 
 ## Corrección y próximo ejercicio
 
-> #### Lunes 23 de diciembre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/mouredev?event=1313337113567035494)** por país y crea un **[recordatorio](https://discord.gg/mouredev?event=1313337113567035494)**
+> #### Lunes 30 de diciembre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
+> #### Consulta el **[horario](https://discord.gg/6qdjZwXA?event=1318390433465765918)** por país y crea un **[recordatorio](https://discord.gg/6qdjZwXA?event=1318390433465765918)**
 
 ## Roadmap
 
@@ -83,7 +83,8 @@
 |46|[X VS BLUESKY](./Roadmap/46%20-%20X%20VS%20BLUESKY/ejercicio.md)|[📝](./Roadmap/46%20-%20X%20VS%20BLUESKY/python/mouredev.py)|[▶️](https://youtu.be/RzwFGihKpOM)|[👥](./Roadmap/46%20-%20X%20VS%20BLUESKY/)
 |47|[CALENDARIO DE ADVIENTO](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/ejercicio.md)|[📝](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/python/mouredev.py)|[▶️](https://youtu.be/LteI1J5gmZw)|[👥](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/)
 |48|[ÁRBOL DE NAVIDAD](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/ejercicio.md)|[📝](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/python/mouredev.py)|[▶️](https://youtu.be/bIguZe3iXVo)|[👥](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/)
-|49|[EL ALMACÉN DE PAPÁ NOEL](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/ejercicio.md)|[🗓️ 23/12/24](https://discord.gg/mouredev?event=1313337113567035494)||[👥](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/)
+|49|[EL ALMACÉN DE PAPÁ NOEL](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/ejercicio.md)|[📝](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/python/mouredev.py)||[👥](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/)
+|50|[PLANIFICADOR DE OBJETIVOS DE AÑO NUEVO](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/ejercicio.md)|[🗓️ 30/12/24](https://discord.gg/6qdjZwXA?event=1318390433465765918)||[👥](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/)
 
 ## Cursos en YouTube
 
