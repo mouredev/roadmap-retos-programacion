@@ -72,5 +72,27 @@ elif email == "VAROBLANCO@gmail.com":
 else:
     print("Email incorrecto")
 
+#Iteratitas
 
+for i in range(10):
+    print(i)
 
+i = 0
+
+while i<=10:
+    print(i)
+    i+=1
+
+try:
+    print(10/2)
+except:
+    print("Error en codigo")
+finally:
+    print("Ejecutado sin problema")
+
+"Extra"
+
+for i in range(10,56):
+    if i % 2 == 0 and i % 3 != 0 and i != 16:
+        print(i)
+    
