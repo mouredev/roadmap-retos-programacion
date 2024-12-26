@@ -1,90 +1,74 @@
-#============================
+#=======================================================================================================================
 # 49 El almacen de Papá Noel
-#============================
+#=======================================================================================================================
 
+# Importar librerias
 import random
-import sys
+import re
 
-# Funcion que comprueba errores
+# Expresion regular para password
+pattern = r'^(?!.*(.).*\1)[ABC123]{4}$'
 
-def validar_cadena(cadena):
-
-    if len(cadena) != 4:
-        return "Error: La cadena debe tener exactamente 4 caracteres."
-
-    errores = []
-
-    for char in cadena:
-        if char not in "ABC123":
-            errores.append(f"'{char}'")
-
-    if len(set(cadena)) != len(cadena):
-        errores.append("Los caracteres no deben repetirse")
-
-    if errores:
-        return f"Error: {', '.join(errores)}. Solo se permiten A, B, C, 1, 2, y 3, y sin repeticiones."
-
-    return "La cadena es válida."
-
-# Funcion que comprueba la contraseña ingresada
-
-def comprobar_psw(psw_in, psw):
-
-    for x, y in zip(psw_in, psw):
-
-        if x == y:
-            print(f'\n{x}: Correcto')
-        elif x in psw:
-            print(f'\n{x}: Presente')
-        else:
-            print(f'\n{x}: Incorrecto')
-
-# Generar una cadena aleatoria de 4 caracteres
-
+# Generar password aleatorio
 psw = ''.join(random.sample('ABC123', k=4))
 
 # Inicio de juego
-
 print('''
     \n¡Bienvenido Papá Noel, es hora de repartir regalos!
     \nPara abrir al almacén de juguetes digita la clave de ingreso
 (tienes 10 intentos).
-    \nPista: La clave son 4 dígitos alfanuméricos con letras de la A la C
-y números del 1 al 3, en mayúsculas y sin repeticiones.
+    \nPista: La contraseña debe contener 4 caracteres sin repeticiones y solo acepta
+los valores A,B,C,1,2 y 3.
     ''')
 
 # Inicio de bucle
 
 intento = 0
 
-while intento < 10:
+while intento <= 10:
 
+    # Iniciar contador
     intento += 1
+
+    # Si se excedio de 10 intentos terminar el juego
+    if intento > 10:
+        print('''
+            \n¡Oh, no. Papá Noel has olvidado la contraseña!
+    Ya no te quedan más intentos.
+          ''')
+        break
+
+    # Solicitar el ingreso de un password
     print(f'\nIntento n.° {intento}:')
+    psw_in = input('\nIngresa contraseña: ').upper()
 
-    psw_in = input('\nIngresa contraseña: ')
-    resultado = validar_cadena(psw_in)
-
-    if resultado == "La cadena es válida.":
+    # Comprobar si el passwor ingresado es valido
+    if bool(re.match(pattern, psw_in)):
         pass
     else:
-        print(resultado)
+        print('''
+        \nLa contarseña ingresada no es válida. La contraseña debe contener 4
+caracteres sin repeticiones y solo acepta los valores A,B,C,1,2 y 3.
+        ''')
         continue
 
+    # Si el password fue valido comprobar si es el correcto
     if psw_in == psw:
         print('''
         \n La contraseña es correcta.
         \n¡Felicidades, a repartir juguetes!
         ''')
-        sys.exit()
-    else:
+        break
+    else: # Si el password es incorrecto dar las pistas por cada caracter
         print(f'''
         \nLa contraseña es incorrecta. Pero descuida, te doy unas pistas:
         ''')
-        comprobar_psw(psw_in, psw)
-
-print('''
-        \n¡Oh, no. Papá Noel has olvidado la contraseña!
-Ya no te quedan más intentos.
-      ''')
+        for x, y in zip(psw_in, psw):
+            if x == y:
+                print(f'\n{x}: Correcto')
+            elif x in psw:
+                print(f'\n{x}: Presente')
+            else:
+                print(f'\n{x}: Incorrecto')
+        print('\n¡Vuelve a intentarlo, Papá Noel!')
 
