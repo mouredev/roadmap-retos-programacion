@@ -120,6 +120,6 @@ window.addEventListener('load', () => {
     };
   
     // Set the countdown to December 31, 2024 at 00:00:00 UTC
-    countBackFromDate(31, 12, 2025, 0, 0, 0);
+    countBackFromDate(31, 12, 2024, 0, 0, 0);
   });
   
