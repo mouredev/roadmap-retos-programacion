@@ -33,6 +33,8 @@ let styles = `
 
     .wrapper{
         padding: 0 0 20px 0;
+        display: flex;
+        flex-flow: column;
     }
 
     .msgBox{
