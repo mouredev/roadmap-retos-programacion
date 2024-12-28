@@ -90,9 +90,8 @@ function displayWinners() {
 }
 
 /*
-Possible Output: 
 Winners:
-Subscription: ID: 1, Email: test3@test.com
-Discount: ID: 4, Email: test6@test.com
-Book: ID: 5, Email: test1@test.com
+Subscription: ID: 5, Email: applesupport@mac.com
+Discount: ID: 4, Email: chap_gtp@microsoft.com
+Book: ID: 2, Email: psicotrogato@gmail.com
 */
