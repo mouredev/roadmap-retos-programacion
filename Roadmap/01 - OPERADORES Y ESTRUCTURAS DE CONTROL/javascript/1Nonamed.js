@@ -154,9 +154,33 @@ do {
 
 console.log(`------------------ Bucles: For ------------------`);
 for (let j = 0; j < 3; j++) {
-  console.log(`Log #${j} from loop for (Incremental)\n`)
+  console.log(`Log #${j} from loop for (Incremental)\n`);
 }
 
-for (let k = 5; k > 2; k--){
-  console.log(`Log #${k} from loop for (Decremental)`)
+for (let k = 5; k > 2; k--) {
+  console.log(`Log #${k} from loop for (Decremental)`);
 }
+
+console.log(`\n------------------ Extra ------------------`);
+// Crea un programa que imprima por consola todos los números comprendidos entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+
+const arr = [];
+const arrMultiplesOf3 = [];
+
+for (let i = 10; i <= 55; i++) {
+  if (i % 3 === 0) {
+    arrMultiplesOf3.push(i);
+  }
+}
+console.log("Multiples of 3:");
+console.log(arrMultiplesOf3);
+
+for (let i = 10; i <= 55; i++) {
+  if (i % 2 === 0 && i !== 16 && i % 3 !== 0) {
+    arr.push(i);
+  }
+}
+
+
+console.log('\nFinal Array:')
+console.log(arr);
