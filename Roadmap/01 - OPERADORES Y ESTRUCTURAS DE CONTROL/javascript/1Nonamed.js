@@ -52,10 +52,10 @@ console.log(`num1 < num2? => ${num1 < num2}`);
 console.log(`num1 <= num2? => ${num1 <= num2}`);
 
 console.log(`------------------ Aritméticos ------------------`);
+// Adicional a las operaciones +, -, *, **, / y %, JavaScript también tiene las siguientes operaciones:
 let x = 2;
 let y;
 console.log(`x: ${x}    y: ${y}\n`);
-// Adicional a las operaciones +, -, *, **, / y %, JavaScript también tiene las siguientes operaciones:
 
 // Incrementar
 console.log(`++x => x = ${x}; y = ${++x}`);
@@ -65,5 +65,98 @@ console.log(`--x => x = ${x}; y = ${--x}`);
 console.log(`x => -x || x = ${x} => -x = ${-x}`);
 // Unary plus => Intenta convertir el operando en número
 console.log(`+x => x || x = ${-x} => +x = ${+x}`);
-console.log(`+'x' => x || x = '27' => +x = ${+'27'}`);
-// Lógicos ------------------
+console.log(`+'x' => x || x = '27' => +x = ${+"27"}\n`);
+
+console.log(`------------------ Lógicos ------------------`);
+const a = 10;
+const b = 15;
+console.log(`a: ${a}    b: ${b}\n`);
+
+// Y (and -- &&)
+console.log(`a < b && b >= 15 => ${a < b && b >= 15}`);
+// O (Or -- ||)
+console.log(`a < b || b > 15 => ${a < b || b > 15}`);
+// No (Not -- !)
+console.log(`!(a < b && b >= 15) => ${!(a < b && b >= 15)}`);
+console.log(`!!(a < b && b >= 15) => ${!!(a < b && b >= 15)}`); // Negación doble
+// Nullish coalescing operator (??) => Devuelve el valor de la derecha sí el de la izquierda es null o undefined
+console.log(`null ?? a => ${null && a}`);
+console.log(`10 ?? a => ${10 && a}`);
+console.log(`10 ?? undefined => ${10 && undefined}`);
+
+console.log(`------------------ Strings ------------------`);
+let msj = "Hello,";
+msj += " World!";
+
+console.log(msj);
+
+console.log(`\n------------------ Ternary ------------------`);
+let age = 28;
+console.log(`age: ${age}\n`);
+
+console.log(`${age > 20 ? "Allowed to enter" : "Not allowed to enter"}`);
+
+// ESTRUCTURAS DE CONTROL
+
+console.log(`\n------------------ Condicionales: If Else ------------------`);
+let grade = 3;
+let color = "red";
+console.log(`grade: ${grade}   color: ${color}\n`);
+
+if (grade >= 3) console.log("Aprobaste");
+
+if (color === "yellow") {
+  console.log("El color es el mismo");
+} else {
+  console.log("El color no es el mismo");
+}
+
+console.log(`\n------------------ Condicionales: Switch ------------------`);
+let grade2 = 2;
+console.log(`grade: ${grade2}\n`);
+
+switch (grade2) {
+  case 5:
+    finalGrade = "Excelente";
+    break;
+  case 4:
+    finalGrade = "Sobresaliente";
+    break;
+  case 3:
+    finalGrade = "Suficiente";
+    break;
+  case 2:
+  case 1:
+  case 0:
+    finalGrade = "Insuficiente";
+    break;
+
+  default:
+    finalGrade = "Nota erronea";
+    break;
+}
+console.log(`Mi nota final es ${finalGrade}\n`);
+
+console.log(`------------------ Bucles: While ------------------`);
+let i = 0;
+
+while (i <= 3) {
+  console.log(`While => i: ${i}`);
+  i = i + 1;
+}
+
+console.log("\ndo While from here:");
+// do while se ejecuta al menos UNA vez
+do {
+  console.log(`do While => i: ${i}`);
+  i = i + 1;
+} while (i < 8);
+
+console.log(`------------------ Bucles: For ------------------`);
+for (let j = 0; j < 3; j++) {
+  console.log(`Log #${j} from loop for (Incremental)\n`)
+}
+
+for (let k = 5; k > 2; k--){
+  console.log(`Log #${k} from loop for (Decremental)`)
+}
