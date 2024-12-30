@@ -1,0 +1,56 @@
+#Operadores aritmeticos
+
+suma = 10 + 3 
+resta = 10 - 3
+multiplicacion = 4 * 3
+division = 4 / 2 
+potenciacion = 2 ** 3
+division_entera = 9 // 2
+modulo = 5 % 2
+
+#Operadores de comparacion
+
+igual_que = 5==5
+mayor_que = 5 > 3
+mayor_igual = 5 >= 3
+menor_que = 5 < 3
+menor_igual = 5 <= 3
+distinto_que = 5 != 3
+
+#Operadores logicos
+x = 10
+y = 3
+
+AND = x > 5 and y > 2
+OR = x > 7 or y > 4
+NOT = x > 5 not y < 4
+
+#Operadores de Identidad
+es = x is y
+no_es = x is not y
+
+#Operadores de Pertenencia
+frutas = ["platanos", "manzanas", "mango"]
+en = mango in frutas
+no_en = piña not in frutas
+
+#Operadores bit a bit
+
+ambos_uno = x & y
+uno_uno  = x | y
+ambos_cero_uno = x ^ y
+invertir = ~x
+from_left = x << y
+from_right = x >> y
+
+#Ejemplos
+if x > y:
+  print("x es mayor que y" )
+
+print (suma)
+
+print (x and y)
+
+print (x is not y)
+
+print (~x)
