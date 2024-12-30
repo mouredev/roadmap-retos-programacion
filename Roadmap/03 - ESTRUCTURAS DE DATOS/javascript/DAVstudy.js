@@ -14,271 +14,323 @@
  * - También se debe proponer una operación de finalización del programa.
  */
 
+const { log } = require("util");
+
 // Arrays
 
 // Crear un array
-let elements =  ['aire', 'fuego', 'tierra', 'agua']
-console.log(elements)
+let elements = ["aire", "fuego", "tierra", "agua"];
+console.log(elements);
 
 // longitud
-console.log(elements.length)
+console.log(elements.length);
 
 // pop sacar ultimo elemento
-let water = elements.pop()
-console.log(water)
-console.log(elements)
+let water = elements.pop();
+console.log(water);
+console.log(elements);
 
 // push agregar un elemento al final
-elements.push(water)
-console.log(elements)
+elements.push(water);
+console.log(elements);
 
 // pop sacar primer elemento
-let air = elements.shift()
-console.log(air)
-console.log(elements)
+let air = elements.shift();
+console.log(air);
+console.log(elements);
 
 // push agregar un elemento al inicio
-elements.unshift(air)
-console.log(elements)
+elements.unshift(air);
+console.log(elements);
 
 // Recorrer arreglo
-elements.forEach(element => {
-    console.log(element)
-})
+elements.forEach((element) => {
+  console.log(element);
+});
 
 for (const element of elements) {
-    console.log(element)
+  console.log(element);
 }
 
 // clear
-elements = []
-elements.length = 0 // Alt
-console.log(elements)
-
+elements = [];
+elements.length = 0; // Alt
+console.log(elements);
 
 // slice
-elements.push('aire', 'fuego', 'tierra', 'agua')
-console.log(elements)
+elements.push("aire", "fuego", "tierra", "agua");
+console.log(elements);
 
-let myNewArray = elements.slice(1, 3) // Permite extraer elemento indicando el indice incial y el final pero el ultimo indice no cuenta si no el anterior
-console.log(myNewArray)
+let myNewArray = elements.slice(1, 3); // Permite extraer elemento indicando el indice incial y el final pero el ultimo indice no cuenta si no el anterior
+console.log(myNewArray);
 
 // splice
 
-elements.splice(1, 2, "tierra") // Elimina elementos en el rango y agrega un nuevo elemento en la posicion intermedia 
-console.log(elements)
+elements.splice(1, 2, "tierra"); // Elimina elementos en el rango y agrega un nuevo elemento en la posicion intermedia
+console.log(elements);
 
 // Copiar array
 
-let otherArray = [...elements]
-console.log(otherArray)
-
+let otherArray = [...elements];
+console.log(otherArray);
 
 // Set
 
 // Declaracion
-let mySet = new Set()
-console.log(mySet)
+let mySet = new Set();
+console.log(mySet);
 
 // Inicialización
-mySet = new Set(["Elemento 1","Elemento 2","Elemento 3", "Elemento 4", "Elemento 5"])
-console.log(mySet)
+mySet = new Set([
+  "Elemento 1",
+  "Elemento 2",
+  "Elemento 3",
+  "Elemento 4",
+  "Elemento 5",
+]);
+console.log(mySet);
 
 // Métodos comunes
 
 // add & delete
 
-mySet.add("Elemento 6") // En Js el add añade el elemento al final, manteniendo el orden
-console.log(mySet)
+mySet.add("Elemento 6"); // En Js el add añade el elemento al final, manteniendo el orden
+console.log(mySet);
 
-console.log(mySet.delete("Elemento 6")) // Elimina el elemento pero no utiliza el indice, debe ser con el valor del elemento que se quiere borrar
+console.log(mySet.delete("Elemento 6")); // Elimina el elemento pero no utiliza el indice, debe ser con el valor del elemento que se quiere borrar
 // Ademas retornara un true si existe el elemento y lo elimino, si no devuelve false.
-console.log(mySet)
+console.log(mySet);
 
 // NOTA: No hay acceso al indice a diferencia de los Array
 
-
 // has
-console.log(mySet.has("Elemento 6")) // Verifica si existe el elemento
-console.log(mySet.has("Elemento 1"))
+console.log(mySet.has("Elemento 6")); // Verifica si existe el elemento
+console.log(mySet.has("Elemento 1"));
 
 // Size
-console.log(mySet.size) // Tamaño del set
+console.log(mySet.size); // Tamaño del set
 
 // Convertir Set en Array
-let myArray = Array.from(mySet)
-console.log(myArray)
+let myArray = Array.from(mySet);
+console.log(myArray);
 
 // Convertir Array en Set
-mySet = new Set(myArray)
-console.log(mySet)
-
+mySet = new Set(myArray);
+console.log(mySet);
 
 // Map
 
 // Map
 
 // Declaración
-let myMap = new Map()
-console.log(myMap)
+let myMap = new Map();
+console.log(myMap);
 
 // Inicialización
 myMap = new Map([
-    ["key 1", "value 1"],
-    ["key 2", "value 2"],
-    ["key 3", "value 3"]
-])
-console.log(myMap)
+  ["key 1", "value 1"],
+  ["key 2", "value 2"],
+  ["key 3", "value 3"],
+]);
+console.log(myMap);
 
 // Métodos y propiedades
 
 // set
-myMap.set("key 4", "value 4")
-console.log(myMap)
+myMap.set("key 4", "value 4");
+console.log(myMap);
 
-myMap.set("key 2", "new value 2")
-console.log(myMap)
-
+myMap.set("key 2", "new value 2");
+console.log(myMap);
 
 // get
-console.log(myMap.get("key 1"))
-console.log(myMap.get("key 5"))
+console.log(myMap.get("key 1"));
+console.log(myMap.get("key 5"));
 
 // has
-console.log(myMap.has("key 1"))
-console.log(myMap.has("key 5"))
+console.log(myMap.has("key 1"));
+console.log(myMap.has("key 5"));
 
 // delete
-myMap.delete("key 4")
-console.log(myMap)
+myMap.delete("key 4");
+console.log(myMap);
 
 // keys
-console.log(myMap.keys())
+console.log(myMap.keys());
 
 // values
-console.log(myMap.values())
+console.log(myMap.values());
 
 // entries
-console.log(myMap.entries())
+console.log(myMap.entries());
 
 // size
-console.log(myMap.size)
+console.log(myMap.size);
 
 // clear
-myMap.clear()
-console.log(myMap)
-
-
+myMap.clear();
+console.log(myMap);
 
 // Objects
 
 // Sintaxis
 let person = {
-    // Propiedades clave : valor
-    name : "Diego",
-    age : 27,
-    alias :  "DevsDav"
-}
+  // Propiedades clave : valor
+  name: "Diego",
+  age: 27,
+  alias: "DevsDav",
+};
 
 // Acceso a Propiedades
 
 // Notacion por punto
-console.log(person.name)
+console.log(person.name);
 
 // Notación por corchetes
-console.log(person["name"])
-
+console.log(person["name"]);
 
 // Modificar propiedades
-person.name = "Diego Arenas"
-console.log(person.name)
+person.name = "Diego Arenas";
+console.log(person.name);
 
 // Eliminación de propiedades
-delete person.age
-console.log(person)
+delete person.age;
+console.log(person);
 
 // Nueva propiedad
-person["age"] = 27
-person.email = "devsdav@devsdav.dev"
-console.log(person)
+person["age"] = 27;
+person.email = "devsdav@devsdav.dev";
+console.log(person);
 
 // Métodos (funciones) y Anidación
 
 let person2 = {
-    // Propiedades clave : valor
-    name : "Diego",
-    age : 27,
-    alias :  "DevsDav",
-    // Métodos
-    walk : function () {
-        console.log("La persona camina.")
+  // Propiedades clave : valor
+  name: "Diego",
+  age: 27,
+  alias: "DevsDav",
+  // Métodos
+  walk: function () {
+    console.log("La persona camina.");
+  },
+  // Anidación de objeto
+  job: {
+    name: "Programador",
+    exp: 4,
+    work: function () {
+      console.log("La persona trabaja.");
     },
-    // Anidación de objeto
-    job : {
-        name : "Programador",
-        exp : 4,
-        work : function () {
-            console.log("La persona trabaja.")
-        }
-    }
-}
+  },
+};
 
-person2.walk()
-person2.job.work()
+person2.walk();
+person2.job.work();
 
 // Igualdad de objetcs
 
 let person4 = {
-    // Propiedades clave : valor
-    name : "Diego Arenas",
-    age : 27,
-    alias :  "DevsDav"
-}
+  // Propiedades clave : valor
+  name: "Diego Arenas",
+  age: 27,
+  alias: "DevsDav",
+};
 
 // No se puede igualar asi
-console.log(person == person4)
-console.log(person === person4)
+console.log(person == person4);
+console.log(person === person4);
 
 // Pero si por propiedades
-console.log(person.name == person4.name)
+console.log(person.name == person4.name);
 
 // Iteración
 for (let key in person4) {
-    console.log(key + ": " + person4[key])
+  console.log(key + ": " + person4[key]);
 }
 
 // Interpolación de variables
 
 let person3 = {
-    // Propiedades clave : valor
-    name : "Diego",
-    age : 27,
-    alias :  "DevsDav",
-    // Métodos
-    walk : function () {
-        console.log("La persona camina.")
+  // Propiedades clave : valor
+  name: "Diego",
+  age: 27,
+  alias: "DevsDav",
+  // Métodos
+  walk: function () {
+    console.log("La persona camina.");
+  },
+  // Anidación de objeto
+  job: {
+    name: "Programador",
+    exp: 4,
+    work: function () {
+      // interpolacion con this
+      console.log(`La persona tiene ${this.exp} años de experiencia`);
     },
-    // Anidación de objeto
-    job : {
-        name : "Programador",
-        exp : 4,
-        work : function () {
-            // interpolacion con this
-            console.log(`La persona tiene ${this.exp} años de experiencia`)
-        }
-    }
-}
+  },
+};
 
-person3.job.work()
-
+person3.job.work();
 
 // Funciones como objects
 // NOTA: Esto deberia ser una clase
 function Person(name, age) {
-    this.name = name
-    this.age = age
+  this.name = name;
+  this.age = age;
 }
 
-let person5 = new Person("Diego", 27)
-console.log(person5)
+let person5 = new Person("Diego", 27);
+console.log(person5);
+
+console.clear();
+
+/*
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una agenda de contactos por terminal.
+ * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+ * - Cada contacto debe tener un nombre y un número de teléfono.
+ * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+ *   los datos necesarios para llevarla a cabo.
+ * - El programa no puede dejar introducir números de teléfono no númericos y con más de 11 dígitos.
+ *   (o el número de dígitos que quieras)
+ * - También se debe proponer una operación de finalización del programa.
+ */
+
+const Agenda = {
+  contacts: {},
+  find: function (name) {
+    return Object.hasOwn(this.contacts, name) ? `${name}: ${this.contacts[name]}` : 'No existe'
+  },
+  insert: function (name, phone) {
+    let result = false
+    phone = Number(phone)
+    if (!Object.hasOwn(this.contacts, name)) {
+      this.contacts[name] = phone
+      result =true
+    }
+    return result ? 'Registro exitoso' : 'Ya existe el contacto'
+  },
+  update: function (name, phone) {
+    phone = Number(phone)
+    return Object.hasOwn(this.contacts, name) ? this.contacts[name] = phone : 'No existe'
+  },
+  delete: function (name){ delete this.contacts[name]},
+  show : function (){console.log(this.contacts)},
+  checkNumber : function (number){
+    return console.log(Number.isFinite(number))
+  }
+};
+
+
+
+console.log(Agenda.contacts)
+console.log(Agenda.find("diego"))
+console.log(Agenda.insert("diego", "987654321"))
+console.log(Agenda.insert("oreo", "123456789"))
+Agenda.update("diego", "123456789")
+Agenda.insert("allan", "2183719283719823")
+console.log(Agenda.contacts)
+
+Agenda.show()
+
+
 
