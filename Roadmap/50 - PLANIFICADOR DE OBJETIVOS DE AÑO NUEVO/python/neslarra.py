@@ -88,7 +88,7 @@ class TargetManager:
                   7: "Julio", 8: "Agosto", 9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"}
         print("\nObjetivos para este año ----------------")
         for target in self.target_list:
-            print(f"\tObjetivo: {target.get_target()}: {target.get_amount()} {target.get_target_unit()} por mes durante {target.get_period()} meses")
+            print(f"\tObjetivo: {target.get_target()}: {target.get_amount()} {target.get_target_unit()} durante {target.get_period()} meses")
         for month in range(1, 13):
             print(f"\nObjetivos {months[month]}\n{'#' * 30}")
             for target in self.target_list:
@@ -107,13 +107,12 @@ class TargetManager:
 
 objetivo1 = Target("Leer", "libros", 7, 12)
 objetivo2 = Target("Ver", "videos", 12, 12)
-objetivo3 = Target("Escribir", "Artículos", 17, 8)
+objetivo3 = Target("Escribir", "Artículos", 17, 9)
 
 gestor = TargetManager(Target.target_list)
 
 gestor.show_monthy_targets()
 
-# Agrego un objcetivo nuevo
-objetivo4 = Target("Practicar", "Tenis", 24, 6)
+objetivo4 = Target("Tomar", "Clases de tenis", 24, 6)
 
 gestor.show_monthy_targets()
