@@ -95,7 +95,6 @@ void main() {
     }
     if(i.isEven){
       print("\${i}");
-    }
-    
+    }   
   }
 }
