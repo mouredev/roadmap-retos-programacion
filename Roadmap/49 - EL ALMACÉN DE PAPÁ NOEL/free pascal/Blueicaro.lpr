@@ -1,4 +1,4 @@
-program Blueicaro;
+program blueicaro;
 {
 #49 EL ALMACÉN DE PAPÁ NOEL
 
