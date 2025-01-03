@@ -2,7 +2,7 @@
  * Operadores
 """
 
-# Aritmeticos 
+# Aritméticos 
 
 print(f"Addition: 18 + 8 = {18 + 8}")
 print(f"Subtraction: 18 - 8 = {18 - 8}")
@@ -12,38 +12,38 @@ print(f"Modulus: 18 % 8 = {18 % 8}")
 print(f"Floor division: 18 // 8 = {18 // 8}")
 print(f"Exponentiation: 18 ** 8 = {18 ** 8}")
 
-# Logicos (and or not)
+# Lógicos
 
 print(True == True and False == False)
 print(False == True or False == False)
 print(not True)
 
-# Comparacion
+# Comparación
 
-print(f"Greater than: 24 > 24 = {24 > 24}")
-print(f"Less than: 24 < 24 = {24 < 24}")
-print(f"Greater than or equal to: 24 >= 24 = {24 >= 24}")
-print(f"Less than or equal to: 24 <= 24 = {24 <= 24}")
-print(f"Equal: 24 == 24 = {24 == 24}")
-print(f"Not equal: 24 != 24 = {24 != 24}")
+print(f"Greater than: 24 > 24: {24 > 24}")
+print(f"Less than: 24 < 24: {24 < 24}")
+print(f"Greater than or equal to: 24 >= 24: {24 >= 24}")
+print(f"Less than or equal to: 24 <= 24: {24 <= 24}")
+print(f"Equal: 24 == 24: {24 == 24}")
+print(f"Not equal: 24 != 24: {24 != 24}")
 
-# Asignacion
+# Asignación
 
-number = 24
+number = 12
 
 number += 2
 print(number)
-number -= 3
+number -= 2
 print(number)
-number *= 1
+number *= 2
 print(number)
-number /= 5
+number /= 2
 print(number)
-number %= 5
+number %= 2
 print(number)
-number //= 1
+number //= 2
 print(number)
-number **= 4
+number **= 2
 print(number)
 
 # Identidad
@@ -68,10 +68,10 @@ print(f"OR: 8 | 10 = {8 | 10}")   # 0101 <
 print(f"XOR: 8 ^ 10 = {8 ^ 10}")  # 0100 <
 print(f"NOT: ~8 = {~8}")
 print(f"Right shift: 8 >> 10: {8 >> 2}")  # 0010
-print(f"Left shift: 8 << 10: {8 << 2}")  # 100000
+print(f"Left shift: 8 << 10: {8 << 2}")   # 100000
 
 """
- * Estructuras de control 
+ * Estructuras de control
 """
 
 # Condicionales
@@ -101,9 +101,9 @@ while age <= 8:
 try:
     print(18 / 0)
 except:
-    print("Division by zero?")  # ZeroDivisionError
+    print("Cannot divide by zero")  # ZeroDivisionError
 finally:
-    print("Bye!")
+    print("Try again")
 
 """
  * Extra
