@@ -14,3 +14,21 @@ Crea dos programas que reciban dos parámetros (cada uno) definidos como variabl
 Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
 Comprueba también que se ha conservado el valor original en las primeras.
 */
+
+/* Asignación por valor */
+let usuario = "codebydoble"
+const distancia = 10000
+let userCopy = "@" + usuario
+
+console.log(usuario)
+console.log(distancia)
+console.log(userCopy)
+
+/* Asignación de variables por referencia */
+
+const librosTech = ["De 0 a Experto", "Github ++", "100 Horas de código", "Javascript Eloquent"]
+const personalBook = librosTech
+
+librosTech.push("Mouredev la guía definitiva") // se actualiza en ambos array
+console.log(librosTech)
+console.log(personalBook)
