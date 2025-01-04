@@ -32,3 +32,38 @@ const personalBook = librosTech
 librosTech.push("Mouredev la guía definitiva") // se actualiza en ambos array
 console.log(librosTech)
 console.log(personalBook)
+
+/* Funciones con valores primitivos */
+
+/**
+ * Simula un juego
+ * @param {number} participantes Númeto total de participantes en el juego
+ * @returns Retorna la cantidad de participantes
+ */
+const game = (participantes) => {
+  participantes = 100
+  return `El juego cuenta con: ${participantes} atletas`
+}
+
+let atletas = 200
+console.log(game(atletas)) //Le juego cuenta con 100 atletas
+console.log(atletas) //200
+
+/* Funciones con valores no primitivos */
+
+/**
+ * Lista de series de TV
+ * @param {Array} arr Array lista de series de TV
+ * @returns Retorna la lista de series televisivas
+ */
+const seriesTV = (arr) => {
+  const arrCopy = [...arr]
+  const results = []
+  for (let index = 0; index < arrCopy.length; index++) {
+    results.push(arrCopy.shift())
+  }
+  return results
+}
+const misSeries = ["X Files", "24 Hours", "La que se avecina", "Bleach", "Big Bang Theory"]
+seriesTV(misSeries)
+console.log(misSeries) // ["X Files", "24 Hours", "La que se avecina", "Bleach", "Big Bang Theory"]
