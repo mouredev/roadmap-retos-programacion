@@ -1,5 +1,9 @@
-//#38 - MOUREDEV PRO 
-/*
+#38 { Retos para Programadores } MOUREDEV PRO 
+
+# Bibliography reference:
+# I use GPT as a reference and sometimes to correct or generate proper comments.
+
+"""
  * EJERCICIO:
  * He presentado mi proyecto más importante del año: mouredev pro.
  * Un campus para la comunidad, que lanzaré en octubre, donde estudiar
@@ -23,9 +27,9 @@
  * 2. Muestra los emails ganadores y su id.
  * 3. Ten en cuenta que la primera fila (con el nombre de las columnas)
  *    no debe tenerse en cuenta.
- */
+ """
 
-/*  Example of csv:
+"""  Example of csv:
 id,email,status
 1,softbaby@hotmail.com,active
 2,psicotrogato@gmail.com,active
@@ -37,61 +41,64 @@ id,email,status
 8,duendeintemporal@hotmail.com,active
 9,freelancer@developer.dev,inactivo
 10,crazycat@miau.miau,active
-*/
+"""
 
-/* In a console run the next comands:
+""" In a console run the next comands:
 mkdir mouredev-pro
 cd mouredev-pro
 npm init -y
 npm install csv-parser
-*/
+"""
 
-let log = console.log;
+log = print
 
-const fs = require('fs');
-const csv = require('csv-parser');
+import csv
+import random
 
-const winners = {
-    subscription: null,
-    discount: null,
-    book: null
-};
-
-const activeEmails = [];
-
-// Read the CSV file
-fs.createReadStream('subscribers.csv')
-    .pipe(csv())
-    .on('data', (row) => {
-        if (row.status === 'active') {
-            activeEmails.push({ id: row.id, email: row.email });
-        }
-    })
-    .on('end', () => {
-        selectWinners();
-        displayWinners();
-    });
-
-function selectWinners() {
-    // Shuffle the array of active emails
-    const shuffled = activeEmails.sort(() => 0.5 - Math.random());
-
-    // Select unique winners
-    winners.subscription = shuffled[0];
-    winners.discount = shuffled[1];
-    winners.book = shuffled[2];
+# Define a dictionary to hold the winners
+winners = {
+    'subscription': None,
+    'discount': None,
+    'book': None
 }
 
-function displayWinners() {
-    log('Winners:');
-    log(`Subscription: ID: ${winners.subscription.id}, Email: ${winners.subscription.email}`);
-    log(`Discount: ID: ${winners.discount.id}, Email: ${winners.discount.email}`);
-    log(`Book: ID: ${winners.book.id}, Email: ${winners.book.email}`);
-}
+active_emails = []
 
-/*
+# Read the CSV file
+with open('subscribers.csv', mode='r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        if row['status'] == 'active':
+            active_emails.append({'id': row['id'], 'email': row['email']})
+
+def select_winners():
+    # Shuffle the list of active emails
+    shuffled = random.sample(active_emails, len(active_emails))
+
+    # Select unique winners
+    winners['subscription'] = shuffled[0]
+    winners['discount'] = shuffled[1]
+    winners['book'] = shuffled[2]
+
+def display_winners():
+    log('Winners:')
+    log(f"Subscription: ID: {winners['subscription']['id']}, Email: {winners['subscription']['email']}")
+    log(f"Discount: ID: {winners['discount']['id']}, Email: {winners['discount']['email']}")
+    log(f"Book: ID: {winners['book']['id']}, Email: {winners['book']['email']}")
+
+# Select winners and display them
+select_winners()
+display_winners()
+
+
+"""
+Possible Output: 
+
 Winners:
-Subscription: ID: 5, Email: applesupport@mac.com
-Discount: ID: 4, Email: chap_gtp@microsoft.com
-Book: ID: 2, Email: psicotrogato@gmail.com
-*/
+Subscription: ID: 10, Email: crazycat@miau.miau
+Discount: ID: 7, Email: zeigest@movement.sw
+Book: ID: 5, Email: applesupport@mac.com
+
+"""
+
+
