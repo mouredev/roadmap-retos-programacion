@@ -103,3 +103,16 @@ console.log(`Parámetros iniciales: Primer valor ${paramOne}, Segundo Valor ${pa
 console.log(`Parámetros intercambiados: Primer valor ${switchOne}, Segundo Valor ${switchTwo}`)
 
 // Función con dos parámetros por referencia
+function programTwo(arrOne, arrTwo) {
+  const temp = arrOne
+  arrOne = arrTwo
+  arrTwo = temp
+  return { arrOne, arrTwo }
+}
+
+const laptop = ["Apple", "Dell", "HP", "Lenovo", "Asus"]
+const phone = ["Samsung", "Apple", "Xiaomi", "OnePlus", "Huawei"]
+
+let { arrOne: firstArr, arrTwo: secondArr } = programTwo(laptop, phone)
+console.log(`Parámetros iniciales -> uno: ${laptop}, dos: ${phone}`)
+console.log(`Parámetros Intercambiados -> uno: ${firstArr}, dos: ${secondArr}`)
