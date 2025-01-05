@@ -67,3 +67,39 @@ const seriesTV = (arr) => {
 const misSeries = ["X Files", "24 Hours", "La que se avecina", "Bleach", "Big Bang Theory"]
 seriesTV(misSeries)
 console.log(misSeries) // ["X Files", "24 Hours", "La que se avecina", "Bleach", "Big Bang Theory"]
+
+/* DIFICULTAD EXTRA */
+/**
+ * DIFICULTAD EXTRA (opcional):
+Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
+- Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
+Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
+Comprueba también que se ha conservado el valor original en las primeras.
+*/
+
+// Función con dos parámetros por valor
+/**
+ * Intercambia dos valores
+ * @param {number} paramOne Any number
+ * @param {number} paramTwo Any number
+ * @returns Retorna un array con los valores intercambiados
+ */
+function programOne(paramOne, paramTwo) {
+  let temp = paramOne
+  paramOne = paramTwo
+  paramTwo = temp
+  return [paramOne, paramTwo]
+}
+
+let paramOne = 10
+let paramTwo = 20
+
+let switchOne
+let switchTwo
+;[switchOne, switchTwo] = programOne(paramOne, paramTwo)
+
+console.log(`Parámetros iniciales: Primer valor ${paramOne}, Segundo Valor ${paramTwo}`)
+
+console.log(`Parámetros intercambiados: Primer valor ${switchOne}, Segundo Valor ${switchTwo}`)
+
+// Función con dos parámetros por referencia
