@@ -64,7 +64,7 @@ class Target:
         return cls.target_list.__len__()
 
     def __str__(self):
-        print(f"Objetivo: {self.target}\nPeríodo: {self.period}\nCantidad: {self.amount}\nUnidades: {self.target_unit}")
+        return f"Objetivo: {self.target}\n\tPeríodo: {self.period}\n\tCantidad: {self.amount}\n\tUnidades: {self.target_unit}"
 
     def get_target(self):
         return self.target
@@ -88,7 +88,7 @@ class TargetManager:
                   7: "Julio", 8: "Agosto", 9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"}
         print("\nObjetivos para este año ----------------")
         for target in self.target_list:
-            print(f"\tObjetivo: {target.get_target()}: {target.get_amount()} {target.get_target_unit()} durante {target.get_period()} meses")
+            print(f"{target.__str__()}")
         for month in range(1, 13):
             print(f"\nObjetivos {months[month]}\n{'#' * 30}")
             for target in self.target_list:
