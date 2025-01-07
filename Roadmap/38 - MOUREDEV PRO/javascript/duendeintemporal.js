@@ -27,16 +27,16 @@
 
 /*  Example of csv:
 id,email,status
-1,test3@test.com,active
-2,test4@test.com,active
-3,test5@test.com,inactive
-4,test6@test.com,active
-5,test1@test.com,active
-6,test2@test.com,inactive
-7,test3@test.com,active
-8,test4@test.com,active
-9,test5@test.com,inactivo
-10,test6@test.com,active
+1,softbaby@hotmail.com,active
+2,psicotrogato@gmail.com,active
+3,coders@io.com,inactive
+4,chap_gtp@microsoft.com,active
+5,applesupport@mac.com,active
+6,someone@proton.me,inactive
+7,zeigest@movement.sw,active
+8,duendeintemporal@hotmail.com,active
+9,freelancer@developer.dev,inactivo
+10,crazycat@miau.miau,active
 */
 
 /* In a console run the next comands:
@@ -90,9 +90,8 @@ function displayWinners() {
 }
 
 /*
-Possible Output: 
 Winners:
-Subscription: ID: 1, Email: test3@test.com
-Discount: ID: 4, Email: test6@test.com
-Book: ID: 5, Email: test1@test.com
+Subscription: ID: 5, Email: applesupport@mac.com
+Discount: ID: 4, Email: chap_gtp@microsoft.com
+Book: ID: 2, Email: psicotrogato@gmail.com
 */
