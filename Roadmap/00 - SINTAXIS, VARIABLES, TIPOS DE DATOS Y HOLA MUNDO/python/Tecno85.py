@@ -19,7 +19,9 @@ name = "Ismael Madrid Gamez"
 
 MY_CONSTANT = "Mi constante"
 
-"""Las constante en Python, se colocan en mayusculas, este es un método por convención, de la misma manera es posible cambiarle el valor. A la final realmente no hay constantes en Python."""
+"""Las constante en Python, se colocan en mayusculas, este es un método por
+convención, de la misma manera es posible cambiarle el valor. A la final
+realmente no hay constantes en Python."""
 
 #  DATOS PRIMITIVOS
 
