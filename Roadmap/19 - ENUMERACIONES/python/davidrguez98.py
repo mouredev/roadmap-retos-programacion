@@ -69,10 +69,10 @@ class order():
 
     def deliver(self):
         if self.status == order_status.Shipped:
-            self.status == order_status.Delivered
-            print("El pedido ya se ha entregado.")
+            self.status = order_status.Delivered
+            print("El pedido ya se ha enviado.")
         else:
-            print("El pedido ya ha sido enviado o cancelado.")
+            print("El pedido necesita ser enviado antes de entregarse.")
 
     def cancel(self):
         if self.status == order_status.Pending:
