@@ -20,3 +20,79 @@
  * - Implementa una función para mostrar un texto descriptivo según el estado actual.
  * - Crea diferentes pedidos y muestra cómo se interactúa con ellos. 
  */ """
+
+from enum import Enum
+
+#EJERCICIO
+
+class Weekday(Enum):
+    MONDAY = 1
+    TUESDAY = 2
+    WEDNESDAY = 3
+    THURSDAY = 4
+    FRIDAY = 5
+    SATURDAY = 6
+    SUNDAY = 7
+
+def get_day(number: int):
+    print(Weekday(number))
+
+get_day(1)
+get_day(2)
+get_day(3)
+get_day(4)
+get_day(5)
+get_day(6)
+get_day(7)
+
+#DIFICULTAD EXTRA
+
+class order_status(Enum):
+    Pending = 1
+    Shipped = 2
+    Delivered = 3
+    Cancelled = 4
+
+class order():
+
+    status = order_status.Pending
+
+    def __init__(self, id):
+        self.id = id
+
+    def ship(self):
+        if self.status == order_status.Pending:
+            self.status = order_status.Shipped
+            print("El pedido ya ha sido enviado.")
+        else:
+            print("El pedido ya ha sido enviado o cancelado.")
+
+    def deliver(self):
+        if self.status == order_status.Shipped:
+            self.status == order_status.Delivered
+            print("El pedido ya se ha entregado.")
+        else:
+            print("El pedido ya ha sido enviado o cancelado.")
+
+    def cancel(self):
+        if self.status == order_status.Pending:
+            self.status = order_status.Cancelled
+            print("El pedido se ha cancelado.")
+        elif self.status == order_status.Shipped:
+            print("El pedido no puede ser cancelado porque ya se ha enviado.")
+        elif self.status == order_status.Delivered:
+            print("El pedido no puede ser cancelado porque ya se ha entregado.")
+        else:
+            print("El pedido ya ha sido cancelado previamente.")
+
+    def display_status(self):
+        print(f"El estado del pedido {self.id} es {self.status.name}")
+
+Order1 = order(1)
+Order1.display_status()
+Order1.deliver()
+Order1.display_status()
+Order1.ship()
+Order1.display_status()
+Order1.deliver()
+Order1.display_status()
