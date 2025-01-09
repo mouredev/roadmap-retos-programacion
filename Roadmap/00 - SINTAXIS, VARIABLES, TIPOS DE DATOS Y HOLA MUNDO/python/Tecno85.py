@@ -20,8 +20,8 @@ name = "Ismael Madrid Gamez"
 MY_CONSTANT = "Mi constante"
 
 """Las constante en Python, se colocan en mayusculas, este es un método por
-   convención, de la misma manera es posible cambiarle el valor. A la final
-   realmente no hay constantes en Python."""
+convención, de la misma manera es posible cambiarle el valor. A la final
+realmente no hay constantes en Python."""
 
 #  DATOS PRIMITIVOS
 
@@ -35,7 +35,7 @@ my_bool = True
 # Este es un dato primitivo boleano
 
 my_str = "Aprendiendo Python"
-my_other_string = 'Aprendiendo Python'
+my_other_string = 'Aprendiendo Python con MoureDev'
 # Este es un dato primitivo string o cadena de texto
 
 # Imprimir mensaje por consola
