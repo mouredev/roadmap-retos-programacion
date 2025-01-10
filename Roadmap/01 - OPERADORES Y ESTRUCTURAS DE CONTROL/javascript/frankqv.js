@@ -139,7 +139,31 @@ if (numero === 1) {
     console.log("🤔 Parece que tu destino es incierto. El universo espera que tomes una decisión pronto.");
 }
 
-// 2. Iterativas (for, while, do-while)
+
+// 2. Estructura de control condicional (switch)
+console.log("\nEestructura de control condicional Switch - Tu día de la semana:");
+let dia = Math.floor(Math.random() * 7) + 1; // Asigna un número aleatorio entre 1 y 7 para simular los días de la semana.
+switch(dia) {
+    case 1: console.log("☀️ Hoy es Lunes. El inicio de una nueva semana llena de oportunidades.");
+        break;
+    case 2: console.log("🌱 Hoy es Martes. El día perfecto para sembrar las semillas de tus sueños.");
+        break;
+    case 3: console.log("🌞 Hoy es Miércoles. La mitad de la semana, sigue avanzando.");
+        break;
+    case 4: console.log("🌟 Hoy es Jueves. El día ideal para planear la última parte de la semana.");
+        break;
+    case 5: console.log(`🎉 Hoy es Viernes. El cuerpo lo sabe, no lo sabe hay que decirle que el cuerpo no se manda solo 💅🏻 Jajaja`);
+        break;
+    case 6: console.log("🌙 Hoy es Sábado. El día perfecto para descansar y recargar energías.");
+        break;
+    case 7: console.log("🌌 Hoy es Domingo. Un día para reflexionar y prepararse para la semana que viene.");
+        break;
+    default:
+        console.log("❗ Error: Día inválido.");
+}
+
+
+// 3. Iterativas (for, while, do-while)
 console.log("\nEstructuras Iterativas:");
 // Bucle FOR
 for (let i = 0; i < 5; i++) {
@@ -160,7 +184,7 @@ do {
     num++;
 } while (num < 2);
 
-// 3. Manejo de excepciones
+// 4. Manejo de excepciones
 console.log("\nManejo de Excepciones:");
 console.log("\nExcepciones:");
 try {
