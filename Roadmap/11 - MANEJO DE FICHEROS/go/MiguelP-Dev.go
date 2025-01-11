@@ -80,7 +80,7 @@ func main() {
 		fmt.Println("1. Añadir un Producto")
 		fmt.Println("2. Consultar un producto")
 		fmt.Println("3. Consultar lista de productos")
-		fmt.Println("4. Consultar precio unitario de productos")
+		fmt.Println("4. Consultar venta total por producto")
 		fmt.Println("5. Consultar venta total")
 		fmt.Println("6. Actualizar un producto")
 		fmt.Println("7. Eliminar un producto")
@@ -112,7 +112,9 @@ func main() {
 				fmt.Println("Error listOfProducts(): ", err)
 			}
 		case 4:
-			err := pro.totalSaleByProduct()
+			fmt.Println("Ingresa el nombre del producto: ")
+			fmt.Scan(&productName)
+			err := pro.totalSaleByProduct(productName)
 			if err != nil {
 				fmt.Println("Error totalSaleByProduct(): ", err)
 			}
@@ -133,7 +135,7 @@ func main() {
 				fmt.Println("Error updateProduct(): ", err)
 			}
 		case 7:
-			fmt.Println("Ingrese el nombre del producto a eliminar: ")
+			fmt.Println("Ingresa el nombre del producto a eliminar: ")
 			fmt.Scan(&productName)
 			pro.deleteProduct(productName)
 		case 8:
@@ -304,9 +306,12 @@ func (p *products) totalSaleAmount() error {
 		return err
 	}
 	amounts := []string{}
+	quantity := 0
 	for _, product := range products {
 		split := strings.Split(product, ", ")
 		amounts = append(amounts, split[2])
+		number, _ := strconv.Atoi(split[1])
+		quantity += number
 	}
 
 	var total float64
@@ -315,36 +320,39 @@ func (p *products) totalSaleAmount() error {
 		if err != nil {
 			return err
 		}
-		total += conversion
+		total += conversion * float64(quantity)
 	}
 	fmt.Printf("Total vendido: %v\n", total)
 	return nil
 }
 
-func (p *products) totalSaleByProduct() error {
+func (p *products) totalSaleByProduct(productName string) error {
 	products, err := search(productsFile)
 	if err != nil {
 		return err
 	}
 
-	for i := 0; i <= len(products)-1; i++ {
-		splittedProduct := strings.Split(products[i], ", ")
+	var total float64
+	for _, product := range products {
+		splittedProduct := strings.Split(product, ", ")
 
-		price, err := strconv.ParseFloat(splittedProduct[2], 64)
-		if err != nil {
-			return err
+		if productName == splittedProduct[0] {
+
+			quantity, err := strconv.Atoi(splittedProduct[1])
+			if err != nil {
+				return err
+			}
+
+			price, err := strconv.ParseFloat(splittedProduct[2], 64)
+			if err != nil {
+				return err
+			}
+
+			total = price * float64(quantity)
 		}
-
-		quantity, err := strconv.Atoi(splittedProduct[1])
-		if err != nil {
-			return err
-		}
-
-		unitaryPrice := price / float64(quantity)
-
-		fmt.Printf("Producto: %s, Cantidad total: %v, Precio total: %v, Precio por unidad: %v\n", splittedProduct[0], splittedProduct[2], quantity, unitaryPrice)
 	}
 
+	fmt.Printf("Producto: %s, Venta total: %v\n", productName, total)
 	return nil
 }
 
