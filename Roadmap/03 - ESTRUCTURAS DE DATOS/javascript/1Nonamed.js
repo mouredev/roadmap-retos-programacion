@@ -79,7 +79,8 @@ const rl = readline.createInterface({ input, output });
 
 const contacts = [
   { id: 1, name: "Juan", phone: 1234560987 },
-  { id: 1, name: "Pedro", phone: 1234560987 },
+  { id: 1, name: "Juan", phone: 1222543388 },
+  { id: 2, name: "Pedro", phone: 1255566427 },
 ];
 
 const ops = [
@@ -89,34 +90,126 @@ const ops = [
   { id: 4, name: "Delete" },
 ];
 
+const showAgenda = (arr) => {
+  console.log(`
+    *****************************************************
+    *                    CONTACT LIST                   *
+    *****************************************************`);
+  arr.map((contact) =>
+    console.log(`    * Name: ${contact.name}
+    *   Phone: +57 ${contact.phone}
+    -----------------------------------------------------`)
+  );
+};
+
+const isExit = async (op) => {
+  const answer = await rl.question(`
+    *****************************************************
+    *                                                   *
+    * Please select one of the following options:       *
+    *                                                   *
+    * 1: Go back and try again                          *
+    * 2: Go to the Main Menu                            *
+    * 3: Show contact list and exit                     *
+    * 0: Exit                                           *
+    *                                                   *
+    *****************************************************
+    * `);
+
+  if (+answer === 0) {
+    rl.close();
+  } else if (+answer === 1) {
+    op();
+  } else if (+answer === 2) {
+    agenda();
+  } else {
+    showAgenda(contacts);
+    rl.close();
+  }
+};
+
 const searchContact = async () => {
   console.log(`
     *****************************************************
     *                  SEARCH CONTACT                   *
-    *****************************************************
-    `);
-  const contactInput = await rl.question("Contact name? ");
+    *****************************************************`);
+  const contactInput =
+    await rl.question(`    * Contact name?                                     *
+    * `);
 
-  const contact = contacts.find((contact) => {
-    return contact.name === contactInput;
+  const contactsFound = contacts.filter((contact) => {
+    return contact.name.toLowerCase() === contactInput.toLowerCase();
   });
 
-  if (!contact) {
-    console.log("Contact not found, please try again");
-    searchContact();
+  if (contactsFound.length === 0) {
+    console.log(`    *                                                     *
+    * Contact not found.                                *`);
+    isExit(searchContact);
   } else {
-    console.log(contact);
+    showAgenda(contactsFound);
+    isExit(searchContact);
   }
-
-  agenda();
 };
 
-const addContact = () => {
-  console.log("Add");
+const addContact = async () => {
+  console.log(`
+    *****************************************************
+    *                     ADD CONTACT                   *
+    *****************************************************`);
+  const contactInputName =
+    await rl.question(`    * Contact name?                                     *
+    * `);
+  const contactInputPhone =
+    await rl.question(`    *                                                   *
+    * Phone number?                                     *
+    * `);
+
+  const nameHasNumbers = /\d/.test(contactInputName);
+  const phoneHasLetters = /[a-zA-Z]/g.test(contactInputPhone);
+
+  if (contactInputName === "" || nameHasNumbers) {
+    console.log(`
+    * Contact name is not valid.                        *
+    * Only letters allowed.                             *`);
+    isExit(addContact);
+  } else if (
+    contactInputPhone === "" ||
+    phoneHasLetters ||
+    contactInputPhone.length > 10
+  ) {
+    console.log(`
+    * Contact phone number is not valid.                *
+    * Only numbers allowed, has to be 10 digits         *`);
+    isExit(addContact);
+  } else {
+    const newContact = {
+      id: contacts.length + 1,
+      name: contactInputName,
+      phone: +contactInputPhone,
+    };
+
+    contacts.push(newContact);
+    console.log(`    *
+    * The contact ${newContact.name} has been added sucessfully     *`);
+    isExit(addContact);
+  }
 };
-const updateContact = () => {
-  console.log("Update");
+
+const updateContact = async () => {
+  console.log(`
+    *****************************************************
+    *                   UPDATE CONTACT                  *
+    *****************************************************`);
+  const contactInputData =
+    await rl.question(`    * Contact to update? Type name or phone number
+    * `);
+
+  const filteredContact = contacts.find((contact) => {
+    contact.name === contactInputData || contact.phone === contactInputData;
+  });
+  console.log(`    * Updating contact ${contactInputData}`);
 };
+
 const deleteContact = () => {
   console.log("Delete");
 };
@@ -134,8 +227,10 @@ async function agenda() {
     * 2: Add Contact                                    *
     * 3: Update Contact                                 *
     * 4: Delete Contact                                 *
+    * 5: Show contact list                              *
     *                                                   *
     * 0: Exit program                                   *
+    *                                                   *
     *****************************************************
     
     * Insert the operation number or 0 to exit: `
@@ -152,6 +247,10 @@ async function agenda() {
       break;
     case 4:
       deleteContact();
+      break;
+    case 5:
+      showAgenda(contacts);
+      isExit();
       break;
     case 0:
       rl.close();
