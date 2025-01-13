@@ -22,7 +22,7 @@ public class francescvm8 {
       final String constante = "Hola";
 
       // imprimir por terminal
-      System.out.println("¡Hola, " + lenguaje + "!");
+      System.out.println("¡Hola, " + lenguaje + " !");
 
    }
 }
