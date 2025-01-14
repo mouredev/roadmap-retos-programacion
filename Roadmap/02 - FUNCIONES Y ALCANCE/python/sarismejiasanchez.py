@@ -141,15 +141,15 @@ ages = [5, 12, 17, 18, 24, 32]
 print(f"Lista ages: {ages}")
 
 def is_adult(age):
-  if age < 18:
-    return False
-  else:
-    return True
+    if age < 18:
+        return False
+    else:
+        return True
 
 adults = filter(is_adult, ages)
 
 for age in adults:
-  print(age)
+    print(age)
 
 
 """
@@ -184,21 +184,27 @@ print("Variable global después de incrementar:", variable_global)
 
 
 """
-DIFICULTAD EXTRA
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
+ * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
+ *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
+ *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
+ *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+ *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
 """
 print(f"\nDIFICULTAD EXTRA")
 def return_numbers(text1, text2):
     count = 0
     for number in range(1, 101):
-         if (number % 3 == 0 and number % 5 == 0):
-             print(text1 + text2)
-         elif number % 3 == 0:
-             print(text1)
-         elif number % 5 == 0:
-             print(text2)
-         else:
-             print(number)
-             count += 1
+        if (number % 3 == 0 and number % 5 == 0):
+            print(text1 + text2)
+        elif number % 3 == 0:
+            print(text1)
+        elif number % 5 == 0:
+            print(text2)
+        else:
+            print(number)
+            count += 1
     return count
     
 # Ejecucion

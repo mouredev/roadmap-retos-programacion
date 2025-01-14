@@ -13,6 +13,11 @@
  * - Imprime si no se ha producido ningún error.
  * - Imprime que la ejecución ha finalizado.
 """
+#Global exception
+try: 
+    print(10/0)
+except Exception as e:
+    print(e)
 
 #handling exceptions in Python
 
@@ -54,8 +59,8 @@ try:
     z = x/y
     print(z)
 
-except ZeroDivisionError:
-    print("divide by zero")
+except ZeroDivisionError as e:
+    print(f"divide by zero. Error: {e}")
 finally:
     print("let's go")
 
@@ -92,6 +97,43 @@ def handlingErrors(number1: int, number2: int)-> int:
         print("Check errors mode off.")
 
 handlingErrors(22,2)
+
+
+class StrTypeException(Exception):
+    pass
+
+def process_params(parameters: list):
+
+    if len(parameters) < 3:
+        raise IndexError()
+    elif parameters[1] == 0:
+        raise ZeroDivisionError()
+    elif type(parameters[2]) == str:
+        raise StrTypeException("The third element of the list can't be a text string.")
+
+    print(parameters[2])
+    print(parameters[0]/parameters[1])
+    print(parameters[2]+ 5)
+
+try:
+    process_params([1,2,9,3])
+except IndexError as e:
+    print("There is an error in the index.")
+except ZeroDivisionError as e:
+    print("The second element of the list can't be a 0.")
+except StrTypeException as e:
+    print(e)
+except Exception as e:
+    print(f"Unexpected error! {e}")
+else:
+    print("No errors found.")
+finally:
+    print("Program finished OK.")
+
+
+
+
+
 
     
 

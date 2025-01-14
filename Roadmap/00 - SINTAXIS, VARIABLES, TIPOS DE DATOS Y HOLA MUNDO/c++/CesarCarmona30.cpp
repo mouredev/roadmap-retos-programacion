@@ -1,12 +1,30 @@
+// Sitio web del lenguaje
+// https://isocpp.org
+
+// Comentario de línea
+
+/*
+  Esto es un comentario
+  de varias líneas
+*/
+
+/**
+ * Esto también es un 
+ * comentario de varias
+ * líneas
+*/
+
 #include <iostream>
 
 using namespace std;
 
-int main()
-{
+int main() {
+  //variable
   int variable = 15;
+  //constante
   const int constante = 20;
 
+  // Datos primitivos
   short mi_short = 65535;         // 2 byte (16 bits)
   int mi_int = 321;               // 4 bytes (32 bits) hasta 8 bytes (64 bits)
   long mi_long = 4324;            // 8 bytes (64 bits)

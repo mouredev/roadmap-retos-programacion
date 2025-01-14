@@ -1,3 +1,4 @@
+/** #04 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * Este son los ejemplos de cadenas de caracteres
  */

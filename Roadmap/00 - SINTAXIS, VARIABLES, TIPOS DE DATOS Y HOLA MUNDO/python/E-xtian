@@ -1,0 +1,17 @@
+#https://www.python.org/
+#varias lineas
+#de comentarios
+"""
+comentario
+de varias
+lineas
+"""
+
+my_variable = 3434
+my_variable2 = "3434"
+my_variableboleana = True
+my_variablefloat = 0.5
+
+if __name__ == '__main__':
+    print("Hola mundo, este es python")
+    print("Ahora los combinamos","sumando",my_variablefloat+my_variable)

@@ -1,3 +1,4 @@
+/** #10 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * Las excepciones son eventos inusuales o errores que pueden ocurrir
  * durante la ejecución de un programa.
