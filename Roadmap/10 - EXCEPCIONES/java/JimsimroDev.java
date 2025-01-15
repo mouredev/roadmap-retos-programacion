@@ -31,8 +31,11 @@ public class JimsimroDev {
     try {
       validarParametros(parametros);
       System.out.println(parametros.get(2));
+      validarParametros(parametros);
       System.out.println((int) parametros.get(0) / (int) parametros.get(1));
+      validarParametros(parametros);
       System.out.println((int) parametros.get(2) + 5);
+      validarParametros(parametros);
 
       // Lanzar un NullPointerException en la list
       // parametros.set(1, null);
@@ -50,9 +53,11 @@ public class JimsimroDev {
   static void validarParametros(List<Object> parametros) {
     if (parametros.size() < 3) {
       throw new IndexOutOfBoundsException("Se requieren al menos 3 parámetros");
-    } else if ((int) parametros.get(1) == 0) {
+    }
+    if ((int) parametros.get(1) == 0) {
       throw new ArithmeticException("No se puede dividir entre 0");
-    } else if (parametros.get(2) instanceof String) {
+    }
+    if (parametros.get(2) instanceof String) {
       throw new JimsimroDevException("El tercer parámetro no puede ser una cadena");
     }
   }
@@ -81,7 +86,7 @@ public class JimsimroDev {
       List<Integer> list = new ArrayList<>() {
         {
           add(1);
-          add(2);
+          add(0);
           add(3);
           add(4);
         }
