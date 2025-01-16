@@ -40,7 +40,7 @@ class TaskManager:
             self.tasks[name] = description
             logging.info(f"La tarea {name} ha sido añadida.")
         elif name in self.tasks:
-                logging.info(f"La tarea {name} ya estaba añadida a la lista de tareas.")
+                logging.error(f"La tarea {name} ya estaba añadida a la lista de tareas.")
         else:
             print("La tarea no ha podido ser creada.")
             logging.debug(f"Error al añadir la tarea {name}.")
