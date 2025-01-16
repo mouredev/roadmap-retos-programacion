@@ -17,14 +17,11 @@
 
 import logging
 
-""" Tengo que poner desde que nivel quiero que aparezca, sino aparece a partir de warning."""
-""" logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
 logging.debug("Esto es un mensaje de debug")
 logging.info("Esto es un mensaje de información")
 logging.warning("Esto es un mensaje de warning")
 logging.error("Esto es un mensaje de error")
-logging.critical("Esto es un mensaje critico") """
+logging.critical("Esto es un mensaje critico")
 
 #DIFICULTAD EXTRA
 
