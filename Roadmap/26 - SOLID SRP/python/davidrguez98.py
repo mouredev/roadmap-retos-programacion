@@ -59,39 +59,6 @@ class EmailService:
 
 #DIFICULTAD EXTRA
 
-class BookRegister:
-    
-    def __init__(self):
-        self.books = []
-        self.users = []
-        self.loans = []
-
-    def new_book(self, title, author, copies):
-        self.books.append({"title": title, "author": author, "copies": copies})
-
-    def new_user(self, name, id, email):
-        self.books.append({"name": name, "id": id, "email": email})
-
-    def loan_book(self, id, book_title):
-        for book in self.books:
-            if book ["title"] == book_title and book["copies"] > 0:
-                book["copies"] -= 1
-                self.loans.append({"id": id, "book_title": book_title})
-                return True
-        return False
-    
-    def return_book(self, id, book_title):
-        for loan in self.loans:
-            if loan["id"] == id and loan["book_title"] == book_title:
-                self.loans.remove(loan)
-                for book in self.books:
-                    if book ["title"] == book_title:
-                        book["copies"] += 1
-                    return True
-        return False
-
-""" ---------------------------------------------- """
-
 class Book:
 
     def __init__(self, title, author, copies):
