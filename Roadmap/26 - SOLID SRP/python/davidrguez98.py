@@ -60,21 +60,96 @@ class EmailService:
 #DIFICULTAD EXTRA
 
 class BookRegister:
-
+    
     def __init__(self):
         self.books = []
+        self.users = []
+        self.loans = []
 
-    def new_book(self, title, author, book_copies: int):
-        self.books.append({"Title": title, "Author": author, "Nº de copias": book_copies})
+    def new_book(self, title, author, copies):
+        self.books.append({"title": title, "author": author, "copies": copies})
 
+    def new_user(self, name, id, email):
+        self.books.append({"name": name, "id": id, "email": email})
 
-class UserManage:
-
-    pass
-
-class BookLoans:
+    def loan_book(self, id, book_title):
+        for book in self.books:
+            if book ["title"] == book_title and book["copies"] > 0:
+                book["copies"] -= 1
+                self.loans.append({"id": id, "book_title": book_title})
+                return True
+        return False
     
-    pass
+    def return_book(self, id, book_title):
+        for loan in self.loans:
+            if loan["id"] == id and loan["book_title"] == book_title:
+                self.loans.remove(loan)
+                for book in self.books:
+                    if book ["title"] == book_title:
+                        book["copies"] += 1
+                    return True
+        return False
 
-book = BookRegister
-book.new_book(self=None, title="Hola", author="Pepe", book_copies=12)
+""" ---------------------------------------------- """
+
+class Book:
+
+    def __init__(self, title, author, copies):
+        self.title = title
+        self.author = author
+        self.copies = copies
+
+class User:
+
+    def __init__(self, name, id, email):
+        self.name = name
+        self.id = id
+        self.email = email
+
+class Loan:
+
+    def __init__(self):
+        self.loans = []
+
+    def loan_book(self, user, book):
+        if book.copies > 0:
+                book.copies -= 1
+                self.loans.append({"user_id": user.id, "book_title": book.title})
+                return True
+        return False
+
+    def return_book(self, user, book):
+        for loan in self.loans:
+            if loan["user_id"] == user.id and loan["book_title"] == book.title:
+                self.loans.remove(loan)
+                book.copies += 1
+                return True
+        return False
+
+class library:
+    
+    def __init__(self):
+        self.books = []
+        self.users = []
+        self.loans = Loan()
+
+    def new_book(self, book):
+        self.books.append(book)
+
+    def new_user(self, user):
+        self.users.append(user)
+
+    def loan_book(self, user_id, book_title):
+        user = next((u for u in self.users if u.id == user_id), None)
+        book = next((b for b in self.books if b.title == book_title), None)
+        if user in book:
+            return self.loan_book(user, book)
+        return False
+
+    
+    def return_book(self, user_id, book_title):
+        user = next((u for u in self.users if u.id == user_id), None)
+        book = next((b for b in self.books if b.title == book_title), None)
+        if user and book:
+            return self.return_book(user, book)
+        return False
