@@ -86,6 +86,7 @@ public class francescvm8 {
             if(i%2==0 && i!=16 && i%3!=0) {
                 System.out.println(i);
             }
+            
         }
     }
 }
