@@ -6,10 +6,8 @@
 // Javascript official website: https://www.javascript.com/
 
 // Representa las diferentes sintaxis que existen de crear comentarios en el lenguaje (en una línea, varias...)
-
 // ** Single line comment **
 // This is a single line comment
-
 // ** Multi-Line comment **
 /* This is a multi-line comment
    This is a multi-line comment
