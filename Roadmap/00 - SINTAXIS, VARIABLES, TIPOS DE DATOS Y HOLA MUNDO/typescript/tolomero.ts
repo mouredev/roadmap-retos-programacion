@@ -16,7 +16,6 @@ en TypeScript
 //number
 
 let edad: number = 25;
-var edad2: number = 20;
 //declarar una constante
 const edad3: number = 30;
 
@@ -26,7 +25,6 @@ const nombre: string = "Juan";
 // Booleano
 const esEstudiante: boolean = true;
 // Arreglo de números
-let number: number[] = [1, 2, 3, 4, 5];
 
 // Tupla
 let persona: [string, number] = ["Juan", 25];
