@@ -1,7 +1,6 @@
 /* { RETOS DE PROGRAMACIÓN }  #1 OPERADORES Y ESTRUCTURAS DE CONTROL */
 //Note: I use Matt Frisbie book "Professional JavaScript for Web Developers" as a reference to give accurate additional information about the use of some operantors
 //I also serch some tips in JavaScript Notes for Professionals from the beautiful people of StackOverflow. You can get it for free in GoalKicker.com
-//and https://www.typescriptlang.org/docs/
 
 //short for console.log
 let log = console.log.bind(console);
