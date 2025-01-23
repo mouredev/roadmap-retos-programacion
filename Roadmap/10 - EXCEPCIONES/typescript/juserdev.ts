@@ -65,19 +65,17 @@ namespace challenge_10{
         console.log(params[2] + 5)
     }
     try{
-        process_param([1,2,"3",4])
+        process_param([1,2,3,4])
     }
     catch(e){
         if (e instanceof RangeError) {
-            console.error("Se ha productido el error: ", (e as Error).name, "->", (e as Error).message)
+            console.error("Se ha productido el error: ", e.name, "->", e.message)
         } else if (e instanceof DivisionByZeroError) {
-            console.error("Se ha productido el error: ", (e as Error).name, "->", (e as Error).message)
+            console.error("Se ha productido el error: ", e.name, "->", e.message)
         } else if (e instanceof StrTypeError){ // no esta funcionando debido a que debia cargar un error generico
-            console.error("Se ha productido el error: ", (e as Error).name, "->", (e as Error).message)
-        } else if (e as Error) {
+            console.error("Se ha productido el error: ", e.name, "->", e.message)
+        } else if (e instanceof Error) {
             console.error("Se ha productido un error inesperado: ", e)
-        } else {
-            console.log("no se ha producido ningun error")
         }
     }
     finally{
