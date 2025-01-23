@@ -93,6 +93,7 @@ print(type(set_A))
 
 print(" ")
 print(" ")
+
 '''
 Extra
 '''
@@ -100,60 +101,71 @@ print("Esta es la parte extra")
 print(" ")
 
 def agenda():
-
     agenda={}
-
     while True:
-        
-        print ("\nQue quieres hacer?")
-        print ("1. Buscar contacto")
-        print ("2. Insertar contacto")
-        print ("3. Actualizar contacto")
-        print ("4. Eliminar contacto")
-        print ("5. Salir") 
+    
+        print("")
+        print("Bienvenido a la agenda ¿que quieres hacer?")
+        print("")
+        print("Buscar")
+        print("Insertar")
+        print("Actualizar")
+        print("Borrar")
+        print("Salir")
+        print("")
 
-        option=input("\nSelecciona una opción:")
+        option=input ("Selecciona una opción: ")
 
         match option:
-            case "1":
-                name = input("Introduce el nombre del contacto que quieres buscar: ")
-                if name in agenda:
-                    print(f"El número de {name} es {agenda[name]}")
-                else:
-                    print(f"El contacto {name} no existe") 
+                case "Buscar":
+                        name=input("Introduce el nombre del contacto que quieres buscar: ")
+                        if name in agenda:
+                            print("")
+                            print(f"El número de {name} es {agenda[name]}")   
+                        else:
+                               print("")
+                               print("El contacto no existe")
+                case "Insertar":
+                        name=input("Inserte nombre del contacto: ")
+                        phone=input("Inserte número de telefono: ")
+                        if phone.isdigit() and len(phone)>0 and len(phone)<=11:
+                               agenda[name] = phone
+                               print("")
+                               print("Contacto guardado.")                             
+                        else:
+                               print("")
+                               Print("Error, introduce un número de teléfono correcto")
 
-            case "2":
-                name =input("Introduce el nombre del contacto: ")
-                phone =input("Introduce el telefono del contacto: ")
-                if phone.isdigit() and len(phone) > 0 and len(phone) <= 11:
-                    agenda[name] = phone
-                    print("el contacto se ha guardado")
-                else:
-                    print("Error. Introduce un número correcto")            
-            case "3":
-                pname = input("Introduce el nombre del contacto que quieres actualizar: ")
-                if name in agenda:
-                    phone =input("Introduce el telefono del contacto: ")
-                    if phone.isdigit() and len(phone) > 0 and len(phone) <= 11:
-                        agenda[name] = phone
-                        print("el contacto se ha guardado")
-                    else:
-                        print("Error. Introduce un número correcto") 
-                else:
-                    print(f"El contacto {name} no existe") 
-                
-            case "4":
-                name = input("Introduce el nombre del contacto que quieres eliminar: ")
-                if name in agenda:
-                    del agenda [name]
-                    print(f"El contacto de {name} ha sido eliminado")
-                else:
-                    print(f"El contacto {name} no existe") 
-            case "5":
-                print("Cerrando agenda")
-                break 
-            case _:
-                print("Elige una opción válida")
+                case "Actualizar":
+                         name=input("Introduce el nombre del contacto que quieres actualizar: ")
+                         if name in agenda:
+                            phone=input("Inserte nuevo número de telefono: ")
+                            if phone.isdigit() and len(phone)>0 and len(phone)<=11:
+                               agenda[name] = phone
+                               print("")
+                               print("Contacto modificado.")                             
+                            else:
+                               print("")
+                               Print("Error, introduce un número de teléfono correcto")  
+                         else:
+                               print("")
+                               print("El contacto no existe")
+                case "Borrar":
+                         name=input("Introduce el nombre del contacto que quieres borrar: ")
+                         if name in agenda:
+                            del agenda[name]
+                            print("")
+                            print("El contacto ha sido borrado")   
+                         else:
+                               print("")
+                               print("El contacto no existe")
+                case "Salir":
+                         print("")
+                         print("Cerrando agenda.")
+                         break
+                        
+                case _:
+                        print("")
+                        print("Seleccione una opción válida")
 
 agenda()
-
