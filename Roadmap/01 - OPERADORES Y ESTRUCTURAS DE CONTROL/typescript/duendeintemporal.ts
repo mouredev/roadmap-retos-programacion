@@ -1,6 +1,7 @@
-/* #1 { PROGRAMMING CHALLENGES }   OPERATORS AND CONTROL STRUCTURES */
+/* #01 { PROGRAMMING CHALLENGES }   OPERATORS AND CONTROL STRUCTURES */
 // Note: This code references Matt Frisbie's book "Professional JavaScript for Web Developers" for accurate information about operators.
 // Additional tips are sourced from "JavaScript Notes for Professionals" by the StackOverflow community, available for free at GoalKicker.com.
+//and https://www.typescriptlang.org/docs/
 
 // Short for log
 const log = console.log;
