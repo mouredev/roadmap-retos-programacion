@@ -88,6 +88,14 @@ namespace herencias {
             this.empleados.push(empleado)
         }
 
+        imprimirEmpleados(){
+            let empleados: string[] = []
+            for (const empleado of this.empleados) {
+                empleados.push(empleado.name)
+            }
+            return empleados
+        }
+
     }
 
 
@@ -148,4 +156,17 @@ namespace herencias {
 
     console.log(miProgramador.add(miProgramador2))
     console.log(miGerente.print())
+
+    console.log(miProgramador.programar())
+    console.log(miProgramador2.programar())
+    console.log(miProgramador3.programar())
+    console.log(miProgramador4.programar())
+    console.log(miGerenteDeProyectos.gerenciarDeProyectos())
+    console.log(miGerenteDeProyectos2.gerenciarDeProyectos())
+    console.log(miGerente.gerenciar())
+
+    console.log(miGerente.imprimirEmpleados())
+    console.log(miGerenteDeProyectos.imprimirEmpleados())
+    console.log(miGerenteDeProyectos2.imprimirEmpleados())
+    console.log(miProgramador.imprimirEmpleados())
 }
