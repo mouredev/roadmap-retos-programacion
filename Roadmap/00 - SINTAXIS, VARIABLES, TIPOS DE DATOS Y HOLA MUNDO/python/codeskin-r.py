@@ -1,13 +1,13 @@
-# https://www.python.org/    # comentario de una linea 
+# https://www.python.org/    # comentario de una linea
 
 """
 comentario de varias lineas
-en este caso podria ser util 
+en este caso podria ser util
 para realizar aclaraciones que
-necesiten de una mayor cantidad 
+necesiten de una mayor cantidad
 de texto
 
-""""
+"""
 
 # Variables
 
@@ -18,9 +18,9 @@ z = 2 + 3j  # Número complejo
 # variables de texto
 
 nombre = "Carlitos"
-mensaje = 'Hola, universo 🌍️!
+mensaje = "Hola, universo 🌍️!"
 frase_multilinea = """Hola Moure, te agradezco
-mucho por lo que haces por nosotros, parece 
+mucho por lo que haces por nosotros, parece
 simple, pero esto es demasiado!"""
 
 # Constantes
@@ -47,7 +47,7 @@ numero_entero = 42
 numero_decimal = 3.14
 
 # Número complejo (complex)
-numero_complejo = 6 + 1h
+numero_complejo = 6 + 1
 
 # Booleano (bool)
 es_verdadero = True
