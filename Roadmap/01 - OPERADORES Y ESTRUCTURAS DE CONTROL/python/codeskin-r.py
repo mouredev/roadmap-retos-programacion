@@ -215,19 +215,22 @@ entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
 
 # Bucle que recorre los números del 10 al 55 (incluidos)
 
-for numero in range(10, 56):  # range(10, 56) genera números del 10 al 55
+#for numero in range(10, 56):  # range(10, 56) genera números del 10 al 55
 
-    if numero % 2 != 0:  # Si el número NO es par, lo saltamos
-        continue  # Salta a la siguiente iteración
+#    if numero % 2 != 0:  # Si el número NO es par, lo saltamos
+#        continue  # Salta a la siguiente iteración
 
-    if numero == 16:  # Si el número es 16, lo saltamos
-        continue
+#    if numero == 16:  # Si el número es 16, lo saltamos
+#        continue
 
-    if numero % 3 == 0:  # Si el número es múltiplo de 3, lo saltamos
-        continue
+#    if numero % 3 == 0:  # Si el número es múltiplo de 3, lo saltamos
+#        continue
 
-    print(numero)  # Si pasa todos los filtros, lo imprimimos
+#    print(numero)  # Si pasa todos los filtros, lo imprimimos
 
+for n in range(10, 56, 2):  # Solo números pares del 10 al 55
+    if n != 16 and n % 3:
+        print(n)
 
 
 
