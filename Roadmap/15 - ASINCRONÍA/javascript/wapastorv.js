@@ -43,6 +43,3 @@ asyncFunction('B', 2);
 asyncFunction('A', 1);
 asyncFunction('D', 1);
 // Fin de tu código
-
-
-
