@@ -13,7 +13,7 @@
  * - Isogramas (Las letras se repiten el mismo número de veces)
  */
 
-// Sting length
+// String length
 let text = "ABCDEFGHIJKLLLMNOPQRSTUVWXYZ";
 let length = text.length;
 console.log("Length of the text: " + length);
@@ -140,7 +140,7 @@ let word2 = "nana";
 
 let reversedWord = word1.split("").reverse().join("");
 console.log(`"${word1}" is a palindrome:`, word1 === reversedWord); // you can read the word in reverse
-console.log(`"${word2}" is an anagram of "${word1}":`, word2 === reversedWord);// the letters of a word cab form another word
+console.log(`"${word2}" is an anagram of "${word1}":`, word2 === reversedWord);// the letters of a word can form another word
 console.log(`"${word1}" is an isogram:`, word1.length === new Set(word1).size); // it has no repeated characters
 
 
