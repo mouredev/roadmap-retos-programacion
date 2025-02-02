@@ -173,3 +173,4 @@ resultado = dificultad_extra('aloha','mora')
 print('cantidad de numeros reemplazados', resultado)
 
 
+print('LISTO!')
