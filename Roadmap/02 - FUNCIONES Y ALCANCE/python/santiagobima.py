@@ -142,6 +142,7 @@ print(f'contador global final: {contador_global}')
 
 
 
+
 #EXTRA 
 
 from word2number_es import w2n
