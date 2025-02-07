@@ -50,4 +50,6 @@ booleano = True
 
 #  - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
-print("Hola, Python")
+lenguaje = "Python"
+print(f"Hola, {lenguaje}!")
+print("Hola",lenguaje,"!")
