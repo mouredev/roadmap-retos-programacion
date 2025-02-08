@@ -84,3 +84,62 @@
 
  valFinite(0);
  valFinite(10);
+
+ //Variable LOCAL y GLOBAL
+
+ var global = 'Variable global';
+
+ function declaracionVariables() {
+   try {
+      let local = 'Variable local';
+      console.log(global);
+      console.log(local);
+
+      global = 'Variable global modificada';
+   } catch (error) {
+      console.log('Error detectado:', error.message);
+   }
+      
+ };
+
+ declaracionVariables();
+ console.log(global);
+
+ try {
+   console.log(local);
+ } catch (error) {
+   console.log('Error detectado al acceder a "local" fuera de la función:', error.message);
+ }
+
+
+ /*
+ Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
+ - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
+ - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
+ - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
+ - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+ - La función retorna el número de veces que se ha impreso el número en lugar de los textos
+*/
+
+let cadena1 = 'Múltiplo de 3';
+let cadena2 = 'Múltiplo de 5';
+let count = 0;
+
+function CadenaNumero() {
+   for (let i = 1; i <= 100; i++) {
+      if (i % 3 == 0 && i % 5 == 0) {
+         console.log(cadena1 + ' y ' + cadena2);
+      } else if (i % 5 == 0) {
+         console.log(cadena2);
+      } else if (i % 3 == 0) {
+         console.log(cadena1);
+      } else {
+         count++;
+         console.log(i);
+      }
+   }
+   console.log('Números entre 1 y 100 que no son múltiplos de 3 ni de 5:', count);
+   
+};
+
+CadenaNumero();
