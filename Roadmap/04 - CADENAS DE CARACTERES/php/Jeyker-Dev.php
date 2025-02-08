@@ -37,22 +37,50 @@ echo str_replace("String", "Hola", $string).".\n";
 echo lcfirst($string)."\n";
 
 // Removes whitespace (or other characters) from the beginning of a string.
-echo ltrim($string_2)."\n";
+echo trim($string_2)."\n";
 
-$words = ["Engineer", "Teacher", "Level", "Radar", "Listen", "Silent", "Lumberjack", "Background"];
-$count = 0;
+// Returns the reversed string
+echo strrev($string)."\n";
 
+class Funcionality
+{
+    public function palindromes(string $word_1, string $word_2): string
+    {
+        $word_1 = trim($word_1);
+        $word_2 = trim($word_2);
 
+        $convert_word = $this->toLowerAndReversed($word_1);
+        $convert_word_2 = $this->toLowerAndReversed($word_2);
 
-foreach ($words as $word) {
-    $compared_word = lcfirst($word);
-    $palindromes = strrev($compared_word);
+        if($convert_word === $word_1) {
+            echo "The First Word is a Palindrome.\n";
+        }
 
-    if($compared_word === $palindromes) {
-        $count++;
+        if($convert_word_2 === $word_2) {
+            echo "The Second Word is a Palindrome.\n";
+        }
+
+        return "The words ain't palindromes.\n";
+    }
+
+    public function toLowerAndReversed(string $word): string
+    {
+        $lower_word = strtolower($word);
+        return $reversed_word =  strrev($lower_word);
     }
 }
 
-echo "There's {$count} palindromes.";
+echo "This is a program where you write two words and then it will analyze if the words are palindromes, anagrams or isograms.\n";
+
+echo "Write the first word: ";
+$word_1 = fgets(STDIN);
+
+echo "Write the second word: ";
+$word_2 = fgets(STDIN);
+
+$instance = new Funcionality();
+
+$instance->palindromes($word_1, $word_2);
+
 
 
