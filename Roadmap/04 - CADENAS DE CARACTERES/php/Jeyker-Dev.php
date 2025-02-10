@@ -17,6 +17,7 @@
 
 $string = "String";
 $string_2 = "    String 2";
+$string_3 = "Another";
 
 // Returns the length of the string
 echo "The length of string is ".strlen($string).".\n";
@@ -63,12 +64,69 @@ class Funcionality
         return "The words ain't palindromes.\n";
     }
 
+    public function anagrams(string $word_1, string $word_2): string
+    {
+        $word_1 = strtolower(trim($word_1));
+        $word_2 = strtolower(trim($word_2));
+
+        $sorted_word_1 = $this->sortString($word_1);
+        $sorted_word_2 = $this->sortString($word_2);
+
+        if ($sorted_word_1 === $sorted_word_2) {
+            return "The words are anagrams.\n";
+        } else {
+            return "The words are not anagrams.\n";
+        }
+    }
+
+    public function isograms(string $word_1, string $word_2)
+    {
+        $word_1 = strtolower(trim($word_1));
+        $word_2 = strtolower(trim($word_2));
+
+        $letters = str_split($word_1);
+        $letters_2 = str_split($word_2);
+
+        $is_isogram = $this->hasRepeatingLetters($letters);
+        $is_isogram_2 = $this->hasRepeatingLetters($letters);
+
+        if($is_isogram === true) {
+            echo "The First Word is a Isogram.\n";
+        }
+
+        if($is_isogram_2 === true) {
+            echo "The Second Word is a Isogram.\n";
+        }
+    }
+
+    public function hasRepeatingLetters(array $letters): bool
+    {
+        foreach ($letters as $letter => $count) {
+            if ($count > 1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function sortString(string $word): string
+    {
+        $letters = str_split($word);
+        sort($letters);
+        return implode('', $letters);
+    }
+
     public function toLowerAndReversed(string $word): string
     {
         $lower_word = strtolower($word);
         return $reversed_word =  strrev($lower_word);
     }
 }
+
+$instance = new Funcionality();
+
+$instance->isograms($string,$string_3);
 
 echo "This is a program where you write two words and then it will analyze if the words are palindromes, anagrams or isograms.\n";
 
@@ -78,9 +136,11 @@ $word_1 = fgets(STDIN);
 echo "Write the second word: ";
 $word_2 = fgets(STDIN);
 
-$instance = new Funcionality();
+
 
 $instance->palindromes($word_1, $word_2);
+$instance->anagrams($word_1, $word_2);
+$instance->isograms($word_1, $word_2);
 
 
 
