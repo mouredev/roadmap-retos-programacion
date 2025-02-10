@@ -1,7 +1,6 @@
 ![https://retosdeprogramacion.com](./Images/header.jpg)
 
-# Roadmap retos de programación semanales 2024
-
+# Roadmap retos de programación 2024
 
 ### Ruta de estudio con ejercicios para mejorar tu lógica de programación y aprender cualquier lenguaje. Gratis, a tu ritmo y en comunidad.
 
@@ -16,19 +15,11 @@
 
 ## Información importante
 
-* Cada semana se publica un nuevo reto y se corrige en directo desde **[Twitch](https://twitch.tv/mouredev)** el ejercicio de la semana pasada.
-* En la sección "Eventos" de nuestro servidor de **[Discord](https://discord.gg/mouredev)** encontrarás el día y horario por país de los directos.
 * Puedes utilizar **cualquier lenguaje de programación**, y encontrar tanto mis correcciones como las de la comunidad en el directorio de cada reto.
 * **¿Quieres participar?** Te lo explico en la sección **[Instrucciones](https://github.com/mouredev/roadmap-retos-programacion#instrucciones)** en este mismo documento.
 * Los retos siguen un orden basado en su ruta de estudio pero si ya tienes conocimientos puedes resolverlos de manera totalmente independiente. Simplemente revisa su nivel de dificultad.
-* Una vez se haya cumplido la semana de publicación del reto, podrás consultar mi corrección y las de la comunidad en cualquier lenguaje de programación.
 
 > Consulta la [web](https://retosdeprogramacion.com/roadmap) para más información.
-
-## Corrección y próximo ejercicio
-
-> #### Lunes 30 de diciembre de 2024 a las 20:00 (hora España) desde **[Twitch](https://twitch.tv/mouredev)**
-> #### Consulta el **[horario](https://discord.gg/6qdjZwXA?event=1318390433465765918)** por país y crea un **[recordatorio](https://discord.gg/6qdjZwXA?event=1318390433465765918)**
 
 ## Roadmap
 
@@ -84,7 +75,7 @@
 |47|[CALENDARIO DE ADVIENTO](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/ejercicio.md)|[📝](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/python/mouredev.py)|[▶️](https://youtu.be/LteI1J5gmZw)|[👥](./Roadmap/47%20-%20CALENDARIO%20DE%20ADVIENTO/)
 |48|[ÁRBOL DE NAVIDAD](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/ejercicio.md)|[📝](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/python/mouredev.py)|[▶️](https://youtu.be/bIguZe3iXVo)|[👥](./Roadmap/48%20-%20ÁRBOL%20DE%20NAVIDAD/)
 |49|[EL ALMACÉN DE PAPÁ NOEL](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/ejercicio.md)|[📝](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/python/mouredev.py)|[▶️](https://youtu.be/XGMxosQArxw)|[👥](./Roadmap/49%20-%20EL%20ALMACÉN%20DE%20PAPÁ%20NOEL/)
-|50|[PLANIFICADOR DE OBJETIVOS DE AÑO NUEVO](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/ejercicio.md)|[🗓️ 30/12/24](https://discord.gg/6qdjZwXA?event=1318390433465765918)||[👥](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/)
+|50|[PLANIFICADOR DE OBJETIVOS DE AÑO NUEVO](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/ejercicio.md)|[📝](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/python/mouredev.py)|[▶️](https://youtu.be/MmHSEcWlSbk)|[👥](./Roadmap/50%20-%20PLANIFICADOR%20DE%20OBJETIVOS%20DE%20A%C3%91O%20NUEVO/)
 
 ## Cursos en YouTube
 
@@ -102,11 +93,10 @@ A media que avanzamos en el roadmap estoy creando cursos que agrupan las clases.
 
 1. En el proyecto tienes un directorio para cada ejercicio en la carpeta [Roadmap](./Roadmap). Dentro de cada directorio encontrarás un fichero llamado **ejercicio.md** con el enunciado de cada reto.
 2. Si quieres compartir tu propia solución de un ejercicio con la comunidad, crea un fichero de código con tu nombre y extensión, y realiza una [**PULL REQUEST**](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) contra el repositorio.
-3. El fichero de código debe situarse dentro del directorio del reto, en la carpeta correspondiente al lenguaje de programación utilizado (si no existe la carpeta del lenguaje, créala con todas sus letras en minúsculas). Por ejemplo, si has resuelto el reto #00 utilizando el lenguaje de programación Python y tu usuario de GitHub se llama "mouredev", tu corrección deberá estar en **"Roadmap/#00/python/mouredev.py"**. El título de la Pull Request también debe seguir este formato: **"#[número] - [lenguaje_utilizado]"**. En el ejemplo anterior sería **"#00 - Python"**. Se rechazarán las Pull Request que no sigan este formato o contengan ficheros adicionales.
-4. Cada **SEMANA** (consulta el día en el ejercicio correspondiente) realizaré una transmisión en directo desde **[Twitch](https://twitch.tv/mouredev)** corrigiendo el reto, revisando soluciones de la comunidad y publicando un nuevo ejercicio.
-5. Si necesitas ayuda o quieres comentar cualquier cosa sobre los retos semanales, tienes el canal "reto-semanal” en nuestro servidor de **[Discord](https://discord.gg/mouredev)** (también el día y horario de corrección en la sección "Eventos").
-6. Puedes proponer Pull Request con propuestas o correcciones sobre ejercicios del resto de la comunidad si estos poseen errores. De esta manera colaboraremos para crear un repositorio cada vez más valioso.
-7. Si se te solicita un cambio/corrección en una Pull Request, y al cabo de 2 semanas no se muestra nueva actividad, se cerrará esa petición para mantener el repositorio limpio. Por supuesto, puedes volver a enviar la Pull Request cuando quieras.
+3. El fichero de código debe situarse dentro del directorio del reto, en la carpeta correspondiente al lenguaje de programación utilizado (si no existe la carpeta del lenguaje, créala con todas sus letras en minúsculas). Por ejemplo, si has resuelto el reto #00 utilizando el lenguaje de programación Python y tu usuario de GitHub se llama "mouredev", tu corrección deberá estar en **"Roadmap/00 - SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO/python/mouredev.py"**. El título de la Pull Request también debe seguir este formato: **"#[número] - [lenguaje_utilizado]"**. En el ejemplo anterior sería **"#00 - Python"**. Se rechazarán las Pull Request que no sigan este formato o contengan ficheros adicionales.
+4. Si necesitas ayuda o quieres comentar cualquier cosa sobre los retos, tienes el canal "ejercicios-logica” en nuestro servidor de **[Discord](https://discord.gg/mouredev)**.
+5. Puedes proponer Pull Request con propuestas o correcciones sobre ejercicios del resto de la comunidad si estos poseen errores. De esta manera colaboraremos para crear un repositorio cada vez más valioso.
+6. Si se te solicita un cambio/corrección en una Pull Request, y al cabo de 2 semanas no se muestra nueva actividad, se cerrará esa petición para mantener el repositorio limpio. Por supuesto, puedes volver a enviar la Pull Request cuando quieras.
 
 ## Aclaraciones
 
@@ -119,7 +109,7 @@ Si tienes dudas con el nombre del directorio de algún lenguaje, intenta consult
 
 ## Guía rápida Git y GitHub
 
-1. Realiza un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del repositorio de retos semanales desde GitHub.
+1. Realiza un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del repositorio de retos desde GitHub.
 2. CLONA ese repositorio a tu máquina local `git clone [TU-REPOSITORIO]`.
 3. (Opcional) Crea una RAMA para la solución y desplázate a ella `git checkout -b [EL-NOMBRE-DE-TU-RAMA]`.
 4. Añade el fichero de tu solución al STAGE `git add [FICHERO-DE-TU-RETO]`.
@@ -167,5 +157,5 @@ Soy ingeniero de software desde 2010. Desde 2018 combino mi trabajo desarrolland
 Si quieres unirte a nuestra comunidad de desarrollo, aprender programación, mejorar tus habilidades y ayudar a la continuidad del proyecto, puedes encontrarnos en:
 
 [![Twitch](https://img.shields.io/badge/Twitch-Programación_en_directo-9146FF?style=for-the-badge&logo=twitch&logoColor=white&labelColor=101010)](https://twitch.tv/mouredev)
-[![Discord](https://img.shields.io/badge/Discord-Servidor_de_la_comunidad-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=101010)](https://mouredev.com/discord) [![Pro](https://img.shields.io/badge/Cursos-mouredev.pro-FF5500?style=for-the-badge&logo=gnometerminal&logoColor=white&labelColor=101010)](https://moure.dev)
+[![Discord](https://img.shields.io/badge/Discord-Servidor_de_la_comunidad-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=101010)](https://mouredev.com/discord) [![Pro](https://img.shields.io/badge/Cursos-mouredev.pro-FF5500?style=for-the-badge&logo=gnometerminal&logoColor=white&labelColor=101010)](https://mouredev.pro)
 [![Link](https://img.shields.io/badge/Links_de_interés-moure.dev-14a1f0?style=for-the-badge&logo=Linktree&logoColor=white&labelColor=101010)](https://moure.dev) [![Web](https://img.shields.io/badge/GitHub-MoureDev-087ec4?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://github.com/mouredev)

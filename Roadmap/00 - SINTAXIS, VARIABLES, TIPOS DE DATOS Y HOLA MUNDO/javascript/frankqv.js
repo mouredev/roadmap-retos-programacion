@@ -1,5 +1,7 @@
 // 🌐 URL oficial del lenguaje de programación JavaScript (creado en 1995)
 // 🦊 https://developer.mozilla.org/es/docs/Web/JavaScript 
+// 📖 Especificación oficial de ECMAScript: https://262.ecma-international.org/14.0/
+// (La base estándar para el desarrollo de JavaScript)
 
 
 // 🧐 Sabías que...
