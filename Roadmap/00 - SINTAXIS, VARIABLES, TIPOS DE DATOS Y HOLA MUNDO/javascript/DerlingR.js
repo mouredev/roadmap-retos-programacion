@@ -35,7 +35,3 @@ let numeroGrande = 9007199254740991n;
 let id = Symbol("miSimbolo");
 
 
-console.log("Hola, JavaScript");
-
-
-
