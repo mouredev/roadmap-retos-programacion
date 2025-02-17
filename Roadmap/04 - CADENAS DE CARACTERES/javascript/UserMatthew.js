@@ -61,15 +61,7 @@ console.log(nombreCompleto.split("").reverse().join(""))
 // ---- Contar la cantidad de veces que se repite una letra ----
 console.log(nombreCompleto.split("a").length - 1)
 
-/*
- * EJERCICIO:
- * DIFICULTAD EXTRA (opcional):
- * Crea un programa que analice dos palabras diferentes y realice comprobaciones
- * para descubrir si son:
- * - Palíndromos
- * - Anagramas
- * - Isogramas
- */
+
 
 function analizarPalabras(Primera, segunda) {
    anagramas(Primera, segunda)
@@ -100,9 +92,22 @@ function sonPalindromos(palabra1, palabra2) {
    }
 }
 
+
+function esIsograma(palabra){
+   let letras = new Set();
+    let normalizada = palabra.toLowerCase(); 
+    
+    for (let letra of normalizada) {
+        if (letras.has(letra)) {
+            return false; 
+        }
+        letras.add(letra);
+    }
+    return true;
+}
+
 function Isogramas(primera, segunda) {
-   let procesar = palabra => new Set(palabra.toLowerCase())
-   if (procesar(primera) && procesar(segunda)) {
+   if (esIsograma(primera) && esIsograma(segunda)) {
       console.log(`Las palabras ${primera} y ${segunda} son Isogramas`);
    }
    else {
