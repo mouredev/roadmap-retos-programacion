@@ -200,7 +200,7 @@ def agenda():
                 print('Saliendo de la agenda')
                 break
             case _:
-                print('Elige una opcion entre el 1 y el 5.')
+                print('Elige una opcion entre las que aparecen.')
 
 
 
