@@ -20,6 +20,6 @@ era_guapo = True
 variable_sin_valor = None
 
 
-# Imprimir saludo
-print("¡Hola, python")
+# Imprimir saludo lenguaje
+print("¡Hola, Python")
 
