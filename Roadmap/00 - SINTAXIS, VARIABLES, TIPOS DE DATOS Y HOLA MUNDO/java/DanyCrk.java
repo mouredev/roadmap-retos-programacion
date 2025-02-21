@@ -19,7 +19,7 @@ public class DanyCrk {
     float tipo_5 = 215; // numero de coma flotante presicion simple
     double tipo_6 = 12.2; // numero de coma flotante presicion doble
 
-    char tipo_7 = 'ygi'; // un solo caracter
+    char tipo_7 = 'y'; // un solo caracter
     boolean tipo_8 = false; // dato tipo verdadero o falso
     String tipo_9 = "¡Hola, Java!"; // cadena de caracteres
 
