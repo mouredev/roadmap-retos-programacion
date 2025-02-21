@@ -7,12 +7,7 @@
 #  *   en tu lenguaje:
 #  *   Condicionales, iterativas, excepciones...
 #  * - Debes hacer print por consola del resultado de todos los ejemplos.
-#  *
-#  * DIFICULTAD EXTRA (opcional):
-#  * Crea un programa que imprima por consola todos los números comprendidos
-#  * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
-#  *
-#  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
+
 
 # OPERADORES ARITMÉTICOS
 print("\nOPERADORES ARITMÉTICOS: ")
@@ -84,6 +79,23 @@ print(f"x = {x} # 1100\ny = {y}  # 0110")
 print("AND (&) 1 si ambos bits son 1\nx & y =", x & y, "   # 0100")
 print("OR (|) 1 si al menos un bit es 1\nx | y =", x | y, "  # 1110")
 print("XOR (^) 1 si los bits son diferentes\nx ^ y =", x ^ y, "  # 1100")
-print("NOT (~) Invierte los bits\n~x =", ~x,"    # 0011 complemento a 2")
+print("NOT (~) Invierte los bits\n~x =", ~x, "    # 0011 complemento a 2")
 print("<< Desplazamiento a la izquierda cada desplazamiento multiplica por 2\nx << 1 =", x << 1, " # 11000")
-print(">> Desplazamiento a la derecha cada desplazamiento divide entre 2\nx >> 1 =", x >> 1, "  # 1100")
+print(">> Desplazamiento a la derecha cada desplazamiento divide entre 2\nx >> 1 =",
+      x >> 1, "  # 1100")
+
+#  * DIFICULTAD EXTRA (opcional):
+#  * Crea un programa que imprima por consola todos los números comprendidos
+#  * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+#  *
+#  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
+
+lista = []
+for i in range(10, 56):
+    if i == 16:
+        continue
+    elif i % 3 == 0:
+        continue
+    elif i % 2 == 0:
+        lista.append(i)
+print(f"\nDificultad extra:\n{lista}")
