@@ -1,6 +1,9 @@
 # #02 FUNCIONES Y ALCANCE
+> #### Dificultad: Fácil | Publicación: 08/01/24 | Corrección: 15/01/24
 
-'''
+## Ejercicio
+
+```
 /*
  * EJERCICIO:
  * - Crea ejemplos de funciones básicas que representen las diferentes
@@ -23,72 +26,9 @@
  * Presta especial atención a la sintaxis que debes utilizar en cada uno de los casos.
  * Cada lenguaje sigue una convenciones que debes de respetar para que el código se entienda.
  */
-'''
+```
+#### Tienes toda la información extendida sobre el roadmap de retos de programación en **[retosdeprogramacion.com/roadmap](https://retosdeprogramacion.com/roadmap)**.
 
-# Función sin parámetros ni retorno
-def hello():
-    print("Hello World!")
+Sigue las **[instrucciones](../../README.md)**, consulta las correcciones y aporta la tuya propia utilizando el lenguaje de programación que quieras.
 
-hello()
-
-#Funcion con un parametro
-def hello_name(name):
-    print(f"Hello {name}!")
-
-hello_name("Nico")
-
-#Funcion con parametro por defecto
-def potencia(base, exponente=2):
-    return base ** exponente
-
-print(f"El cuadrado de 5 es: {potencia(5)}")
-
-#funcion con parametros no definidos
-def sumar_varios(*args):
-    return sum(args)
-
-print(f"La suma de varios números es: {sumar_varios(1, 2, 3, 4, 123)}")
-
-#funcion con argumentos nombrados
-def mostrar_info(**kwargs):
-    for clave, valor in kwargs.items():
-        print(f"{clave}: {valor}")
-
-mostrar_info(nombre="Nico", edad=23, ciudad="Bogotá")
-
-#funcion lambda
-print((lambda x: x * 2)(7))
-
-#funcion con una funcion dentro
-def operacion(x):
-    def cuadrado(n):
-        return n ** 2
-    return cuadrado(x)
-
-print(f"El cuadrado de 6 es: {operacion(6)}")
-
-
-
-#funcion 
-def suma(a, b):
-    return a + b    
-
-print(suma(2, 3))
-
-def funcion():
-    def funcion_interna():
-        print("Función interna")
-    funcion_interna()
-
-funcion()
-
-def funcion_global():
-    global a
-    a = 5
-    print(a)
-
-funcion_global()
-
-def funcion_local():
-    a = 5
-    print(a)
+> Recuerda que cada semana se publica un nuevo ejercicio y se corrige el de la semana anterior en directo desde **[Twitch](https://twitch.tv/mouredev)**. Tienes el horario en la sección "eventos" del servidor de **[Discord](https://discord.gg/mouredev)**.
