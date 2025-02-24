@@ -1,4 +1,4 @@
-/* #09 { Retos paraprogramadores } HERENCIA Y POLIMORFISMO */
+/* #09 { retosparaprogramadores } HERENCIA Y POLIMORFISMO */
 // bibliography
 //Professional JavaScript for web developers by Matt Frisbie [Frisbie, Matt] (z-lib.org)
 //GPT
@@ -11,9 +11,7 @@ With the introduction of ES6, JavaScript introduced class syntax, which is essen
 // short for console.log()
 const log = console.log;
 
-    log( 'Retosparaprogramadores #9'); 
-
-
+    log('Retosparaprogramadores #9'); // Retosparaprogramadores #9 
 
 interface IAnimal {
     name: string;
