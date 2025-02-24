@@ -87,6 +87,8 @@ A media que avanzamos en el roadmap estoy creando cursos que agrupan las clases.
 
 [![Lógica 3 SOLID](http://i3.ytimg.com/vi/ASBC5drF-QU/maxresdefault.jpg)](https://youtu.be/ASBC5drF-QU)
 
+[![Lógica 4](http://i3.ytimg.com/vi/qSup_483xO8/maxresdefault.jpg)](https://youtu.be/qSup_483xO8)
+
 ## Instrucciones
 
 **Haz un [FORK](https://github.com/mouredev/roadmap-retos-programacion/fork) del proyecto y trabaja con Git para ir sincronizando las actualizaciones.**
