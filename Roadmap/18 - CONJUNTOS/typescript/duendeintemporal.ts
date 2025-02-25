@@ -39,13 +39,13 @@ if (typeof window !== 'undefined') {
         body?.appendChild(title);
 
         setTimeout(() => {
-            alert('Retosparaprogramadores #17. Please open the Browser Developer Tools.');
+            alert('Retosparaprogramadores #18. Please open the Browser Developer Tools.');
         }, 2000);
-        log('Retosparaprogramadores #17');
+        log('Retosparaprogramadores #18');
 });
 } else {
     log('This code is designed to run in a browser environment. Skipping window-related code.');
-    log('Retosparaprogramadores #17');
+    log('Retosparaprogramadores #18');
 }
 for(let i = 1; i <= 10; i++){
     log(i);
