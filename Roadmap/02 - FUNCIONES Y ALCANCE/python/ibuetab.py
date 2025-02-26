@@ -38,6 +38,9 @@ def nombre(*nombre):
 
 nombre("Nombre1", "Nombre2");
 
+
+
+
 #Con parámetros variables y clave
 def nombre_claves(**names):
     for key,value in names.items():
