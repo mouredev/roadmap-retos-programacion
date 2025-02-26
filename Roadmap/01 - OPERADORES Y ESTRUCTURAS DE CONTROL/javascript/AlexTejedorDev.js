@@ -325,3 +325,10 @@ try {
  * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
  */
 
+for (i = 10; i <= 55; i++){
+    let result = i / 3;
+    if (Number.isInteger(result) === false){
+        if (i === 16){ continue };
+        console.log(i);
+    };
+};
