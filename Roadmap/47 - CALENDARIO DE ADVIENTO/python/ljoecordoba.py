@@ -39,6 +39,7 @@ def seleccionar_dia(dias_descubiertos):
     except ValueError:
         print("Por favor, ingresa un número válido.")
 
+
 def main():
     dias_descubiertos = set()  # Usamos un conjunto para almacenar los días descubiertos
 
