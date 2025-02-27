@@ -1,3 +1,15 @@
+"""
+Este programa simula un calendario de Adviento interactivo llamado "aDEViento".
+
+Funcionamiento:
+1. Se representa un calendario con 24 días, distribuidos en una cuadrícula de 6 filas y 4 columnas.
+2. Los días que aún no han sido descubiertos se muestran con su número dentro de asteriscos (*XX*).
+3. Los días que han sido descubiertos se representan con asteriscos (****).
+4. El usuario puede seleccionar un día para descubrirlo hasta que todos los días sean abiertos.
+5. Se valida la entrada del usuario para evitar selecciones inválidas o repetidas.
+6. Cuando todos los días han sido descubiertos, el programa finaliza con un mensaje de felicitación.
+"""
+
 def dibujar_calendario(dias_descubiertos):
     # Definir la cuadrícula de 6x4x3 (6 filas, 4 columnas, cada día 4x3)
     for fila in range(6):
