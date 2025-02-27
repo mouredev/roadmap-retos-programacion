@@ -1,3 +1,4 @@
+
 '''
 EJERCICIO:
   Entiende el concepto de recursividad creando una función recursiva que imprima
@@ -78,4 +79,4 @@ def fibonacci_complejo(n: int) -> list[int]:
 print('\nEJEMPLO DE FIBONACCI COMPLEJO\n')
 print('Fibonacci de 5: ' + str(fibonacci_complejo(5)))
 print('Fibonacci de 0: ' + str(fibonacci_complejo(0)))
-print('Fibonacci de 24: ' + str(fibonacci_complejo(24)))
+print('Fibonacci de 24: ' + str(fibonacci_complejo(24))) 
