@@ -1,3 +1,24 @@
+// #20 PETICIONES HTPP
+/*
+ * EJERCICIO:
+ * Utilizando un mecanismo de peticiones HTTP de tu lenguaje, realiza
+ * una petición a la web que tú quieras, verifica que dicha petición
+ * fue exitosa y muestra por consola el contenido de la web.
+ *
+ * DIFICULTAD EXTRA (opcional):
+ * Utilizando la PokéAPI (https://pokeapi.co), crea un programa por
+ * terminal al que le puedas solicitar información de un Pokémon concreto
+ * utilizando su nombre o número.
+ * - Muestra el nombre, id, peso, altura y tipo(s) del Pokémon
+ * - Muestra el nombre de su cadena de evoluciones
+ * - Muestra los juegos en los que aparece
+ * - Controla posibles errores
+ */
+// I use GPT for reference information.
+
+// Short for console.log
+let log = console.log;
+
 // Definimos una interfaz para el objeto Pokémon
 interface Pokemon {
     name: string;
@@ -16,7 +37,7 @@ async function fetchContent(url: string): Promise<void> {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
+        log(data);
     } catch (error) {
         console.error('Error fetching content:', error);
     }
@@ -109,7 +130,7 @@ async function getPokemon(id: string): Promise<void> {
             games: `Games: ${data.game_indices.map(g => g.version.name).join(', ')}`,
         };
 
-        console.log(pokemon);
+        log(pokemon);
 
         if (typeof window !== 'undefined') {
             const modal1 = document.createElement('div');
@@ -193,7 +214,7 @@ if (typeof window !== 'undefined') {
         title.style.setProperty('line-height', '34vh');
 
         body?.appendChild(title);
-        console.log('Retosparaprogramadores #20');
+        log('Retosparaprogramadores #20');
 
         // Crear modal para Lorem Ipsum
         const modal = document.createElement('div');
@@ -273,6 +294,6 @@ if (typeof window !== 'undefined') {
         }, 2000);
     });
 } else {
-    console.log('This code is designed to run in a browser environment. Skipping window-related code.');
-    console.log('Retosparaprogramadores #20');
+    log('This code is designed to run in a browser environment. Skipping window-related code.');
+    log('Retosparaprogramadores #20');
 }
