@@ -137,12 +137,14 @@ let myFunc = (str1, str2) => {
         let cadena1 = String(str1);
         let cadena2 = String(str2);
 
-        if (i % 3 === 0){
+        if (i % 3 === 0 && i % 5 === 0){
+            console.log(i + ' ' + cadena1 + ' ' + cadena2)
+        }else if (i % 3 === 0){
             console.log(cadena1)
         }else if (i % 5 === 0){
             console.log(cadena2)
         }else{
-            console.log(i + ' ' + cadena1 + ' ' + cadena2)
+            console.log(i)
             contador++;
         }
     }
