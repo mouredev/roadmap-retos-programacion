@@ -24,15 +24,15 @@ def factorial(number:int):
 print(factorial(3))
 
 # Fibonnacci 
-# def fibonnacci(number:int):
-#     if number <= 0:
-#         print("Tienen que ser mayor que cero")
-#         return 0
-#     elif number == 1:
-#         return 0
-#     elif number == 2:
-#         return 2
-#     else:
-#         return fibonnacci (number * number)
+def fibonnacci(number:int):
+    if number <= 0:
+        print("Tienen que ser mayor que cero")
+        return 0
+    elif number == 1:
+        return 0
+    elif number == 2:
+        return 2
+    else:
+        return 
 
-# print(fibonnacci(5))
+print(fibonnacci(5))
