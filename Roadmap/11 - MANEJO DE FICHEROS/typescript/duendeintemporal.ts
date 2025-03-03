@@ -1,4 +1,4 @@
-// #11 File Handling in TypeScript
+// #11 { retosparaprogramadores } Manejo de Ficheros (File Handling in TypeScript)
 // Bibliography:
 // Professional JavaScript for Web Developers by Matt Frisbie [Frisbie, Matt] (z-lib.org)
 // GPT & Deepseek

@@ -32,7 +32,7 @@ if (typeof window !== 'undefined') {
         body?.style.setProperty('background', '#000');
         body?.style.setProperty('text-align', 'center');
 
-        title.textContent = 'Retosparaprogramadores #16.';
+        title.textContent = 'Retosparaprogramadores #21.';
         title.style.setProperty('font-size', '3.5vmax');
         title.style.setProperty('color', '#fff');
         title.style.setProperty('line-height', '100vh');

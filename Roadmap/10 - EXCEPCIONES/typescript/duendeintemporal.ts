@@ -1,4 +1,4 @@
-/* EXCEPCIONES */
+/* #10 { retosparaprogramadores } EXCEPCIONES */
 //bibliography reference
 //Secrets of the JavaScript Ninja (John Resig, Bear Bibeault, Josip Maras) (z-lib.org)
 //Professional JavaScript for web developers by Matt Frisbie [Frisbie, Matt] (z-lib.org)

@@ -53,7 +53,7 @@ if (typeof window !== 'undefined') {
         body?.style.setProperty('background', '#000');
         body?.style.setProperty('text-align', 'center');
 
-        title.textContent = 'Retosparaprogramadores #16.';
+        title.textContent = 'Retosparaprogramadores #19.';
         title.style.setProperty('font-size', '3.5vmax');
         title.style.setProperty('color', '#fff');
         title.style.setProperty('line-height', '100vh');
@@ -61,13 +61,13 @@ if (typeof window !== 'undefined') {
         body?.appendChild(title);
 
         setTimeout(() => {
-            alert('Retosparaprogramadores #18. Please open the Browser Developer Tools.');
+            alert('Retosparaprogramadores #19. Please open the Browser Developer Tools.');
         }, 2000);
-        log('Retosparaprogramadores #18');
+        log('Retosparaprogramadores #19');
 });
 } else {
     log('This code is designed to run in a browser environment. Skipping window-related code.');
-    log('Retosparaprogramadores #18');
+    log('Retosparaprogramadores #19');
 }
 for(let i = 1; i <= 10; i++){
     log(i);
