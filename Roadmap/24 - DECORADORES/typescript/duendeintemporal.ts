@@ -102,10 +102,12 @@ function hiGirl(): string {
 const countedHiGirl = countCalls(hiGirl);
 
 // Using the decorated function
-log(countedHiGirl()); // Function has been called 1 times. Hi Girl! 🌹 
+log(countedHiGirl()); // Function has been called 1 times. Hi Girl! 🌹
+// 🌼
 log(countedHiGirl()); // Function has been called 2 times. Hi Girl! 🌹
+// 🌼
 log(countedHiGirl()); // Function has been called 3 times. Hi Girl! 🌹
-
+// 🌼
 
 /* 
 NOTE: When you define a function inside another function, the inner function creates a private scope. This means that the inner function has access to the variables and parameters of the outer function, but those variables are not accessible from outside the outer function. This is a key feature of closures in JavaScript.
