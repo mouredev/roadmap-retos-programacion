@@ -239,3 +239,120 @@ print(sorted_by_values)
 # Ordenar por valores de manera descendente
 sorted_descending = dict(sorted(my_dict.items(), key=lambda item: item[1], reverse=True))
 print(sorted_descending)
+
+
+"""
+DIFICULTAD EXTRA (opcional):
+Crea una agenda de contactos por terminal.
+- Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+- Cada contacto debe tener un nombre y un número de teléfono.
+- El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+  los datos necesarios para llevarla a cabo.
+- El programa no puede dejar introducir números de teléfono no numéricos y con más de 11 dígitos.
+  (o el número de dígitos que quieras)
+- También se debe proponer una operación de finalización del programa.
+"""
+
+def agenda():
+    
+    def search():
+        indexes=[]
+        data = input("Introduce un dato: ")
+        found = False
+        for index, line in enumerate(contacts):
+            if data == line[0] or data == line[1]:
+                print(f"Indice: {index} Nombre: {line[0]} - Telefono: {line[1]}")
+                indexes.append(index)
+                found = True
+        if found == False:
+            print("No hay coincidendia")
+        return indexes        
+
+    def insert():
+        data_ok = False
+        while not data_ok:
+            try:
+                name, telefon = input("Introduce el nombre y telefono separados por un espacio: ").split()
+                data_ok = validate_number(telefon)
+                if data_ok:
+                    contacts.append([name, telefon])
+                    print("Contacto insertado")
+                else:
+                    continue
+            except ValueError:
+                print("Error: Formato: Nombre Telefono")
+                continue
+
+    def modify():
+        results = search()
+        if len(results) == 0:
+            pass
+        elif len(results) == 1:
+            data = input("Introduce el nuevo dato: ")
+            if data.isnumeric():
+                if validate_number(data):
+                    contacts[results[0]][1] = data
+            else:
+                contacts[results[0]][0] = data
+        else:
+            try:
+                index = int(input("Introduce el índice del elementoa modificar: "))
+                data = input("Introduce el nuevo dato: ")
+                if data.isnumeric():
+                    if validate_number(data):
+                        contacts[index][1] = data
+                        print("Contacto modificado\n")
+                        print(f"Indice: {index} Nombre: {contacts[index][0]} - Telefono: {contacts[index][1]}")
+                else:
+                    contacts[index][0] = data
+                    print("Contacto modificado\n")
+                    print(f"Indice: {index} Nombre: {contacts[index][0]} - Telefono: {contacts[index][1]}")
+            except Exception:
+                print("Error: Indice invalido.")
+
+    def delete():
+        results = search()
+        if len(results) == 0:
+            pass
+        elif len(results) == 1:
+            contact = contacts.pop(results[0])
+            print(f"Elemento con indice {results[0]} borrado")
+        else:
+            try:
+                index = int(input("Introduce el índice a borrar: "))
+                contact = contacts.pop(index)
+                print(f"Elemento con indice {index} borrado")
+            except Exception:
+                print("Error: Indice invalido.")
+
+
+    def validate_number(number:str) -> bool:
+        if number.isnumeric() and len(number) <= 11:
+            return True
+        else:
+            print("El número debe ser númerico y tener como máximo 11 digitos")
+            return False
+
+
+    ended = False
+    contacts = []
+    while not ended:
+        print(contacts)
+        operation = input("Introduce operacion: buscar, insertar, modificar, borrar, cerrar: ")
+        match operation:
+            case "buscar":
+                search()
+            case "insertar":
+                insert()
+            case "modificar":
+                modify()
+            case "borrar":
+                delete()
+            case "cerrar":
+                ended = True
+            case _ :
+                print("Opcion incorrecta")
+                continue
+
+
+agenda()
