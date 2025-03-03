@@ -192,7 +192,12 @@ print(removed_element)
 my_set.clear()  # Elimina todos los elementos del set
 print(my_set)
 
-# No se pueden actuializar valores ni ordenar el set, ya que son colecciones no ordenadas.
+# No se pueden actualizar valores ni ordenar el set, ya que son colecciones no ordenadas.
+print("----------# Sets - Ordenación-----------")
+my_set = {"Pedro", "Ana", "Ignacio"}
+print(my_set)
+my_set = sorted(my_set) #Al ordenar un set lo convierte en una lista.
+print(type(my_set))
 
 print("----------# Diccionarios - Inserción - Actualización-----------")
 # Diccionarios - Insercción - Actualización
