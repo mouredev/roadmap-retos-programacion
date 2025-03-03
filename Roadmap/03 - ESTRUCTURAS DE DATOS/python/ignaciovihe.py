@@ -255,75 +255,64 @@ Crea una agenda de contactos por terminal.
 
 def agenda():
     
-    def search():
-        indexes=[]
-        data = input("Introduce un dato: ")
-        found = False
-        for index, line in enumerate(contacts):
-            if data == line[0] or data == line[1]:
-                print(f"Indice: {index} Nombre: {line[0]} - Telefono: {line[1]}")
-                indexes.append(index)
-                found = True
-        if found == False:
-            print("No hay coincidendia")
-        return indexes        
+    def search(contact_data):
+        if contact_data.isnumeric():
+            number_ok = validate_number(contact_data)
+            if number_ok:
+                reverse_contacts = {v: k for k, v in contacts.items()}
+                if contact_data in reverse_contacts.keys():
+                    print(f"Nombre: {reverse_contacts[contact_data]} - Telefono: {contact_data}")
+                    return [reverse_contacts[contact_data], contact_data]
+                else:
+                    print(" Contacto no encontrado.")
+                    return None
+        else:
+            if contact_data in contacts.keys():
+                print(f"Nombre: {contact_data} - Telefono: {contacts[contact_data]}")
+                return [contact_data , contacts[contact_data]]
+            else:
+                print(" Contacto no encontrado.")
+                return None      
 
-    def insert():
+    def insert(contact_name):
         data_ok = False
         while not data_ok:
-            try:
-                name, telefon = input("Introduce el nombre y telefono separados por un espacio: ").split()
-                data_ok = validate_number(telefon)
-                if data_ok:
-                    contacts.append([name, telefon])
-                    print("Contacto insertado")
-                else:
-                    continue
-            except ValueError:
-                print("Error: Formato: Nombre Telefono")
+            
+            telefon = input("Introduce el telefono: ")
+            data_ok = validate_number(telefon)
+            if data_ok:
+                contacts[name] = telefon
+                print("Contacto insertado")
+            else:
                 continue
 
-    def modify():
-        results = search()
-        if len(results) == 0:
-            pass
-        elif len(results) == 1:
-            data = input("Introduce el nuevo dato: ")
-            if data.isnumeric():
-                if validate_number(data):
-                    contacts[results[0]][1] = data
-            else:
-                contacts[results[0]][0] = data
+    def modify(contact_name):
+        result = search(contact_name)
+        if result:
+            print("Qué quieres modificar: ")
+            print("1. Nombre")
+            print("2. Telefono")
+            while True:    
+                modify_option = input("Introduce opción: ")
+                match modify_option:
+                    case "1":
+                        delete(contact_name)
+                        new_contact_name = input("Introduce el nuevo nombre: ")
+                        contacts[new_contact_name] = result[1]
+                        break
+                    case "2":
+                        insert(contact_name)
+                        break
+                    case _ :
+                        print("Opción incorrecta.")
         else:
-            try:
-                index = int(input("Introduce el índice del elementoa modificar: "))
-                data = input("Introduce el nuevo dato: ")
-                if data.isnumeric():
-                    if validate_number(data):
-                        contacts[index][1] = data
-                        print("Contacto modificado\n")
-                        print(f"Indice: {index} Nombre: {contacts[index][0]} - Telefono: {contacts[index][1]}")
-                else:
-                    contacts[index][0] = data
-                    print("Contacto modificado\n")
-                    print(f"Indice: {index} Nombre: {contacts[index][0]} - Telefono: {contacts[index][1]}")
-            except Exception:
-                print("Error: Indice invalido.")
+            print("Contacto no encontrado")
 
-    def delete():
-        results = search()
-        if len(results) == 0:
-            pass
-        elif len(results) == 1:
-            contact = contacts.pop(results[0])
-            print(f"Elemento con indice {results[0]} borrado")
+    def delete(contact_name):
+        if contact_name in contacts.keys():
+            del contacts[contact_name]
         else:
-            try:
-                index = int(input("Introduce el índice a borrar: "))
-                contact = contacts.pop(index)
-                print(f"Elemento con indice {index} borrado")
-            except Exception:
-                print("Error: Indice invalido.")
+            print("Contacto no encontrado.")
 
 
     def validate_number(number:str) -> bool:
@@ -335,20 +324,33 @@ def agenda():
 
 
     ended = False
-    contacts = []
+    contacts = {}
     while not ended:
         print(contacts)
-        operation = input("Introduce operacion: buscar, insertar, modificar, borrar, cerrar: ")
+        print("Operaciones")
+        print("")
+        print("1. Buscar")
+        print("2. Insertar")
+        print("3. Modificar")
+        print("4. Borrar")
+        print("5. Cerrar")
+        print("")
+
+        operation = input("Introduce operacion: ")
         match operation:
-            case "buscar":
-                search()
-            case "insertar":
-                insert()
-            case "modificar":
-                modify()
-            case "borrar":
-                delete()
-            case "cerrar":
+            case "1":
+                data = input("Introduce un dato para buscar: ")
+                search(data)
+            case "2":
+                name = input("Introduce el nombre: ")
+                insert(name)
+            case "3":
+                name = input("Introduce el nombre a modificar: ")
+                modify(name)
+            case "4":
+                name = input("Introduce un nombre para borrar: ")
+                delete(name)
+            case "5":
                 ended = True
             case _ :
                 print("Opcion incorrecta")
