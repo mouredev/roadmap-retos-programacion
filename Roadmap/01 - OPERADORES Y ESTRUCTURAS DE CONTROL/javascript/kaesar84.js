@@ -296,6 +296,7 @@ try {
   console.log("La variable no existe")
 }
 console.log("--------------------------------------")
+
 console.log("** try catch - Captura de errores**")
 console.log(`Producimos error y capturamos mensaje a traves del objeto error\n
     try {
@@ -310,4 +311,70 @@ try {
   g > 10
 } catch (error) {
   console.log("¡Se ha producido un error:! ", error.message)
+}
+
+console.log("--------------------------------------")
+
+console.log("** try catch finally **")
+console.log(`El bloque finally se ejecuta siempre\n
+    try {
+  console.log(g > 69)
+} catch (error) {
+  console.log("Se ha producido un error:", error.message)
+} finally {
+  console.log("Este código se ejecuta siempre")
+}
+    `)
+
+console.log("-- Respuesta:")
+try {
+  console.log(g > 69)
+} catch (error) {
+  console.log("Se ha producido un error:", error.message)
+} finally {
+  console.log("Este código se ejecuta siempre")
+}
+console.log("--------------------------------------")
+
+console.log("** throw - Lanzamiento de errores **")
+console.log(`
+throw new Error("Error Lanzado")
+    `)
+// throw new Error("Error Lanzado")
+console.log("--------------------------------------")
+
+console.log("** throw - Personalizado **")
+console.log(
+  `try {
+        throw new ErrorPersonalizado("Se ha producido un error")
+      } catch (error) {
+        console.log(
+          "Error personalizado:" + "***" + error.name + "***\n" + error.message
+        )
+      }
+      `
+)
+
+console.log("-- Respuesta:")
+
+try {
+  throw new ErrorPersonalizado("Se ha producido un error")
+} catch (error) {
+  console.log(
+    "Error personalizado:" + "***" + error.name + "***\n" + error.message
+  )
+}
+
+// EXTRA
+// Crea un programa que imprima por consola todos los números comprendidos
+// entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+console.log("--------------------------------------")
+console.log("--------------------------------------")
+console.log("** EXTRA **")
+console.log("--------------------------------------")
+
+for (let i = 10; i <= 55; i++) {
+  if ((i % 2 == 0) && (i!=16) & (!(i%3==0))) {
+    console.log(i)
+  }
 }
