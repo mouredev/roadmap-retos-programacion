@@ -15,20 +15,6 @@ queue.shift()
 // console.log(queue)
 
 
-
-/*
- * - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás de un navegador web. 
- * - Crea un programa en el que puedas navegar a una página o indicarle que te quieres desplazar 
- *   adelante o atrás, mostrando en cada caso el nombre de la web.
- * - Las palabras "adelante", "atrás" desencadenan esta acción
- * - el resto se interpreta como el nombre de una nueva web.
- * 
- * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
- *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
- * - La palabra "imprimir" imprime un elemento de la cola
- * - el resto de palabras se interpretan como nombres de documentos.
- */
-
 const readline = require('readline')
 const rl = readline.createInterface({
    input: process.stdin,
@@ -57,15 +43,16 @@ function showMenu() {
                console.log('The history is empty. Type a new website to go')
                showMenu()
             } else {
-
                const index = history.indexOf(currentWebsite);
 
-               if (index > 0) {
+               if (index > 0 && index !== - 1) {
                   currentWebsite = history[index - 1];
                   console.log(`Current website: ${currentWebsite}`);
-                  showMenu()
+               } else {
+                  console.log('There is no website to go. Try other option')
                }
             }
+            showMenu()
             break
 
          case 'forward':
@@ -100,20 +87,45 @@ function showMenu() {
    })
 }
 
+// showMenu()
 
 
+let documents = []
 
-showMenu()
+function showNewMenu() {
 
+   console.log('----------------------------------------------')
+   console.log('- print')
+   console.log('- Type a new document')
+   console.log('- exit')
 
-/* 
-OK:
- - Exit
- - Forward con algo adelante
- - Backward con algo atras
- - Entrar a un nuevo sitio web con el default
-- Forward: Nada adelante del currentWebsite, historial no vacio
+   rl.question('Choose an option: ', (option) => {
 
-NO OK:
- - Backward: Nada atras del currentWebsite, historial no vacio
-*/
+      console.log('----------------------------------------------')
+
+      switch (option) {
+
+         case 'print':
+            if (documents.length == 0) {
+               console.log('There is no documents to print. Add a document')
+            } else {
+               console.log(`Printing ${documents[0]}`)
+               documents.shift()
+            }
+            showNewMenu()
+            break
+
+         case 'exit':
+            console.log('Bye!')
+            rl.close()
+            break
+
+         default:
+            documents.push(option)
+            console.log(`${option}  added`)
+            showNewMenu()
+      }
+   })
+}
+
+// showNewMenu()
