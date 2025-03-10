@@ -1,9 +1,30 @@
 //#27 - { retosparaprogramadores } Principio SOLID Abierto-Cerrado (Open-Close Principle, OCP)
 
-// https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle
-/* In object-oriented programming, the open–closed principle (OCP) states "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"; that is, such an entity can allow its behaviour to be extended without modifying its source code.
+/*
+ * EJERCICIO:
+ * Explora el "Principio SOLID Abierto-Cerrado (Open-Close Principle, OCP)"
+ * y crea un ejemplo simple donde se muestre su funcionamiento
+ * de forma correcta e incorrecta.
+ *
+ * DIFICULTAD EXTRA (opcional):
+ * Desarrolla una calculadora que necesita realizar diversas operaciones matemáticas.
+ * Requisitos:
+ * - Debes diseñar un sistema que permita agregar nuevas operaciones utilizando el OCP.
+ * Instrucciones:
+ * 1. Implementa las operaciones de suma, resta, multiplicación y división.
+ * 2. Comprueba que el sistema funciona.
+ * 3. Agrega una quinta operación para calcular potencias.
+ * 4. Comprueba que se cumple el OCP.
+ */
 
-The name open–closed principle has been used in two ways. Both ways use generalizations (for instance, inheritance or delegate functions) to resolve the apparent dilemma, but the goals, techniques, and results are different. */
+// https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle
+/* In object-oriented programming, the open–closed principle (OCP) states "software entities (classes,
+ modules, functions, etc.) should be open for extension, but closed for modification"; that is, such 
+ an entity can allow its behaviour to be extended without modifying its source code.
+
+The name open–closed principle has been used in two ways. Both ways use generalizations (for instance,
+ inheritance or delegate functions) to resolve the apparent dilemma, but the goals, techniques, and
+  results are different. */
 
 let log = console.log;
 
