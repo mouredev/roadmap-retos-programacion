@@ -37,11 +37,15 @@ my_string ="mi Cadena en minusculas"
 print(my_string.upper()) #Convierte todo a mayusculas
 print(my_string.capitalize()) # Convierte solo el primer caracter a mayusculas. Cuidado espacios al inicio.
 print(my_string.lower()) #Conbierte todo a minusculas.
+print(my_string.title()) # Convierte la primera letra de cada palabra en mayus.
 
 texto1 = "Straße"  # "Straße" es "calle" en alemán
 texto2 = "STRASSE"
 print(texto1.lower())   # "straße"
 print(texto1.casefold()) # "strasse" Convierte todo a minusculas de forma mas agresiva. ß --> ss
+
+my_string= " Texto con espacios inicial y final " 
+print(my_string.strip()) # Elimina espacios al principio y al final.
 
 my_new_string = """
 Opciones:
@@ -58,7 +62,9 @@ print(words)
 
 palabras = ["Python", "es", "genial"]
 resultado = " ".join(palabras) # Union de cadenas con join
-print(resultado)  
+print(resultado)
+
+print(resultado.find("es")) #devuelve el indice de la primera aparicion de la cadena pasada dentro de otra
 
 #Interpolación
 
@@ -106,6 +112,8 @@ new_str = cadena.center(50,"_") #centrado de cadenas
 print(new_str)
 
 
+print(f"2 == 2.0: {2 == 2.0}")
+
 """
  * DIFICULTAD EXTRA (opcional):
  * Crea un programa que analice dos palabras diferentes y realice comprobaciones
@@ -121,10 +129,8 @@ def check(word_1: str, word_2: str):
 
     def is_isogramm(word: str) -> bool:
         counter_dict = {letter: word.count(letter) for letter in word}
-        mean = sum(counter_dict.values()) / len(counter_dict)
-        for letter, times in counter_dict.items():
-            if times != mean:
-                return False
+        if len(set(counter_dict.values())) != 1:
+            return False
         return True
     
 
@@ -141,5 +147,5 @@ def check(word_1: str, word_2: str):
     print(f"{word_1} es un isograma?: {is_isogramm(word_1)}")
     print(f"{word_2} es un isograma?: {is_isogramm(word_2)}")
 
-check("radar", "murcielago")
+check("radar", "murcielagomurcielago")
 
