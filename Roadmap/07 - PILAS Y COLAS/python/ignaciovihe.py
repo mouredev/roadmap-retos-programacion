@@ -71,39 +71,62 @@ print(queue)
 
 def web_browser():
 
-    browse_history = []
+    back = [] #Pila: almacena la web actual en la parte más alta y las de atras acontinuación
+    forward = [] #Pila: Almacena las paginas a las que avanzar cuando vamos atras.
     salir = False
-    index = -1
 
     while not salir:
         action = input("Introduce una web o una accion (adelante/atras/salir): ")
-        
+
         if action == "salir":
             salir = True
 
         elif action == "adelante":
-            if (index + 1) >= len(browse_history):
-                print("No hay mas paginas hacia adelante")
-                print(browse_history)
+            if len(forward) > 0:    # Si hay paginas para avanzar(si hay elementos en forward)
+                web = forward.pop() # Sacamos de forward y lo pasamos a back.
+                back.append(web)
+                print(f"Pagina actual: {back[-1]}") #Pagina actual el pico de la pila
             else:
-                index += 1
-                print(f"https:\\www.{browse_history[index]}")
-                print(browse_history)
+                print(f"No hay mas paginas adelante")
 
         elif action == "atras":
-            if (index - 1) < 0:
-                print("No hay mas paginas hacia atras")
-                print(browse_history)
+            if len(back) > 1:       # Si hay mas de una web en back podremos usar atras.
+                web = back.pop()    # Sacamos de back y pasamos el elemtno a forward, ya que son los elementos que podremos avanzar.
+                forward.append(web) #
+                print(f"Pagina actual: {back[-1]}") #Siempre se imprime el pico de back
             else:
-                index -= 1
-                print(f"https:\\www.{browse_history[index]}")
-                print(browse_history)
+                print("No hay más paginas atras")
 
         else:
-            del browse_history[index + 1 : len(browse_history)]
-            browse_history.append(action)
-            index += 1
-            print(f"https:\\www.{action}")
-            print(browse_history)
+            back.append(action) # Para añadir una nueva web se añade en back
+            print(f"Pagina actual: {back[-1]}")
+            forward.clear()     # En el caso de añadir una nueva web se descartan las que estaban
+                                # preparadas para ir adelante (pila forward)
+                                # Asi lo hace chrome.
 
 web_browser()
+
+def printer():
+
+    printer_queue =[]
+    salir = False
+    while not salir:
+
+        action = input("Introduce nombre de documento, o una acción(imprimir, salir): ")
+
+        if action == "salir":
+            salir = True
+
+        elif action == "imprimir":
+            if len(printer_queue) > 0:
+                document = printer_queue.pop(0)
+                print(f"Imprimiendo... {document}")
+                print(printer_queue)
+            else:
+                print("Cola de impresion vacía")
+
+        else:
+            printer_queue.append(action)
+            print(printer_queue)
+
+printer()
