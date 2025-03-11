@@ -25,7 +25,7 @@
  * donde se tiene que desplazar (arriba, abajo, izquierda o derecha).
  * 3. Muestra la actualización del laberinto tras cada desplazamiento.
  * 4. Valida todos los movimientos, teniendo en cuenta los límites
- * del laberinto y los obtáculos. Notifica al usuario.
+ * del laberinto y los obstáculos. Notifica al usuario.
  * 5. Finaliza el programa cuando Mickey llegue a la salida.
  */
 ```
