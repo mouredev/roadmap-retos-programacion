@@ -24,7 +24,7 @@
  * *01* *02* *03* ...
  * **** **** ****
  *
- * - El usuario seleccioná qué día quiere descubrir.
+ * - El usuario selecciona qué día quiere descubrir.
  * - Si está sin descubrir, se le dirá que ha abierto ese día
  *   y se mostrará de nuevo el calendario con esa cuadrícula
  *   cubierta de asteríscos (sin mostrar el día).

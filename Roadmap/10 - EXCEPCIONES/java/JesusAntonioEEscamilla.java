@@ -1,4 +1,5 @@
-
+import java.util.Arrays;
+import java.util.List;
 
 /** #10 - Java -> Jesus Antonio Escamilla */
 
@@ -23,7 +24,7 @@ public class JesusAntonioEEscamilla {
         }
 
         // Identificar el numero de una lista
-        System.out.println("Encontrar un indice a la lista");
+        System.out.println("\nEncontrar un indice a la lista");
         try {
             // Código que puede generar una excepción
             int newList = getElement(5);
@@ -39,7 +40,15 @@ public class JesusAntonioEEscamilla {
             System.out.println("Operación finalizada");
         }
     //---EXTRA---
-        // Pendiente
+        System.out.println("\nExtra");
+        // El TRY-CATCH-FINALLY para la ejecución
+        try {
+            procesarParametros(Arrays.asList(1, 2, 3, 4));
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error: " + e.getMessage());
+        } finally {
+            System.out.println("Programa Finalizado");
+        }
     }
 
     //---EJERCIÓ---
@@ -62,7 +71,29 @@ public class JesusAntonioEEscamilla {
 
     /**-----DIFICULTAD EXTRA-----*/
 
-    // Pendiente
+    // Mi excepción Personalizado
+    static class excepciónPersonalizada extends Exception {
+        public excepciónPersonalizada(String message) {
+            super(message);
+        }
+    }
+
+    // La función del programa (Utilize una lista)
+    public static void procesarParametros(List<Object> lista) throws excepciónPersonalizada, IllegalArgumentException {
+        if (lista.size() < 3) {
+            throw new IllegalArgumentException("Tiene que ser mas de 3 elementos");
+        }
+
+        if (!(lista.get(2) instanceof Number)) {
+            throw new IllegalArgumentException("Los parámetros tienen que ser del mismo tipo");
+        }
+
+        if (lista.isEmpty()) {
+            throw new excepciónPersonalizada("La lista no es válida");
+        }
+
+        System.out.println("La ejecución ha finalizado sin errores");
+    }
 
     /**-----DIFICULTAD EXTRA-----*/
 }
