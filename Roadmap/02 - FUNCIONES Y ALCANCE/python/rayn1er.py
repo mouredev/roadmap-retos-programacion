@@ -66,6 +66,16 @@ def event_cronogram(event, *args, **kwargs): #tambien podemos combinar todos los
 
 print(event_cronogram('anime festa', 'dance tournament', 'sing tournament', 'draw tournament', dance_judge = 'yoel', sing_judge = 'mariana', draw_judge = 'runny'))
 
+#funciones dentro de funciones
+
+def main_function(): #en python podemos anidar funciones dentro de otras, en este caso esta sera nuestra funcion principal
+    def sub_function(): #dentro encontramos nuestra funcion secundaria
+        print("I am a sub function")
+
+    sub_function() #llamamos a la funcion
+
+main_function() #ejecutamos nuestra funcion nos ejecutara el codigo de la funcion anidada que hemos llamado dentro de la funcion principal
+
 #funciones integradas de python
 
 print("hola") #la funcion hola que venimos utilizando desde el principio es una funcion integrada de python
@@ -103,7 +113,7 @@ def extra_function(string1, string2):
             print(i)
             total_numbers += 1
     
-    print(f"La cantidad de veces que se ha impreso un numero es de {total_numbers}")
+    return f"La cantidad de veces que se ha impreso un numero es de {total_numbers}"
+   
 
-
-extra_function('python','3')
+print(extra_function('python','3'))
