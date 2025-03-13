@@ -6,14 +6,29 @@
  * utilizando su función.
 """
 
-class Person:
+class Npc:
 
-    def __init__(self, first_name = "unknown", last_name = "unknown", age = "unknown", nationality = "unknown"):
+    total_npc = 0 # Atributo de clase compartido por todas las instancias. (para probar)
+
+    def __init__(self, first_name = "unknown", last_name = "unknown", age = "unknown", location = "unknown"):
         self.fisrt_name = first_name
         self.last_name = last_name
         self.age = age
-        self.nationality = nationality
+        self.location = location
+        Npc.increment_count()
 
+    @classmethod    # Decorador que indica que el siguiente metodo es de clase
+    def increment_count(cls): # cls es igual que self pero para metodos de clase
+        cls.total_npc += 1
+
+    @classmethod
+    def decrement_count(cls):
+        if cls.total_npc > 0:
+            cls.total_npc -= 1
+
+    def delete(self)-> None:
+        Npc.decrement_count()
+        del self
 
     def set_first_name(self,f_n):
         self.fisrt_name = f_n
@@ -24,20 +39,27 @@ class Person:
     def set_age(self,a):
         self.age = a
 
-    def set_nationality(self,nty):
-        self.nationality = nty
+    def set_location(self,lct):
+        self.location = lct
 
-    def print_person(self):
-        print(f"Fisrt name: {self.fisrt_name}\nLast name: {self.last_name}\nAge: {self.age}\nNationality:{self.nationality}")
+    def print(self):
+        print(f"Fisrt name: {self.fisrt_name}\nLast name: {self.last_name}\nAge: {self.age}\nLocation:{self.location}")
 
 
 
-person = Person("Pedro", "Rodriguez", "45")
-person.print_person()
-person.set_last_name("Rodríguez")
-person.print_person()
-person.set_nationality("Spain")
-person.print_person()
+person = Npc("Pedro", "Rodriguez", 45)
+person.print()
+person.set_location((4,7))
+person.print()
+
+person2 = Npc("Mike", "Jones", 29,)
+person2.set_location((3,0))
+person2.print()
+
+print(f"Total Npc : {Npc.total_npc}")
+person.delete()
+print(f"Total Npc : {Npc.total_npc}")
+
 
 
 """
@@ -51,56 +73,38 @@ from typing import Any, Optional
 
 class Stack:
 
-    total_stacks = 0 # Atributo de clase compartido por todas las instancias. No pedido(para probar)
 
     def __init__(self):
-        self.my_stack = []
-        Stack.increment_count()
-
-    @classmethod    # Decorados que indica que el siguiente metodo es de clase
-    def increment_count(cls)-> None: # cls es igual que self pero para metodos de clase
-        cls.total_stacks += 1
-
-    @classmethod
-    def decrement_count(cls)-> None:
-        if cls.total_stacks > 0:
-            cls.total_stacks -= 1
-
-    def delete(self)-> None:
-        Stack.decrement_count()
-        del self
+        self.stack = []
 
     def push(self,element: Any) -> None:
-        self.my_stack.append(element)
+        self.stack.append(element)
 
     def pull(self)->Optional[Any]:
-        if self.my_stack:
-            return self.my_stack.pop()
+        if self.stack:
+            return self.stack.pop()
         print("La pila esta vacía")
         return None
 
     def get_len(self)-> int:
-        return len(self.my_stack)
+        return len(self.stack)
     
-    def print_content(self)-> None:
-        print(self.my_stack)
+    def print(self)-> None:
+        for item in reversed(self.stack):
+            print(item)
 
 
 saludos = Stack()
-print(saludos.pull())
 saludos.push("Hola")
 saludos.push("Buenos días")
-saludos.print_content()
+saludos.print()
 print(saludos.get_len())
-print(saludos.pull())
-saludos.print_content()
-despedidas = Stack()
-despedidas.push("Adios")
-despedidas.print_content()
-print(despedidas.total_stacks)  # Imprime el valor del atributo de clase aunque lo llame desde la instacia
-print(Stack.total_stacks)       # Esto es asi porque loas atributos y metodos de clase son heredados por las instancias. 
-despedidas.delete()
-print(Stack.total_stacks)
+saludos.pull()
+saludos.print()
+saludos.pull()
+saludos.print()
+saludos.pull()
+saludos.print()
 
 
 
@@ -108,40 +112,38 @@ print(Stack.total_stacks)
 class Queue:
 
     def __init__(self):
-        self.my_queue = []
+        self.queue = []
 
     def push(self,element: Any) -> None:
-        self.my_queue.append(element)
+        self.queue.append(element)
 
     def pull(self)->Optional[Any]:
-        if self.my_queue:
-            return self.my_queue.pop(0)
+        if self.queue:
+            return self.queue.pop(0)
         print("La cola esta vacía")
         return None
 
     def get_len(self)-> int:
-        return len(self.my_queue)
+        return len(self.queue)
     
-    def print_content(self)-> None:
-        print(self.my_queue)
+    def print(self)-> None:
+        print(self.queue)
 
 
 persons = Queue()
 persons.push("Antonio")
-persons.print_content()
 persons.push("Marcos")
-persons.print_content()
 persons.push("Roberto")
-persons.print_content()
-print(persons.pull())
-persons.print_content()
-print(persons.pull())
-persons.print_content()
+persons.print()
+persons.pull()
+persons.print()
+persons.pull()
+persons.print()
 persons.push("Javier")
-persons.print_content()
-print(persons.pull())
-persons.print_content()
-print(persons.pull())
-persons.print_content()
-print(persons.pull())
-persons.print_content()
+persons.print()
+persons.pull()
+persons.print()
+persons.pull()
+persons.print()
+persons.pull()
+persons.print()
