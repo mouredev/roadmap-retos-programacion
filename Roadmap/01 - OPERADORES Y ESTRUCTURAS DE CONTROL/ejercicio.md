@@ -1,4 +1,4 @@
- # #01 OPERADORES Y ESTRUCTURAS DE CONTROL
+# #01 OPERADORES Y ESTRUCTURAS DE CONTROL
 > #### Dificultad: Fácil | Publicación: 02/01/24 | Corrección: 08/01/24
 
 ## Ejercicio
