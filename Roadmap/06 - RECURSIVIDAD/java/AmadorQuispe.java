@@ -10,11 +10,14 @@ public class AmadorQuispe {
 
         // Ejercicio 02, Calcular el factorial de un número concreto
         System.out.println("El factorial del número " + number + " es :" + factorial(number));// sin recursividad.
-        System.out.println("El factorial del número " + number + " es :" + factorialRecursive(number));// con recursividad.
+        System.out.println("El factorial del número " + number + " es :" + factorialRecursive(number));// con
+                                                                                                       // recursividad.
 
         // Ejercicio 03, Calcular el valor de un elemento concreto (según su posición)
-        System.out.println("El término " + number + " de la secuencia de Fibonacci es: " + fibonacci(number)); // sin recursividad.
-        System.out.println("El término " + number + " de la secuencia de Fibonacci es: " + fibonacciRecursive(number));// con recursividad.
+        System.out.println("El término " + number + " de la secuencia de Fibonacci es: " + fibonacci(number)); // sin
+                                                                                                               // recursividad.
+        System.out.println("El término " + number + " de la secuencia de Fibonacci es: " + fibonacciRecursive(number));// con
+                                                                                                                       // recursividad.
 
     }
 

@@ -166,3 +166,4 @@ struct Stack{
  }
 
  simulateNavigator()
+

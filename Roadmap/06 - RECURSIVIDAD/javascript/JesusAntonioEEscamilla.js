@@ -1,3 +1,4 @@
+/** #06 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * La recursividad es un concepto que se llama la misma función asi misma,
     siempre y cuanto tenga donde llegar y donde iniciar, claro tener un punto de rotura
@@ -32,14 +33,14 @@ console.log(factorial(5));
 
 
 //-----FIBONACCI-----
-function fibonacci(a) {
+function Fibonacci(a) {
     if(a <= 1){
         return a;
     }else{
-        return fibonacci(a - 1) + fibonacci(a - 2);
+        return Fibonacci(a - 1) + Fibonacci(a - 2);
     }
 }
 
-console.log(fibonacci(4));
+console.log(Fibonacci(4));
 
 /**-----DIFICULTAD EXTRA-----*/

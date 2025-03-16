@@ -82,6 +82,7 @@ input('Esta es la función input, \n para continuar escribe un número: ')
 '''
   VARIABLE LOCAL Y GLOBAL
 '''
+global global_var
 
 global_var = "Soy global"
 

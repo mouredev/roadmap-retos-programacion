@@ -19,130 +19,104 @@ import Foundation
  */
 
 
-// OPERADORES ARITMÉTICOS
+// Operadores aritméticos
 let suma = 5 + 3
-let resta = 10 - 4
-let multiplicacion = 2 * 6
-let division = 8 / 2
-let modulo = 15 % 7
+let resta = 10 - 2
+let multiplicacion = 4 * 6
+let division = 15 / 3
+let modulo = 7 % 2
+let potencia = Int(pow(2.0, 3.0)) // 2.0 es la base, 3.0 es el exponente
 
-print("Aritméticos:")
-print("Suma: \(suma)")
-print("Resta: \(resta)")
-print("Multiplicación: \(multiplicacion)")
-print("División: \(division)")
-print("Módulo: \(modulo)")
-
-
-// OPERADORES LÓGICOS
-let andLogico = true && false
-let orLogico = true || false
-let notLogico = !true
-
-print("\nLógicos:")
-print("AND lógico: \(andLogico)")
-print("OR lógico: \(orLogico)")
-print("NOT lógico: \(notLogico)")
+print("Operadores aritméticos:")
+print("Suma:", suma)
+print("Resta:", resta)
+print("Multiplicación:", multiplicacion)
+print("División:", division)
+print("Módulo:", modulo)
+print("Potencia:", potencia)
 
 
-// OPERADORES DE COMPARACIÓN
+// Operadores lógicos
+let andResultado = true && false
+let orResultado = true || false
+let notResultado = !true
+
+print("Operadores lógicos:")
+print("AND:", andResultado)
+print("OR:", orResultado)
+print("NOT:", notResultado)
+
+
+// Operadores de comparación
 let igual = 5 == 5
-let diferente = 10 != 5
-let mayorQue = 8 > 3
-let menorQue = 2 < 7
+let distinto = 5 != 10
+let mayor = 10 > 5
+let menor = 3 < 8
+let mayorOigual = 7 >= 7
+let menorOigual = 6 <= 6
 
-print("\nDe comparación:")
-print("Igual: \(igual)")
-print("Diferente: \(diferente)")
-print("Mayor que: \(mayorQue)")
-print("Menor que: \(menorQue)")
-
-
-// OPERADORES DE ASIGNACIÓN
-var variableAsignada = 42
-variableAsignada += 8
-
-print("\nDe asignación:")
-print("Variable asignada: \(variableAsignada)")
+print("\nOperadores de comparación:")
+print("Igual:", igual)
+print("Distinto:", distinto)
+print("Mayor:", mayor)
+print("Menor:", menor)
+print("Mayor o igual:", mayorOigual)
+print("Menor o igual:", menorOigual)
 
 
-// OPERADORES DE IDENTIDAD
-let objeto1 = "Hola"
-let objeto2 = "Hola"
-let sonIguales = objeto1 == objeto2
+// Operadores de asignación
+var asignacion = 5
+asignacion += 3
+asignacion -= 2
+asignacion *= 4
+asignacion /= 2
 
-print("\nDe identidad:")
-print("Objetos iguales: \(sonIguales)")
+print("Operadores de asignación: \(asignacion)")
 
 
-// OPERADORES DE PERTENENCIA
+// Operadores de identidad
+let a = "Esto es una comparacion"
+let b = "Esto es una comparacioN"
+
+let esIgual = a == b
+let diferente = a != b
+
+print("Operadores de identidad:")
+print("Identidad:", esIgual)
+print("No identidad:", diferente)
+
+
+// Operadores de pertenencia
 let lista = [1, 2, 3, 4, 5]
-let contieneTres = lista.contains(3)
+let pertenencia = 3
+let noPertenencia = 6
 
-print("\nDe pertenencia:")
-print("Contiene el número 3: \(contieneTres)")
-
-
-// OPERADORES DE BITS
-let a: UInt8 = 0b00101010
-let b: UInt8 = 0b00001111
-let resultadoAND = a & b
-let resultadoOR = a | b
-let resultadoXOR = a ^ b
-let desplazamientoIzquierda = a << 1
-let desplazamientoDerecha = a >> 1
-
-print("\nDe bits:")
-print("AND de bits: \(resultadoAND)")
-print("OR de bits: \(resultadoOR)")
-print("XOR de bits: \(resultadoXOR)")
-print("Desplazamiento izquierda: \(desplazamientoIzquierda)")
-print("Desplazamiento derecha: \(desplazamientoDerecha)")
+print("\nOperadores de pertenencia:")
+print("Pertenencia:", lista.contains(pertenencia))
+print("No pertenencia:", !lista.contains(noPertenencia))
 
 
-// ESTRUCTURAS DE CONTROL
-// Condicionales
-let numero = 25
+// Operadores de bits
+let bitwiseAnd = 5 & 3
+let bitwiseOr = 5 | 3
+let bitwiseXor = 5 ^ 3
+let bitwiseNot = ~5
+let shiftIzquierda = 5 << 1
+let shiftDerecha = 5 >> 1
 
-if numero % 2 == 0 {
-    print("\nCondicionales: \(numero) es par.")
-} else {
-    print("\nCondicionales: \(numero) es impar.")
-}
+print("\nOperadores de bits:")
+print("AND:", bitwiseAnd)
+print("OR:", bitwiseOr)
+print("XOR:", bitwiseXor)
+print("NOT:", bitwiseNot)
+print("Shift izquierda:", shiftIzquierda)
+print("Shift derecha:", shiftDerecha)
 
-// Iterativas
-print("\nIterativas: Números entre 10 y 55 (pares, no 16 ni múltiplos de 3):")
-for i in 10...55 {
-    if i % 2 == 0 && i != 16 && i % 3 != 0 {
-        print(i)
+
+//DIFICULTAD EXTRA (opcional):
+
+for number in 10...55 { // Rango del 10 al 55 (incluidos)
+    if number % 2 == 0 && number != 16 && number % 3 != 0 { 
+        print(number) // Imprimir si cumple las condiciones
     }
 }
-
-// Excepciones
-enum MiError: Error {
-    case errorPersonalizado
-}
-
-func lanzarExcepcion() throws {
-    throw MiError.errorPersonalizado
-}
-
-do {
-    try lanzarExcepcion()
-    print("\nExcepciones: Operación exitosa.")
-} catch MiError.errorPersonalizado {
-    print("\nExcepciones: ¡Se ha producido un error personalizado!")
-} catch {
-    print("\nExcepciones: ¡Se ha producido un error!")
-}
-
-
-//EJERCICIO OPCIONAL
-print("Números entre 10 y 55 (pares, no 16 ni múltiplos de 3):")
-
-for numero in 10...55 {
-    if numero % 2 == 0 && numero != 16 && numero % 3 != 0 {
-        print(numero)
-    }
-}
-

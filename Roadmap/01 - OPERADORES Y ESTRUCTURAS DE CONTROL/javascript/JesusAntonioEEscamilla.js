@@ -1,3 +1,4 @@
+/** #01 - JavaScript ->Jesus Antonio Escamilla */
 /**
  * -----TIPOS DE OPERADORES-----
  * Dentro operadores empezaremos con

@@ -63,52 +63,67 @@ fn extra1() {
         el nombre de una nueva web.
     */
     let mut historial: Vec<String> = Vec::new();
+    let mut historial1: Vec<String> = Vec::new();
     let mut cadena: String = String::new(); // cadena = pagina actual
-
+    let mut comando = String::new();
     loop {
-        clear_terminal().expect("Error al limpiar");
         println!("-----------");
         println!("| EXTRA 1 |");
         println!("-----------");
-        println!("----------------------------");
-        println!("Historial: {:?}", historial);
+        if !comando.is_empty() {
+            println!("{}", comando);
+            println!("----------------------------");
+        }
         println!("Pagina actual: {}", cadena);
+
+        println!("----------------------------");
+        println!(
+            "Historial: {:?} \nHistorialAdelante: {:?}",
+            historial, historial1
+        );
         println!("----------------------------");
         println!(
                 "\"adelante\" para cambiar a una nueva pagina\n\"atras\" para ir a la página anteriores\n\"nombre-web\" para agregar una web\n\"salir\" para cerrar el programa"
             );
-        let mut comando = String::new();
+        comando = String::new();
         std::io::stdin().read_line(&mut comando).unwrap();
         comando = comando.trim().to_string();
-        if comando == "atras" {
-            if !historial.is_empty() {
-                if comando != historial[historial.len() - 1] {
-                    cadena = pila_quitar_s(&mut historial);
-                } else {
-                    pila_quitar_s(&mut historial);
-                    cadena = pila_quitar_s(&mut historial);
-                }
-            }
-        } else if comando == "adelante" {
-            // no termino de entender qué haría "adelante"
 
-            if !cadena.is_empty() && !historial.is_empty() {
-                if cadena != historial[historial.len() - 1] {
-                    historial.push(cadena.clone());
-                    cadena = String::new();
+        match comando.as_str() {
+            "atras" => {
+                if !historial.is_empty() {
+                    if historial.len() > 1 {
+                        pila_quitar_s(&mut historial);
+                    }
+
+                    pila_agregar_s(&mut historial1, cadena.clone());
+                    cadena = pila_quitar_s(&mut historial);
+                    comando = String::new();
                 } else {
-                    cadena = String::new();
+                    comando = "Historial vacio".to_string();
                 }
-            } else if historial.is_empty() {
-                historial.push(cadena.clone());
-                cadena = String::new();
             }
-        } else if comando == "salir" {
-            break;
-        } else if !comando.is_empty() {
-            cadena = comando.clone();
-            pila_agregar_s(&mut historial, comando.clone());
+            "adelante" => {
+                if !historial1.is_empty() {
+                    pila_agregar_s(&mut historial, cadena.clone());
+                    cadena = pila_quitar_s(&mut historial1);
+                    comando = String::new();
+                } else {
+                    comando = "Estas en la última página".to_string();
+                }
+            }
+            "salir" => {
+                break;
+            }
+            _ => {
+                if !comando.is_empty() {
+                    cadena = comando.clone();
+                    comando = String::new();
+                    pila_agregar_s(&mut historial, cadena.clone());
+                }
+            }
         }
+        clear_terminal().expect("Error al limpiar");
     }
 }
 
