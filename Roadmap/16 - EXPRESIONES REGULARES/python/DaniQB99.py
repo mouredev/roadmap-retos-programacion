@@ -36,6 +36,7 @@ def validate_email(email: str) -> bool:
     # $ indica el final de la cadena
     # + indica que se puede repetir 1 o más veces
     # ^ indica que se debe empezar en la primera posición
+    # (?:com|net|es|ai|ia|mx|co|uy|org) es un grupo de caracteres que se puede repetir 0 o más veces
     
 print(validate_email("daniqb99@gmail.com"))
 print(validate_email("daniqb99@gmail.com.com"))
