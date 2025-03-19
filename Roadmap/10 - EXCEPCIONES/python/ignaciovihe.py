@@ -84,6 +84,9 @@ except InvalidEmail as error:
     print(f"Tipo de error: {type(error).__name__}")
     print(error)
 
+except Exception as error:
+    print(f"Se ha producido un error inesperado: {error}")
+
 else:
     print(f"Todos los datos correctos. Tu recompensa de bienvenida es {reward} ")
 
