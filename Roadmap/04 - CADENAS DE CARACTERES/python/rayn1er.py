@@ -35,3 +35,44 @@ string_5 = 'Hola\t mundo' #se puede usar \t para una tabulacion
 print(string_5)
 string_6 = "Hola\nmundo" # y \n para un salto de linea
 print(string_6)
+print(string_6.startswith('H')) #Para saber si empieza con una letra 
+print(string_6.endswith("O")) # para saber si termina con una letra
+
+#Ejercicio
+
+def palindromo(string: str): 
+    
+    if string == string[::-1]: 
+        return f'{string} es palindromo'
+    else:
+        return f'{string} No es palindromo'
+
+print(palindromo("alomomola"))
+print(palindromo("ratatta"))
+
+def anagrama(string: str, string2 : str):
+    
+    if sorted(string) == sorted(string2):
+        return f'{string} es anagrama de {string2}'
+    else:
+        return f'{string} no es anagrama de {string2}'
+
+print(anagrama("japones", 'esponja'))
+print(anagrama("amada", 'mirada'))
+
+def isograma(string):
+
+    counter = 0
+    for i in string:
+        if string.count(i) > 1:
+            counter += 1
+        
+            
+    if counter % 2 == 0:
+        return f'{string} es un isograma'
+    else:
+        return f'{string} no es un isograma'
+
+
+
+print(isograma(''))
