@@ -115,10 +115,19 @@ func iterativas() {
 	}
 }
 
+// actividad extra
+func funcionExtra() {
+	for i := 10; i <= 55; i++ {
+		if i%2 == 0 && i != 16 && i%3 != 0 {
+			fmt.Printf("El numero %d es una salida del for \n", i)
+		}
+	}
+}
 func main() {
 	aritmeticos()
 	logicos()
 	operadoresAsignacion()
 	condicionales()
 	iterativas()
+	funcionExtra()
 }
