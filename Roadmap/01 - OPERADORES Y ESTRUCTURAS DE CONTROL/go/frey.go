@@ -72,9 +72,53 @@ func operadoresAsignacion() {
 	fmt.Printf("a %%= b es: %d \n", a) // 5
 
 }
+func condicionales() {
+	// Condicionales if
+	if a > b {
+		fmt.Printf("%d es mayor que %d \n", a, b)
+	} else if a == b {
+		fmt.Printf("%d es igual a %d \n", a, b)
+	} else {
+		fmt.Printf("%d es menor que %d \n", a, b)
+	}
+
+	// Condicionales switch
+	switch a == b {
+	case true:
+		fmt.Println("a es igual a b")
+	case false:
+		fmt.Println("a no es igual a b")
+	}
+}
+
+func iterativas() {
+	// Iterativas
+
+	// for con inicialización y condición
+	for i := 0; i < 10; i++ {
+		fmt.Printf("Iteracion %d \n", i)
+	}
+	// for con condición
+	i := 0
+	for i < 10 {
+		fmt.Printf("Iteración %d \n", i)
+		i++
+	}
+	// for infinito
+	i = 0
+	for {
+		fmt.Printf("Iteración %d \n", i)
+		i++
+		if i == 10 {
+			break
+		}
+	}
+}
 
 func main() {
 	aritmeticos()
 	logicos()
 	operadoresAsignacion()
+	condicionales()
+	iterativas()
 }
