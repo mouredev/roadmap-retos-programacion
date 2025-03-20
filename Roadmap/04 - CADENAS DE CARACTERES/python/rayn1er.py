@@ -61,18 +61,25 @@ print(anagrama("japones", 'esponja'))
 print(anagrama("amada", 'mirada'))
 
 def isograma(string):
-
+    check = {}
     counter = 0
+    isograma = True
     for i in string:
-        if string.count(i) > 1:
-            counter += 1
-        
-            
-    if counter % 2 == 0:
-        return f'{string} es un isograma'
+        check[i] = string.count(i)
+
+    for i in check.values():
+        if i > counter:
+            counter = i
+    
+    for i in check.values():
+        if i != counter:
+            isograma = False
+   
+    
+    if isograma:
+        return f"{string} es un isograma"
     else:
-        return f'{string} no es un isograma'
-
-
-
-print(isograma(''))
+        return f"{string} no es un isograma"
+    
+    
+print(isograma("pythonpython"))
