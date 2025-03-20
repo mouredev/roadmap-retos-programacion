@@ -132,7 +132,19 @@ def sells_management():
                             return True
                 return "No se encuentra el producto"
         except FileNotFoundError:
-            return "El archivo no existe."
+            print("El archivo no existe.")
+            return False
+
+    def calculate_total()-> float:
+        with open("sells_resume.txt","r") as f:
+            lines = f.readlines()
+            total = 0
+            for line in lines:
+                product, quantity, price = line.strip("\n").split(", ")
+                total_product = float(quantity) * float(price)
+                print(f"[{product}] = [{total_product}]")
+                total += total_product
+            print(f"[Total de ventas: {total}]")
 
     def exit():
         my_file = Path("sells_resume.txt")# Borra el archivo
@@ -167,10 +179,18 @@ def sells_management():
                 product = _get_product_info()
                 search(product,"d")
 
+            case "5":
+                calculate_total()
+
             case "6":
                 product = _get_product_info()
-                full_product = search(product).split(", ")
-                print(f"Total ventas de {full_product[0]}: {float(full_product[1]) * float(full_product[2])}€")
+                try:
+                    full_product = search(product).split(", ")
+                    print(f"Total ventas de {full_product[0]}: {float(full_product[1]) * float(full_product[2])}€")
+                except IndexError:
+                    print("No se encontro el producto. Operación abortada.")
+                except AttributeError:
+                    print("Operación abortada.")
 
             
             case "7":
