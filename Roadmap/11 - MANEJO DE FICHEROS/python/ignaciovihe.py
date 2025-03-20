@@ -43,17 +43,18 @@ manage_my_file()
 
 def sells_management():
 
-    
+    file_name = "sells_resume.txt"
+
     def _add_product(product: str, quantity: int, price: float):
         """#Escribe una nueva linea al final del fichero."""
 
-        with open("sells_resume.txt", "a") as f:
+        with open(file_name, "a") as f:
             f.write(f"{product}, {quantity}, {price}\n")
 
     def _write_lines_to_file(lines: list):
         """Escribe las lineas, incluida la modificada, nuevamente en el fichero"""
 
-        with open("sells_resume.txt", "w") as f:
+        with open(file_name, "w") as f:
             f.writelines(lines)
 
     def _is_number(param: str)-> bool:
@@ -99,7 +100,7 @@ def sells_management():
         already_in = False
 
         try:
-            with open("sells_resume.txt", "r") as f:
+            with open(file_name, "r") as f:
                 lines = f.readlines()
                 for i,line in enumerate(lines):
                     parts = line.split(", ")
@@ -117,7 +118,7 @@ def sells_management():
 
     def search(product: str, mode = "s"):
         try:
-            with open("sells_resume.txt","r") as f:
+            with open(file_name,"r") as f:
                 lines = f.readlines()
 
                 for index, line in enumerate(lines):
@@ -136,7 +137,7 @@ def sells_management():
             return False
 
     def calculate_total()-> float:
-        with open("sells_resume.txt","r") as f:
+        with open(file_name,"r") as f:
             lines = f.readlines()
             total = 0
             for line in lines:
@@ -145,6 +146,13 @@ def sells_management():
                 print(f"[{product}] = [{total_product}]")
                 total += total_product
             print(f"[Total de ventas: {total}]")
+
+    def show_products():
+        try:
+            with open(file_name,"r") as f:
+                print(f.read())
+        except FileNotFoundError:
+            print("El fichero no existe")
 
     def exit():
         my_file = Path("sells_resume.txt")# Borra el archivo
@@ -163,7 +171,8 @@ def sells_management():
         print("4. Eliminar producto.")
         print("5. Total ventas.")
         print("6. Total ventas de un producto.")
-        print("7. Salir.")
+        print("7. Mostrar productos")
+        print("8. Salir.")
         option = input("Elige una opción: ")
 
         match option:
@@ -192,8 +201,10 @@ def sells_management():
                 except AttributeError:
                     print("Operación abortada.")
 
-            
             case "7":
+                show_products()
+
+            case "8":
                 exit()
                 break
 
