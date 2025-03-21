@@ -61,8 +61,29 @@ func usarFuncionesNativas() {
 	fmt.Println("Longitud de la cadena:", longitud)
 }
 
+// Ejercicio extra
+
+func problemaFizzBuzz(string1, string2 string) int {
+	contador := 0
+	for i := 1; i <= 100; i++ {
+		if i%3 == 0 && i%5 == 0 {
+			fmt.Println(string1 + string2)
+		} else if i%3 == 0 {
+			fmt.Println(string1)
+		} else if i%5 == 0 {
+			fmt.Println(string2)
+		} else {
+			fmt.Println(i)
+			contador++
+		}
+	}
+	return contador
+}
+
 func main() {
 	saludar(nombre)
 	variosParametros(nombre, apellido, ciudad)
 	usarFuncionesNativas()
+	contador := problemaFizzBuzz("fizz", "buzz")
+	fmt.Println("El contador es:", contador)
 }
