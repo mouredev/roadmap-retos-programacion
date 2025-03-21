@@ -62,17 +62,14 @@ print(anagrama("amada", 'mirada'))
 
 def isograma(string):
     check = {}
-    counter = 0
     isograma = True
     for i in string:
         check[i] = string.count(i)
 
-    for i in check.values():
-        if i > counter:
-            counter = i
+    max_value = max(check.values())
     
     for i in check.values():
-        if i != counter:
+        if i != max_value:
             isograma = False
    
     
@@ -80,6 +77,8 @@ def isograma(string):
         return f"{string} es un isograma"
     else:
         return f"{string} no es un isograma"
+
+    return max_value
     
     
-print(isograma("pythonpython"))
+print(isograma("pythonpythonpython"))
