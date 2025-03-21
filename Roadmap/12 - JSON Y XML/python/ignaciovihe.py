@@ -12,9 +12,10 @@
 
 from pathlib import Path
 import xml.etree.ElementTree as XML
+import json
 
-
-file_name_xml = "ignaciovihe.xml"
+xml_file = "ignaciovihe.xml"
+json_file = "ignaciovihe.json"
 
 programmer = {
     "name": "ignacio",
@@ -39,13 +40,13 @@ def create_xml():
             child.text = value
 
     tree = XML.ElementTree(root) # Convertimos la estructura en un árbol XML
-    tree.write(file_name_xml, encoding="utf-8", xml_declaration=True) # Guardamos el XML en un archivo.
+    tree.write(xml_file, encoding="utf-8", xml_declaration=True) # Guardamos el XML en un archivo.
 
 
 def read_xml():
 
     # Cargar el archivo XML
-    tree = XML.parse(file_name_xml) # Abre y analiza el archivo XML
+    tree = XML.parse(xml_file) # Abre y analiza el archivo XML
     root = tree.getroot()  # Obtiene el elemento raíz del XML (<programmer> en este caso)
 
     # Recorrer los elementos 'libro' y extraer información
@@ -67,4 +68,23 @@ def delete_file(file_name):
 
 create_xml()
 read_xml()
-delete_file(file_name_xml)
+delete_file(xml_file)
+
+
+def create_json():
+    with open(json_file, "a") as file:
+        json.dump(programmer, file, indent=4)
+
+def read_json():
+    with open(json_file,"r") as file:
+        data = json.load(file)
+
+    for key, value in data.items():
+        if isinstance(value, list):
+            print(f"{key}: {" ".join(value)}")
+        else:
+            print(f"{key}: {value}")
+
+create_json()
+read_json()
+delete_file(json_file)
