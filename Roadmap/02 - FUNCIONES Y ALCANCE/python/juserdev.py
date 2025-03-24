@@ -41,6 +41,42 @@ def funcion_parametros_retorno(lenguaje):
 
 print(funcion_parametros_retorno("Python"))
 
+# Funcion infinita
+
+def funcion_infinita(*param):
+  return param
+
+print(funcion_infinita("hola", "juan")) # esto es una tupla
+print(type(funcion_infinita("hola", "juan")))
+
+saludar, juan = funcion_infinita("hola", "juan") # aqui le agregue variabels a cada parametro
+
+print(f"{saludar} {juan}")
+
+def funcion_infinita_2(*params):
+  for param in params:
+    print(f"{param}")
+
+funcion_infinita_2("hola", "python", "soy Juan")
+
+def funcion_key_value(**names):
+  for key, value in names.items():
+    print(f"{value}, {key}")
+
+funcion_key_value(leugaje="python", edad=35, nombre="Juan", alias="juserdev")
+
+# Funciones globales y locales
+
+var_global = "variable global"
+
+def funcion_var_local():
+  var_local = "variable local" # No se puede acceder a esta variable fuera de esta funcion
+  print(f"{var_global}, {var_local}")
+
+print(var_global)
+funcion_var_local(
+
+)
 
 # FUNCIONES ENTRE FUNCIONES
 
@@ -84,5 +120,5 @@ def dificultad_extra(name, surname):
       print(i)
     i += 1
 
-dificultad_extra("juan", "rodriguez")
+# dificultad_extra("juan", "rodriguez")
 
