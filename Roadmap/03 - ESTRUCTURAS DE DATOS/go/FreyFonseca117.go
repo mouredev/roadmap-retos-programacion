@@ -79,6 +79,7 @@ func slice() {
 }
 
 func agendaAdicional() {
+
 	// variables y mapas
 	agenda := make(map[string]int)
 	agenda["frey"] = 957985975
