@@ -78,7 +78,71 @@ func slice() {
 
 }
 
+// * DIFICULTAD EXTRA (opcional):
+// * Crea una agenda de contactos por terminal.
+// * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+// * - Cada contacto debe tener un nombre y un número de teléfono.
+// * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+// *   los datos necesarios para llevarla a cabo.
+// * - El programa no puede dejar introducir números de teléfono no numéricos y con más de 11 dígitos.
+// *   (o el número de dígitos que quieras)
+// * - También se debe proponer una operación de finalización del programa.
+func agendaAdicional() {
+
+	// variables y mapas
+	agenda := make(map[string]int)
+	agenda["frey"] = 957985975
+	agenda["zeoly"] = 937639373
+
+	//Ingresar el valor por consola
+	var nombre string
+	//var numero int
+	var opcion int
+
+	// opciones que aparecen en la consola
+	for {
+		fmt.Println("Marque una de las siguientes opciones")
+		fmt.Println("1. Para buscar un contacto")
+		fmt.Println("2. Para modificar un contacto")
+		fmt.Println("3. Para agregar un contacto")
+		fmt.Println("4. Para eliminar un contacto")
+		fmt.Println("5. Para mostrar todos los contactos")
+		fmt.Println("6. Para salir")
+		fmt.Scanln(&opcion)
+
+		//Buscar contactos registrados
+		switch opcion {
+		case 1:
+			fmt.Println("por favor ingrese el nombre del contacto que desea buscar")
+			fmt.Scanln(&nombre)
+			numero, ok := agenda[nombre]
+			if ok {
+				fmt.Printf(" el nombre del contacto es %s y su numero es %d \n\n", nombre, numero)
+			} else {
+				fmt.Println("el contacto con nombre %s no esta registrado", nombre)
+			}
+
+			//Modificar un contacto
+		case 2:
+			fmt.Println("ingrese por favor el nombre del contacto que desea modificar")
+			fmt.Scanln(&nombre)
+			numero, ok := agenda[nombre]
+			if ok {
+				fmt.Println("Por favor ingrese el nuevo numero")
+				fmt.Scanln(&numero)
+				agenda[nombre] = numero
+				fmt.Println("Se ha actualizado el número")
+				fmt.Println("el nuevo numero es: ", numero)
+			} else {
+				fmt.Println("el contacto con nombre %s no esta registrado", nombre)
+			}
+
+		}
+	}
+}
+
 func main() {
 	array()
 	slice()
+	agendaAdicional()
 }
