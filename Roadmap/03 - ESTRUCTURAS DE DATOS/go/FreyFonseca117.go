@@ -78,17 +78,7 @@ func slice() {
 
 }
 
-// * DIFICULTAD EXTRA (opcional):
-// * Crea una agenda de contactos por terminal.
-// * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
-// * - Cada contacto debe tener un nombre y un número de teléfono.
-// * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
-// *   los datos necesarios para llevarla a cabo.
-// * - El programa no puede dejar introducir números de teléfono no numéricos y con más de 11 dígitos.
-// *   (o el número de dígitos que quieras)
-// * - También se debe proponer una operación de finalización del programa.
 func agendaAdicional() {
-
 	// variables y mapas
 	agenda := make(map[string]int)
 	agenda["frey"] = 957985975
@@ -96,11 +86,21 @@ func agendaAdicional() {
 
 	//Ingresar el valor por consola
 	var nombre string
-	//var numero int
+	var numero int
 	var opcion int
+
+	//verificacion de numero
+	validarNumero := func(numero int) bool {
+		if numero >= 100000000 && numero <= 999999999 {
+			return true
+		} else {
+			return false
+		}
+	}
 
 	// opciones que aparecen en la consola
 	for {
+		// Validación para la opción ingresada
 		fmt.Println("Marque una de las siguientes opciones")
 		fmt.Println("1. Para buscar un contacto")
 		fmt.Println("2. Para modificar un contacto")
@@ -108,35 +108,91 @@ func agendaAdicional() {
 		fmt.Println("4. Para eliminar un contacto")
 		fmt.Println("5. Para mostrar todos los contactos")
 		fmt.Println("6. Para salir")
-		fmt.Scanln(&opcion)
+
+		// Validar que la opción sea un número entero
+		_, err := fmt.Scanln(&opcion)
+		if err != nil || opcion < 1 || opcion > 6 {
+			fmt.Println("Opción inválida. Por favor ingrese un número entre 1 y 6.")
+			continue
+		}
 
 		//Buscar contactos registrados
 		switch opcion {
 		case 1:
-			fmt.Println("por favor ingrese el nombre del contacto que desea buscar")
+			fmt.Println("Por favor ingrese el nombre del contacto que desea buscar")
 			fmt.Scanln(&nombre)
 			numero, ok := agenda[nombre]
 			if ok {
-				fmt.Printf(" el nombre del contacto es %s y su numero es %d \n\n", nombre, numero)
+				fmt.Printf("El nombre del contacto es %s y su número es %d \n\n", nombre, numero)
 			} else {
-				fmt.Println("el contacto con nombre %s no esta registrado", nombre)
+				fmt.Printf("El contacto con nombre %s no está registrado\n", nombre)
 			}
 
-			//Modificar un contacto
+		//Modificar un contacto
 		case 2:
-			fmt.Println("ingrese por favor el nombre del contacto que desea modificar")
+			fmt.Println("Ingrese por favor el nombre del contacto que desea modificar")
 			fmt.Scanln(&nombre)
 			numero, ok := agenda[nombre]
 			if ok {
-				fmt.Println("Por favor ingrese el nuevo numero")
-				fmt.Scanln(&numero)
-				agenda[nombre] = numero
-				fmt.Println("Se ha actualizado el número")
-				fmt.Println("el nuevo numero es: ", numero)
+				fmt.Println("Por favor ingrese el nuevo número")
+				// Validación para el nuevo número
+				_, err := fmt.Scanln(&numero)
+				if err != nil || !validarNumero(numero) {
+					fmt.Println("Número incorrecto. Debe ser un número válido de 9 dígitos.")
+				} else {
+					agenda[nombre] = numero
+					fmt.Printf("Se ha actualizado el número de %s \n", nombre)
+					fmt.Printf("El nuevo número es: %d \n", numero)
+				}
 			} else {
-				fmt.Println("el contacto con nombre %s no esta registrado", nombre)
+				fmt.Printf("El contacto con nombre %s no está registrado \n", nombre)
 			}
 
+		// Agregar un contacto
+		case 3:
+			fmt.Println("Ingrese por favor el nombre del contacto que desea agregar")
+			fmt.Scanln(&nombre)
+			fmt.Println("Ingrese por favor el número del contacto que desea agregar")
+			// Validación para el número
+			_, err := fmt.Scanln(&numero)
+			if err != nil || !validarNumero(numero) {
+				fmt.Println("Número incorrecto. Debe ser un número válido de 9 dígitos.")
+			} else {
+				agenda[nombre] = numero
+				fmt.Printf("Se ha agregado el contacto %s con el número %d \n", nombre, numero)
+			}
+
+		// Eliminar un contacto
+		case 4:
+			fmt.Println("Ingrese por favor el nombre del contacto que desea eliminar")
+			fmt.Scanln(&nombre)
+			_, ok := agenda[nombre]
+			if ok {
+				delete(agenda, nombre)
+				fmt.Printf("Se ha eliminado el contacto %s \n", nombre)
+			} else {
+				fmt.Printf("El usuario %s no se encuentra registrado \n", nombre)
+			}
+
+		// Mostrar todos los contactos
+		case 5:
+			if len(agenda) == 0 {
+				fmt.Println("La agenda está vacía")
+			} else {
+				fmt.Println("Estos son los contactos registrados:")
+				for nombre, numero := range agenda {
+					fmt.Printf("El contacto %s tiene el número %d \n", nombre, numero)
+				}
+			}
+
+		// Terminar programa
+		case 6:
+			fmt.Println("Programa finalizado.")
+			return
+
+		// Valor por defecto
+		default:
+			fmt.Println("Por favor ingrese una opción válida.")
 		}
 	}
 }
