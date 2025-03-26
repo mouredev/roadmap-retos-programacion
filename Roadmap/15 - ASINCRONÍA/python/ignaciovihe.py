@@ -99,4 +99,72 @@ async def main():
 asyncio.run(main())
 
 
+"""
+Ejemplo real lectura de ficheros
+Funciona mejor con ficheros grandes y dependiendo del tamaño de bloque
+De todos modos la mejora del asincrono no es demasido visible.
+"""
+import aiofiles
+import asyncio
+import time
 
+# Función para leer un archivo en bloques de tamaño 'block_size' de manera asincrónica.
+# Al usar yield se "convierte" en un generador asincrónico.
+async def read_file_in_chunks(file_name: str, block_size: int):
+    async with aiofiles.open(file_name, "r") as file:
+        while True:
+            chunk = await file.read(block_size)
+            if not chunk:
+                break
+            yield chunk  # Devuelve cada bloque leído
+
+# Función para escribir en un archivo de manera asincrónica
+async def write_file(file_name: str, content: str):
+    async with aiofiles.open(file_name, "a") as file:
+        await file.write(content)
+
+# Función principal asincrónica
+async def main():
+    block_size = 256 * 1024  # Tamaño del bloque en bytes (1 MB en este caso)
+    files_to_read = ["1.txt", "2.txt"]  # Lista de archivos a leer
+
+    inicio = time.perf_counter()  # Inicia el cronómetro
+    tasks = []  # Lista para almacenar las tareas asincrónicas
+
+    # Para cada archivo, lee en bloques de manera asincrónica y escribe el contenido
+    for file_name in files_to_read:
+        async for chunk in read_file_in_chunks(file_name, block_size): #"async for" ejecuta un generador asincrono(ya contiene el await)
+            tasks.append(write_file("result_a.txt", chunk))     # Agrega tarea de escritura a la lista
+                                                                # Al estar definida como async se genera un objeto corutine
+    # Ejecuta todas las tareas de escritura de manera asincrónica
+    await asyncio.gather(*tasks)
+
+    fin = time.perf_counter()  # Finaliza el cronómetro
+    print(f"\nTiempo total de ejecución asincrona: {fin - inicio:.10f} segundos")
+
+# Ejecuta la función principal asincrónica
+asyncio.run(main())
+
+"""Con lectura/escritura sincrona"""
+def read_file_s(file_name: str):
+    with open(file_name, "r") as file: #Abro el fichero en un contexto asincrono.
+        return file.read()
+    
+def write_file_s(file_name: str, content: str):
+    with open(file_name, "a") as file:
+        for paragraph in content:
+            file.write(paragraph)
+            file.write("\n")
+
+files_to_read = ["1.txt", "2.txt"]
+
+def main():
+    inicio = time.perf_counter()
+    paragraphs= []
+    for item in files_to_read:
+        paragraphs.append(read_file_s(item))
+    write_file_s("result_s.txt", paragraphs)
+    fin = time.perf_counter()  #Finalizamos el cronómetro
+    print(f"\n Tiempo total de ejecución sincrona: {fin - inicio:.10f} segundos")
+
+main()
