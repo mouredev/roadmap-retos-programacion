@@ -49,7 +49,7 @@ func intercambioPorValor(a, b int) (int, int) {
 }
 
 // Intercambio por referencia (afecta a las variables originales)
-func intercambioPorReferencia(a, b *int) {
+func intercambioReferencia(a, b *int) {
 	*a, *b = *b, *a
 }
 
@@ -94,7 +94,7 @@ func main() {
 	fmt.Println("Nuevas - nuevo1:", nuevo1, "nuevo2:", nuevo2)                 // valores intercambiados
 
 	// Intercambio por referencia
-	intercambioPorReferencia(&original1, &original2)
+	intercambioReferencia(&original1, &original2)
 	fmt.Println("Intercambio por referencia:")
 	fmt.Println("Originales modificadas - original1:", original1, "original2:", original2) // ahora están intercambiadas
 }
