@@ -34,9 +34,9 @@ imprimePepe("Pepe", 40)
 imprimeJuan("Juan", 30)
 
 """
-# DIFICULTAD EXTRA (opcional):
-# Crea un decorador que sea capaz de contabilizar cuántas veces
-# se ha llamado a una función y aplícalo a una función de tu elección.
+DIFICULTAD EXTRA (opcional):
+Crea un decorador que sea capaz de contabilizar cuántas veces
+se ha llamado a una función y aplícalo a una función de tu elección.
 """
 
 # Definimos el decorador, va a redecorar la función que le pasemos
