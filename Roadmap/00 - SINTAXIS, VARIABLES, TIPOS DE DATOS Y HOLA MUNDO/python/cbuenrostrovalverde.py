@@ -18,7 +18,6 @@
 # https://www.python.org/
 
 # Comentario de una linea
-'Comentario de una linea'
 
 # Comentario de varias líneas
 '''
