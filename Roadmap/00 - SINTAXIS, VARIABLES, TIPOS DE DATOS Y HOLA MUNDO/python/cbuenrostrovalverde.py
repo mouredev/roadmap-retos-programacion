@@ -17,7 +17,10 @@
 # URL del sitio web oficial de Python
 # https://www.python.org/
 
-# Comentario de una línea
+# Comentario de una linea
+'Comentario de una linea'
+
+# Comentario de varias líneas
 '''
 Comentario
 de
