@@ -72,22 +72,21 @@ print(my_list)
  * - Diferencia simétrica.
 """
 
-list_a = {"j", "g", "i", "f", "p", "a", "r"}
-list_b = {"g", "l", "r", "f", "b", "i"}
+set_a = {"j", "g", "i", "f", "p", "a", "r"}
+set_b = {"g", "l", "r", "f", "b", "i"}
 
 #Unión
-print(list_a | list_b) # Une los elementos de ambos conjuntos (sin duplicados).
+print(set_a | set_b) # Une los elementos de ambos conjuntos (sin duplicados).
 
 
 #Initersección
-print(list_a & list_b) # Devuelve los elementos comunes entre ambos conjuntos.
+print(set_a & set_b) # Devuelve los elementos comunes entre ambos conjuntos.
 
 
 #Diferencia
 
-print(list_a - list_b) # Elementos que están en A pero no en B (Como una resta)
-print(list_b - list_a) #Elementos que están en B pero no en A (Como una resta)
+print(set_a - set_b) # Elementos que están en A pero no en B (Como una resta)
+print(set_b - set_a) #Elementos que están en B pero no en A (Como una resta)
 
 #Diferencia simetrica
-
-print(list_a ^ list_b) #Elementos que están en A o en B, pero no en ambos.
+print(set_a ^ set_b) #Elementos que están en A o en B, pero no en ambos.
