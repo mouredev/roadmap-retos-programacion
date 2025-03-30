@@ -47,7 +47,7 @@ class TaskManager:
             logging.warning(f"Se a intentado añadir una tarea que ya existe: {name}.")
         logging.debug(f"Numero de tareas: {len(self.tasks)}")
 
-    # @duration
+    @duration
     def delete_task(self, name: str):
         if name in self.tasks:
             del self.tasks[name]
