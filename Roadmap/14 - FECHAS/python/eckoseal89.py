@@ -1,0 +1,16 @@
+from datetime import datetime
+
+actual = datetime.now()
+nacim = datetime(year=1988, month=3, day=10, hour=22, minute=22, second=22)
+print(actual)
+print(nacim)
+print(nacim.strftime("%d-%b-%Y"))
+print(nacim.strftime("%H:%M:%S"))
+print(nacim.strftime("%a, %B:%d:%y"))
+print(nacim.strftime("%I:%M:%p"))
+print(nacim.strftime("%d-%b-%Y, %H:%M:%S"))
+print(nacim.strftime("%c"))
+print(nacim.strftime("%H:%M:%S, %A-%W-%Y"))
+print(nacim.strftime("%b_%Y_%d"))
+print(nacim.strftime("%H:%M:%S"))
+print(nacim.strftime("%H:%M:%S"))
