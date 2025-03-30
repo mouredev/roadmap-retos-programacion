@@ -65,19 +65,19 @@ class Order():
         Order.total_orders += 1
         self.id = f"ORD-{datetime.now().year}-{str(Order.total_orders).zfill(3)}"
         self.status = OrderStatus.PENDING
-        print(f"Orden creada con id: {self.id}. Estado actual: {self.status.name}.")
+        self.print_status()
 
     def change_status(self):
         if 0 < self.status.value < 3:
             self.status = OrderStatus(self.status.value + 1)
-            print(f"Nuevo estado del pedido {self.id}: {self.status.name}.")
+            self.print_status()
         else:
             print(f"No se puede modificar el estado del pedido {self.id}. - Pedido entregado o cancelado.")
 
     def cancel_order(self):
         if self.status == OrderStatus.PENDING:
             self.status = OrderStatus.CANCELED
-            print(f"Pedido {self.id} cancelado.")
+            self.print_status()
         else:
             print(f"No se puede cancelar el pedido {self.id} debido a que ya ha sido enviado, entregado o cancelado.")
 
@@ -103,11 +103,8 @@ order2.cancel_order()
 order1.change_status()
 order2.change_status()
 order1.change_status()
-order1.print_status()
-order3.print_status()
 order3.change_status()
-order3.print_status()
 order3.change_status()
-order3.print_status()
+
 
 
