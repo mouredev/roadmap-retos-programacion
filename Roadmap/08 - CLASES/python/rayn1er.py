@@ -50,7 +50,10 @@ class Stack:
         print(f'{element} ha sido agregado con exito al stack')
     
     def delete_element(self):
-        print(f"{self.elements.pop()} ha sido eliminado del stack")
+        if self.count_elements() == 0:
+            print(0)
+        else:
+            print(f"{self.elements.pop()} ha sido eliminado del stack")
     
     def show_elements(self):
         print(f"Los elementos presentes en el stack son {self.elements}")
@@ -77,7 +80,10 @@ class Queue:
         print(f'{element} ha sido agregado con exito al queue')
     
     def delete_element(self):
-        print(f"{self.elements.pop(0)} ha sido eliminado del queue")
+        if self.count_elements() == 0:
+            print(0)
+        else:
+            print(f"{self.elements.pop(0)} ha sido eliminado del queue")
     
     def show_elements(self):
         print(f"Los elementos presentes en el queue son {self.elements}")
