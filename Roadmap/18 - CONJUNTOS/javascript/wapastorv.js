@@ -54,36 +54,75 @@ console.log(arregloDeNumeros.includes(5)); // true
 const array1 = [1, 2, 3, 6];
 const array2 = [1, 2, 3, 4, 5];
 
-// Operaciones de conjuntos con arreglos en JavaScript usando Set y Arreglos directamente
-// Set es una estructura de datos que no permite elementos duplicados
-const unionArraySet = new Set([...array1, ...array2]);
-console.log("Union de conjuntos con SET: ",unionArraySet); // [1, 2, 3, 1, 2, 3, 4, 5]
+console.log("Arreglo original 1: ",array1);
+console.log("Arreglo original 2: ",array2);
 
-// Arreglos directamente
+// Crear conjuntos a partir de arreglos
+const conjuntoA = new Set(array1);
+const conjuntoB = new Set(array2);
+
+// Operaciones de conjuntos con arreglos en JavaScript usando Set y Arreglos directamente
+// Set es una estructura de datos que no permite elementos duplicados, por lo que es ideal para trabajar con conjuntos.
+
+// Union de conjuntos
+
+function unionConSet(setA, setB) {
+    return new Set([...setA, ...setB]);
+}
+
+console.log("Union de conjuntos con SET: ",unionConSet(conjuntoA,conjuntoB)); // [1, 2, 3, 1, 2, 3, 4, 5]
+
+// Union mantenimentdo la estructua de arreglo
 const unionArray = (array1, array2) => {
     return [...new Set([...array1, ...array2])];
 }
 console.log("Union de arreglos",unionArray(array1, array2)); // [1, 2, 3, 4, 5, 6]
 
 
+
 // Intersección de conjuntos
-// Set es una estructura de datos que no permite elementos duplicados
-const conjuntoA = new Set(array1);
-const conjuntoB = new Set(array2);
+// La intersección contiene solo los elementos que están en ambos conjuntos.
 
-const intersectionArraySet =conjuntoA.filter(x => conjuntoB.has(x));
-console.log("Intersecion de conjuntos con SET",intersectionArraySet); // [1, 2, 3]
-// Intersección de arreglos directamente
+function intersectionConSet(setA, setB) {
+    return new Set([...setA].filter(x => setB.has(x)));
+}
+console.log("Intersecion de conjuntos con SET",intersectionConSet(conjuntoA,conjuntoB)); // [1, 2, 3]
 
-
+// Intersección mantenimentdo la estructua de arreglo
 const intersectionArray = (array1, array2) => {
     return array1.filter(value => array2.includes(value));
 }
 console.log("Intersecion de arreglos",intersectionArray(array1, array2)); // [1, 2, 3]
 
 
+// Difference de conjuntos
+// La diferencia contiene los elementos que están en el primer conjunto pero no en el segundo.
 
+// Diferencia con la estructura de set
+const differenceArraySet = (setA, setB) => {
+    return new Set([...setA].filter(x => !setB.has(x)));
+}
+console.log("Diferencia con la estrucura de set: ",differenceArraySet(conjuntoA,conjuntoB)); // [6]
 
-const differenceArraySet = new Set(array1.filter(x => !array2.includes(x)));
-console.log(differenceArraySet); // [6]
+// Diferencia con la estructura de arreglos
+const differenceArray = (array1, array2) => {
+    return array1.filter(value => !array2.includes(value));
+}
+console.log("Diferencia con la estructura de arreglos: ",differenceArray(array1, array2)); // [6]
+
+// Diferencia simétrica de conjuntos
+// La diferencia simétrica contiene los elementos que están en uno de los conjuntos pero no en ambos.
+
+//Diferencia simétrica con la estructura de set
+const symmetricDifferenceArraySet = (setA, setB) => {
+    return new Set([...setA].filter(x => !setB.has(x)).concat([...setB].filter(x => !setA.has(x))))
+}
+console.log("Diferencia simétrica con la estructura de set: ",symmetricDifferenceArraySet(conjuntoA,conjuntoB)); // [4, 5, 6]
+
+// Diferencia simétrica con la estructura de arreglos
+const symmetricDifferenceArray = (array1, array2) => {
+    return array1.filter(value => !array2.includes(value)).concat(array2.filter(value => !array1.includes(value)));
+}
+
+console.log("Diferencia simétrica con la estructura de arreglos: ",symmetricDifferenceArray(array1, array2)); // [4, 5, 6]
 
