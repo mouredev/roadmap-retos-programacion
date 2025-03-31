@@ -53,7 +53,7 @@ Ejercicio Extra
 
 class Vehicle(ABC):
 
-    def __init__(self, speed):
+    def __init__(self, speed = 0):
         self.speed = speed
     
     @abstractmethod
