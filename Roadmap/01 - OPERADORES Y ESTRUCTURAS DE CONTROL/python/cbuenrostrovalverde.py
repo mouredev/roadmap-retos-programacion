@@ -69,3 +69,55 @@ de identidad
 my_new_number = mi_numero
 print(f'my_new_number is my_new_number es {mi_numero is my_new_number}')
 print(f'my_new_number is my_new_number es {mi_numero is not my_new_number}')
+
+# Operadores de bit
+a = 10  # 1010
+b = 3  # 0011
+print(f"AND: 10 & 3 = {10 & 3}")  # 0010
+print(f"OR: 10 | 3 = {10 | 3}")  # 1011
+print(f"XOR: 10 ^ 3 = {10 ^ 3}")  # 1001
+print(f"NOT: ~10 = {~10}")
+print(f"Desplazamiento a la derecha: 10 >> 2 = {10 >> 2}")  # 0010
+print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}")  # 101000
+
+"""
+Estructuras de control
+"""
+
+# Condicionales
+
+my_string = "Carlos"
+
+if my_string == "cbuenrostrovalverde":
+    print("my_string es 'cbuenrostrovalverde'")
+elif my_string == "Carlos":
+    print("my_string es 'Carlos'")
+else:
+    print("my_string no es 'cbuenrostrovalverde' ni 'Carlos'")
+
+# Iterativas
+
+for i in range(11):
+    print(i)
+
+i = 0
+
+while i <= 10:
+    print(i)
+    i += 1
+
+# Manejo de excepciones
+try:
+    print(10 / 0)
+except:
+    print("Se ha producido un error")
+finally:
+    print("Ha finalizado el manejo de excepciones")
+
+"""
+Extra: imprimir por pantalla números entre 10 - 55
+"""
+
+for numero in range (10, 56):
+    if numero %2 == 0 and numero != 16 and numero % 3 != 0:
+        print(numero)
