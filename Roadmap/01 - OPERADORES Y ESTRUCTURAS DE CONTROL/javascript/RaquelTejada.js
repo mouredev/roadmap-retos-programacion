@@ -1,6 +1,5 @@
 // Operadores de asignación
 let x = 10; // Asignación
-let y = 2; // Asignación
 x += 5; // Suma y asignación
 x -= 5; // Resta y asignación
 x *= 5; // Multiplicación y asignación
@@ -8,6 +7,7 @@ x /= 5; // División y asignación
 x %= 5; // Módulo y asignación
 
 // Operadores aritméticos
+let y = 2; // Asignación
 const sum = x + y; // Suma
 const rest = x - y; // Resta
 const multi = x * y; // Multiplicación
