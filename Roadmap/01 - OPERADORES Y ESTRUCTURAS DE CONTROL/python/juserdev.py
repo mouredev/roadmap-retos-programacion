@@ -115,3 +115,10 @@ except ZeroDivisionError as e:
   print(f"se genero un error -> {e}")
 finally:
   print("este bloque siempre se ejecuta")
+
+
+number = 10
+while number < 55:
+  number += 1
+  if number % 2 == 0 and number != 16 and number % 3 != 0:
+    print(number)
