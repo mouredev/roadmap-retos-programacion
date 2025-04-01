@@ -68,3 +68,4 @@ de identidad
 
 my_new_number = mi_numero
 print(f'my_new_number is my_new_number es {mi_numero is my_new_number}')
+print(f'my_new_number is my_new_number es {mi_numero is not my_new_number}')
