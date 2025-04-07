@@ -108,9 +108,13 @@ try:
         numero = input("Ingrese el numero del contacto: ")
        
         if nombre and numero.isdigit():
-           agenda[nombre] = numero
-           print("Contacto Agregado Exitosamente")
-           print("")
+            if len(numero) > 11:
+                print("")
+                print("El numero no puede exceder los 11 digitos")
+            else:
+                agenda[nombre] = numero
+                print("Contacto Agregado Exitosamente")
+                print("")
         
         else:
             print("")
@@ -127,9 +131,15 @@ try:
             numero = input("Ingrese el nuevo numero del contacto: ")
        
             if numero.isdigit():
-               agenda[busqueda] = numero
-               print("")
-               print("Contacto Actualizado Exitosamente")
+                
+                if len(numero) > 11:
+                    print("")
+                    print("El numero no puede exceder los 11 digitos")
+                
+                else:
+                    agenda[busqueda] = numero
+                    print("")
+                    print("Contacto Actualizado Exitosamente")
         
             else:
                 print("")
