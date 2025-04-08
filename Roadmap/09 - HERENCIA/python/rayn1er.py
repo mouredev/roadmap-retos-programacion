@@ -50,21 +50,58 @@ print(yuri.communicate())
 
 class Employee:
 
-    def __init__(self,name,id):
+    def __init__(self,name,idd):
         self.name =  name
-        self.id
-
-class Manager(Employee):
+        self.id = idd
+        self.employees = []
     
+    def add_employee(self,employee):
+        self.employees.append(employee)
+
+    def supervising(self):
+        print(f'{self.name} esta supervisando a {self.employees}')
+
+    def print_employees(self):
+        for i in self.employees:
+            print(i.name)
+class Manager(Employee):
+
+      
     def coordinate_projects(self):
         print(f'{self.name} Esta Coordinando los proyectos de la empresa')
 
 class ProjectManager(Employee):
-    
+
+    def __init__(self, name, id,project):
+        super().__init__(name, id)
+        self.proyect = project
+
     def coordinate_projects(self):
         print(f'{self.name} Esta Coordinando sus proyectos')
 
 class Developer(Employee):
 
+    def __init__(self, name, id,language):
+        super().__init__(name, id)
+        self.language = language
+
     def code(self):
-        print(f'{self.name} Esta escribiendo codigo')
+        print(f'{self.name} Esta escribiendo codigo en {self.language}')
+
+    def add_employee(self,employee):
+        print(f"Programador no puede agregar porque no puede tener a empleados a su cargo")
+
+manager = Manager('raul',1000)
+project_manager = ProjectManager("carlos",2000,'project1')
+project_manager_2 = ProjectManager("juan",3000,'project2')
+developer = Developer("yoel",4000,'java')
+developer_2 = Developer("yoel",5000,'javascript')
+manager.add_employee(project_manager)
+manager.add_employee(project_manager_2)
+project_manager.add_employee(developer)
+project_manager_2.add_employee(developer_2)
+manager.supervising()
+manager.coordinate_projects()
+manager.print_employees()
+project_manager.print_employees()
+developer.add_employee(developer_2)
