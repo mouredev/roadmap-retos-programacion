@@ -16,6 +16,7 @@ public class Benja0501 {
         byte bit = 1;
         String palabra = "Hola mundo";
         boolean booleano = true;
+        //Salida en la terminal
         System.out.println("¡Hola, Java!");
 
     }
