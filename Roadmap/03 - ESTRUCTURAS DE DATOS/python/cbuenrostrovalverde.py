@@ -81,7 +81,7 @@ print(alumnos)
 '''
 
 lista_contactos = []
-contactos = {}
+agenda = {}
 
 def mostrar_menu():
     print("\n--- AGENDA DE CONTACTOS ---")
@@ -92,6 +92,66 @@ def mostrar_menu():
     print("5. Ver todos los contactos")
     print("6. Salir")
 
+def telefono_valido(telefono):
+    return telefono.isdigit() and len(telefono) <= 11
+
+def añadir_contacto(agenda):
+    nombre = input('Introduzca el nombre del contacto: ').strip()
+    telefono = input('Introduzca un teléfono: ').strip()
+    if not telefono_valido (telefono):
+        print('Introduzca por favor un teléfono válido. Máximo 11 números')
+    agenda[nombre] = telefono
+    print(f'Contacto {nombre} ha sido añadido con éxito.')
+
+def buscar_contacto(agenda):
+    nombre = input('Introduzca un nombre para la búsqueda: ')
+    if nombre in agenda:
+        print(f'{nombre}: {agenda[nombre]}')
+    else:
+        print(f'Ese nombre no se encuentra en su agenda de contactos.')
+
+def actualizar_contacto(agenda):
+    nombre = input('Introduzca el nombre del contacto: ')
+    if nombre in agenda:
+        nuevo_telefono = input('Introduzca nuevo teléfono: ').strip()
+        if not telefono_valido(nuevo_telefono):
+            print('Teléfono no válido')
+            return 
+        agenda[nombre] = nuevo_telefono
+        print('Contacto actualizado con éxito.')
+    else:
+        print('El contacto no se enucuentra dentro de su agenda.')
+
+def eliminar_contacto(agenda):
+    nombre = input('Introduzca el nombre de su contacto a eliminar: ')
+    if nombre in agenda:
+        del agenda[nombre]
+        print('Contacto eliminado')
+    else:
+        print('No se ha podido encontrar el contacto a eliminar.')
+    
+def mostrar_agenda(agenda):
+    if not agenda:
+        print('Agenda vacía')
+    else:
+        for nombre, telefono in agenda.items():
+            print(f'{nombre}:{telefono}')
+
 while True:
     mostrar_menu()
-    opcion = int(input('Bienvenido a tu agenda virutal. \n Por favor, escoja una opción: '))
+    opcion = input('Bienvenido a tu agenda virutal. \n Por favor, escoja una opción: ')
+    if opcion == 1:
+        añadir_contacto(agenda)
+    elif opcion == 2:
+        buscar_contacto(agenda)
+    elif opcion == 3:
+        actualizar_contacto(agenda)
+    elif opcion == 4:
+        eliminar_contacto(agenda)
+    elif opcion == 5:
+        mostrar_agenda(agenda)
+    elif opcion == 'Salir'.lower():
+        print('Saliendo de la aplicación')
+        break
+    else:
+        print('Opción no válida. Inténtelo de nuevo.')
