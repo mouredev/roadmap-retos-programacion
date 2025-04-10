@@ -30,13 +30,25 @@ import (
 	"os"
 )
 
+const  fichero string = "FreyFonseca117.txt"
+
+type Usuario struct {
+	nombre string
+	edad int
+	lenguaje string
+}
+
 func crearFichero() {
-	fichero, err := os.Create("FreyFonseca117") //crear fichero con nombre del git
+	fichero, err := os.Create(fichero) //crear fichero con nombre del git
 	if err != nil {
 		log.Fatal("No se pudo crear el archivo: %v", err) //se usa para terminar el programa
 	}
 	defer fichero.Close()
 	fmt.Printf("El fichero con nombre %s ha sido creado éxitosamente", fichero.Name())
+}
+
+func agregarDatos(u Usuario){
+	os.
 }
 
 func main() {
