@@ -94,4 +94,47 @@ print("-" * 50)
 
 # Estructuras de Control
 
-# Estructuras de Control Condicional
+# Estructuras de Control Condicional: if, elif, else
+x = 10
+if x > 0:
+    print("\nEs positivo")
+elif x == 0:
+    print("\nEs cero")
+else:
+    print("\nEs negativo")
+print("-" * 50)
+
+# Estructuras de Control Bucles: while, for
+contador = 1
+while contador <= 5:
+    print(contador)
+    contador += 1
+print("-" * 50)
+
+for numero in range(11):
+    print(numero, end= "-")
+print()
+print("-" * 50)
+
+# Estructuras de Control de Flujo: break, continue, pass
+for i in range(10):
+    if i == 3:
+        continue # Salta a la siguiente iteracion
+    if i == 7:
+        break # finaliza el for
+    print(i)
+print("-" * 50)
+
+# Estructuras de Control de Excepciones: try, except, finally
+try: 
+    x = 10 / 0
+except ZeroDivisionError: # Se ejecuta si se produce un error tipo ZeroDivisionError
+    print("No se puede dividir entre cero")
+finally: # Siempre se ejecuta
+    print("Finalizo la operación")
+print("-" * 50)
+
+# EXTRA
+print("\nSe imprimiran los numeros del 10 al 55(pares incluidos), excepto los multiplos de 3 o el numero 16:")
+print([x for x in range(10, 56) if x % 3 != 0 and x != 16 and x % 2 == 0])
+print("-" * 50)
