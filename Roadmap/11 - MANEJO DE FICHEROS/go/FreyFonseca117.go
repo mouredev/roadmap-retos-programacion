@@ -30,27 +30,66 @@ import (
 	"os"
 )
 
-const  fichero string = "FreyFonseca117.txt"
+// constantes para usar
+const fichero string = "FreyFonseca117.txt"
 
 type Usuario struct {
-	nombre string
-	edad int
+	nombre   string
+	edad     int
 	lenguaje string
 }
 
 func crearFichero() {
-	fichero, err := os.Create(fichero) //crear fichero con nombre del git
+	file, err := os.Create(fichero) //crear fichero con nombre del git
 	if err != nil {
-		log.Fatal("No se pudo crear el archivo: %v", err) //se usa para terminar el programa
+		log.Fatalf("No se pudo crear el archivo: %v", err) //se usa para terminar el programa
 	}
-	defer fichero.Close()
-	fmt.Printf("El fichero con nombre %s ha sido creado éxitosamente", fichero.Name())
+	defer file.Close()
+	fmt.Printf("El fichero con nombre %s ha sido creado exitosamente\n", file.Name()) // Salto de línea agregado
 }
 
-func agregarDatos(u Usuario){
-	os.
+func agregarDatos(u Usuario) {
+	file, err := os.OpenFile(fichero, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600) // Se usa para abrir el fichero o crearlo en caso que no exista y darle los permisos
+	if err != nil {
+		log.Fatalf("No se pudo agregar los datos al fichero: %v", err) // Mejor manejo de errores
+	}
+	defer file.Close()
+
+	// Escribir los datos en el archivo
+	datos := fmt.Sprintf("nombre:%s\nedad:%d\nlenguaje:%s\n", u.nombre, u.edad, u.lenguaje)
+	_, err = file.WriteString(datos)
+	if err != nil {
+		log.Fatalf("No se pudieron escribir los datos en el archivo: %v", err) // Mejor manejo de errores
+	}
+	fmt.Println("Los datos se han agregado correctamente\n") // Salto de línea agregado
+}
+
+// imprimir el contenido
+func imprimir() {
+	file, err := os.ReadFile(fichero)
+	if err != nil {
+		log.Fatal("no se puedre abrir el fichero\n")
+	}
+	fmt.Println(string(file))
+}
+
+// Borrar el archivo
+func borrar() {
+	err := os.Remove(fichero)
+	if err != nil {
+		log.Fatal("No se ha podido borrar el fichero")
+	}
+	fmt.Println("se ha borrado el archivo con éxito")
 }
 
 func main() {
 	crearFichero()
+	u := Usuario{
+		nombre:   "Jeffrey",
+		edad:     34,
+		lenguaje: "GO",
+	}
+	agregarDatos(u)
+	imprimir()
+	borrar()
 }
