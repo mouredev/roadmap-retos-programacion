@@ -4,7 +4,6 @@ SINGLETON
 Compartir una misma instancia de un objeto
 ejemplo al llamar la sesión de usuario
 '''
-from tkinter import S
 
 
 class My_Singleton:
