@@ -1,6 +1,28 @@
 import * as readline from "readline";
 import { setTimeout } from "timers/promises";
 
+//--------------------------------//
+//             CONSTS             //
+//--------------------------------//
+
+const TURN_DELAY = 1000;
+
+//--------------------------------//
+//           INTERFACES           //
+//--------------------------------//
+interface SuperHero {
+  name: string;
+  health: number;
+  attackRange: Array<number>;
+  evadePercentage: number;
+  isRegenerating: boolean;
+  isWinner: boolean;
+}
+
+//--------------------------------//
+//         UTILS FUNCTIONS        //
+//--------------------------------//
+
 const askQuestion = (query: string): Promise<string> => {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -15,63 +37,53 @@ const askQuestion = (query: string): Promise<string> => {
   });
 };
 
-interface SuperHero {
-  name: string;
-  health: number;
-  attackRange: Array<number>;
-  evadePercentage: number;
-  isRegenerating: boolean;
-  isWinner: boolean;
-}
+//--------------------------------//
+//       SUPERHERO CONFIG         //
+//--------------------------------//
 
-const wolverine: SuperHero = {
-  name: "Wolverine",
+const createSuperHero = (
+  name: string,
+  attackRange: [number, number],
+  evadePercentage: number
+): SuperHero => ({
+  name,
   health: 0,
-  attackRange: [10, 100],
-  evadePercentage: 0.2,
+  attackRange,
+  evadePercentage,
   isRegenerating: false,
   isWinner: false,
-};
+});
 
-const deadpool: SuperHero = {
-  name: "Deadpool",
-  health: 0,
-  attackRange: [10, 120],
-  evadePercentage: 0.25,
-  isRegenerating: false,
-  isWinner: false,
-};
+//--------------------------------//
+//       BATTLE MECHANICS         //
+//--------------------------------//
 
-const superHeroAttack = (superHero: SuperHero) => {
+const calculateAttack = (superHero: SuperHero): number => {
   const [min, max] = superHero.attackRange;
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-const superHeroEvade = (superHero: SuperHero) => {
-  const { evadePercentage } = superHero;
-  const random = Math.random() * 100;
-  return random < evadePercentage;
+const attemptEvade = (superHero: SuperHero): boolean => {
+  return Math.random() * 100 < superHero.evadePercentage;
 };
 
-const superHeroReceiveDamage = (damage: number, superHero: SuperHero) => {
-  const { health } = superHero;
-  const newhealth = health - damage;
-  superHero.health = newhealth;
+const applyDamage = (damage: number, superHero: SuperHero): void => {
+  superHero.health -= damage;
 };
 
 const executeTurn = async (
   attacker: SuperHero,
   victim: SuperHero,
   turnNumber: number
-) => {
+): Promise<void> => {
   console.log(`--- Turn ${turnNumber}: ${attacker.name} atack ---\n`);
 
   if (!attacker.isRegenerating) {
-    const damage = superHeroAttack(attacker);
-    if (superHeroEvade(victim)) {
+    const damage = calculateAttack(attacker);
+    if (attemptEvade(victim)) {
       console.log(`${victim.name} avoided ${attacker.name} atack!`);
     } else {
-      superHeroReceiveDamage(damage, victim);
+      applyDamage(damage, victim);
       console.log(
         `${attacker.name} hits ${victim.name} with ${damage} points of damage!`
       );
@@ -92,27 +104,37 @@ const executeTurn = async (
     attacker.isWinner = true;
   }
 
-  await setTimeout(1000);
+  await setTimeout(TURN_DELAY);
 };
 
 const superHeroesFight = async (
   superHeroOne: SuperHero,
   superHeroTwo: SuperHero,
   turnCount: number
-) => {
+): Promise<void> => {
   await executeTurn(superHeroOne, superHeroTwo, turnCount);
-  if (!superHeroTwo.isWinner) {
+  if (!superHeroOne.isWinner) {
     await executeTurn(superHeroTwo, superHeroOne, turnCount + 1);
   }
 };
 
-const main = async (superHeroOne: SuperHero, superHeroTwo: SuperHero) => {
-  superHeroOne.health = parseInt(
-    await askQuestion(`Ingrese la vida de ${superHeroOne.name}: `)
+const initializeHeroes = async (
+  heroOne: SuperHero,
+  heroTwo: SuperHero
+): Promise<void> => {
+  heroOne.health = parseInt(
+    await askQuestion(`Ingrese la vida de ${heroOne.name}: `)
   );
-  superHeroTwo.health = parseInt(
-    await askQuestion(`Ingrese la vida de ${superHeroTwo.name}: `)
+  heroTwo.health = parseInt(
+    await askQuestion(`Ingrese la vida de ${heroTwo.name}: `)
   );
+};
+
+const startBattle = async (
+  superHeroOne: SuperHero,
+  superHeroTwo: SuperHero
+): Promise<SuperHero> => {
+  await initializeHeroes(superHeroOne, superHeroTwo);
 
   console.log(
     `\nComienza la batalla entre ${superHeroOne.name} y ${superHeroTwo.name}\n`
@@ -124,11 +146,21 @@ const main = async (superHeroOne: SuperHero, superHeroTwo: SuperHero) => {
     turnCount += 2;
   }
 
-  console.log(
-    `The winner is ${
-      superHeroOne.isWinner ? superHeroOne.name : superHeroTwo.name
-    }!`
-  );
+  const winner = superHeroOne.isWinner ? superHeroOne : superHeroTwo;
+  console.log(`The winner is ${winner.name}!`);
+
+  return winner;
 };
 
-main(wolverine, deadpool);
+//--------------------------------//
+//              MAIN              //
+//--------------------------------//
+
+const wolverine = createSuperHero("Wolverine", [10, 100], 0.2);
+const deadpool = createSuperHero("Deadpool", [10, 120], 0.25);
+
+const main = async (): Promise<void> => {
+  await startBattle(wolverine, deadpool);
+};
+
+main();
