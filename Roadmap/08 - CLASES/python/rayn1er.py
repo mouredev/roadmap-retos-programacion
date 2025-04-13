@@ -42,8 +42,8 @@ persona_1.presentation()
 class Stack:
 
     # stack_elements = []
-    def __init__(self,elements : list):
-        self.elements = elements
+    def __init__(self):
+        self.elements = []
     
     def add_element(self,element):
         self.elements.append(element)
@@ -61,7 +61,7 @@ class Stack:
     def count_elements(self):
         print(f"hay {len(self.elements)} elementos en el stack ")
 
-my_stack = Stack([])
+my_stack = Stack()
 my_stack.count_elements()
 my_stack.add_element('raul')
 my_stack.add_element("yander")
@@ -72,8 +72,8 @@ my_stack.count_elements()
 
 class Queue:
 
-    def __init__(self,elements):
-        self.elements = elements
+    def __init__(self):
+        self.elements = []
 
     def add_element(self,element):
         self.elements.append(element)
@@ -91,7 +91,7 @@ class Queue:
     def count_elements(self):
         print(f"hay {len(self.elements)} elementos en el queue ")
 
-my_queue = Queue([])
+my_queue = Queue()
 my_queue.count_elements()
 my_queue.add_element('raul')
 my_queue.add_element("yander")
