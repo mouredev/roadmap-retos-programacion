@@ -153,26 +153,85 @@ ejecutar_modulo2()
  * Utiliza el log para visualizar el tiempo de ejecución de cada tarea. 
 """
 
+import time
+
+#Creo un decorador para medir el tiempo de ejecucion de las tareas.
+def measure_time(function):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = function(*args, **kwargs)
+        end = time.perf_counter()
+        logger.debug(f"Tiempo de ejecucion de {function.__name__}: {end - start:.10f} segundos")
+        return result
+    return wrapper
+
+
+
 #Configuramos el logger
-logger = logging.getLogger("task_list")
-logger.setLevel(logging.DEBUG)
+def setup_logger():
+    logger = logging.getLogger("task_list")
+    logger.setLevel(logging.DEBUG)
 
-consoloe_handler = logging.StreamHandler()
-consoloe_handler.setLevel(logging.DEBUG)
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
 
-file_handler = logging.FileHandler("task_list_log.log", "w")
-file_handler.setLevel(logging.DEBUG)
+    file_handler = logging.FileHandler("task_list_log.log", "w")
+    file_handler.setLevel(logging.DEBUG)
 
-formater = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-console_handler.setFormatter(formater)
-file_handler.setFormatter(formater)
+    formater = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    console_handler.setFormatter(formater)
+    file_handler.setFormatter(formater)
 
-logger.addHandler(console_handler)
-logger.addHandler(file_handler)
-logger.propagate = False
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+    logger.propagate = False
+    return logger
+
+logger = setup_logger()
+
+class TaskManager():
+
+    def __init__(self):
+        self.tasks = {}
+
+    @measure_time
+    def insert_task(self):
+        print("--Añadir tarea--")
+        logger.debug("Opción Insert task")
+        name = input("Introduce el nombre de la tarea: ").lower()
+        if not name in self.tasks:
+            description = input("Introduce la descripción: ")
+            self.tasks[name] = description
+            logger.info(f"Se introdujo correctamente la tarea: {name}")
+            logger.debug(f"Número de tareas en la lista: {len(self.tasks)}")
+        else:
+            logger.error(f"La tarea {name} ya existe.")
+
+    @measure_time
+    def delete_task(self):
+        print("--Eliminar tarea--")
+        logger.debug("Opción Delete task")
+        name = input("Introduce el nombre de la tareaa eliminar: ").lower()
+        if name in self.tasks:
+            del self.tasks[name]
+            logger.info(f"Se borro la tarea {name} correctamente.")
+            logger.debug(f"Número de tareas en la lista: {len(self.tasks)}")
+        else:
+            logger.error(f"La tarea {name} no esta en la lista.")
+
+    @measure_time
+    def list_tasks(self):
+        logger.debug("Opción List tasks")
+        if self.tasks:
+            for name, task in self.tasks.items():
+                print(f"{name}:{task}")
+            logger.debug(f"Número de tareas en la lista: {len(self.tasks)}")
+        else:
+            logger.error(f"La lista esta vacía.")
+
 
 print("Bienvenido a tu lista de tareas.")
-tasks = {}
+task_manager = TaskManager()
 while True:
     print("Menu:")
     print("\t1. Añadir tarea.")
@@ -184,35 +243,20 @@ while True:
 
         match option:
             case 1:
-                print("Añadir tarea")
-                name = input("Introduce el nombre de la tarea: ").lower()
-                description = input("Introduce la descripción: ")
-                tasks[name] = description
-                logger.info(f"Añadida tarea {name}")
+                task_manager.insert_task()
             case 2:
-                print("Eliminar tarea")
-                name = input("Introduce el nombre de la tareaa eliminar: ").lower()
-                del tasks[name]
-                logger.info(f"Eliminada tarea {name}")
+                task_manager.delete_task()
             case 3:
-                print("Tareas")
-                for name, task in tasks.items():
-                    print(name)
-                    print(f"\t{task}")
-                logger.info(f"Se listaron las tareas - Número de tareas listadas {len(tasks)}")
+                task_manager.list_tasks()
             case 4:
                 print("Adios")
-                logger.info("Se cerro la aplicación")
+                logger.debug("Se cerro la aplicación.")
                 break
     except ValueError as e:
-        print("Introduce una opción valida.")
-        logger.info(f"El usuario introdujo una opción invalida: {type(e)} - {e}")
+        logger.error(f"Has introducido una opcion invalida: {option}. Vuelve a intentarlo.")
+        logger.debug(f"El usuario introdujo una opción invalida: {type(e)} - {e}")
         continue
 
-    except KeyError as e:
-        print("No hay ninguna tarea con ese nombre.")
-        logger.info(f"El usuario introdujo una tarea inexistente: {type(e)} - {e}")
-
     except Exception as e:
-        logger.error(f"Error critico: {type(e)} - {e}")
+        logger.critical(f"Error critico: {type(e)} - {e}")
         
