@@ -21,7 +21,7 @@ class Retos
  {
     static void Main () 
     {
-        // Operadores Aritméticos 
+        //Operadores Aritméticos 
 
         int suma = 12 + 5; 
         int resta = 25 - 3; 
@@ -42,7 +42,7 @@ class Retos
         Console.WriteLine ("modulo: " + modulo);
         Console.WriteLine ("Incremento: " + incremento);
         Console.WriteLine ("Decremento: " + decremento);
-        
+    
         //Operadores Lógicos
 
         bool logico = 12 + 3 == 15 && 12 -3 == 9; //AND 
@@ -53,11 +53,88 @@ class Retos
 
         bool logico3 = 12 * 1 == 11; //NOT
         Console.WriteLine (logico3!);
-    
 
+        //Operadores de Comparación 
+
+        int a = 15; 
+        int b = 10; 
+
+        if (a == b) 
+        {
+            Console.WriteLine ("a es igual a b");
+        }
+        else if (a != b)
+        {
+             Console.WriteLine ("a es diferente a b");
+        }
+
+        if (a > b) 
+        {
+            Console.WriteLine ("a es mayor que b");
+        }
+        else if (a < b)
+        {
+            Console.WriteLine ("a es menor que b");
+        }
+
+        if (a >= b)
+        {
+            Console.WriteLine ("a es mayor o igual que b");
+        }
+        if (a <= b)
+        {
+            Console.WriteLine ("a es menor o igual que b");
+        }
+            
+        //Operadores de Asignación 
+
+        int asignacion = 3; 
+        Console.WriteLine (" " + (asignacion +=5)); 
+        Console.WriteLine (" "+ (asignacion -= 1)); 
+        Console.WriteLine (" "+ (asignacion *= 4)); 
+        Console.WriteLine (" "+ (asignacion /= 2));
+        Console.WriteLine (" "+ (asignacion %= 3));
+
+        //Operadores de Identidad 
+        int c = 12; 
+        int d = 20; 
+
+        Console.WriteLine ("Igualdad: "+ (c == d)); 
+        Console.WriteLine ("Desigualdad: "+ (c != d)); 
+        Console.WriteLine (object.ReferenceEquals (c, d));
+
+        //Operadores de Bitwise 
+        int e = 20; 
+        int f = 8; 
+
+        Console.WriteLine (" "+ (e & f)); //AND Bitwise 
+        Console.WriteLine (" "+ (e | f)); //OR Bitwise
+        Console.WriteLine (" "+ (e ^ f)); //XOR Bitwise 
+        Console.WriteLine (" "+ (~ f)); //NOT Bitwise 
+        Console.WriteLine (" "+ (e << 2)); //Desplazamiento a la izquierda
+        Console.WriteLine (" "+ (e >> 3)); //Desplazamiento a la derecha        
         
+        //Programa 
+
     }
+
+class Program
+{
+    static void Main()
+    {
+        for (int i = 10; i <= 55; i++)
+        {
+            if (i % 2 == 0 && i != 16 && i % 3 != 0)
+            {
+                Console.WriteLine(i);
+            }
+        }
     }
+}
+
+    }
+
+
  
  
  
