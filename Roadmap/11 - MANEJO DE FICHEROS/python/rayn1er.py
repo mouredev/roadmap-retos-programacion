@@ -35,7 +35,7 @@ os.remove('rayn1er.txt')
 
 #extra
 
-store = open('store.txt','x')
+store = open('store.txt','w')
 store.close()
 
 while True:
@@ -60,17 +60,42 @@ while True:
         product_sold = int(input("Ingrese la cantidad de elementos vendidos -> "))
         product_price = int(input("Ingrese el precio del producto -> "))
         with open('store.txt','a') as store:
-            store.write(f'\n[{product_name}], [{product_sold}],[{product_price}]')
+            store.write(f'{product_name}, {product_sold}, {product_price}\n')
             print("Sus elementos han sido agregados a la lista")
 
     elif option == 2:
-        pass
+        product_name = input("Ingrese el nombre del producto -> ")
+        product_sold = int(input("Ingrese la cantidad de elementos vendidos -> "))
+        product_price = int(input("Ingrese el precio del producto -> "))
+        with open('store.txt', 'r') as store:
+            lines = store.readlines()
+        with open('store.txt', 'w') as store:
+            for line in lines:
+                if line.split(', ')[0] == product_name:
+                    store.write(f'{product_name}, {product_sold}, {product_price}\n')
+                else:
+                    store.write(lines)
     
     elif option == 3:
-        pass
+        product_name = input("Ingrese el nombre del producto -> ")
+        with open('store.txt','r') as store:
+            for line in store.readlines():
+                if line.split()[0] == product_name:
+                    print(line)
+                    break
+            
 
     elif option == 4:
-        pass
+        product_name = input("Ingrese el nombre del producto -> ")
+        
+        with open('store.txt', 'r') as store:
+            lines = store.readlines()
+        with open('store.txt', 'w') as store:
+            for line in lines:
+                if line.split(', ')[0] != product_name:
+                    store.write(line)
+
+        
 
     elif option == 5:
         with open('store.txt','r') as store:
@@ -78,10 +103,27 @@ while True:
             print(store.read())
 
     elif option == 6:
-        pass
+        total = 0
+        with open('store.txt','r') as store:
+            for line in store.readlines():
+                components = line.split(', ')
+                product_sold = int(components[1])
+                product_price = float(components[2])
+                total += product_sold * product_price
+            print(f"El total es de ventas es de {total}")
 
     elif option == 7:
-        pass
+        product_name = input("Ingrese el nombre del producto -> ")
+        total = 0
+        with open('store.txt','r') as store:
+            for line in store.readlines():
+                components = line.split(', ')
+                if components[0] == product_name:
+                    product_sold = int(components[1])
+                    product_price = float(components[2])
+                    total += product_sold * product_price
+                    break
+            print(f"El total de ventas de {product_name} es de {total}")
 
     elif option == 8:
         print("Cerrando el gestor, hasta luego!")
