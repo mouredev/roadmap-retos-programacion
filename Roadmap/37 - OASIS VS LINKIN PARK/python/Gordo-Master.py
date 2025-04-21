@@ -4,9 +4,6 @@ import env
 CLIENT_ID = env.CLIENT_ID
 CLIENT_SECRET = env.CLIENT_SECRET
 
-oasis_id = "2DaxqgrOhkeH0fpeiQq2f4"
-linkin_park_id = "6XyY86QOPPrYVGvF9ch6wz"
-
 def get_token():
     url = "https://accounts.spotify.com/api/token"
     header = {
