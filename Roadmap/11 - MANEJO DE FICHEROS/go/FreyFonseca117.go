@@ -82,6 +82,20 @@ func borrar() {
 	fmt.Println("se ha borrado el archivo con éxito")
 }
 
+// Actividad adicional
+const ventas string = "ventas.txt"
+
+// estructura de productos para agregar.
+type producto struct {
+	nombreProducto  string
+	cantidadVendida int
+	precio          float64
+}
+
+func menu() {
+	fmt.Println("==== REGISTRO DE VENTAS =====")
+}
+
 func main() {
 	crearFichero()
 	u := Usuario{
