@@ -77,57 +77,77 @@ print(f"Descuento super vip: {calculadora.calcular(100)}")
  * 3. Agrega una quinta operación para calcular potencias.
  * 4. Comprueba que se cumple el OCP.
 """
-class Operation(ABC):
+
+# Diccionario donde se van a registrar automáticamente las operaciones.
+command_registry = {}
+
+# Decorador que registra una clase comando con un símbolo (como "+", "-", etc.)
+def register_command(symbol):
+    def decorator(cls):
+        command_registry[symbol] = cls() # Guarda una instancia de la clase
+        return cls # Devuelve la clase sin modificarla para que se pueda seguir utilizando la clase en el reto del codigo despues de decorarla.
+    return decorator
+
+class Command(ABC):
     @abstractmethod
-    def calculate(self, *args):
+    def execute(self, *args):
         pass
 
-class Addition(Operation):
-    def calculate(self, *args):
-        number_1, number_2 = args
-        return number_1 + number_2
-class Substraction(Operation):
-    def calculate(self, *args):
-        number_1, number_2 = args
-        return number_1 - number_2
-    
-class Multiplication(Operation):
-    def calculate(self, *args):
-        number_1, number_2 = args
-        return number_1 * number_2
-    
-class Division(Operation):
-    def calculate(self, *args):
-        number_1, number_2 = args
-        return number_1 / number_2
-    
-class Exponentiation(Operation):
-    def calculate(self, *args):
-        number_1, number_2 = args
-        return number_1 ** number_2
-    
-class Calculator:
-    def __init__(self, operation: Operation):
-        self.operation = operation
+@register_command("+")      #Python realmente hace esto: AddCommand = register_command("+") -->decorator(AddCommand) --> AddComand
+class AddCommand(Command):  # entonces Addcomand sigue siendo Addcomand aunque se haya decorado.
+    def execute(self, a, b):
+        return a + b
 
-    def calculate(self, *args):
-        return self.operation.calculate(*args)
+@register_command("-")    
+class SubCommand(Command):
+    def execute(self, a, b):
+        return a - b
+
+@register_command("*")    
+class MulCommand(Command):
+    def execute(self, a, b):
+        return a * b
+
+@register_command("/")    
+class DivCommand(Command):
+    def execute(self, a, b):
+        return a / b
+
+@register_command("**")    
+class ExpCommand(Command):
+    def execute(self, a, b):
+        return a ** b
     
-add = Addition()
-sub = Substraction()
-mul = Multiplication()
-div = Division()
-exp = Exponentiation()
+class Invoker:
+    #def __init__(self):  ya no necesito el init para inicializar el diccionario de operaciones.
+        #self.commands = {}
+
+    #def add_command(self, name:str, command: Command): y tampoco el metodo para registraroperacione manualmente.
+        #self.commands[name] = command
+
+    def calculate(self, name, *args):
+        if name in command_registry:
+            return command_registry[name].execute(*args)
+        else:
+            raise ValueError(f"La operación {name} no esta soportada.")
+    
 
 num1 = 6
 num2 = 3
-calculator = Calculator(add)
-print(f"{num1} + {num2} = {calculator.calculate(num1, num2)}")
-calculator = Calculator(sub)
-print(f"{num1} - {num2} = {calculator.calculate(num1, num2)}")
-calculator = Calculator(mul)
-print(f"{num1} * {num2} = {calculator.calculate(num1, num2)}")
-calculator = Calculator(div)
-print(f"{num1} / {num2} = {calculator.calculate(num1, num2)}")
-calculator = Calculator(exp)
-print(f"{num1} ** {num2} = {calculator.calculate(num1, num2)}")
+
+calculator = Invoker()
+#Ya no es necesario registrar las operaciones manualmente ya que se hace con el decorador de clase.
+#calculator.add_command("+", AddCommand()) # Realmente no se pasa la clase, sino que se crea una instacia en el momento
+#calculator.add_command("-", SubCommand())# Es como hacer add = Addition() y luego pasar add.
+#calculator.add_command("*", MulCommand())
+#calculator.add_command("/", DivCommand())
+#calculator.add_command("**", ExpCommand())
+
+try:
+    print(f"{num1} + {num2} = {calculator.calculate("+", num1, num2)}")
+    print(f"{num1} - {num2} = {calculator.calculate("-", num1, num2)}")
+    print(f"{num1} * {num2} = {calculator.calculate("*", num1, num2)}")
+    print(f"{num1} / {num2} = {calculator.calculate("/", num1, num2)}")
+    print(f"{num1} ** {num2} = {calculator.calculate("**", num1, num2)}")
+except ValueError as e:
+    print(e)
