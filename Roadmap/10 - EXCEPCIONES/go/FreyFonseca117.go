@@ -32,6 +32,17 @@ func dividir(a, b float32) (float32, error) {
 
 }
 
+// Actividad opcional
+func procesarParametros(a, b float32) (float32, bool, error) {
+	if b == 0 {
+		return 0, false, errors.New("Divison entre cero")
+	} else if a == 0 {
+		return 0, true, errors.New("el numerador es cero")
+	} else {
+		return a / b, true, nil
+	}
+}
+
 func main() {
 	result, err := dividir(10, 0)
 	if err != nil {
@@ -45,4 +56,17 @@ func main() {
 	} else {
 		fmt.Println("El resultado es", result)
 	}
+	result, ok, err := procesarParametros(10, 0)
+	if err != nil {
+		fmt.Println("Error en procesarParametros:", err)
+	} else {
+		fmt.Println("Resultado de procesarParametros:", result, "¿Es válido?:", ok)
+	}
+	result, ok, err = procesarParametros(8, 4)
+	if err != nil {
+		fmt.Println("Error en procesarParametros:", err)
+	} else {
+		fmt.Println("Resultado de procesarParametros:", result, "¿Es válido?:", ok)
+	}
+	fmt.Println("Ejecución finalizada.")
 }
