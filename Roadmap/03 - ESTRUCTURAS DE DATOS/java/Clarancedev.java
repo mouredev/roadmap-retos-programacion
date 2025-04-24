@@ -285,13 +285,25 @@ public class Clarancedev {
     // Recoger opción seleccionada
     private static int getOption() {
 
+        int userOption = 0;
         if (SCN.hasNextInt()) {
-            int userOption = SCN.nextInt();
+            userOption = SCN.nextInt();
             SCN.nextLine();
-            return userOption;
+            checkUserOption(userOption);
         } else {
-            System.out.println("Valor incorrecto. Introduzca un número entre 1 y 6.");
-            return -1;
+            System.out.println("Formato incorrecto. Debe introducir un número entre 1 y 6:");
+            SCN.nextLine();
+            getOption();
+        }
+        return userOption;
+    }
+
+    // Controlar input usuario (valor de tipo int entre 1 y 6)
+    private static void checkUserOption(int userOption) {
+
+        if (userOption < 1 || userOption > 6) {
+            System.out.println("Valor incorrecto. Debe introducir un número entre 1 y 6:");
+            getOption();
         }
     }
 
