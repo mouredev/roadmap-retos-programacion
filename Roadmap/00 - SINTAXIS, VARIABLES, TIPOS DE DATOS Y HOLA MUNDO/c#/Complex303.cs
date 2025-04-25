@@ -26,7 +26,7 @@ class Program  // Todo dentro de una clase
         string mensaje = "Hola";
 
         Console.WriteLine("Hola, C#!!");
-        Console.WriteLine("==================================")
+        Console.WriteLine("=================================")
         Console.WriteLine($"La edad es: {edad}");
         Console.WriteLine("El area del triangulo es: " + area);
         Console.WriteLine("La letra es: " + letra);
