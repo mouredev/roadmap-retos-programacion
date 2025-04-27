@@ -36,5 +36,5 @@ nombre = "Panchito"
 print("codigo",int)
 print("El precio del producto",precio)
 print("Nombre del producto",nombre)
-
+print("muchequie")
 
