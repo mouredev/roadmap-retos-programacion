@@ -50,7 +50,7 @@ const saludaUsuario = (nombre = amigo) => {
   return `Hola ${nombre}`;
 };
 
-//alerta(saludaUsuario, "Martín");
+alerta(saludaUsuario, "Martín");
 
 // DIFICULTAD EXTRA
 
