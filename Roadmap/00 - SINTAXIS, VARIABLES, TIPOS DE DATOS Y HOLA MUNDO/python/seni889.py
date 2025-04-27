@@ -36,5 +36,5 @@ nombre = "Panchito"
 print("codigo",int)
 print("El precio del producto",precio)
 print("Nombre del producto",nombre)
-nombres = input("Como te llamas?")
-print(f"Hola, {nombres}")
+
+
