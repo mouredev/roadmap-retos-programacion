@@ -1,20 +1,21 @@
-// Javascript documentation: https://devdocs.io/javascript/ 
+// JavaScript oficial website: https://developer.mozilla.org/en-US/docs/Web/JavaScript (single line comment)
 
-// This is a single line comment
-/* This is a multi-line
-comment */
+/*
+Multi line
+comment
+*/
 
-let variable = "I'm a variable"
-const CONST = "I'm a constant"
+let variable = 'Hello JavaScript!'
+const CONSTANT = 200
 
-// primitive data types
-let float = 2.3
-let integer = 2
-let string = 'string'
-let boolean = true
-let myUndefined = undefined
-let myNull = null
-let symbol = Symbol("I'm a symbol")
-let bigInt = 32425432748927
+// Primitive data types
+let string = 'Hello'
+let integer = 6
+let float = 9.7
+let boolean = false
+let undefined
+let nullValue = null
+let symbol = Symbol('mySymbol')
+let bigInt = BigInt(244783947328947239749)
 
-console.log('Hello Javascript!')
+console.log(variable)
