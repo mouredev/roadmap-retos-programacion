@@ -119,12 +119,12 @@ salir = False
 while not salir:
     
     print('''---Bienvenido a la agenda de contactos,¿Qué actividad deseas realizas?---
-          1. Añadir un contacto
-          2. Buscar un contacto
-          3. Actualizar un contacto
-          4. Eliminar un contacto
-          5. Listar contactos
-          6. Salir
+        1. Añadir un contacto
+        2. Buscar un contacto
+        3. Actualizar un contacto
+        4. Eliminar un contacto
+        5. Listar contactos
+        6. Salir
 ''')
     
     opcion = int(input("Elige una opcion: "))
