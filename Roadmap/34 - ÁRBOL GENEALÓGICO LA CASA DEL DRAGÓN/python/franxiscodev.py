@@ -1,3 +1,8 @@
+'''
+Arbol genealógico de la casa del dragón
+'''
+
+
 class Person:
     def __init__(self, id: int, name: str):
         self.id = id
