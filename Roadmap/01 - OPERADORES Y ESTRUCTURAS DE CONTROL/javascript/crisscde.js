@@ -43,9 +43,9 @@ canGoToNightClub &&= haveId; // => canGoToNightClub && haveId -> true && false
 console.log(canGoToNightClub) // => false
 
 let notValue = "";
-notValue ||= "defaultValue";
-console.log(notValue);
+notValue ||= "defaultValue"; // => "" || "defaultValue" => False || True
+console.log(notValue); /// => "defaultValue"
 
 let user = null;
 user ??= {userID: 1, username: "GuestUser"} // => (user === null || user === undefined) ? {userID: 1, username: "GuestUser"} : user;
-console.log(user);
+console.log(user); // => {userID: 1, username: "GuestUser"}
