@@ -35,7 +35,7 @@ pero cerradas para su modificación.
 
 Retomando el caso anterior, tenemos la clase Calculate: 
 
-    class Calculate:
+    class Communicator:
     
         def __init__(self, channel):
             self.channel = channel
@@ -90,7 +90,7 @@ from typing import final
             return [sentence1, sentence2]
     
     
-    class Calculate:
+    class Communicator:
     
         def __init__(self, channel):
             self.channel = channel
@@ -103,25 +103,13 @@ from typing import final
     lucas = Duck("Lucas")
     donald = Duck("Donald")
     comm = Calculate(DuckConversation(lucas, donald))
-    
-    comm.communicate(comm.channel)
-    
-    scooby = Dog("Scooby")
-    pluto = Dog("Pluto")
-    comm = Calculate(DogConversation(scooby, pluto))
-    
-    comm.communicate(comm.channel)
-
-lucas = Duck("Lucas")
-donald = Duck("Donald")
-comm = Calculate(DuckConversation(lucas, donald))
-comm.communicate(comm.channel)
+    comm.Communicator(comm.channel)
 
     Lucas: Quack, hello Donald
     Donald: Quack, hello Lucas
 
-Ahora, si necesito extender Comunicator para que puedan conversar dos perros, entonces solo tengo que agregar una clase DogConversation
-(subclase de AbstractConversation) que implemente SU versión canina de "do_conversation" dejando "Calculate.communicate sin cambio.
+Ahora, si necesito extender Communicator para que puedan conversar dos perros, entonces solo tengo que agregar una clase DogConversation
+(subclase de AbstractConversation) que implemente SU versión canina de "do_conversation" dejando "Communicator.communicate sin cambio.
 
     class Dog:
         
@@ -151,10 +139,10 @@ Ahora, si necesito extender Comunicator para que puedan conversar dos perros, en
             return [sentence1, sentence2]
     
     
-scooby = Dog("Scooby")
-pluto = Dog("Pluto")
-comm = Calculate(DogConversation(scooby, pluto))
-comm.communicate(comm.channel)
+    scooby = Dog("Scooby")
+    pluto = Dog("Pluto")
+    comm = Communicator(DogConversation(scooby, pluto))
+    comm.communicate(comm.channel)
 
     Scooby: Guau, hello Pluto
     Pluto: Guau, hello Scooby

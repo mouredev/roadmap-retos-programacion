@@ -11,12 +11,12 @@ CUANDO NO SE SIGUE EL PRINCIPIO DE RESPONSABILIDAD ÚNICA:
 En general, este principio busca simplificar y facilitar el desarrollo, sobre todo si se trabaja con código que luego será leído y editado por otras personas.
 */
 
-class UsersNoSRP {
-	constructor(username, password, email, userID) {
+class Users {
+	constructor(username, password, email, id) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.userID = userID;
+		this.id = id;
 	}
 
 	registerUser() {
@@ -40,15 +40,15 @@ PRINCIPIO DE RESPONSABILIDAD ÚNICA (SRP):
 Esto quiere decir que cada clase tiene un objetivo y una sola razón de ser. El único motivo por el que se debería modificar una clase es que este objetivo o la manera en que debe cumplirse sean modificados también.
 */
 
-class UserRegister {
-	constructor(username, password, email, userID) {
+class User {
+	constructor(username, password, email, id) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.userID = userID;
+		this.id = id;
 	}
 
-	//Crear y registrar al usuario
+	//Crear al usuario
 }
 
 class UserValidation {
@@ -59,217 +59,199 @@ class UserValidation {
 	//Validar contraseñas o permisos del usuario
 }
 
-class EmailSender {
+class EmailService {
 	constructor(emailAddress, emailObject, emailContent) {
 		this.emailAddress = emailAddress;
 		this.emailObject = emailObject;
 		this.emailContent = emailContent;
 	}
 
-	//Lógica para enviar un correo
+	//Enviar un correo
 }
 
 //EXTRA
-class Library {
-	userDataBase = [];
-	bookDataBase = [];
-	pendingLenders = [];
+class LibraryNoSRP {
+	#users = [];
+	#books = [];
+	#loans = [];
 
-	//1. Registrar libros
-	registerNewBook(title, author, avalaibleCopies) {
+	registerBook(title, author, avalaibleCopies) {
 		let newBook = {
-			bookID: this.bookDataBase.length + 1,
+			id: this.#books.length + 1,
 			title: title,
 			author: author,
 			avalaibleCopies: avalaibleCopies,
 		};
 
-		this.bookDataBase.push(newBook);
+		this.#books.push(newBook);
 	}
 
-	//2. Registrar users
-	registerNewUser(name, emailAddress) {
+	registerUser(name, emailAddress) {
 		let newUser = {
-			userID: this.userDataBase.length + 1,
+			id: this.#users.length + 1,
 			name: name,
 			emailAddress: emailAddress,
 		};
 
-		this.userDataBase.push(newUser);
+		this.#users.push(newUser);
 	}
 
-	//3. Sistema de gestión de préstamos
-	search(arr, item) {
-		let result;
-
-		arr.forEach((arrObject) => {
-			Object.keys(arrObject).forEach((element) => {
-				if (arrObject[element] === item) {
-					result = arrObject;
-				}
-			});
-		});
-
-		return result;
+	#searchByID(arr, item) {
+		return arr.find((obj) => obj.id === item);
 	}
 
-	lendBook(userID, bookID) {
-		let pendingLender = this.search(this.userDataBase, userID);
-		let bookToLend = this.search(this.bookDataBase, bookID);
+	loanBook(userID, bookID) {
+		let user = this.#searchByID(this.#users, userID);
+		let book = this.#searchByID(this.#books, bookID);
 
-		if (pendingLender) {
-			if (bookToLend) {
-				if (bookToLend.avalaibleCopies > 0) {
-					console.log(
-						`Se le ha prestado el libro \"${bookToLend.title}\", de ${bookToLend.author}, a ${pendingLender.name}`
-					);
+		let loan = {
+			id: this.#loans.length + 1,
+			userID: user.id,
+			bookID: book.id,
+		};
 
-					bookToLend.avalaibleCopies--;
+		if (user && book) {
+			if (book.avalaibleCopies > 0) {
+				console.log(`Se ha prestado el libro \"${book.title}\" a ${user.name}`);
 
-					this.pendingLenders.push(pendingLender);
-				} else {
-					console.log('No hay copias disponibles');
-				}
+				book.avalaibleCopies--;
+
+				this.#loans.push(loan);
 			} else {
-				console.log('No existe el libro solictado');
+				console.log('No hay copias disponibles');
 			}
 		} else {
-			console.log('No existe el usuario');
+			console.log('No existe el usuario o el libro solicitado');
 		}
 	}
 
-	receiveBook(userID, bookID) {
-		let pendingLender = this.search(this.pendingLenders, userID);
-		let bookReceived = this.search(this.bookDataBase, bookID);
+	returnBook(userID, bookID) {
+		let loan = this.#loans.find((obj) => {
+			return obj.userID === userID && obj.bookID === bookID;
+		});
 
-		if (pendingLender) {
-			console.log(`${pendingLender.name} ha regresado el libro \"${bookReceived.title}\"`);
+		if (loan) {
+			let user = this.#searchByID(this.#users, loan.userID);
+			let book = this.#searchByID(this.#books, loan.bookID);
 
-			bookReceived.avalaibleCopies++;
+			console.log(`${user.name} ha regresado el libro \"${book.title}\"`);
 
-			this.pendingLenders.splice(this.pendingLenders.indexOf(pendingLender), 1);
+			book.avalaibleCopies++;
+
+			this.#loans.splice(this.#loans.indexOf(loan), 1);
 		} else {
 			console.log('Ese préstamo no está en el registro');
 		}
 	}
 }
 
-let myLibrary = new Library();
+let libraryNoSRP = new LibraryNoSRP();
 
-myLibrary.registerNewBook('Dracula', 'Bram Stoker', 3);
-myLibrary.lendBook(1, 1);
-myLibrary.registerNewUser('Juan', 'juanloquillo16@gmail.com');
-myLibrary.lendBook(1, 2);
-myLibrary.lendBook(1, 1);
-myLibrary.receiveBook(1, 1);
-myLibrary.receiveBook(1, 1);
+libraryNoSRP.registerBook('Dracula', 'Bram Stoker', 3);
+libraryNoSRP.registerUser('Juan', 'juanloquillo16@gmail.com');
+
+libraryNoSRP.loanBook(1, 1);
+
+libraryNoSRP.returnBook(1, 1);
+libraryNoSRP.returnBook(1, 1);
 
 //REFACTORIZANDO
-//1. Registrar libros
 class Book {
-	constructor(title, author, avalaibleCopies, dataBase = myLibraryDataBase) {
-		this.bookID = dataBase.books.length + 1;
+	constructor(title, author, avalaibleCopies) {
 		this.title = title;
 		this.author = author;
 		this.avalaibleCopies = avalaibleCopies;
-
-		dataBase.books.push(this);
 	}
 }
 
-//2. Registrar users
 class LibraryUser {
-	constructor(name, emailAddress, dataBase = myLibraryDataBase) {
-		this.userID = dataBase.users.length + 1;
+	constructor(name, emailAddress) {
 		this.name = name;
 		this.emailAddress = emailAddress;
-
-		dataBase.users.push(this);
 	}
 }
 
-//3. Sistema de gestión de préstamos
-class PendingLender {
-	constructor(user, bookID, dataBase = myLibraryDataBase) {
-		this.userID = user.userID;
-		this.name = user.name;
-		this.emailAddress = user.emailAddress;
-		this.bookID = bookID;
+class LoansService {
+	loans = [];
+
+	loanBook(user, book) {
+		let loan = {
+			userID: user.id,
+			bookID: book.id,
+		};
+
+		if (book.avalaibleCopies > 0) {
+			loan.id = this.loans.length + 1;
+			this.loans.push(loan);
+			book.avalaibleCopies--;
+
+			console.log(`Se le ha prestado el libro \"${book.title}\" a ${user.name}`);
+		}
 	}
-}
 
-function search(arr, item) {
-	let result;
+	returnBook(user, book) {
+		let result;
 
-	arr.forEach((arrObject) => {
-		Object.keys(arrObject).forEach((element) => {
-			if (arrObject[element] === item) {
-				result = arrObject;
+		this.loans.forEach((loan) => {
+			if (loan.userID === user.id && loan.bookID === book.id) {
+				result = loan;
 			}
 		});
-	});
 
-	return result;
-}
-
-class LibraryDataBase {
-	books = [];
-	users = [];
-	pendingLenders = [];
-}
-
-class LendingManager {
-	constructor(dataBase = myLibraryDataBase) {
-		this.dataBase = dataBase;
-	}
-
-	lendBook(userID, bookID) {
-		let pendingLender = search(this.dataBase.users, userID);
-		let bookToLend = search(this.dataBase.books, bookID);
-
-		if (pendingLender) {
-			if (bookToLend) {
-				if (bookToLend.avalaibleCopies > 0) {
-					console.log(
-						`Se le ha prestado el libro \"${bookToLend.title}\", de ${bookToLend.author}, a ${pendingLender.name}`
-					);
-					bookToLend.avalaibleCopies--;
-
-					this.dataBase.pendingLenders.push(new PendingLender(pendingLender, bookToLend.bookID));
-				} else {
-					console.log('No hay copias disponibles');
-				}
-			} else {
-				console.log('No existe el libro solictado');
-			}
-		} else {
-			console.log('No existe el usuario');
-		}
-	}
-
-	receiveBook(userID, bookID) {
-		let pendingLender = search(this.dataBase.pendingLenders, userID);
-		let book = search(this.dataBase.books, bookID);
-
-		if (pendingLender) {
-			console.log(`${pendingLender.name} ha regresado el libro \"${book.title}\"`);
-
+		if (result) {
+			this.loans.splice(this.loans.indexOf(result, 1));
 			book.avalaibleCopies++;
-			this.dataBase.pendingLenders.splice(this.dataBase.pendingLenders.indexOf(pendingLender), 1);
+			console.log(`${user.name} ha regresado el libro \"${book.title}\"`);
 		} else {
-			console.log('Ese préstamo no está en el registro');
+			console.log('Préstamo no registrado');
 		}
 	}
 }
 
-const myLibraryDataBase = new LibraryDataBase();
-const myLendingManager = new LendingManager();
+class Library {
+	#users = [];
+	#books = [];
+	#loans = new LoansService();
 
-new Book('Christine', 'Stephen King', 5);
-new Book("El Misterio de Salem's Lot", 'Stephen King', 3);
-new LibraryUser('Ana', 'anitalahuerfanita2233@gmail.com');
-new LibraryUser('Julia', 'soyjuliaparasiempre@gmail.com');
+	addUser(user) {
+		user.id = this.#users.length + 1;
+		this.#users.push(user);
+	}
 
-myLendingManager.lendBook('Ana', 1);
-myLendingManager.receiveBook('Ana', 1);
-myLendingManager.lendBook('Julia', 'Libro inexistente');
+	addBook(book) {
+		book.id = this.#books.length + 1;
+		this.#books.push(book);
+	}
+
+	#searchByID(database, itemID) {
+		return database.find((obj) => obj.id === itemID);
+	}
+
+	loanBook(userID, bookID) {
+		let user = this.#searchByID(this.#users, userID);
+		let book = this.#searchByID(this.#books, bookID);
+
+		if (user && book) {
+			this.#loans.loanBook(user, book);
+		} else {
+			console.log('No existe el libro o el usuario solicitados');
+		}
+	}
+
+	returnBook(userID, bookID) {
+		let user = this.#searchByID(this.#users, userID);
+		let book = this.#searchByID(this.#books, bookID);
+
+		this.#loans.returnBook(user, book);
+	}
+}
+
+const library = new Library();
+
+library.addUser(new LibraryUser('Lissa', 'lissalunita2003@gmail.com'));
+library.addBook(new Book('La Milla Verde', 'Stephen King', 4));
+
+library.loanBook(1, 1);
+
+library.returnBook(1, 1);
+library.returnBook(1, 1);
