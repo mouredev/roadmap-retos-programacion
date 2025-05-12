@@ -162,8 +162,10 @@ def main():
     heigth = input("Ingrese la altura del arbol: ")
     try:
         heigth = int(heigth)
+        if heigth <= 0:
+            raise ValueError()
     except:
-        print("Valor invalido. Debe ingresar un numero entero.")
+        print("Valor invalido. Debe ingresar un numero entero mayor que cero.")
     else:
         christmas_tree = ChristmasTree(heigth)
         while True:
