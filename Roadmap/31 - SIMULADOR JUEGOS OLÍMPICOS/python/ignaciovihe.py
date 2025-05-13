@@ -24,8 +24,7 @@ from abc import ABC, abstractmethod
 import random
 #from uuid import uuid4 Se utiliza para obtener calves unitarias. Al final no lo use.
 
-
-
+# Enumeración que representa los países posibles en los eventos.
 class Country(Enum):
     SPAIN = 1
     GERMANY = 2
@@ -38,31 +37,35 @@ class Country(Enum):
     CANADA = 9
     PORTUGAL = 10
     CHILE = 11
-    ARGENTINE = 12
+    ARGENTINA = 12
 
+# Enumeración que representa las medallas posibles en los eventos.
 class Medals(Enum):
     GOLD = 0
     SILVER = 1
     BRONZE = 2
 
-
+# Clase que representa un evento en los Juegos Olímpicos.
 class Event:
     def __init__(self, name: str):
         self.name = name
-        self.participants = []
-        self.finished = False
-        self.standings = []
+        self.participants = [] # Lista de participantes en el evento.
+        self.finished = False # Estado del evento: si ya se ha finalizado o no.
+        self.standings = [] # Los puestos (ganadores) del evento.
 
+    # Comparación de eventos por nombre (para evitar duplicados).
     def __eq__(self, other):
         return self.name == other.name
     
+    # Se sobrecarga el hash para que los eventos puedan ser usados en conjuntos o diccionarios.
     def __hash__(self):
         return hash((self.name))
 
 
+# Clase que gestiona los eventos (registro de eventos).
 class EventsManager:
     def __init__(self):
-        self.events = []
+        self.events = [] # Lista de todos los eventos registrados.
 
     def register_event(self, event: Event):
         if event not in self.events:
@@ -70,7 +73,7 @@ class EventsManager:
         else:
             print("El evento ya esta registrado.")
 
-
+# Clase que representa a un participante en un evento.
 class Participant:
     def __init__(self, name: str, country: Country):
         self.name = name
@@ -83,10 +86,12 @@ class Participant:
         return hash((self.name, self.country))
     
 
+
+# Clase encargada de generar los informes de los eventos y países.
 class ReportManager:
     def __init__(self):
-        self.event_winners = {}
-        self.country_winners ={}
+        self.event_winners = {} # Almacena los ganadores de cada evento.
+        self.country_winners ={} # Almacena las victorias por país.
 
     def add_event_winners(self, event: Event):
         self.event_winners[event] = event.standings[0:3]
@@ -99,12 +104,13 @@ class ReportManager:
                 self.country_winners[participant.country][index] += 1
 
 
-
+# Interfaz abstracta para las opciones del menú (patrón de diseño Command).
 class OptionInterface(ABC):
     @abstractmethod
     def execute(self):
         pass
 
+# Clase que implementa la opción de registrar un evento.
 class EventRegistry(OptionInterface):
     def execute(self, events_manager):
         event_name = input("Introduce el nombre del evento: ").lower()
@@ -114,12 +120,13 @@ class EventRegistry(OptionInterface):
         else:
             print("El evento ya esta registrado.")
 
+# Clase que implementa la opción de registrar un participante en un evento.
 class ParticipantRegistry(OptionInterface):
 
     #Comprueba si hay al menos un evento diponible.
     def available_events(self, events_manager: EventsManager) -> bool:
         for event in events_manager.events:
-            if event.finished == False:
+            if not event.finished:
                 return True
         return False
     
@@ -159,20 +166,20 @@ class ParticipantRegistry(OptionInterface):
             if participant not in event.participants:
                 event.participants.append(participant)
             else:
-                print(f"El participante {participant.name.capitalize()} de {participant.country.name} ya esta registrado en el evento '{event.event_name}'")
+                print(f"El participante {participant.name.capitalize()} de {participant.country.name} ya esta registrado en el evento '{event.name}'")
         else:
             print("No hay eventos disponibles. Registra primero un evento para poder registrar participantes.")
 
 
+# Clase que simula la realización de los eventos.
 class SimulateEvents(OptionInterface):
     def execute(self, events_manager):
         for event in events_manager.events:
             if not event.finished:
                 if  len(event.participants) >= 3:
-                    while len(event.participants) > 0:
-                        number = random.randint(0, len(event.participants) -1)
-                        participant = event.participants.pop(number)
-                        event.standings.append(participant)
+                    shuffled = event.participants[:] # Crea una coipa de la lista para trabajar con ella.
+                    random.shuffle(shuffled) # Baraja los participantes aleatoriamente para determinar los resultados.
+                    event.standings = shuffled
                     event.finished = True
                     print(f"El evento {event.name} ha tenido lugar.")
                 else:
@@ -180,6 +187,8 @@ class SimulateEvents(OptionInterface):
             else:
                 print(f"El evento {event.name} ya ha terminado.")
 
+
+# Clase que crea los informes de los eventos y países.
 class CreateInforms(OptionInterface):
     def execute(self, events_manager: EventsManager):
         informs_manager = ReportManager()
@@ -202,6 +211,7 @@ class CreateInforms(OptionInterface):
             print(f"{country.name}     -     {medals[0]}     -     {medals[1]}     -     {medals[2]}")
 
 
+# Clase que maneja la interfaz de las opciones del menú (Command pattern).
 class OptionMenuService:
     def __init__(self, option_interface: OptionInterface, events) -> None:
         self.option_interface = option_interface
@@ -213,13 +223,18 @@ class OptionMenuService:
 
 
 def main():
-    event_manager = EventsManager()
-    event_register = OptionMenuService(EventRegistry(), event_manager)
-    participant_register = OptionMenuService(ParticipantRegistry(), event_manager)
-    simulate_events = OptionMenuService(SimulateEvents(),event_manager)
-    inform_printer = OptionMenuService(CreateInforms(), event_manager)
+    print("JJOO Paris 2024")
+    events_manager = EventsManager()
+
+    # Diccionario de opciones con objetos Command
+    options = {
+        1: OptionMenuService(EventRegistry(), events_manager),
+        2: OptionMenuService(ParticipantRegistry(), events_manager),
+        3: OptionMenuService(SimulateEvents(), events_manager),
+        4: OptionMenuService(CreateInforms(), events_manager),
+    }
+
     while True:
-        print("JJOO Paris 2024")
         print("1. Register event")
         print("2. Register participant")
         print("3. Simulate events")
@@ -227,23 +242,15 @@ def main():
         print("5. Exit")
         try:
             option = int(input("Introduce una opción: "))
-            match option:
-                case 1:
-                    event_register.execute_option()
-                case 2:
-                    participant_register.execute_option()
-                case 3:
-                    simulate_events.execute_option()
-                case 4:
-                    inform_printer.execute_option()
-                case 5:
-                    break
-                case _: 
-                    raise ValueError("La opcion elegida no existe. Elige una opción valida")
-
-        except ValueError as e:
-            print("La opcion elegida no existe. Elige una opción valida")
-            continue
+            if option == 5:
+                print("Saliendo del sistema. ¡Hasta luego!")
+                break
+            elif option in options:
+                options[option].execute_option()
+            else:
+                print("La opción elegida no existe. Elige una opción válida.")
+        except ValueError:
+            print("Entrada no válida. Por favor, introduce un número del 1 al 5.")
 
 
 main()
