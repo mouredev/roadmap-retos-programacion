@@ -6,13 +6,6 @@
  *   "por referencia", y cómo se comportan en cada caso en el momento de ser modificadas.
  * (Entender estos conceptos es algo esencial en la gran mayoría de lenguajes)
  *
- * DIFICULTAD EXTRA (opcional):
- * Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
- * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
- *   Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
- *   se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
- *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
- *   Comprueba también que se ha conservado el valor original en las primeras.
  */
 
 //kotlinc Luis-VB.kt -include-runtime -d Luis-VB.jar
@@ -70,4 +63,31 @@ fun main() {
     }
     println("\nFuncion con variables por referencia:")
     porReferencia(mutableListOf(1, 2, 3))
+
+    /* DIFICULTAD EXTRA (opcional):
+    * Crea dos programas que reciban dos parámetros (cada uno) definidos como variables anteriormente.
+    * - Cada programa recibe, en un caso, dos parámetros por valor, y en otro caso, por referencia.
+    *   Estos parámetros los intercambia entre ellos en su interior, los retorna, y su retorno
+    *   se asigna a dos variables diferentes a las originales. A continuación, imprime el valor de las
+    *   variables originales y las nuevas, comprobando que se ha invertido su valor en las segundas.
+    *   Comprueba también que se ha conservado el valor original en las primeras.
+    */
+
+    fun programaPorValor(x: Int, y: Int): Pair<Int, Int> {
+        return Pair(y, x)
+    }
+
+    fun programaPorReferencia(lista1: MutableList<Int>, lista2: MutableList<Int>): Pair<MutableList<Int>, MutableList<Int>> {
+        return Pair(lista2, lista1)
+    }
+
+    val swappedValues = programaPorValor(x, y)
+    println("\nOriginal values x and y: $x, $y")
+    println("Returned values x and y: ${swappedValues.first}, ${swappedValues.second}")
+
+    val lista3 = mutableListOf(10, 20, 30)
+    val lista4 = mutableListOf(40, 50, 60)
+    val swappedReferences = programaPorReferencia(lista3, lista4)
+    println("\nOriginal references: $lista3, $lista4")
+    println("Returned references: ${swappedReferences.first}, ${swappedReferences.second}")
 }
