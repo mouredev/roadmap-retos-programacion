@@ -1,33 +1,39 @@
-# https://python.org/
+# App: Gestor TPV Pan-game
 
-# Comentario en una linea
+# Tecnologia aplicada: https://python.org
 
 """
-Esto tambien es 
-un comentario 
-en varias lineas
+¡App para la gestión de los clientes, cuando pagan y cuando dejan una barra a deber!
+
 """
 
-'''
-Esto tambien es
-un comentario
-en varias lineas
-'''
+# Variables
+mi_producto = "barra"
+mi_producto = "barra grande" 
 
-my_variable = "Mi variable" # si ponemos otro valor en la misma variable el valor anterior ya no se mostrara en consola.
+# Constante por convección
+RECETA_MASA = "receta.txt"
 
-MY_CONSTANT = "Mi constante" # python no tiene constantes, lo haremos creer con las mayusculas para que nose modifique con otro valor en esa variable constante
+# Datos primitivos
 
-my_int = 2 # numeros enteros sin decimales   
-my_float = "2.5" # numeros decimales
-my_bool = True # valor positivo booleano
-my_bool = False # valor negativo booleano
-my_string = "Mi cadena doble" # texto
-my_other_string = 'Mi cadena simple' # texto
+# Enteros - Int
+harina_Kg = 25
 
-print("¡Hola, Python!") # Esto es lo que se vera por consola
+# Decimal - Float
+agua_L = 4.5
 
-print(type(my_int)) # muestra por consola que es un tipo de dato 'int'
-print(type(my_float)) # muestra por consola que es un tipo de dato 'float'
-print(type(my_bool)) # muestra por consola que es un tipo de dato 'bool'
-print(type(my_string)) # muestra por consola que es un tipo de dato 'str'
+# Booleano - True or False
+tipo_Integral = False
+
+# Cadena de texto - String
+dias_Tienda = "Lunes a Domingo"
+horario_Tienda = '06:00 a 13.30'
+
+#Impresion por consola
+print("¡Hola, esta app esta creada en Python!")
+
+print(type(harina_Kg))
+print(type(agua_L))
+print(type(tipo_Integral))
+print(type(dias_Tienda))
+print(type(horario_Tienda))

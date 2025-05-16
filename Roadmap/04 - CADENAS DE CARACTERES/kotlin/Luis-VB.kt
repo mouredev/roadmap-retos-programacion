@@ -18,8 +18,6 @@ import kotlin.text.uppercase
  * - Isogramas
  */
 
-
-
 open class LuisRetos {
 
     fun myStrings() {
@@ -101,7 +99,9 @@ open class LuisRetos {
 fun main() {
     val retos = LuisRetos()
     retos.myStrings()
-    retos.checkWords("madam", "radar")
-    retos.checkWords("eye","hola" )
-    retos.checkWords("Taco cat", "level")
+    retos.checkWords("hola", "aloh")
+    retos.checkWords("hola", "Taco cat")
+    retos.checkWords("eye", "madam")
+    retos.checkWords("radar", "level")
+
 }
