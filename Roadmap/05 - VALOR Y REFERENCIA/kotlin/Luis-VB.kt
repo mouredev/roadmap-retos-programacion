@@ -15,6 +15,9 @@
  *   Comprueba también que se ha conservado el valor original en las primeras.
  */
 
+//kotlinc Luis-VB.kt -include-runtime -d Luis-VB.jar
+//java -jar Luis-VB.jar
+
 open class LuisRetos {
 
     fun byValue(a: Int, b: Int) {
@@ -34,4 +37,37 @@ fun main() {
     val listOne = mutableListOf(1, 2, 3)
     val listTwo = listOne
     retos.byReference(listOne, listTwo)
+
+    var x = 10
+    var y = 20
+    y += 5
+
+    println("\nPasar por valor:")
+    println("x: $x")
+    println("y: $y")
+
+    var lista1 = mutableListOf(1, 2, 3)
+    var lista2 = lista1
+    lista2.add(4)
+    println("\nPasar por referencia:")
+    println("lista1: $lista1")
+    println("lista2: $lista2")
+
+    fun porValor(a: Int) {
+        var b = a
+        b += 5
+        println("Valor de a: $a")
+    }
+    println("\nFuncion con variables por valor:")
+    porValor(34546)
+
+    fun porReferencia(lista: MutableList<Int>) {
+        lista.add(4)
+        lista.add(5)
+        println("Valor de lista: $lista")
+        lista.remove(5)
+        println("Valor de lista: $lista")
+    }
+    println("\nFuncion con variables por referencia:")
+    porReferencia(mutableListOf(1, 2, 3))
 }
