@@ -87,6 +87,7 @@ open class LuisRetos {
         val isAnagram = sortedWord1 == sortedWord2
         println("Are \"$word1\" and \"$word2\" anagrams? $isAnagram")
         println()
+
         val isIsogram1 = word1.length == word1.toSet().size
         val isIsogram2 = word2.length == word2.toSet().size
         println("Is \"$word1\" an isogram? $isIsogram1")
@@ -102,4 +103,5 @@ fun main() {
     retos.checkWords("hola", "Taco cat")
     retos.checkWords("eye", "madam")
     retos.checkWords("radar", "level")
+
 }
