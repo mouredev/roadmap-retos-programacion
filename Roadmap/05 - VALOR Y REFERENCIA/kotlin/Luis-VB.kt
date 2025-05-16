@@ -17,19 +17,12 @@
 
 open class LuisRetos {
 
-    var a = 10
-    var b = a
-
-    fun byValue(a: int, b: Int) {
-        a = 20
-        b = 30
+    fun byValue(a: Int, b: Int) {
         println("Valor de a: $a")
         println("Valor de b: $b")
     }
 
-    val listOne = mutableListOf(1, 2, 3)
-    val listTwo = listOne
-    fun byReference(a: IntArray, b: IntArray) {
+    fun byReference(listOne: MutableList<Int>, listTwo: MutableList<Int>) {
         listTwo.add(4)
         println("Valor de listOne: $listOne")
     }
@@ -37,6 +30,8 @@ open class LuisRetos {
 
 fun main() {
     val retos = LuisRetos()
-    retos.byValue()
-    retos.byReference()
+    retos.byValue(10, 20)
+    val listOne = mutableListOf(1, 2, 3)
+    val listTwo = listOne
+    retos.byReference(listOne, listTwo)
 }
