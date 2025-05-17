@@ -104,3 +104,7 @@ print(birth_date.strftime("%U"))        # Ej: 06
 
 # Número de la semana del año (lunes como primer día de la semana)
 print(birth_date.strftime("%W"))        # Ej: 07
+
+
+#strftime (string format time) convierte un objeto datetime a un string con el formato que tú le indiques.
+#strptime (string parse time) convierte un string con una fecha y hora a un objeto datetime, usando el formato que tú le indiques
