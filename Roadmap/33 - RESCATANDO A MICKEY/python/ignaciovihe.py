@@ -24,6 +24,7 @@
 """
 
 import os
+from abc import ABC, abstractmethod
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -60,10 +61,16 @@ class Maze:
                     elif column == "🚪":
                         exit = (i, j)
         return current_obstacles, mickey, exit
-    
+
+
+class MazePrinter:
+    def __init__(self, maze: Maze):
+        self.maze = maze
+
     def print_maze(self):
-        for line in self.grid:
+        for line in self.maze.grid:
             print(f"{line} ")
+
 
 class CellChecker:
     def __init__(self, maze: Maze):
@@ -79,62 +86,130 @@ class CellChecker:
         return (i, j) in self.maze.exit
 
     def is_mickey(self, i:int, j: int):
-        return (i, j) in self.maze.mickey 
+        return (i, j) in self.maze.mickey
     
+
+class GameMessenger:
+    def invalid_direction(self):
+        print("Elige una opción válida")
+
+    def mickey_blocked(self):
+        print("Mickey no puede continuar por ahí")
+
+    def mickey_wins(self):
+        print("FELICIDADES! - HAS LIBERADO A MICKEY")
+    
+
+class MoveStrategy(ABC):
+    @abstractmethod
+    def matches(self, direction: str) -> bool:
+        pass
+    @abstractmethod
+    def get_movement(self) -> tuple[int, int]:
+        pass
+
+class MoveLeft(MoveStrategy):
+    def matches(self, direction): return direction == "a"
+    def get_movement(self): return (0, -1)
+
+class MoveUpLeft(MoveStrategy):
+    def matches(self, direction): return direction == "q"
+    def get_movement(self): return (-1, -1)
+
+class MoveUp(MoveStrategy):
+    def matches(self, direction): return direction == "w"
+    def get_movement(self): return (-1, 0)
+
+class MoveUpRight(MoveStrategy):
+    def matches(self, direction): return direction == "e"
+    def get_movement(self): return (-1, 1)
+
+class MoveRight(MoveStrategy):
+    def matches(self, direction): return direction == "d"
+    def get_movement(self): return (0, 1)
+
+class MoveDownRight(MoveStrategy):
+    def matches(self, direction): return direction == "c"
+    def get_movement(self): return (1, 1)
+
+class MoveDown(MoveStrategy):
+    def matches(self, direction): return direction == "s"
+    def get_movement(self): return (1, 0)
+
+class MoveDownLeft(MoveStrategy):
+    def matches(self, direction): return direction == "z"
+    def get_movement(self): return (1, -1)
+
 class MovementManager:
     def __init__(self, maze: Maze, cell_checker: CellChecker):
         self.maze = maze
         self.cell_checker = cell_checker
-
+        self.strategies = [
+            MoveLeft(), MoveUpLeft(), MoveUp(), MoveUpRight(), MoveRight(), MoveDownRight(), MoveDown(), MoveDownLeft()
+        ]
+        
+    def calculate_movement(self, direction: str):
+        for strategie in self.strategies:
+            if strategie.matches(direction):
+                return strategie.get_movement()
+        return None    
+            
     def move(self, direction: str):
-        match direction:
-            case "a":
-                movement = (0, -1)
-            case "w":
-                movement = (-1, 0)
-            case "d":
-                movement = (0, 1)
-            case "s":
-                movement = (1, 0)
-            case _:
-                print("Elige una opción valida")
-                return False
+        movement = self.calculate_movement(direction)
+        if movement is None:
+            return "invalid"
                 
-        new_i, new_j = (self.maze.mickey[0] + movement[0], self.maze.mickey[1] + movement[1])
+        new_i = self.maze.mickey[0] + movement[0]
+        new_j = self.maze.mickey[1] + movement[1]
+
         if self.cell_checker.is_inside_maze(new_i, new_j) and not self.cell_checker.is_obstacle(new_i, new_j):
             old_i, old_j = self.maze.mickey
             self.maze[old_i][old_j]= "⬜️"
             self.maze[new_i][new_j] = "🐭"
             self.maze.mickey = (new_i, new_j)
-            self.maze.print_maze()
+            
+            if self.maze.mickey == self.maze.exit:
+                return "win"
+            return "moved"
         else:
-            self.maze.print_maze()
-            print("Michey no puede continuar por ahí")
-        if self.maze.mickey == self.maze.exit:
-            print("FELICIDADES! - HAS LIBERADO A MICKEY")
-            return True
-        return False
-
-
-        
-
-
+            return "blocked"
 
 
 def main():
     my_maze = Maze(maze)
-    movement_manager = MovementManager(my_maze, CellChecker(my_maze))
+    printer = MazePrinter(my_maze)
+    cell_checker = CellChecker(my_maze)
+    movement_manager = MovementManager(my_maze, cell_checker)
+    messenger = GameMessenger()
+
     finish = False
     print("--Welcome to Mickey Maze--")
-    my_maze.print_maze()
+    printer.print_maze()
+
     while not finish:
         print("Movimientos:")
         print("a. Izquierda")
+        print("q. Arriba izquierda")
         print("w. Arriba")
+        print("e. Arriba derecha")
         print("d. Derecha")
+        print("c. Abajo derecha")
         print("s. Abajo")
+        print("z. Abajo izquierda")
 
         option = input("Introduce a donde quieres moverte:")
         clear_console()
-        finish = movement_manager.move(option)
+        result = movement_manager.move(option)
+
+        printer.print_maze()
+
+        match result:
+            case "invalid":
+                messenger.invalid_direction()
+            case "blocked":
+                messenger.mickey_blocked()
+            case "win":
+                messenger.mickey_wins()
+                finish = True
+
 main()
