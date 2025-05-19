@@ -3,58 +3,58 @@
 # """
 # #operadores aritmeticos
 
-# print(f"Suma: 10 + 3 = {10 + 3}")
-# print(f"Resta = {10 - 3}" )
-# print (f"Modulo = {10 % 3}")
-# print(f"Multiplicacion = {10 * 3}")
-# print(f"division = {10 / 3}")
+print(f"Suma: 10 + 3 = {10 + 3}")
+print(f"Resta = {10 - 3}" )
+print (f"Modulo = {10 % 3}")
+print(f"Multiplicacion = {10 * 3}")
+print(f"division = {10 / 3}")
 
-# #Operadores comparacion
-# print(f"Igualdad: 10==3 es {10==3}")
-# print(f"Desigualdad:!= {10 !=3}" )
-# print(f"mayor que = {10>3}")
-# print(f"mejor que {10<3}")
-# print(f"mayor o igual que = {10 >= 3}")
-# print(f"menor o igual que = {10<=3 }")
+#Operadores comparacion
+print(f"Igualdad: 10==3 es {10==3}")
+print(f"Desigualdad:!= {10 !=3}" )
+print(f"mayor que = {10>3}")
+print(f"mejor que {10<3}")
+print(f"mayor o igual que = {10 >= 3}")
+print(f"menor o igual que = {10<=3 }")
 
-# #Operadores logicos
-# print(f"AND es {10 + 3 == 13 and 5 - 1 ==4 }")
-# print(f"OR es {10 + 3 == 13 and 5 - 1 ==4 } ")
-# print(f"NOT es {not 10 + 3 == 14}") 
+#Operadores logicos
+print(f"AND es {10 + 3 == 13 and 5 - 1 ==4 }")
+print(f"OR es {10 + 3 == 13 and 5 - 1 ==4 } ")
+print(f"NOT es {not 10 + 3 == 14}") 
 
-# #Operaciones de aignacion
-# my_number = 11
-# print (my_number)
-# my_number += 4
-# print (my_number)
-# my_number -= 2
-# print(my_number)
-# my_number *=3
-# print(my_number)
-# my_number /=1
-# print(my_number)
-# my_number %= 2
-# print(my_number)
+#Operaciones de aignacion
+my_number = 11
+print (my_number)
+my_number += 4
+print (my_number)
+my_number -= 2
+print(my_number)
+my_number *=3
+print(my_number)
+my_number /=1
+print(my_number)
+my_number %= 2
+print(my_number)
 
-# #Operadores de identidad
-# my_new_number = my_number
-# print(f"my_number is my_new_numberc es {my_number is my_new_number}")
-# print(f"my_number is not my_new_numberc es {my_number is not my_new_number}")
+#Operadores de identidad
+my_new_number = my_number
+print(f"my_number is my_new_numberc es {my_number is my_new_number}")
+print(f"my_number is not my_new_numberc es {my_number is not my_new_number}")
 
-# #Operadores de pertenencia
-# print(f"'u' in 'moure' = {'u' in 'moure'}")
-# print(f"'A' in 'Anzin' = {'A' in 'Anzin'}")
-# print(f"'b' not in 'lucho'= {'b' not in 'lucho'}")
+#Operadores de pertenencia
+print(f"'u' in 'moure' = {'u' in 'moure'}")
+print(f"'A' in 'Anzin' = {'A' in 'Anzin'}")
+print(f"'b' not in 'lucho'= {'b' not in 'lucho'}")
 
-# #Operadores de bit
-# a = 10  #numero bits 1010
-# b = 3   # 0011
-# print(f"AND: = {10 & 3}")
-# print(f"OR = {a | b}")
-# print(f"XOR = {a ^ b}")
-# print(f"NOT = {~10}")
-# print(f"Desplazamiento D = {a >> b}")
-# print(f"Desplazamiento I = {a << b}")
+#Operadores de bit
+a = 10  #numero bits 1010
+b = 3   # 0011
+print(f"AND: = {10 & 3}")
+print(f"OR = {a | b}")
+print(f"XOR = {a ^ b}")
+print(f"NOT = {~10}")
+print(f"Desplazamiento D = {a >> b}")
+print(f"Desplazamiento I = {a << b}")
 
 # """
 # Estructura de control
@@ -206,5 +206,6 @@ while clave != clavec:
         print("Contraseña incorrecta. Ingrese otra vez")
 else:
     print("Ingreso accedido, disfruta las comodidades")
+
 
 
