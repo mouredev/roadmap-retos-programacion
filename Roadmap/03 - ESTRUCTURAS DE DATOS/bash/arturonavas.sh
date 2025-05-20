@@ -10,7 +10,6 @@ dificultad extra (opcional):
 - menu con opcion de finalizacion
 '
 
-# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # estructuras de control basicas
 
 # if-elif-else
@@ -64,7 +63,6 @@ cuadrado() {
   echo "$(( $1 * $1 ))"
 }
 
-# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # operaciones sobre lista (array)
 
 lista=(3 1 4 1 5 9)
@@ -106,8 +104,7 @@ mostrar_lista() {
   echo "lista: ${lista[*]}"
 }
 
-# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# agenda de contactos (asociative array)
+# agenda de contactos 
 
 declare -A contactos
 
@@ -167,7 +164,6 @@ listar_contactos() {
   done | sort
 }
 
-# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # menu principal
 
 while true; do
