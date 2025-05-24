@@ -160,32 +160,84 @@ console.log(o?.name); // Carlos
 console.log(o?.age); // undefined
 console.log(o?.age ?? 0); // 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* - Utilizando las operaciones con operadores que tú quieras, crea ejemplos
  *   que representen todos los tipos de estructuras de control que existan
  *   en tu lenguaje:
  *   Condicionales, iterativas, excepciones...
  * - Debes hacer print por consola del resultado de todos los ejemplos.
- *
+ */
+
+// i) Estructuras de Control
+
+// 1. Condicionales
+let age:number = 18;
+
+if (age >= 18) {
+    console.log("Eres mayor de edad");
+} else if (age >= 13) {
+    console.log("Eres adolescente");
+} else {
+    console.log("Eres menor de edad");
+}
+switch (age) {
+    case 18:
+        console.log("Eres mayor de edad");
+        break;
+    case 13:
+        console.log("Eres adolescente");
+        break;
+    default:
+        console.log("Eres menor de edad");
+        break;
+}
+
+// 2. Estructuras de Bucles
+for (let i:number = 0; i < 10; i++) {
+    console.log(i);
+}
+
+// for of
+let array:number[] = [1, 2, 3, 4, 5];
+for (let i of array) {
+    console.log(i);
+}
+
+// for in
+let object:any = {name: "Carlos", age: 18};
+for (let i in object) {
+    console.log(i);
+}
+
+while (age < 18) {
+    console.log("Eres menor de edad");
+    age++;
+}
+
+// do while
+let i:number = 0;
+do {
+    console.log(i);
+    i++;
+} while (i < 10);
+
+// 3. Control de Flujo
+
+for (let i:number = 0; i < 10; i++) {
+    if (i === 5) {
+        break;
+    }
+    console.log(i);
+}
+
+// 4. Excepciones
+try {
+    let x:number = 10;
+    console.log(x);
+} catch (error) {
+    console.log(error);
+}
+
+/* 
  * DIFICULTAD EXTRA (opcional):
  * Crea un programa que imprima por consola todos los números comprendidos
  * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
