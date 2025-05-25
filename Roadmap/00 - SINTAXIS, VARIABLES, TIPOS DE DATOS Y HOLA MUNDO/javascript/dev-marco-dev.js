@@ -1,5 +1,5 @@
 
-//este es un comentario https://www.javascript.com/
+//este es un comentario https://developer.mozilla.org/es/docs/Web/JavaScript
 /*este es 
 un comentario
 de varias lineas */
