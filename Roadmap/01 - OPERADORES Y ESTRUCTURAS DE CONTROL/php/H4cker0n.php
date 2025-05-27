@@ -41,21 +41,25 @@ echo "Mayor que $d y $e: " . ($d > $e ? 'Verdadero' : 'Falso') . "\n"; // Mayor 
 echo "Menor que $d y $e: " . ($d < $e ? 'Verdadero' : 'Falso') . "\n"; // Menor que
 echo "Mayor o igual que $d y $e: " . ($d >= $e ? 'Verdadero' : 'Falso') . "\n"; // Mayor o igual que
 echo "Menor o igual que $d y $e: " . ($d <= $e ? 'Verdadero' : 'Falso') . "\n"; // Menor o igual que
+
 /* OPERADORES LOGICOS */
 $f = true;
 $g = false;
 echo "AND lógico de $f y $g: " . ($f && $g ? 'Verdadero' : 'Falso') . "\n"; // AND lógico
 echo "OR lógico de $f y $g: " . ($f || $g ? 'Verdadero' : 'Falso') . "\n"; // OR lógico
 echo "NOT lógico de $f: " . (!$f ? 'Verdadero' : 'Falso') . "\n"; // NOT lógico
+
 /* OPERADORES DE IDENTIDAD */
 $h = "10";  
 $i = 10;
 echo "Identidad de tipo y valor de $h y $i: " . ($h === $i ? 'Verdadero' : 'Falso') . "\n"; // Identidad
 echo "No identidad de tipo y valor de $h y $i: " . ($h !== $i ? 'Verdadero' : 'Falso') . "\n"; // No identidad
+
 /* OPERADORES DE PERTENENCIA */
 $array = array(1, 2, 3, 4, 5);  
 echo "El 3 está en el array: " . (in_array(3, $array) ? 'Verdadero' : 'Falso') . "\n"; // Pertenencia
 echo "El 6 no está en el array: " . (!in_array(6, $array) ? 'Verdadero' : 'Falso') . "\n"; // No pertenencia
+
 /* OPERADORES DE BIT */ 
 $j = 5; // 0101 en binario
 $k = 3; // 0011 en binario  
@@ -64,9 +68,11 @@ echo "OR bit a bit de $j y $k: " . ($j | $k) . "\n"; // OR bit a bit
 echo "XOR bit a bit de $j y $k: " . ($j ^ $k) . "\n"; // XOR bit a bit
 echo "Desplazamiento a la izquierda de $j: " . ($j << 1) . "\n"; // Desplazamiento a la izquierda
 echo "Desplazamiento a la derecha de $k: " . ($k >> 1) . "\n"; // Desplazamiento a la derecha
+
 /* OPERADORES DE TERNARIO */
 $condicion = true;
 echo "Operador ternario: " . ($condicion ? 'Condición verdadera' : 'Condición falsa') . "\n"; // Ternario
+
 /* ESTRUCTURAS DE CONTROL */
 if ($a > $b) {
     echo "$a es mayor que $b\n"; // Estructura if
@@ -116,5 +122,6 @@ for ($i = 10; $i <= 55; $i++) {
     }
 }
 echo "\n";
+
 
 ?>
