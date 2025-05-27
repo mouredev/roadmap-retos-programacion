@@ -62,6 +62,9 @@ def print_distribution(distributed_rings):
         for index, distribution in enumerate(distributed_rings):
             print(f"{index + 1}._ {distribution}")
         print(f"\nTotal de posibilidades encontradas: {len(distributed_rings)}")
+
+        print("Distribucion equitativa:")
+        print(distributed_rings[int(len(distributed_rings) / 2) - 1])
     else:
         print("No hay suficientes anillos para todos.")  
 
