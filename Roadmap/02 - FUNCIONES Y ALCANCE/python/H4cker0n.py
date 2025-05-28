@@ -99,6 +99,7 @@ global_hello()
 EXTRA
 """
 
+
 def imprimir(cadena_1, cadena_2) -> int:
     count = 0
     for numero in range(1, 101):
