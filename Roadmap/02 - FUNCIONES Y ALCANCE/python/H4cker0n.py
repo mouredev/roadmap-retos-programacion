@@ -75,11 +75,10 @@ funcion_externa()
 """
 FUNCIONES DEL LENGUAJE (buit-in)
 """
-
 print(len("H4cker0n"))  # Longitud de una cadena
 print(sum([1, 2, 3, 4, 5]))  # Suma de una lista
 print(max([1, 2, 3, 4, 5]))  # Máximo de una lista  
-print(type(666))
+print(type(68))
 
 """
 VARIABLES LOCALES Y GLOBALES
