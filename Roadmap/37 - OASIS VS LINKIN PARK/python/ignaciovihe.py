@@ -25,6 +25,8 @@ CLIENT_SECRET = "Mi CLIENT_SECRET"
 
 id_oasis = "2DaxqgrOhkeH0fpeiQq2f4"
 id_linkin_park = "6XyY86QOPPrYVGvF9ch6wz"
+id_mago_de_oz = "5ZNxiPcbKgaNcBrERMpqeu"
+id_dartagnan= "7Lj8CmxeAuJ2c2I6YxA6AJ"
 
 def get_token():
 
@@ -58,21 +60,6 @@ async def call_api(session, url, headers):
             return None
         else:
             return await answer.json()
-        
-        
-def print_info_artist(info_artist):
-    print(f"Name: {info_artist["name"]}")
-    print("Genres:")
-    for genre in info_artist["genres"]:
-        print(f"\t{genre}")
-    print(f"Followers: {info_artist["followers"]["total"]}")
-    print(f"Popularity: {info_artist["popularity"]}")
-
-def print_info_tracks(info_tracks, artist: str):
-    print(f"Ten Most popular tracks of {artist} :")
-    sorted_tracks = sorted(info_tracks["tracks"], key=lambda t: t["popularity"], reverse=True)
-    for i, track in enumerate(sorted_tracks):
-        print(f"{i + 1}.Name: {track["name"]} | Popularity: {track["popularity"]} | Album: {track["album"]["name"]}")
 
 
 async def compare_artists(token: str, artist_id1: str, artist_id2):
@@ -94,27 +81,63 @@ async def compare_artists(token: str, artist_id1: str, artist_id2):
                                                             call_api(session, url_tracks_id1, headers), 
                                                             call_api(session, url_tracks_id2, headers)
                                                             )
+        
+        if info_artist_1 and info_artist_2:
+            name1, name2 = info_artist_1["name"], info_artist_2["name"]
+            followers1, followers2 = info_artist_1["followers"]["total"], info_artist_2["followers"]["total"]
+            popularity1, popularity2 = info_artist_1["popularity"], info_artist_2["popularity"]
 
-        if info_artist_1:
-            print_info_artist(info_artist_1)
+        if info_tracks_1 and info_tracks_2:
+            sorted_tracks1 = sorted(info_tracks_1["tracks"], key=lambda t: t["popularity"], reverse=True)
+            sorted_tracks2 = sorted(info_tracks_2["tracks"], key=lambda t: t["popularity"], reverse=True)
+            name_track_1 = sorted_tracks1[1]["name"]
+            name_track_2 = sorted_tracks2[1]["name"]
+            popularity_track1 = sorted_tracks1[1]["popularity"]
+            popularity_track2 = sorted_tracks2[1]["popularity"]
 
-        if info_tracks_1:
-            print_info_tracks(info_tracks_1, info_artist_1["name"])
+        points={
+            name1: 0,
+            name2: 0
+        }
+        
+        print("Comparacion de artistas:")        
 
-        print("---------------------------------------------------------------")
+        print(f"\t {name1} VS {name2}\n")
 
-        if info_artist_2:
-            print_info_artist(info_artist_2)
+        print("Número de seguidores:")
+        print(f"\tSeguidores de {name1}: {followers1}")
+        print(f"\tSeguidores de {name2}: {followers2}")
+        more_popular = max((followers1, name1), (followers2, name2))
+        print(f"{more_popular[1]} es más popular en número de seguidores.\n")
+        points[more_popular[1]] += 2
 
-        if info_tracks_2:
-            print_info_tracks(info_tracks_2, info_artist_2["name"])
+        print("Popularidad:")
+        print(f"\t{name1}: {popularity1}")
+        print(f"\t{name2}: {popularity2}")
+        more_popular = max((popularity1, name1), (popularity2, name2))
+        print(f"{more_popular[1]} es más popular según el ranking de Spotify.\n")
+        points[more_popular[1]] += 3
+
+        print("Canción más populares:")
+        print(f"\tCanción de {name1}: {name_track_1} - {popularity_track1}")
+        print(f"\tCanción de {name2}: {name_track_2} - {popularity_track2}")
+        more_popular = max((popularity1, name_track_1, name1), (popularity2, name_track_2, name2))
+        print(f"La cancion {more_popular[1]} de {more_popular[2]} es más popular.\n")
+        points[more_popular[2]] += 1.5
+
+        print("RESULTADO FINAL:")
+        if points[name1] > points[name2]:
+            print(f"{name1} es más popular")
+        else:
+            print(f"{name2} es más popular")
+
 
 
 
 
 async def main():
     token = get_token()
-    await compare_artists(token, id_oasis,id_linkin_park)
+    await compare_artists(token, id_oasis, id_linkin_park)
 
 asyncio.run(main())
 
