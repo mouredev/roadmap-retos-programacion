@@ -81,4 +81,96 @@ mySet.add(2)
 console.log(mySet)
 
 //EXTRA
-const option = 1
+function agenda(){
+
+    const contactos = [
+        {name: "erick", tel: 3321904500},
+        {name: "johnny", tel: 3321909000},
+        {name: "gyro", tel: 3321908080},
+    ]
+
+    const option = 1
+    const con = "johnny"
+
+    console.log("1. buscar contacto")
+    console.log("2. agregar contacto")
+    console.log("3. actualizar contacto")
+    console.log("4. eliminar contacto")
+    console.log("5. salir")
+
+    switch(option){
+        case 1:
+            console.log("cual contacto quiere buscar")
+            let res = contactos.find(contacto => contacto.name === con) //compara que el nombre del contacto y el de la variable con sea el mismo
+            if(res){    //si la variable es true (si encontro algo) ejecuta el codigo, si es false (no encontro coincidencias) hace lo del else
+                console.log(res)
+            } else{
+                console.log("el contacto no existe")
+            }
+        break
+        case 2:
+            console.log("registre su contacto, primero el nombre")
+            let newName = "funny valentine"
+            console.log("nombre del contacto es: "+newName)
+            console.log("ahora el numero, no puede ser mayor ni menor que 10 numeros")
+            let newNumber = "3314111174"
+            if(newNumber.length == 10){
+                contactos.push({newName, newNumber})
+                console.log("numero del contacto es: "+newNumber)
+                console.log(contactos[3])
+            } else {
+                console.log("numero no valido")
+                return
+            }
+        break
+        case 3:
+            console.log("escribe el nombre del contacto que  quieres actualizar")
+            let act = "erick"
+            let newAct = contactos.find(contacto => contacto.name === act)
+            console.log("1. actualizar nombre")
+            console.log("2. actualizar numero")
+
+            let opt = 2
+
+            switch(opt){
+            case 1:
+                console.log("escribe el nuevo nombre")
+                let newNameAct = "diego"
+                newAct.name = newNameAct
+                console.log(newAct)
+            break
+            case 2:
+                console.log("escribe nuevo numero")
+                let newNumberAct = "3311444790"
+                 if(newNumberAct.length == 10){
+                    newAct.tel = newNumberAct
+                    console.log(newAct)
+            } else {
+                console.log("numero no valido")
+                return
+            }
+            break
+            default:
+                return
+            }
+        break
+        case 4:
+            console.log("nombre del contacto quieres borrar")
+            let del = "gyro"
+            let deleted = contactos.findIndex(contacto => contacto.name === del)
+            if (deleted === -1){
+                console.log("no existe el contacto")
+            }else{
+                contactos.splice(deleted, 1)
+                console.log(contactos)
+            }
+        break
+        case 5:
+            console.log("hasta luego")
+            return
+        default:
+            return
+    }
+}
+
+agenda()
