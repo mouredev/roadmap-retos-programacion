@@ -126,6 +126,71 @@ let resultadoTernario = condicionTernaria ? "Es verdadero" : "Es falso"; // Oper
 console.log(resultadoTernario); // "Es verdadero"
 
 
+//Operadores de control
+if (true) {
+    console.log("Es verdadero");
+} else {
+    console.log("Es falso");
+}
+// Operadores de control de flujo
+let numero = 5;
+if (numero > 0) {
+    console.log("El número es positivo");
+}
+// Operadores de control de flujo con switch
+let dia = 3;
+switch (dia) {
+    case 1:
+        console.log("Lunes");
+        break;
+    case 2:
+        console.log("Martes");
+        break;
+    case 3:
+        console.log("Miércoles");
+        break;
+    default:
+        console.log("Otro día");
+}
+//bucle for
+for (let i = 0; i < 5; i++) {
+    console.log("Iteración: " + i);
+}
+// Bucle while
+let contador = 0;
+while (contador < 5) {
+    console.log("Contador: " + contador);
+    contador++;
+}
+// Bucle for...of
+let arreglo = [1, 2, 3, 4, 5];
+for (let numero of arreglo) {
+    console.log("Número: " + numero);
+}
+// Bucle for...in
+let objeto = { a: 1, b: 2, c: 3 };
+for (let clave in objeto) {
+    console.log("Clave: " + clave + ", Valor: " + objeto[clave]);
+}
+
+// Bucle do-while
+let contadorDoWhile = 0;
+do {
+    console.log("Contador do-while: " + contadorDoWhile);
+    contadorDoWhile++;
+} while (contadorDoWhile < 5);
+
+//excepciones
+try {
+    // Código que puede generar una excepción
+    let resultado = 10 / 0; // División por cero
+}
+catch (error) {
+    // Manejo de la excepción
+    console.error("Se ha producido un error: " + error.message);
+}
+
+
 // Reto extra Numeros compredidos desde 10 hasta 55 pares, ni que son el 16 ni multiplos de 3
 let numeros = [];
 for (let i = 10; i<=55; i++){
