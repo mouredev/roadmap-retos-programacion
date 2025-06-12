@@ -2,7 +2,7 @@
 
 // Operadores de asignacion
 
-//asignacion
+//asignacion 
 let uno = 1; // uno = 1;
 // Asignacion de adiccion
 uno += 2; // uno = uno + 2;
