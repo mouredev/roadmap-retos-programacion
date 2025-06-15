@@ -7,19 +7,28 @@
 function sinParametrosNiRetorno() {
     console.log("Esta función no tiene parámetros ni retorno.");
 }
+// Llamada a la función sin parámetros ni retorno
+sinParametrosNiRetorno();
 
 function conUnParametro(parametro: string) {
     console.log("Este es un parámetro: " + parametro);
 }
+// Llamada a la función con un parámetro
+conUnParametro("Hola, soy un parámetro");
 
 function conVariosParametros(param1: string, param2: number) {
     console.log("Primer parámetro: " + param1);
     console.log("Segundo parámetro: " + param2);
 }
+// Llamada a la función con varios parámetros
+conVariosParametros("Hola", 42);
 
 function conRetorno(): string {
     return "Este es el valor de retorno.";
 }
+// Llamada a la función con retorno
+const retorno = conRetorno();
+console.log("Valor de retorno: " + retorno);
 
 // - Comprueba si puedes crear funciones dentro de funciones.
 function funcionConFuncion() {
@@ -28,6 +37,8 @@ function funcionConFuncion() {
     }
     funcionInterna();
 }
+// Llamada a la función que contiene una función interna
+funcionConFuncion();
 
 // - Utiliza algún ejemplo de funciones ya creadas en el lenguaje.
 function ejemploFuncionesYaCreadas() {
@@ -39,6 +50,8 @@ function ejemploFuncionesYaCreadas() {
     const minimo = Math.min(...array);
     console.log("Mínimo del array: " + minimo);
 }
+// Llamada a la función que utiliza funciones ya creadas
+ejemploFuncionesYaCreadas();
 
 // - Pon a prueba el concepto de variable LOCAL y GLOBAL.
 let variableGlobal = "Soy una variable global";
@@ -48,6 +61,8 @@ function pruebaVariables() {
     console.log(variableLocal);
     console.log(variableGlobal);
 }
+// Llamada a la función que prueba variables locales y globales
+pruebaVariables();
 
 // Dificultad extra
 /*
@@ -84,5 +99,5 @@ function ejercicioReto(texto1: string, texto2: string): number {
     return contadorNumerosImpresos;
 }
 // Llamada a la función de dificultad extra
-const resultado = ejercicioReto("Fizz", "Buzz");
+const resultado = ejercicioReto("Oro", "Plata");
 console.log("Número de veces que se imprimió un número:", resultado);
