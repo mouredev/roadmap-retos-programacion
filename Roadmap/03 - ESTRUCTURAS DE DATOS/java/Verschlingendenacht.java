@@ -1,6 +1,5 @@
 package source;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Verschlingendenacht {
@@ -14,6 +13,7 @@ public class Verschlingendenacht {
         //linkedLists();
         //sets();
         //maps();
+        extra();
     }
 
     public static void arreglos(){
@@ -46,8 +46,12 @@ public class Verschlingendenacht {
 
         //La clase arrays contiene muchos metodos para lidiar con arreglos
         //Pero debemos recordar que los arreglos en Java no pueden cambiar su tamaño, por tanto no podemos realizar operaciones como eliminar realmente
-        //Si queremos actualizar algun elemento de nuestro arreglo basta con usar el operador de asignacion a modo de actualizacion
+        //Si queremos actualizar algun elemento de nuestro arreglo basta con usar el operador de asignacion a modo de actualizacion:
+        colors[0] = "Pink";
+        System.out.println(colors[0]);
+
         //Mientras que, si queremos eliminar un elemento, lo mejor sera asignarle un valor null
+
     }
 
     public static void arreglosBidimensionales(){
@@ -94,7 +98,7 @@ public class Verschlingendenacht {
         names.add("Oscar");
 
         //Debemos tomar preferencia por determinar el tipo a almacenar usando <> (formalizacion) y usar el contrato en la declaracion de la lista
-        //NOTA: El poderador <> no admite tipos primitivos
+        //NOTA: El operador <> no admite tipos primitivos
         List<String> colors2 = new ArrayList<>();
         colors2.add("Red");
         colors2.add("Yellow");
@@ -344,6 +348,212 @@ public class Verschlingendenacht {
         map2.put(new Persona("Isabela", 29), new Auto("Mercedes"));
 
         System.out.println(map2.get(new Persona("Isabela", 29))); //si no hemos sobreescrito la clase de la llave, esto retornara null, la busqueda se hace comparando los hashcodes de ambas partes, nunca entre los objetos por si mismos
+    }
+
+    public static void extra(){
+
+        int opcion;
+        Scanner scanner = new Scanner(System.in);
+        boolean ejecutar = true;
+        String menu = "-AGENDA DE CONTACTOS- \n\n"+"1-Buscar Contactos\n"+"2-Insertar Contactos\n"+"3-Actualizar Contactos\n"+"4-Eliminar Contactos\n"+"5-Finalizar Programa\n";
+
+        String restriccionNumero = "^\\d{10}$";
+
+        List<List<Object>> contactos = new ArrayList<>();
+
+        while(ejecutar){
+            System.out.println();
+            System.out.println(menu);
+            System.out.println();
+            System.out.print("Ingresa una opcion: ");
+            try{
+                opcion = Integer.parseInt(scanner.nextLine());
+                if(opcion < 1 || opcion > 5){
+                    throw new Exception();
+                }
+            }catch(Exception e){
+                System.out.println("ERROR: Ingresa un numero u opcion valida");
+                continue;
+            }
+
+            switch(opcion){
+                case 5:
+                    System.out.println("Fin del Programa");
+                    ejecutar = false;
+                    break;
+                case 1:
+
+                    int opcionMenuBuscar;
+
+                    while(true){
+                        try{
+                            System.out.println("1- Mostrar todos los contactos");
+                            System.out.println("2- Buscar contacto en especifico");
+                            opcionMenuBuscar = Integer.parseInt(scanner.nextLine());
+                            if(opcionMenuBuscar < 1 || opcionMenuBuscar > 2){
+                                throw new Exception();
+                            }
+                            break;
+                        }catch (Exception e){
+                            System.out.println("Ingresa una opcion valida");
+                        }
+                    }
+
+                    if(opcionMenuBuscar == 1){
+                        for(List<Object> c : contactos){
+                            System.out.println(c);
+                        }
+                    }else{
+                        System.out.println("Ingresa el Nombre o Numero del contacto a buscar");
+                        String busqueda = scanner.nextLine();
+                        String resultado = "";
+                        for(List<Object> contacto : contactos){
+                            if(contacto.get(0).toString().equalsIgnoreCase(busqueda) || contacto.get(1).toString().equals(busqueda)){
+                                resultado = contacto.toString();
+                            }
+                        }
+
+                        if(resultado.isEmpty()){
+                            System.out.println("No se encontro algun contacto relacionado");
+                        }else{
+                            System.out.println(resultado);
+                        }
+                    }
+
+                    break;
+                case 2:
+
+                    String nombreIngresar;
+                    String numeroIngresar;
+
+                    while(true){
+                        try{
+                            System.out.print("Nombre: ");
+                            nombreIngresar = scanner.nextLine();
+                            if(nombreIngresar.isBlank() || nombreIngresar.length() > 25){
+                                throw new Exception();
+                            }
+                            break;
+                        }catch(Exception e){
+                            System.out.println("ERROR: Ingresa un nombre valido");
+                        }
+                    }
+
+                    while(true){
+                        try{
+                            System.out.print("Numero: ");
+                            numeroIngresar = scanner.nextLine();
+                            if(numeroIngresar.isBlank() || !numeroIngresar.matches(restriccionNumero)){
+                                throw new Exception();
+                            }
+                            break;
+                        }catch(Exception e){
+                            System.out.println("ERROR: Ingresa un numero valido");
+                        }
+                    }
+
+                    contactos.add(Arrays.asList(nombreIngresar, numeroIngresar));
+                    break;
+
+                case 3:
+                    int opcionContacto = -1;
+                    int opcionMenuActualizar;
+                    for(int i = 0; i < contactos.size(); i++){
+                        System.out.println((i+1)+"-"+contactos.get(i));
+                    }
+                    while(true){
+                        if(contactos.isEmpty()){
+                            break;
+                        }
+                        try{
+                            System.out.print("Escribe el identificador del contacto a actualizar: ");
+                            opcionContacto = Integer.parseInt(scanner.nextLine());
+                            if(opcionContacto < 1 || opcionContacto > contactos.size()){
+                                throw new Exception();
+                            }
+                            break;
+                        }catch (Exception e){
+                            System.out.println("Ingresa un identificador valido");
+                        }
+                    }
+
+                    while(true){
+                        try{
+                            System.out.println("¿Que deseas actualizar?");
+                            System.out.println("1- Nombre");
+                            System.out.println("2- Numero");
+                            opcionMenuActualizar = Integer.parseInt(scanner.nextLine());
+                            if(opcionMenuActualizar < 1 || opcionMenuActualizar > 2){
+                                throw new Exception();
+                            }
+                            break;
+                        }catch (Exception e){
+                            System.out.println("Ingresa una opcion valida");
+                        }
+                    }
+
+                    if(opcionMenuActualizar == 1){
+                        String nombreNuevo;
+                        while(true){
+                            try{
+                                System.out.print("Nombre: ");
+                                nombreNuevo = scanner.nextLine();
+                                if(nombreNuevo.isBlank() || nombreNuevo.length() > 25){
+                                    throw new Exception();
+                                }
+                                break;
+                            }catch(Exception e){
+                                System.out.println("ERROR: Ingresa un nombre valido");
+                            }
+                        }
+                        contactos.get(opcionContacto-1).set(0, nombreNuevo);
+
+                    }else{
+                        String numeroNuevo;
+                        while(true){
+                            try{
+                                System.out.print("Numero: ");
+                                numeroNuevo = scanner.nextLine();
+                                if(numeroNuevo.isBlank() || !numeroNuevo.matches(restriccionNumero)){
+                                    throw new Exception();
+                                }
+                                break;
+                            }catch(Exception e){
+                                System.out.println("ERROR: Ingresa un numero valido");
+                            }
+                        }
+                        contactos.get(opcionContacto-1).set(1, numeroNuevo);
+                    }
+
+                    break;
+
+                case 4:
+                    int opcionEliminar = -1;
+                    for(int i = 0; i < contactos.size(); i++){
+                        System.out.println((i+1)+"-"+contactos.get(i));
+                    }
+
+                    while(true){
+                        if(contactos.isEmpty()){
+                            break;
+                        }
+                        try{
+                            System.out.print("Escribe el identificador del contacto a eliminar: ");
+                            opcionEliminar = Integer.parseInt(scanner.nextLine());
+                            if(opcionEliminar < 1 || opcionEliminar > contactos.size()){
+                                throw new Exception();
+                            }
+                            break;
+                        }catch (Exception e){
+                            System.out.println("Ingresa un identificador valido");
+                        }
+                    }
+
+                    contactos.remove(contactos.get(opcionEliminar-1));
+                    break;
+
+            }
+        }
     }
 
     //DTOS para ejemplos [queues, sets]
