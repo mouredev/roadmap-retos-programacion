@@ -102,8 +102,8 @@ def multiples(message1,message2):
         else:
             print(num)
             count += 1
-    print ("The amount of times that the fuction print a num was: "+str(count))
-
-message1 = "Multiples of 3"
-message2 = "Multiples of 5"
+    print ("The amount of times that the fuction print a num was: ")
+    return print(count)
+message1 = "This number is multiples of 3"
+message2 = "This number is multiples of 5"
 multiples(message1,message2)
