@@ -453,7 +453,7 @@ public static class ContactBook
 
     #endregion
 
-    #region Private Declarations
+    #region Private Procedures
 
     private static string FormatNumber(string? number, string? countryCode = null)
     {
