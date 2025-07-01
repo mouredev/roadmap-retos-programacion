@@ -19,8 +19,9 @@ int main() {
     
     // **************** Tipos de datos nativos de c++ **************** //
 
-    char caracter = 'a';
-    int entero = 71;
+    bool booleano = true; 
+    char caracter = 'a'; 
+    int entero = 71; 
 
     float decimal_pi_f = 3.1;
     double decimal_pi_d = 3.142;
