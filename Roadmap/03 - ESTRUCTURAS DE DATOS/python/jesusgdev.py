@@ -158,23 +158,35 @@ print("Split:", text.split())    # Devuelve una lista con cada palabra de la cad
 
 contactbook = {}
 
+# ---------------------------------------------------------
+# Esta función valida si un nombre ingresado es válido.
+# Elimina los espacios y verifica que todos los caracteres
+# restantes sean alfabéticos (letras). Retorna True o False.
+# ---------------------------------------------------------
+
 def valid_name(name):
     without_spaces = name.replace(" ", "")
     return without_spaces.isalpha() and len(without_spaces) > 0
 
-'''
-La funcion valid_name() me ayuda a validar el nombre
-'''
+# ---------------------------------------------------------
+# Esta función permite agregar un nuevo contacto al diccionario.
+# Verifica que el nombre no contenga caracteres inválidos y
+# que no exista ya en la agenda, ignorando diferencias entre
+# mayúsculas y minúsculas. También valida el número de teléfono.
+# ---------------------------------------------------------
 
 def add_contacts():
     name = input("Agrega el nombre del contacto: ")
 
+    # Validación del nombre: debe contener solo letras y espacios.
     if not valid_name(name):
         print("\n❌ Error: El nombre del contacto solo debe contener letras y espacios")
         return
-    
+
+    # La funcion .strip() permite borrar los espacios ubicados antes y despues del nombre
     name_lower = name.strip().lower()
 
+    # Verificación de existencia previa del contacto (sin importar mayúsculas)
     for name_saved in contactbook:
         if name_saved.lower() == name_lower:
             print("\n⚠️ El contacto ya existe! El guardado del nombre es sensible a mayusculas y minusculas.")
@@ -182,6 +194,7 @@ def add_contacts():
 
     phone_number = input("Agrege el numero de telefono (Debe tener un maximo de 11 digitos): ")
 
+    # Validación del número: debe contener solo dígitos y tener máximo 11 caracteres
     if not phone_number.isdigit() or len(phone_number) > 11:
         print("\n❌ Error: el numero de telefono solo debe contener numneros y un maximo de 11 digitos")
         return
@@ -190,27 +203,41 @@ def add_contacts():
         contactbook[name] = phone_number
         print(f"\n✅ El contacto {name} fue agregado!")
 
+# ---------------------------------------------------------
+# Esta función permite buscar un contacto por nombre.
+# Si el nombre es válido y existe en la agenda, se muestra
+# su número asociado.
+# ---------------------------------------------------------
 
 def search_contact():
     name = input("Agrega el contacto que deseas buscar: ")
 
+    # Validación del nombre ingresado
     if not valid_name(name):
         print("\n❌ Error: El nombre del contacto solo debe contener letras y espacios")
         return
-    
+
+    # Búsqueda directa en el diccionario
     if name in contactbook:
         print(f"{name} : {contactbook[name]}")
     else:
         print("\n😅 El contacto no existe!")
         return
     
+# ---------------------------------------------------------
+# Esta función permite actualizar el número telefónico
+# de un contacto existente.
+# ---------------------------------------------------------  
+    
 def update_contact():
     name = input("Agrega el contacto que deseas actualizar: ")
 
+    # Validación del nombre
     if not valid_name(name):
         print("\n❌ Error: El nombre del contacto solo debe contener letras y espacios")
         return
     
+    # Verificación de existencia del contacto
     if name in contactbook:
         phone_number = input("Agrega el nuevo numero del contacto")
         contactbook[name] = phone_number
@@ -220,18 +247,33 @@ def update_contact():
         print("\n😅 El contacto no existe!")
         return
     
+# ---------------------------------------------------------
+# Esta función permite eliminar un contacto existente
+# de la agenda, si este se encuentra registrado.
+# ---------------------------------------------------------
+    
 def remove_contact():
     name = input("\nAgrega el contacto que deseas eliminar: ")
 
+    # Validación del nombre
     if not valid_name(name):
         print("\n❌ Error: El nombre del contacto solo debe contener letras y espacios")
         return
-    
+
+    # Verificación de existencia y eliminación
     if name in contactbook:
         del contactbook[name]
         print(f"\n🔥 El contacto {name} ha sido eliminado!")
         return
-    
+    else:
+        print("\n😅 El contacto no existe!")
+        return
+
+# ---------------------------------------------------------
+# Esta función imprime todos los contactos registrados
+# en la agenda. Si la agenda está vacía, informa al usuario.
+# ---------------------------------------------------------
+
 def show_contacts():
 
     if len(contactbook) == 0:
@@ -243,6 +285,10 @@ def show_contacts():
     for name in contactbook:
         print(f"🔹{name} : {contactbook[name]}")
 
+# ---------------------------------------------------------
+# Menú principal del programa. Permite al usuario seleccionar
+# una opción y repite el proceso hasta que elija salir.
+# ---------------------------------------------------------
 
 while True:
     print("\n📱 AGENDA DE CONTACTOS 📱\n"+
@@ -254,7 +300,8 @@ while True:
           "6. Salir")
     
     option = input("\n📌 Selecciona una opcion ( 1 - 6): ")
-    
+
+    # Validación de entrada: debe ser un número entre 1 y 6
     if not option.isdigit():
         print("⚠️ El menu solo acepta valores entre el 1 y el 6")
         continue
