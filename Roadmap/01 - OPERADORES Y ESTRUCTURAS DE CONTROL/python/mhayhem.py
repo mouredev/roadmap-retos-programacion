@@ -48,6 +48,7 @@ print("\nOperadores Bit a Bit:")
 print(f"AND bit a bit: 5 & 3 = {5 & 3}")
 print(f"OR bit a bit: 5 | 3 = {5 | 3}")
 print(f"XOR bit a bit: 5 ^ 3 = {5 ^ 3}")
+print(f"NOT bit a bit: ~5 = {~5}") # NOT invierte todos los bits y no lo puse en ele pull request
 print(f"Desplazamiento a la izquierda: 5 << 1 = {5 << 1}")
 print(f"Desplazamiento a la derecha: 5 >> 1 = {5 >> 1}")
 
