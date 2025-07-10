@@ -87,7 +87,6 @@ def fizzbuzz(text_1, text_2):
             print(text_1)            
         elif n % 5 == 0:
             print(text_2)
-            count +=1
         else:
             print(n)
     return count
