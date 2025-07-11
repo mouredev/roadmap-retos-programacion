@@ -196,20 +196,21 @@ def contact_phone():
         create_contact(book_contact)
     while True:
         option = input("Que operación quiere realizar: [C]rear, [A]ctualizar, [B]uscar, [E]liminar, [S]alir\n").lower()
-        if option == "s":
-            print("Cerrando prógrama")
-            break
-        elif option == "c":
-            create_contact(book_contact)
-        elif option == "a":
-            update_contact(book_contact)
-        elif option == "b":
-            serching_contact(book_contact)
-        elif option == "e":
-            delete_contact(book_contact)
-        else:
-            print("Opción no válida")
-            continue
+        match option : # es el switch de JS
+            case "s":
+                print("Cerrando prógrama")
+                break
+            case "c":
+                create_contact(book_contact)
+            case "a":
+                update_contact(book_contact)
+            case "b":
+                serching_contact(book_contact)
+            case "e":
+                delete_contact(book_contact)
+            case _: # seria como un else
+                print("Opción no válida")
+            
     
     print(book_contact)
 
