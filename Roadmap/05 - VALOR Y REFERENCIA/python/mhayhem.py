@@ -76,3 +76,15 @@ mod_value3, mod_valu4 = per_reference(array, collection)
 
 print(f"valor collection: {collection}, valor de modificado 3: {mod_value3}.")
 print(f"Valor array: {array}, modificado 4: {mod_valu4}")
+
+
+
+
+
+my_dict = {"name": "Dany", "age": 41}
+my_dict_2 = my_dict
+
+print(my_dict_2)
+my_dict_2["age"] = 42
+print(my_dict_2)
+print(my_dict)
