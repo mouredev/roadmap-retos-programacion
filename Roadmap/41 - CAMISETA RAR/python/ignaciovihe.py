@@ -71,9 +71,9 @@ def extraxt_all(zip_file: str, output_path: str = ''):
     with zipfile.ZipFile(zip_file, 'r') as zipf:
         zipf.extractall(output_path)
 
-def extract_file(zip_file, file_to_extarct, output_path):
+def extract_file(zip_file, file_to_extract, output_path):
     with zipfile.ZipFile(zip_file, 'r') as zipf:
-        zipf.extract(file_to_extarct, path=output_path)
+        zipf.extract(file_to_extract, path=output_path)
 
 def read_file_zip(zip_file: str, file_to_read):
     with zipfile.ZipFile(zip_file, 'r') as zipf:
