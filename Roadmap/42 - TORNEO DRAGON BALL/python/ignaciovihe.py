@@ -94,9 +94,10 @@ class BattleManager:
     def __init__(self, warriors: dict) -> None:
         self.warriors = warriors
 
-    def run_fight(self, battle):
+    def run_fight(self, battle, round):
         warrior_1 = self.warriors[battle[0]]
         warrior_2 = self.warriors[battle[1]]
+        print(f"RONDA - {round}")
         print(f"Batalla: {warrior_1.get_name()} vs {warrior_2.get_name()}")
         print(f"{json.dumps(warrior_1.to_dict(),indent=2)} Vs {json.dumps(warrior_2.to_dict(),indent=2)}")
         if warrior_1.get_speed() >= warrior_2.get_speed():
@@ -115,7 +116,7 @@ class BattleManager:
             print(f"\t{pasive_warrior_name} intenta evadir el ataque.")
             if not pasive_warrior.evade_attack():
                 print(f"\t{pasive_warrior_name} no consigue evadir el ataque.")
-                if pasive_warrior.get_defense() > active_warrior.get_attack():
+                if pasive_warrior.get_defense() >= active_warrior.get_attack():
                     attack = active_warrior.get_minimun_attack()
                     pasive_warrior.reduce_health(attack)
                     print(f"\tLa defensa de {pasive_warrior_name} es muy fuerte, sólo recibe {attack} puntos de daño.")
@@ -149,9 +150,11 @@ class Tournament:
         self.warriors = {name : Warrior(name) for name in self.participants_names}
         self.battles = []
         self.battle_manager = BattleManager(self.warriors)
+        self.round = 0
 
     def set_new_round(self):
         self.battles.clear()
+        self.round += 1 
         while self.participants_names:
             p1 = self.participants_names.pop(random.randint(0, len(self.participants_names) - 1))
             p2 = self.participants_names.pop(random.randint(0, len(self.participants_names) - 1))
@@ -159,7 +162,7 @@ class Tournament:
 
     def fight_round(self):
         for battle in self.battles:
-            winner , looser = self.battle_manager.run_fight(battle)
+            winner , looser = self.battle_manager.run_fight(battle, self.round)
             self.participants_names.append(winner)
 
 
@@ -204,5 +207,6 @@ def main():
         my_tournamet.set_new_round()
         my_tournamet.fight_round()
     print(f"El ganador del torneo ha sido {my_tournamet.participants_names[0]}")
+    print(f"Estadisticas del campeon: {my_tournamet.warriors[my_tournamet.participants_names[0]].to_dict()}")
 
 main()
