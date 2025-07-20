@@ -38,6 +38,7 @@ import random
 import json
 import itertools
 
+# La clase Warrior se encarga de gestionar los datos de cada guerrero.
 # He decidido que las estadisticas de cada guerrero se generen aleatoriamente.
 class Warrior:
     def __init__(self, name) -> None:
@@ -80,15 +81,17 @@ class Warrior:
     def is_alive(self) -> bool:
         return self.health > 0
     
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "speed": self.speed,
-            "attack": self. attack,
-            "defense": self.defense,
-            "heath": self.health
-        }
-    
+    def print_statictics(self):
+        print(f"Nombre: {self.name}")
+        print(f"\tSpeed: {self.speed}")
+        print(f"\tAttack: {self.attack}")
+        print(f"\tDefense: {self.defense}")
+
+
+# La clase Combat strategy sirve como clase padre para las diferentes estrategias de combate.
+# en principio utilizo las reglas que se indicaba en el enunciado, pero si quisiera añadir
+# nuevas reglas de lucha (pe. el mas veloz ataca con un ratio) con crear una nueva estrategia seria suficiente.
+# De esta forma cuple el principio Solid Abierto a extensión, cerrado a modificación.    
 class CombatStrategy:
     def decide_turn_order(self, warrior1, warrior2):
         raise NotImplementedError
@@ -120,7 +123,9 @@ class DefaultCombatStrategy(CombatStrategy):
             return f"\t{defender.get_name()} evade el ataque de {attacker.get_name()}."
 
     
-
+# Esta clase se encarga de gestionar y ejecutar la batalla entre dos contrincantes.
+# gestionando los turnos y utilizando la estrategia de combate indicada,
+# devolviendo al final el ganadopr y el perdedor  
 class BattleManager:
     def __init__(self, warriors: dict, strategy: CombatStrategy) -> None:
         self.warriors = warriors
@@ -131,10 +136,10 @@ class BattleManager:
         warrior_2: Warrior = self.warriors[battle[1]]
 
         print(f"{'RONDA':<10} - {round}")
-        print(f"{'Batalla:':<10} {warrior_1.get_name():<10} vs {warrior_2.get_name():<10}")
-        print(f"{'Velocidad':<10} {warrior_1.get_speed():<10} vs {warrior_2.get_speed():<10}")
-        print(f"{'Ataque':<10} {warrior_1.get_attack():<10} vs {warrior_2.get_attack():<10}")
-        print(f"{'Defensa':<10} {warrior_1.get_defense():<10} vs {warrior_2.get_defense():<10}")
+        print(f"{'Batalla:':<10} {warrior_1.get_name():<15} vs {warrior_2.get_name():<15}")
+        print(f"{'Velocidad':<10} {warrior_1.get_speed():<15} vs {warrior_2.get_speed():<15}")
+        print(f"{'Ataque':<10} {warrior_1.get_attack():<15} vs {warrior_2.get_attack():<15}")
+        print(f"{'Defensa':<10} {warrior_1.get_defense():<15} vs {warrior_2.get_defense():<15}")
 
         turn_order = self.strategy.decide_turn_order(warrior_1, warrior_2)
         turn_cycle = itertools.cycle(turn_order)
@@ -161,7 +166,8 @@ class BattleManager:
         return winner, looser
 
     
-
+# La clase Tournamet se encarga de gestionar el torneo, sorteando los emparejamiento de cada ronda 
+# y lanzando los combates.
 class Tournament:
     def __init__(self, participants_names: list, strategy : CombatStrategy):
         self.participants_names = participants_names
@@ -227,6 +233,7 @@ def main():
         my_tournamet.set_new_round()
         my_tournamet.fight_round()
     print(f"El ganador del torneo ha sido {my_tournamet.participants_names[0]}")
-    print(f"Estadisticas del campeon: {my_tournamet.warriors[my_tournamet.participants_names[0]].to_dict()}")
+    print(f"Estadisticas del campeon:")
+    my_tournamet.warriors[my_tournamet.participants_names[0]].print_statictics()
 
 main()
