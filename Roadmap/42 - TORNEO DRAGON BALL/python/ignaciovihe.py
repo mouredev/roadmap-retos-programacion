@@ -45,7 +45,7 @@ class Warrior:
         self.speed = random.randint(0, 100)
         self.attack = random.randint(0, 100)
         self.defense = random.randint(0, 100)
-        self.health = 100
+        self.health = 100.0
 
     def get_name(self):
         return self.name
@@ -68,7 +68,7 @@ class Warrior:
     def set_health(self, new_health):
         self.health = new_health
     
-    def reduce_health(self, hit: int):
+    def reduce_health(self, hit: float):
         self.health = max(0, self.health - hit)
 
     def evade_attack(self) -> bool:
@@ -89,55 +89,73 @@ class Warrior:
             "heath": self.health
         }
     
+class CombatStrategy:
+    def decide_turn_order(self, warrior1, warrior2):
+        raise NotImplementedError
+    
+    def perform_attack(self, attacker, defender):
+        raise NotImplementedError
+    
+class DefaultCombatStrategy(CombatStrategy):
+    def decide_turn_order(self, warrior1, warrior2):
+        if warrior1.get_speed() >= warrior2.get_speed():
+            return [warrior1, warrior2]
+        else:
+            return [warrior2, warrior1]
+        
+    def perform_attack(self, attacker: Warrior, defender: Warrior):
+        print(f"\t{attacker.get_name()} ataca")            
+        print(f"\t{defender.get_name()} intenta evadir el ataque.")
+        if not defender.evade_attack():
+            print(f"\t{defender.get_name()} no consigue evadir el ataque.")
+            if defender.get_defense() >= attacker.get_attack():
+                damage = attacker.get_minimun_attack()
+                print(f"\tLa defensa de {defender.get_name()} es muy fuerte, recibe daño mínimo.")
+            else:
+                damage = attacker.get_attack() - defender.get_defense()
+                print(f"\t{attacker.get_name()} tiene un gran ataque y golpea de lleno.")
+            defender.reduce_health(damage)
+            return f"\t{attacker.get_name()} ataca y causa {damage} puntos de daño a {defender.get_name()}."
+        else:
+            return f"\t{defender.get_name()} evade el ataque de {attacker.get_name()}."
+
+    
 
 class BattleManager:
-    def __init__(self, warriors: dict) -> None:
+    def __init__(self, warriors: dict, strategy: CombatStrategy) -> None:
         self.warriors = warriors
+        self.strategy = strategy
 
     def run_fight(self, battle, round):
-        warrior_1 = self.warriors[battle[0]]
-        warrior_2 = self.warriors[battle[1]]
-        print(f"RONDA - {round}")
-        print(f"Batalla: {warrior_1.get_name()} vs {warrior_2.get_name()}")
-        print(f"{json.dumps(warrior_1.to_dict(),indent=2)} Vs {json.dumps(warrior_2.to_dict(),indent=2)}")
-        if warrior_1.get_speed() >= warrior_2.get_speed():
-            print(f"\t{warrior_1.get_name()} es más rápido y empieza la batalla")
-            turn = [warrior_1, warrior_2]
-        else:
-            print(f"\t{warrior_2.get_name()} es más rápido y empieza la batalla")
-            turn = [warrior_2, warrior_1]
-        turn_cycle = itertools.cycle(turn)
+        warrior_1: Warrior = self.warriors[battle[0]]
+        warrior_2: Warrior = self.warriors[battle[1]]
+
+        print(f"{'RONDA':<10} - {round}")
+        print(f"{'Batalla:':<10} {warrior_1.get_name():<10} vs {warrior_2.get_name():<10}")
+        print(f"{'Velocidad':<10} {warrior_1.get_speed():<10} vs {warrior_2.get_speed():<10}")
+        print(f"{'Ataque':<10} {warrior_1.get_attack():<10} vs {warrior_2.get_attack():<10}")
+        print(f"{'Defensa':<10} {warrior_1.get_defense():<10} vs {warrior_2.get_defense():<10}")
+
+        turn_order = self.strategy.decide_turn_order(warrior_1, warrior_2)
+        turn_cycle = itertools.cycle(turn_order)
+
         while warrior_1.is_alive() and warrior_2.is_alive():
-            active_warrior = next(turn_cycle)
-            active_warrior_name = active_warrior.get_name()
-            print(f"\t{active_warrior_name} ataca")
-            pasive_warrior = next(turn_cycle)
-            pasive_warrior_name = pasive_warrior.get_name()
-            print(f"\t{pasive_warrior_name} intenta evadir el ataque.")
-            if not pasive_warrior.evade_attack():
-                print(f"\t{pasive_warrior_name} no consigue evadir el ataque.")
-                if pasive_warrior.get_defense() >= active_warrior.get_attack():
-                    attack = active_warrior.get_minimun_attack()
-                    pasive_warrior.reduce_health(attack)
-                    print(f"\tLa defensa de {pasive_warrior_name} es muy fuerte, sólo recibe {attack} puntos de daño.")
-                else:
-                    attack = active_warrior.get_attack() - pasive_warrior.get_defense()
-                    pasive_warrior.reduce_health(attack)
-                    print(f"\t{active_warrior_name} realiza un buen ataque y le golpea con {attack} puntos de ataque")
-            else:
-                print(f"\t{pasive_warrior_name} consigue evadir el ataque. No recibe daño")
-            next(turn_cycle)# paso de turno para que en la siguiente ronda se cambien los turnos.
+            attacker = next(turn_cycle)
+            defender = next(turn_cycle)
+            result = self.strategy.perform_attack(attacker, defender)
+            print(result)
             print(f"\t-{warrior_1.get_name()} - {warrior_1.get_health()} PV")
             print(f"\t-{warrior_2.get_name()} - {warrior_2.get_health()} PV")
+            next(turn_cycle)# paso de turno para que en la siguiente ronda se cambien los turnos.
             print("")
+
         if warrior_1.get_health() > 0:
-            winner = warrior_1.get_name()
+            winner , looser = warrior_1.get_name(), warrior_2.get_name()
             warrior_1.set_health(100)
-            looser = warrior_2.get_name()
         else:
-            winner = warrior_2.get_name()
+            winner, looser = warrior_2.get_name(), warrior_1.get_name()
             warrior_2.set_health(100)
-            looser = warrior_1.get_name()
+
         print(f"{winner} gana la batalla y sigue adelante")
         print(f"{looser} queda eliminado")
         return winner, looser
@@ -145,11 +163,12 @@ class BattleManager:
     
 
 class Tournament:
-    def __init__(self, participants_names: list):
+    def __init__(self, participants_names: list, strategy : CombatStrategy):
         self.participants_names = participants_names
         self.warriors = {name : Warrior(name) for name in self.participants_names}
+        strategy = DefaultCombatStrategy()
+        self.battle_manager = BattleManager(self.warriors, strategy)
         self.battles = []
-        self.battle_manager = BattleManager(self.warriors)
         self.round = 0
 
     def set_new_round(self):
@@ -202,7 +221,8 @@ def main():
     number_of_participants = int(input(" Introduce la opción: "))
     participants = participants[0 : 2 ** number_of_participants]
 
-    my_tournamet = Tournament(participants)
+    strategy = DefaultCombatStrategy()
+    my_tournamet = Tournament(participants, strategy)
     while len(my_tournamet.participants_names) > 1:
         my_tournamet.set_new_round()
         my_tournamet.fight_round()
