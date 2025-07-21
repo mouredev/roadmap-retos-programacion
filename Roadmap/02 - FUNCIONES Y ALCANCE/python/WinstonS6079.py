@@ -108,7 +108,22 @@ def hola_var():
 
 hola_var()
 
-print(global_var)  
+print(global_var) # Esto funciona porque global_var es accesible fuera de la función
 #print(local_var) # Esto generaría un error porque local_var no está definida fuera de la función
 
+def text_function(text1, text2)->int:
+    count = 0
+    for i in range(1, 101):
+        if i % 3 == 0 and i % 5 == 0:
+            print(text1 + text2)
+        elif i % 3 == 0:
+            print(text1)
+        elif i % 5 == 0:
+            print(text2)
+        else:
+            print(i)
+        count += 1
+    return count
+print(text_function("Fizz", "Buzz"))
 
+ 
