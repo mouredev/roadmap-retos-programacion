@@ -1,0 +1,32 @@
+name: Stats
+
+on:
+  push:
+    branches: [ github-actions ]
+
+
+jobs: 
+  build:
+    runs-on: Ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name:  Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python3@v5
+        with:
+          python-version: '3.11'
+      - name: Run script 
+        run: python ./Roadmap/stats.py
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v6
+          with:
+            commit_message: Update stats
+            commit_user: Benjamin Flores [Github Actions]
+            commit_user_email: benjamin.floresjv@gmail.com
+            commit_author: bflores
