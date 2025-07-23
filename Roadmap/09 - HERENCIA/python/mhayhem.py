@@ -8,6 +8,8 @@ import random
 class Animal:
     def __init__(self, name):
         self.name = name.capitalize()
+        def sound():
+            pass
 
 class Dog(Animal):
     def sound(self):
