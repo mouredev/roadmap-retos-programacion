@@ -8,8 +8,8 @@
 def sum(n1: int, n2: int):
     try:
         return n1 + n2
-    except TypeError:
-        return "TypeError: no se puede operar con strings"
+    except Exception as e:
+        return f"Ha habido un error {e}: ({type(e).__name__})"
 
 
 # DIFICULTAD EXTRA (opcional):
@@ -25,18 +25,29 @@ def sum(n1: int, n2: int):
 class HigherDividendError(Exception):
     pass
 
-def cath_errors(num1: int, num2: int):
-    try:
-        
-        if num2 > num1:
-            raise HigherDividendError("El Dividendo no puede ser mayor que el divisor")
-        
-        print(f"{num1 / num2}, No se ha producido ningún error")
-    except TypeError:
-        print("TypeError: Elemento ínválido, solo números")
-    except ZeroDivisionError:
-        print("ZeroDivisionError: No se puede dividir por cero")
-    except  HigherDividendError as e:
-        print(f"HigherDividendError: {e}")
-    finally:
-         print("Ejecución finalizada")
+def catch_errors(array: list):
+    if len(array) < 2:
+        raise IndexError()
+    elif array[1] == 0:
+        raise ZeroDivisionError()
+    elif array[1] > array[0]:
+        raise HigherDividendError("EL segundo elemento no puede ser mayor que el primer elemento")
+    
+    print(array[5])
+    
+    print(array[0] / array[1])
+    
+try:
+    catch_errors([1])
+except IndexError as e:
+    print(f"El array debe de contener mínimo 2 elementos: {e}.")
+except ZeroDivisionError as e:
+    print(f"El segundo elemento del array no puede ser cero: {e}.")
+except HigherDividendError as e:
+    print(f"{e}")
+except Exception as e:
+    print(f"Se produjo un error inexperado: {e}")
+else:
+    print("Se ejecuto sin errores")
+finally:
+    print("Ejecución finalizada")
