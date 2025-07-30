@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 // Error personalizado
 class MiError : public exception {
 public:
