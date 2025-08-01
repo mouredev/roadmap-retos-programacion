@@ -13,9 +13,11 @@ struct Producto {
     string price;
 };
 
-class Productos {
+// Solo guarda informacion, al finalizar el programa se borra el archivo..
+class Productos { 
 private:
     vector<Producto> productos; 
+    fstream archivo;
     
     bool indice_valido(unsigned int i) {
         if (!(i < productos.size())) {
@@ -25,15 +27,38 @@ private:
         return true;
     }
 
+    void leer_archivo(string name, string amount, string price, string msg="") {
+        ofstream archivo("fravelz_products.txt", ios::app);
+
+        if (archivo.is_open()) {
+            archivo << "\n > " << msg << " ({" << name << ", " << amount << ", " << price << "})";
+
+        } else {
+            cout << "\n [!] Error al escribir en el archivo.";
+        }
+    }
+
 public:
     Productos(string name = "", string amount = "", string price = "") {
+          archivo.open("fravelz_products.txt", ios::out | ios::app); 
+
+        if (!archivo.is_open()) {
+        cout << "\nError: no se pudo abrir el archivo fravelz_products.txt\n";
+    }
         if (name != "" && amount != "" && price != "") {
             agregar(name, amount, price);
         }
     }
 
+    ~Productos() {
+        archivo.close();
+        remove("fravelz_products.txt");
+    }
+
+
     void agregar(string name, string amount, string price) {
         productos.push_back({name, amount, price});
+        leer_archivo(name, amount, price, ("Producto Nuevo: "));
     };
 
     void consultar(unsigned int numero_producto = 0) {
@@ -54,10 +79,24 @@ public:
         if (!name.empty())   productos[numero_producto].name = name;
         if (!amount.empty()) productos[numero_producto].amount = amount;
         if (!price.empty())   productos[numero_producto].price = price;
+
+        leer_archivo(
+            productos[numero_producto].name,
+            productos[numero_producto].amount,
+            productos[numero_producto].price,
+            "Producto Actualizado: "
+        );
     };
 
     void eliminar(unsigned int numero_producto) {
         if (!indice_valido(numero_producto)) return;
+
+        leer_archivo(
+            productos[numero_producto].name, 
+            productos[numero_producto].amount,
+            productos[numero_producto].price,
+            "[!] Producto Eliminado: "
+        );
 
         productos.erase(productos.begin() + numero_producto);
     };
@@ -80,7 +119,7 @@ int main() {
 
     // *************** Ejercicio DIFICULTAD EXTRA *************** //
 
-    string data; Productos productos;
+    string data; Productos productos("", "");
     
     while (data != "5") {
         cout << "\n===============================================";
@@ -135,6 +174,9 @@ int main() {
             productos.eliminar(number);
         }
     }
+
+    cout << "\n\n [+] Al dar enter el archivo sera borrado: "; 
+    cin.ignore();
 
     return 0;
 }
