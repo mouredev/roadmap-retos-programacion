@@ -1,4 +1,4 @@
-public class Gian247 {
+public class gian247 {
 
 
     public static void main(String[] args) {
