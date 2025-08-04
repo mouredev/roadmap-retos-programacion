@@ -26,8 +26,8 @@ def create_info() -> dict:
     return personal_info
 
 def create_json_file_and_remove(data: dict):
-    with open("mhayhem.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    with open("mhayhem.json", "w") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
     with open("mhayhem.json", "r", encoding="utf-8") as f:
         print(f.read())
         print()
