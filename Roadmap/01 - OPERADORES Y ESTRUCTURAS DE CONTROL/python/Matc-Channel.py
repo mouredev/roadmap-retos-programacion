@@ -143,3 +143,5 @@ nuevo.
 for number in range(10, 56):    # => BUCLE de 10-55, excluye 56.
     if number % 2 == 0 and number != 16 and number % 3 != 0:
         print(number)
+
+# terminado
