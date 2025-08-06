@@ -128,25 +128,6 @@ my_dict: dict = {
     "alias": "@mouredev",
     "age": "36"
 }
-<<<<<<< HEAD
-print(my_dict)
-# INSERCIÓN
-# Se debe ingresar por una CLAVE
-my_dict["e-mail"] = "mouredev@gmail.com"
-print(my_dict)  # => INSERTA CLAVE e-mail y DATO "moredev@gmail.com"
-# ACCESO
-print(my_dict["name"])  # => Devuelve "Brais"
-# ACTUALIZACIÓN
-my_dict["age"] = "37"   # => Se ACTUALIZA age a "37"
-print(my_dict)
-# ELIMINACIÓN
-del my_dict["surname"]  # => CLAVE "surname" y DATO "Moure" se ELIMINAN
-print(my_dict)
-# ORNDENACIÓN
-my_dict = dict(sorted(my_dict.items()))     # => ORDENA las CLAVES
-print(my_dict)
-print(type(my_dict))
-=======
 
 # PRUEBAS
 # INSERCIÓN
@@ -253,4 +234,3 @@ def my_agenda():
 
 
 my_agenda()
->>>>>>> f06788634 (Reto #3 - Solución en Python por MatcChannel)
