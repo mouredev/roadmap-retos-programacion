@@ -64,8 +64,13 @@ class OneSinglePostStrategy(PostSearchStrategy):
             else:
                 print("No hay ningun post que coincida con el id pasado.")
         return []
-
-
+    
+class LikedePostStrategy(PostSearchStrategy):
+    def get_posts(self, users: list[User]) -> list[Post]:
+        result = []
+        for user in users:
+            result.extend(list(user.likes.values()))
+        return result
 
 
 def clear_console():
@@ -197,13 +202,14 @@ class ActiveSession:
         print("\t2. Borrar post.")
         print("\t3. Ver post propios.")
         print("\t4. Ver post de usuarios seguidos.")
-        print("\t5. Seguir usuario.")
-        print("\t6. Dejar de seguir usuario")
-        print("\t7. Cerrar sesión.")
-        print("\t8. Salir")
+        print("\t5. Eliminar like.")
+        print("\t6. Seguir usuario.")
+        print("\t7. Dejar de seguir usuario")
+        print("\t8. Cerrar sesión.")
+        print("\t9. Salir")
 
         option = "0"
-        while option not in map(str, range(1,9)):
+        while option not in map(str, range(1,10)):
             option = input("Introduce una opcion correcta: ")
 
         return option
@@ -279,7 +285,7 @@ class PostsManager:
                             post = OneSinglePostStrategy().get_posts(list(user_manager.users.values()), id)
                             if post:
                                 liked_post = post[0]
-                                liked_post.likes.append(self.active_user)
+                                liked_post.likes.append(self.active_user.name)
                                 self.active_user.likes[id] = liked_post
                                 print("'Like' realizado con exito")
                     else:
@@ -288,6 +294,26 @@ class PostsManager:
         else:
             pausar()
                     
+
+    def delete_like(self, user_manager: UserManager):
+        if self.active_user.likes:
+            self.show_posts([self.active_user], LikedePostStrategy())
+            id = " "
+            while id:
+                id = input("Introduce el id del post del que quieres eliminar el like, o pulsa ENTER para volver al menu.")
+                if id:
+                    if id in self.active_user.likes:
+                        del(self.active_user.likes[id])
+                        post = OneSinglePostStrategy().get_posts(list(user_manager.users.values()), id)
+                        if post:
+                            liked_post = post[0]
+                            liked_post.likes.remove(self.active_user.name)
+                            print("'Like' eliminado con exito")
+                            pausar()
+        else:
+            print("Todavía no has hecho like a ningun mensaje.")
+            pausar()
+
 
 
 
@@ -377,15 +403,18 @@ class SocialNetwork:
                     session.posts_manager.like_post(self.user_manager)
 
                 case "5":
-                    session.followers_manager.follow_user()
+                    session.posts_manager.delete_like(self.user_manager)
 
                 case "6":
-                    session.followers_manager.unfollow_user()
+                    session.followers_manager.follow_user()
 
                 case "7":
-                    self.active_user = None
+                    session.followers_manager.unfollow_user()
 
                 case "8":
+                    self.active_user = None
+
+                case "9":
                     return True
 
 
