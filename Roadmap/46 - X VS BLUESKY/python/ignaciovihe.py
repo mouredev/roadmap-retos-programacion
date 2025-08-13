@@ -149,8 +149,6 @@ class PostService:
 # Presentación en consola de posts
 # =========================
 class PostConsoleUI:
-    def __init__(self, post_service: PostService):
-        self.post_service = post_service
 
     def show_posts(self, posts: list[Post]):
         if not posts:
@@ -320,7 +318,7 @@ class ActiveSession:
         self.user = user
         self.user_manager = user_manager
         self.post_service = PostService(self.user)
-        self.post_ui = PostConsoleUI(self.post_service)
+        self.post_ui = PostConsoleUI()
         self.followers_manager = FollowersManager(self.user, self.user_manager)
 
     def show_menu(self):
