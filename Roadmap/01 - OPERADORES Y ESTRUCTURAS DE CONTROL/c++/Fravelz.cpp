@@ -14,11 +14,11 @@ int main() {
     
     cout << '\n';
     
-    cout << " > Suma: "           << 20 + 10 << '\n';
-    cout << " > Resta: "          << 20 - 10 << '\n';
-    cout << " > Multiplicacion: " << 20 * 10 << '\n';
+    cout << " > Suma: "           << 20 + 10  << '\n';
+    cout << " > Resta: "          << 20 - 10  << '\n';
+    cout << " > Multiplicacion: " << 20 * 10  << '\n';
     cout << " > Division: "       << 625 / 25 << '\n';
-    cout << " > Resto: "          << 101 % 2 << '\n';
+    cout << " > Resto: "          << 101 % 2  << '\n';
     cout << endl;
 
     // Operadores de Asignacion
@@ -34,14 +34,22 @@ int main() {
     cout << endl;
     
     // Operadores Logicos de Comparacion 
-    cout << " > Mayor que: "       << (a > b) << '\n';
-    cout << " > Menor que: "       << (a < b) << '\n';
-    cout << " > Igual que: "       << (a == b) << '\n';
-    cout << " > Mayor igual que: " << (a >= b) << '\n';
-    cout << " > Menor igual que: " << (a <= b) << '\n';
+    cout << " > Mayor que: "       << (a > b)   << '\n';
+    cout << " > Menor que: "       << (a < b)   << '\n';
+    cout << " > Igual que: "       << (a == b)  << '\n';
+    cout << " > Mayor igual que: " << (a >= b)  << '\n';
+    cout << " > Menor igual que: " << (a <= b)  << '\n';
     cout << " > Diferente que: "   << !(a == b) << '\n';
     cout << endl;
-    
+
+    // Operadores de Bit a Bit
+    cout << "> OR: "                            << (a | b)  << '\n';
+    cout << "> AND: "                           << (a & b)  << '\n';
+    cout << "> XOR: "                           << (a ^ b)  << '\n';
+    cout << "> NOT: "                           << (~a)     << '\n';
+    cout << "> Desplazamiento a la izquierda: " << (a << 2) << '\n';
+    cout << "> Desplazamiento a la derecha: "   << (a >> 3) << '\n';
+
     // **************** Bucles, Condicionales y Exepciones **************** //
     
     // Numeros Impares hasta el 11 (Bucle for, y Operador Ternario)
