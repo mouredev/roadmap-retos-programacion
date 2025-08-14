@@ -35,7 +35,7 @@ func main(){
 
 //Crea variables representando todos los tipos de datos primitivos
 func tiposPrimitivos(){
-	var boleano bool //valores posibles: verdadero o falso
+	var boleano bool // valores posibles: verdadero o falso
 	var textos string// cualquier cadena de texto como las que mostramos por consola
 	var entero int // número enteros (es decir sin decimales), su tamaño depende de si el SO es de 32 o 64 bits
 	var flotante float32 // números más grandes y con decimales, tambien esta el float64 que abarca numeros aun más grandes
