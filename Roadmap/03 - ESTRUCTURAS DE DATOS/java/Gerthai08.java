@@ -175,13 +175,20 @@ public class Gerthai08 {
                     seachContact(scanner);
                     break;
                 case "3":
+                    updateContact(scanner);
                     break;
                 case "4":
+                    deleteContact(scanner);
                     break;
                 case "5":
+                    showAllContacts();
                     break;
                 case "6":
+                    running = false;
+                    System.out.println("¡Hasta luego!");
                     break;
+                default:
+                    System.out.println("Opción no válida. Inténtalo de nuevo.");
             }
         }
         scanner.close();
