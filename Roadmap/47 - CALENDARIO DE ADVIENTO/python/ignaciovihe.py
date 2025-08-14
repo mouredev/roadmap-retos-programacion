@@ -46,50 +46,48 @@ class AdventCalendar:
     def open_day(self, day: int):
         if day in self.closed_days:
             self.closed_days.remove(day)
-            print(f"Has abieto el dia {day}")
+            return True
         else:
-            print("Ya has abierto ese día")
-        input("ENTER para continuar.")
+            return False
 
     def show_calendar(self):
-        day = 1
-        for f in range(1,16):# Recorremos filas
+
+        for row in range(1, 25, 6):
+            print("**** " * 6)
+
+            print(" ".join([f"*{str(day).zfill(2)}*" if day in self.closed_days else "****" for day in range(row, row + 6)]))
+
+            print("**** " * 6)
             print()
-            for c in range(1,24):# Recorremos columnas
-                if (f % 4) == 2:# Si la fila es 2,6,10...
-                    if c % 2: # Si la columna es impar
-                        print("*", end="")
-                    elif not(c % 4):#Si la columna es multiplo de 5
-                        print(" ", end="")
-                    else:
-                        if day in self.closed_days:
-                            current_day = f"{day:02d}"
-                            print(current_day, end="")
-                        else:
-                            print("**", end="")
-                        day += 1
 
-                elif (f % 2):# Si la fila en impar
-                    if not(c % 4):# Si la columna es multiplo de 5
-                        print(" ",end="")
-                    elif c % 4 == 2:
-                        print("**",end="")
-                    else:
-                        print("*", end="")
-
-
-
-                
 
 my_calendar = AdventCalendar()
-while my_calendar.closed_days:
-    clear_console()
+
+while True:
+
     my_calendar.show_calendar()
-    today = 0
-    while today not in range(1,25):
-        today= int(input("Qué día quieres abrir (1-24)"))
-    my_calendar.open_day(today)
+    print()
+    option = input("Introduce un día para abrir(1,24) o escribe 'salir' para terminar.")
 
+    try:
+        option = int(option)
+        result = my_calendar.open_day(option)
+        if result:
+            clear_console()
+            print(f"Has abierto el día {option}")
+            if not my_calendar.closed_days:
+                break
+        else:
+            clear_console()
+            print(f"El día {option} ya esta abierto.")
 
-print("Has abierto todos los días")
+    except:
+        if option == 'salir':
+            clear_console()
+            break
+        else:
+            clear_console()
+            continue
+
+print("Has terminado con el calendario. Felices Fiestas!")
 my_calendar.show_calendar()
