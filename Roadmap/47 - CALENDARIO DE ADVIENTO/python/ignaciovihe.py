@@ -71,6 +71,8 @@ while True:
 
     try:
         option = int(option)
+        if option not in range(1,25):
+            raise
         result = my_calendar.open_day(option)
         if result:
             clear_console()
