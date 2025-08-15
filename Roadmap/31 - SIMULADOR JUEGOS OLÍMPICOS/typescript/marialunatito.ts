@@ -59,3 +59,21 @@ class Player implements IPlayer {
     });
   }
 }
+
+const player = new Player();
+const olympic = new Olympics();
+
+function run() {
+  console.log("\n");
+  console.log("::::::::::::::::::::::::::::::::::::::::::::");
+  console.log(":::::::INICIO DE LOS JUEGOS OLIMPICOS:::::::");
+  console.log("::::::::::::::::::::::::::::::::::::::::::::");
+  console.log("1. Registro de eventos.");
+  console.log("2. Registro de participantes.");
+  console.log("3. Simulación de eventos.");
+  console.log("4. Creación de informes.");
+  console.log("5. Salir del programa.");
+  console.log("::::::::::::::::::::::::::::::::::::::::::::");
+  console.log("::::::::::::::::::::::::::::::::::::::::::::");
+  console.log("\n");
+}
