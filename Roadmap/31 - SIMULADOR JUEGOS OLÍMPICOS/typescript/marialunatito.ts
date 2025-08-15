@@ -311,3 +311,6 @@ function eventSummary() {
     }
   });
 }
+
+// you can test this with next script
+// npx ts-node  "Roadmap/31 - SIMULADOR JUEGOS OLÍMPICOS/typescript/marialunatito.ts"
