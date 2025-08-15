@@ -88,7 +88,7 @@ function run() {
     while (open) {
       switch (parseInt(option)) {
         case 1:
-          console.log("Option 1");
+          registerEvent();
           open = false;
           break;
         case 2:
@@ -129,4 +129,25 @@ function message(msg: string) {
   });
 
   console.log(`\n${border}\n${msg}\n${border}\n`);
+}
+
+function registerEvent(addOther?: boolean) {
+  rl.question(
+    addOther
+      ? "Ingrese otro evento o ingrese X para volver al menu \nNombre del evento: "
+      : "Nombre del evento: ",
+    (name: string) => {
+      // add olympic
+      if (name.toLocaleLowerCase() === "x".toLocaleLowerCase()) {
+        run();
+      } else {
+        olympic.addEvents({
+          id: Math.round(Math.random() * 100),
+          name,
+        });
+        console.log(`Evento ${name} registrado exitosamente!!`);
+        registerEvent(true);
+      }
+    }
+  );
 }
