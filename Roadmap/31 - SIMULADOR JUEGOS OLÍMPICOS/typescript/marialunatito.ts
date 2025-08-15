@@ -38,6 +38,14 @@ class Olympics implements IOlympics {
       name: this.name,
     });
   }
+
+  getEventById(eventId: number): IOlympics | undefined {
+    return this.listEventsWithPlayers.find((e) => e.id == eventId);
+  }
+
+  getEvents(): IOlympics[] {
+    return this.listEventsWithPlayers;
+  }
 }
 
 class Player implements IPlayer {
@@ -63,6 +71,18 @@ class Player implements IPlayer {
       event: this.event,
       medal: this.medal,
     });
+  }
+
+  randomMedal(): MedalEnum {
+    const position = Math.round(Math.random() * 2);
+    if (position === 0) return MedalEnum.gold;
+    if (position === 1) return MedalEnum.silver;
+    if (position === 2) return MedalEnum.bronze;
+    return MedalEnum.gold;
+  }
+
+  getListPlayers(): IPlayer[] {
+    return this.listPlayers;
   }
 }
 
@@ -147,6 +167,61 @@ function registerEvent(addOther?: boolean) {
         });
         console.log(`Evento ${name} registrado exitosamente!!`);
         registerEvent(true);
+      }
+    }
+  );
+}
+
+function registerPlayers(addOther?: boolean) {
+  rl.question(
+    addOther
+      ? "Ingrese otro jugador (Nombre) o ingrese X para volver al menu: "
+      : "Ingrese nombre del jugador: ",
+    (name: string) => {
+      if (name.toLocaleLowerCase() === "x".toLocaleLowerCase()) {
+        run();
+      } else {
+        rl.question("Ingrese país del jugador: ", (country: string) => {
+          const events = olympic.getEvents();
+          let message = "";
+
+          events.forEach((event) => {
+            message += `Id: ${event.id} - Evento: ${event.name}\n`;
+          });
+
+          rl.question(
+            `Asigne el jugador a un evento,\n${message}\nIngrese el EventId: `,
+            (eventId: string) => {
+              const event = olympic.getEventById(parseInt(eventId));
+              if (!event) throw new Error(`evento no encontrado`);
+              // add playes
+              player.addListPlayers({
+                id: Math.round(Math.random() * 100),
+                name,
+                country,
+                event,
+                medal: player.randomMedal(),
+              });
+
+              console.log(
+                "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+              );
+              console.log(
+                ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
+              );
+              console.log(
+                `Player ${name} - ${country} - Evento: ${event?.name} registrado exitosamente!!`
+              );
+              console.log(
+                "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+              );
+              console.log(
+                ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"
+              );
+              registerPlayers(true);
+            }
+          );
+        });
       }
     }
   );
