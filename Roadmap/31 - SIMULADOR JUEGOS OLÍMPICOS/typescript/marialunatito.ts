@@ -33,3 +33,29 @@ class Olympics implements IOlympics {
     });
   }
 }
+
+class Player implements IPlayer {
+  id: number | undefined;
+  name: string | undefined;
+  country: string | undefined;
+  event: IOlympics | undefined;
+  medal: MedalEnum | undefined;
+
+  private listPlayers: IPlayer[] = [];
+
+  addListPlayers(data: IPlayer) {
+    this.id = data.id;
+    this.name = data.name;
+    this.country = data.country;
+    this.event = data.event;
+    this.medal = data.medal;
+
+    this.listPlayers.push({
+      id: this.id,
+      name: this.name,
+      country: this.country,
+      event: this.event,
+      medal: this.medal,
+    });
+  }
+}
