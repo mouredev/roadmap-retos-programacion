@@ -26,8 +26,8 @@ def create_info() -> dict:
     return personal_info
 
 def create_json_file_and_remove(data: dict):
-    with open("mhayhem.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    with open("mhayhem.json", "w") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
     with open("mhayhem.json", "r", encoding="utf-8") as f:
         print(f.read())
         print()
@@ -39,22 +39,21 @@ def create_xml_file_and_remove(data: dict):
     
     for key, value in data.items():
         if isinstance(value, list):
-            list_item = et.SubElement(root, key)
+            child = et.SubElement(root, key)
             for item in value:
-                et.SubElement(list_item, "item").text = item
+                et.SubElement(child, "item").text = item
         else:
-            et.SubElement(root, key).text = str(value)
-        
+            child = et.SubElement(root, key).text = str(value)
+    
     tree = et.ElementTree(root)
     tree.write("mhayhem.xml", encoding="utf-8", xml_declaration=True)
-
-    print(et.tostring(root, encoding="utf-8").decode("utf-8"))
+    
         
     #os.remove("mhayhem.xml")
  
+create_xml_file_and_remove(create_info())
 
-
-os.remove("mhayhem.xml")
+#os.remove("mhayhem.xml")
 
 
 # DIFICULTAD EXTRA (opcional):
