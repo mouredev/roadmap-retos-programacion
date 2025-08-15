@@ -43,12 +43,21 @@ class AdventCalendar:
     def __init__(self) -> None:
         self.closed_days = [i for i in range(1,25)]
 
-    def open_day(self, day: int):
-        if day in self.closed_days:
-            self.closed_days.remove(day)
-            return True
+    def open_day(self, selection: str):
+        if selection.isdigit() and int(selection) in range(1,25):
+            day = int(selection)
+            if day in self.closed_days:
+                self.closed_days.remove(day)
+                clear_console()
+                print(f"Has abierto el día {day}")
+            else:
+                clear_console()
+                print(f"El día {day} ya esta abierto.")
+            
         else:
-            return False
+            clear_console()
+            print("Has introducido una opción invalida. Vuelve a intentarlo")
+
 
     def show_calendar(self):
 
@@ -69,27 +78,13 @@ while True:
     print()
     option = input("Introduce un día para abrir(1,24) o escribe 'salir' para terminar.")
 
-    try:
-        option = int(option)
-        if option not in range(1,25):
-            raise
-        result = my_calendar.open_day(option)
-        if result:
-            clear_console()
-            print(f"Has abierto el día {option}")
-            if not my_calendar.closed_days:
-                break
-        else:
-            clear_console()
-            print(f"El día {option} ya esta abierto.")
+    if option.lower() == 'salir':
+        break
 
-    except:
-        if option == 'salir':
-            clear_console()
-            break
-        else:
-            clear_console()
-            continue
+    my_calendar.open_day(option)
+    if not my_calendar.closed_days:
+        break
 
+clear_console()
 print("Has terminado con el calendario. Felices Fiestas!")
 my_calendar.show_calendar()
