@@ -82,4 +82,51 @@ function run() {
   console.log("::::::::::::::::::::::::::::::::::::::::::::");
   console.log("::::::::::::::::::::::::::::::::::::::::::::");
   console.log("\n");
+
+  let open = true;
+  rl.question("Seleccione una opción: ", (option: string) => {
+    while (open) {
+      switch (parseInt(option)) {
+        case 1:
+          console.log("Option 1");
+          open = false;
+          break;
+        case 2:
+          console.log("Option 2");
+          open = false;
+          break;
+        case 3:
+          console.log("Option 3");
+          open = false;
+          break;
+        case 4:
+          console.log("Option 4");
+          open = false;
+
+          break;
+        case 5:
+          message("Ha salido del sistema.");
+          open = false;
+          rl.close();
+          break;
+        default:
+          message("***Opción incorrecta, intente de nuevo***");
+          open = false;
+          run();
+      }
+    }
+  });
+}
+
+run();
+
+function message(msg: string) {
+  const arr = Array.from(msg);
+  let border = "";
+
+  arr.forEach((e) => {
+    border += ":";
+  });
+
+  console.log(`\n${border}\n${msg}\n${border}\n`);
 }
