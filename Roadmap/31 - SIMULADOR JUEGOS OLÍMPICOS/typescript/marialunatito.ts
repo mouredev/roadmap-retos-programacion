@@ -120,9 +120,9 @@ function run() {
           open = false;
           break;
         case 4:
+          eventSummary();
           console.log("Option 4");
           open = false;
-
           break;
         case 5:
           message("Ha salido del sistema.");
@@ -236,6 +236,70 @@ function simulateEvents() {
       `\nParticipante: ${_player.name}\nCountry: ${_player.country}\nEvento: ${
         _player.event?.name
       }\nMedalla: ${player.randomMedal()}\n`
+    );
+  });
+
+  rl.question("\nVolver al menu (si o no): ", (response: string) => {
+    if (response.toLocaleLowerCase() === "si".toLocaleLowerCase()) {
+      run();
+    } else {
+      simulateEvents();
+    }
+  });
+}
+
+function eventSummary() {
+  const players = player.getListPlayers();
+  players.sort((a, b) => {
+    const countryA = a.country ?? "";
+    const countryB = b.country ?? "";
+
+    return countryA.localeCompare(countryB);
+  });
+
+  console.log("players: ", players);
+
+  let currenCountry = "";
+  let count = 0;
+  let medals = "";
+  const result: { country: string; games: number; medals: string }[] = [];
+  console.log("players length: ", players.length);
+  players.forEach((player, i) => {
+    console.log("index: ", i);
+    if (!currenCountry) {
+      currenCountry = player.country ?? "";
+      medals = player.medal ?? "";
+      count++;
+    } else if (currenCountry === player.country) {
+      medals += `, ${player.medal}`;
+      count++;
+    } else if (currenCountry !== player.country || i === players.length - 1) {
+      console.log("entro?");
+      result.push({
+        country: currenCountry,
+        games: count,
+        medals,
+      });
+      medals = "";
+      count = 0;
+
+      // new country again
+      currenCountry = player.country ?? "";
+      medals = player.medal ?? "";
+      count++;
+    }
+  });
+
+  result.push({
+    country: currenCountry,
+    games: count,
+    medals,
+  });
+
+  message("   Resumen de los JJOO   ");
+  result.forEach((r) => {
+    console.log(
+      `\nCountry: ${r.country}\nJuegos Ganados: ${r.games}\nMedallas: ${r.medals}`
     );
   });
 
