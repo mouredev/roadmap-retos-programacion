@@ -112,11 +112,11 @@ function run() {
           open = false;
           break;
         case 2:
-          console.log("Option 2");
+          registerPlayers();
           open = false;
           break;
         case 3:
-          console.log("Option 3");
+          simulateEvents();
           open = false;
           break;
         case 4:
@@ -225,4 +225,25 @@ function registerPlayers(addOther?: boolean) {
       }
     }
   );
+}
+
+function simulateEvents() {
+  const players = player.getListPlayers();
+
+  message("    EVENTOS    ");
+  players.forEach((_player) => {
+    console.log(
+      `\nParticipante: ${_player.name}\nCountry: ${_player.country}\nEvento: ${
+        _player.event?.name
+      }\nMedalla: ${player.randomMedal()}\n`
+    );
+  });
+
+  rl.question("\nVolver al menu (si o no): ", (response: string) => {
+    if (response.toLocaleLowerCase() === "si".toLocaleLowerCase()) {
+      run();
+    } else {
+      simulateEvents();
+    }
+  });
 }
