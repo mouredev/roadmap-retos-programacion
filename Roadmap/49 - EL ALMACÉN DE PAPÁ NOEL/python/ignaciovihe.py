@@ -94,7 +94,7 @@ class AcessController:
 
             valid = False
             while not valid:
-                user_try = input("Introduce tu código:")
+                user_try = input("Introduce tu código:").lower()
                 valid = self.check_valid_input(user_try)
 
             print(f"Tu codigo: {list(user_try)}")
