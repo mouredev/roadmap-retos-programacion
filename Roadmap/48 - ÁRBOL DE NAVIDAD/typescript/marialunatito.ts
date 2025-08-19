@@ -33,6 +33,7 @@ function menu(tree: Tree) {
       case "0":
         break;
       case "1":
+        tree.addStart();
         break;
       case "2":
         break;
@@ -105,6 +106,22 @@ class Tree {
     return this.tree;
   }
 
+  addStart() {
+    if (this.tree.includes("@")) {
+      console.log("El tree ya contiene la estrella");
+    } else {
+      const indexStart = this.getIndexStart();
+      const treeWithStart =
+        this.tree.substring(0, indexStart) +
+        "@" +
+        this.tree.substring(indexStart + 1, this.tree.length);
+      this.tree = treeWithStart;
+      console.log(this.tree);
+    }
+
+    menu(this);
+  }
+
   private getIndexStart() {
     let index = this.tree.indexOf("*");
     if (index === -1) {
@@ -130,3 +147,5 @@ class Tree {
     this.tree = tree;
   }
 }
+
+start();
