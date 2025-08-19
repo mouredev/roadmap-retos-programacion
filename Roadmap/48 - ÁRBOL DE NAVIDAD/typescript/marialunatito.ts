@@ -31,6 +31,8 @@ function menu(tree: Tree) {
   readlline.question("Seleccione una option: ", (option: string) => {
     switch (option) {
       case "0":
+        console.log(tree.Tree);
+        menu(tree);
         break;
       case "1":
         tree.addStart();
