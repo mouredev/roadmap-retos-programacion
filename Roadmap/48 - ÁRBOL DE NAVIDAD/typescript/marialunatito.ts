@@ -50,6 +50,7 @@ function menu(tree: Tree) {
         tree.addLights();
         break;
       case "6":
+        tree.removeLights();
         break;
       case "7":
         tree.turnOff();
@@ -285,6 +286,48 @@ class Tree {
         const newTree =
           this.tree.substring(0, index) +
           "+" +
+          this.tree.substring(index + 1, this.tree.length);
+
+        // set new tree
+        this.tree = newTree;
+
+        count++;
+        if (count === 3) {
+          // stop the while
+          canBeLights = false;
+        }
+      }
+    }
+
+    console.log(this.tree);
+    menu(this);
+  }
+
+  removeLights() {
+    let count = 0;
+    let canBeLights = false;
+
+    let cant = 0;
+    Array.from({ length: this.tree.length }).forEach((_, i) => {
+      if (this.tree.substring(i, i + 1).includes("+")) {
+        cant++;
+      }
+    });
+
+    if (cant >= 3) {
+      canBeLights = true;
+    } else {
+      canBeLights = false;
+      console.log("************No hay mas luces que quitar!!************");
+    }
+
+    while (canBeLights) {
+      const index = this.indexRandom();
+      const indexTreeForChange = this.tree.substring(index, index + 1);
+      if (indexTreeForChange.includes("+")) {
+        const newTree =
+          this.tree.substring(0, index) +
+          "*" +
           this.tree.substring(index + 1, this.tree.length);
 
         // set new tree
