@@ -104,4 +104,29 @@ class Tree {
 
     return this.tree;
   }
+
+  private getIndexStart() {
+    let index = this.tree.indexOf("*");
+    if (index === -1) {
+      index = this.tree.indexOf("+");
+    }
+    return index;
+  }
+
+  private indexRandom(): number {
+    const indexRandom = Math.floor(Math.random() * this.tree.length);
+    const indexStart = this.getIndexStart();
+    if (indexRandom != indexStart) {
+      return indexRandom;
+    }
+    return this.indexRandom();
+  }
+
+  get Tree() {
+    return this.tree;
+  }
+
+  set Tree(tree: string) {
+    this.tree = tree;
+  }
 }
