@@ -7,12 +7,14 @@ function start() {
   readlline.question(
     "Crea un arbol de navidad, ingresa la altura: ",
     (height: string) => {
-      menu();
+      const treeModel = new Tree(parseInt(height));
+      treeModel.create();
+      menu(treeModel);
     }
   );
 }
 
-function menu() {
+function menu(tree: Tree) {
   console.log(`
     0. Mostrar arbolito
     1. Añade la estrella en la copa (@)
@@ -53,7 +55,7 @@ function menu() {
 
       default:
         console.log(`La opción ${option} es invalida.. vuelva a intentar`);
-        menu();
+        menu(tree);
         break;
     }
   });
@@ -66,5 +68,40 @@ class Tree {
   constructor(height: number) {
     this.height = height;
     this.tree = "";
+  }
+
+  create() {
+    let space = "";
+    let asterisk = "";
+
+    //   height = 2
+    for (let i = 1; i <= this.height; i++) {
+      Array.from({ length: this.height - i }).forEach((_) => {
+        space += " ";
+      });
+
+      Array.from({ length: 2 * i - 1 }).forEach((_) => {
+        asterisk += "*";
+      });
+
+      this.tree += `${space}${asterisk}\n`;
+      space = "";
+      asterisk = "";
+    }
+
+    let spaceTrunk = "";
+
+    Array.from({ length: (2 * this.height - 1 - 3) / 2 }).forEach((_) => {
+      spaceTrunk += " ";
+    });
+    const trunk = `${spaceTrunk}|||\n${spaceTrunk}|||`;
+
+    this.tree += trunk;
+    /// RESULT
+    console.log("\n");
+    console.log(this.tree);
+    console.log("\n");
+
+    return this.tree;
   }
 }
