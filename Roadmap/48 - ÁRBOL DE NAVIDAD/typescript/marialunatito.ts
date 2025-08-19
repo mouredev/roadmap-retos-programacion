@@ -44,6 +44,7 @@ function menu(tree: Tree) {
         tree.addBalls();
         break;
       case "4":
+        tree.removedBalls();
         break;
       case "5":
         break;
@@ -206,6 +207,48 @@ class Tree {
         if (count === 2) {
           // stop the while
           canBeBall = false;
+        }
+      }
+    }
+
+    console.log(this.tree);
+    menu(this);
+  }
+
+  removedBalls() {
+    let count = 0;
+    let canBeRemoveBall = false;
+
+    let cant = 0;
+    Array.from({ length: this.tree.length }).forEach((_, i) => {
+      if (this.tree.substring(i, i + 1).includes("o")) {
+        cant++;
+      }
+    });
+
+    if (cant >= 2) {
+      canBeRemoveBall = true;
+    } else {
+      canBeRemoveBall = false;
+      console.log("************Ya no hay bolas que quitar!************");
+    }
+
+    while (canBeRemoveBall) {
+      const index = this.indexRandom();
+      const indexTreeForChange = this.tree.substring(index, index + 1);
+      if (indexTreeForChange.includes("o")) {
+        const newTree =
+          this.tree.substring(0, index) +
+          "*" +
+          this.tree.substring(index + 1, this.tree.length);
+
+        // set new tree
+        this.tree = newTree;
+
+        count++;
+        if (count === 2) {
+          // stop the while
+          canBeRemoveBall = false;
         }
       }
     }
