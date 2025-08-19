@@ -41,6 +41,7 @@ function menu(tree: Tree) {
         tree.removeStart();
         break;
       case "3":
+        tree.addBalls();
         break;
       case "4":
         break;
@@ -166,6 +167,50 @@ class Tree {
       console.log("El arbolito está apagado!");
     }
 
+    menu(this);
+  }
+
+  addBalls() {
+    let count = 0;
+    let canBeBall = false;
+
+    let cant = 0;
+    Array.from({ length: this.tree.length }).forEach((_, i) => {
+      if (this.tree.substring(i, i + 1).includes("*")) {
+        cant++;
+      }
+    });
+
+    if (cant >= 2) {
+      canBeBall = true;
+    } else {
+      canBeBall = false;
+      console.log(
+        "************Ya no hay espacios posibles para colocar bolas************"
+      );
+    }
+
+    while (canBeBall) {
+      const index = this.indexRandom();
+      const indexTreeForChange = this.tree.substring(index, index + 1);
+      if (indexTreeForChange.includes("*")) {
+        const newTree =
+          this.tree.substring(0, index) +
+          "o" +
+          this.tree.substring(index + 1, this.tree.length);
+
+        // set new tree
+        this.tree = newTree;
+
+        count++;
+        if (count === 2) {
+          // stop the while
+          canBeBall = false;
+        }
+      }
+    }
+
+    console.log(this.tree);
     menu(this);
   }
 
