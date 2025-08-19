@@ -1,3 +1,5 @@
+// use this command for run npx ts-node "Roadmap/48 - ÁRBOL DE NAVIDAD/typescript/marialunatito.ts"
+
 const readlline = require("readline").createInterface({
   input: process.stdin,
   output: process.stdout,
