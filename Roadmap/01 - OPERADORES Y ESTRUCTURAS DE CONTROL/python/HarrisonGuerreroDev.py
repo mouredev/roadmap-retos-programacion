@@ -115,3 +115,12 @@ def obtener_operaciones():
     caso_tres = 10 % 2 == 0 and not 10 % 2 == 5 / 5
     caso_cuatro = 4**4 >= 125 or 56 / 8 <= 7 and 12 / 6 + 5 * 3 >= 18 or not 5 * 12 / 2 + 8 == 6 ** 3 - 526 / 2
     caso_cinco = not 25 / 5 ** 3 + 6 == 16 * 4 / 2 - 100 or 32 * 2 / 8 ** 2 + 140 == 50 * 6 + 15 / 5 ** 4 and not 268 / 14 + 22 * 7 ** 2 - 19 == 1998 / 6 + 3 * 12 - 4 ** 3
+    
+    return [caso_uno, caso_dos, caso_tres, caso_cuatro, caso_cinco]
+
+def evaluar_operaciones(operaciones):
+    resultados = []
+    for i, resultado in enumerate(operaciones, start=1):
+        respuesta = input(f"¿Es verdadero o falso el caso {i}: {resultado}? ")
+        resultados.append((i, respuesta.lower() == "verdadero"))
+    return resultados
