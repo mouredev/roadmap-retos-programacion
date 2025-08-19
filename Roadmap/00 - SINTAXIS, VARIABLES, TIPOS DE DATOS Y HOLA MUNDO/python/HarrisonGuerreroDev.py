@@ -48,4 +48,4 @@ print(type(variable_string_dos))
 
 # Imprimir por terminal
 
-print("¡Hola, Python!")
+print("¡Hola, Python! :D")
