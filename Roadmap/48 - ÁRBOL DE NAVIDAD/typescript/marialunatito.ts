@@ -38,6 +38,7 @@ function menu(tree: Tree) {
         tree.addStart();
         break;
       case "2":
+        tree.removeStart();
         break;
       case "3":
         break;
@@ -130,6 +131,18 @@ class Tree {
       index = this.tree.indexOf("+");
     }
     return index;
+  }
+
+  removeStart() {
+    if (this.tree.includes("@")) {
+      const treeWithStart = this.tree.replace("@", "*");
+      this.tree = treeWithStart;
+      console.log(this.tree);
+    } else {
+      console.log("***********Se quitó la estrella***********");
+    }
+
+    menu(this);
   }
 
   private indexRandom(): number {
