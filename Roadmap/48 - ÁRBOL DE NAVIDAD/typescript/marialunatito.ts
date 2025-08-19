@@ -26,3 +26,13 @@ function menu() {
     10. Salir del sistema
     `);
 }
+
+class Tree {
+  private tree: string;
+  private height: number;
+
+  constructor(height: number) {
+    this.height = height;
+    this.tree = "";
+  }
+}
