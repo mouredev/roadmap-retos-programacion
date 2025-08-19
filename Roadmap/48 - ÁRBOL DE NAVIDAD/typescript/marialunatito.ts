@@ -49,8 +49,10 @@ function menu(tree: Tree) {
       case "6":
         break;
       case "7":
+        tree.turnOff();
         break;
       case "8":
+        tree.turnOn();
         break;
       case "10":
         console.log("Ha salido del sistema");
@@ -140,6 +142,28 @@ class Tree {
       console.log(this.tree);
     } else {
       console.log("***********Se quitó la estrella***********");
+    }
+
+    menu(this);
+  }
+
+  turnOn() {
+    if (this.tree.includes("*")) {
+      this.tree = this.tree.replaceAll("*", "+");
+      console.log(this.tree);
+    } else {
+      console.log("El arbolito está encendido o tiene bolas!");
+    }
+
+    menu(this);
+  }
+
+  turnOff() {
+    if (this.tree.includes("+")) {
+      this.tree = this.tree.replaceAll("+", "*");
+      console.log(this.tree);
+    } else {
+      console.log("El arbolito está apagado!");
     }
 
     menu(this);
