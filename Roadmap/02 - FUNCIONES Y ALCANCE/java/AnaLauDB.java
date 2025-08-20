@@ -1,4 +1,4 @@
-public class AnaLauraDB {
+public class AnaLauDB {
     // Variable global (atributo de la clase)
     int contadorGlobal = 0;
 
