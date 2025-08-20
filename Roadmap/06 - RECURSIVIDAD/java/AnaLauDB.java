@@ -1,4 +1,4 @@
-public class AnaLauraDB {
+public class AnaLauDB {
 
     // Funcion recursiva que imprima todos los numeros del 1 al 100
     public static void NUmeros(int n) {
