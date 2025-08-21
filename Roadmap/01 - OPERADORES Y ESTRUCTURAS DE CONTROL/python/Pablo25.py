@@ -1,4 +1,3 @@
-# 01 Python
 '''* - Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje: Aritméticos, lógicos, de comparación, 
 asignación, identidad, pertenencia, bits... (Ten en cuenta que cada lenguaje puede poseer unos diferentes)'''
     # Operadores: En Python, existen varios tipos de operadores que permiten realizar diferentes operaciones sobre datos.
