@@ -27,7 +27,7 @@
  * - Deben controlarse errores de longitud y caracteres soportados.
  * 
  * Finalización:
- * - Papa Noel gana si descrifra el código antes de 10 intentos.
+ * - Papa Noel gana si descifra el código antes de 10 intentos.
  * - Pierde si no lo logra, ya que no podría entregar los regalos.
  */
 ```

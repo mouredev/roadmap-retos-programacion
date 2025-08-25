@@ -17,7 +17,7 @@
  *   sobre el que se va a generar el informe.
  *   
  * - Crea un informe de usuario basándote en las 5 métricas
- *   que tú quieras, utilizando la informración que te
+ *   que tú quieras, utilizando la información que te
  *   proporciona GitHub. Por ejemplo:
  *   - Lenguaje más utilizado
  *   - Cantidad de repositorios
