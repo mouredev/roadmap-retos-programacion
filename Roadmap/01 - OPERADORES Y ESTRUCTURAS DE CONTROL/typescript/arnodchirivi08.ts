@@ -163,3 +163,137 @@ var theDay = new Date(1995, 12, 17);
 if (theDay instanceof Date) {
   console.log('es fecha');
 }
+
+
+
+//////// Estructuras de control
+// Estructura condicional if...else
+let number: number = 10;
+if (number > 0) {
+  console.log("El número es positivo");
+} else if (number < 0) {
+  console.log("El número es negativo");
+}
+
+
+// Estructura condicional switch
+let fruit:string = "Mangos";
+switch(fruit){
+  case "Naranjas":
+    console.log("El kilogramo de naranjas cuesta $0.59.");
+    break;
+  case "Mangos":
+  case "Mandarinas":
+    console.log(`El kilogramo de ${fruit} cuesta $0.48.`);
+    break;
+  default:
+    console.log("Lo lamentamos, por el momento no disponemos de " + fruit + ".");
+}
+
+// Estructura iterativa for
+for(let i: number = 0; i < 5; i++){
+  console.log(`Iteración número ${i}`);
+}
+
+
+// Estructura iterativa while
+let n= 0;
+let x= 0;
+
+while(n < 3){
+  n++;
+  x +=n;
+  console.log(n);
+  console.log(x)
+}
+
+// Estructura iterativa do...while
+let result = "";
+let i = 0;
+
+do {
+  i = i +1;
+  result = result + i;
+} while(i < 5)
+
+console.log(result);
+
+// Estructura iterativa for...of
+const array1 = ["a", "z", "b", "y", "c"];
+
+for (const element of array1){
+ console.log(element)
+}
+
+const iterable = "typescript";
+for(const value of iterable){
+  console.log(value)
+}
+
+const iterableDos = new Map([
+  ["a", 1],
+  ["b", 2],
+  ["c", 3],
+]);
+
+for (const entry of iterableDos) {
+  console.log(entry);
+}
+
+for (const [key, value] of iterableDos) {
+  console.log(value);
+}
+
+// Estructura iterativa for...in
+let persona = {
+    nombre: "carla",
+    edad: 30
+}
+
+for(const propiedad in persona){
+    console.log(`${propiedad}: ${persona[propiedad]}`)
+}
+
+// Estructura de control de excepciones try...catch
+function analizarUsuario(jsonString: string) {
+  try {
+    console.log("Intentando analizar el JSON...");
+    const usuario = JSON.parse(jsonString); // Esto puede lanzar un error.
+    
+    console.log("¡Análisis exitoso! ✅");
+    console.log("Nombre:", usuario.nombre);
+    console.log("Edad:", usuario.edad);
+
+  } catch (error) {
+    // 2. Si JSON.parse falla, el código salta directamente aquí.
+    console.error("🔴 ¡Ocurrió un error al analizar el JSON!");
+    // 'error' es un objeto que contiene los detalles del fallo.
+    // 'error.message' suele tener el mensaje más útil.
+    console.error("Detalle del error:", error.message);
+
+  } finally {
+    // 3. Este bloque se ejecuta siempre, con o sin error.
+    console.log("--- Proceso de análisis finalizado ---");
+  }
+}
+
+
+console.log("Probando con un JSON válido:");
+const jsonValido = '{"nombre": "Ana", "edad": 30}';
+analizarUsuario(jsonValido);
+
+
+console.log("\n=============================\n");
+
+console.log("Probando con un JSON inválido:");
+const jsonInvalido = '{"nombre": "Luis", "edad":}'; // Falta el valor de la edad
+analizarUsuario(jsonInvalido);
+
+
+// DIFICULTAD EXTRA (opcional):
+for(let i: number= 10; i< 57; i++)
+{
+  if(i%2 ==0 && i%3 !==0 && i !==16){
+      console.log(i)
+  }
+}
