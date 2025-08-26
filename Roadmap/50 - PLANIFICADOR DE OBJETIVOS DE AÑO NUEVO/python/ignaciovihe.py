@@ -39,9 +39,25 @@
 """
 
 from abc import ABC, abstractmethod
+from enum import Enum
 
 
-    
+class Month(Enum):
+    ENERO = 1
+    FEBRERO = 2
+    MARZO = 3
+    ABRIL = 4
+    MAYO = 5
+    JUNIO = 6
+    JULIO = 7
+    AGOSTO = 8
+    SEPTIEMBRE = 9
+    OCTUBRE = 10
+    NOVIEMBRE = 11
+    DICIEMBRE = 12
+
+    def __str__(self):
+        return self.name.capitalize()    
 
 class Resolution:
     def __init__(self, goal: str, amount: int, units: str, deadline:int) -> None:
@@ -61,7 +77,20 @@ class ResolutionsManager:
         
         self.resolutions.append(resolution)
         return True
-        
+    
+    def generate_plan(self) -> str:
+        plan_lines = []
+        for i in range(1,13):
+            plan_lines.append(f"\n{Month(i)}")
+            for resolution in self.resolutions:
+                if resolution.deadline >= i:
+                    plan_lines.append(
+                        f"\t{i}. {resolution.goal}"
+                        f"({resolution.amount / resolution.deadline} {resolution.units}/mes."
+                        f"Total {resolution.amount})"
+                    )
+        return "\n".join(plan_lines)
+
 
 class UIService:
 
@@ -118,41 +147,25 @@ class AddResolutionAction(MenuAction):
         else:
             print("Ya has añadido el máximo de propositos.")
 
-class CalculatePlanActionn(MenuAction):
+class CalculatePlanAction(MenuAction):
     def __init__(self, resolutions_manager : ResolutionsManager) -> None:
         self.resolutions_manager = resolutions_manager
 
     def execute(self):
+        print(self.resolutions_manager.generate_plan())
 
-        months = {
-            1: "Enero",
-            2: "Febrero",
-            3: "Marzo",
-            4: "Abril",
-            5: "Mayo",
-            6: "Junio",
-            7: "Julio",
-            8: "Agosto",
-            9: "Septiembre",
-            10: "Octubre",
-            11: "Noviembre",
-            12: "Diciembre",
-
-        }
-
-        for i in range(1,13):
-            print()
-            print(months[i])
-            for resolution in resolutions_manager.resolutions:
-                if resolution.deadline >= i:
-                    print(f"\t{i}. {resolution.goal} ({resolution.amount / resolution.deadline} {resolution.units}/mes. Total {resolution.amount})")
 
 class SavePlanAction(MenuAction):
     def __init__(self, resolutions_manager : ResolutionsManager) -> None:
         self.resolutions_manager = resolutions_manager
 
     def execute(self):
-        pass
+        
+        plan = self.resolutions_manager.generate_plan()
+        with open('my_plan.txt', "w", encoding="utf-8") as file:
+            file.write(plan)
+        print("Plan guardado en 'my_plan.txt")
+
 
 
 class ResolutionPlanner:
@@ -162,7 +175,7 @@ class ResolutionPlanner:
 
         self.menu_actions = {
             1: AddResolutionAction(resolutions_manager),
-            2: CalculatePlanActionn(resolutions_manager),
+            2: CalculatePlanAction(resolutions_manager),
             3: SavePlanAction(resolutions_manager)
         }
 
