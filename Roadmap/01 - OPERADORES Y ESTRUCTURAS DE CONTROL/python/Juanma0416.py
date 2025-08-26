@@ -49,7 +49,7 @@ my_new_number = 108.0
 print (f"my_number is my_new_number: {my_number is my_new_number}") # Devuelve True si ambas variables apuntan al mismo objeto en memoria a través del operador "is" cuya función es comprobar la identidad de los objetos y en este caso devuelve False porque aunque ambos tienen el mismo valor, tienen diferente posición en memoria.
 my_new_number = my_number
 print (f"my_number is my_new_number: {my_number is my_new_number}")
-print (f"my_number is not my_new_number: {my_number is not my_new_number}") # En este caso devuelve False porque ambas variables apuntan al mismo objeto en memoria y el operador "is not" comprueba que no son el mismo objeto.
+print (f"my_number is not my_new_number: {my_number is not my_new_number}") # En este caso devuelve False porque ambas variables apuntan al mismo objeto en memoria y el operador "is not" comprueba que no son el mismo objeto en memoria.
 
 # Operadores de Pertenencia
 print (f" 'a' in 'juan' = {'a' in 'juan'}") # Devuelve True si el valor de la izquierda se encuentra en el valor de la derecha
@@ -61,9 +61,9 @@ k = 3 # En binario es 0011 (Este es en 4 bits)
 print (f"AND: 7 & 3 = {7 & 3}") # Operador AND a nivel de bits, compara cada bit de los dos números y devuelve un nuevo número donde cada bit es 1 si ambos bits son 1, de lo contrario es 0. En este caso 0111 & 0011 = 0011 que es 3 en decimal.
 print (f"OR: 7 | 3 = {7 | 3}") # Operador OR a nivel de bits, compara cada bit de los dos números y devuelve un nuevo número donde cada bit es 1 si al menos uno de los bits es 1, de lo contrario es 0. En este caso 0111 | 0011 = 0111 que es 7 en decimal.
 print (f"XOR: 7 ^ 3 = {7 ^ 3}") # Operador XOR a nivel de bits, compara cada bit de los dos números y devuelve un nuevo número donde cada bit es 1 si los bits son diferentes, de lo contrario es 0. En este caso 0111 ^ 0011 = 0100 que es 4 en decimal.
-print (f"NOT: ~7 = {~7}") # Operador NOT a nivel de bits, invierte todos los bits del número. En este caso ~0111 = 1000 que es -8 en decimal (El primer bit es el bit de signo, 0 para positivo y 1 para negativo).
-print (f"Desplazamiento a la derecha: 7 >> 1 = {7 >> 1}") # Desplaza todos los bits del número a la derecha una posición. En este caso 0111 >> 1 = 0011 que es 3 en decimal.
-print (f"Desplazamiento a la izquierda: 7 << 1 = {7 << 1}") # Desplaza todos los bits del número a la izquierda una posición. En este caso 0111 << 1 = 1110 que es 14 en decimal.
+print (f"NOT: ~7 = {~7}") # Operador NOT a nivel de bits, invierte todos los bits del número. En este caso ~0111 = 1000 que es -8 en decimal (~x = -(x + 1)).
+print (f"Desplazamiento a la derecha: 7 >> 1 = {7 >> 1}") # Desplaza todos los bits del número a la derecha una posición. En este caso 0111 >> 1 = 0011 que es 3 en decimal. Una forma sencilla de verlo es que el desplazamiento a la derecha es equivalente a una división entera por 2: (7÷2)=3
+print (f"Desplazamiento a la izquierda: 7 << 1 = {7 << 1}") # Desplaza todos los bits del número a la izquierda una posición. En este caso 0111 << 1 = 1110 que es 14 en decimal. Una forma sencilla de verlo es que el desplazamiento a la izquierda es equivalente a una multiplicación por 2: (7*2)=14
 
 
 # 2
@@ -101,7 +101,7 @@ finally: # Este bloque de código se ejecuta siempre, haya o no una excepción
 
 
 '''
-Estructuras de Control
+Ejercicio EXTRA
 '''
 for number in range (10, 56): # Itera desde 10 hasta 55 (56 no incluido)
     if number % 2 == 0 and number != 16 and number % 3 != 0: # Si el número es par, no es 16 y no es múltiplo de 3
