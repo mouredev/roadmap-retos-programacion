@@ -10,7 +10,7 @@
 /**
  * Clase de ejemplo para el reto #00
  */
-public class AnaLauraDB {
+public class AnaLauDB {
     public static void main(String[] args) {
         // Constante para el valor de PI
         final double PI = 3.1416;
