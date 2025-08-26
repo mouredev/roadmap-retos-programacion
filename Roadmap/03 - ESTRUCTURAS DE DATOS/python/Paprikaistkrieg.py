@@ -110,10 +110,8 @@ El programa no puede dejar introducir números de teléfono no numéricos y con 
 de 11 dígitos (o el número de dígitos que quieras).
 También se debe proponer una operación de finalización del programa.
 """
-def insert_contact(telefono):
-    if not telefono.isdigit() or len(telefono) > 10:
-        print("Número de teléfono no válido.")
-        
+
+
 def my_agenda():
     agenda = {}
 
@@ -124,7 +122,7 @@ def my_agenda():
         print("3. Actualizar contacto")
         print("4. Eliminar contacto")
         print("5. Salir")
-        opcion = input("Ingrese el número de la operación: ")
+        opcion = input("Seleciona una opcion ")
 
         if opcion == "1":
             nombre = input("Ingrese el nombre del contacto a buscar: ")
@@ -135,14 +133,31 @@ def my_agenda():
 
         elif opcion == "2":
             nombre = input("Ingrese el nombre del nuevo contacto: ")
-            insert_contact(nombre, input("Ingrese el número de teléfono: "))
-            agenda[nombre] = telefono
-            print("Contacto agregado.")
+            telefono = input("Ingrese el número de teléfono: ")
+            if not telefono.isdigit():
+                print("El número debe contener solo dígitos.")
+            elif len(telefono) != 10:
+                print("El número debe tener exactamente 10 dígitos.")
+            elif nombre in agenda:
+                print("Ya existe un contacto con ese nombre.")
+            else:
+                agenda[nombre] = telefono
+                print("Contacto agregado correctamente.")
+
 
         elif opcion == "3":
             nombre = input("Ingrese el nombre del contacto a actualizar: ")
             if nombre in agenda:
-               insert_contact(nombre, input("Ingrese el nuevo número de teléfono: "))
+                nuevo_nombre = input("Ingrese el nuevo nombre del contacto: ")
+                telefono = input("Ingrese el nuevo número de teléfono: ")
+                if not telefono.isdigit():
+                    print("El número debe contener solo dígitos.")
+                elif len(telefono) != 10:
+                    print("El número debe tener exactamente 10 dígitos.")
+                else:
+                    agenda[nuevo_nombre] = telefono
+                    if nuevo_nombre != nombre:
+                        del agenda[nombre]
             else:
                 print("Contacto no encontrado.")
 
@@ -159,8 +174,8 @@ def my_agenda():
             break
 
         else:
-            print("Opción no válida.")
+            print("Opción no válida. Por favor, seleccione una opción del 1 al 5.")
 
     return agenda
 
-my_agenda() 
+my_agenda()
