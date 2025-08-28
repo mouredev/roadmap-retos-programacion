@@ -9,7 +9,7 @@
  * - Calcular el valor de un elemento concreto (según su posición) en la
  *   sucesión de Fibonacci (la función recibe la posición).
  */
-public class Gethai08 {
+public class Gerthai08 {
     public static void main(String[] args) {
 
         //Llamando al método "countdown"
