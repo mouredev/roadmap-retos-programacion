@@ -3,7 +3,7 @@ import com.sun.security.jgss.GSSUtil;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class Gethai08 {
+public class Gerthai08 {
     public static void main(String[] args) {
 
         int value = 10;
