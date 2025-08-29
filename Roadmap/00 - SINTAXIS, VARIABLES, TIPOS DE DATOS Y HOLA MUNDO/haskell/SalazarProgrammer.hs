@@ -63,7 +63,7 @@ caracter = 'J'
 cadena :: String
 cadena = "Haskell es lo mejor"
 
-{-
+{-|
   Estructuras de datos:
   - Listas: [a] - colección homogénea de elementos
   - Tuplas: (a, b, c) - colección heterogénea de tamaño fijo
