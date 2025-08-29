@@ -13,6 +13,7 @@ MY_CONSTANT = 3.14 # Esto es una constante por convención
 my_integer = 10         # Entero
 my_float = 3.14        # Flotante
 my_string = "Hola"      # Cadena de texto
+my_other_string = 'Mundo' # Cadena de texto
 my_boolean = True       # Booleano
 my_other_boolean = False # Booleano
 
