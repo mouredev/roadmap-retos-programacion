@@ -96,7 +96,7 @@ except:
 finally:
     print('cambiaste el cero y no peté gracias!')
 
-print('/////////////////////////')
+print('////////////////')
 
 """DIFICULTAD EXTRA (opcional):
 Crea un programa que imprima por consola todos los números comprendidos
