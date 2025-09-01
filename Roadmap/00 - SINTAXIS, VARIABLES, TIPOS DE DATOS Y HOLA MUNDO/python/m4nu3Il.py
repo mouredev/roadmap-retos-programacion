@@ -25,7 +25,7 @@ Commentary in quotation marks
 Commentary in apostrophes
 '''
 
-red = "color"
+donkey = "animal"
 
 ñ = "String"
 1 = "Int"
