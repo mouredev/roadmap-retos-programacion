@@ -18,28 +18,31 @@ Extra
 """
 
 
-def factorial(x):
+def factorial(x: int) -> int:
     """This is a recursive function
     to find the factorial of an integer"""
     if x <= 0:
        print("Number must be positive")
+       return 0
     elif x == 1:
         return 1
     else:
         return (x * factorial(x-1))
 
-def fibonacci(x):
+def fibonacci(x : int) -> int:
     if x <= 0:
+        print ("Number must be positive")
         return 0
     elif x == 1:
+        return 0
+    elif x == 2:
         return 1
     else:
         return fibonacci(x-1) + fibonacci(x-2)
 
-num = 5
-print("The factorial of", num, "is", factorial(num))
+print(factorial(5))
 
-print("The fibonacci number of position", num, "is", fibonacci(num))
+print(fibonacci(5))
 
 
 
