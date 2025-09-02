@@ -121,7 +121,7 @@ agenda = {"Tito Del Pino":123456, "Ana":654321, "Brais":456789, "Siri": 987654}
 
 while True:
     # menu
-    print("----------------Agenda telefonica-----------------")
+    print("---------------Agenda telefonica----------------")
     print("Selecciona un numero de operacion a realizar")
     print("1 - Mostar agenda\n"
         "2 - Buscar contacto\n" \
