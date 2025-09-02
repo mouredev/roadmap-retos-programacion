@@ -86,7 +86,7 @@ def agregar_contacto(contacto):
     else:
         telefono = input("Indica el telefono: ")
         if len(telefono) >= 10:
-            print("El telefono no puede contener mas de 10 numeros")
+            print("El telefono no puede contener mas de 10 digitos")
         else:
             print("Agregado a agenda")
             agenda[contacto] = int(telefono)
@@ -103,13 +103,20 @@ def actualizar_contacto(contacto):
         elif eleccion == '2':
             nuevo_telefono = input("Indica el nuevo telefono: ")
             if len(nuevo_telefono) >= 10:
-                print("El telefono no puede contener mas de 10 numeros")
+                print("El telefono no puede contener mas de 10 digitos")
             else:
                 print("Contacto actualizado")
                 agenda[contacto] = int(nuevo_telefono)
 
+def eliminar_contacto(contacto):
+    if contacto not in agenda:
+        print("Este nombre no esta entre tus contactos")
+    else:
+        print("Contacto eliminado")
+        del agenda[contacto]
 
 
+# main
 agenda = {"Tito Del Pino":123456, "Ana":654321, "Brais":456789, "Siri": 987654}
 
 while True:
@@ -139,3 +146,11 @@ while True:
     elif eleccion_usuario == 4:
         contacto_a_actualizar = input("Nombre del contacto a actualizar: ")
         actualizar_contacto(contacto_a_actualizar.title())
+    elif eleccion_usuario == 5:
+        contacto_a_eliminar = input("Nombre del contacto a eliminar: ")
+        eliminar_contacto(contacto_a_eliminar.title())
+    elif eleccion_usuario == 6:
+        print("Saliendo de la agenda...")
+        break
+    else:
+        print('Debe selecionar una de las opciones del menu')
