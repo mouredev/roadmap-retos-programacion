@@ -52,5 +52,40 @@ print(cadena.isalnum()) # chequea si el strin es numerico
 #  * - Anagramas
 #  * - Isogramas
 
-word1 = 'Sierra'
-word2 = 'Nevada'
+
+def check_palabras(palabra1, palabra2):
+    # Palindromo
+    print(f'La palabra "{palabra1}" es palindromo? {palabra1 == palabra1[::-1]}')
+    print(f'La palabra "{palabra2}" es palindromo? {palabra2 == palabra2[::-1]}')
+    
+    # Anagramas
+    print(f'"{palabra1}" es anagrama de "{palabra2}"? {sorted(palabra1) == sorted(palabra2)}')
+
+    # Isogramas
+    def isograma(palabra):
+        carac_palabra = dict()
+        for carac in palabra:
+            # el caracter se agregara al diccionario con valor 0 si no existe o sumara 1 al valor si existe
+            carac_palabra[carac] = carac_palabra.get(carac, 0) +1
+        isograma = True
+        # creamos una lista con los valores obtenidos del diccionario
+        valores = list(carac_palabra.values())
+        # checkeamos de que tipo es el isograma
+        long_isograma = valores[0]
+        # Revisamos que todos los caracteres tengan el mismo conteo
+        for conteo_carac in valores:
+            if conteo_carac != long_isograma:
+                # si algun caracter tiene conteo distinto, no es isograma
+                isograma = False
+                break
+        return isograma
+
+
+    print(f'"{palabra1}" es un isograma? {isograma(palabra1)}')
+    print(f'"{palabra2}" es un isograma? {isograma(palabra2)}')
+
+
+
+
+check_palabras('amor', 'ramo')
+check_palabras('murcielago', 'reconocer')
