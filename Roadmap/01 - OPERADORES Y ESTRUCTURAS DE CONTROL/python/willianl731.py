@@ -84,17 +84,10 @@ print(f"AND bits: {and_bits}, OR bits: {or_bits}, XOR bits: {xor_bits}, NOT bits
 """
 Estructuras de control:
 1. Condicionales (if, elif, else)
-2. Bucles (for, while)
+2. Iterativas (for, while)
 3. Manejo de excepciones (try, except)
-4. Funciones (def)
-5. Clases y objetos (class)
-6. Módulos y paquetes (import)
-7. Comprensiones (listas, diccionarios, conjuntos)
-8. Expresiones lambda (funciones anónimas)
-9. Generadores (yield)
-10. Decoradores (funciones que modifican otras funciones) 
 """
-
+# condicionales
 mi_nombre = "giovanni"
 if mi_nombre == "willian":
     print("Hola, Willian!")
@@ -128,7 +121,7 @@ finally:
     print("ha finalizado el manejo de excepciones")
 
 """
-ejercicio extra
+ejercicio extra:
 programa que imprime por consola todos los números comprendidos entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
 """
 for number in range(10, 56):
