@@ -14,9 +14,10 @@ entero = 1
 _decimal = 3.14
 cadena = "Elixir"
 _booleano = true
-_atomo = :elixir
-_booleanos_tambien_son_atomos = 0
+atomo = :elixir
+_booleanos_tambien_son_atomos = :true # :false
 _lista = [1, 2, 3]
+_tupla = {atomo, true, "string", entero}
 _mapas = %{:nombre => "Juan", "entero" => entero}
 
 IO.puts("Hola " <> cadena)
