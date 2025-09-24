@@ -46,3 +46,9 @@ class User:
         self.username = None
         self.name = None
         self.mail = None
+
+
+edu = User(23, "vastmind", "eduardo", "cocinas_del_sur@cds.com")
+sundy = User(24, "bruja", "sundy", "buja@witch.com")
+
+print(edu.__str__())
