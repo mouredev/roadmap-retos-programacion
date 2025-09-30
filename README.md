@@ -1,5 +1,5 @@
 ![https://retosdeprogramacion.com](./Images/header.jpg)
-
+21051437 100
 # Roadmap retos de programación 2024
 
 ### Ruta de estudio con ejercicios para mejorar tu lógica de programación y aprender cualquier lenguaje. Gratis, a tu ritmo y en comunidad.
