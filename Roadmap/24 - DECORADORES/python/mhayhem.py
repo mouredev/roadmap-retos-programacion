@@ -34,4 +34,4 @@ def calls_counter(func):
 
 @calls_counter
 def greet():
-    pass # evitamos demasiadas líneas en terminal ya que no necesitamos ningún retorno en este ejemplo
+    pass # evitamos demasiadas líneas en terminal ya que no necesitamos ningún retorno en este ejemplo.
