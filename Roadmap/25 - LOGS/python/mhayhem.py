@@ -8,11 +8,11 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-"""logging.debug("Esto es un mensaje de debuging.")
+logging.debug("Esto es un mensaje de debuging.")
 logging.info("Esto es un mensaje de información.")
 logging.warning("Esto es un mensaje de advertencía.")
 logging.error("Esto es un mensaje de error.")
-logging.fatal("Esto es un mensaje crítico.")"""
+logging.fatal("Esto es un mensaje crítico.")
 
 
 # DIFICULTAD EXTRA (opcional):
