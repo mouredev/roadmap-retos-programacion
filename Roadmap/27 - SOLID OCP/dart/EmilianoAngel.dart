@@ -12,24 +12,24 @@
 
 // Correcto
 abstract class Form {
-  void draw() {}
+  void draw();
 }
 
-class Square extends Form {
+class Square implements Form {
   @override
   void draw() {
     print('Dibujar un cuadrado');
   }
 }
 
-class Circle extends Form {
+class Circle implements Form {
   @override
   void draw() {
     print('Dibujar un círculo');
   }
 }
 
-class Triangle extends Form {
+class Triangle implements Form {
   @override
   void draw() {
     print('Dibujar un triángulo');
@@ -44,28 +44,28 @@ abstract class Operation {
   }
 }
 
-class Addition extends Operation {
+class Addition implements Operation {
   @override
   double execute(double a, double b) {
     return a + b;
   }
 }
 
-class Subtraction extends Operation {
+class Subtraction implements Operation {
   @override
   double execute(double a, double b) {
     return a - b;
   }
 }
 
-class Multiplication extends Operation {
+class Multiplication implements Operation {
   @override
   double execute(double a, double b) {
     return a * b;
   }
 }
 
-class Division extends Operation {
+class Division implements Operation {
   @override
   double execute(double a, double b) {
     if (b == 0) {
@@ -75,7 +75,7 @@ class Division extends Operation {
   }
 }
 
-class Power extends Operation {
+class Power implements Operation {
   @override
   double execute(double a, double b) {
     double result = 1;
