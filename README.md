@@ -1,6 +1,6 @@
 ![https://retosdeprogramacion.com](./Images/header.jpg)
 
-# Roadmap retos de programación 2024
+# Roadmap retos de programación 2025
 
 ### Ruta de estudio con ejercicios para mejorar tu lógica de programación y aprender cualquier lenguaje. Gratis, a tu ritmo y en comunidad.
 
@@ -34,7 +34,7 @@
 |06|[RECURSIVIDAD](./Roadmap/06%20-%20RECURSIVIDAD/ejercicio.md)|[📝](./Roadmap/06%20-%20RECURSIVIDAD/python/mouredev.py)|[▶️](https://youtu.be/nTfDkLRrYiM)|[👥](./Roadmap/06%20-%20RECURSIVIDAD/)
 |07|[PILAS Y COLAS](./Roadmap/07%20-%20PILAS%20Y%20COLAS/ejercicio.md)|[📝](./Roadmap/07%20-%20PILAS%20Y%20COLAS/python/mouredev.py)|[▶️](https://youtu.be/cBeRWS2X0CA)|[👥](./Roadmap/07%20-%20PILAS%20Y%20COLAS/)
 |08|[CLASES](./Roadmap/08%20-%20CLASES/ejercicio.md)|[📝](./Roadmap/08%20-%20CLASES/python/mouredev.py)|[▶️](https://youtu.be/W4tv8WUbum4)|[👥](./Roadmap/08%20-%20CLASES/)
-|09|[HERENCIA Y POLIMORFISMO](./Roadmap/09%20-%20HERENCIA/ejercicio.md)|[📝](./Roadmap/09%20-%20HERENCIA/python/mouredev.py)|[▶️](https://youtu.be/PVBs5PWjedA)|[👥](./Roadmap/09%20-%20HERENCIA/)
+|09|[HERENCIA](./Roadmap/09%20-%20HERENCIA/ejercicio.md)|[📝](./Roadmap/09%20-%20HERENCIA/python/mouredev.py)|[▶️](https://youtu.be/PVBs5PWjedA)|[👥](./Roadmap/09%20-%20HERENCIA/)
 |10|[EXCEPCIONES](./Roadmap/10%20-%20EXCEPCIONES/ejercicio.md)|[📝](./Roadmap/10%20-%20EXCEPCIONES/python/mouredev.py)|[▶️](https://youtu.be/mfOzfj-BrQo)|[👥](./Roadmap/10%20-%20EXCEPCIONES/)
 |11|[MANEJO DE FICHEROS](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/ejercicio.md)|[📝](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/python/mouredev.py)|[▶️](https://youtu.be/Bsiay2nax4Y)|[👥](./Roadmap/11%20-%20MANEJO%20DE%20FICHEROS/)
 |12|[JSON Y XML](./Roadmap/12%20-%20JSON%20Y%20XML/ejercicio.md)|[📝](./Roadmap/12%20-%20JSON%20Y%20XML/python/mouredev.py)|[▶️](https://youtu.be/OwStihBItEg)|[👥](./Roadmap/12%20-%20JSON%20Y%20XML/)
@@ -51,7 +51,7 @@
 |23|[SINGLETON](./Roadmap/23%20-%20SINGLETON/ejercicio.md)|[📝](./Roadmap/23%20-%20SINGLETON/python/mouredev.py)|[▶️](https://youtu.be/cOIcFo_w9hA)|[👥](./Roadmap/23%20-%20SINGLETON/)
 |24|[DECORADORES](./Roadmap/24%20-%20DECORADORES/ejercicio.md)|[📝](./Roadmap/24%20-%20DECORADORES/python/mouredev.py)|[▶️](https://youtu.be/jxJOjg7gPG4)|[👥](./Roadmap/24%20-%20DECORADORES/)
 |25|[LOGS](./Roadmap/25%20-%20LOGS/ejercicio.md)|[📝](./Roadmap/25%20-%20LOGS/python/mouredev.py)|[▶️](https://youtu.be/y2O6L1r_skc)|[👥](./Roadmap/25%20-%20LOGS/)
-|26|[SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA](./Roadmap/26%20-%20SOLID%20SRP/ejercicio.md)|[📝](./Roadmap/26%20-%20SOLID%20SRP/python/mouredev.py)|[▶️](https://youtu.be/7NM8FK9G91M)|[👥](./Roadmap/26%20-%20SOLID%20SRP)
+|26|[SOLID: PRINCIPIO DE RESPONSABILIDAD ÚNICA](./Roadmap/26%20-%20SOLID%20SRP/ejercicio.md)|[📝](./Roadmap/26%20-%20SOLID%20SRP/python/mouredev.py)|[▶️](https://youtu.be/7NM8FK9G91M)|[👥](./Roadmap/26%20-%20SOLID%20SRP/)
 |27|[SOLID: PRINCIPIO ABIERTO-CERRADO](./Roadmap/27%20-%20SOLID%20OCP/ejercicio.md)|[📝](./Roadmap/27%20-%20SOLID%20OCP/python/mouredev.py)|[▶️](https://youtu.be/o0lSVzu4ur4)|[👥](./Roadmap/27%20-%20SOLID%20OCP/)
 |28|[SOLID: PRINCIPIO DE SUSTITUCIÓN DE LISKOV](./Roadmap/28%20-%20SOLID%20LSP/ejercicio.md)|[📝](./Roadmap/28%20-%20SOLID%20LSP/python/mouredev.py)|[▶️](https://youtu.be/SgHoiF1KLTo)|[👥](./Roadmap/28%20-%20SOLID%20LSP/)
 |29|[SOLID: PRINCIPIO DE SEGREGACIÓN DE INTERFACES](./Roadmap/29%20-%20SOLID%20ISP/ejercicio.md)|[📝](./Roadmap/29%20-%20SOLID%20ISP/python/mouredev.py)|[▶️](https://youtu.be/0zTmCTHJ_lg)|[👥](./Roadmap/29%20-%20SOLID%20ISP/)
