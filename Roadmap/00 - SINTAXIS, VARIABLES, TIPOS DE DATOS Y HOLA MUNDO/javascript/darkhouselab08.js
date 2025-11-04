@@ -1,45 +1,71 @@
-/*
- * EJERCICIO:
- * - Crea un comentario en el código y coloca la URL del sitio web oficial del
- * lenguaje de programación que has seleccionado.
- * - Representa las diferentes sintaxis que existen de crear comentarios
- * en el lenguaje (en una línea, varias...).
- * - Crea una variable (y una constante si el lenguaje lo soporta).
- * - Crea variables representando todos los tipos de datos primitivos
- * del lenguaje (cadenas de texto, enteros, booleanos...).
- * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
- */
-
-// Sitio web oficial de JavaScript:
+// URL del sitio web oficial de JavaScript
 // https://developer.mozilla.org/es/docs/Web/JavaScript
 
-// Comentario en una línea
+// --- Comentarios ---
+
+// Esta es la sintaxis de un comentario en una sola línea.
 
 /*
-  Esto también es
-  un comentario
-  en varias líneas
+  Esta es la sintaxis
+  para un comentario
+  en múltiples líneas.
 */
 
-// Variable
-let myVariable = "Mi variable";
-myVariable = "Nuevo valor de mi variable";
+// --- Variables y Constantes ---
 
-// Constante (por convención y por sintaxis)
-const MY_CONSTANT = "Mi constante"; // 'const' no se puede reasignar
+// Una variable (let) permite que su valor cambie.
+let myVariable = "Esta es mi primera variable";
+myVariable = "Este es un nuevo valor para mi variable"; // El valor cambió
 
-// Tipos de datos primitivos
-let myString = "Mi cadena de texto";
-let myOtherString = 'Mi otra cadena de texto';
-let myNumber = 10;
-let myFloat = 10.5;
-let myBooleanTrue = true;
-let myBooleanFalse = false;
-let myUndefined = undefined;
-let myNull = null;
-let myBigInt = 1234567890123456789012345678901234567890n; // Primitivo BigInt
-let mySymbol = Symbol("mi-simbolo"); // Primitivo Symbol
+// Una constante (const) no puede ser reasignada después de su creación.
+const MY_CONSTANT = "Este es un valor constante";
+// Si intentaras: MY_CONSTANT = "Otro valor"; // Esto daría un error.
 
-// Impresión por terminal
-// (En JavaScript, "terminal" es la "consola" del navegador o de Node.js)
+// --- Tipos de Datos Primitivos (con más ejemplos) ---
+
+// 1. String (Cadena de texto)
+let myString = "Hola, Franco";
+let myOtherString = 'Esto también es un string.';
+let email = "darkhouselab08@gmail.com";
+
+// 2. Number (Número) - JavaScript no distingue entre enteros y flotantes.
+let myInteger = 42;
+let myFloat = 3.1416;
+let myNegativeNumber = -10;
+
+// 3. Boolean (Booleano) - Solo puede ser Verdadero o Falso
+let isLearning = true;
+let isFinished = false;
+
+// 4. Undefined (Indefinido)
+// Una variable que ha sido declarada pero aún no tiene valor.
+let myFutureValue;
+// console.log(myFutureValue); // Esto imprimiría 'undefined'
+
+// 5. Null (Nulo)
+// Representa la ausencia intencional de cualquier valor. Es un "valor vacío" a propósito.
+let myEmptyValue = null;
+
+// 6. BigInt
+// Para números enteros que son demasiado grandes para el tipo 'Number'.
+let myBigNumber = 90071992547409912345n; // La 'n' al final lo define como BigInt
+
+// 7. Symbol
+// Para crear identificadores únicos (lo usarás en temas avanzados).
+let myUniqueId = Symbol("id");
+let myOtherUniqueId = Symbol("id");
+// myUniqueId === myOtherUniqueId; // Esto sería 'false'
+
+// --- Impresión por Terminal ---
+
+// (En JavaScript, la "terminal" es la "consola" del navegador o de Node.js)
 console.log("¡Hola, JavaScript!");
+
+// (Bonus: Cómo imprimir el tipo de dato, como en el ejemplo de Python)
+console.log(typeof myString);      // Imprimirá "string"
+console.log(typeof myInteger);     // Imprimirá "number"
+console.log(typeof isLearning);    // Imprimirá "boolean"
+console.log(typeof myFutureValue); // Imprimirá "undefined"
+console.log(typeof myEmptyValue);  // Imprimirá "object" (¡un detalle peculiar de JS!)
+console.log(typeof myBigNumber);   // Imprimirá "bigint"
+console.log(typeof myUniqueId);    // Imprimirá "symbol"
