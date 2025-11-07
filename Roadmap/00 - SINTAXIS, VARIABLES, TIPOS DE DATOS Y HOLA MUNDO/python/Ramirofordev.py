@@ -20,7 +20,4 @@ nombre = "Nacho"
 # Boolean
 estudiando = True
 
-# None
-nada = None
-
 print("Hola, Python!")
