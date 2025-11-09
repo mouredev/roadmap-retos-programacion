@@ -16,7 +16,7 @@
  */
 
 public class JimsimroDev {
-
+  private static  final String DIV_LINE =":::::::::::::::::::::::::";
   private static final int MIN = 1000;
   private static final int MAX = 10000;
 
@@ -45,20 +45,23 @@ public class JimsimroDev {
 
   static void procesarPedidos(String plato, Callback callback) {
     try {
-      System.out.println("Iniciando pedido....");
+      print(DIV_LINE);
+      print("Iniciando pedido....");
       Thread.sleep(ramdon());
       callback.notificar(plato + " Confirmado");
 
-      System.out.println("Preparando pedido");
+      print(DIV_LINE);
+      print("Preparando pedido....");
       Thread.sleep(ramdon());
       callback.notificar(plato + " Listo");
 
-      System.out.println("Entregando el plato " + plato);
+      print(DIV_LINE);
+      print("Entregando el plato", plato);
       Thread.sleep(ramdon());
       callback.notificar(plato + " Entregado");
 
     } catch (InterruptedException e) {
-      System.out.println("Error timeout " + e);
+      print("Erro no pedido" + e);
     }
   }
 
@@ -70,6 +73,12 @@ public class JimsimroDev {
         System.out.println(mensaje);
       }
     });
+  }
+  static void print(Object... args){
+      for (Object s : args){
+          System.out.print(s + " ");
+      }
+      System.out.println();
   }
 
   public static void main(String[] args) {
