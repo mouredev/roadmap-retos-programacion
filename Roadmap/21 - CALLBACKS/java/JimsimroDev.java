@@ -16,12 +16,24 @@
  */
 
 public class JimsimroDev {
-  private static  final String DIV_LINE =":::::::::::::::::::::::::";
+  private static final String DIV_LINE = ":::::::::::::::::::::::::";
   private static final int MIN = 1000;
   private static final int MAX = 10000;
 
   interface Noficar {
     void notificacion(String mensaje);
+  }
+
+  interface Confirmado {
+    void confirmarPedidos(String mensaje);
+  }
+
+  interface Listo {
+    void pedidoListo(String mensaje);
+  }
+
+  interface Entregado {
+    void entregarPedidos(String mensaje);
   }
 
   static void notificacionEnviada(String proceso, Noficar callback) {
@@ -35,60 +47,52 @@ public class JimsimroDev {
 
   }
 
-  interface Callback {
-    void notificar(String mensaje);
-  }
-
   static int ramdon() {
     return (int) (Math.random() * (MAX - MIN + 1)) + MIN;
   }
 
-  static void procesarPedidos(String plato, Callback callback) {
-    try {
-      print(DIV_LINE);
-      print("Iniciando pedido....");
-      Thread.sleep(ramdon());
-      callback.notificar(plato + " Confirmado");
+  static void procesarPedidos(String plato, Confirmado confirmado, Listo listo, Entregado entregado) {
+    Thread hacerPedido = new Thread(() -> {
+      try {
 
-      print(DIV_LINE);
-      print("Preparando pedido....");
-      Thread.sleep(ramdon());
-      callback.notificar(plato + " Listo");
+        print("Iniciando pedido " + plato +"....");
+        Thread.sleep(ramdon());
+        confirmado.confirmarPedidos(plato + " Confirmado");
 
-      print(DIV_LINE);
-      print("Entregando el plato", plato);
-      Thread.sleep(ramdon());
-      callback.notificar(plato + " Entregado");
+        print("Preparando pedido " + plato + "....");
+        print(DIV_LINE);
+        Thread.sleep(ramdon());
+        listo.pedidoListo(plato + " Listo");
 
-    } catch (InterruptedException e) {
-      print("Erro no pedido" + e);
-    }
+        print("Entregando el plato "+plato);
+        print(DIV_LINE);
+        Thread.sleep(ramdon());
+        entregado.entregarPedidos(plato + " Entregado");
+
+      } catch (InterruptedException e) {
+        print("Erro no pedido" + e);
+      }
+    });
+    hacerPedido.start();
   }
 
   static void hacerOrden(String plato) {
-    procesarPedidos(plato, new Callback() {
-
-      @Override
-      public void notificar(String mensaje) {
-        System.out.println(mensaje);
-      }
-    });
+    procesarPedidos(
+        plato,
+        JimsimroDev::print,
+        JimsimroDev::print,
+        JimsimroDev::print);
   }
-  static void print(Object... args){
-      for (Object s : args){
-          System.out.print(s + " ");
-      }
-      System.out.println();
+
+  static void print(Object... args) {
+    for (Object s : args) {
+      System.out.print(s + " ");
+    }
+    System.out.println();
   }
 
   public static void main(String[] args) {
-    notificacionEnviada("Enviando SMS ", new Noficar() {
-
-      @Override
-      public void notificacion(String mensaje) {
-        System.out.println(mensaje);
-      }
-    });
+    notificacionEnviada("Enviando SMS ", System.out::println);
 
     // EXTRA
     hacerOrden("Bandeja Paisa");
