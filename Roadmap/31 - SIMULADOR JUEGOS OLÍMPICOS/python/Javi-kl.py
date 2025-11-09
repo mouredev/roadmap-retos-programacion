@@ -31,9 +31,7 @@ class DatosEventos(IRegistro):
 
 
 class DatosUsuarios(IRegistro):
-    def __init__(
-        self,
-    ):
+    def __init__(self):
         self.datos_usuarios = []
 
     def registrar(self, dato: str) -> bool:
@@ -44,7 +42,7 @@ class DatosUsuarios(IRegistro):
         return self.datos_usuarios
 
 
-class ResultadosEventos(IRegistro):  # TODO
+class ResultadosEventos(IRegistro):
     def __init__(self) -> None:
         self.resultados_list = []
 
@@ -60,7 +58,6 @@ class Evento:
     def __init__(self, nombre) -> None:
         self.nombre = nombre
 
-    # cuando quiera imprimir este objeto deberá tener este metodo
     def __str__(
         self,
     ) -> str:
@@ -72,7 +69,6 @@ class Participante:
         self.nombre = nombre
         self.pais = pais
 
-    # cuando quiera imprimir este objeto deberá tener este metodo
     def __str__(
         self,
     ) -> str:
@@ -87,22 +83,20 @@ class Resultado:
         self.plata = dato["medallas"][1]
         self.bronce = dato["medallas"][2]
 
-    # cuando quiera imprimir este objeto deberá tener este metodo
     def __str__(
         self,
     ) -> str:
         return f"{self.evento}\nOro: {self.oro}\nPlata: {self.plata}\nBronce: {self.bronce}"
 
 
-class MedallaPais:  # TODO logica
+class MedallaPais:
     """Representa UNA medalla ganada por UN país"""
 
-    def __init__(self, pais, medalla) -> None:  # TODO
+    def __init__(self, pais, medalla) -> None:
 
         self.pais = pais
         self.medalla = medalla
 
-    # cuando quiera imprimir este objeto deberá tener este metodo
     def __str__(
         self,
     ) -> str:
@@ -122,15 +116,12 @@ class SimuladorResultado:
         return datos_simulaciones
 
 
-# Filtrar solo los ResultadoPaises
 class CalculadorMedallas:
     @staticmethod
     def calcular_medallas(todos_los_datos):
-        # Filtrar solo los MedallaPais
         solo_medallas = [
             dato for dato in todos_los_datos if isinstance(dato, MedallaPais)
         ]
-        # Crear un diccionario para contar medallas por país
         conteo_paises = {}
         for medalla in solo_medallas:
             pais = medalla.pais
@@ -145,7 +136,7 @@ class CalculadorMedallas:
         )
 
 
-# Informador debe ser capaz de mostrar todo lo que Registrador puede registrar
+# Informador
 class Informador:
     """Modulo de alto nivel - muestra cualquier dato de los registros"""
 
@@ -174,8 +165,7 @@ class Registrador:
 
 
 # Eventos
-datos_eventos = DatosEventos()  # Primera instancia para acceder a los datos
-# El registrador recibe la primera instancia creada no la clase
+datos_eventos = DatosEventos()
 registrador_evento = Registrador(datos_eventos)
 
 # Participantes
@@ -192,12 +182,8 @@ registrador_resultado = Registrador(resultados)
 # Informador
 informador_resultados = Informador(resultados)
 
-"""informador_medallas = Informador(calculador_medallas_pais)
-"""
 
-
-# 6. Mostrar el ranking de países según el número de medallas. TODO
-# permitir al usuario mediante gestor de opciones:
+# 6. Mostrar el ranking de países según el número de medallas.
 def menu_principal():
     while True:
         print("Opciones:\n1. Registro de eventos.")
@@ -212,7 +198,7 @@ def menu_principal():
         elif opcion == "4":
             print(f"Informando de resultados")
             informador_resultados.mostrar_datos()
-            """Ranking paises aqui"""  # TODO
+            """Ranking paises aqui"""
             todos_los_datos = resultados.obtener_datos()
             ranking = calculador_medallas.calcular_medallas(todos_los_datos)
             for posicion, (pais, medallas) in enumerate(ranking, start=1):
@@ -244,24 +230,16 @@ def menu_principal():
 
         elif opcion == "2":
             print("""\n¡Creando participante!""")
-            # nombre = input("Nombre participante -> ")
-            # pais = input("Pais ->")
-            participante1 = Participante("javier", "spain")
-            participante2 = Participante("fran", "france")
-            participante3 = Participante("juan", "italy")
-            registrador_participante.registrar_datos(participante1)
-            registrador_participante.registrar_datos(participante2)
-            registrador_participante.registrar_datos(participante3)
+            nombre = input("Nombre participante -> ")
+            pais = input("Pais ->")
+            participante = Participante(nombre, pais)
+            registrador_participante.registrar_datos(participante)
 
         elif opcion == "1":
             print("""\n¡Creando evento!""")
-            # nombre_evento = input("Nombre evento -> ")
-            evento1 = Evento("martillo")
-            evento2 = Evento("jabalina")
-            evento3 = Evento("peso")
-            registrador_evento.registrar_datos(evento1)
-            registrador_evento.registrar_datos(evento2)
-            registrador_evento.registrar_datos(evento3)
+            nombre_evento = input("Nombre evento -> ")
+            evento = Evento(nombre_evento)
+            registrador_evento.registrar_datos(evento)
 
         else:
             print("Elije una opción valida...")
