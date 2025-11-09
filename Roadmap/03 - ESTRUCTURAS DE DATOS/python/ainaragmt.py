@@ -60,7 +60,7 @@ print(my_dict)
  *   (o el número de dígitos que quieras)
  * - También se debe proponer una operación de finalización del programa.
 '''
-print("\nEjercicio de dificultad extra")
+print("\nEjercicio de dificultad extra") # idea: crear una función
 
 salir = 0
 agenda = {
@@ -70,6 +70,7 @@ agenda = {
 while salir == 0:
     print(f"\nAgenda: {agenda}\n")
 
+    # idea: match + case
     x = int(input("Elige la función que desees y pulsa enter: \n1. Buscar contacto\n2. Insertar contacto\n3. Actualizar contacto\n4. Eliminar contacto\n5. Salir\n"))
     while x != 1 and x != 2 and  x != 3 and x != 4 and x != 5:
         print("\nEl número elegido no existe.\n")
@@ -89,6 +90,7 @@ while salir == 0:
     elif x == 2:
         nombre = input("\nEscribe el nombre del contacto que quieres añadir: ")
         numero_str = input("Escribe el número del contacto que quieres añadir: ")
+        # idea: numero.isdigit()
         try:
             numero_int= int(numero_str)
             if len(numero_str) > 11:
@@ -100,6 +102,7 @@ while salir == 0:
             print("Error: Número no numérico.\n")
     
     elif x == 3:
+        # idea: codigo repetido del case 2 -> crear una función común
         nombre = input("\nEscribe el nombre del contacto que quieres actualizar: ")
         if nombre not in agenda:
             print("El contacto no está en la agenda\n")
