@@ -103,6 +103,7 @@ class Vehicle(ABC):
         
         # the current speed can´t be a negative value
         if self._current_speed < 0:
+            self._current_speed = 0
             return "Se ha detenido por completo."
         return f"Velocidad reducida a {self._current_speed} km/h."
 
@@ -119,6 +120,7 @@ class Car(Vehicle):
         self.model = model.capitalize()
         self.type = type
         self.max_speed = max_speed
+        self._current_speed = 0
 
     def get_vehicle_info(self):
         return f"Marca {self.brand} - Modelo {self.model} - Segmento {self.type} - Velocidad máxima {self.max_speed} km/h."
@@ -129,9 +131,10 @@ class Truck(Vehicle):
         self.model = model
         self.max_speed = max_speed
         self.num_axles = num_axles
+        self._current_speed = 0
 
     def get_vehicle_info(self):
-        return f"Marca {self.brand} - Modelo {self.model} - Numero ejes {self.num_axles} - elocidad máxima {self.max_speed} km/h."
+        return f"Marca {self.brand} - Modelo {self.model} - Numero ejes {self.num_axles} - Velocidad máxima {self.max_speed} km/h."
 
 class Motorcycle(Vehicle):
     def __init__(self, brand: str, model: str, max_speed: int, cubic_centimeters: int):
@@ -139,9 +142,10 @@ class Motorcycle(Vehicle):
         self.model = model
         self.max_speed = max_speed
         self.cubic_centimeters = cubic_centimeters
+        self._current_speed = 0
 
     def get_vehicle_info(self):
-        return f"Marca {self.brand} - Modelo {self.model} - Cilindrada {self.cubic_centimeters} CC - elocidad máxima {self.max_speed} km/h."
+        return f"Marca {self.brand} - Modelo {self.model} - Cilindrada {self.cubic_centimeters} CC - Velocidad máxima {self.max_speed} km/h."
 
 def test_accelerate(vehicle: Vehicle):
     vehicle._current_speed = 0
