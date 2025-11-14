@@ -1,18 +1,18 @@
 #08
 #Clases
-class Perro:
-    def __init__(self, nombre, raza):
+class Perro: # La primera en mayuscula
+    def __init__(self, nombre, raza): # Inicializador
         self.nombre = nombre
         self.raza = raza
 
     def ladrar(self):
-        print(f"{self.nombre} está ladrando 🐶")
+        print(f"{self.nombre} está ladrando")
 
 mi_perro = Perro("Max", "Labrador")
 tu_perro = Perro("Luna", "Poodle")
 
-mi_perro.ladrar()  # Max está ladrando 🐶
-tu_perro.ladrar()  # Luna está ladrando 🐶
+mi_perro.ladrar()  # Max está ladrando
+tu_perro.ladrar()  # Luna está ladrando
 
 
 # Herencias
