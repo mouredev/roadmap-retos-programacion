@@ -14,7 +14,6 @@ tu_perro = Perro("Luna", "Poodle")
 mi_perro.ladrar()  # Max está ladrando
 tu_perro.ladrar()  # Luna está ladrando
 
-
 # Herencias
 class Animal:
     def __init__(self, nombre):
