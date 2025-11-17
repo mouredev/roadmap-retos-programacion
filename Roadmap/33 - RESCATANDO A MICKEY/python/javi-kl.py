@@ -2,7 +2,7 @@ import numpy as np
 
 arr = np.array(
     [
-        [0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 5, 0, 0],
         [2, 2, 0, 2, 0, 2],
         [0, 2, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0],
@@ -15,40 +15,26 @@ print(
     """
 Leyenda
 libre = 0
-Mickey = 1
+Mickey = 5
 obstaculos = 2
 salida = 3"""
 )
-# quizas leyenda para el movimiento
 
 
 class Mickey:
-    def __init__(self, posicion) -> None:
+    def __init__(self, fila, columna) -> None:
 
-        fila, columna = posicion
         self.fila = fila
         self.columna = columna
 
     # movimientos
-    def moverse_abajo(self):
-        self.fila += 1
-        return "\nMickey se ha movido hacia abajo"
+    def moverse(self, delta_fila, delta_columna):
 
-    def moverse_arriba(self):
-        self.fila -= 1
-        return "\nMickey se ha movido hacia arriba"
-
-    def moverse_izquierda(self):
-        self.columna -= 1
-        return "\nMickey se ha movido hacia izquierda"
-
-    def moverse_derecha(self):
-        self.columna += 1
-        return "\nMickey se ha movido hacia derecha"
+        self.fila += delta_fila
+        self.columna += delta_columna
 
 
 class Comprobador:
-
     def comprobar_obstaculo(self, fila, columna):
         return arr[fila, columna] == 2
 
@@ -56,49 +42,53 @@ class Comprobador:
         return arr[fila, columna] == 3
 
 
-mickey = Mickey(posicion=[0, 3])  # Pasamos posición de inicio
-comprobador = Comprobador()
-posicion_anterior = 0
-posicion_actual = 1
-
-
-def intentar_movimiento(direccion, mickey):  # TODO
-    if (
-        direccion == "1"
-        and mickey.fila == 0
-        or comprobador.comprobar_obstaculo(mickey.fila + 1, mickey.columna)
-    ):
+def intentar_movimiento(direccion, mickey, comprobador):
+    nueva_fila = mickey.fila + direccion["delta_fila"]
+    nueva_columna = mickey.columna + direccion["delta_columna"]
+    if nueva_fila < 0 or nueva_fila > 5 or nueva_columna < 0 or nueva_columna > 5:
+        print("Encontró el límite")
         return False
 
-    elif (
-        direccion == "2"
-        and mickey.fila == 5
-        or comprobador.comprobar_obstaculo(mickey.fila - 1, mickey.columna)
-    ):
-        return False
-
-    elif (
-        direccion == "3"
-        and mickey.columna == 0
-        or comprobador.comprobar_obstaculo(mickey.fila, mickey.columna - 1)
-    ):
-        return False
-
-    elif (
-        direccion == "4"
-        and mickey.columna == 5
-        or comprobador.comprobar_obstaculo(mickey.fila, mickey.columna + 1)
-    ):
+    if comprobador.comprobar_obstaculo(nueva_fila, nueva_columna):
+        print("Obstáculo encontrado")
         return False
 
     else:
-        return True
+        arr[mickey.fila, mickey.columna] = 0  # Limpiar posición anterior
+    mickey.moverse(direccion["delta_fila"], direccion["delta_columna"])  # Mover Mickey
+    return True
+
+
+mickey = Mickey(0, 3)  # Pasamos posición de inicio
+comprobador = Comprobador()
 
 
 def menu_principal():
+    direcciones = {
+        "1": {
+            "delta_fila": 1,
+            "delta_columna": 0,
+            "nombre": "abajo",
+        },
+        "2": {
+            "delta_fila": -1,
+            "delta_columna": 0,
+            "nombre": "arriba",
+        },
+        "3": {
+            "delta_fila": 0,
+            "delta_columna": -1,
+            "nombre": "izquierda",
+        },
+        "4": {
+            "delta_fila": 0,
+            "delta_columna": 1,
+            "nombre": "derecha",
+        },
+    }
     print("\nMickey esta en el inicio del laberinto")
     while True:
-        arr[mickey.fila, mickey.columna] = posicion_actual
+        arr[mickey.fila, mickey.columna] = 5  # Nueva posición de Mickey
         print(f"\n{arr}\n")
 
         print("1 = abajo")
@@ -108,58 +98,20 @@ def menu_principal():
         print("5 = Terminar programa")
 
         opcion = input("Elige siguiente movimiento\n->")
-        match opcion:
-            case "1":
-                if not intentar_movimiento("1", mickey):  # TODO
-
-                    print("No puede moverse aqui")
-
-                else:
-                    arr[mickey.fila, mickey.columna] = posicion_anterior
-                    print(mickey.moverse_abajo())
-
-                    if comprobador.comprobar_salida(mickey.fila, mickey.columna):
-                        print("Enhorabuena Mickey encontró la salida")
-                        break
-
-            case "2":
-                if not intentar_movimiento("2", mickey):  # TODO
-
-                    print("No puede moverse aqui")
-
-                else:
-                    arr[mickey.fila, mickey.columna] = posicion_anterior
-                    print(mickey.moverse_arriba())
-                    if comprobador.comprobar_salida(mickey.fila, mickey.columna):
-                        print("Enhorabuena Mickey encontró la salida")
-                        break
-
-            case "3":
-                if not intentar_movimiento("3", mickey):  # TODO
-
-                    print("No puede moverse aqui")
-
-                else:
-                    arr[mickey.fila, mickey.columna] = posicion_anterior
-                    print(mickey.moverse_izquierda())
-                    if comprobador.comprobar_salida(mickey.fila, mickey.columna):
-                        print("Enhorabuena Mickey encontró la salida")
-                        break
-
-            case "4":
-                if not intentar_movimiento("4", mickey):  # TODO
-
-                    print("No puede moverse aqui")
-
-                else:
-                    arr[mickey.fila, mickey.columna] = posicion_anterior
-                    print(mickey.moverse_derecha())
-                    if comprobador.comprobar_salida(mickey.fila, mickey.columna):
-                        print("Enhorabuena Mickey encontró la salida")
-                        break
-
-            case "5":
-                break
+        if opcion == "5":
+            print("¡Hasta luego!")
+            break
+        elif opcion in direcciones:
+            if intentar_movimiento(direcciones[opcion], mickey, comprobador):
+                if comprobador.comprobar_salida(mickey.fila, mickey.columna):
+                    arr[mickey.fila, mickey.columna] = 5  # Mostrar Mickey en la salida
+                    print(f"\n{arr}\n")
+                    print("¡Enhorabuena! Mickey encontró la salida")
+                    break
+            else:
+                print("No puede moverse aquí")
+        else:
+            print("Opción no válida")
 
 
 menu_principal()
