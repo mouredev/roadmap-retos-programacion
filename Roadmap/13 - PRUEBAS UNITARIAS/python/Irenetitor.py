@@ -52,11 +52,11 @@ class testUser_data(unittest.TestCase):
         self.assertIn("birth_date", self.user_data)
         self.assertIn("languages", self.user_data)
 
-    def test_user_data_correct(self):
+    def test_user_gitdata_correct(self):
         self.assertIsInstance(self.user_data["name"], str)
         self.assertIsInstance(self.user_data["age"], int)
         self.assertIsInstance(self.user_data["birth_date"], date)
-        self.assertIsInstance(self.user_data["programming_languages"], list)
+        self.assertIsInstance(self.user_data["languages"], list)
 
 
 if __name__ == "__main__":
