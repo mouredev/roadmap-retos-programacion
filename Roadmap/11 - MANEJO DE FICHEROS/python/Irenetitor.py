@@ -66,15 +66,27 @@ while True:
         total = 0
         with open(file_name, "r") as file:
             for line in file.readlines():
-                components = line.split(", ")[0]
+                components = line.split(", ")
                 quantity = int(components[1])
                 price = float(components[2])
+                total += quantity * price
+        print(total)
     elif option == "7":
-        pass
+        name = input("Name: ")
+        total = 0
+        with open(file_name, "r") as file:
+            for line in file.readlines():
+                components = line.split(", ")
+                if components[0] == name:
+                    quantity = int(components[1])
+                    price = float(components[2])
+                    total += quantity * price
+                    print(total)
+                    break
     elif option == "8":
         os.remove(file_name)
         print("Exiting program...")
-        break  # ⬅️ only break here
+        break  
     else:
         print("Select one of the available options")
 
