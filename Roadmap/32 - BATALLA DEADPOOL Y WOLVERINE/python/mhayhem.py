@@ -98,7 +98,7 @@ class SimFight:
                 if evaded:
                     print(f"{fighter1.name} no recibe daño.")
                 else:
-                    print(f"{fighter1.name} ha recivido {damage} puntos de daño.")
+                    print(f"{fighter1.name} ha recibido {damage} puntos de daño.")
             else:
                 print(f"{fighter2.name} esta aturdido y se regenera.")
                 print("\n")
