@@ -4,8 +4,10 @@
 # Para comentario de una sola linea se usa el "#"
 
 
-"""Las triples comillas simples se usan para
-escribir texto em multiples lineas """
+"""
+Las triples comillas simples se usan para
+escribir texto em multiples lineas 
+"""
 
 
 ''' 
@@ -42,5 +44,22 @@ my_float = 3,5
  # Complejos o complex
 my_complex = 3 + 5j
 
+#Datos booleanos 
+#Se representa por verdadero o falso
+
+my_bool = True
+my_bool = False
+
+#Strings
+
+my_string = "My first line"
+my_new_string = "My second line"
+
 
 print("Hola Python")
+print(type(my_int))
+print(type(my_float))
+print(type(my_bool))
+print(type(my_string))
+print(type(my_new_string))
+
