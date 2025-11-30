@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
+
 # Incorrecta
-"""class Trabajador(ABC):
+class Trabajador(ABC):
     @abstractmethod
     def trabajar(self):
         pass
@@ -25,6 +26,7 @@ class Humano(Trabajador):
     def comer(self):
         print("Comiendo")
 
+
 # Aqui estamos violando el ISP, porque no debemos obligar a esta clase a usar metodos que no son acorde
 class Robot(Trabajador):
     def trabajar(self):
@@ -40,11 +42,10 @@ class Robot(Trabajador):
 trabajador1 = Humano()
 trabajador1.comer()
 trabajador1.dormir()
-trabajador1.comer()"""
+trabajador1.comer()
+
 
 # correcto
-
-
 class TrabajadorHumano(ABC):
     @abstractmethod
     def trabajar(self):
