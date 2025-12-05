@@ -37,7 +37,18 @@ num1=int(input("Introduce un número: "))
 num2=int(input("Introduce otro número: "))
 def multiplicar(num1, num2):
     return num1 * num2
-print(f"El resultado de la multiplicación es: " + str(multiplicar(num1, num2)))
+resultado=multiplicar(num1, num2)
+print("El resultado de la multiplicación es: " + str(resultado))
+
+def saludo(mensaje, nombre):
+    print(f"{mensaje}, {nombre}")
+saludo(nombre="Victor", mensaje="Hola")
+
+def saludo_con_retorno():
+    return "Hola", "Victor"
+mensaje, nombre = saludo_con_retorno()
+print(mensaje)
+print(nombre)
 # Función dentro de otra función
 def funcion_externa():
     def funcion_interna():
@@ -46,7 +57,11 @@ def funcion_externa():
 funcion_externa()
 # Funciones incorporadas
 mensaje=input("Escribe un mensaje: ")
-print("La longitud del mensaje escrito es: " + str(len(mensaje)))
+print("La longitud del mensaje escrito es de: " + str(len(mensaje)) + " caracteres.")
+def saludos(*nombres):
+    for nombre in nombres:
+        print("Hola, " + nombre)
+saludos("Ana", "Luis", "Carlos", "Marta", "Sofía")
  # Utiliza la función incorporada len()
 valor=float(input("Introduce un número decimal: "))
 print("El tipo de dato ingresado es un: " + str(type(valor)))
