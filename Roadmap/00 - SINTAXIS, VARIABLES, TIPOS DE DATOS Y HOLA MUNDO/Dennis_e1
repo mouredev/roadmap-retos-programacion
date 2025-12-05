@@ -1,0 +1,50 @@
+<?php
+
+// Sitio web oficial de PHP: https://www.php.net/
+
+//Este tipo de comentario es de una sola línea
+
+
+#Este tipo de comentario también es de una sola línea
+
+/*
+Este tipo de comentario puede abarcar
+varias líneas
+*/
+
+// Declaración y asignación de valor a la variable
+$Personaje_1 = "Dennis";
+// Reasignación de valor a la variable
+$Personaje_1 = "Carlos";
+echo "Personaje 1: " . $Personaje_1 . "\n";
+//Como declarar una constante
+
+define("CONSTANTE_1",  "Valor de la constante");
+echo CONSTANTE_1 . "\n";
+
+//Crea variables representando todos los tipos de datos primitivos en PHP
+
+$str = "Hola, soy una cadena de texto"; // String
+$int = 42; // Integer
+$float = 3.14; // Float
+$bool = true; // Boolean
+$null = null; // Null
+
+$array = array(
+    "Manzana",
+    "Banana",
+    "Cereza"); // Array
+    
+$var_object = (object) [
+    'nombre' => 'Objeto1',
+    'valor' => 100]; // Object
+
+// Mostrar los valores de las variables
+echo "texto: " . $str . "\n";
+
+print ("hola mundo") . "\n";
+echo "hola " . "\n";
+echo "Integer: " . $int . "\n";
+echo "Float: " . $float . "\n";
+echo "hola mundo estoy usando php" . "\n";
+?>
