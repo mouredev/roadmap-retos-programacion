@@ -111,13 +111,16 @@ class FamilyTree:
         
         padres_actuales = [p for p in self.personas.values() if hijo.id in p.hijos]
 
-        if len(padres_actuales) >= 2:
+        if len(padres_actuales) > 2:
             print(f"{hijo.nombre} ya tiene dos padres asignados.\n")
             return
         
         # Evitar duplicados (si ya esta asignado)
-        if hijo.id in padre.hijos or hijo.id in madre.hijos:
-            print(f"{padre.nombre} ya es padre/madre de {hijo.nombre}.\n")
+        if hijo.id in padre.hijos:
+            print(f"{padre.nombre} ya es padre de {hijo.nombre}.\n")
+            return
+        if hijo.id in madre.hijos:
+            print(f"{madre.nombre} ya es madre de {hijo.nombre}.\n")
             return
         
         # Asignamos
@@ -148,6 +151,18 @@ arbol = FamilyTree()
 arbol.crear_personas(1, "Nacho")
 arbol.crear_personas(2, "Cass")
 arbol.crear_personas(3, "Cartoon")
+arbol.crear_personas(4, "Gio")
+arbol.crear_personas(5, "Japonesa")
+arbol.crear_personas(6, "hijo gio")
+arbol.crear_personas(7, "cartoon hijo gio hijo")
+
+
 arbol.asignar_pareja(1, 2)
+arbol.asignar_pareja(4, 5)
+
+
 arbol.asignar_hijos(1, 2, 3)
+arbol.asignar_hijos(4, 5, 6)
+arbol.asignar_hijos(3, 6, 7)
+
 arbol.imprimir_arbol()
