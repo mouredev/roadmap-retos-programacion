@@ -140,7 +140,7 @@ for p in preguntas:
 
     if respuesta not in ["a", "b", "c", "d"]:
         print("Respuesta invalida! Tomate esto enserio.")
-        continue
+        pass
     
     puntos_respuesta = p["opciones"][respuesta]["puntos"]
 
