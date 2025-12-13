@@ -26,7 +26,6 @@ Acciones:
 
 # Reto 1
 
-from datetime import datetime
 import calendar
 
 # La primera celebracion del Batman Day fue en el año 2014 y fue la 75
