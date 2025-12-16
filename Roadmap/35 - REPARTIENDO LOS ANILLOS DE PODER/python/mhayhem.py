@@ -29,7 +29,7 @@ def prime_number(num):
     return True
 
 def distribution_of_the_rings(num_rings):
-    dwarfs = [num for num in range(num_rings) if prime_number(num)]
+    dwarfs = [num for num in range(2, num_rings) if prime_number(num)]
     elfs = [num for num in range(1, num_rings) if num % 2 != 0]
     sauron = 1
 
@@ -47,4 +47,4 @@ def distribution_of_the_rings(num_rings):
     else:
         print(random.choice(result))
 
-distribution_of_the_rings(20)
+distribution_of_the_rings(200)
