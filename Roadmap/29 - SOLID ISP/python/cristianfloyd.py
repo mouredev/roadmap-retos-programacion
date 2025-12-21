@@ -8,57 +8,57 @@ from abc import ABC, abstractmethod
 # Ejemplo Incorrecto
 class MetodoPagoInterface(ABC):
     @abstractmethod
-    def procesar_pago(self, monto: float):
-        return f"Pago procesado correctamente de ${monto}"
+    def procesar_pago(self, monto: float) -> str:
+        pass
 
     @abstractmethod
-    def reembolsar_pago(self, monto: float):
-        return f"Pago reembolsado correctamente de ${monto}"
+    def reembolsar_pago(self, monto: float) -> str:
+        pass
 
     @abstractmethod
-    def dividir_en_cuotas(self, monto: float, cuotas: int):
-        return f"Pago dividido en {cuotas} cuotas de ${monto / cuotas}"
+    def dividir_en_cuotas(self, monto: float, cuotas: int) -> str:
+        pass
 
 
 class PagoEfectivo(MetodoPagoInterface):
-    def procesar_pago(self, monto: float):
+    def procesar_pago(self, monto: float) -> str:
         return f"Pago procesado correctamente de ${monto}"
 
-    def reembolsar_pago(self, monto: float):
+    def reembolsar_pago(self, monto: float) -> str:
         return f"Pago reembolsado correctamente de ${monto}"
 
-    def dividir_en_cuotas(self, monto: float, cuotas: int):  # No se divide en cuotas
+    def dividir_en_cuotas(self, monto: float, cuotas: int) -> str:  # No se divide en cuotas
         raise NotImplementedError("El efectivo no se divide en cuotas")
 
 
 class PagoTarjeta(MetodoPagoInterface):
-    def procesar_pago(self, monto: float):
-        return super().procesar_pago(monto)
+    def procesar_pago(self, monto: float) -> str:
+        return f"Pago procesado correctamente de ${monto}"
 
-    def reembolsar_pago(self, monto: float):
-        return super().reembolsar_pago(monto)
+    def reembolsar_pago(self, monto: float) -> str:
+        return f"Pago reembolsado correctamente de ${monto}"
 
-    def dividir_en_cuotas(self, monto: float, cuotas: int):
-        return super().dividir_en_cuotas(monto, cuotas)
+    def dividir_en_cuotas(self, monto: float, cuotas: int) -> str:
+        return f"Pago dividido en {cuotas} cuotas de ${monto / cuotas}"
 
 
 # Ejemplo Correcto
 class Pagable(ABC):
     @abstractmethod
-    def procesar_pago(self, monto: float):
-        return f"Pago procesado por el monto de ${monto}"
+    def procesar_pago(self, monto: float) -> str:
+        pass
 
 
 class Reembolsable(ABC):
     @abstractmethod
-    def reembolsar_pago(self, monto: float):
-        return f"Pago reembolsado correctamente por ${monto}"
+    def reembolsar_pago(self, monto: float) -> str:
+        pass
 
 
 class Financiable(ABC):
     @abstractmethod
-    def dividir_en_cuotas(self, monto: float, cuotas: int):
-        return f"Pago dividido en {cuotas} cuotas de ${monto / cuotas}"
+    def dividir_en_cuotas(self, monto: float, cuotas: int) -> str:
+        pass
 
 
 class PagoEfectivoV2(Pagable, Reembolsable):
@@ -71,13 +71,13 @@ class PagoEfectivoV2(Pagable, Reembolsable):
 
 class PagoTarjetaV2(Pagable, Reembolsable, Financiable):
     def procesar_pago(self, monto: float):
-        return super().procesar_pago(monto)
+        return f"Pago procesado correctamente de ${monto}"
 
     def reembolsar_pago(self, monto: float):
-        return super().reembolsar_pago(monto)
+        return f"Pago reembolsado correctamente de ${monto}"
 
     def dividir_en_cuotas(self, monto: float, cuotas: int):
-        return super().dividir_en_cuotas(monto, cuotas)
+        return f"Pago dividido en {cuotas} cuotas de ${monto / cuotas}"
 
 
 class PagoCriptomoneda(Pagable):
@@ -98,36 +98,38 @@ class PagoCriptomoneda(Pagable):
 
 
 # Interfaces segregadas
-class ImprimibleBlancoNegro(ABC):
-    def __init__(self, modelo: str) -> None:
-        self.modelo = modelo
+class DispositivoIdentificable(ABC):
     @abstractmethod
-    def imprimir_blanco_negro(self, documento: str):
-        return f"[{self.modelo}] Imprimiendo {documento}"
+    def get_modelo(self) -> str:
+        pass
 
+class ImprimibleBlancoNegro(DispositivoIdentificable):
 
-class ImprimibleColor(ABC):
-    def __init__(self, modelo: str) -> None:
-        self.modelo = modelo
     @abstractmethod
-    def imprimir_color(self, documento: str):
-        return f"[{self.modelo}] Imprimiendo ${documento} en color"
+    def imprimir_blanco_negro(self, documento: str) -> str:
+        pass
 
 
-class Escaneable(ABC):
-    def __init__(self, modelo: str) -> None:
-        self.modelo = modelo
+class ImprimibleColor(DispositivoIdentificable):
+
     @abstractmethod
-    def escanear(self, documento: str):
-        return f"Escaneando ${documento}"
+    def imprimir_color(self, documento: str) -> str:
+        pass
 
 
-class EnviadorFax(ABC):
-    def __init__(self, modelo: str) -> None:
-        self.modelo = modelo
+class Escaneable(DispositivoIdentificable):
+    
     @abstractmethod
-    def enviar_fax(self, documento: str, destino: str):
-        return f"Enviando fax ${documento} al destino {destino}"
+    def escanear(self, documento: str) -> str:
+        pass
+
+
+class EnviadorFax(DispositivoIdentificable):
+    
+    @abstractmethod
+    def enviar_fax(self, documento: str, destino: str) -> str:
+        pass
+
 
 
 # implementaciones concretas
@@ -137,7 +139,10 @@ class ImpresoraBlancoNegro(ImprimibleBlancoNegro):
         self.modelo = modelo
         self.paginas_impresas = 0
 
-    def imprimir_blanco_negro(self, documento: str):
+    def get_modelo(self) -> str:
+        return self.modelo
+
+    def imprimir_blanco_negro(self, documento: str) -> str:
         self.paginas_impresas += 1
         return f"[{self.modelo}] Imprimiendo '{documento}' en blanco y negro (Página #{self.paginas_impresas})"
 
@@ -147,7 +152,10 @@ class ImpresoraColor(ImprimibleColor):
         self.modelo = modelo
         self.paginas_impresas = 0
 
-    def imprimir_color(self, documento: str):
+    def get_modelo(self) -> str:
+        return self.modelo
+
+    def imprimir_color(self, documento: str) -> str:
         self.paginas_impresas += 1
         return f"[{self.modelo}] Imprimiendo '{documento}' en color (Página #{self.paginas_impresas})"
 
@@ -161,34 +169,40 @@ class ImpresoraMultifuncion(
         self.paginas_escaneadas = 0
         self.paginas_enviadas_fax = 0
 
-    def imprimir_blanco_negro(self, documento: str):
+    def get_modelo(self) -> str:
+        return self.modelo
+
+    def imprimir_blanco_negro(self, documento: str) -> str:
         self.paginas_impresas += 1
         return f"[{self.modelo}] Imprimiendo '{documento}' en blanco y negro (Página #{self.paginas_impresas})"
 
-    def imprimir_color(self, documento: str):
+    def imprimir_color(self, documento: str) -> str:
         self.paginas_impresas += 1
         return f"[{self.modelo}] Imprimiendo '{documento}' en color (Página #{self.paginas_impresas})"
 
-    def escanear(self, documento: str):
+    def escanear(self, documento: str) -> str:
         self.paginas_escaneadas += 1
         return f"[{self.modelo}] Escaneando '{documento}' (Página #{self.paginas_escaneadas})"
 
-    def enviar_fax(self, documento: str, destino: str):
+    def enviar_fax(self, documento: str, destino: str) -> str:
         self.paginas_enviadas_fax += 1
         return f"[{self.modelo}] Enviando fax '{documento}' (Página #{self.paginas_enviadas_fax})"
 
 
-class ImpresoraAvanzadaColor(ImpresoraColor, Escaneable):
+class ImpresoraAvanzadaColor(ImprimibleColor, Escaneable):
     def __init__(self, modelo: str) -> None:
         self.modelo = modelo
         self.paginas_impresas = 0
         self.paginas_escaneadas = 0
 
-    def imprimir_color(self, documento: str):
+    def get_modelo(self) -> str:
+        return self.modelo
+
+    def imprimir_color(self, documento: str) -> str:
         self.paginas_impresas += 1
         return f"[{self.modelo}] Imprimiendo '{documento}' en color (Página #{self.paginas_impresas})"
 
-    def escanear(self, documento: str):
+    def escanear(self, documento: str) -> str:
         self.paginas_escaneadas += 1
         return f"[{self.modelo}] Escaneando '{documento}' (Página #{self.paginas_escaneadas})"
 
@@ -199,30 +213,31 @@ class ImpresoraAvanzadaColor(ImpresoraColor, Escaneable):
 
 
 def probar_impresora_bn(impresora: ImprimibleBlancoNegro):
+    print(f"\n Probando impresora BN: {impresora.get_modelo()}")
     print(impresora.imprimir_blanco_negro("Documento.pdf"))
 
 
 def probar_impresora_color(impresora: ImprimibleColor):
-    print(f"\nProbando impresora a color: {impresora.modelo}")
-    print(f"  {impresora.imprimir_color('presentacion.pptx')}")
+    print(f"\nProbando impresora a color: {impresora.get_modelo()}")
+    print(impresora.imprimir_color('presentacion.pptx'))
 
 
 def probar_escaner(dispositivo: Escaneable):
-    print(f"\nProbando escáner: {dispositivo.modelo}")
-    print(f"  {dispositivo.escanear('contrato.pdf')}")
+    print(f"\nProbando escáner: {dispositivo.get_modelo()}")
+    print(dispositivo.escanear('contrato.pdf'))
 
 
 def probar_fax(dispositivo: EnviadorFax):
-    print(f"\nProbando fax: {dispositivo.modelo}")
-    print(f"  {dispositivo.enviar_fax('documento_urgente.pdf', '+34-123-456-789')}")
+    print(f"\nProbando fax: {dispositivo.get_modelo()}")
+    print(dispositivo.enviar_fax('documento_urgente.pdf', '+34-123-456-789'))
 
 
 def probar_multifuncion(impresora: ImpresoraMultifuncion):
-    print(f"\nProbando impresora multifunción: {impresora.modelo}")
+    print(f"\nProbando impresora multifunción: {impresora.get_modelo()}")
     print(f"  {impresora.imprimir_blanco_negro('factura.pdf')}")
-    print(f"  {impresora.imprimir_color('foto.jpg')}")
-    print(f"  {impresora.escanear('recibo.pdf')}")
-    print(f"  {impresora.enviar_fax('orden.pdf', '+34-987-654-321')}")
+    print(impresora.imprimir_color('foto.jpg'))
+    print(impresora.escanear('recibo.pdf'))
+    print(impresora.enviar_fax('orden.pdf', '+34-987-654-321'))
 
 
 hp_laserjet = ImpresoraBlancoNegro("HP LaserJet Pro")
