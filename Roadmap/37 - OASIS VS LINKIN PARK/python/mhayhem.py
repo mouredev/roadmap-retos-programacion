@@ -21,12 +21,12 @@ import json
 # 3. Muestra todos los resultados por consola para notificar al usuario.
 # 4. Desarrolla un criterio para seleccionar qué banda es más popular.
 
-CLIENT_ID = "f17df9fb470f41a1a338f102f8f8c264"
-CLIENT_SECRET = "efc3e4c952364a05a6e965ae7e4217db"
-
 # get api token
 def get_access_token():
-    auth_string = f"{CLIENT_ID}:{CLIENT_SECRET}"
+    client_id = "client_id" # colocar información necesaria
+    client_secret = "client_secret" # colocar información necesaria
+    
+    auth_string = f"{client_id}:{client_secret}"
     auth_base64 = base64.b64encode(auth_string.encode()).decode()
     
     url = "https://accounts.spotify.com/api/token"
