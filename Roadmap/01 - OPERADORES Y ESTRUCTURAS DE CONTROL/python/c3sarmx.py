@@ -157,6 +157,70 @@ print("pera in frutas:", "pera" in frutas)
 #* not in revisa si un elemento NO está dentro de la lista
 print("piña not in frutas:", "piña" not in frutas)
 
+print("=" * 44)
+print("========== Estructuras de control ==========")
+print("=" * 44)
+
+print("========== Condicionales ==========")
+# Declaramos variable
+edad = 16
+
+if edad >= 18:
+    print("Eres mayor de edad")
+elif edad >= 13:
+    print("Eres un adolescente")
+else:
+    print("Eres un niño")
+
+print("========== Iterativas ==========")
+print("== for ==")
+
+for num in range (1, 11): 
+    print(num) #* “Para cada número del 1 al 10, imprímelo”
+#* Se cuantas veces repetir "for"
+
+print("== while ==")
+
+contador = 1
+
+while contador <= 5:
+    print(contador)
+    contador += 1
+#* Depende de una condición "while"
+
+print("=" * 43)
+print("========== Manejo de excepciones ==========")
+print("=" * 43)
+
+try:
+    resultado = 10 / 0
+except:
+    print("Ocurrió un error")
+
+#* Manejo con 'else'
+try:
+    numero = int("5")
+except ValueError:
+    print("Error")
+else:
+    print("Conversión exitosa:", numero) #* 'else' solo corre si no hubo excepción
+
+#* 'finally'
+try:
+    numero = int("5")
+except ValueError:
+    print("Error")
+finally:
+    print("Esto siempre se ejecuta")
+
+#* try:
+    # código riesgoso
+#* except TipoDeError:
+    # qué hacer si falla
+#* else:
+    # qué hacer si todo salió bien
+#* finally:
+    # siempre se ejecuta
 
 # * DIFICULTAD EXTRA (opcional):
 # * Crea un programa que imprima por consola todos los números comprendidos
