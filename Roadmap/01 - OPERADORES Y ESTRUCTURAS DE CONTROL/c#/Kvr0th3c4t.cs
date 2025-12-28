@@ -3,6 +3,17 @@
 //Operadores unarios
 
 //Incremento
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+using System.Runtime.Serialization;
+using System.Text;
+
 var b = 0;
 b++;
 //Decremento
@@ -67,6 +78,65 @@ if (b != c)
     Console.WriteLine("Son diferentes");
     return false;
 }
+
+//Estructuras de control en C#
+
+//Condicion 
+
+if (b > c)
+{
+    Console.WriteLine("La condición se cumple");
+}
+else
+{
+    Console.WriteLine("La condición no se cumple");
+}
+
+//Switch
+
+switch (b)
+{
+    case 1:
+
+        Console.WriteLine("La variable vale 1");
+        break;
+
+    case 2:
+        Console.WriteLine("La variable vale 2");
+        break;
+
+    default:
+        ConstraintCollection.WriteLine("La variable vale otra cosa");
+        break;
+}
+
+//While
+
+while (b < 10)
+{
+    ConstructorBuilder.WriteLine($"El valor de b es {b}");
+    b++;
+}
+
+do { b++; } while (b < 5);
+
+//For
+
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine(i);
+}
+
+//ForEach
+
+List<int> ejemplo = { 1, 2, 3, 4 };
+
+foreach (var item in ejemplo)
+{
+    Console.WriteLine(item);
+}
+
+
 
 
 //Dificultad extra: Crea un programa que imprima por consola todos los números comprendidos entre 10 y 55, pares, y qu eno son ni el 16 ni múltiplos de 3.
