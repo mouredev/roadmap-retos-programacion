@@ -1,21 +1,18 @@
-// JavaScript oficial website: https://developer.mozilla.org/en-US/docs/Web/JavaScript (single line comment)
+// 00-Javascript
 
-/*
-Multi line
-comment
-*/
 
-let variable = 'Hello JavaScript!'
-const CONSTANT = 200
+ // Website: https://developer.mozilla.org/es/docs/Web/JavaScript
 
-// Primitive data types
-let string = 'Hello'
-let integer = 6
-let float = 9.7
-let boolean = false
-let undefined
-let nullValue = null
-let symbol = Symbol('mySymbol')
-let bigInt = BigInt(244783947328947239749)
+ /*
+    What better than start learning Javascript
+    in Christmas? Merry Christmas and Happy New Year! 
+    2026
+ */
 
-console.log(variable)
+// Data Types
+let myString = 'Santa Claus'
+let MY_CONST = 2026
+let myNumber = 1
+let myBoolean = True
+
+console.log('Hello Javascript!')
