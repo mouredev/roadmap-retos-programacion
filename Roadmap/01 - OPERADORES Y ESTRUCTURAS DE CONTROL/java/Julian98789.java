@@ -1,6 +1,6 @@
 package MauroDevRetos;
 
-public class reto_1 {
+public class Julian98789 {
     
         public static void main(String[] args) {
             // Operadores Aritméticos

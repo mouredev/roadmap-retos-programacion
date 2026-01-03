@@ -1,11 +1,11 @@
-package com.example.headfirstjava;
+//package com.example.headfirstjava;
 
-import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.SpringApplication;
 
 public class Natalinacn {
 
     public static void main(String[] args) {
-        SpringApplication.run(HeadFirstjavaApplication.class, args);
+        //SpringApplication.run(HeadFirstjavaApplication.class, args);
 
         //#01-OPERADORES Y ESTRUCTURAS DE CONTROL
 
@@ -118,9 +118,9 @@ public class Natalinacn {
         //Operador de Comparación de Tipo
 
         //instanceof Compara un objeto con un tipo especificado
-        Dog dog1 = new Dog();
+        //Dog dog1 = new Dog();
 
-        System.out.println("El objeto dog1 es instancia de Dog? " + (dog1 instanceof Dog));
+        //System.out.println("El objeto dog1 es instancia de Dog? " + (dog1 instanceof Dog));
 
         //Operadores Bitwise y de Desplazamiento de Bits
         //

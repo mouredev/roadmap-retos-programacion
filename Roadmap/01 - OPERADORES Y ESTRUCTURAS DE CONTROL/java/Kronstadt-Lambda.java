@@ -5,6 +5,7 @@
 
 // package roadmap.java.r01;
 
+/*
 public class KronstadtLambda {
 
     public static int suma(int a, int b) {
@@ -26,6 +27,8 @@ public class KronstadtLambda {
          * Operators in Java
          */
         // Arithmetic operators
+
+/*
         System.out.println("float_a + float_b = " + (float_a + float_b));
         System.out.println("float_a - float_b = " + (float_a - float_b));
         System.out.println("float_a * float_b = " + (float_a * float_b));
@@ -76,6 +79,8 @@ public class KronstadtLambda {
          * Control structures in Java
          */
         // If, if-else, else statement
+
+/*
         if (float_a == float_b) {
             System.out.println("float_a is equal to float_b");
         } else if (float_a > float_b) {
@@ -168,6 +173,7 @@ public class KronstadtLambda {
             /* 
              * It is useful for testing the behavior of the program when an exception is thrown like error handling.
              */
+/*
         } catch (ArithmeticException e) {
             System.out.println(e.getMessage());
         }
@@ -176,6 +182,8 @@ public class KronstadtLambda {
          * Extra exercise
          * Create a program that prints to the console all numbers between 10 and 55 (inclusive), even, and that are neither 16 nor multiples of 3
          */
+
+/*
         for (int i = 10; i <= 55; i++) {
             if (i % 2 == 0 && i != 16 && i % 3 != 0) {
                 System.out.println("The solution is " + i);
@@ -184,3 +192,4 @@ public class KronstadtLambda {
 
     }
 }
+*/

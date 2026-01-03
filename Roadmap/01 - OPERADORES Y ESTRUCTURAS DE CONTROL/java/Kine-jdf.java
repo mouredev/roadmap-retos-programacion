@@ -1,4 +1,6 @@
+/*
 public class Kine_jdf {
+
     public static void main(String args[]) {
      
      //Operadores Aritméticos:
@@ -142,3 +144,4 @@ System.out.println("Esto es un Integer?(wrapper obj para primitivo)" + (test ins
             System.out.print(end);
       }
 }
+ */

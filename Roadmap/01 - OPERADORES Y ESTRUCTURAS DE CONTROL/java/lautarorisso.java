@@ -1,4 +1,4 @@
-public class LogicaJava01 {
+public class lautarorisso {
     
     public static void main(String[] args) {
     

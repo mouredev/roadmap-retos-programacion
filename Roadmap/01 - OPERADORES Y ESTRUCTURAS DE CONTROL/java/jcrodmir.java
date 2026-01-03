@@ -1,5 +1,5 @@
 
-public class Main {
+public class jcrodmir {
     public static void main(String[] args) {
         //Assignment
 

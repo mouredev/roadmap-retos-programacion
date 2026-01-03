@@ -1,4 +1,4 @@
-public class Java01 {
+public class DjSurgeon {
   /*
    * EJERCICIO:
    * - Crea ejemplos de funciones básicas que representen las diferentes

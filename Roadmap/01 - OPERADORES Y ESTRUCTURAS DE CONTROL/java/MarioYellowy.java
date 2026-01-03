@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class YellowDev {
+public class MarioYellowy {
     public static void main(String[] args) {
         int value = 1;
         //Operadores

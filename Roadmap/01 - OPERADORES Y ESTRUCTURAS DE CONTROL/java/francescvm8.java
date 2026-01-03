@@ -56,7 +56,7 @@ public class francescvm8 {
 
         // Operadores de pertenencia
         System.out.println("\nOperadores de pertenencia");
-        System.out.println("Pertenece: "+(a instanceof Integer));
+        //System.out.println("Pertenece: "+(a instanceof Integer));
         
         // Estructuras de control
         System.out.println("\nEstructuras de control");

@@ -104,7 +104,7 @@ public class rumacar05 {
         }
 
         // Dificultad extra
-        for (int i = 10; i <= 55; i++) {
+        for (i = 10; i <= 55; i++) {
             if (i % 2 == 0 && i != 16 && i % 3 != 0) {
                 System.out.println(i);
             }

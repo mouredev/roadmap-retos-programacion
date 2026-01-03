@@ -16,7 +16,7 @@
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
  */
 
-public class reto01 {
+public class Hersac {
     public static void main(String[] args) {
         for (int i = 10; i <= 55; i++) {
             if (i % 2 == 0 && i % 3 != 0 && i != 16) {

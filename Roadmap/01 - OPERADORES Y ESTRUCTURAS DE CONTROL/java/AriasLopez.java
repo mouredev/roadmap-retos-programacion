@@ -1,4 +1,4 @@
-public class AriasLopez01 {
+public class AriasLopez {
 
     /**
      * @param args

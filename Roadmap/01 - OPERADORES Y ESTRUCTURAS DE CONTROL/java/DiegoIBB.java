@@ -16,10 +16,10 @@
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
  */
 
-package javaExample_;
+//package javaExample_;
 import java.util.Scanner;
 
-public class Operadores_Estructuras_de_Control_01 {
+public class DiegoIBB {
 	
 	//Excepción Customizada
 	static void largo_cadena(String nombre) {

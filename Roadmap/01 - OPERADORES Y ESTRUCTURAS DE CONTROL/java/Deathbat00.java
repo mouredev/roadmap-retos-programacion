@@ -1,7 +1,7 @@
 //DeathbatO 
 import java.util.Scanner;
 
-public class Reto1 {
+public class Deathbat00 {
     public static void main(String[] args) {
         // Declaracion de variables que se usaran en el codigo
         Scanner sc = new Scanner(System.in);

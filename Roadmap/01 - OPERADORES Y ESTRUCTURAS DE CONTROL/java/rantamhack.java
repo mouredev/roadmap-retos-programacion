@@ -18,7 +18,7 @@
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
 */
 
-public class rantamhack01 {
+public class rantamhack {
 
     public static void main(String[] args){
 

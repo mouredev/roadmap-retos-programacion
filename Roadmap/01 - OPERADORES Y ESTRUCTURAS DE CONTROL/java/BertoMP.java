@@ -169,7 +169,7 @@ public class BertoMP {
         switch (opcion) {
             case 1 -> System.out.println("Opción 1");
             case 2 -> System.out.println("Opcion 2");
-            default:
+            default ->
                 System.out.println("Opcion por defecto");
         }
 

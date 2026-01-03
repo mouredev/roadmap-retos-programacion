@@ -1,4 +1,6 @@
+/*
 public class Jony_English22 {
+
 
     public static void main(String[] args) {
 
@@ -62,6 +64,7 @@ public class Jony_English22 {
           Estructuras de control
          */
 
+/*
         for (int i = 1; i <= 5; i++) {
             System.out.println(i);
         }
@@ -129,6 +132,7 @@ public class Jony_English22 {
          * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
          */
 
+/*
         for (int i = 10; i <= 55; i++) {
             if ((i % 2 == 0 && i == 55) || (i != 16 && i % 3 != 0)) {
                 System.out.println(i);
@@ -136,3 +140,4 @@ public class Jony_English22 {
         }
     }
 }
+*/

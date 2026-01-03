@@ -1,6 +1,6 @@
 package retos;
 
-public class Uno {
+public class RighelCH {
 
 	public static void main(String[] args) {
 	int a=5, b=7;               

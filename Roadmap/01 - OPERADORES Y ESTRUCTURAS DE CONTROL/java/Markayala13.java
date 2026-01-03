@@ -1,4 +1,4 @@
-public class RoadRamp02 {
+public class Markayala13 {
     public static void main(String[] args) {
 
 //        /*Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje:

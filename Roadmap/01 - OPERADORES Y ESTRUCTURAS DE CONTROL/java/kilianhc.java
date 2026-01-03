@@ -1,6 +1,6 @@
 package retosProgramacion;
 
-public class RetoDos {
+public class kilianhc {
 
     public static void main(String[] args) {
         

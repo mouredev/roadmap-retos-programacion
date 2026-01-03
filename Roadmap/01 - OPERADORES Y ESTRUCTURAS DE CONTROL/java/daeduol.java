@@ -15,7 +15,7 @@
  *
  * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
  */
-public class Main {
+public class daeduol {
 
 
     public static void main(String[] args) {
@@ -209,7 +209,6 @@ public class Main {
             System.out.println("java Dev");
         }
 
-    }
         /*
         reto extra
          */
@@ -219,4 +218,6 @@ public class Main {
         }
 
     }
-}
+
+
+    }

@@ -1,6 +1,6 @@
 package practicas;
 
-public class Main {
+public class Fluna29 {
     public static void main(String[] args) {
         
 
