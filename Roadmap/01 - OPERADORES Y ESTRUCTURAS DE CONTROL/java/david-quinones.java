@@ -1,11 +1,11 @@
 import java.sql.SQLException;
-
+/*
 public class david-quinones {
 
     public static void main(String[] args) {
         david-quinones lopez = new david-quinones();
         lopez.operadores();
-    }   
+    }
 
     public void operadores() {
         arithmetic();
@@ -92,6 +92,7 @@ public class david-quinones {
      * 
      */
 
+/*
     public void condicionales() {
         int david = 9;
 
@@ -205,6 +206,8 @@ public class david-quinones {
 
     // controles utilizados en todo lo anterior (continue, break, return)
     /* estructura de saltos */
+
+/*
     public void jumpStructure(){
         //break
         for(int i = 0; i < 5; i++){
@@ -235,6 +238,7 @@ public class david-quinones {
 
     public void additionalExercice(){
         /* ADDICIONAL */
+/*
         for(int i = 10; i < 56; i++){
             if(i == 16 || i % 2 != 0 || i % 3 == 0){ 
 
@@ -245,10 +249,4 @@ public class david-quinones {
 
     }
 
-
-
-
-
-
-
-}
+ */
