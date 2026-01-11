@@ -3,6 +3,9 @@ import java.util.stream.Stream;
 
 public class FranDev200 {
 
+    static HashMap<Integer, String> contactList = new HashMap<>();
+    static Scanner scan = new Scanner(System.in);
+
     static void main() {
 
         /*
@@ -186,7 +189,36 @@ public class FranDev200 {
 
          */
 
+        int choice;
 
+        do{
+
+            System.out.println("\nAGENDA PERSONAL, que desea hacer:");
+            System.out.println("---------------------------------");
+            System.out.println("1 - Agregar un contacto.");
+            System.out.println("2 - Buscar contactos.");
+            System.out.println("3 - Actualizar un contacto.");
+            System.out.println("4 - Eliminar un contacto.");
+            System.out.println("5 - Salir.");
+            System.out.println("---------------------------------");
+            System.out.print("Eleccion: ");
+
+
+            try {
+                choice = Integer.parseInt(scan.nextLine());
+
+                if(choice > 0 && choice < 6){
+                    options(choice);
+                }else{
+                    System.out.println("Selecciona un numero correcto.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Introduzca un número.");
+                choice = 0;
+            }
+
+        }while (choice != 5);
 
     }
 
@@ -201,5 +233,279 @@ public class FranDev200 {
                 o1.getKey().compareTo(o2.getKey()));
 
     }
+
+    // EJERCICIO EXTRA
+    public static void options(int choice) {
+
+        switch (choice){
+            case 1:
+
+                addContact();
+                break;
+
+            case 2:
+
+                if(!contactList.isEmpty()){
+                    search();
+                }else{
+                    System.out.println("Añade un contacto primero.");
+                }
+
+                break;
+
+            case 3:
+
+                if(!contactList.isEmpty()){
+                    editContact();
+                }else{
+                    System.out.println("Añade un contacto primero.");
+                }
+
+                break;
+
+            case 4:
+
+                if(!contactList.isEmpty()){
+                    deleteContact();
+                }else{
+                    System.out.println("Añade un contacto primero.");
+                }
+
+                break;
+
+            case 5:
+
+                System.out.println("SALIENDO...");
+                break;
+        }
+
+
+    }
+
+    private static void addContact() {
+
+        int number = 0;
+        String name = "";
+        String checkNum = "";
+
+        do{
+            System.out.print("Introduce el número (9 digitos): ");
+
+            try {
+                number = Integer.parseInt(scan.nextLine());
+                checkNum = String.valueOf(number);
+                if(checkNum.length() != 9){
+                    System.out.println("Longitud incorrecta.");
+
+                }else{
+                    if(contactList.containsKey(number)){
+                        System.out.println("Ese número ya existe.");
+                    }else{
+                        System.out.print("Introduce el nombre del contacto: ");
+                        name = scan.nextLine();
+                    }
+
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Formato incorrecto.");
+            }
+        }while(checkNum.length() != 9 || contactList.containsKey(number));
+
+        contactList.put(number, name);
+        System.out.println("Contacto guardado.");
+    }
+
+    private static void search() {
+        int choice = 0;
+
+        do{
+            System.out.println("\nBuscar por:");
+            System.out.println("-----------");
+            System.out.println("1 - Número.");
+            System.out.println("2 - Nombre.");
+            System.out.println("-----------");
+            System.out.print("Respuesta: ");
+
+            try {
+                choice = Integer.parseInt(scan.nextLine());
+
+                if(choice == 1 || choice == 2){
+                    searchContact(choice);
+                }else{
+                    System.out.println("Elección incorrecta.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Introduzca un número.");
+            }
+        }while (choice != 1 && choice != 2);
+    }
+
+    private static void searchContact(int choice) {
+
+        int num;
+        String name;
+        if(choice == 1){
+            try {
+                System.out.print("Introduce el número o parte de él: ");
+                num = Integer.parseInt(scan.nextLine());
+                for (Map.Entry<Integer, String> contact: searchByNum(contactList, num).toList()){
+                    System.out.println(contact.getValue() + " --> " + contact.getKey());
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Formato incorrecto.");
+            }
+        }else if (choice == 2) {
+            System.out.print("Introduce el nombre o parte de él: ");
+            name = scan.nextLine();
+            for (Map.Entry<Integer, String> contact: searchByName(contactList, name).toList()){
+                System.out.println(contact.getValue() + " --> " + contact.getKey());
+            }
+        }
+
+    }
+
+    private static Stream<Map.Entry<Integer, String>> searchByNum(HashMap<Integer, String> contacts, int numToSearch){
+
+        String num = String.valueOf(numToSearch);
+        return contacts.entrySet().stream().filter(
+                entry -> entry.getKey().toString().contains(num)
+        );
+
+    }
+
+    private static Stream<Map.Entry<Integer, String>> searchByName(HashMap<Integer, String> contacts, String nameToSearch){
+
+        return contacts.entrySet().stream().filter(
+                entry -> entry.getValue().toLowerCase().contains(nameToSearch.toLowerCase())
+        );
+
+    }
+
+    private static void deleteContact(){
+        int number = 0;
+        String checkNum = "";
+        do{
+            System.out.print("Introduce el número a eliminar: ");
+
+            try {
+                number = Integer.parseInt(scan.nextLine());
+                checkNum = String.valueOf(number);
+                if(checkNum.length() != 9){
+                    System.out.println("Longitud incorrecta.");
+
+                }else{
+                    if(!contactList.containsKey(number)){
+                        System.out.println("Ese número no existe.");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Formato incorrecto.");
+            }
+        }while(checkNum.length() != 9 || !contactList.containsKey(number));
+
+        contactList.remove(number);
+        System.out.println("Contacto eliminado.");
+    }
+
+    private static void editContact(){
+
+        System.out.println("LISTA DE CONTACTOS (" + contactList.entrySet().stream().toList().size() + " contactos)");
+        System.out.println("=================================");
+        for (Map.Entry<Integer, String> contact: contactList.entrySet().stream().toList()){
+            System.out.println(" - " + contact.getKey() + " --> " + contact.getValue());
+        }
+
+        int number = 0;
+        String checkNum = "";
+        do{
+            System.out.print("Introduce el número del contacto a editar: ");
+
+            try {
+                number = Integer.parseInt(scan.nextLine());
+                checkNum = String.valueOf(number);
+                if(checkNum.length() != 9){
+                    System.out.println("Longitud incorrecta.");
+
+                }else{
+                    if(!contactList.containsKey(number)){
+                        System.out.println("Ese número no existe.");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Formato incorrecto.");
+            }
+        }while(checkNum.length() != 9 || !contactList.containsKey(number));
+
+        int choice = 0;
+
+        do{
+            System.out.println("\n¿Qué quiere editar?");
+            System.out.println("-------------------");
+            System.out.println("1 - Número.");
+            System.out.println("2 - Nombre.");
+            System.out.println("-----------");
+            System.out.print("Respuesta: ");
+
+            try {
+                choice = Integer.parseInt(scan.nextLine());
+
+                if(choice == 1){
+                    editNumber(number);
+                } else if (choice == 2) {
+                    editName(number);
+                } else{
+                    System.out.println("Elección incorrecta.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Introduzca un número.");
+            }
+        }while (choice != 1 && choice != 2);
+
+    }
+
+    private static void editName(int number) {
+
+        System.out.print("Introduzca un nombre nuevo: ");
+        String name = scan.nextLine();
+        contactList.put(number, name);
+        System.out.println("Contacto modificado.");
+    }
+
+    private static void editNumber(int number) {
+
+        int newNumber = 0;
+        String name = "";
+        String checkNum = "";
+
+        do{
+            System.out.print("Introduce el nuevo número (9 digitos): ");
+
+            try {
+                newNumber = Integer.parseInt(scan.nextLine());
+                checkNum = String.valueOf(newNumber);
+                if(checkNum.length() != 9){
+                    System.out.println("Longitud incorrecta.");
+
+                }else{
+                    if(contactList.containsKey(newNumber)){
+                        System.out.println("Ese numero ya existe.");
+                    }
+
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Formato incorrecto.");
+            }
+        }while(checkNum.length() != 9 || contactList.containsKey(newNumber));
+
+        name = contactList.get(number);
+        contactList.put(newNumber, name);
+        contactList.remove(number);
+
+        System.out.println("Contacto modificado.");
+    }
+
 
 }
