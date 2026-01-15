@@ -1,9 +1,8 @@
+// 03-Javascript
+
+
 /*
  * EJERCICIO:
- * - Muestra ejemplos de creación de todas las estructuras soportadas por defecto en tu lenguaje.
- * - Utiliza operaciones de inserción, borrado, actualización y ordenación.
- *
- * DIFICULTAD EXTRA (opcional):
  * Crea una agenda de contactos por terminal.
  * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
  * - Cada contacto debe tener un nombre y un número de teléfono.
@@ -14,101 +13,84 @@
  * - También se debe proponer una operación de finalización del programa.
  */
 
-// *********** Array ***********
-let myArray = [] 
 
-// Array methods
-myArray.push(1, 2, 3, 4, 5) // Push elements
-myArray.pop() // Delete the last element
-myArray.shift() // Delete the first element
-myArray.unshift('Hello') // Add element to the init
-// console.log(myArray.slice(0,2)) // Print two first elements
+// Array
+let myArray = new Array()
+myArray = [1, 2, 3]
 
-// to insert "Feb" at index 1:
-let months = ["Jan", "March", "April", "June"];
-months.splice(1, 0, "Feb");
-// console.log(months); // ["Jan", "Feb", "March", "April", "June"]
-
-// To replace an element at index 4 with "May":
-months.splice(4, 1, "May");
-// console.log(months); // ["Jan", "Feb", "March", "April", "May"]
+myArray.push(4)
+myArray.pop()
+myArray[0] = 200
+myArray = myArray.sort((a, b) => a - b); // Ascending sort
+myArray = myArray.sort((a, b) => b - a); // Descending sort
+// console.log(myArray)
 
 
-// *********** Set ***********
-let mySet = new Set(['Hello', true, 7])
-
-// Methods
-mySet.add('Hellooo')
-// console.log(mySet)
-
-mySet.delete(7)
-// console.log(mySet)
-
-// console.log(mySet.has('Hello'))
-// console.log(mySet.size)
-
-let myArray1 = Array.from(mySet) // Create an array from a set
-// console.log(myArray1)
-
-mySet = new Set(myArray1) // Create a set from an array
+/* Set
+    Can not update and sort because has no index, and are unique elements
+*/
+let mySet = new Set()
+mySet = new Set(["Cat", "Dog", "Fox"])
+mySet.add('Elephant')
+mySet.delete("Cat")
 // console.log(mySet)
 
 
-// *********** Map ***********
-let myMap = new Map( [
-    ['name', 'Lia'],
-    ['color', 'blue']
+/* Map
+    Insertion order
+*/
+let myMap = new Map()
+myMap = new Map([
+  ["Name", "Cat"],
+  ["Age", 21],
 ])
-
-// console.log(myMap)
-myMap.set('alias', 'li')
-myMap.set('name', 'LIA')
-// console.log(myMap)
-
-// console.log(myMap.get('name'))
-// console.log(myMap.has('name'))
-// console.log(myMap.delete('color'))
+myMap.set("Location", "Chile")
+myMap.delete("Name")
+myMap.set("Location", "France")
 // console.log(myMap)
 
-// console.log(myMap.keys())
-// console.log(myMap.values())
 
-myMap.clear()
-// console.log(myMap)
+// Exercise
+class Contact {
+    constructor(name, phoneNumber) {
+        this._name = name
+        this._phoneNumber = phoneNumber
+    }
 
-// *********** Object ***********
+    set name(newName) {
+        if (typeof newName == 'string') {
+            this._name = newName 
+        } else {
+            console.log('Name must be a string')
+        }
+    }
 
-let person = {
-    name: 'Matias',
-    age: 10,
-    walk: function() {
-        console.log('Walking')
+    set phoneNumber(newPhoneNumber) {
+        let phoneLength = newPhoneNumber.toString().length
+
+        if (typeof newPhoneNumber == 'number' &&
+            phoneLength >= 9 &&
+            phoneLength <= 13) {
+
+            this._phoneNumber = newPhoneNumber
+
+        } else {
+            console.log('Phone must be a number [9-13 char]')
+        }
+    }
+
+    get name() {
+        return this._name 
+    }
+
+    get phoneNumber() {
+        return this._phoneNumber
     }
 }
 
-person.name = 'Brais'
-delete person.age
-person.color = 'blue'
-person.walk()
-console.log(person)
 
-// keys
-for (let key in person) {
-    console.log(key)
-}
+let newContact = new Contact()
+newContact.name = 'Lucia'
+newContact.phoneNumber = 123456789
 
-// values
-for (let key in person) {
-    console.log(person[key])
-}
-
-// constructor (no, it must be a class)
-class Person {
-    constructor(name, age) {
-        this.name = name,
-            this.age = age
-    }
-}
-
-let person1 = new Person('Ludmila', 13)
-console.log(person1)
+console.log(newContact)
