@@ -6,8 +6,8 @@ public class Ismx17 {
     // Comentario en una linea
 
     /* Comentario
-    De varias
-    Lineas */
+    de varias
+    lineas */
 
     String constante = "Esto es una constante";
 
