@@ -27,7 +27,6 @@ import random
 # 3. Ten en cuenta que la primera fila (con el nombre de las columnas)
 #    no debe tenerse en cuenta.
 
-path = ""
 
 def get_info_csv(path: str):
     active_users = []
@@ -50,9 +49,9 @@ def lottery(array: list):
     discount = winners[1]
     book = winners[2]
     
-    print(f"El correo {annual_subscribe['email']} ha ganado una subscripcion a Mouredev.pro.")
-    print(f"El correo {discount['email']} ha ganado un descuento del 15%.")
-    print(f"El correo {book['email']} ha ganado el libro de Brais Moure")
+    print(f"El correo {annual_subscribe['email']} con ID {annual_subscribe["id"]}, ha ganado una subscripcion a Mouredev.pro.")
+    print(f"El correo {discount['email']} con ID {discount["id"]}, ha ganado un descuento del 15%.")
+    print(f"El correo {book['email']} con ID {book["id"]}, ha ganado el libro de Brais Moure")
 
 def main():
     array = get_info_csv(path)
