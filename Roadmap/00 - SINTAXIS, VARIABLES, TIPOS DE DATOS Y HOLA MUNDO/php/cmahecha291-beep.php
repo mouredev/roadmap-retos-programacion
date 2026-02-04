@@ -41,10 +41,19 @@
                 Imprimir textoy variables al tiempo
                     Para imprimir un texto y una variable al tiempo debemos escibir echo, luego enttre comillar el texto y para concatenar
                     utilizamnos un punto " . ", luego el nombre de la variable, ejemplo: echo "Soy una cadena de texto: " . $mysting; 
-                    " Siempre que llamemos una variable la tendremos que llamr con el signo $".
+                    " Siempre que llamemos una variable la tendremos que llamar con el signo $".
             */
             echo " Soy una cadena de texto: " . $my_string;
-
+    
+        // OPERADORES EN PHP
+            // Operadores Aritmeticos
+                $a = 10;
+                $b = 5;
+                echo " La suma de a + b es: " . ($a + $b);
+                echo " La resta de a - b es: " . ($a - $b);
+                echo " La multiplicacion de a * b es: " . ($a * $b);
+                echo " La division de a / b es: " . ($a / $b);
+                echo " El modulo de a % b es: " . ($a % $b);
         
 
     
