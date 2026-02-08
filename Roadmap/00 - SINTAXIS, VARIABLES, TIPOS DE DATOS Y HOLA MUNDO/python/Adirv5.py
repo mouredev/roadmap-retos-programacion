@@ -22,3 +22,5 @@ print(my_variable)
 print(MY_CONSTANTE)
 print(my_integer)
 print(my_float)
+
+"comentario para verificar que el codigo se ejecuta correctamente"
