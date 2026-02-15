@@ -26,7 +26,7 @@ public class RodrigoGit87 {
         String seller = "RodrigoGit87";
         File user = new File(seller);
 
-        // -----SEleccion de opciones del menu --------
+        // -----Selección de opciones del menu --------
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
 
