@@ -12,7 +12,7 @@ Los operadores pueden ser de varios tipos:
 """
 
 #1.1. Operadores aritmeticos:
-print("1. Operadores aritmeticos:")
+print("\n1.1. Operadores aritmeticos:")
 a = 10
 b = 3
 print(f"Suma: {a} + {b} = {a + b}") #Adicion +
@@ -33,7 +33,7 @@ pero redondeando al superior, es decir, si el resultado es:
 '''
 
 #1.2. Operadores de comparacion (Retorna un valor logico (boolean: True / False)):
-print("2. Operadores de comparacion")
+print("\n1.2. Operadores de comparacion")
 print(f"Igualdad: {a} == {b} => {a == b}") #Igualdad = 
 print(f"Desgualdad: {a} != {b} => {a != b}") #No igual a !=
 print(f"Mayor que: {a} > {b} => {a > b}") #Mayor que >, a > b 3 no es mayor que 10.
@@ -42,7 +42,7 @@ print(f"Mayor que: {a} >= {b} => {a >= b}") #Mayor o igual que >=, a >= b 3 no e
 print(f"Menor que: {a} <= {b} => {a <= b}") #Menor o igual que <=, a <= b 3 es MENOR o igual que 10.
 
 #1.3. Operadores logicos
-print("3. Operadores logicos")
+print("\n1.3. Operadores logicos")
 c = True
 d = False
 print(f"Son iguales? {c} AND {d} = {c and d}") #AND Combinandolos solo sera True si ambos lo son.
@@ -50,7 +50,7 @@ print(f"Son diferentes? {c} OR {d} = {c or d}") #OR Combinandolos sera True si p
 print(f"No es! \"NOT {d}\" = {not d}") #NOT Niega un valor bool, sea True o False.
 
 #1.4. Operadores Bit a Bit
-print("4. Operadores Bit a Bit")
+print("\n1.4. Operadores Bit a Bit")
 e = 5 #En binario: (0101)
 f = 3 #En binario: (0011)
 
@@ -63,6 +63,7 @@ print(f"BitAND: Son iguales? {e} y {f} => {(e << 1)}") #Left Shift: << mueve los
 print(f"BitAND: Son iguales? {e} y {f} => {(e >> 1)}") #Right Shift: >> mueve los bits de "e" a la derecha e=5(0101)=>2(0010), y llena los espacios con ceros "0".
 
 #1.5. Operadores de asignacion:
+print("\n1.5. Operadores de asignacion")
 g = 5
 print (f"Asginacion: g es {g}") #Asignacion = asigna el valor de la derecha a la variable de la izquierda.
 g += 3
@@ -105,12 +106,14 @@ Conceptos clave para los operadores compuestos.
 3. Estos modifican la variable directamente, asi que son especialmente utiles in loops o tareas repetitivas.
 """
 #1.6. Operadores de membresia:
+print("\n1.6. Operadores de membresia")
 m =[1, 2, 3]
 
 print(f"IN, esta el 2 EN m?: {2 in m}") #"in" True si el valor esta en la secuencia (lista en este caso).
 print(f"NOT IN, NO ESTA el 4 en m: {4 not in m}") #"not in" True si el valor no se encuentra en la secuencia.
 
 #1.7. Operadores de identidad
+print("\n1.7. Operadores de identidad")
 k = 6
 l = 6
 
@@ -119,6 +122,7 @@ print(f"IS NOT, K NO ES l => {k is not l}") #"is not" True si no son el mismo ob
 
 ### Estructuras de control ###
 #1. Condicional
+print("\n\n2.1. Condicional")
 x = 2
 y = 6
 z = 3
@@ -146,8 +150,8 @@ else:
     print(f"Los numeros x={x}, y={y}, z={z}, son iguales.")
 
 #2. Estructuras de control iterativas.
-
 #Contar numeros del 1 hasta el 15
+print("\n2.2. Estructuras de control iterativas")
 contar = 1
 
 print("\nLoop While:")
@@ -164,6 +168,7 @@ for char in "Hola,mundo":
 
 #2.2.1. Control de flujo dentro de bucles.
 #break: Detiene el bucle inmediatamente.
+print("\n2.2.1. Control de flujo dentro de bucles")
 print("Break")
 for numero in range (1 , 11):
     if numero == 8:
@@ -192,6 +197,7 @@ print(resultado)
 
 
 #2.3. Excepciones:
+print("\n2.3. Excepciones")
 #Try, except, else, Finally:
 import random
 try:
@@ -204,7 +210,20 @@ except ValueError:
 except ZeroDivisionError:
     print("El numero no puede ser cero")
 finally:
-    print("Siempre se ejecuta")
+    print("Siempre se ejecuta\n")
 
+"""
+DIFICULTAD EXTRA (opcional):
+ * Crea un programa que imprima por consola todos los números comprendidos 
+ entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+"""
+print("\nEjercicio numeros")
 
+for i in range(10, 56):
+    if i == 16:
+        continue
+    elif i % 3 == 0:
+        continue
+    else:
+        print(i)
 
