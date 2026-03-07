@@ -222,6 +222,8 @@ print("\nEjercicio numeros")
 for i in range(10, 56):
     if i == 16:
         continue
+    elif i % 2 == 0:
+        continue
     elif i % 3 == 0:
         continue
     else:
