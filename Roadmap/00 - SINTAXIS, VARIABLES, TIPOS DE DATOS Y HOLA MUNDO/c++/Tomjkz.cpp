@@ -13,6 +13,8 @@ lineas.
 */
 
 int main() { 
+//CONST PARA REPRESENTAR UNA CONSTANTE, NO PUEDE CAMBIAR DURANTE EL PROGRAMA.
+const int MAX_VIDAS = 5;
 
 // Variables de c++
 
@@ -49,7 +51,10 @@ string nombre = "Tomas";
 bool estaQuieto = true;
 estaQuieto = false;
 
-cout << "Hola c++!";
+//COUT PARA IMPRIMIR EN CONSOLA.
+cout << "Hola c++!\n";
 
+//tambien se puede usar para imprimir en consola una variable. 
+cout << "Mi edad es: " << edad;  
 return 0;
 }
