@@ -1,63 +1,46 @@
-// Arithmetic operators + - / % **
-let a = 5
-let b = 2
-let c = 10
-let counter = 0
-let value = 3
+// 01-Javascript
 
-let add = a + b
-let subtract = a - b
-let division = a / b
-let module = a % b
-let power = a ** b
 
-// Comparison operators and conditional sentences
-for(let i = 0; i < 5; i++) {
-    console.log('Hello!')
+// Arithmetic operators
+let number_one = 10
+let number_two = 3
+
+let sum = number_one + number_two
+console.log(`Sum: ${sum}`)
+
+let substract = number_one - number_two
+console.log(`Substract: ${substract}`)
+
+let multiply = number_one * number_two
+console.log(`Multiply: ${multiply}`)
+
+let division = (number_one / number_two).toFixed(2)
+console.log(`Division: ${division}`)
+
+
+// Control structures
+if (sum != 0) {
+    console.log('The sum is different than zero')
+} else {
+    console.log('The sum is zero')
 }
 
-if (b < c) {
-    console.log(`${c} is higher than ${b}`)
+let count = 0
+while (count < 3) {
+    console.log(sum)
+    count ++
 }
 
-while (counter < a) {
-    console.log(`Counter value: ${counter}`)
-    counter ++
-}
-
+count = 1
 do {
-    console.log(`Do while value: ${b}`)
-    b++
-} while (b != a)
+    console.log('Hello') 
+    count ++
+} while (count != 3)
 
-switch (value) {
-    case 1: 
-        console.log('The value is 1')
-        break
-    case 2:
-        console.log('The value is 2')
-        break
-    case 3: 
-        console.log('The value is 3')
-        break
-    default:
-        console.log('The value do not exists')
-}
 
-// Logic operators
-if (a > b && b < c) {
-    console.log(`${a} is higher than ${b} and ${b} is lower to ${c}`)
-}
-
-if (a > b || b < c) {
-    console.log(`${a} is higher than ${b} or ${b} is lower to ${c}`)
-}
-
-// Create a program that prints to the console all numbers between 10 and 55 (inclusive), even, 
-// and that are neither 16 nor multiples of 3.
-for(let i = 10; i <= 55; i++) {
-    if((i != 16) && i % 2 == 0 && i % 3 != 0) {
+// Exercise
+for (let i = 0; i <= 55; i++) {
+    if (i != 16 && i % 3 != 0 && i % 2 == 0) {
         console.log(i)
     }
-    
 }
