@@ -30,6 +30,14 @@ console.log("20" == 20);
 //igual estricto
 console.log("20" === 20);
 
+//Operadores de asignacion
+
+let mi_numero = 10;
+console.log(mi_numero);
+mi_numero -= 1
+console.log(mi_numero);
+mi_numero += 2
+console.log(mi_numero);
 //iteradores
 
 //While
