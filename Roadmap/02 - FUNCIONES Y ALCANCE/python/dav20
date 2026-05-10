@@ -1,0 +1,311 @@
+
+# ============================================================
+# FUNCIONES EN PYTHON
+# ============================================================
+
+# -----------------------------------------------------------
+# 1. FUNCIÓN SIN PARÁMETROS NI RETORNO
+# -----------------------------------------------------------
+print("=" * 50)
+print("FUNCIÓN SIN PARÁMETROS NI RETORNO")
+print("=" * 50)
+
+
+def saludar():
+    print("  ¡Hola! Soy una función sin parámetros ni retorno.")
+
+
+saludar()
+
+
+# -----------------------------------------------------------
+# 2. FUNCIÓN CON UN PARÁMETRO, SIN RETORNO
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIÓN CON UN PARÁMETRO, SIN RETORNO")
+print("=" * 50)
+
+
+def saludar_a(nombre):
+    print(f"  ¡Hola, {nombre}! Bienvenido.")
+
+
+saludar_a("David")
+saludar_a("Python")
+
+
+# -----------------------------------------------------------
+# 3. FUNCIÓN CON VARIOS PARÁMETROS, SIN RETORNO
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIÓN CON VARIOS PARÁMETROS, SIN RETORNO")
+print("=" * 50)
+
+
+def presentar(nombre, edad, lenguaje):
+    print(f"  Me llamo {nombre}, tengo {edad} años y programo en {lenguaje}.")
+
+
+presentar("David", 25, "Python")
+
+
+# -----------------------------------------------------------
+# 4. FUNCIÓN CON RETORNO
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIÓN CON RETORNO")
+print("=" * 50)
+
+
+def sumar(a, b):
+    return a + b
+
+
+resultado = sumar(10, 5)
+print(f"  sumar(10, 5) = {resultado}")
+
+
+# -----------------------------------------------------------
+# 5. FUNCIÓN CON RETORNO MÚLTIPLE
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIÓN CON RETORNO MÚLTIPLE")
+print("=" * 50)
+
+
+def operaciones(a, b):
+    suma = a + b
+    resta = a - b
+    multiplicacion = a * b
+    return suma, resta, multiplicacion
+
+
+s, r, m = operaciones(12, 4)
+print(f"  operaciones(12, 4) → Suma: {s}, Resta: {r}, Multiplicación: {m}")
+
+
+# -----------------------------------------------------------
+# 6. FUNCIÓN CON PARÁMETROS POR DEFECTO
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIÓN CON PARÁMETROS POR DEFECTO")
+print("=" * 50)
+
+
+def potencia(base, exponente=2):
+    return base ** exponente
+
+
+print(f"  potencia(5) = {potencia(5)}")         # Usa exponente=2 por defecto
+print(f"  potencia(5, 3) = {potencia(5, 3)}")   # Usa exponente=3
+
+
+# -----------------------------------------------------------
+# 7. FUNCIÓN CON ARGUMENTOS VARIABLES (*args y **kwargs)
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIÓN CON *args Y **kwargs")
+print("=" * 50)
+
+
+# *args - Número variable de argumentos posicionales
+def sumar_todos(*args):
+    print(f"  Argumentos recibidos: {args}")
+    return sum(args)
+
+
+print(f"  sumar_todos(1, 2, 3, 4, 5) = {sumar_todos(1, 2, 3, 4, 5)}")
+
+
+# **kwargs - Número variable de argumentos con nombre
+def mostrar_info(**kwargs):
+    print("  Información recibida:")
+    for clave, valor in kwargs.items():
+        print(f"    {clave}: {valor}")
+
+
+mostrar_info(nombre="David", lenguaje="Python", nivel="Intermedio")
+
+
+# -----------------------------------------------------------
+# 8. FUNCIONES DENTRO DE FUNCIONES (FUNCIONES ANIDADAS)
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIONES DENTRO DE FUNCIONES")
+print("=" * 50)
+
+
+def funcion_externa(texto):
+    print(f"  Función externa recibe: '{texto}'")
+
+    def funcion_interna():
+        print(f"  Función interna accede a: '{texto}'")
+        return texto.upper()
+
+    resultado = funcion_interna()
+    print(f"  Resultado de función interna: '{resultado}'")
+    return resultado
+
+
+funcion_externa("hola mundo")
+
+
+# Closure (función que recuerda su entorno)
+print("" + "=" * 50)
+print("--- Closure ---")
+
+
+def crear_multiplicador(factor):
+    def multiplicar(numero):
+        return numero * factor
+    return multiplicar
+
+
+doble = crear_multiplicador(2)
+triple = crear_multiplicador(3)
+
+print(f"  doble(5) = {doble(5)}")     # 10
+print(f"  triple(5) = {triple(5)}")   # 15
+
+
+# -----------------------------------------------------------
+# 9. FUNCIONES LAMBDA (ANÓNIMAS)
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("=" * 50)
+
+cuadrado = lambda x: x ** 2
+suma_lambda = lambda a, b: a + b
+
+print(f"  cuadrado(7) = {cuadrado(7)}")
+print(f"  suma_lambda(3, 8) = {suma_lambda(3, 8)}")
+
+
+# -----------------------------------------------------------
+# 10. FUNCIONES YA CREADAS EN EL LENGUAJE (BUILT-IN)
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("FUNCIONES BUILT-IN DE PYTHON")
+print("=" * 50)
+
+numeros = [34, 7, 23, 89, 12, 56, 1]
+
+print(f"  Lista: {numeros}")
+print(f"  len() → Longitud: {len(numeros)}")
+print(f"  max() → Máximo: {max(numeros)}")
+print(f"  min() → Mínimo: {min(numeros)}")
+print(f"  sum() → Suma: {sum(numeros)}")
+print(f"  sorted() → Ordenada: {sorted(numeros)}")
+print(f"  reversed() → Invertida: {list(reversed(numeros))}")
+print(f"  abs(-42) → Valor absoluto: {abs(-42)}")
+print(f"  round(3.7) → Redondeo: {round(3.7)}")
+print(f"  type(numeros) → Tipo: {type(numeros)}")
+print(f"  isinstance(42, int) → {isinstance(42, int)}")
+
+# map, filter, zip
+print("--- map, filter, zip ---")
+cuadrados = list(map(lambda x: x ** 2, [1, 2, 3, 4, 5]))
+print(f"  map(cuadrado, [1,2,3,4,5]) = {cuadrados}")
+
+pares = list(filter(lambda x: x % 2 == 0, [1, 2, 3, 4, 5, 6]))
+print(f"  filter(pares, [1,2,3,4,5,6]) = {pares}")
+
+nombres = ["Ana", "Luis", "María"]
+edades = [25, 30, 28]
+combinados = list(zip(nombres, edades))
+print(f"  zip(nombres, edades) = {combinados}")
+
+
+# -----------------------------------------------------------
+# 11. VARIABLES LOCALES Y GLOBALES
+# -----------------------------------------------------------
+print("" + "=" * 50)
+print("VARIABLES LOCALES Y GLOBALES")
+print("=" * 50)
+
+# Variable global
+variable_global = "Soy GLOBAL"
+
+
+def funcion_local():
+    # Variable local
+    variable_local = "Soy LOCAL"
+    print(f"  Dentro de la función:")
+    print(f"    variable_local = '{variable_local}'")
+    print(f"    variable_global = '{variable_global}'")  # Puede leer la global
+
+
+funcion_local()
+print(f"  Fuera de la función:")
+print(f"    variable_global = '{variable_global}'")
+# print(variable_local)  # ¡ERROR! No existe fuera de la función
+
+# Modificar variable global dentro de una función
+print("--- Modificar variable global con 'global' ---")
+
+contador_global = 0
+
+
+def incrementar():
+    global contador_global
+    contador_global += 1
+    print(f"  Dentro de la función: contador_global = {contador_global}")
+
+
+print(f"  Antes: contador_global = {contador_global}")
+incrementar()
+incrementar()
+incrementar()
+print(f"  Después: contador_global = {contador_global}")
+
+# Variable con mismo nombre (local vs global)
+print("--- Mismo nombre, diferente ámbito ---")
+
+mensaje = "Soy la variable GLOBAL"
+
+
+def demostrar_ambito():
+    mensaje = "Soy la variable LOCAL"  # No afecta a la global
+    print(f"  Dentro de la función: '{mensaje}'")
+
+
+demostrar_ambito()
+print(f"  Fuera de la función: '{mensaje}'")
+
+
+# ============================================================
+# DIFICULTAD EXTRA
+# ============================================================
+# Función que recibe dos cadenas de texto y retorna un número.
+# Imprime números del 1 al 100:
+# - Múltiplo de 3 → muestra primer parámetro
+# - Múltiplo de 5 → muestra segundo parámetro
+# - Múltiplo de 3 y 5 → muestra ambos concatenados
+# - Retorna cuántas veces se imprimió el número (no texto)
+# ============================================================
+print("" + "=" * 50)
+print("DIFICULTAD EXTRA - FIZZBUZZ PERSONALIZADO")
+print("=" * 50)
+
+
+def fizzbuzz_personalizado(texto_tres: str, texto_cinco: str) -> int:
+    contador_numeros = 0
+
+    for numero in range(1, 101):
+        if numero % 3 == 0 and numero % 5 == 0:
+            print(f"  {texto_tres}{texto_cinco}")
+        elif numero % 3 == 0:
+            print(f"  {texto_tres}")
+        elif numero % 5 == 0:
+            print(f"  {texto_cinco}")
+        else:
+            print(f"  {numero}")
+            contador_numeros += 1
+
+    return contador_numeros
+
+
+# Ejecutar la función
+veces_numero = fizzbuzz_personalizado("Fizz", "Buzz")
+print(f"  El número se imprimió {veces_numero} veces (en lugar de texto).")
+
