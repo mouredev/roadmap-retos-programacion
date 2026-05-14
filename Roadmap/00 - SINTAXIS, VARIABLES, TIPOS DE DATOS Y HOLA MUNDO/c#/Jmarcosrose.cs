@@ -1,5 +1,4 @@
-
-// Lenguae seleccionado para el curso es "C#"
+// Lenguage seleccionado para el curso es "C#"
 // url del sitio de C # es: https://dotnet.microsoft.com/es-es/languages/csharp
 
 // Sintaxis para un comentario de una sola línea.
@@ -18,7 +17,7 @@ bool abierto = verdadero;
 bool cerrado = falso;
 
 // string Cadena de caracteres.
-string saludo = "C#";
+string saludo = "lenguaje C#";
 
 // char Un solo caracter Unicode.
 char letra = "A";
@@ -33,12 +32,10 @@ int a = 10;
 long distancia = 8500000000L;
 
 // float Decimal de precisión simple.
-float grados = 2.123456f;
+float grados = 2.123456f; 
 
 // double Decimal de doble precisión.
 double PI = 3.14159265358979;
 
 // Impresión por pantalla de un mensaja.
-Console.WriteLine($"¡Hola {saludo}");
-
-    
+Console.WriteLine("¡Hola " + saludo);
