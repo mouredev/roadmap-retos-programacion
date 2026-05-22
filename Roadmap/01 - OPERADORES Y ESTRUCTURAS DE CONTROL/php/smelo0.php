@@ -67,12 +67,57 @@ echo "el $quatro es menor o igual a $sinco? , $menorigual" . PHP_EOL;
 $mayorigual = ($sinco >= $sinco);
 echo "el $sinco es mayor o igual a $sinco? , $mayorigual" . PHP_EOL;
 
+/// OPERADOR DE IDENTIDAD
+// OPERADOR DE IGUALDAD ESTRICTA
+$strictEqualComp = (5 === 5);
+echo "es 5 exactamente igual al 5, $strictEqualComp";
+
+// PARQUEADERO DE DESIGUALDAD ESTRICTA
+$strictNotEqual = (5 !== 5);
+echo "es 5 exactamente diferente a 5?, $strictNotEqual";
+
+/// OPERADOR DE PERTENENCIA Y FOREACH
+
+$myArray = [5, 8, 13, 21, 34];
+$checkIn = [5, 13, 34];
+$checkIngArray = in_array($checkIn, $myArray);
+
+foreach ($myArray as $number) {
+    if (in_array($number, $checkIn )) {
+        echo "el numero $number esta en el arreglo" . PHP_EOL;
+    }
+    else {
+        echo "el numero $number no esta en el arreglo" . PHP_EOL;
+    }
+}
+
+/// FOR
+
+for ($contador = 0; $contador <= 5; $contador++) {
+    echo "el contador va en $contador";
+}
+
+/// TRY, CATCH Y FINALLY
+
+
+$sheInterested = false;
+
+
+try {
+    if ($sheInterested !== true) {// lo que podria ir mal
+        throw new Exception("no esta interesada");
+    }
+} catch (Exception $error) {
+    echo "algo fallo, {$error->getMessage()}" . PHP_EOL;
+} finally {
+    echo "sigue intentando pa, {$error->getMessage()}, eso pasa" . PHP_EOL;
+}
 
 $personas =  0;
 
 $curso = 'Programacion en php';
 
-
+/// WHILE, IF Y ELSE
 
 while ($personas <= 15) {
     $desicion = readline('quieres inscrirte al curso? y/n ');
@@ -101,4 +146,20 @@ while ($personas <= 15) {
     else  {
         echo "opcion no valida";
     }
+};
+
+// RETO EXTRA
+
+/* 
+* Crea un programa que imprima por consola todos los números comprendidos
+* entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+*/
+
+
+
+for ($i = 10; $i < 55; $i++) {
+    if (($i % 2 === 0) && ($i !== 16) && ($i % 3 === 0)) {
+        echo "joder iteracion $i" . PHP_EOL;
+    }
+
 }
