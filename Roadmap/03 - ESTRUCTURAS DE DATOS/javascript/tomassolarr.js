@@ -80,14 +80,6 @@ function menu(){
                 });
                 break;
             case '4':
-                rl.question('Ingrese el nombre del contacto a eliminar:', (nombreBuscado)=>{
-                 const contacto = contactos.find(c => c.nombre.toLowerCase() === nombreBuscado.toLowerCase());
-                 if(contacto) return contactos.filter(c => c.nombre.toLowerCase() !== nombreBuscado.toLowerCase() )
-                    else console.log("Contacto no encontrado")
-                    menu();
-                })
-                break;
-                case '4':
                     rl.question('Ingrese el nombre del contacto a eliminar:', (nombreBuscado) => {
                         const contacto = contactos.find(c => c.nombre.toLowerCase() === nombreBuscado.toLowerCase());
                         if (contacto) {
