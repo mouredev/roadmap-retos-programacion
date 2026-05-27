@@ -53,3 +53,133 @@ def remove_file():
 create_file()
 read_file()
 remove_file()
+
+#Extra
+
+def sales_management():
+    open("sales management.txt", "a")
+
+    while True:
+        print(
+        "1. Añadir producto\n" \
+        "2. Consultar producto\n" \
+        "3. Actualizar producto\n" \
+        "4. Eliminar producto\n" \
+        "5. Mostrar productos\n" \
+        "6. Calcular venta total\n" \
+        "7. Calcular venta producto\n" \
+        "8. Salir")
+
+        option = int(input("Introduce el número de la opción que desea realizar: "))
+
+        match option:
+            case 1:
+                #Solicitamos que el usuario nos introduca nombre del producto, cantidad vendida y el precio
+                name = input("Introduce el nombre del producto: ")
+                amount = input("Introduce la cantidad vendida: ")
+                price = input("Introduce el precio: ")
+
+                with open("sales management.txt", "a") as file:
+                    file.write(f"{name}, {amount}, {price}\n")
+                
+            case 2:
+                name = input("Introduce el nombre del producto a consultar: ")
+
+                with open("sales management.txt", "r") as file:
+                    content_file = file.readlines()
+                    for line in content_file:
+                        element = line.split(",")
+                        if name == element[0]:
+                            print(line)
+
+            case 3:
+                name = input("Introduce el nombre del producto a actualizar: ")
+                update = False
+
+                with open("sales management.txt", "r") as file:
+                    content_file = file.readlines()
+                    #Buscamos la posición donde se encuentra el producto a actualizar
+                    for element in content_file:
+                        if name in element:
+                            position = content_file.index(element)
+                            name = input("Introduce el nombre del producto: ")
+                            amount = input("Introduce la cantidad vendida: ")
+                            price = input("Introduce el precio: ")
+                            #Actualizamos el producto
+                            content_file[position] = f"{name}, {amount}, {price}\n"
+                            update = True
+                
+                if update:
+                    #Escribimos de nuevo el fichero con los cambios            
+                    with open("sales management.txt", "w")as file:
+                            for line in content_file:
+                                file.writelines(line)
+                    print("Producto actualizado")
+                else:
+                    print("Producto no encontrado")
+
+            case 4:
+                name = input("Introduce el nombre del producto a eliminar: ")
+                update = False
+
+                with open("sales management.txt", "r") as file:
+                    content_file = file.readlines()
+                    #Buscamos la posición donde se encuentra el producto a actualizar
+                    for element in content_file:
+                        if name in element:
+                            position = content_file.index(element)
+                            #Borramos producto
+                            content_file.remove(content_file[position])
+                            print("Producto eliminado")
+                            update = True
+                
+                if update:
+                    #Escribimos de nuevo el fichero con los cambios            
+                    with open("sales management.txt", "w")as file:
+                        for line in content_file:
+                            file.writelines(line)
+                else:
+                    print("Producto no encontrado")
+                
+            case 5:
+                with open("sales management.txt", "r") as file:
+                    lines = file.readlines()
+
+                    for line in lines:
+                        print(line.replace("\n","")) 
+
+            case 6:
+                total = 0
+                with open("sales management.txt", "r") as file:
+                    content_file = file.readlines()
+                    for line in content_file:
+                        element = line.split(",")
+                        amount = int(element[1])
+                        price = float(element[2])
+                        total += amount * price
+                print(f"El valor total de los productos es {total}")
+                
+            case 7:
+                total = 0
+                name = input("Introduce el nombre del producto del que desea ver su venta: ")
+
+                with open("sales management.txt", "r") as file:
+                    content_file = file.readlines()
+                    for line in content_file:
+                        element = line.split(",")
+                        if name in element:
+                            amount = int(element[1])
+                            price = float(element[2])
+                            total = amount * price
+                    print(f"El valor total de la venta del producto {name} es: {total}")
+
+            case 8:
+                #Borrado del fichero indicado
+                os.remove("sales management.txt")
+
+                return False    
+            case _:
+                print("Debes indicar un número entre 1 y 8")
+            
+
+sales_management()

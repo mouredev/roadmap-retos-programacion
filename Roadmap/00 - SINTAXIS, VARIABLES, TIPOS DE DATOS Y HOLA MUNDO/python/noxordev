@@ -1,0 +1,38 @@
+# https://www.python.org/
+
+# Comentario en una línea
+
+"""
+Esto es un
+comentario
+en varias líneas
+"""
+
+'''
+Esto
+También
+lo es
+'''
+
+Var_Ej = "Ejemplo" # Texto
+codex = 10          # Entero
+MY_CONSTANT = "Constante" # por convención
+
+# Variables primitivas
+my_int = 5 #integer
+my_float = 3.14 #float
+my_bool = True #boolean
+my_bool = False #boolean
+my_string = "Mi cadena de texto" #string
+
+#otras variables
+my_list = [1, 2, 3, 4, 5] #list
+my_tuple = (1, 2, 3) #tuple
+my_dict = {"clave1": "valor1", "clave2": "valor2"} #dict
+my_set = {1, 2, 3} #set
+
+print(Var_Ej)
+print(type(my_int))
+print(type(my_float))
+print(type(my_bool))
+
