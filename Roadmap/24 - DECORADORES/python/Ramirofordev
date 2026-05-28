@@ -1,0 +1,44 @@
+'''
+Ejercicio:
+Explora el concepto de "decorador" y muestra como crearlo con un ejemplo generico.
+'''
+
+def requiere_usuario(func):
+    def wrapper(*args, **kwargs):
+        usuario = kwargs.get("usuario")
+        if usuario is None:
+            print("Acceso denegado.")
+            return
+        return func(*args, **kwargs)
+    return wrapper
+
+@requiere_usuario
+def ver_perfil(usuario = None):
+    print(f"Mostrando perfil de {usuario}.")
+
+ver_perfil(usuario = "Carlos")
+ver_perfil()
+
+'''
+Dificultad extra:
+Crea un decorador que sea capaz de contabilizar cuantas veces se ha llamado a una funcion y aplicalo a una funcion de tu eleccion.
+'''
+
+def llamadas(func):
+    counter = 0 
+    def wrapper(*args, **kwargs):
+        nonlocal counter
+        counter += 1
+        print(f"La funcion se ha llamado {counter} vez/veces")
+        return func(*args, **kwargs)
+    return wrapper
+
+@llamadas
+def sum_two_values(a, b):
+    print(a + b)
+
+sum_two_values(5, 6)
+
+sum_two_values(3, 6)
+
+sum_two_values(5, 7)
