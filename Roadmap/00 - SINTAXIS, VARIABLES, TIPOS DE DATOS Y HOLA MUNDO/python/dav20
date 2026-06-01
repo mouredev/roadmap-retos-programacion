@@ -1,0 +1,64 @@
+
+# Sitio web oficial de Python: https://www.python.org
+
+# -----------------------------------------------------------
+# COMENTARIOS EN PYTHON
+# -----------------------------------------------------------
+
+# Esto es un comentario de una sola línea
+
+# También puedes escribir comentarios
+# en varias líneas usando múltiples #
+
+"""
+Esto es un comentario multilínea (docstring).
+Se puede usar para documentar funciones, clases o módulos.
+Python no tiene un comentario multilínea "oficial",
+pero las cadenas de texto con triple comilla se usan para este propósito.
+"""
+
+'''
+También se puede usar con comillas simples triples.
+Funciona de la misma manera que las comillas dobles triples.
+'''
+
+# -----------------------------------------------------------
+# VARIABLES Y CONSTANTES
+# -----------------------------------------------------------
+
+# Variable
+mi_variable = "Soy una variable y puedo cambiar"
+
+# Constante (por convención se usa MAYÚSCULAS, Python no tiene constantes reales)
+MI_CONSTANTE = "Soy una constante por convención"
+
+# -----------------------------------------------------------
+# TIPOS DE DATOS PRIMITIVOS
+# -----------------------------------------------------------
+
+# String (cadena de texto)
+mi_string = "Hola, soy una cadena de texto"
+
+# Integer (entero)
+mi_entero = 42
+
+# Float (decimal)
+mi_float = 3.14
+
+# Boolean (booleano)
+mi_booleano_verdadero = True
+mi_booleano_falso = False
+
+# NoneType (ausencia de valor)
+mi_none = None
+
+# Complex (número complejo)
+mi_complejo = 2 + 3j
+
+# -----------------------------------------------------------
+# IMPRIMIR EL SALUDO
+# -----------------------------------------------------------
+
+print("¡Hola, Python!")
+
+
