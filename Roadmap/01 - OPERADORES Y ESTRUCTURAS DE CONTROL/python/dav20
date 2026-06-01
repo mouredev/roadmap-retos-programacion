@@ -1,0 +1,241 @@
+
+# ============================================================
+# OPERADORES EN PYTHON
+# ============================================================
+
+# -----------------------------------------------------------
+# 1. OPERADORES ARITMÉTICOS
+# -----------------------------------------------------------
+print("=" * 50)
+print("OPERADORES ARITMÉTICOS")
+print("=" * 50)
+
+a = 15
+b = 4
+
+print(f"a = {a}, b = {b}")
+print(f"Suma: a + b = {a + b}")              # 19
+print(f"Resta: a - b = {a - b}")             # 11
+print(f"Multiplicación: a * b = {a * b}")    # 60
+print(f"División: a / b = {a / b}")          # 3.75
+print(f"División entera: a // b = {a // b}") # 3
+print(f"Módulo: a % b = {a % b}")            # 3
+print(f"Exponente: a ** b = {a ** b}")        # 50625
+
+# -----------------------------------------------------------
+# 2. OPERADORES DE COMPARACIÓN
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("OPERADORES DE COMPARACIÓN")
+print("=" * 50)
+
+x = 10
+y = 20
+
+print(f"x = {x}, y = {y}")
+print(f"Igual que: x == y → {x == y}")             # False
+print(f"Diferente de: x != y → {x != y}")          # True
+print(f"Mayor que: x > y → {x > y}")               # False
+print(f"Menor que: x < y → {x < y}")               # True
+print(f"Mayor o igual que: x >= y → {x >= y}")     # False
+print(f"Menor o igual que: x <= y → {x <= y}")     # True
+
+# -----------------------------------------------------------
+# 3. OPERADORES LÓGICOS
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("OPERADORES LÓGICOS")
+print("=" * 50)
+
+v = True
+f = False
+
+print(f"v = {v}, f = {f}")
+print(f"AND: v and f → {v and f}")     # False
+print(f"OR: v or f → {v or f}")        # True
+print(f"NOT: not v → {not v}")         # False
+print(f"NOT: not f → {not f}")         # True
+
+# -----------------------------------------------------------
+# 4. OPERADORES DE ASIGNACIÓN
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("OPERADORES DE ASIGNACIÓN")
+print("=" * 50)
+
+c = 10
+print(f"c = {c}")
+
+c += 5
+print(f"c += 5 → {c}")    # 15
+
+c -= 3
+print(f"c -= 3 → {c}")    # 12
+
+c *= 2
+print(f"c *= 2 → {c}")    # 24
+
+c /= 4
+print(f"c /= 4 → {c}")    # 6.0
+
+c //= 2
+print(f"c //= 2 → {c}")   # 3.0
+
+c **= 3
+print(f"c **= 3 → {c}")   # 27.0
+
+c %= 5
+print(f"c %= 5 → {c}")    # 2.0
+
+# -----------------------------------------------------------
+# 5. OPERADORES DE IDENTIDAD
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("OPERADORES DE IDENTIDAD")
+print("=" * 50)
+
+lista1 = [1, 2, 3]
+lista2 = [1, 2, 3]
+lista3 = lista1
+
+print(f"lista1 = {lista1}")
+print(f"lista2 = {lista2}")
+print(f"lista3 = lista1")
+print(f"lista1 is lista2 → {lista1 is lista2}")       # False (mismo valor, diferente objeto)
+print(f"lista1 is lista3 → {lista1 is lista3}")       # True (mismo objeto)
+print(f"lista1 is not lista2 → {lista1 is not lista2}") # True
+
+# -----------------------------------------------------------
+# 6. OPERADORES DE PERTENENCIA
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("OPERADORES DE PERTENENCIA")
+print("=" * 50)
+
+frutas = ["manzana", "banana", "cereza"]
+print(f"frutas = {frutas}")
+print(f"'banana' in frutas → {'banana' in frutas}")         # True
+print(f"'uva' in frutas → {'uva' in frutas}")               # False
+print(f"'uva' not in frutas → {'uva' not in frutas}")       # True
+
+texto = "Hola Mundo"
+print(f"
+texto = '{texto}'")
+print(f"'Mundo' in texto → {'Mundo' in texto}")             # True
+print(f"'Python' not in texto → {'Python' not in texto}")   # True
+
+# -----------------------------------------------------------
+# 7. OPERADORES A NIVEL DE BITS (BITWISE)
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("OPERADORES A NIVEL DE BITS")
+print("=" * 50)
+
+m = 12  # En binario: 1100
+n = 10  # En binario: 1010
+
+print(f"m = {m} (binario: {bin(m)})")
+print(f"n = {n} (binario: {bin(n)})")
+print(f"AND bits: m & n = {m & n} (binario: {bin(m & n)})")     # 8  → 1000
+print(f"OR bits: m | n = {m | n} (binario: {bin(m | n)})")      # 14 → 1110
+print(f"XOR bits: m ^ n = {m ^ n} (binario: {bin(m ^ n)})")     # 6  → 0110
+print(f"NOT bits: ~m = {~m} (binario: {bin(~m)})")              # -13
+print(f"Desplazamiento izq: m << 2 = {m << 2}")                 # 48
+print(f"Desplazamiento der: m >> 2 = {m >> 2}")                 # 3
+
+
+# ============================================================
+# ESTRUCTURAS DE CONTROL
+# ============================================================
+
+# -----------------------------------------------------------
+# 1. CONDICIONALES (if, elif, else)
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("ESTRUCTURAS CONDICIONALES")
+print("=" * 50)
+
+edad = 25
+
+if edad < 18:
+    print(f"Edad {edad}: Eres menor de edad")
+elif edad >= 18 and edad < 65:
+    print(f"Edad {edad}: Eres adulto")
+else:
+    print(f"Edad {edad}: Eres adulto mayor")
+
+# Operador ternario
+resultado = "Par" if edad % 2 == 0 else "Impar"
+print(f"La edad {edad} es: {resultado}")
+
+# Match (Python 3.10+)
+print("
+--- Match/Case (switch) ---")
+dia = 3
+
+match dia:
+    case 1:
+        print(f"Día {dia}: Lunes")
+    case 2:
+        print(f"Día {dia}: Martes")
+    case 3:
+        print(f"Día {dia}: Miércoles")
+    case 4:
+        print(f"Día {dia}: Jueves")
+    case 5:
+        print(f"Día {dia}: Viernes")
+    case _:
+        print(f"Día {dia}: Fin de semana")
+
+# -----------------------------------------------------------
+# 2. ESTRUCTURAS ITERATIVAS (bucles)
+# -----------------------------------------------------------
+print("
+" + "=" * 50)
+print("ESTRUCTURAS ITERATIVAS")
+print("=" * 50)
+
+# Bucle for
+print("--- Bucle for ---")
+for i in range(1, 6):
+    print(f"  Iteración {i}")
+
+# Bucle for con lista
+print("
+--- Bucle for con lista ---")
+colores = ["rojo", "verde", "azul"]
+for color in colores:
+    print(f"  Color: {color}")
+
+# Bucle while
+print("
+--- Bucle while ---")
+contador = 0
+while contador < 5:
+    print(f"  Contador: {contador}")
+    contador += 1
+
+# Break y Continue
+print("
+--- Break ---")
+for i in range(10):
+    if i == 5:
+        print(f"  Se detuvo en i = {i}")
+        break
+    print(f"  i = {i}")
+
+print("
+--- Continue ---")
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(f"  Impar: {i}")
+
+# --------------
