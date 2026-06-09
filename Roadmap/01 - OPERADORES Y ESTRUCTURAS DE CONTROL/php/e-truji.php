@@ -215,3 +215,113 @@ if (!$its_raining) {
 #### ARRAYS ####
 
 print("OPERADORES DE ARRAYS\n");
+
+// Unión de arrays + 
+// Si hay claves repetidas, se mantiene el valor del primer array, ignorando el valor del segundo array.
+
+$names_1 = array('a' => "María", 'b' => "Marta", 'c' => "Angeles");
+$names_2 = array('c' => "Diego", 'd' => "Francisco", 'a' => "José"); 
+$names = $names_1 + $names_2;
+var_dump($names);
+
+// Igualdad de arrays ==
+$array_1 = array(1 => "uno", 2 => "dos", 3 => "tres");
+$array_2 = array(3 => "tres", 2 => "dos", 1 => "uno");
+if ($array_1 == $array_2) {
+    echo "\nLos arrays son iguales\n";
+}
+
+// Identidad de arrays ===
+$array_1 = array(1 => "uno", 2 => "dos", 3 => "tres");
+$array_2 = array(1 => "uno", 2 => "dos", 3 => "tres");
+if ($array_1 === $array_2) {
+    echo "\nLos arrays son idénticos\n";
+}
+
+// Desigualdad de arrays !=
+$a = array(1 => "uno", 2 => "dos", 3 => "tres");
+$b = array(4 => "cuatro", 5 => "cinco");
+if ($a != $b) {
+    echo "\nLos arrays son diferentes\n";
+}
+
+// No identidad de arrays !==
+$a = array(1 => "uno", 2 => "dos", 3 => "tres");
+$b = array(3 => "tres", 2 => "dos", 1 => "uno");
+if ($a !== $b) {
+    echo "\nLos arrays no son idénticos\n";
+}
+
+
+#### CONDICIONALES ESPECIALES ####
+
+print("\nOPERADORES DE CONDICIONALES ESPECIALES\n");
+
+// Ternario ?: Es un if / else en una linea. La sintaxis es: condición ? valor_si_verdadero : valor_si_falso
+$score = 67;
+$result = ($score >= 50) ? "Aprobado" : "Suspenso";
+echo "Resultado: " . ($result) . "\n";
+
+// Fusión de null ?? Devuelve el primer operando si no es null, si es null, devuelve el segundo.
+$animal = $_POST['animal'] ?? 'Ningún animal seleccionado';
+echo "Animal seleccionado: " . ($animal) . "\n";
+
+
+#### BITS ####
+
+print("\nOPERADORES DE BITS\n");
+
+$a = 5; // En binario: 0101
+$b = 3; // En binario: 0011
+
+// AND & (El bit resultante es 1 solo si ambos bits son 1)
+$result = $a & $b; // Resultado en binario: 0001    
+echo "AND: " . ($result) . "\n";
+
+// OR | (el bit resultante es 1 si al menos uno de los bits es 1)
+$result = $a | $b; // Resultado en binario: 0111    
+echo "OR: " . ($result) . "\n";
+
+// XOR ^ (el bit resultante es 1 si los bits son diferentes)
+$result = $a ^ $b; // Resultado en binario: 0110    
+echo "XOR: " . ($result) . "\n";
+
+// NOT ~ (el bit resultante es el contrario al original, 0 se convierte en 1 y 1 se convierte en 0)
+$a = 5; // En binario: 0101
+$result = ~$a; // Resultado en binario: 1010    
+echo "NOT: " . ($result) . "\n";
+
+// Desplazamiento a la izquierda << (desplaza los bits a la izquierda, agregando ceros a la derecha)
+$a = 5; // En binario: 0101
+$result = $a << 1; // Resultado en binario: 1010    
+echo "Desplazamiento a la izquierda: " . ($result) . "\n";
+
+// Desplazamiento a la derecha >> (desplaza los bits a la derecha, eliminando los bits de la derecha)
+$a = 5; // En binario: 0101
+$result = $a >> 1; // Resultado en binario: 0010
+echo "Desplazamiento a la derecha: " . ($result) . "\n";
+
+
+#### EJECUCIÓN ####
+
+print("\nOPERADORES DE EJECUCIÓN\n");
+
+// El operador de ejecución `` ejecuta el comando dentro de las comillas y devuelve la salida como una cadena.
+$user_system = `whoami`;
+echo "El servidor PHP está ejecutándose con el user: " . ($user_system) . "\n";
+
+
+#### DE TIPO ####
+
+print("\nOPERADORES DE TIPO\n");
+
+// instanceof (verifica si un objeto es una instancia de una clase específica)
+$actual_date = new DateTime();
+
+if ($actual_date instanceof DateTime) {
+    echo "actual_date es una instancia de la clase DateTime\n";
+} else { 
+    echo "actual_date no es una instancia de la clase DateTime\n"; 
+    }
+
+    
