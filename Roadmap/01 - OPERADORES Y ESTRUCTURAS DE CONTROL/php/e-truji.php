@@ -437,3 +437,85 @@ $tasks = [
 foreach ($tasks as $moment => $description){
     echo "Por la $moment tengo que: $description\n";
 }
+
+
+// --------------------------------------------------
+// ESTRUCTURAS DE CONTROL - SALTOS DE FLUJO
+// --------------------------------------------------
+
+#### CONTINUE ####
+
+print("\nCONTINUE\n"); //Salta una iteración
+
+$users = [
+    "María" => "activo",
+    "Jose" => "inactivo",
+    "Estefania" => "activo"
+];
+
+foreach ($users as $name => $status) {
+    if ($status == "inactivo") {
+        continue;
+    }
+    echo "Los usuarios activos son: $name \n";
+}
+
+
+#### BREAK ####
+
+print("\nBREAK\n");
+
+for ($attempt = 1; $attempt <= 5; $attempt++) {
+    echo "Intento fallido número $attempt\n";
+
+    if ($attempt == 3) {
+        echo "Demasiados errores. ¡Cuenta bloqueada!\n";
+        break;
+    }
+}
+
+
+// --------------------------------------------------
+// ESTRUCTURAS DE CONTROL - EXCEPCIONES
+// --------------------------------------------------
+
+#### TRY - CATCH - FINALLY ####
+
+print("\nTRY - CATCH - FINALLY\n");
+
+try {
+    $admitted_cats = 3;
+    $current_cats = 6;
+
+    if ($current_cats > $admitted_cats) {
+        throw new Exception("Alerta: Demasiados gatos, no podemos acariciarlos a todos");
+    }
+    echo "Todo bajo control en la Casa de los Gatos\n";
+
+} catch (Exception $e) {
+    echo "Error capturado: " . $e->getMessage() . "\n";
+
+} finally { 
+    echo "Proceso de revisión finalizado\n";
+}
+
+
+// --------------------------------------------------
+// ###### ---- EXTRA ---- ######
+// --------------------------------------------------
+
+/* 
+    Crea un programa que imprima por consola todos
+    los números comprendidos entre 10 y 55 (incluidos),
+    pares, y que no son ni el 16 ni múltiplos de 3.
+
+*/
+
+
+for ($numbers = 10; $numbers <= 55; $numbers++) {
+        
+    if ($numbers % 2 === 0 && $numbers != 16 && $numbers % 3 !== 0) {
+        echo "$numbers\n"; 
+    }
+
+}
