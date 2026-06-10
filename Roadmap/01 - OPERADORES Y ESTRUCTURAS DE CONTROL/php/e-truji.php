@@ -313,7 +313,7 @@ echo "El servidor PHP está ejecutándose con el user: " . ($user_system) . "\n"
 
 #### DE TIPO ####
 
-print("\nOPERADORES DE TIPO\n");
+print("OPERADORES DE TIPO\n");
 
 // instanceof (verifica si un objeto es una instancia de una clase específica)
 $actual_date = new DateTime();
@@ -324,4 +324,116 @@ if ($actual_date instanceof DateTime) {
     echo "actual_date no es una instancia de la clase DateTime\n"; 
     }
 
+
+
+// --------------------------------------------------
+// ESTRUCTURAS DE CONTROL - CONDICIONALES
+// --------------------------------------------------
+
+#### IF - ELSE - ELSEIF ####
+
+print("\n\nIF - ELSE - ELSEIF\n");
+
+$traffic_light = "ámbar";
+
+if ($traffic_light === "verde") {
+    echo "Puedes seguir avanzando\n";
+} elseif ($traffic_light === "ámbar") {
+    echo "Ve frenando, puede cambiar a rojo pronto\n";
+} else {
+    echo "Debes parar!\n";
+}
+
+
+#### SWITCH ####
+
+print("\nSWITCH\n");
+
+$temperature = 26;
+
+switch (true) {
+    case ($temperature <= 0):
+        echo "Más frío que en la comunión de Pingu\n";
+        break;
     
+    case ($temperature > 0 && $temperature <= 15):
+        echo "Llevate una rebequia, que refresca\n";
+        break;
+    
+    case ($temperature > 15 && $temperature <= 25):
+        echo "Se comienza a estar bien en una terracita al sol\n";
+        break;
+    
+    default:
+        echo "Día de playa!\n";
+        break;
+       
+}
+
+#### MATCH #### (A partir de PHP 8.0)
+
+print("\nMATCH\n");
+
+$password = "12345";
+
+$result = match (true) {
+    strlen($password) < 6 => "Error: La contraseña debe tener más de 6 caracteres.",
+    !preg_match('/[a-zA-Z]/', $password) => "Error: La contraseña debe contener al menos una letra.",
+    !preg_match('/[0-9]/', $password) => "Error: La contraseña debe contener al menos un número.",
+    default => "Contraseña válida." 
+};
+echo $result . "\n";
+
+
+// --------------------------------------------------
+// ESTRUCTURAS DE CONTROL - BUCLES
+// --------------------------------------------------
+
+#### WHILE ####
+
+print("\nWHILE\n");
+
+$countdown = 5;
+
+while ($countdown >= 1) {
+    echo "Lanzamiento en: " . $countdown . "\n";
+    $countdown--;
+}
+echo "DESPEGAMOS!!\n";
+
+
+#### DO-WHILE ####
+
+print("\nDO-WHILE\n");
+
+$attempts = 0;
+
+do {
+    echo "Intentando conectar a la base de datos... (Intento " . ($attempts + 1) . ")\n";
+    $attempts++;
+} while ($attempts < 3);
+
+
+#### FOR ####
+
+print("\nFOR\n");
+// (Inicio ; Condición ; Incremento/Decremento)
+for ($progress = 0; $progress <= 100; $progress += 20) {
+    echo "Descargando actualización: " . $progress . "%\n";
+}
+echo "Descarga completada con éxito!\n";
+
+
+#### FOREACH ####
+
+print("\nFOREACH\n"); // Para arrays
+
+$tasks = [
+    "mañana" => "trabajar.",
+    "tarde" => "estudiar PHP.",
+    "noche" => "jugar y descansar."
+];
+
+foreach ($tasks as $moment => $description){
+    echo "Por la $moment tengo que: $description\n";
+}
