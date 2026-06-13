@@ -2,6 +2,8 @@
 let Numero1 = 1;
 let Numero2 = 2;
 
+let i = 0;
+
 console.log("Numero1 + Numero2 =", Numero1 + Numero2); // Suma
 console.log("Numero1 - Numero2 =", Numero1 - Numero2); // Resta
 console.log("Numero1 * Numero2 =", Numero1 * Numero2); // Multiplicación
@@ -63,7 +65,7 @@ if (!estaLogueado) {
 //Estructuras de Control
 
 //Condicional if-else
-let edad = 17;
+let edad2 = 17;
 
 if (edad >= 18) {
   console.log("Es mayor de edad");
@@ -91,7 +93,6 @@ for (let i = 0; i < 5; i++) {
 }
 
 //While
-let i = 0;
 
 while (i < 5) {
   console.log(i);
@@ -99,7 +100,6 @@ while (i < 5) {
 }
 
 //do-while
-let i = 0;
 
 do {
   console.log(i);
