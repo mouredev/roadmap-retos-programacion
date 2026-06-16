@@ -13,7 +13,7 @@ EJERCICIO:
 
  * - Crea una variable (y una constante si el lenguaje lo soporta).
 
-var cuidadFavorita = "Madrid" // Variable
+var ciudadFavorita = "Madrid" // Variable
 let petFavorito = "Gato" // Constante 
 
  * - Crea variables representando todos los tipos de datos primitivos del lenguaje (cadenas de texto, enteros, booleanos...).
