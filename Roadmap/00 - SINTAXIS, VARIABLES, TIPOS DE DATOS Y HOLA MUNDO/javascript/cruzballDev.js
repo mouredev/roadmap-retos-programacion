@@ -23,13 +23,15 @@ let lleno = null; // Nulo
 let dato; // undefined
 let id = Symbol("id"); //symbol
 
-console.log(typeof edad);
+/* console.log(typeof edad);
 console.log(typeof nombre);
 console.log(typeof activo);
 console.log(typeof lleno);
 console.log(typeof dato);
-console.log(typeof id);
+console.log(typeof id); */
+
+console.log(typeof id, dato, lleno, activo, nombre, edad);
 
 // - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
 
-console.log("Hola javaScript");
+console.log("Hola, javaScript");
