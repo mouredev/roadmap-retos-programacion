@@ -1,9 +1,9 @@
 # https://www.python.org/
 # Esta es una forma de crear comentarios.
-"""
+'''
 Y esta es otra forma de crear comentarios en
 Python
-"""
+'''
 
 """
 También podemos crear comentarios con 
