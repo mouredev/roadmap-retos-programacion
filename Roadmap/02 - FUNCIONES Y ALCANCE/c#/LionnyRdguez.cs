@@ -1,6 +1,5 @@
 using System;
-using System.IO.Compression;
-using System.Runtime.Serialization.Formatters;
+
 
 namespace Ejercicio_02
 {
@@ -8,26 +7,38 @@ namespace Ejercicio_02
     {
         static void Main(string[] args)
         {
-            
+            PrimerInciso.FuncionSinRetorno();
+            Console.WriteLine(PrimerInciso.FuncionConRetorno());
+            PrimerInciso.FuncionConParametros(3, 4);
+            Console.WriteLine(PrimerInciso.FuncionConParametrosYRetorno(10, 2));
+            SegundoInciso segundoInciso = new SegundoInciso();
+            segundoInciso.EjemploFuncionLocal(05041355927);
+            TercerInciso.Ejemplo();
+            CuartoInciso cuartoInciso = new CuartoInciso("LionnyRdguez");
+            Console.WriteLine(Name); //Esta variable al ser de clase
+                                     //no es accesible desde fuera de la clase
+            CuartoInciso.EjemploVariableLocal();
+            DificultadExtra.MiFuncion("Hola, soy la cadena uno.", "Hola soy la cadena dos");
+
         }
     }
 
     class PrimerInciso
     {
         //Crear funciones con las diferentes formas de declarar funciones en C#
-        public void FuncionSinRetorno(){
+        public static void FuncionSinRetorno(){
             Console.WriteLine("Esta es una función sin retorno");
         }
 
-        public int FuncionConRetorno(){
+        public static int FuncionConRetorno(){
             return 5;
         }
 
-        public void FuncionConParametros(int a, int b){
+        public static void FuncionConParametros(int a, int b){
             Console.WriteLine("La suma de los parámetros es: " + (a + b));
         }
 
-        public double FuncionConParametrosYRetorno(int a, int b){
+        public static double FuncionConParametrosYRetorno(int a, int b){
             if(b == 0){
                 throw new Exception("El segundo parámetro no puede ser cero");
             }
@@ -55,7 +66,7 @@ namespace Ejercicio_02
 
         public void EjemploFuncionLocal(long carnetIdentidad)
         {
-            int? edadPersona = null;
+            int edadPersona;
 
             int CalcularEdad() //Función local
             {
@@ -65,9 +76,11 @@ namespace Ejercicio_02
                 2000 + nacimiento; // Convirtiendo esas dos cifras al año de nacimiento
                 return (int)DateTime.Now.Year - nacimiento; // Calculando edad
             }
-
+           
+            edadPersona = CalcularEdad();
+            
             Console.WriteLine("La edad de la " +
-          "persona es " + edadPersona = CalcularEdad(carnetIdentidad));
+          "persona es " + edadPersona);
         }
     }
 
@@ -89,7 +102,7 @@ namespace Ejercicio_02
         //Hay que mencionar que en C# no existen las variables globales como en C
         //Por ende solo hay variables locales o de clase
         // Lo mas parecido a una variable global segun me dijo la IA es la variable de clase
-        private string Name { get; private set;} => String.Empty; //Variable de clase
+        public string Name { get; private set;} = String.Empty; //Variable de clase
         //Una variable de clase solo es accesible desde la clase donde fue declarada por metodos de dicha clase
 
         public CuartoInciso(string Name)
@@ -103,6 +116,11 @@ namespace Ejercicio_02
             Console.WriteLine($"Hola! Mi nombre es {Name}"); //Puedo acceder a Name porque este es un metodo de la clase 
             double pi = Math.PI; // Esta es una variable local. Solo es accesible desde este metodo                                                 
         }
+        
+        public static void EjemploVariableLocal()
+        {
+            Console.WriteLine(pi);
+        }
     }
 
     public class DificultadExtra
@@ -110,7 +128,7 @@ namespace Ejercicio_02
         public static int MiFuncion(string cad1, string cad2)
         {
             int cont = 0;
-            for(int i = 0; i < 100; i++)
+            for(int i = 1; i <= 100; i++)
             {
                 if(i % 3 == 0 && i % 5 == 0)
                 {
