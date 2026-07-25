@@ -258,15 +258,14 @@ print(precio_kilo)
 # Eliminación
 
 
-precio_kilo.pop()
-print(precio_kilo)
-
-precio_kilo.clear()
+precio_kilo.pop('tomate')
 print(precio_kilo)
 
 del precio_kilo['uva'] 
 print(precio_kilo)
 
+precio_kilo.clear()
+print(precio_kilo)
 
 
 """
@@ -293,7 +292,6 @@ __status__ = "Development"
 campos = ('nombre', 'apellidos', 'email', 'telefono')
 
 contactos = []
-
 
 
 def input_contact():
@@ -381,7 +379,7 @@ while continuar in ('s', 'S'):
 
     estados = ['Introducir', 'Eliminar', 'Buscar', 'Actualizar']
 
-    print('Bienvenido a a agenda python, estas son tus opciones')
+    print('Bienvenido a la agenda python, estas son tus opciones')
     print('------')
 
     for estado in estados:

@@ -1,84 +1,75 @@
-class Auto{
-    constructor(marca, color){
-        this.marca = marca;
-        this.color = color;
-    }
-
-    imprimirDatos(){
-        console.log(`El auto es marca ${this.marca} y es de color ${this.color}.`);
-    }
+class Phone {
+  constructor(marca, color) {
+    ;(this.marca = marca), (this.color = color)
+  }
+  imprimirDatos() {
+    console.log(`Tengo un celular ${this.marca} de color ${this.color}`)
+  }
 }
 
-let auto1 = new Auto('peugeout', 'rojo');
-auto1.imprimirDatos()
+const myPhone = new Phone('samsung', 'rojo')
+// myPhone.imprimirDatos()
 
-auto1.marca = 'fiat';
-auto1.color = 'azul';
-auto1.imprimirDatos()
+myPhone.marca = 'Apple'
+myPhone.color = 'gris'
+// myPhone.imprimirDatos()
 
+/** EJERCICIO */
 
-
-
-/////////////////////////////////////////
-//              Extra
-
-class Pila{
-    constructor(){
-        this.arr = [];
-    }
-
-    add(elem){
-        this.arr.push(elem);
-    }
-    delete(){
-        this.arr.pop();
-    }
-    cantElem(){
-        console.log('\n',this.arr.length);
-    }
-    mostrar(){
-        console.log('\n',this.arr);
-    }
+class Pila {
+  constructor(pilaArray) {
+    this.pila = pilaArray
+  }
+  add(element) {
+    this.pila.push(element)
+  }
+  delete() {
+    this.pila.pop()
+  }
+  length() {
+    console.log(this.pila.length)
+  }
+  print() {
+    console.log(this.pila)
+  }
 }
 
-class Cola{
-    constructor(){
-        this.arr = [];
-    }
-    add(elem){
-        this.arr.push(elem);
-    }
-    delete(){
-        this.arr.shift();
-    }
-    cantElem(){
-        console.log('\n',this.arr.length);
-    }
-    mostrar(){
-        console.log('\n',this.arr);
-    }
+class Cola {
+  constructor(colaArray) {
+    this.cola = colaArray
+  }
 
+  add(element) {
+    this.cola.push(element)
+  }
+  delete() {
+    this.cola.shift()
+  }
+  length() {
+    console.log(this.cola.length)
+  }
+  print() {
+    console.log(this.cola)
+  }
 }
 
-console.log('//////// Pila')
-let pilas = new Pila();
-pilas.add(2);
-pilas.add(3);
-pilas.add(4);
-pilas.mostrar();
-pilas.cantElem();
-pilas.delete();
-pilas.mostrar();
-pilas.cantElem();
+const arrayOfThePila = new Pila([1, 2, 3, 4, 5, 6])
+const arrayOfTheCola = new Cola([1, 2, 3, 4, 5, 6])
 
-console.log('//////// Cola')
-let colas = new Cola();
-colas.add(2);
-colas.add(3);
-colas.add(4);
-colas.mostrar();
-colas.cantElem();
-colas.delete();
-colas.mostrar();
-colas.cantElem();
+console.log('/////// PILA ///////')
+arrayOfThePila.print()
+arrayOfThePila.length()
+arrayOfThePila.add(7)
+arrayOfThePila.print()
+arrayOfThePila.length()
+arrayOfThePila.delete()
+arrayOfThePila.print()
 
+console.log('/////// COLA ///////')
+arrayOfTheCola.print()
+arrayOfTheCola.length()
+arrayOfTheCola.add(7)
+arrayOfTheCola.print()
+arrayOfTheCola.length()
+arrayOfTheCola.delete()
+arrayOfTheCola.print()

@@ -17,11 +17,11 @@ public class JehiselRuth {
     double average = 4.95;
     char character = 'J';
     boolean isComplete = true;
-    String myLanguaje = "Jehisel";
+    String myLanguage = "Jehisel";
     
     public static void main(String[] args) {
-        String myLanguaje = "Java";
-        System.out.println("¡Hola, "+ myLanguaje + "!");
+        String myLanguage = "Java";
+        System.out.println("¡Hola, "+ myLanguage + "!");
     }
 
 }

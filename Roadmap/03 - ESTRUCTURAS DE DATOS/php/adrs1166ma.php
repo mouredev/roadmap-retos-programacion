@@ -177,15 +177,8 @@ function extra() {
     global $agenda;
 
     while (true) {
-        echo "/- Agenda de Contactos -/<br>";
-        echo "1. Buscar contacto<br>";
-        echo "2. Insertar contacto<br>";
-        echo "3. Actualizar contacto<br>";
-        echo "4. Eliminar contacto<br>";
-        echo "5. Salir<br>";
-        echo "---------------------------<br>";
     
-        $opcion = readline("Seleccione una opción (1-5): ");
+        $opcion = readline("\n\n--------------------------- \n/- Agenda de Contactos -/ \n1. Buscar contacto \n2. Insertar contacto \n3. Actualizar contacto \n4. Eliminar contacto \n5. Salir \n--------------------------- \nSeleccione una opción (1-5): ");
     
         switch ($opcion) {
             case 1:
@@ -201,10 +194,10 @@ function extra() {
                 eliminarContacto($agenda);
                 break;
             case 5:
-                echo "Saliendo del programa<br>";
+                echo "Saliendo del programa\n";
                 exit;
             default:
-                echo "Inténtelo de nuevo.<br>";
+                echo "Inténtelo de nuevo.\n";
         }
     }
 }
@@ -219,15 +212,15 @@ function buscarContacto($agenda) {
 
     foreach ($agenda as $contacto) {
         if ($contacto['nombre'] === $nombre) {
-            echo "Nombre: {$contacto['nombre']}<br>";
-            echo "Teléfono: {$contacto['telefono']}<br>";
+            echo "Nombre: {$contacto['nombre']}\n";
+            echo "Teléfono: {$contacto['telefono']}\n";
             $encontrado = true;
             break;
         }
     }
 
     if (!$encontrado) {
-        echo "Contacto no encontrado.<br>";
+        echo "Contacto no encontrado.\n";
     }
 }
 
@@ -240,7 +233,7 @@ function insertarContacto(&$agenda) {
         'telefono' => $telefono
     ];
 
-    echo "Contacto insertado con éxito.<br>";
+    echo "Contacto insertado con éxito.\n";
 }
 
 function actualizarContacto(&$agenda) {
@@ -250,9 +243,9 @@ function actualizarContacto(&$agenda) {
     if ($indice !== -1) {
         $telefono = validarTelefono();
         $agenda[$indice]['telefono'] = $telefono;
-        echo "Contacto actualizado con éxito.<br>";
+        echo "Contacto actualizado con éxito.\n";
     } else {
-        echo "Contacto no encontrado.<br>";
+        echo "Contacto no encontrado.\n";
     }
 }
 
@@ -263,9 +256,9 @@ function eliminarContacto(&$agenda) {
     if ($indice !== -1) {
         unset($agenda[$indice]);
         $agenda = array_values($agenda);
-        echo "Contacto eliminado con éxito.<br>";
+        echo "Contacto eliminado con éxito.\n";
     } else {
-        echo "Contacto no encontrado.<br>";
+        echo "Contacto no encontrado.\n";
     }
 }
 
@@ -286,7 +279,7 @@ function validarTelefono() {
         if (ctype_digit($telefono) && strlen($telefono) <= 8) {
             return $telefono;
         } else {
-            echo "Número de teléfono no válido. Inténtelo de nuevo.<br>";
+            echo "Número de teléfono no válido. Inténtelo de nuevo.\n";
         }
     }
 }

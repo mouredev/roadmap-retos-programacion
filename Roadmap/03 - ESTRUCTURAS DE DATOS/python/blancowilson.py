@@ -103,6 +103,35 @@ last_name = StringVar()
 phone = StringVar()
 mail = StringVar()
 
+def empty_table():
+    rows = trvContacts.get_children()
+    for row in rows:
+        trvContacts.delete(row)
+
+def fill_table():
+    empty_table()
+    for index,row in enumerate(contacts):
+        print(index)
+        trvContacts.insert('', END,index,text=index,values=tuple(row.values()) )
+
+
+def add_contact():
+    new_contac ={'name': name.get(),
+     'last_name': last_name.get(),
+     'phone': phone.get()}
+    contacts.append(new_contac)
+    fill_table()
+   
+
+
+def delte_contact():
+    pass
+
+
+def modify_contact():
+    pass
+
+
 frame = LabelFrame(root, text="Formualari de contacto")
 frame.place(x=50, y=50, width=600, height=800)
 
@@ -138,32 +167,15 @@ trvContacts.heading('mail',text='e-Mail',anchor=CENTER)
 
 btnDelete = Button(frame, text='Eliminar', command=lambda:delte_contact)
 btnDelete.grid(column=1, row=4)
-btnAdd = Button(frame, text='Agregar', command=lambda:add_contact)
+btnAdd = Button(frame, text='Agregar', command=add_contact)
 btnAdd.grid(column=2, row=4)
 btnModify = Button(frame, text='Eliminar', command=lambda:modify_contact)
 btnModify.grid(column=3, row=4)
 
-def empty_table():
-    rows = trvContacts.get_children()
-    for row in rows:
-        trvContacts.delete(row)
-
-def fill_table():
-    empty_table()
-    for index,row in enumerate(contacts):
-        print(index)
-        trvContacts.insert('', END,index,text=index,values=tuple(row.values()) )
 
 
 
-def delte_contact():
-    pass
 
-def add_contact():
-    pass
-
-def modify_contact():
-    pass
 
 fill_table()
 

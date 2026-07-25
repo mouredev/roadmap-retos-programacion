@@ -8,7 +8,7 @@ te permite comentar más de una línea*/
 //Variable
 $hello = 'Hola';
 #Constante
-$languaje = 'PHP';    
+$language = 'PHP';    
 
 //Tipos primitivos
 $stringMyName = "Jehisel";
@@ -17,5 +17,5 @@ $double_weight = 53.3;
 $booleanIsActive = true;
 
 
-echo "¡$hello, $languaje!";
+echo "¡$hello, $language!";
 ?>

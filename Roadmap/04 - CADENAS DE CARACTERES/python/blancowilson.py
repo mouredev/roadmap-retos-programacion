@@ -30,6 +30,9 @@ string_list = [string1,', ', string2]
 print(string_list)
 
 def verify_string(word1: str, word2:str ):
-    print(f"{word1}", "NO" {if word1 == word1[::-1]} "es Palindromo")
+    print(f"{word1}  {'Is' if word1 == word1[::-1] else 'is Not'} a Palindromo")
+    print(f"{word2}  {'Is' if word2 == word2[::-1] else 'is Not'} a Palindromo")
 
-verify_string('Amor','Roma')
+    print(f"{word1}  {'Is' if sorted(word1) == sorted(word2) else 'is Not'} Anagrama of {word2}")
+
+verify_string('amor','roma')
