@@ -16,6 +16,7 @@ variable_float_temperatura= 37.5
 variable_str_texto= "Python"
 variable_bool_cielo_es_azul= True
 constante = 7
+numero_complejo = 4 + 2j
 
 #Imprimir 
 print(f"Hola mi nombre es Jess, y estoy estudiando {variable_str_texto}")
