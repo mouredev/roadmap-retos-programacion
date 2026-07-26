@@ -110,12 +110,6 @@ def my_agenda():
             case _:
                 print("Opción no válida, vuelve a elegir")
                 
-        
-
-
-
-
-
 my_agenda()
 
 
