@@ -52,7 +52,7 @@ print(f"my_number is not my_new_number es {my_number is not my_new_number}")
 print(f"'e' in 'yean' = {'e' in 'yeangit'}")
 print(f"'z' not in 'yean' = {'z' not in 'yeangit'}")
 
-# Operadores de bits
+# Operadores de bit
 a = 10 # 1010
 b = 3 # 0011
 print(f"AND: 10 & 3 = {10 & 3}") # 0010
