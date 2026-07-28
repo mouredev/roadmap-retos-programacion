@@ -21,7 +21,7 @@ MY_CONSTANT: float = 3.1416 # por convenci√≥n las constantes se escriben en may√
 
 # Tipos de datos primitivos
 my_int: int = 7
-my_float: float = 7.7
+my_float: float = 7.1
 my_bool: bool = True
 my_bool: bool = False
 my_string: str = "Ejemplo de string"
