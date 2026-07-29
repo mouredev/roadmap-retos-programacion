@@ -27,7 +27,7 @@ my_int = 1
 my_float = 1.5
 my_bool = True
 my_bool = False
-my_strintg = "Mi cadena de texto"
+my_string = "Mi cadena de texto"
 my_other_string = 'Mi otra cadena de texto'
 
 # para imprimir en consola se coloca print y entre comillas lo que se desea mostrar
