@@ -33,3 +33,8 @@ my_other_string = 'Mi otra cadena de texto'
 # para imprimir en consola se coloca print y entre comillas lo que se desea mostrar
 print("¡Hola, Python!")
 
+print(type(my_int))
+print(type(my_float))
+print(type(my_bool))
+print(type(my_string))
+
