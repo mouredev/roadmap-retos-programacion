@@ -86,3 +86,42 @@ print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}") # 101000
 """
 Estructuras de control
 """
+
+# Condicionales
+
+my_string = "Yampii"
+
+if my_string == "YeanGit":
+    print("my_string es 'YeanGit'")
+elif my_string == "Yampi":
+    print("my_string es 'Yampi'")
+else:
+    print("my_string no es 'YeanGit' ni 'Yampi'")
+
+# Iterativas
+
+for i in range(11):
+    print(i)
+
+i = 0
+
+while i <= 10:
+    print(i)
+    i += 1
+
+# Manejo de exepciones
+
+try:
+ print(10 / 0)
+except:
+    print("Se ha producido un error")
+finally: # se ejecuta siempre al finalizar el manejo de exepciones
+    print("Ha finalizado el manejo de exepciones")
+
+"""
+Extra
+"""
+
+for number in range(10, 56):
+    if number % 2 == 0 and number != 16 and number % 3 != 0:
+        print(number)
