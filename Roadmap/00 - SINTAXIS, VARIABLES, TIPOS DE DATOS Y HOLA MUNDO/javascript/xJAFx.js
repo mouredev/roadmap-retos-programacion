@@ -19,4 +19,4 @@ let numeroGrande = 73250731234720572n;
 let textos = "Variable para textos";
 let simbolo = Symbol();
 
-console.log("!Hola, JavaScript!");
+console.log("¡Hola, JavaScript!");
