@@ -74,20 +74,21 @@ print(global_var)
 #print (local_var) no se puede acceder desde fuera de la función
 hello_python()
 
-#extra
-
-"""
+# extra
 def print_numbers(text_1, text_2) -> int:
+    count = 0
     for number in range (1, 101):
-        if number %3 == 0 and number % 5 == 0:
+        if number % 3 == 0 and number % 5 == 0:
             print (text_1 + text_2)
         elif number % 3 == 0:
-            print(text_1)
+            print (text_1)
         elif number % 5 == 0:
-            print(text_2)
+            print (text_2)
         else:
             print(number)
+            count += 1
+    return count  
         
 
-    print_numbers("Texto 1", "Texto 2")
-"""
+print(print_numbers("texto 1", "texto 2"))
+
