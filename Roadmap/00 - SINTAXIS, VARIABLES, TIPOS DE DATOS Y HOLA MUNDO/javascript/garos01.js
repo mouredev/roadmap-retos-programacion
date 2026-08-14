@@ -17,4 +17,4 @@ let flotante = 3.14;
 let booleano = true;
 
 // Imprimir por terminal el texto
-console.log(`¡Hola, ${cadenaTexto}`);
+console.log(`¡Hola, JavaScript`);
