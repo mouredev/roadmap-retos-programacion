@@ -47,12 +47,6 @@ class Product {
   }
 
   Future<void> viewProduct(String viewProduct) async {
-    // final currentLines = await file.readAsLines();
-    // final item = currentLines.firstWhere(
-    //   (line) => line.split(',').first.trim() == viewProduct,
-    //   orElse: () => '',
-    // );
-
     await validateProduct(viewProduct);
 
     if (item != null) {
@@ -61,13 +55,6 @@ class Product {
     } else {
       print('El producto no existe');
     }
-
-    // if (item.isNotEmpty) {
-    //   print('Producto: ${item.split(',').first.trim()}');
-    //   print(item);
-    // } else {
-    //   print('El producto no existe');
-    // }
   }
 
   Future<void> updateProduct(
