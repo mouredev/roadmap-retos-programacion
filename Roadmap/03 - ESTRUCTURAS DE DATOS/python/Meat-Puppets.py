@@ -88,6 +88,13 @@ def agregar_contacto():
     num_telefono = pedir_num("Ingrese el número del contacto: ")
     while num_telefono in contacto.values():
         num_telefono = pedir_num("Ya se encuentra registrado el número ingresado: ")
+    nombre_existente = nombre
+    i = 1
+    while nombre in contacto:
+        option = input(f"¿Ya existe un contacto con el nombre {nombre}, deseas continuar? (Y/N)")
+        if option.lower() == "y":
+            nombre = f"{nombre_existente}{i}"
+            i+=1
     contacto[nombre] = num_telefono
     print(f"Contacto {nombre} con el numero {num_telefono}, agregado exitosamente.")
 
@@ -148,8 +155,9 @@ def buscar_contacto():
         case "2":
             num_buscar = pedir_num("Ingresa el número del contacto a buscar: ")
             if num_buscar in contacto.values():
-                for nombre, num_buscar in contacto.items():
-                    print(f"Contacto encontrado!. \n Nombre: {nombre}, Número: {num_buscar}")
+                for nombre, numero in contacto.items():
+                    if numero == num_buscar:
+                        print(f"Contacto encontrado!. \n Nombre: {nombre}, Número: {numero}")
             else:
                 print(f"No se encuentra registrado el número: {num_buscar}")
         case _:
