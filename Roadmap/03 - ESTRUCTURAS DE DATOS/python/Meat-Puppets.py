@@ -95,6 +95,8 @@ def agregar_contacto():
         if option.lower() == "y":
             nombre = f"{nombre_existente}{i}"
             i+=1
+        else:
+            return
     contacto[nombre] = num_telefono
     print(f"Contacto {nombre} con el numero {num_telefono}, agregado exitosamente.")
 
