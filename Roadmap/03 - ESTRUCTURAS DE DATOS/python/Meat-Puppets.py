@@ -1,4 +1,5 @@
 # Listas
+import dataclasses
 my_list: list = ["Leo", "Juan", "Isabela", "Angie"]
 print(my_list)
 
@@ -70,8 +71,6 @@ def pedir_num(mensaje):
             num = int(input(mensaje))
             if len(str(num)) > 11:
                 num = int(input("Número no válido ingrese de nuevo: "))
-            elif num in contacto.values():
-                num = int(input("Ya se encuentra registrado el número ingresado: "))
         except ValueError:
             num = int(input("Número no válido ingrese de nuevo, no se permiten caracteres ni simbolos: "))
         return num
@@ -87,6 +86,8 @@ def listar_contactos():
 def agregar_contacto():
     nombre = input("Ingrese el nombre del contacto: ")
     num_telefono = pedir_num("Ingrese el número del contacto: ")
+    while num_telefono in contacto.values():
+        num_telefono = pedir_num("Ya se encuentra registrado el número ingresado: ")
     contacto[nombre] = num_telefono
     print(f"Contacto {nombre} con el numero {num_telefono}, agregado exitosamente.")
 
@@ -96,8 +97,8 @@ def editar_contacto():
     cambio = False
     if contacto_edit in contacto:
         nombre_edit = input(f"¿Deseas actualizar el nombre del contacto {contacto_edit} (Y/N)?: ")
+        numero_respaldo = contacto[contacto_edit]
         if nombre_edit.lower() == "y":
-            numero_respaldo = contacto[contacto_edit]
             del contacto[contacto_edit]
             nuevo_nombre = input(f"Ingresa el nuevo nombre del contacto {contacto_edit}: ")
             contacto[nuevo_nombre] = numero_respaldo
@@ -106,11 +107,21 @@ def editar_contacto():
         if not cambio == True:
             num_edit = input(f"¿Deseas actualizar el número del contacto {contacto_edit} (Y/N)?: ")
             if num_edit.lower() == "y":
-                contacto[contacto_edit] = pedir_num(f"Ingresa el nuevo numero del contacto {contacto_edit}: ")
+                nuevo_numero = pedir_num(f"Ingresa el nuevo numero del contacto {contacto_edit}: ")
+                while nuevo_numero in contacto.values():
+                    nuevo_numero = pedir_num("Ya se encuentra registrado el número ingresado: ")
+                contacto[contacto_edit] = nuevo_numero
+                print(f"Actualizaste el número {numero_respaldo} contacto {contacto_edit} a {nuevo_numero}")
         else:
             num_edit = input(f"¿Deseas actualizar el número del contacto {nuevo_nombre} (Y/N)?: ")
             if num_edit.lower() == "y":
-                contacto[nuevo_nombre] = pedir_num(f"Ingresa el nuevo numero del contacto {nuevo_nombre}: ")
+                nuevo_numero = pedir_num(f"Ingresa el nuevo numero del contacto {nuevo_nombre}: ")
+                while nuevo_numero in contacto.values():
+                    nuevo_numero = pedir_num("Ya se encuentra registrado el número ingresado: ")
+                contacto[nuevo_nombre] = nuevo_numero
+            print(f"Actualizaste el número {numero_respaldo} contacto {nuevo_nombre} a {nuevo_numero}")
+    else:
+        print(f"No existe el contacto {contacto_edit}")
             
 
 def eliminar_contacto():
@@ -122,15 +133,36 @@ def eliminar_contacto():
             numero_respaldo = contacto[contacto_delete]
             del contacto[contacto_delete]
             print(f"contacto (Nombre: {contacto_delete}, Número: {numero_respaldo}) eliminado correctamente.")
+    else:
+        print(f"No existe el contacto {contacto_delete}")
 
+def buscar_contacto():
+    option = input("¿Desea buscar por nombre o numero? (Digite 1 por nombre y 2 por número): ")
+    match option:
+        case "1":
+            contacto_buscar = input("Ingresa el nombre del contacto a buscar: ")
+            if contacto_buscar in contacto:
+                print(f"Contacto encontrado!. \n Nombre: {contacto_buscar}, Número: {contacto[contacto_buscar]}")
+            else:
+                print(f"No se encuentra registrado el contacto {contacto_buscar}")
+        case "2":
+            num_buscar = pedir_num("Ingresa el número del contacto a buscar: ")
+            if num_buscar in contacto.values():
+                for nombre, num_buscar in contacto.items():
+                    print(f"Contacto encontrado!. \n Nombre: {nombre}, Número: {num_buscar}")
+            else:
+                print(f"No se encuentra registrado el número: {num_buscar}")
+        case _:
+            print("La opción que ingresaste no es valida.")
 
 def agenda():
     print("====== Agenda de contactos ======")
     print("1. Agregar contacto.")
     print("2. Editar Contacto.")
     print("3. Ver contactos.")
-    print("4. Eliminar contacto.")
-    print("5. Salir.")
+    print("4. Buscar contacto.")
+    print("5. Eliminar contacto.")
+    print("6. Salir.")
     option = input("Por favor ingrese una opción: ")
 
     match option:
@@ -141,8 +173,10 @@ def agenda():
         case "3":
             listar_contactos()
         case "4":
-            eliminar_contacto()
+            buscar_contacto()
         case "5":
+            eliminar_contacto()
+        case "6":
             print("Hasta pronto!")
             exit()
         case _:
