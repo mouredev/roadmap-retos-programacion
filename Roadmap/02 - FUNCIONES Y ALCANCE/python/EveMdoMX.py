@@ -67,3 +67,110 @@ def funcion_con_argumentos_arbitrarias_y_clave_arbitrarios(*argumentosArbitarios
     print(mensaje)
 
 funcion_con_argumentos_arbitrarias_y_clave_arbitrarios(1, 2, 3, 4, 5, param1="valor1", param2="valor2", param3="valor3")
+
+def funcion_con_retorno(param1, param2):
+    suma = param1 + param2
+    return suma
+
+resultado = funcion_con_retorno(5, 10)
+print(f"Esta es una función con retorno. La suma de 5 y 10 es: {resultado}.")
+
+def funcion_multiples_retorno(valor):
+    if valor > 0:
+        return "Positivo", valor
+    elif valor < 0:
+        return "Negativo", valor
+    else:
+        return "Cero", valor
+
+
+multiples_resultado = funcion_multiples_retorno(-5)
+print(f"Esta es una función con múltiples retornos. El valor es: {multiples_resultado[0]}")
+
+def funcion_con_retorno(param1, param2):
+    suma = param1 + param2
+    resta = param1 - param2
+    multiplicacion = param1 * param2
+    division = param1 / param2 if param2 != 0 else None
+    return suma, resta, multiplicacion, division
+
+resultado = funcion_con_retorno(10, 5)
+print(resultado)
+
+
+#parametros globales y locales
+variable_global = "Soy una variable global"
+
+def funcion_variable_local():
+    variable_local = "Soy una variable local"
+    print(variable_local)
+    print(variable_global)  # Accediendo a la variable global
+    
+    def funcion_interna():
+        global variable_global
+        nonlocal variable_local
+        variable_global = "He modificado la variable global"
+        variable_local = "He modificado la variable local"
+        print("Esta es una función interna dentro de otra función.")
+        print(variable_global)   # Accediendo a la variable local desde la función interna
+        print(variable_local)    # Accediendo a la variable local desde la función interna
+    funcion_interna()
+
+# Accediendo a la variable global antes de llamar a la función
+funcion_variable_local()
+
+
+print(f"\n\n\n\n\n")
+
+"""
+* DIFICULTAD EXTRA (opcional):
+ * Crea una función que reciba dos parámetros de tipo cadena de texto y retorne un número.
+ * - La función imprime todos los números del 1 al 100. Teniendo en cuenta que:
+ *   - Si el número es múltiplo de 3, muestra la cadena de texto del primer parámetro.
+ *   - Si el número es múltiplo de 5, muestra la cadena de texto del segundo parámetro.
+ *   - Si el número es múltiplo de 3 y de 5, muestra las dos cadenas de texto concatenadas.
+ *   - La función retorna el número de veces que se ha impreso el número en lugar de los textos.
+ """
+
+
+parametro1 = "---" #str(input("ingresa el primer parametro"))
+parametro2 = "|||" #str(input("ingresa el segundo parametro"))
+
+
+def funcion_multiplo_3(parametro1):
+    print(parametro1)
+
+
+def funcion_multiplo_5(parametro2):
+    print(parametro2)
+
+
+for contador in range(1, 101):
+
+    if contador %3 == 0 and contador %5 == 0:
+        print(parametro1 + parametro2)
+    elif contador %3 == 0:
+        funcion_multiplo_3(parametro1)
+    elif contador %5 == 0:
+        funcion_multiplo_5(parametro2)
+    else:
+        print(contador)
+
+
+def funcion_multiplo_3_y_5(parametro3, parametro4):
+
+    for contador in range(1, 101):
+        if contador %3 == 0 and contador %5 == 0:
+            print(parametro3 + parametro4)
+        elif contador %3 == 0:
+            print(parametro3)
+        elif contador %5 == 0:
+            print(parametro4)
+        else:
+            print(contador)
+
+
+
+print(f"\n\n\n\n\n")
+
+funcion_multiplo_3_y_5("uno", "dos")

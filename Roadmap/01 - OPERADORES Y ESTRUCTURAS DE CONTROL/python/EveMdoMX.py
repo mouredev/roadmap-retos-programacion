@@ -252,6 +252,7 @@ while contador <= 55:
         print (contador)
     contador += 1
 
+numero=1
 
 for numero in range(10, 56):
     if numero % 2 == 0 and numero != 16 and numero % 3 != 0:
