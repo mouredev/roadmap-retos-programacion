@@ -162,7 +162,7 @@ paises_8 = []
 for pais in paises:
     if len(pais) >= 8:
         paises_8.append(pais)
-print(f'Paises con 8 ó más caracteres: {paises_8}')
+print(f'Paises con 8 ó más caracteres: {paises_8}', end='\n\n')
 
 # bucles while
 password = 00000
@@ -183,6 +183,14 @@ try:
     else:
         print('Entrada prohibida')
 except ValueError:
-    print('La edad debe ser un número')
+    print('Error, la edad debe ser un número')
 finally:
     print('siguiente')
+
+# EJERCICIO 4 
+numeros_validos = []
+for num in range(10,56,2):
+    if num%3 != 0 and num != 16:
+        numeros_validos.append(num)
+
+print(numeros_validos)
