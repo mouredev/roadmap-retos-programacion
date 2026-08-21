@@ -11,7 +11,7 @@ Condicionales, iterativas, excepciones...
 
 DIFICULTAD EXTRA (opcional):
 
-Crea un programa que imprima por consola todos los números comprendidos entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+4.Crea un programa que imprima por consola todos los números comprendidos entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
 Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
 '''
 
@@ -126,3 +126,63 @@ print('Ejemplo: 10110 | 10011 =',bin(0b10110 | 0b10011), end='\n\n')
 print('Operador "^" (XOR) devuelve 1 si ambos bits son distintos')
 print('Ejemplo: 10110 ^ 10011 =',bin(0b10110 ^ 0b10011))
 
+print('\n** Operadores de pertenencia **', end='\n\n')
+
+numbers = [1,2,3,4,5]
+print('Teniendo una lista de números:', numbers)
+
+print('El número 2 esta/pertenece a la lista numbers? 2 in numbers:',2 in numbers)
+print('El número 2  no esta/ no pertenece a la lista numbers? 2 not in numbers:',2 not in numbers)
+
+# EJERCICIO 2
+
+print('\n** Estructuras de control **', end='\n\n')
+print('Condicionales', end='\n\n')
+
+print('Veamos si puedes conducir', end='\n\n')
+edad = int(input('Introduce tu edad: '))
+país = input('Introduce tu país: ') 
+carnet = input('Tienes carnet de conducir (si/no): ')
+
+if edad < 16 or carnet != 'si' :
+    print('No puedes conducir')
+elif 16 <= edad < 18 and país == 'Estados Unidos' and carnet == 'si':
+    print('Solo puedes conducir en EE.UU')
+elif edad >= 18 and carnet == 'si':
+    print('Puedes conducir en todo el mundo')
+else:
+    print('Eso no es posible') 
+
+print('\nIteraciones', end='\n\n')
+
+print('Bucles For', end='\n\n')
+paises = ['España','Portugal','Francia','Alemania','Suiza','Chipre','Italia']
+print('Lista de paises:',paises)
+paises_8 = []
+for pais in paises:
+    if len(pais) >= 8:
+        paises_8.append(pais)
+print(f'Paises con 8 ó más caracteres: {paises_8}')
+
+# bucles while
+password = 00000
+while password != 1234:
+    password = int(input('Introduce contraseña: '))
+    if password == 1234:
+        print('contraseña correcta')
+        break
+    else:
+        print('Contraseña incorrecta. Intenta de nuevo')
+
+print('\nExcepciones', end='\n\n')
+
+try:
+    edad = int(input('Introduce tu edad: '))
+    if edad >= 18:
+        print('Puedes pasar')
+    else:
+        print('Entrada prohibida')
+except ValueError:
+    print('La edad debe ser un número')
+finally:
+    print('siguiente')
