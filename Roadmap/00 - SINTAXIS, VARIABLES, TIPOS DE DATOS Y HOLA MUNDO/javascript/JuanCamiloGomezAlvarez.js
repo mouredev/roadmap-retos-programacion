@@ -22,7 +22,7 @@ const PI = 3.1415;
 // Algunos tipos de datos primitivos en JavaScript
 
 let name = "Juan Camilo" // string
-let age = 32 // number
+let age = 33 // number
 let isMale = true // boolean
 let money = null // null
 let indefinido = undefined // undefined
