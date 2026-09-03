@@ -76,8 +76,16 @@ def impresora_compartida():
         if documento.lower() == "salir":
             print("Apagando impresora...")
             break
+        
+        elif documento.lower() == "imprimir":
+            if cola_impresion:
+                documento_impreso = cola_impresion.pop(0)
+                print(f"Imprimiendo: {documento_impreso}")
+                print(f"Documentos pendientes: {len(cola_impresion)}")
+            else:
+                print("No hay documentos pendientes.")
 
-        elif documento.lower() != "imprimir":
+        else:
             cola_impresion.append(documento)
             print(f"Documento añadido: {documento}")
             print(f"Documentos pendientes: {len(cola_impresion)}")
