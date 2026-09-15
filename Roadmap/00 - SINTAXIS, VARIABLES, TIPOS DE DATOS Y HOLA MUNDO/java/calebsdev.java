@@ -47,9 +47,9 @@ public class calebsdev {
 
         //Tipos de datos no primitivos
         String name = "ABO";        //String        // Variable length // A sequence of characters
-        ArrayList<String> names = new ArrayList<>(); //ArrayList // Variable length // A resizable array
-        Class<?> myClass = calebsdev.class;         //Class // Variable length // A class object
-        Inteface myInterface = new MyInterface() {}; //Interface // Variable length // An interface object
+        //ArrayList<String> names = new ArrayList<>(); //ArrayList // Variable length // A resizable array
+        //Class<?> myClass = calebsdev.class;         //Class // Variable length // A class object
+        //Inteface myInterface = new MyInterface() {}; //Interface // Variable length // An interface object
 
         System.out.print("¡Hola, Java!");
     }
