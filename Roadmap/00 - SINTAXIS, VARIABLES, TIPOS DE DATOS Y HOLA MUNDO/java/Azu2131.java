@@ -1,11 +1,11 @@
-https://www.java.com/es/
+//https://www.java.com/es/
 
 // Comentario en una línea 
 
 /* Este es para escribir comentarios 
 en varias lineas */
 
-public class Main {
+public class Azu2131 {
   public static void main(String[] args) {
 
 String nombreCompleto = "Mi variable";
