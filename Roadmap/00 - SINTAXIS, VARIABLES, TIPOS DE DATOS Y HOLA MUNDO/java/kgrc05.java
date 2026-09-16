@@ -1,5 +1,3 @@
-package paquete;
-
 /*
  * EJERCICIO:
  * - Crea un comentario en el código y coloca la URL del sitio web oficial del
@@ -11,8 +9,9 @@ package paquete;
  *   del lenguaje (cadenas de texto, enteros, booleanos...).
  * - Imprime por terminal el texto: "¡Hola, [y el nombre de tu lenguaje]!"
  */
-public class KGRC {
+public class kgrc05 {
 
+	public static void main (String[] args){
 	// https://www.java.com/es/
 
 	// SINTAXIS 1 DE COMENTARIO
@@ -33,4 +32,4 @@ public class KGRC {
 
   System.out.println("¡Hola,Java!");
 
-}
+}}
