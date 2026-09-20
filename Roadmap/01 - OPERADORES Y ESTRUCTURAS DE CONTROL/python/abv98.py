@@ -44,7 +44,7 @@ print(f"AND a & b: {a & b:04b}")
 print(f"OR a | b: {a | b:04b}")
 print(f"XOR a ^ b: {a ^ b:04b}")
 print(f"NOT ~a: {~a:04b}") # Realmente hace en formato entero x = -(x+1)
-print(f"NOT & 1111 ~a: {~a & 0b1111:04b}") # De esta forma se muestra la pura inversión de bits
+print(f"NOT con máscara ~a & 0b1111: {~a & 0b1111:04b}") # De esta forma se muestra la pura inversión de los 4 bits
 print(f"Desplazamiento a la izq. a << 1: {a << 1:04b}")
 print(f"Desplazamiento a la der. a >> 1: {a >> 1:04b}")
 print()
