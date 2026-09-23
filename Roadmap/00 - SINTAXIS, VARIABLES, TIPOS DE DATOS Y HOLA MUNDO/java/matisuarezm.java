@@ -1,6 +1,6 @@
 //00 - SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
 
-public class Reto_Programacion_00 {
+public class matisuarezm {
 
     public static void main (String[] args){
 
@@ -21,7 +21,7 @@ public class Reto_Programacion_00 {
         //3.- Crea una variable (y una constante si el lenguaje lo soporta).
 
                 String variable;
-                final constante;
+                final String constante; //o cualquier tipo de dato primitivo
 
         //4.- Crea variables representando todos los tipos de datos primitivos del lenguaje (cadenas de texto, enteros, booleanos...).
 
