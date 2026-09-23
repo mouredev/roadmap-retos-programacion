@@ -48,12 +48,25 @@ EXTRA
 
 agenda_contactos: dict = {
     "Mónica": "75310006",
-    "Neslin": "57366046"
+    "Mi nena hermosa": "57366046"
 }
 
-s = 1
+def nombre_contacto():
+    nombre = input("INGRESE EL NOMBRE DEL CONTACTO: ")
+    return nombre
 
-while s != 0:
+def telefono_contacto():
+    telefono = input("INTRODUCE EL NÚMERO DE TELÉFONO: ")
+    if telefono.isdigit() and len(telefono) > 0 and len(telefono) == 8:
+        agenda_contactos[nombre] = telefono
+    else:
+        print("DEBES INTRODUCIR UN NÚMERO DE TELÉFONO DE 8 DÍGITOS")
+
+
+
+
+while True:
+
     print("\n-------AGENDA DE CONTACTOS-------")
     print("1- BÚSQUEDA")
     print("2- INSERCIÓN")
@@ -61,53 +74,44 @@ while s != 0:
     print("4- ELIMINACIÓN")
     print("5- SALIR")
 
-    try:
-        accion = int(input("SELECCIONA LA ACCIÓN QUE DESEAS HACER: "))
-    except ValueError:
-        print("Por favor, ingresa un número de opción válido.")
-        continue
+    accion = input("\nSelecciona una opción: ")
 
     match accion:
 
-        case 1:
-            busqueda = input("INGRESA EL NOMBRE A BUSCAR: ").strip()
-            # Verifica dinámicamente si el nombre existe en las claves del diccionario
-            if busqueda in agenda_contactos:
-                print(f"Contacto encontrado -> {busqueda}: {agenda_contactos[busqueda]}")
+        case "1":
+            nombre = nombre_contacto()
+            if nombre in agenda_contactos:
+                print(f"El número de Teléfono de {nombre} es: {agenda_contactos[nombre]}")
             else:
-                print("Contacto no encontrado.")
+                print("El contacto que ingresaste no existe")
 
-        case 2:
-            nombre = input("INSERTA EL NOMBRE DEL NUEVO CONTACTO: ").strip()
-            telefono = input("INSERTA EL NÚMERO DEL NUEVO CONTACTO: ").strip()
             
-            # Asigna el teléfono usando el nombre directamente como clave
-            agenda_contactos[nombre] = telefono
-            print(f"¡Contacto '{nombre}' registrado con éxito!")
-
-        case 3:
-            nombre = input("INGRESA EL NOMBRE DEL CONTACTO A ACTUALIZAR: ").strip()
+        case "2":
+            nombre = nombre_contacto()
+            telefono_contacto()
+            print("--CONTACTO AÑADIDO CORRRECTAMENTE--")
+         
+        case "3":
+            nombre = nombre_contacto()
             if nombre in agenda_contactos:
-                nuevo_telefono = input(f"INTRODUCE EL NUEVO NÚMERO PARA {nombre}: ").strip()
-                agenda_contactos[nombre] = nuevo_telefono
-                print(f"¡Contacto '{nombre}' actualizado correctamente!")
+             telefono_contacto()
+             print("--TELÉFONO ACTUALIZADO CORRRECTAMENTE--")
             else:
-                print("El contacto especificado no existe.")
-
-        case 4:
-            nombre = input("INGRESA EL NOMBRE DEL CONTACTO A ELIMINAR: ").strip()
+                print("El contacto que ingresaste no existe.")
+        case "4":
+            nombre = nombre_contacto()
             if nombre in agenda_contactos:
-                del agenda_contactos[nombre] 
-                print(f"¡Contacto '{nombre}' eliminado correctamente!")
+                del agenda_contactos[nombre]
+                print("--CONTACTO ELIMINADO CORRRECTAMENTE--")
             else:
-                print("El contacto especificado no existe.")
-
-        case 5:
-            print("------------------------------------")
-            print("HAS SALIDO DE TU AGENDA DE CONTACTOS")
-            print("------------------------------------")
-            s = 0
-
+                print("El contacto que ingresaste no existe.")
+        case "5":
+            print("------------SALIENDO DE LA AGENDA------------")
+            break
         case _:
-            print("Opción no válida. Intenta de nuevo.")
+            print("Opción no válida. Elige una del 1 al 5")
 
+
+
+            
+            
