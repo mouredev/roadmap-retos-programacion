@@ -11,7 +11,8 @@
  /*
   *Comentarios en bloque 
   *
-  */ 
+  */
+public class AnCarLu{
 public static void main (String [] args){
 	//Variables y constantes
 	String variable = "variables en java";
@@ -29,4 +30,4 @@ public static void main (String [] args){
 
 	//Impresion por pantalla del saludo
 	System.out.println("Hola " + constante);
-}
+}}
