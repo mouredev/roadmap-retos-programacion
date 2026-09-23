@@ -48,7 +48,7 @@ EXTRA
 
 agenda_contactos: dict = {
     "Mónica": "75310006",
-    "Mi nena hermosa": "57366046"
+    "Neslin": "57366046"
 }
 
 def nombre_contacto():
