@@ -1,33 +1,34 @@
-#00-PYTHON - SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
+# 00 - PYTHON: SINTAXIS, VARIABLES, TIPOS DE DATOS Y HOLA MUNDO
+
 # WEB OFICIAL
 # Sitio web oficial de Python: https://www.python.org/
 
 
-# Comentario en una linea
+# Comentario en una línea
 
 
 """
-aqui un comentario en varias lineas,
-que se me ocurrio :)
+Aquí un comentario en varias líneas,
+que se me ocurrió :)
 """
 
 '''
-esto es otro comentario
+Esto es otro comentario
 '''
 
 my_variable = "Mi variable de cadena de texto"
 my_variable = "Nuevo valor de mi variable"
 
 
-MY_CONSTANT = "mi constante solo representativa Python no tiene constante" #por conveniencia.
+MY_CONSTANT = "mi constante solo representativa Python no tiene constante"  # Por conveniencia.
 
-my_integer = 9 # numeros enteros
-my_float = 9,9 # numeros con decimales
-my_boolean = True # puede ser verdadero o falso
+my_integer = 9  # Número entero
+my_float = 9.9  # Número con decimales
+my_boolean = True  # Puede ser verdadero o falso
 my_boolean = False
 
-my_string: = "cadena de texto" # textos
-my_string = 'my otra cadna de cadena de texto' # textos
+my_string = "cadena de texto"  # Texto
+my_string = "mi otra cadena de texto"  # Texto
 
 print("Hola, Python")
 
