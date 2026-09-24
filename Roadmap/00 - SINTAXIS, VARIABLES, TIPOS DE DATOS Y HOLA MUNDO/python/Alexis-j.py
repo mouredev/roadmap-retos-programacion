@@ -35,8 +35,3 @@ print(type(my_integer))
 print(type(my_float))
 print(type(my_boolean))
 print(type(my_string))
-
-
-
-
-30 horas. 1845 brutto mas ventas.
