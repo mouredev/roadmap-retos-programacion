@@ -241,3 +241,41 @@ Usuarios unicos                         set
 Cliente -> datos                        diccionario
 
 """
+
+
+"""
+/*
+ * DIFICULTAD EXTRA (opcional):
+ * Crea una agenda de contactos por terminal.
+ * - Debes implementar funcionalidades de búsqueda, inserción, actualización y eliminación de contactos.
+ * - Cada contacto debe tener un nombre y un número de teléfono.
+ * - El programa solicita en primer lugar cuál es la operación que se quiere realizar, y a continuación
+ *   los datos necesarios para llevarla a cabo.
+ * - El programa no puede dejar introducir números de teléfono no numéricos y con más de 11 dígitos.
+ *   (o el número de dígitos que quieras)
+ * - También se debe proponer una operación de finalización del programa.
+ */
+"""
+
+print("\n\n============================================")
+print("             Programa de agenda")
+print("============================================")
+
+
+agenda = [
+    {"nombre": "Paola", "numero": "37871177"},
+    {"nombre": "Sergio", "numero": "12345678"}
+]
+for i in agenda:
+    print(f"Nombre: {agenda[0]}; Numero: {agenda[1]}")
+print("Introduzca la accion que desea realizar")
+
+
+
+#funcion_inicial = input("\n1. Buscar contacto por nombre\n2. Nuevo numero\n3. Eliminar\n4. Buscar contacto por numero\n")
+#if funcion_inicial == 1:
+
+
+
+
+
