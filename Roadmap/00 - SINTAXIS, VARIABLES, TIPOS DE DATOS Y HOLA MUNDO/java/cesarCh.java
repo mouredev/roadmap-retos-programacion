@@ -7,8 +7,8 @@
  * de varias líneas
  */
 
-
-public class cesarch {
+//renombre la clase porque no se permite guiones en nombres de clases
+public class cesarCh {
     public static void main(String[] args) {
     
         // Variable y constante
