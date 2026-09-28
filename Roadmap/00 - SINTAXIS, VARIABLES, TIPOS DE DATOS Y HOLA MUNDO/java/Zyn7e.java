@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 public class Zyn7e {
   public void main (String[] args) {
 
@@ -31,7 +33,7 @@ public class Zyn7e {
 
     /*
      * ###########################
-     * CREACIÓN DE VARIABLES Y CONTANTES
+     * CREACIÓN DE VARIABLES Y CONSTANTES
      * ###########################
      */
 
@@ -39,7 +41,11 @@ public class Zyn7e {
     String miVariable = "Hola";
 
     // Constante
-    const int miConstanteDePI = 3.14159;
+    final Double miConstanteDePI = 3.14159;
+    final BigDecimal miConstantedePI = BigDecimal.valueOf(3.14159);
+    // en Java para un valor constante se usa final y en el caso de PI es un Double o un BigDecimal.valueOf(3.14159);
+
+
 
 
 
@@ -81,8 +87,8 @@ public class Zyn7e {
      * Puede almacenar valores numéricos muy grandes (y pequeños)
      * con precisión.
      */
-    long numeroNegativoLong = -30000000000000000000000000L;
-    long numeroPositivoLong = 3000000000000000000000000000L;
+    long numeroNegativoLong = -3000000000000000000L; //el tipo de dato LONG puede tener como maximo 19 caracteres
+    long numeroPositivoLong = 3000000000000000000L;
 
 
     // ###### Números de punto flotante ######
