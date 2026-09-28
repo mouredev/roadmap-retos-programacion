@@ -262,17 +262,75 @@ print("             Programa de agenda")
 print("============================================")
 
 
-agenda = [
-    {"nombre": "Paola", "numero": "37871177"},
-    {"nombre": "Sergio", "numero": "12345678"}
-]
-for i in agenda:
-    print(f"Nombre: {agenda[0]}; Numero: {agenda[1]}")
-print("Introduzca la accion que desea realizar")
+agenda = {}
+
+print("Introduzca un numero para la accion que desea realizar")
+
+while True:
+    inicio = input("\n0. Ver nombres disponibles\n1. Buscar contacto por nombre\n" \
+    "2. Nuevo numero\n3. Eliminar\n4. Actualizar numero existente\n5. Salir\n\nAccion: ")
+    lista_names, lista_num = list(agenda.items())
+
+    if inicio == "0":
+        if lista_names and lista_num:
+            print("==================\nLista de contactos\n==================")
+            for i,j in lista_names:
+                print(f"{i}:{j}")
+            print("==================")
+        else:
+            print("===========================================================")
+            print("La agenda actualmente esta vacía, agregue contactos primero")
+            print("===========================================================")
+    elif inicio == "1":
+
+        while True:
+            if lista_names:
+                opt_1 = input("Introduzca la opción con números\n1. Buscar por nombre\n2. Volver\nOpción: ")
+                if opt_1 == "1":
+                    name_1 = input("Nombre: ")
+                    if name_1 in lista_names:
+                        print(f"El numero de {name_1} es {agenda[name_1]}")
+                    else:
+                        print("El nombre introducido es incorrecto o no existe")
+                elif opt_1 == "2":
+                    break
+                else:
+                    print("Opcion inválida vuelva a intentar")
+
+            else:
+                print("===========================================================")
+                print("La agenda actualmente esta vacía, agregue contactos primero")
+                print("===========================================================")
+                break
+    elif inicio == "2":
+        print("===============\nAgregar numero\n============")
+        opt_2 = input("Introduzca la opción con números\n1. Crear nuevo contacto\n2. Modificar contacto existente\nOpción: ")
+        while True:
+            new_name = input("Agregue un nombre para el nuevo numero\nNombre: ").title()
+            if new_name in lista_names:
+                print("Nombre existente, elija otro")
+            else:
+                new_num = input("Numero: ")
+                agenda[new_name] = new_num
+
+    elif inicio == "3":
+        print("Hola 3")
+    elif inicio == "4":
+        print("Hola 4")
+    elif inicio == "5":
+        print("\nAdios vuelva pronto!")
+        exit()
+    else:
+        print("=====================================================\nVuelva a intentar nuevamente con alguna opcion valida\n=====================================================")
+
+
+#nombres = list(agenda.keys())
+#print(f"Nombre: {nombres[0]}; Numero: {agenda["Paola"]}")
+#print("Introduzca la accion que desea realizar")
 
 
 
-#funcion_inicial = input("\n1. Buscar contacto por nombre\n2. Nuevo numero\n3. Eliminar\n4. Buscar contacto por numero\n")
+
 #if funcion_inicial == 1:
 
 
