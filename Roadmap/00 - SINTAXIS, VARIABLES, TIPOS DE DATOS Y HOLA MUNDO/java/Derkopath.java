@@ -23,7 +23,7 @@ public class Derkopath{
 
         // - Declara una constante
 
-        static final int CONSTANTE = "constante";
+         final String CONSTANTE = "constante"; //no se permite declarar variales locales con la palabra reservada "static"
 
         // - Tipos de datos primitivos:
         byte tipo1 = 0;
