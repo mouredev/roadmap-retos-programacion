@@ -84,3 +84,33 @@ print("Estructuras de control")
 
 #condicionales
 
+my_string ="leandro"
+if my_string == "leandro":
+    print("si es 'my_string'")
+elif my_string == "leandrooo":
+    print("si es 'my_string'")
+else:
+    print("no es 'my_string'")
+
+
+#iteraciones
+print("Iteraciones")
+for i in range(5):
+    print(f"iteracion {i}")
+
+while i < 10:
+    print(f"iteracion {i}")
+    i+=1
+
+
+#"manejo de exepciones"
+try:
+    x = 10 / 1
+except ZeroDivisionError:
+    print("Error: division por cero")
+finally:
+    print("Se ejecuta siempre")
+
+for i in range(10,56):
+    if i%2==0:
+        print(f"{i} es par")
