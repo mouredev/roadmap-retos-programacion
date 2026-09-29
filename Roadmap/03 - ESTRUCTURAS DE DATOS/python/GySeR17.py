@@ -256,108 +256,123 @@ Cliente -> datos                        diccionario
  * - También se debe proponer una operación de finalización del programa.
  */
 """
+def main():
+    print("\n\n============================================")
+    print("             Programa de agenda")
+    print("============================================")
 
-print("\n\n============================================")
-print("             Programa de agenda")
-print("============================================")
 
+    agenda = {
+        "Sergio": "1235",
+        "Paola": "96873"
+    }
 
-agenda = {
-    "Sergio": "1235",
-    "Paola": "96873"
-}
+    print("Introduzca un numero para la accion que desea realizar")
 
-print("Introduzca un numero para la accion que desea realizar")
+    while True:
+        inicio = input("\n0. Ver nombres disponibles\n1. Buscar contacto por nombre\n" \
+        "2. Crear/modificar numero\n3. Eliminar numero\n4. Actualizar numero existente\n5. Salir\n\nAccion: ")
 
-while True:
-    inicio = input("\n0. Ver nombres disponibles\n1. Buscar contacto por nombre\n" \
-    "2. Crear/modificar numero\n3. Eliminar numero\n4. Actualizar numero existente\n5. Salir\n\nAccion: ")
-
-    if inicio == "0":
-        if agenda.items():
-            print("==================\nLista de contactos\n==================")
-            for nombre, numero in agenda.items():
-                print(f"Nombre: {nombre.title()} - Numero: {numero}")
-            print("==================")
-        else:
-            print("===========================================================")
-            print("La agenda actualmente esta vacía, agregue contactos primero")
-            print("===========================================================")
-
-#Opcion 1: Buscar por nombre            
-    elif inicio == "1":
-
-        while True:
-            if agenda.keys():
-                opt_1 = input("Introduzca la opción con números\n1. Buscar por nombre\n2. Volver\nOpción: ")
-                if opt_1 == "1":
-                    name_1 = input("Nombre: ").title()
-                    if name_1 in agenda.keys():
-                        print("\n=========================================\n"\
-                              f"El numero de {name_1} es {agenda[name_1]}\n" \
-                              "=========================================\n")
-                    else:
-                        print("El nombre introducido es incorrecto o no existe")
-                elif opt_1 == "2":
-                    break
-                else:
-                    print("Opcion inválida vuelva a intentar")
-
+        if inicio == "0":
+            if agenda.items():
+                imprimir_numeros(agenda)
             else:
-                print("===========================================================")
-                print("La agenda actualmente esta vacía, agregue contactos primero")
-                print("===========================================================")
-                break
+                imprimir_agenda_vacia()
 
-#Opcion 2: Crear/modificar numero           
-    elif inicio == "2":
-        print("\n====================\nAgregar/modificar numero\n=================")
-        opt_2 = input("Introduzca la opción con números\n1. Crear nuevo contacto\n2. Modificar contacto existente\n3. Volver\n\nOpción: ")
-        intentos = 4
-        if opt_2 == "1":
-            while intentos > 0:
-                new_name = input("Agregue un nombre para el nuevo numero\nNombre: ").title()
-                if new_name in agenda.keys():
-                    print("Nombre existente, elija otro\n**Escriba 'volver' para salir")
-                    intentos -= 1
-                elif new_name.lower() == "volver":
-                    break
+    #Opcion 1: Buscar por nombre            
+        elif inicio == "1":
+
+            while True:
+                if agenda.keys():
+                    opt_1 = input("Introduzca la opción con números\n1. Buscar por nombre\n2. Volver\nOpción: ")
+                    if opt_1 == "1":
+                        name_1 = input("Nombre: ").title()
+                        if name_1 in agenda.keys():
+                            print("\n=========================================\n"\
+                                f"El numero de {name_1} es {agenda[name_1]}\n" \
+                                "=========================================\n")
+                        else:
+                            print("El nombre introducido es incorrecto o no existe")
+                    elif opt_1 == "2":
+                        break
+                    else:
+                        print("Opcion inválida vuelva a intentar")
+
                 else:
-                    new_num = input("Numero: ")
-                    agenda[new_name] = new_num
-                
-        elif opt_2 == "2":
-            for nombre, numero in agenda.items():
-                print(f"Nombre: {nombre.title()} - Numero: {numero}")
-            while intentos > 0:
-                mod_name = input("Introduzca el nombre a modificar\n**Escriba 'volver' para salir\n\nNombre: ").title().strip()
-                if mod_name in agenda.keys():
-                    mod_num = input("Introduzca el nuevo numero\nNumero: ")
-                    agenda[mod_name] = mod_num
-                    print("\n====================")
-                    print("Numeros actualizados")
-                    print("====================\n")
+                    imprimir_agenda_vacia()
+                    break
+
+    #Opcion 2: Crear/modificar numero           
+        elif inicio == "2":
+            print("\n====================\nAgregar/modificar numero\n=================")
+            while True:
+                opt_2 = input("Introduzca la opción con números\n1. Crear nuevo contacto\n2. Modificar contacto existente\n3. Volver\n\nOpción: ")        
+                intentos = 4
+                if opt_2 == "1":
+                    while intentos > 0:
+                        print("Los numeros existentes son:")
+                        imprimir_numeros(agenda)
+                        new_name = input("Agregue un nombre para el nuevo numero\nNombre: ").title()
+                        if new_name in agenda.keys():
+                            print("Los numeros existentes son:")
+                            imprimir_numeros(agenda)
+                            print("Nombre existente, elija otro\n**Escriba 'volver' para salir")
+                            intentos -= 1
+                        elif new_name.lower() == "volver":
+                            break
+                        else:
+                            new_num = input("Numero: ")
+                            agenda[new_name] = new_num
+                        
+                elif opt_2 == "2":
                     for nombre, numero in agenda.items():
-                        print(f"Nombre: {nombre.title()} - Numero: {numero}")   #Se podria poner una funcion para el imprimir numeros de telefono
-                elif mod_name.lower() == "volver":
+                        print(f"Nombre: {nombre.title()} - Numero: {numero}")
+                    while intentos > 0:
+                        mod_name = input("Introduzca el nombre a modificar\n**Escriba 'volver' para salir\n\nNombre: ").title().strip()
+                        if mod_name in agenda.keys():
+                            mod_num = input("Introduzca el nuevo numero\nNumero: ")
+                            agenda[mod_name] = mod_num
+                            print("\n====================")
+                            print("Numeros actualizados")
+                            print("====================\n")
+                            imprimir_numeros(agenda)
+                        elif mod_name.lower() == "volver":
+                            break
+                        else:
+                            print("Nombre invalido intente nuevamente")
+                            imprimir_numeros(agenda)
+                            print("\n*Escriba 'volver' para salir*\n\nNombre: ")
+                            intentos -= 1
+                elif opt_2 == "3":
                     break
                 else:
-                    print("Nombre invalido intente nuevamente\n*Escriba 'volver' para salir*\n\nNombre: ")
-                    intentos -= 1
-            
-        elif opt_2 == "3":
-            break
+                    print("Opcion inválida, vuelva a intentar")
+
+    #Opcion 3 Eliminar numero
+        elif inicio == "3":
+            while True:
+                if agenda.keys():
+                    opt_3 = input("")
+        elif inicio == "4":
+            print("Hola 4")
+        elif inicio == "5":
+            print("\nAdios vuelva pronto!")
+            exit()
         else:
-            print("Opcion inválida, vuelva a intentar")
+            print("=====================================================\n" \
+                "Vuelva a intentar nuevamente con alguna opcion valida\n" \
+                "=====================================================")
+
+def imprimir_numeros(diccionario):    
+    print("==================\nLista de contactos\n==================")
+    for nombre, numero in diccionario.items():
+        print(f"Nombre: {nombre.title()} - Numero: {numero}")
+    print("==================")
+def imprimir_agenda_vacia():
+    print("===========================================================")
+    print("La agenda actualmente esta vacía, agregue contactos primero")
+    print("===========================================================")
 
 
-    elif inicio == "3":
-        print("Hola 3")
-    elif inicio == "4":
-        print("Hola 4")
-    elif inicio == "5":
-        print("\nAdios vuelva pronto!")
-        exit()
-    else:
-        print("=====================================================\nVuelva a intentar nuevamente con alguna opcion valida\n=====================================================")
 
+main()
