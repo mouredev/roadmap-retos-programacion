@@ -64,3 +64,47 @@ def funcion_externa():
     funcion_interna()
 
 funcion_externa()
+
+#funciones del lenguaje
+print(len("Hola, bienvenido a la clase de Python"))
+print(type(5))
+print(max(10, 20, 30))
+
+
+
+
+#"variables globales y locales"
+x = 10  # Variable global
+print(f"Variable global x: {x}")
+
+def funcion_local():
+    y = 20  # Variable local
+    print(f"Variable local y: {y}")
+
+#print(f"Variable local y: {y}")  # Accediendo a la variable local fuera de la función TIRA ERROR
+
+
+#EXTRA
+def multiplos(texto1, texto2):
+    contador = 0
+
+    for numero in range(1, 101):
+
+        if numero % 3 == 0 and numero % 5 == 0:
+            print(texto1 + texto2)
+
+        elif numero % 3 == 0:
+            print(texto1)
+
+        elif numero % 5 == 0:
+            print(texto2)
+
+        else:
+            print(numero)
+            contador += 1
+
+    return contador
+
+
+resultado = multiplos("Fizz", "Buzz")
+print("Cantidad de números impresos:", resultado)
