@@ -81,7 +81,6 @@ print(f"'a' in 'alexis' {'a' in 'alexis'}")
 print(f"'a' not in 'alexis' {'j' not in 'alexis'}")
 
 # Operadores de Bit
-
 #0 1 10 11 100 101 111 1000 1001 1010 1011 1100 de 0 a 12.
 a = 10 # 1010
 b = 3  # 0011
@@ -93,6 +92,52 @@ print(f"Desplazamiento a la derecha: 10 >> 2 = { 10 >> 2 } " ) # >> desplaza los
 print(f"Desplazamiento a la izquierda: 10 << 2 = {10 << 2}") # << desplaza los bits hacia la izquierda. Cada desplazamiento equivale a multiplicar por 2. 10 = 1010 → 10100 → 101000 = 40
 
 
-# Estructura de control.
+"""
+Estructura de control.
+
+"""
+# Condicionales
+my_string = "Alexis-j"
+
+if my_string == "Alexis-j":
+    print("my_string es 'Alexis-j'")
+elif my_string == "jimenez":
+    print("my_string es 'Jimenez'")
+else:
+    print("my string no es 'Alexis-j' ni 'Jimenez'")
 
 
+# Iterativas
+
+for i in range(11):
+    print(i)
+
+i = 0
+while i <= 10:
+    print(i)
+    i += 1
+
+
+# Manejo de excepciones
+
+try:
+    print(10 / 1)
+except:
+    print("Se ha ocurrido un error")
+finally:
+    print("Ha finalizado el manejo de excepciones")
+
+
+"""
+ * DIFICULTAD EXTRA (opcional):
+ * Crea un programa que imprima por consola todos los números comprendidos
+ * entre 10 y 55 (incluidos), pares, y que no son ni el 16 ni múltiplos de 3.
+ *
+ * Seguro que al revisar detenidamente las posibilidades has descubierto algo nuevo.
+ */
+
+"""
+
+for num in range(10, 56):
+    if num % 2 == 0 and num != 16 and num % 3:
+        print(num)
