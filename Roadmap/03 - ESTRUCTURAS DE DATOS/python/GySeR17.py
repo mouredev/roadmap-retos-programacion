@@ -257,19 +257,16 @@ Cliente -> datos                        diccionario
  */
 """
 def main():
-    print("\n\n============================================")
-    print("             Programa de agenda")
-    print("============================================")
-
-
     agenda = {
         "Sergio": "1235",
         "Paola": "96873"
     }
 
-    print("Introduzca un numero para la accion que desea realizar")
-
     while True:
+        print("\n\n============================================")
+        print("             Programa de agenda")
+        print("============================================")
+        print("Introduzca un numero para la accion que desea realizar")
         inicio = input("\n1. Ver nombres disponibles\n2. Buscar contacto por nombre\n" \
         "3. Crear/modificar numero\n4. Eliminar numero\n5. Salir\n\nAccion: ")
     #Opcion 1: Mostrar nombres 
@@ -302,32 +299,38 @@ def main():
         elif inicio == "3":
             print("\n====================\nAgregar/modificar numero\n=================")
             while True:
-                opt_2 = input("Introduzca la opción con números\n1. Crear nuevo contacto\n2. Modificar contacto existente\n3. Volver\n\nOpción: ")        
+                opt_2 = input("Introduzca la opción con números\n1. Crear nuevo contacto\n" \
+                "2. Modificar contacto existente\n3. Volver\n\nOpción: ")        
                 intentos = 4
-                if opt_2 == "2":
+                #Crear contactos nuevos
+                if opt_2 == "1":
                     while intentos > 0:
                         print("Los numeros existentes son:")
                         imprimir_numeros(agenda)
                         new_name = input("Agregue un nombre para el nuevo numero\nNombre: ").title()
                         if new_name in agenda.keys():
+                            print("\n=====================================")
+                            print("Nombre existente, elija otro\n**Escriba 'volver' para salir")
+                            print("\n=====================================\n")
                             print("Los numeros existentes son:")
                             imprimir_numeros(agenda)
-                            print("Nombre existente, elija otro\n**Escriba 'volver' para salir")
                             intentos -= 1
                         elif new_name.lower() == "volver":
                             break
                         else:
                             new_num = input("Numero: ")
-                            agenda[new_name] = new_num
-                        
-                elif opt_2 == "3":
+                            max_num(agenda, new_name, new_num, intentos)
+                            
+
+                #Modificar contactos
+                elif opt_2 == "2":
                     
                     while intentos > 0:
                         imprimir_numeros(agenda)
                         mod_name = input("Introduzca el nombre a modificar\n**Escriba 'volver' para salir\n\nNombre: ").title().strip()
                         if mod_name in agenda.keys():
                             mod_num = input("Introduzca el nuevo numero\nNumero: ")
-                            agenda[mod_name] = mod_num
+                            max_num(agenda, mod_name, mod_num, intentos)
                             print("\n====================")
                             print("Numeros actualizados")
                             print("====================\n")
@@ -391,5 +394,19 @@ def imprimir_nombres(dic):
     for nombre in dic.keys():
         print(f"Nombre: {nombre.title()}")
     print("==================")        
+
+def max_num(agenda, new_nombre, numero, intentos):
+    if len(numero) == 11:
+        agenda[new_nombre] = numero
+    elif len(numero) > 11:
+        print("\n=====================================")
+        print("El numero de telefono no puede tener más de 11 digitos")
+        print("=====================================\n")
+        intentos -= 1
+    else:
+        print("\n=====================================")
+        print("El numero de telefono no puede tener menos de 11 digitos")
+        print("=====================================\n")
+        intentos -= 1
 
 main()
