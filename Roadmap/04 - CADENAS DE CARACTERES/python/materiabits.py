@@ -107,7 +107,7 @@ print(fecha.split("-"))
 
 
 # ------------------------------------------
-# 10. UNIÓN / JOIN
+# 10. UNIÓN / JOIN LISTA A CADENA DE TEXTO
 # ------------------------------------------
 
 palabras = ["Python", "es", "genial"]
@@ -230,7 +230,7 @@ print(float(decimal))
 
 
 # ------------------------------------------
-# 21. INVERTIR UNA CADENA
+# 21. INVERTIR UNA CADENA // PALINDROMO
 # ------------------------------------------
 
 texto = "Python"
@@ -249,3 +249,25 @@ texto = "Python"
 print(f"Primera letra: {texto[0]}")
 print(f"Última letra: {texto[-1]}")
 print(f"Cantidad de caracteres: {len(texto)}")
+
+
+# ------------------------------------------
+# 22. ANAGRAMA
+# ------------------------------------------
+def es_anagrama(palabra1, palabra2):
+    return sorted(palabra1) == sorted(palabra2)
+
+
+print(es_anagrama("roma", "amor"))    # True
+print(es_anagrama("python", "java"))  # False
+
+
+# ------------------------------------------
+# 22. isograma, LETRAS APARECEN EL MISMO NUMERO DE VECES
+# ------------------------------------------
+texto = "MURCIELAGO"
+
+if len(texto) == len(set(texto)):
+    print("Es un isograma")
+else:
+    print("No es un isograma")
