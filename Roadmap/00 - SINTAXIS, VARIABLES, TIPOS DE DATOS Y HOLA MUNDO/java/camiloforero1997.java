@@ -7,9 +7,9 @@
  * lineas
  */
 
-public class Camiloforero1997{
+public class camiloforero1997{
 
-    Public static void main (String[] args){
+    public static void main (String[] args){
 
         //Creando una variable definida y no definida
 
@@ -23,8 +23,8 @@ public class Camiloforero1997{
         //Datos primitivos
 
         int datoInt = 5000;
-        float datoFloat = 3,892f;
-        double datoDouble = 3,127128231731D;
+        float datoFloat = 3.892f;
+        double datoDouble = 3.127128231731D;
         char datoChar = 122;
         long datoLong =829L;
         short datoShort = 238;
