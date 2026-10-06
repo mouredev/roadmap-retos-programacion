@@ -6,7 +6,7 @@
 * varias
 * líneas
 */
-
+public class yaretzyrb{
 public static void main(String[] args) {
 
     // Variable y constante
@@ -26,5 +26,5 @@ public static void main(String[] args) {
     String k = "Hola";
     
     System.out.println(k +" Java");
-    }
+    }}
     
