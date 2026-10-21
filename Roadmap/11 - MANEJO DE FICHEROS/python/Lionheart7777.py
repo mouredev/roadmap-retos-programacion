@@ -1,4 +1,5 @@
-import os
+
+ 
 
 """Ejercicio
 """
@@ -19,7 +20,8 @@ os.remove(file_name)"""
 """
 EXTRA
 """
-file_name = "Lionheart7777_shop.txt"
+import os
+file_name = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Lionheart7777_shop.txt")
 
 with open(file_name, "a"):
     pass
