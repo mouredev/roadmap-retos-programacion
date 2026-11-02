@@ -14,4 +14,4 @@ let integer = 10;
 let float = 10.02;
 let string = "texto"
 
-print(console.log("Hola, JavaScript"))
+console.log("Hola, JavaScript");
