@@ -34,7 +34,7 @@ def order_process(dish_name: str, confirm_callback, ready_callback, delivered_ca
     thread = threading.Thread(target=process)
     thread.start()
     return thread
-                 
+
 def confirm_order(dish_name: str):
     print(f"Tu pedido {dish_name} ha sido confirmado")
     
