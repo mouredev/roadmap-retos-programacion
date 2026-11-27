@@ -1,0 +1,23 @@
+# Sitio web oficial de Python: https://www.python.org
+
+"""
+Esto es un comentario de varias líneas (en realidad es una cadena multilínea
+que no se asigna a ninguna variable, por lo que Python la ignora en ejecución).
+También suele usarse como docstring al inicio de módulos, funciones o clases.
+"""
+
+# Variable y "constante"
+# En Python no existen constantes estrictas en tiempo de ejecución,
+# pero por convención se escriben en MAYÚSCULAS_CON_GUIONES_BAJOS.
+nombre_lenguaje = "Python"
+VERSION_MAYOR = 3
+
+# Tipos de datos primitivos / básicos en Python
+cadena_texto = "¡Hola, mundo!"
+entero = 42
+flotante = 3.14
+booleano = True
+nulo = None
+
+# Imprime por terminal el texto solicitado
+print(f"¡Hola, {nombre_lenguaje}!")
